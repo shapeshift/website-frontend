@@ -23,6 +23,6 @@
 		],
 		"baseUrl": "."
 	},
-	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", "next.config.js"],
+	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", "next.config.js", "eslint.config.mjs"],
 	"exclude": ["node_modules"]
 }
