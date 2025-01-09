@@ -1,12 +1,8 @@
-import type {ReactElement} from 'react';
+import {useTranslations} from 'next-intl';
 
-import {Button} from '@/components/Button';
+import type {ReactNode} from 'react';
 
-export default function Home(): ReactElement {
-	return (
-		<div className={'font-[family-name:var(--font-geist-sans)]'}>
-			<h1 className={'font-bold text-white'}>{'Hello World'}</h1>
-			<Button />
-		</div>
-	);
+export default function HomePage(): ReactNode {
+	const t = useTranslations('SomePage');
+	return <h1>{t('first_translation')}</h1>;
 }
