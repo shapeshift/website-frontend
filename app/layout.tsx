@@ -4,9 +4,6 @@ import {getLocale, getMessages} from 'next-intl/server';
 import type {ReactNode} from 'react';
 
 import './globals.css';
-import '@rainbow-me/rainbowkit/styles.css';
-
-import {Providers} from '@/providers';
 
 export default async function RootLayout({children}: {children: React.ReactNode}): Promise<ReactNode> {
 	const locale = await getLocale();
@@ -16,9 +13,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 	return (
 		<html lang={locale}>
 			<body>
-				<Providers>
-					<NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-				</Providers>
+				<NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
 			</body>
 		</html>
 	);
