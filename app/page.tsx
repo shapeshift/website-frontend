@@ -16,12 +16,13 @@ import {IconPlus} from '@/components/common/icons/IconPlus';
 import {IconResource} from '@/components/common/icons/IconResource';
 import {IconTriLink} from '@/components/common/icons/IconTriLink';
 import {TabItem} from '@/components/common/TabItem';
+import {LinkButton} from '@/components/common/LinkButton';
 
 export default function HomePage(): ReactNode {
 	const [tab, set_tab] = useState<'buy' | 'trade' | 'earn'>('buy');
 	const t = useTranslations('SomePage');
 	return (
-		<div className={'flex h-screen flex-col gap-2  bg-bg p-6'}>
+		<div className={'flex h-screen flex-col gap-2 bg-bg'}>
 			<h1>{t('first_translation')}</h1>
 			<div className={'grid w-24 grid-cols-2 gap-2'}>
 				<div className={'flex size-12 items-center justify-center bg-white text-black'}>
@@ -95,6 +96,10 @@ export default function HomePage(): ReactNode {
 			<ButtonPlus />
 			<ButtonMinus />
 			<ButtonArrow />
+			<LinkButton
+				title={'Donate'}
+				href={'/'}
+			/>
 
 			<div className={'flex gap-2'}>
 				<TabItem

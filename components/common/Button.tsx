@@ -2,7 +2,7 @@ import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
 
-type TButtonVariant = 'blue' | 'white';
+export type TButtonVariant = 'blue' | 'white';
 
 type TButtonProps = {
 	children?: ReactNode;
@@ -16,7 +16,7 @@ export function Button(props: TButtonProps): ReactNode {
 		<button
 			{...props}
 			className={cl(
-				'flex h-14 w-[152px] font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl',
+				'flex h-14 w-[152px] px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl',
 				'hover:scale-105 transition-all duration-300',
 				props.className,
 				props.variant === 'blue'
