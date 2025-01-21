@@ -2,7 +2,6 @@
 
 import {type ReactNode, useState} from 'react';
 import {useTranslations} from 'next-intl';
-import {ConnectButton} from '@rainbow-me/rainbowkit';
 
 import {Button} from '@/components/common/Button';
 import {ButtonArrow} from '@/components/common/ButtonArrow';
@@ -24,8 +23,6 @@ export default function HomePage(): ReactNode {
 	return (
 		<div className={'flex h-screen flex-col gap-2  bg-bg p-6'}>
 			<h1>{t('first_translation')}</h1>
-			<ConnectButton />
-
 			<div className={'grid w-24 grid-cols-2 gap-2'}>
 				<div className={'flex size-12 items-center justify-center bg-white text-black'}>
 					<IconPlus className={'text-black'} />
