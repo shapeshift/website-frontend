@@ -20,7 +20,7 @@ export function Button(props: TButtonProps): ReactNode {
 				'hover:scale-105 transition-all duration-300',
 				props.className,
 				props.variant === 'blue'
-					? 'bg-button hover:bg-button-hover transition-all duration-300'
+					? 'bg-blue hover:bg-blueHover transition-all duration-300'
 					: 'bg-white/10 border border-white/50 hover:bg-white/5 transition-all duration-300'
 			)}
 			onClick={props.onClick}>

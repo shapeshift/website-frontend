@@ -1,7 +1,7 @@
 'use client';
 
-import {type ReactNode, useState} from 'react';
 import {useTranslations} from 'next-intl';
+import {useState} from 'react';
 
 import {Button} from '@/components/common/Button';
 import {ButtonArrow} from '@/components/common/ButtonArrow';
@@ -15,11 +15,13 @@ import {IconNext} from '@/components/common/icons/IconNext';
 import {IconPlus} from '@/components/common/icons/IconPlus';
 import {IconResource} from '@/components/common/icons/IconResource';
 import {IconTriLink} from '@/components/common/icons/IconTriLink';
-import {TabItem} from '@/components/common/TabItem';
 import {LinkButton} from '@/components/common/LinkButton';
+import {TabItem} from '@/components/common/TabItem';
+
+import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {
-	const [tab, set_tab] = useState<'buy' | 'trade' | 'earn'>('buy');
+	const [tab, setTab] = useState<'buy' | 'trade' | 'earn'>('buy');
 	const t = useTranslations('SomePage');
 	return (
 		<div className={'flex h-screen flex-col gap-2 bg-bg'}>
@@ -105,17 +107,17 @@ export default function HomePage(): ReactNode {
 				<TabItem
 					title={'Buy'}
 					selected={tab === 'buy'}
-					onClick={() => set_tab('buy')}
+					onClick={() => setTab('buy')}
 				/>
 				<TabItem
 					title={'Trade'}
 					selected={tab === 'trade'}
-					onClick={() => set_tab('trade')}
+					onClick={() => setTab('trade')}
 				/>
 				<TabItem
 					title={'Earn'}
 					selected={tab === 'earn'}
-					onClick={() => set_tab('earn')}
+					onClick={() => setTab('earn')}
 				/>
 			</div>
 		</div>
