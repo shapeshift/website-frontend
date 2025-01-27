@@ -41,7 +41,7 @@ async function getBlogPost(slug: string): Promise<TBlogPost | null> {
 	return data;
 }
 
-export default async function BlogPost({params}: {params: {slug: string}}): Promise<React.ReactNode> {
+export default async function BlogPost({params}: {params: Promise<{slug: string}>}): Promise<React.ReactNode> {
 	const {slug} = await params;
 	const post = await getBlogPost(slug);
 
