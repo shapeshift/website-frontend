@@ -21,3 +21,9 @@ export const appProducts = [
 	{name: 'Mobile app', href: '/products/mobile-app', description: 'A decentralized finance wallet'},
 	{name: 'KeepKey', href: '/products/keep-key', description: 'A decentralized finance wallet'}
 ];
+
+export const headerTabs = [
+	{name: 'Products', href: '/products', value: 'products'},
+	{name: 'Resources', href: '/resources', value: 'resources'},
+	{name: 'DAO', href: '/dao', value: 'dao'}
+];

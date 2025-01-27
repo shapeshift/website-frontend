@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import {Inter_Tight} from 'next/font/google';
+import React from 'react';
 
 import type {ReactElement, ReactNode} from 'react';
 
