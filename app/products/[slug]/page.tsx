@@ -20,8 +20,9 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
 		}
 	});
+
 	const pagesJson = await pages.json();
-	console.log(pagesJson);
+
 	const page = pagesJson.data.find((page: TPageData) => page.slug === slug);
 
 	if (!page) {
@@ -29,7 +30,7 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 	}
 
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/pages/${page.documentId}?populate[0]=hero&populate[1]=hero.button_cta&populate[2]=hero.button_download&populate[3]=hero.featured_img&populate[4]=hero.stats&populate[5]=cards_row&populate[6]=cards_row.cards&populate[7]=cards_row.cards.image&populate[8]=cards_row.block_cta&populate[9]=cards_row.block_cta.icon&populate[10]=grid&populate[11]=grid.card_cta&populate[12]=grid.card_cta.button_cta&populate[13]=grid.card_cta.image_bg&populate[14]=grid.card&populate[15]=grid.card.image&populate[16]=grid_ladder&populate[17]=grid_ladder.steps&populate[18]=grid_ladder.steps.button_cta&populate[19]=grid_ladder.steps.image&populate[20]=grid_displaced&populate[21]=grid_displaced.cards&populate[22]=grid_displaced.cards.image&populate[23]=footer&populate[24]=footer.button_cta&populate[25]=footer.button_download&populate[26]=footer.image_bg&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
+		`${process.env.STRAPI_URL}/api/pages/${page.documentId}?populate[0]=hero&populate[1]=hero.buttonCta&populate[2]=hero.buttonDownload&populate[3]=hero.featuredImg&populate[4]=hero.stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[10]=grid&populate[11]=grid.cardCta&populate[12]=grid.cardCta.buttonCta&populate[13]=grid.cardCta.imageBg&populate[14]=grid.card&populate[15]=grid.card.image&populate[16]=gridLadder&populate[17]=gridLadder.steps&populate[18]=gridLadder.steps.buttonCta&populate[19]=gridLadder.steps.image&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&populate[23]=footer&populate[24]=footer.buttonCta&populate[25]=footer.buttonDownload&populate[26]=footer.imageBg&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
