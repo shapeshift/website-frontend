@@ -1,13 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import path from 'node:path';
-import {fileURLToPath} from 'node:url';
-
-import _import from 'eslint-plugin-import';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export default {
+module.exports = {
 	env: {
 		node: true,
 		browser: true,
