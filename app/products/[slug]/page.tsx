@@ -47,7 +47,8 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 }
 
 export default async function Page({params}: {params: {slug: string}}): Promise<React.ReactNode> {
-	const page = await getPageData(params.slug);
+	const {slug} = await params;
+	const page = await getPageData(slug);
 
 	if (!page) {
 		return null; // TODO: handle this
