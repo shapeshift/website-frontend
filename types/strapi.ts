@@ -81,3 +81,29 @@ export type TPageData = {
 	updatedAt: string;
 	publishedAt: string;
 };
+
+/********************************************************************************************
+ * Types for Strapi Blog API responses
+ * Includes both list and single post interfaces
+ ********************************************************************************************/
+export type TBlogPost = {
+	id: number;
+	documentId: string;
+	slug: string;
+	content: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TBlogListResponse = {
+	data: TBlogPost[];
+	meta: {
+		pagination: {
+			page: number;
+			pageSize: number;
+			pageCount: number;
+			total: number;
+		};
+	};
+};
