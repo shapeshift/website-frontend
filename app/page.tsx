@@ -4,9 +4,6 @@ import {useTranslations} from 'next-intl';
 import {useState} from 'react';
 
 import {Button} from '@/components/common/Button';
-import {ButtonArrow} from '@/components/common/ButtonArrow';
-import {ButtonMinus} from '@/components/common/ButtonMinus';
-import {ButtonPlus} from '@/components/common/ButtonPlus';
 import {IconArrow} from '@/components/common/icons/IconArrow';
 import {IconBack} from '@/components/common/icons/IconBack';
 import {IconBot} from '@/components/common/icons/IconBot';
@@ -15,7 +12,7 @@ import {IconNext} from '@/components/common/icons/IconNext';
 import {IconPlus} from '@/components/common/icons/IconPlus';
 import {IconResource} from '@/components/common/icons/IconResource';
 import {IconTriLink} from '@/components/common/icons/IconTriLink';
-import {LinkButton} from '@/components/common/LinkButton';
+import {RoundButton} from '@/components/common/RoundButton';
 import {TabItem} from '@/components/common/TabItem';
 
 import type {ReactNode} from 'react';
@@ -92,13 +89,16 @@ export default function HomePage(): ReactNode {
 				</div>
 			</div>
 
-			<Button variant={'blue'}>{'Click me'}</Button>
-			<Button variant={'white'}>{'Click me'}</Button>
+			<Button
+				variant={'blue'}
+				title={'Click me'}
+			/>
 
-			<ButtonPlus />
-			<ButtonMinus />
-			<ButtonArrow />
-			<LinkButton
+			<RoundButton iconName={'arrow'} />
+			<RoundButton iconName={'plus'} />
+			<RoundButton iconName={'minus'} />
+			<Button
+				variant={'blue'}
 				title={'Donate'}
 				href={'/'}
 			/>

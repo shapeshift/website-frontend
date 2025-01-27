@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 
+import {Button} from './common/Button';
 import {ShapeshiftLogo} from './common/icons/ShapeshiftLogo';
-import {LinkButton} from './common/LinkButton';
 import {appDao, appProducts, appResources} from './constants';
 
 import type {ReactNode} from 'react';
@@ -39,14 +39,14 @@ export function Footer(): ReactNode {
 									<div
 										key={category}
 										className={'flex flex-col gap-8'}>
-										<h3 className={'text-gray-500 text-sm font-medium'}>{category}</h3>
+										<h3 className={'text-sm font-medium text-gray-500'}>{category}</h3>
 										<div className={'flex flex-col gap-3'}>
 											{links.map(link => (
 												<Link
 													key={link.name}
 													href={link.href}
 													target={category === 'Connect' ? '_blank' : '_self'}
-													className={'hover:text-gray-300 text-sm text-white'}>
+													className={'text-sm text-white hover:text-gray-300'}>
 													{link.name}
 												</Link>
 											))}
@@ -54,7 +54,7 @@ export function Footer(): ReactNode {
 									</div>
 								))}
 							</div>
-							<LinkButton
+							<Button
 								href={'/'}
 								variant={'blue'}
 								title={'Donate'}
@@ -62,7 +62,7 @@ export function Footer(): ReactNode {
 						</div>
 
 						<div className={'flex items-center justify-between gap-2'}>
-							<div className={'text-gray-500 text-sm'}>{'© 2022 ShapeShift. All Rights Reserved'}</div>
+							<div className={'text-sm text-gray-500'}>{'© 2022 ShapeShift. All Rights Reserved'}</div>
 
 							<div className={'size-10 rounded-lg border border-stoke bg-black p-2'}>{'QR'}</div>
 						</div>

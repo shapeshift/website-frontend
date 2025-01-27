@@ -1,12 +1,13 @@
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale, getMessages} from 'next-intl/server';
-import {Header} from '@/components/Header';
-import {Footer} from '@/components/Footer';
 
-import type {ReactNode} from 'react';
+import {WithFonts} from '@/components/common/WithFonts';
+import {Footer} from '@/components/Footer';
+import {Header} from '@/components/Header';
 
 import './globals.css';
-import {WithFonts} from '@/components/common/WithFonts';
+
+import type {ReactNode} from 'react';
 
 export default async function RootLayout({children}: {children: React.ReactNode}): Promise<ReactNode> {
 	const locale = await getLocale();
@@ -19,7 +20,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 					<NextIntlClientProvider messages={messages}>
 						<Header />
 						<div className={'flex flex-col'}>
-							<main className={'mx-auto min-h-[50vh] w-full max-w-[1400px] pt-32 px-4'}>{children}</main>
+							<main className={'mx-auto min-h-[50vh] w-full max-w-[1400px] px-4 pt-32'}>{children}</main>
 							<Footer />
 						</div>
 					</NextIntlClientProvider>
