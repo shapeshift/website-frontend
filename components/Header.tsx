@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {useRef, useState} from 'react';
+import {useMemo, useRef, useState} from 'react';
 
 import {useOnClickOutside} from '@/hooks/useOnClickOutside';
 
@@ -12,16 +12,19 @@ import {appDao, appProducts, appResources, headerTabs} from './constants';
 
 import type {ReactNode} from 'react';
 
-const tabContent: Record<string, ReactNode> = {
-	products: <ProductsExpand />,
-	resources: <ResourcesExpand />,
-	dao: <DAOExpand />,
-	empty: null
-} as const;
-
 export function Header(): ReactNode {
 	const [currentTab, setCurrentTab] = useState<string>('empty');
 	const headerRef = useRef<HTMLDivElement>(null);
+
+	const tabContent: Record<string, ReactNode> = useMemo(
+		() => ({
+			products: <ProductsExpand setCurrentTab={setCurrentTab} />,
+			resources: <ResourcesExpand setCurrentTab={setCurrentTab} />,
+			dao: <DAOExpand setCurrentTab={setCurrentTab} />,
+			empty: null
+		}),
+		[]
+	);
 
 	useOnClickOutside(headerRef, () => setCurrentTab('empty'));
 
@@ -31,7 +34,7 @@ export function Header(): ReactNode {
 			className={'relative z-50'}>
 			<div
 				className={
-					'fixed mx-4 mt-4 flex w-[calc(100vw-2rem)] flex-col items-center justify-between rounded-lg border border-stoke bg-secondBg px-6 pb-16 pt-3'
+					'fixed mx-4 mt-4 flex w-[calc(100vw-2rem)] flex-col items-center justify-between rounded-lg border border-stoke bg-secondBg px-6 pt-3'
 				}>
 				<div className={'flex w-full items-center justify-between'}>
 					<Link
@@ -63,11 +66,10 @@ export function Header(): ReactNode {
 		</div>
 	);
 }
-
-function ProductsExpand(): ReactNode {
+function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div className={'mt-16 flex max-w-[1400px] justify-between'}>
-			<div className={'flex flex-col border-r border-stoke pr-10'}>
+			<div className={'flex flex-col border-r border-stoke pb-10 pr-10'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Your Wallet. One App.'}
 					<br />
@@ -88,6 +90,7 @@ function ProductsExpand(): ReactNode {
 				<div className={'grid grid-cols-3 gap-4'}>
 					{appProducts.map(product => (
 						<HeaderItem
+							onClick={() => setCurrentTab('empty')}
 							key={product.name}
 							name={product.name}
 							href={product.href}
@@ -100,10 +103,10 @@ function ProductsExpand(): ReactNode {
 	);
 }
 
-function ResourcesExpand(): ReactNode {
+function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div className={'mt-16 flex max-w-[1400px] justify-between'}>
-			<div className={'border-r border-stoke pr-10'}>
+			<div className={'border-r border-stoke pb-10 pr-10'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Learn more about'}
 					<br />
@@ -116,6 +119,7 @@ function ResourcesExpand(): ReactNode {
 				<div className={'grid grid-cols-3 gap-4'}>
 					{appResources.slice(0, 3).map(resource => (
 						<HeaderItem
+							onClick={() => setCurrentTab('empty')}
 							key={resource.name}
 							name={resource.name}
 							href={resource.href}
@@ -128,16 +132,17 @@ function ResourcesExpand(): ReactNode {
 	);
 }
 
-function DAOExpand(): ReactNode {
+function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div className={'mt-16 flex max-w-[1400px] justify-between'}>
-			<div className={'border-r border-stoke pr-10'}>
+			<div className={'border-r border-stoke pb-10 pr-10'}>
 				<p className={'text-sm text-gray-500'}>{'FOX Tokens wield mighty powers for those who hodl them.'}</p>
 			</div>
 			<div>
 				<div className={'grid grid-cols-3 gap-4'}>
 					{appDao.slice(0, 3).map(dao => (
 						<HeaderItem
+							onClick={() => setCurrentTab('empty')}
 							key={dao.name}
 							name={dao.name}
 							href={dao.href}

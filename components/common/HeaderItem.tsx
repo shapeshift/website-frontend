@@ -9,14 +9,16 @@ type THeaderItemProps = {
 	href: string;
 	target?: string;
 	description: string;
+	onClick?: () => void;
 };
 
-export default function HeaderItem({name, href, target, description}: THeaderItemProps): ReactNode {
+export default function HeaderItem({name, href, target, description, onClick}: THeaderItemProps): ReactNode {
 	return (
 		<Link
 			href={href}
 			target={target}
-			className={'flex max-w-[232px] gap-2 px-6 py-4'}>
+			className={'flex max-w-[232px] gap-2 px-6 py-4'}
+			onClick={onClick}>
 			<div>
 				<IconResource />
 			</div>
