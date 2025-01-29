@@ -30,7 +30,9 @@ export function Button(props: TButtonProps): ReactNode {
 			onClick={props.onClick}>
 			{props.href ? (
 				<div className={'flex w-full items-center justify-between'}>
-					<Link href={props.href}>
+					<Link
+						href={props.href}
+						target={'_blank'}>
 						<span>{props.title}</span>
 					</Link>
 					<IconNext />

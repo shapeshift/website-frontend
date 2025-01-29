@@ -45,14 +45,12 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 					</div>
 				</div>
 
-				<div>
+				<div className={'mt-20 overflow-hidden rounded-2xl'}>
 					<Image
 						src={`${process.env.STRAPI_URL}${data?.featuredImg.formats.large.url}`}
 						alt={data.title}
 						width={1400}
 						height={data?.featuredImg?.formats.large.height ?? 0}
-						className={'mt-20'}
-						unoptimized
 					/>
 				</div>
 

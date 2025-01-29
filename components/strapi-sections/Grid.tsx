@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import {Button} from '../common/Button';
+import {cl} from '../utils/cl';
 
 import type {TCard, TGridSection} from '@/types/strapi';
 import type {ReactNode} from 'react';
@@ -12,28 +13,34 @@ export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 
 	return (
 		<section className={'container mb-60 grid w-full grid-cols-3'}>
-			<div
-				className={
-					'relative col-span-1 flex h-[720px] w-[461px] flex-col items-center justify-center overflow-hidden rounded-2xl'
-				}>
-				<Image
-					src={'/gridBg.png'}
-					alt={'grid background'}
-					width={461}
-					height={720}
-					className={'absolute inset-0'}
-				/>
-				<div className={'flex max-w-[300px] flex-col items-center justify-center'}>
-					<div className={' text-center text-[40px] leading-[48px]'}>{data?.cardCta[0]?.title}</div>
-					<div className={'mb-14 mt-4 text-center text-gray-500'}>{data?.cardCta[0]?.description}</div>
-					<Button
-						variant={'blue'}
-						title={data?.cardCta[0]?.buttonCta[0]?.title}
-						href={data?.cardCta[0]?.buttonCta[0]?.url ?? '/'}
+			{data.cardCta.length > 0 && (
+				<div
+					className={
+						'relative col-span-1 flex h-[720px] w-[461px] flex-col items-center justify-center overflow-hidden rounded-2xl'
+					}>
+					<Image
+						src={`${process.env.STRAPI_URL}${data?.cardCta[0]?.imageBg?.url}`}
+						alt={'grid background'}
+						width={461}
+						height={720}
+						className={'absolute inset-0'}
 					/>
+					<div className={'flex max-w-[300px] flex-col items-center justify-center'}>
+						<div className={' text-center text-[40px] leading-[48px]'}>{data?.cardCta[0]?.title}</div>
+						<div className={'mb-14 mt-4 text-center text-gray-500'}>{data?.cardCta[0]?.description}</div>
+						<Button
+							variant={'blue'}
+							title={data?.cardCta[0]?.buttonCta?.title ?? 'Click Here'}
+							href={data?.cardCta[0]?.buttonCta?.url ?? '/'}
+						/>
+					</div>
 				</div>
-			</div>
-			<div className={'max-ht-[720px] col-span-2 flex flex-col gap-2'}>
+			)}
+			<div
+				className={cl(
+					'max-ht-[720px] flex flex-col gap-2',
+					data.cardCta.length > 0 ? 'col-span-2' : 'col-span-3'
+				)}>
 				<div className={'col-span-2'}>
 					<Card data={data?.card[0]} />
 				</div>

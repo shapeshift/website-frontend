@@ -74,7 +74,7 @@ export type TGridSection = {
 		title: string;
 		description: string;
 		imageBg?: TStrapiImage;
-		buttonCta: TButton[];
+		buttonCta: TButton;
 	}[];
 };
 
