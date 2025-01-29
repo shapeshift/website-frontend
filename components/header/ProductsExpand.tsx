@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import {Button} from '../common/Button';
 import HeaderItem from '../common/HeaderItem';
 import {appProducts} from '../constants';
+import {expandAnimation} from './animations';
 
 import type {ReactNode} from 'react';
 
@@ -15,12 +16,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 	return (
 		<motion.div
 			className={'mt-16 flex max-w-[1400px] justify-between pb-10'}
-			initial={{opacity: 0, y: 20}}
-			animate={{opacity: 1, y: 0}}
-			transition={{
-				y: {duration: 0.4, ease: [0.23, 1, 0.32, 1]},
-				opacity: {duration: 0.3}
-			}}>
+			{...expandAnimation}>
 			{/* Left section with main CTA */}
 			<div className={'flex flex-col border-r border-stoke pr-10'}>
 				<p className={'mb-4 text-2xl font-medium'}>

@@ -9,7 +9,7 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 	}
 
 	return (
-		<section className={'relative mb-60'}>
+		<section className={'container relative mb-60'}>
 			<div className={'grid lg:grid-cols-2 lg:gap-2'}>
 				<div className={'grid max-h-[744px] gap-2 overflow-hidden rounded-2xl'}>
 					<div className={'grid-span-1 p-10'}>

@@ -4,6 +4,7 @@ import {AnimatePresence, motion} from 'framer-motion';
 import Link from 'next/link';
 import {useMemo, useState} from 'react';
 
+import {containerAnimation} from './animations';
 import {Button} from '../common/Button';
 import {ShapeshiftLogo} from '../common/icons/ShapeshiftLogo';
 import {headerTabs} from '../constants';
@@ -16,31 +17,6 @@ import type {ReactNode} from 'react';
 
 export function Header(): ReactNode {
 	const [currentTab, setCurrentTab] = useState<string>('empty');
-
-	// Define animation constants for better readability and maintainability
-	const initialAnimation = {opacity: 0, y: 20};
-	const animateAnimation = useMemo(
-		() => ({
-			opacity: currentTab === 'empty' ? 0 : 1,
-			y: currentTab === 'empty' ? 20 : 0,
-			scaleY: currentTab === 'empty' ? 0.95 : 1,
-			transformOrigin: 'top'
-		}),
-		[currentTab]
-	);
-	const exitAnimation = {
-		opacity: 0,
-		y: 10,
-		scaleY: 0.95,
-		transition: {
-			duration: 0.15,
-			ease: [0.32, 0, 0.67, 0]
-		}
-	};
-	const transitionSettings = {
-		duration: 0.4,
-		ease: [0.23, 1, 0.32, 1]
-	};
 
 	/**********************************************************************************************
 	 * This function is used to handle the tab mouse enter event.
@@ -95,10 +71,10 @@ export function Header(): ReactNode {
 				<AnimatePresence mode={'wait'}>
 					<motion.div
 						key={currentTab}
-						initial={initialAnimation}
-						animate={animateAnimation}
-						exit={exitAnimation}
-						transition={transitionSettings}>
+						initial={containerAnimation.initial}
+						animate={containerAnimation.animate(currentTab !== 'empty')}
+						exit={containerAnimation.exit}
+						transition={containerAnimation.transition}>
 						{tabContent[currentTab]}
 					</motion.div>
 				</AnimatePresence>
