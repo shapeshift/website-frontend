@@ -17,6 +17,7 @@ export type TStrapiImage = {
 export type TDownloadButton = {
 	id: number;
 	variant: 'appstore' | 'googleplay';
+	url: string;
 };
 
 export type TButton = {
@@ -131,7 +132,8 @@ export type TBlogPost = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
-	featuredImage: TStrapiImage;
+	imageFeatured: TStrapiImage;
+	type: ('announcements' | 'tutorials' | 'news')[];
 	description: string;
 };
 

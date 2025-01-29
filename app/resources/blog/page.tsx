@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import {useEffect, useMemo, useState} from 'react';
 
 import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
@@ -26,33 +29,40 @@ const tabs = [
 	}
 ];
 
-/********************************************************************************************
- * Fetches blog posts with proper error handling and typing
- * Includes cache and revalidation settings
- ********************************************************************************************/
-async function getBlogPosts(): Promise<TBlogListResponse> {
-	try {
-		const res = await fetch(`${process.env.STRAPI_URL}/api/posts`, {
-			headers: {
-				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
-			},
-			next: {revalidate: 3600} // Cache for 1 hour
-		});
+export default function BlogList(): ReactNode {
+	const [posts, setPosts] = useState<TBlogPost[]>([]);
+	const [currentTab, setCurrentTab] = useState<string>('all');
 
-		if (!res.ok) {
-			throw new Error(`Failed to fetch posts: ${res.status}`);
+	const renderingPosts = useMemo(() => {
+		if (currentTab === 'all') {
+			return posts;
+		}
+		return posts.filter(post => post.type.includes(currentTab as 'announcements' | 'tutorials' | 'news'));
+	}, [posts, currentTab]);
+
+	useEffect(() => {
+		async function fetchPosts(): Promise<void> {
+			try {
+				const res = await fetch(`${process.env.STRAPI_URL}/api/posts?populate[0]=imageFeatured`, {
+					headers: {
+						Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+					}
+				});
+
+				if (!res.ok) {
+					throw new Error(`Failed to fetch posts: ${res.status}`);
+				}
+
+				const data: TBlogListResponse = await res.json();
+				setPosts(data.data);
+				console.log(data.data);
+			} catch (err) {
+				console.error('Error fetching blog posts:', err);
+			}
 		}
 
-		return res.json();
-	} catch (error) {
-		console.error('Error fetching blog posts:', error);
-		return {data: [], meta: {pagination: {page: 1, pageSize: 10, pageCount: 0, total: 0}}};
-	}
-}
-
-export default async function BlogList(): Promise<ReactNode> {
-	const response = await getBlogPosts();
-	const posts = response?.data ?? [];
+		void fetchPosts();
+	}, []);
 
 	return (
 		<main className={'container mx-auto mt-40 px-4 py-8'}>
@@ -67,6 +77,8 @@ export default async function BlogList(): Promise<ReactNode> {
 					<TabItem
 						key={tab.slug}
 						title={tab.title}
+						selected={currentTab === tab.slug}
+						onClick={() => setCurrentTab(tab.slug)}
 					/>
 				))}
 			</div>
@@ -74,7 +86,7 @@ export default async function BlogList(): Promise<ReactNode> {
 				<p className={'mb-20 text-gray-400'}>{'No blog posts found.'}</p>
 			) : (
 				<div className={'mb-20 grid gap-6 lg:grid-cols-3'}>
-					{posts.map(post => (
+					{renderingPosts.map(post => (
 						<BlogPost
 							key={post.slug}
 							post={post}
@@ -87,20 +99,19 @@ export default async function BlogList(): Promise<ReactNode> {
 	);
 }
 
-const BlogPost = ({post}: {post: TBlogPost}): ReactNode => {
-	console.log(post);
+function BlogPost({post}: {post: TBlogPost}): ReactNode {
 	return (
 		<Link
 			href={`/resources/blog/${post.slug}`}
 			className={'rounded-2xl bg-secondBg p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'}>
-			<div className={'max-h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
-				{post?.featuredImage?.url ? (
+			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
+				{post?.imageFeatured?.url ? (
 					<Image
-						src={post?.featuredImage?.url ?? ''}
+						src={`${process.env.STRAPI_URL}${post?.imageFeatured?.url}`}
 						alt={post.slug}
-						width={post?.featuredImage?.width ?? 0}
-						height={post?.featuredImage?.height ?? 0}
-						className={'transition-transform duration-300 hover:scale-110'}
+						width={post?.imageFeatured?.width ?? 0}
+						height={post?.imageFeatured?.height ?? 0}
+						className={'size-full object-cover transition-transform duration-300 hover:scale-110'}
 					/>
 				) : (
 					<div className={'h-[204px] w-auto rounded-2xl bg-gray-500'} />
@@ -118,4 +129,4 @@ const BlogPost = ({post}: {post: TBlogPost}): ReactNode => {
 			</div>
 		</Link>
 	);
-};
+}

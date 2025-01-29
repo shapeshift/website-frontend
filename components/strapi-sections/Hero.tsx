@@ -29,7 +29,7 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 							<div className={'flex gap-4'}>
 								{data.buttonDownload.map(button => (
 									<Link
-										href={'/'}
+										href={button.url ?? ''}
 										target={'_blank'}
 										className={'h-[40px] w-[130px]'}
 										key={button.id}>
