@@ -28,8 +28,8 @@ export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 					<div className={'mb-14 mt-4 text-center text-gray-500'}>{data?.cardCta[0]?.description}</div>
 					<Button
 						variant={'blue'}
-						title={data?.cardCta[0].buttonCta[0]?.title}
-						href={data?.cardCta[0].buttonCta[0]?.url ?? '/'}
+						title={data?.cardCta[0]?.buttonCta[0]?.title}
+						href={data?.cardCta[0]?.buttonCta[0]?.url ?? '/'}
 					/>
 				</div>
 			</div>

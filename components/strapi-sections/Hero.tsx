@@ -18,14 +18,13 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 					<h1 className={'mb-4 text-h1 font-normal leading-[72px]'}>{data.title}</h1>
 					<div className={'flex flex-col'}>
 						<p className={'mb-8 text-xl font-normal text-gray-500'}>{data.description}</p>
-						{data.buttonCta && (
+						{data.buttonCta ? (
 							<Button
 								variant={'blue'}
 								title={data.buttonCta?.title ?? 'Title'}
 								href={data.buttonCta?.url ?? '/'}
 							/>
-						)}
-						{data.buttonDownload.length > 0 && (
+						) : data.buttonDownload.length > 0 ? (
 							<div className={'flex gap-4'}>
 								{data.buttonDownload.map(button => (
 									<Link
@@ -42,7 +41,7 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 									</Link>
 								))}
 							</div>
-						)}
+						) : null}
 					</div>
 				</div>
 

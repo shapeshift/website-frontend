@@ -33,7 +33,7 @@ export default function BlogList(): ReactNode {
 	const [posts, setPosts] = useState<TBlogPost[]>([]);
 	const [currentTab, setCurrentTab] = useState<string>('all');
 
-	const renderingPosts = useMemo(() => {
+	const filteredPosts = useMemo(() => {
 		if (currentTab === 'all') {
 			return posts;
 		}
@@ -86,7 +86,7 @@ export default function BlogList(): ReactNode {
 				<p className={'mb-20 text-gray-400'}>{'No blog posts found.'}</p>
 			) : (
 				<div className={'mb-20 grid gap-6 lg:grid-cols-3'}>
-					{renderingPosts.map(post => (
+					{filteredPosts.map(post => (
 						<BlogPost
 							key={post.slug}
 							post={post}
