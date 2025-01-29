@@ -1,7 +1,10 @@
 import {notFound} from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 
+import {Banner} from '@/components/common/Banner';
+
 import type {TBlogListResponse, TBlogPost} from '@/types/strapi';
+import type {ReactNode} from 'react';
 
 /********************************************************************************************
  * Fetches a single blog post by slug
@@ -41,7 +44,7 @@ async function getBlogPost(slug: string): Promise<TBlogPost | null> {
 	return data;
 }
 
-export default async function BlogPost({params}: {params: Promise<{slug: string}>}): Promise<React.ReactNode> {
+export default async function BlogPost({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	const {slug} = await params;
 	const post = await getBlogPost(slug);
 
@@ -50,10 +53,13 @@ export default async function BlogPost({params}: {params: Promise<{slug: string}
 	}
 
 	return (
-		<article className={'prose prose-invert container mx-auto max-w-4xl px-4 py-8'}>
-			<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
-			<div className={'mb-8 text-gray-400'}>{new Date(post.publishedAt).toLocaleDateString()}</div>
-			<ReactMarkdown>{post.content}</ReactMarkdown>
-		</article>
+		<>
+			<article className={'prose prose-invert container mx-auto mb-20 mt-40 max-w-4xl px-4 py-8'}>
+				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
+				<div className={'mb-8 text-gray-400'}>{new Date(post.publishedAt).toLocaleDateString()}</div>
+				<ReactMarkdown>{post.content}</ReactMarkdown>
+			</article>
+			<Banner />
+		</>
 	);
 }

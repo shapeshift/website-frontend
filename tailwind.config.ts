@@ -3,7 +3,18 @@ import type {Config} from 'tailwindcss';
 export default {
 	content: ['./components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
 	theme: {
+		container: {
+			screens: {
+				xl: '1400px'
+			}
+		},
 		extend: {
+			fontSize: {
+				h1: '72px'
+			},
+			leading: {
+				h1: '72px'
+			},
 			colors: {
 				white: '#FFFFFF',
 				bg: '#0C0D0F',

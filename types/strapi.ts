@@ -14,6 +14,12 @@ export type TStrapiImage = {
 	};
 };
 
+export type TDownloadButton = {
+	id: number;
+	variant: 'appstore' | 'googleplay';
+	url: string;
+};
+
 export type TButton = {
 	id: number;
 	title: string;
@@ -34,6 +40,14 @@ export type TCard = {
 	image: TStrapiImage;
 };
 
+export type TGridLadderStep = {
+	id: number;
+	title: string;
+	description: string;
+	image?: TStrapiImage;
+	buttonCta: TButton;
+};
+
 // Component types
 export type THeroSection = {
 	id: number;
@@ -41,21 +55,45 @@ export type THeroSection = {
 	description: string;
 	stats: TStat[];
 	featuredImg: TStrapiImage;
-	buttonDownload: TButton[];
+	buttonDownload: TDownloadButton[];
 	buttonCta: TButton;
 };
 
 export type TCardsRowSection = {
 	id: number;
 	title: string;
-	blockCta: TButton | null;
+	ctaBlock: TButton | null;
 	cards: TCard[];
+};
+
+export type TGridSection = {
+	id: number;
+	card: TCard[];
+	cardCta: {
+		id: number;
+		title: string;
+		description: string;
+		imageBg?: TStrapiImage;
+		buttonCta: TButton;
+	}[];
 };
 
 export type TGridDisplacedSection = {
 	id: number;
 	title: string;
+	description: string;
+	cta: TButton;
 	cards: TCard[];
+	features: {
+		title: string;
+		description: string;
+		image?: TStrapiImage;
+	}[];
+};
+
+export type TGridLadderSection = {
+	id: number;
+	steps: TGridLadderStep[];
 };
 
 export type TFooterSection = {
@@ -73,7 +111,7 @@ export type TPageData = {
 	slug: string;
 	hero?: THeroSection;
 	cardsRow?: TCardsRowSection;
-	grid?: any;
+	grid?: TGridSection;
 	gridLadder?: any;
 	gridDisplaced?: TGridDisplacedSection;
 	footer?: TFooterSection;
@@ -94,6 +132,9 @@ export type TBlogPost = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
+	imageFeatured: TStrapiImage;
+	type: ('announcements' | 'tutorials' | 'news')[];
+	description: string;
 };
 
 export type TBlogListResponse = {
