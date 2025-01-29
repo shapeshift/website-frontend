@@ -112,7 +112,7 @@ export type TPageData = {
 	hero?: THeroSection;
 	cardsRow?: TCardsRowSection;
 	grid?: TGridSection;
-	gridLadder?: any;
+	gridLadder?: TGridLadderSection;
 	gridDisplaced?: TGridDisplacedSection;
 	footer?: TFooterSection;
 	createdAt: string;
