@@ -2,9 +2,7 @@
 
 import {AnimatePresence, motion} from 'framer-motion';
 import Link from 'next/link';
-import {useMemo, useRef, useState} from 'react';
-
-import {useOnClickOutside} from '@/hooks/useOnClickOutside';
+import {useMemo, useState} from 'react';
 
 import {Button} from '../common/Button';
 import {ShapeshiftLogo} from '../common/icons/ShapeshiftLogo';
@@ -18,7 +16,6 @@ import type {ReactNode} from 'react';
 
 export function Header(): ReactNode {
 	const [currentTab, setCurrentTab] = useState<string>('empty');
-	const headerRef = useRef<HTMLDivElement>(null);
 
 	// Define animation constants for better readability and maintainability
 	const initialAnimation = {opacity: 0, y: 20};
@@ -60,11 +57,8 @@ export function Header(): ReactNode {
 		[]
 	);
 
-	useOnClickOutside(headerRef, () => setCurrentTab('empty'));
-
 	return (
 		<div
-			ref={headerRef}
 			onMouseLeave={() => setCurrentTab('empty')}
 			className={'relative z-50'}>
 			<div
