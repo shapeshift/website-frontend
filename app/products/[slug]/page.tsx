@@ -7,6 +7,7 @@ import {sections} from '@/components/utils/strapi';
 
 import type {TSectionType} from '@/components/utils/strapi';
 import type {TPageData} from '@/types/strapi';
+import type {ReactNode} from 'react';
 
 // import type {PageData} from '@/types/page';
 
@@ -46,10 +47,9 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 	return json.data;
 }
 
-export default async function Page({params}: {params: Promise<{slug: string}>}): Promise<React.ReactNode> {
+export default async function Page({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	const {slug} = await params;
 	const page = await getPageData(slug);
-
 	if (!page) {
 		return null; // TODO: handle this
 	}

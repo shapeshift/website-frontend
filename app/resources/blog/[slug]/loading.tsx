@@ -1,4 +1,6 @@
-export default function Loading(): React.ReactNode {
+import type {ReactNode} from 'react';
+
+export default function Loading(): ReactNode {
 	console.log('loading');
 	return (
 		<div className={'container mx-auto px-4 py-8'}>

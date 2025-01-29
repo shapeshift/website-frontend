@@ -1,6 +1,6 @@
-import type {ReactNode} from 'react';
+import type {ReactNode, SVGProps} from 'react';
 
-export function IconBack(props: React.SVGProps<SVGSVGElement>): ReactNode {
+export function IconBack(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
 		<svg
 			{...props}

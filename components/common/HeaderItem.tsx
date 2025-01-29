@@ -17,7 +17,7 @@ export default function HeaderItem({name, href, target, description, onClick}: T
 		<Link
 			href={href}
 			target={target}
-			className={'flex max-w-[232px] gap-2 px-6 py-4'}
+			className={'flex max-w-[232px] gap-2 rounded-lg px-6 py-4 transition-colors duration-300 hover:bg-white/10'}
 			onClick={onClick}>
 			<div>
 				<IconResource />
