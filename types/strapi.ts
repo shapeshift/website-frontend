@@ -148,3 +148,25 @@ export type TBlogListResponse = {
 		};
 	};
 };
+
+export type TFaqData = {
+	id: number;
+	documentId: string;
+	title: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	faqSection: TFaqSection[];
+};
+
+export type TFaqSection = {
+	id: number;
+	sectionTitle: string;
+	faqSectionItem: TFaqSectionItem[];
+};
+
+export type TFaqSectionItem = {
+	id: number;
+	question: string;
+	answer: string;
+};
