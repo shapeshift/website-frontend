@@ -3,10 +3,14 @@
 // import GridDisplaced from '@/components/sections/GridDisplaced';
 // import Hero from '@/components/sections/Hero';
 
-import {sections} from '@/components/utils/strapi';
+import CardsRow from '@/components/strapi-sections/CardsRow';
+import Footer from '@/components/strapi-sections/Footer';
+import Grid from '@/components/strapi-sections/Grid';
+import GridDisplaced from '@/components/strapi-sections/GridDisplaced';
+import GridLadder from '@/components/strapi-sections/GridLadder';
+import Hero from '@/components/strapi-sections/Hero';
 
-import type {TSectionType} from '@/components/utils/strapi';
-import type {TPageData} from '@/types/strapi';
+import type {TSectionPageData, TSectionType} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 // import type {PageData} from '@/types/page';
@@ -15,7 +19,7 @@ import type {ReactNode} from 'react';
  * Fetches page data from Strapi API
  * Returns null if page is not found
  ********************************************************************************************/
-async function getPageData(slug: string): Promise<TPageData | null> {
+async function getPageData(slug: string): Promise<TSectionPageData | null> {
 	const pages = await fetch(`${process.env.STRAPI_URL}/api/pages`, {
 		headers: {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -24,7 +28,7 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 
 	const pagesJson = await pages.json();
 
-	const page = pagesJson.data.find((page: TPageData) => page.slug === slug);
+	const page = pagesJson.data.find((page: TSectionPageData) => page.slug === slug);
 
 	if (!page) {
 		return null; // TODO: handle this
@@ -47,23 +51,43 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 	return json.data;
 }
 
+const sectionTypes = ['hero', 'cardsRow', 'grid', 'gridLadder', 'gridDisplaced', 'footer'];
+
+export const sectionsWithComponents = {
+	hero: Hero,
+	cardsRow: CardsRow,
+	gridLadder: GridLadder,
+	grid: Grid,
+	gridDisplaced: GridDisplaced,
+	footer: Footer
+} as const;
+
 export default async function Page({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	const {slug} = await params;
 	const page = await getPageData(slug);
 	if (!page) {
 		return null; // TODO: handle this
 	}
+	const sections = Object.keys(page).filter(section => sectionTypes.includes(section));
 
 	return (
 		<main>
 			{/* Render sections conditionally based on presence in API response */}
-			{Object.entries(page).map(([key, data]) => {
-				const Section = sections[key as TSectionType];
+			{sections.map(section => {
+				const Section =
+					sectionsWithComponents[
+						section as 'hero' | 'cardsRow' | 'grid' | 'gridLadder' | 'gridDisplaced' | 'footer'
+					];
+
 				if (Section) {
 					return (
 						<Section
-							key={key}
-							data={data}
+							key={section}
+							data={
+								page[
+									section as 'hero' | 'cardsRow' | 'grid' | 'gridLadder' | 'gridDisplaced' | 'footer'
+								] as TSectionType
+							}
 						/>
 					);
 				}

@@ -12,6 +12,8 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 		return null;
 	}
 
+	console.log(data);
+
 	return (
 		<section className={'container mb-60'}>
 			<div className={'grid gap-x-[120px] gap-y-40 lg:grid-cols-1'}>

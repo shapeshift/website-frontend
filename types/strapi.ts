@@ -105,20 +105,33 @@ export type TFooterSection = {
 	buttonCta: TButton;
 };
 
-export type TPageData = {
+export type TPage = {
 	id: number;
 	documentId: string;
 	slug: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TSections = {
 	hero?: THeroSection;
 	cardsRow?: TCardsRowSection;
 	grid?: TGridSection;
 	gridLadder?: TGridLadderSection;
 	gridDisplaced?: TGridDisplacedSection;
 	footer?: TFooterSection;
-	createdAt: string;
-	updatedAt: string;
-	publishedAt: string;
 };
+
+export type TSectionType =
+	| THeroSection
+	| TCardsRowSection
+	| TGridSection
+	| TGridLadderSection
+	| TGridDisplacedSection
+	| TFooterSection;
+
+export type TSectionPageData = TSections & TPage;
 
 /********************************************************************************************
  * Types for Strapi Blog API responses
