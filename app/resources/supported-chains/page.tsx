@@ -48,7 +48,7 @@ export default function SupportedChainsPage(): ReactNode {
 												<IconPlus className={'size-4 text-white'} />
 											</div>
 										) : (
-											<div className={'size-4'} />
+											<div className={'h-px w-[14px] rounded-[1px] bg-white/20'} />
 										)}
 									</td>
 								))}
