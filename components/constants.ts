@@ -27,3 +27,88 @@ export const headerTabs = [
 	{name: 'Resources', href: '/resources', value: 'resources'},
 	{name: 'DAO', href: '/dao', value: 'dao'}
 ];
+
+export const allWallets = [
+	'KeepKey',
+	'ShapeShift Wallet',
+	'MetaMask',
+	'XDEFI',
+	'Wallet Connect',
+	'Ledger',
+	'Coinbase Wallet',
+	'Phantom Wallet',
+	'Keplr'
+];
+
+export const supportedChains = {
+	btc: {
+		name: 'BTC',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Coinbase Wallet']
+	},
+	eth: {
+		name: 'ETH + ERC-20',
+		supported: [
+			'KeepKey',
+			'ShapeShift Wallet',
+			'MetaMask',
+			'XDEFI',
+			'Wallet Connect',
+			'Ledger',
+			'Coinbase Wallet',
+			'Phantom Wallet',
+			'Keplr'
+		]
+	},
+	base: {
+		name: 'Base',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	atom: {
+		name: 'ATOM',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Keplr']
+	},
+	gnosis: {
+		name: 'Gnosis',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'Ledger', 'Coinbase Wallet']
+	},
+	doge: {
+		name: 'DOGE',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Coinbase Wallet']
+	},
+	avalanche: {
+		name: 'Avalanche',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	bch: {
+		name: 'BCH',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger']
+	},
+	bnbs: {
+		name: 'BNB',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Coinbase Wallet']
+	},
+	arb: {
+		name: 'ARB',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	optimism: {
+		name: 'Optimism',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'Wallet Connect', 'Ledger']
+	},
+	polygon: {
+		name: 'Polygon',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	thorchain: {
+		name: 'THORChain',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger']
+	},
+	ltc: {
+		name: 'LTC',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'Ledger', 'Coinbase Wallet']
+	},
+	sol: {
+		name: 'SOL',
+		supported: ['Phantom Wallet']
+	}
+};

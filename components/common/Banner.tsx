@@ -7,7 +7,7 @@ import type {ReactNode} from 'react';
 
 export function Banner(): ReactNode {
 	return (
-		<div className={'relative mx-4 mb-40 flex w-full justify-between overflow-hidden rounded-2xl lg:p-24 lg:pr-6'}>
+		<div className={'relative mb-40 flex w-full justify-between overflow-hidden rounded-2xl lg:p-24 lg:pr-6'}>
 			<Image
 				src={'/bannerBg.png'}
 				alt={'banner'}
