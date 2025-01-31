@@ -12,7 +12,7 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 		return null;
 	}
 
-	console.log(data);
+	
 
 	return (
 		<section className={'container mb-60'}>
