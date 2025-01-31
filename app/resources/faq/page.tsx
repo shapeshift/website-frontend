@@ -5,32 +5,9 @@ import {useEffect, useRef, useState} from 'react';
 import {Banner} from '@/components/common/Banner';
 import {QuestionSection} from '@/components/QuestionSection';
 import {cl} from '@/components/utils/cl';
+import {useFaq} from '@/hooks/useFaq';
 
-import type {TFaqData} from '@/types/strapi';
 import type {ReactNode} from 'react';
-
-/********************************************************************************************
- * Fetches FAQ data from Strapi API
- * Includes sections and their items with proper error handling
- ********************************************************************************************/
-async function getPageData(): Promise<TFaqData | null> {
-	try {
-		const data = await fetch(
-			`${process.env.STRAPI_URL}/api/faq?populate[0]=faqSection&populate[1]=faqSection.faqSectionItem&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
-			{
-				headers: {
-					Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
-				}
-			}
-		);
-
-		const json = await data.json();
-		return json.data || null;
-	} catch (error) {
-		console.error('Error fetching FAQ data:', error);
-		return null;
-	}
-}
 
 /********************************************************************************************
  * FAQ Page Component
@@ -41,18 +18,11 @@ async function getPageData(): Promise<TFaqData | null> {
  * - Sticky navigation sidebar
  ********************************************************************************************/
 export default function FaqPage(): ReactNode {
-	const [data, setData] = useState<TFaqData | null>(null);
+	const {data} = useFaq();
 	const [activeSection, setActiveSection] = useState<string>('');
 	const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 	const isManualScrolling = useRef(false);
 	const rafId = useRef<number>();
-
-	/********************************************************************************************
-	 * Fetch FAQ data on component mount
-	 ********************************************************************************************/
-	useEffect(() => {
-		void getPageData().then(setData);
-	}, []);
 
 	/********************************************************************************************
 	 * Handle scroll events to update active section
