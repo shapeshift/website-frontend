@@ -105,6 +105,13 @@ export type TFooterSection = {
 	buttonCta: TButton;
 };
 
+export type TSections = THeroSection &
+	TCardsRowSection &
+	TGridLadderSection &
+	TGridSection &
+	TGridDisplacedSection &
+	TFooterSection;
+
 export type TPageData = {
 	id: number;
 	documentId: string;
@@ -112,7 +119,7 @@ export type TPageData = {
 	hero?: THeroSection;
 	cardsRow?: TCardsRowSection;
 	grid?: TGridSection;
-	gridLadder?: any;
+	gridLadder?: TGridLadderSection;
 	gridDisplaced?: TGridDisplacedSection;
 	footer?: TFooterSection;
 	createdAt: string;
@@ -147,4 +154,26 @@ export type TBlogListResponse = {
 			total: number;
 		};
 	};
+};
+
+export type TFaqData = {
+	id: number;
+	documentId: string;
+	title: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	faqSection: TFaqSection[];
+};
+
+export type TFaqSection = {
+	id: number;
+	sectionTitle: string;
+	faqSectionItem: TFaqSectionItem[];
+};
+
+export type TFaqSectionItem = {
+	id: number;
+	question: string;
+	answer: string;
 };

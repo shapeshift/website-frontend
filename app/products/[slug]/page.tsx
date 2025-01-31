@@ -1,15 +1,10 @@
-// import CardsRow from '@/components/sections/CardsRow';
-// import Footer from '@/components/sections/Footer';
-// import GridDisplaced from '@/components/sections/GridDisplaced';
-// import Hero from '@/components/sections/Hero';
+import {notFound} from 'next/navigation';
 
 import {sections} from '@/components/utils/strapi';
 
 import type {TSectionType} from '@/components/utils/strapi';
-import type {TPageData} from '@/types/strapi';
+import type {TPageData, TSections} from '@/types/strapi';
 import type {ReactNode} from 'react';
-
-// import type {PageData} from '@/types/page';
 
 /********************************************************************************************
  * Fetches page data from Strapi API
@@ -51,7 +46,7 @@ export default async function Page({params}: {params: Promise<{slug: string}>}):
 	const {slug} = await params;
 	const page = await getPageData(slug);
 	if (!page) {
-		return null; // TODO: handle this
+		return notFound(); // TODO: handle this
 	}
 
 	return (
@@ -63,7 +58,7 @@ export default async function Page({params}: {params: Promise<{slug: string}>}):
 					return (
 						<Section
 							key={key}
-							data={data}
+							data={data as TSections}
 						/>
 					);
 				}
