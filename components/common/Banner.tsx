@@ -13,7 +13,7 @@ export function Banner(): ReactNode {
 				alt={'banner'}
 				width={1400}
 				height={467}
-				className={'absolute inset-0 -z-10 w-full object-cover'}
+				className={'absolute inset-0 -z-10 size-full object-cover'}
 			/>
 			<div className={'flex max-w-[511px] flex-col'}>
 				<h2 className={'mb-24 text-[40px] leading-[40px]'}>{'Your multichain crypto home base.'}</h2>
