@@ -35,7 +35,7 @@ export function useFaq(): {
 			}
 		}
 
-		void fetchFaqData();
+		fetchFaqData();
 	}, []);
 
 	return {data, isLoading, error};
