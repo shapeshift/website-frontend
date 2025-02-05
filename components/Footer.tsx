@@ -5,22 +5,9 @@ import Link from 'next/link';
 
 import {Button} from './common/Button';
 import {ShapeshiftLogo} from './common/icons/ShapeshiftLogo';
-import {appDao, appProducts, appResources} from './constants';
+import {footerLinks} from './constants';
 
 import type {ReactNode} from 'react';
-
-const footerLinks = {
-	Products: appProducts,
-	Resources: appResources,
-	DAO: appDao,
-	Connect: [
-		{name: 'Twitter', href: 'https://twitter.com/shapeshift'},
-		{name: 'Medium', href: 'https://medium.com/shapeshift'},
-		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
-		{name: 'Telegram', href: 'https://t.me/shapeshift'},
-		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
-	]
-};
 
 export function Footer(): ReactNode {
 	return (
@@ -49,7 +36,7 @@ export function Footer(): ReactNode {
 													key={link.name}
 													href={link.href}
 													target={category === 'Connect' ? '_blank' : '_self'}
-													className={'text-sm text-white transition-all hover:text-gray-500'}>
+													className={'text-sm text-white transition-all hover:text-blue'}>
 													{link.name}
 												</Link>
 											))}

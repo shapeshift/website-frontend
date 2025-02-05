@@ -142,7 +142,9 @@ export default function FoxTokenPage(): ReactNode {
 						<Link
 							href={item.href}
 							target={'_blank'}
-							className={'group flex items-center justify-center rounded-[80px] bg-secondBg py-5'}
+							className={
+								'group flex items-center justify-center rounded-[80px] bg-secondBg py-5 hover:bg-secondHoverBg'
+							}
 							key={item.href}>
 							{item.icon}
 						</Link>

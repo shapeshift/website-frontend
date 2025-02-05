@@ -8,7 +8,7 @@ export function BlogPost({post}: {post: TBlogPost}): ReactNode {
 	return (
 		<Link
 			href={`/resources/blog/${post.slug}`}
-			className={'rounded-2xl bg-secondBg p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'}>
+			className={'rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:bg-secondHoverBg'}>
 			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
 				{post?.imageFeatured?.url ? (
 					<Image
@@ -16,7 +16,7 @@ export function BlogPost({post}: {post: TBlogPost}): ReactNode {
 						alt={post.slug}
 						width={post?.imageFeatured?.width ?? 0}
 						height={post?.imageFeatured?.height ?? 0}
-						className={'size-full object-cover transition-transform duration-300 hover:scale-110'}
+						className={'size-full object-cover'}
 					/>
 				) : (
 					<div className={'h-[204px] w-auto rounded-2xl bg-gray-500'} />

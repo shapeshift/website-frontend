@@ -49,14 +49,14 @@ export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionIt
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div
-			className={'group rounded-2xl bg-secondBg'}
+			className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}
 			onClick={() => setIsOpen(!isOpen)}>
-			<div className={'flex items-center justify-between px-10 py-4'}>
+			<div className={'flex items-center justify-between px-10 py-8'}>
 				<div className={'text-2xl'}>{faqSectionItem.question}</div>
 				{/* Render the animated icon inside a button-like container with blue hover background */}
 				<div
 					className={
-						'flex size-12 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:!scale-105 group-hover:bg-blueHover'
+						'flex size-12 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:scale-[1.16] group-hover:bg-blueHover'
 					}>
 					<AnimatedPlusMinusIcon isOpen={isOpen} />
 				</div>

@@ -126,7 +126,7 @@ export default function FaqPage(): ReactNode {
 									key={section.id}
 									onClick={() => scrollToSection(section.sectionTitle)}
 									className={cl(
-										'text-left text-lg transition-all hover:text-white',
+										'text-left text-lg transition-all hover:text-blue',
 										activeSection === section.sectionTitle ? 'text-white' : 'text-gray-500'
 									)}>
 									{section.sectionTitle}

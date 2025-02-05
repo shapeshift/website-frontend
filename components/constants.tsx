@@ -2,7 +2,7 @@ import {IconDiscord} from './common/icons/IconDiscord';
 import {IconMedium} from './common/icons/IconMedium';
 import {IconTelegram} from './common/icons/IconTelegram';
 import {IconTwitter} from './common/icons/IconTwitter';
-import {IconWSocial} from './common/icons/IconWSocial';
+import {IconWarpcast} from './common/icons/IconWarpcast';
 
 import type {TCardsRowSection} from '@/types/strapi';
 
@@ -35,6 +35,19 @@ export const headerTabs = [
 	{name: 'Resources', href: '/resources', value: 'resources'},
 	{name: 'DAO', href: '/dao', value: 'dao'}
 ];
+
+export const footerLinks = {
+	Products: appProducts,
+	Resources: appResources,
+	DAO: appDao,
+	Connect: [
+		{name: 'Twitter', href: 'https://twitter.com/shapeshift'},
+		{name: 'Medium', href: 'https://medium.com/shapeshift'},
+		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
+		{name: 'Telegram', href: 'https://t.me/shapeshift'},
+		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
+	]
+};
 
 export const allWallets = [
 	'KeepKey',
@@ -208,23 +221,23 @@ export const foxTokenBenefits = [
 export const foxTokenCommunityItems = [
 	{
 		href: 'https://twitter.com/fox_token',
-		icon: <IconTwitter className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+		icon: <IconTwitter className={'transition-all duration-200 group-hover:text-blue'} />
 	},
 	{
 		href: 'https://medium.com/@fox_token',
-		icon: <IconMedium className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+		icon: <IconMedium className={'transition-all duration-200 group-hover:text-blue'} />
 	},
 	{
 		href: 'https://discord.gg/fox_token',
-		icon: <IconDiscord className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+		icon: <IconDiscord className={'transition-all duration-200 group-hover:text-blue'} />
 	},
 	{
 		href: 'https://t.me/fox_token',
-		icon: <IconTelegram className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+		icon: <IconTelegram className={'transition-all duration-200 group-hover:text-blue'} />
 	},
 	{
 		href: 'https://w.social/fox_token',
-		icon: <IconWSocial className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+		icon: <IconWarpcast className={'transition-all duration-200 group-hover:text-blue'} />
 	}
 ];
 

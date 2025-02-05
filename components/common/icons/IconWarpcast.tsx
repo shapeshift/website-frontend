@@ -1,6 +1,6 @@
 import type {ReactNode, SVGProps} from 'react';
 
-export function IconWSocial(props: SVGProps<SVGSVGElement>): ReactNode {
+export function IconWarpcast(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
 		<svg
 			{...props}
@@ -18,14 +18,14 @@ export function IconWSocial(props: SVGProps<SVGSVGElement>): ReactNode {
 					d={
 						'M30.2864 39.5114H10.0996C4.9035 39.5114 0.675409 35.2836 0.675409 30.0873V9.90063C0.675409 4.70444 4.90352 0.476313 10.0996 0.476313H30.2864C35.4826 0.476313 39.7107 4.70444 39.7107 9.90063V30.0873C39.7107 35.2836 35.4826 39.5114 30.2864 39.5114Z'
 					}
-					stroke={'white'}
+					stroke={'currentColor'}
 					strokeWidth={'0.952381'}
 				/>
 				<path
 					d={
 						'M26.4363 12.655L24.4646 20.06L22.4865 12.655H17.9342L15.9371 20.1145L13.9466 12.655H8.76172L13.5796 29.0273H18.0527L20.1917 21.4246L22.3305 29.0273H26.8133L31.6206 12.655H26.4363Z'
 					}
-					fill={'white'}
+					fill={'currentColor'}
 				/>
 			</g>
 			<defs>
@@ -33,7 +33,7 @@ export function IconWSocial(props: SVGProps<SVGSVGElement>): ReactNode {
 					<rect
 						width={'40'}
 						height={'40'}
-						fill={'white'}
+						fill={'currentColor'}
 						transform={'translate(0.199219)'}
 					/>
 				</clipPath>

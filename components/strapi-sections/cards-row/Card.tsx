@@ -9,10 +9,10 @@ export function Card({data}: {data: TCard}): ReactNode {
 	return (
 		<div
 			className={cl(
-				'flex overflow-hidden h-full rounded-t-2xl',
+				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-t-2xl',
 				data.isTextFirst ? 'flex-col-reverse rounded-b-2xl' : 'flex-col'
 			)}>
-			<div className={'h-full bg-secondBg p-10'}>
+			<div className={'h-full p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 				<div className={'text-gray-500'}>{data?.description}</div>
 			</div>
