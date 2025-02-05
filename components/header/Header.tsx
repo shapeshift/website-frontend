@@ -15,7 +15,7 @@ import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
 
-export function Header(): ReactNode {
+export function Header({className}: {className?: string}): ReactNode {
 	const [currentTab, setCurrentTab] = useState<string>('empty');
 
 	/**********************************************************************************************
@@ -39,7 +39,8 @@ export function Header(): ReactNode {
 			className={'relative z-50'}>
 			<div
 				className={cl(
-					'fixed mx-4 mt-4 flex w-[calc(100%-2rem)] flex-col items-center justify-between rounded-lg bg-secondBg px-6 py-3'
+					'fixed flex flex-col bg-secondBg w-[calc(100%-2rem)] items-center justify-between rounded-lg mt-4 px-6 py-3',
+					className
 				)}>
 				<div className={'flex w-full items-center justify-between'}>
 					<Link

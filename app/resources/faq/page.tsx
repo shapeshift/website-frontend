@@ -51,9 +51,9 @@ export default function FaqPage(): ReactNode {
 					const currentDistance = Math.abs(current.top - 160);
 					const closestDistance = Math.abs(closest.top - 160);
 					return currentDistance < closestDistance ? current : closest;
-				});
+				}, sectionPositions[0]);
 
-				setActiveSection(activeSection.title);
+				setActiveSection(activeSection?.title);
 			});
 		};
 
@@ -95,47 +95,50 @@ export default function FaqPage(): ReactNode {
 	};
 
 	return (
-		<div className={'container relative mt-40 grid grid-cols-4 gap-20'}>
-			<div className={'col-span-3'}>
-				<div className={'mb-14 max-w-[600px] text-h1 leading-[72px]'}>{data?.title}</div>
-				<div className={'mb-40 flex flex-col gap-10'}>
-					{data?.faqSection.map(section => (
-						<div
-							key={section.id}
-							ref={el => {
-								sectionRefs.current[section.sectionTitle] = el;
-							}}>
-							<div className={'mb-6 text-2xl text-gray-500'}>{section.sectionTitle}</div>
-							<div className={'flex flex-col gap-2'}>
-								{section.faqSectionItem.map(item => (
-									<QuestionSection
-										key={item.id}
-										faqSectionItem={item}
-									/>
-								))}
+		<div className={'relative mt-40 flex w-full flex-col items-center justify-center gap-20'}>
+			<div className={'container flex flex-col'}>
+				<div className={'max-w-[600px] text-7xl'}>{data?.title}</div>
+				<div className={'my-14 flex justify-between'}>
+					<div className={'flex w-3/4 flex-col gap-10'}>
+						{data?.faqSection.map(section => (
+							<div
+								key={section.id}
+								ref={el => {
+									sectionRefs.current[section.sectionTitle] = el;
+								}}>
+								<div className={'mb-6 text-2xl text-gray-500'}>{section.sectionTitle}</div>
+								<div className={'flex flex-col gap-2'}>
+									{section.faqSectionItem.map(item => (
+										<QuestionSection
+											key={item.id}
+											faqSectionItem={item}
+										/>
+									))}
+								</div>
 							</div>
-						</div>
-					))}
-				</div>
-			</div>
+						))}
+					</div>
 
-			<div className={'sticky top-[360px] col-span-1 ml-20 h-screen'}>
-				<div className={'flex flex-col gap-4'}>
-					{data?.faqSection.map(section => (
-						<button
-							key={section.id}
-							onClick={() => scrollToSection(section.sectionTitle)}
-							className={cl(
-								'text-left text-lg transition-all hover:text-white',
-								activeSection === section.sectionTitle ? 'text-white' : 'text-gray-500'
-							)}>
-							{section.sectionTitle}
-						</button>
-					))}
+					<div className={'sticky top-[360px] col-span-1 ml-20 h-full'}>
+						<div className={'flex flex-col gap-4'}>
+							{data?.faqSection.map(section => (
+								<button
+									key={section.id}
+									onClick={() => scrollToSection(section.sectionTitle)}
+									className={cl(
+										'text-left text-lg transition-all hover:text-white',
+										activeSection === section.sectionTitle ? 'text-white' : 'text-gray-500'
+									)}>
+									{section.sectionTitle}
+								</button>
+							))}
+						</div>
+					</div>
 				</div>
-			</div>
-			<div className={'col-span-4'}>
-				<Banner />
+
+				<div className={'col-span-4'}>
+					<Banner />
+				</div>
 			</div>
 		</div>
 	);

@@ -3,7 +3,7 @@
  * Makes it easy to add new section types and maintain the codebase
  ********************************************************************************************/
 
-import CardsRow from '../strapi-sections/CardsRow';
+import CardsRow from '../strapi-sections/cards-row/CardsRow';
 import Footer from '../strapi-sections/Footer';
 import Grid from '../strapi-sections/Grid';
 import GridDisplaced from '../strapi-sections/GridDisplaced';

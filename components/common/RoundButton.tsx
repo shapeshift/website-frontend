@@ -30,7 +30,7 @@ export function RoundButton({
 				<Link
 					href={href}
 					className={cl(
-						'flex size-12 items-center justify-center rounded-full bg-white/10',
+						'flex size-[48px] items-center justify-center rounded-full bg-white/10',
 						'hover:bg-blueHover hover:scale-110 transition-all duration-300',
 						className
 					)}
@@ -40,7 +40,7 @@ export function RoundButton({
 			) : (
 				<button
 					className={cl(
-						'flex size-12 items-center justify-center rounded-full bg-white/10',
+						'flex size-[48px] items-center justify-center rounded-full bg-white/10',
 						'hover:bg-blueHover hover:scale-110 transition-all duration-300',
 						className
 					)}

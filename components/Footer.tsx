@@ -26,7 +26,7 @@ export function Footer(): ReactNode {
 	return (
 		<div className={'relative'}>
 			<div className={'rounded-lg border border-stoke bg-secondBg'}>
-				<div className={'mx-auto h-[480px]'}>
+				<div className={'h-[480px]'}>
 					<div className={'flex h-full flex-col p-12'}>
 						<div className={'flex justify-between'}>
 							<div className={'flex flex-col justify-between'}>

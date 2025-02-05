@@ -1,13 +1,12 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import {useEffect, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
 
+import {BlogPost} from '@/components/BlogPost';
 import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
+import {usePosts} from '@/hooks/usePosts';
 
-import type {TBlogListResponse, TBlogPost} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 const tabs = [
@@ -30,7 +29,7 @@ const tabs = [
 ];
 
 export default function BlogList(): ReactNode {
-	const [posts, setPosts] = useState<TBlogPost[]>([]);
+	const {posts} = usePosts();
 	const [currentTab, setCurrentTab] = useState<string>('all');
 
 	const filteredPosts = useMemo(() => {
@@ -40,33 +39,9 @@ export default function BlogList(): ReactNode {
 		return posts.filter(post => post.type.includes(currentTab as 'announcements' | 'tutorials' | 'news'));
 	}, [posts, currentTab]);
 
-	useEffect(() => {
-		async function fetchPosts(): Promise<void> {
-			try {
-				const res = await fetch(`${process.env.STRAPI_URL}/api/posts?populate[0]=imageFeatured`, {
-					headers: {
-						Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
-					}
-				});
-
-				if (!res.ok) {
-					throw new Error(`Failed to fetch posts: ${res.status}`);
-				}
-
-				const data: TBlogListResponse = await res.json();
-				setPosts(data.data);
-				console.log(data.data);
-			} catch (err) {
-				console.error('Error fetching blog posts:', err);
-			}
-		}
-
-		void fetchPosts();
-	}, []);
-
 	return (
 		<main className={'container mx-auto mt-40 px-4 py-8'}>
-			<div className={'mb-8 text-h1 leading-[72px]'}>
+			<div className={'mb-8 text-7xl'}>
 				<span className={'text-white'}>{'ShapeShift'}</span>
 				&nbsp;
 				<span className={'text-blue'}>{'Blog.'}</span>
@@ -96,37 +71,5 @@ export default function BlogList(): ReactNode {
 			)}
 			<Banner />
 		</main>
-	);
-}
-
-function BlogPost({post}: {post: TBlogPost}): ReactNode {
-	return (
-		<Link
-			href={`/resources/blog/${post.slug}`}
-			className={'rounded-2xl bg-secondBg p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'}>
-			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
-				{post?.imageFeatured?.url ? (
-					<Image
-						src={`${process.env.STRAPI_URL}${post?.imageFeatured?.url}`}
-						alt={post.slug}
-						width={post?.imageFeatured?.width ?? 0}
-						height={post?.imageFeatured?.height ?? 0}
-						className={'size-full object-cover transition-transform duration-300 hover:scale-110'}
-					/>
-				) : (
-					<div className={'h-[204px] w-auto rounded-2xl bg-gray-500'} />
-				)}
-			</div>
-
-			<div className={'mt-6 flex flex-col gap-2'}>
-				<div className={'flex items-center gap-2'}>
-					<p className={'text-xs text-blue'}>{post.slug.replace(/-/g, ' ')}</p>
-					<p className={'text-xs text-gray-500'}>{new Date(post.publishedAt).toLocaleDateString()}</p>
-				</div>
-				<div>
-					<p className={'text-2xl text-white'}>{post.description}</p>
-				</div>
-			</div>
-		</Link>
 	);
 }

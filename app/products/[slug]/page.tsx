@@ -1,9 +1,10 @@
 import {notFound} from 'next/navigation';
 
+import {Card} from '@/components/strapi-sections/cards-row/Card';
 import {sections} from '@/components/utils/strapi';
 
 import type {TSectionType} from '@/components/utils/strapi';
-import type {TPageData, TSections} from '@/types/strapi';
+import type {TCard, TPageData, TSections} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 /********************************************************************************************
@@ -50,7 +51,7 @@ export default async function Page({params}: {params: Promise<{slug: string}>}):
 	}
 
 	return (
-		<main>
+		<main className={'flex w-full flex-col items-center justify-center'}>
 			{/* Render sections conditionally based on presence in API response */}
 			{Object.entries(page).map(([key, data]) => {
 				const Section = sections[key as TSectionType];
@@ -59,6 +60,7 @@ export default async function Page({params}: {params: Promise<{slug: string}>}):
 						<Section
 							key={key}
 							data={data as TSections}
+							children={(card: TCard) => <Card data={card} />}
 						/>
 					);
 				}

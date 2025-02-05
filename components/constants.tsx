@@ -1,0 +1,248 @@
+import {IconDiscord} from './common/icons/IconDiscord';
+import {IconMedium} from './common/icons/IconMedium';
+import {IconTelegram} from './common/icons/IconTelegram';
+import {IconTwitter} from './common/icons/IconTwitter';
+import {IconWSocial} from './common/icons/IconWSocial';
+
+import type {TCardsRowSection} from '@/types/strapi';
+
+export const appResources = [
+	{name: 'Blog', href: '/resources/blog', description: 'Latest news and updates'},
+	{name: 'FAQ', href: '/resources/faq', description: 'Frequently asked questions'},
+	{name: 'Supported chains', href: '/resources/supported-chains', description: 'Blockchain networks we support'},
+	{name: 'Terms of Service', href: '/resources/terms-of-service', description: 'Our terms and conditions'},
+	{name: 'Privacy Policy', href: '/resources/privacy-policy', description: 'How we handle your data'}
+];
+
+export const appDao = [
+	{name: 'Fox token', href: '/dao/fox-token', description: 'Our governance token'},
+	{name: 'Governance', href: '/dao/governance', description: 'Participate in decision making'},
+	{name: 'Docs', href: '/dao/docs', description: 'Technical documentation'},
+	{name: 'Forum', href: '/dao/forum', description: 'Community discussions'}
+];
+
+export const appProducts = [
+	{name: 'dApp', href: '/products/dapp', description: 'A decentralized finance wallet'},
+	{name: 'Trade', href: '/products/trade', description: 'A decentralized finance wallet'},
+	{name: 'DeFi Wallet', href: '/products/defi-wallet', description: 'A decentralized finance wallet'},
+	{name: 'Earn', href: '/products/earn', description: 'A decentralized finance wallet'},
+	{name: 'Mobile app', href: '/products/mobile-app', description: 'A decentralized finance wallet'},
+	{name: 'KeepKey', href: '/products/keep-key', description: 'A decentralized finance wallet'}
+];
+
+export const headerTabs = [
+	{name: 'Products', href: '/products', value: 'products'},
+	{name: 'Resources', href: '/resources', value: 'resources'},
+	{name: 'DAO', href: '/dao', value: 'dao'}
+];
+
+export const allWallets = [
+	'KeepKey',
+	'ShapeShift Wallet',
+	'MetaMask',
+	'XDEFI',
+	'Wallet Connect',
+	'Ledger',
+	'Coinbase Wallet',
+	'Phantom Wallet',
+	'Keplr'
+];
+
+export const supportedChains = {
+	btc: {
+		name: 'BTC',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Coinbase Wallet']
+	},
+	eth: {
+		name: 'ETH + ERC-20',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	base: {
+		name: 'Base',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	atom: {
+		name: 'ATOM',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Keplr']
+	},
+	gnosis: {
+		name: 'Gnosis',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'Ledger', 'Coinbase Wallet']
+	},
+	doge: {
+		name: 'DOGE',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Coinbase Wallet']
+	},
+	avalanche: {
+		name: 'Avalanche',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	bch: {
+		name: 'BCH',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger']
+	},
+	bnbs: {
+		name: 'BNB',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger', 'Coinbase Wallet']
+	},
+	arb: {
+		name: 'ARB',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	optimism: {
+		name: 'Optimism',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'Wallet Connect', 'Ledger']
+	},
+	polygon: {
+		name: 'Polygon',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'MetaMask', 'XDEFI', 'Wallet Connect', 'Ledger', 'Coinbase Wallet']
+	},
+	thorchain: {
+		name: 'THORChain',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'XDEFI', 'Ledger']
+	},
+	ltc: {
+		name: 'LTC',
+		supported: ['KeepKey', 'ShapeShift Wallet', 'Ledger', 'Coinbase Wallet']
+	},
+	sol: {
+		name: 'SOL',
+		supported: ['Phantom Wallet']
+	}
+};
+
+export const landingCards: TCardsRowSection = {
+	id: 11,
+	title: '',
+	ctaBlock: {
+		id: 1,
+		title: 'Get the app',
+		url: 'https://apps.apple.com/app/id1564826778'
+	},
+	cards: [
+		{
+			id: 49,
+			title: 'Trade',
+			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
+			isTextFirst: false,
+			image: {
+				url: '/homepageBanner.png',
+				width: 461,
+				height: 219,
+				formats: {
+					thumbnail: {
+						width: 245,
+						height: 116,
+						url: '/uploads/thumbnail_img_5997fe520e.png'
+					}
+				}
+			}
+		},
+		{
+			id: 50,
+			title: 'Save',
+			description: 'FOX token has power on ShapeShift! Get discounts on fees when you hold FOX.',
+			isTextFirst: false,
+			image: {
+				url: '/homepageBanner.png',
+				width: 461,
+				height: 219,
+				formats: {
+					thumbnail: {
+						width: 245,
+						height: 116,
+						url: '/uploads/thumbnail_img_5997fe520e.png'
+					}
+				}
+			}
+		},
+		{
+			id: 51,
+			title: 'Earn',
+			description:
+				'Earn up to 12% on your Bitcoin, Ethereum, Dogecoin, Cosmos and more. Always non-custodial. Always real yield.',
+			isTextFirst: false,
+			image: {
+				url: '/homepageBanner.png',
+				width: 461,
+				height: 219,
+				formats: {
+					thumbnail: {
+						width: 245,
+						height: 116,
+						url: '/homepageBanner.png'
+					}
+				}
+			}
+		}
+	]
+};
+
+export const foxTokenBenefits = [
+	{
+		title: 'Work from anywhere in the World.',
+		icon: null
+	},
+	{
+		title: 'Get healthcare coverage (for US based workers)*',
+		icon: null
+	},
+	{
+		title: 'Work anonymously',
+		icon: null
+	},
+	{
+		title: 'Optional W2s for US contributors*',
+		icon: null
+	},
+	{
+		title: 'Get paid in USDC, FOX, or Fiat*',
+		icon: null
+	},
+	{
+		title: 'Work with a fully distributed team of top talent',
+		icon: null
+	}
+];
+
+export const foxTokenCommunityItems = [
+	{
+		href: 'https://twitter.com/fox_token',
+		icon: <IconTwitter className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+	},
+	{
+		href: 'https://medium.com/@fox_token',
+		icon: <IconMedium className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+	},
+	{
+		href: 'https://discord.gg/fox_token',
+		icon: <IconDiscord className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+	},
+	{
+		href: 'https://t.me/fox_token',
+		icon: <IconTelegram className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+	},
+	{
+		href: 'https://w.social/fox_token',
+		icon: <IconWSocial className={'transition-all duration-300 group-hover:scale-[1.15]'} />
+	}
+];
+
+export const foxTokenContributeItems = [
+	{
+		title: 'Contribute',
+		href: '#'
+	},
+	{
+		title: 'Govern',
+		href: '#'
+	},
+	{
+		title: 'Read Docs',
+		href: '#'
+	},
+	{
+		title: 'Discuss',
+		href: '#'
+	}
+];
