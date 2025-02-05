@@ -9,12 +9,6 @@ export default {
 			}
 		},
 		extend: {
-			fontSize: {
-				h1: '72px'
-			},
-			leading: {
-				h1: '72px'
-			},
 			colors: {
 				white: '#FFFFFF',
 				bg: '#0C0D0F',

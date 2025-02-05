@@ -21,15 +21,9 @@ export const containerAnimation = {
 	}),
 	exit: {
 		opacity: 0,
-		y: 10,
+		y: 20,
 		scaleY: 0.95,
-		transition: {
-			duration: 0.15,
-			ease: [0.32, 0, 0.67, 0]
-		}
+		transition: {duration: 0.2, ease: 'easeInOut'}
 	},
-	transition: {
-		duration: 0.4,
-		ease: [0.23, 1, 0.32, 1]
-	}
+	transition: {duration: 0.4, ease: 'easeInOut'}
 };

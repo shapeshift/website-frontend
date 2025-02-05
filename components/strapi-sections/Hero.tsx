@@ -15,7 +15,7 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 		<section className={'relative mb-60 pt-52 md:px-4 lg:px-0'}>
 			<div className={'container mx-auto'}>
 				<div className={'grid gap-10 lg:grid-cols-2'}>
-					<h1 className={'mb-4 text-h1 font-normal leading-[72px]'}>{data.title}</h1>
+					<h1 className={'mb-4 text-7xl font-normal'}>{data.title}</h1>
 					<div className={'flex flex-col'}>
 						<p className={'mb-8 text-xl font-normal text-gray-500'}>{data.description}</p>
 						{data.buttonCta ? (
@@ -47,10 +47,10 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 
 				<div className={'mt-20 overflow-hidden rounded-2xl'}>
 					<Image
-						src={`${process.env.STRAPI_URL}${data?.featuredImg.formats.large.url}`}
+						src={`${process.env.STRAPI_URL}${data?.featuredImg.formats.large?.url}`}
 						alt={data.title}
 						width={1400}
-						height={data?.featuredImg?.formats.large.height ?? 0}
+						height={data?.featuredImg?.formats.large?.height ?? 0}
 					/>
 				</div>
 
