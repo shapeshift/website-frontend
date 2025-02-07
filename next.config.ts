@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/requests.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	crossOrigin: 'anonymous',
 	/* config options here */
 	reactStrictMode: true,
 	env: {

@@ -15,29 +15,20 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 
 	return (
 		<html lang={locale}>
-			<link
-				rel={'alternate'}
-				hrefLang={'en'}
-				href={'https://shapeshift.builtby.dad'}
-			/>
-			<link
-				rel={'alternate'}
-				hrefLang={'fr'}
-				href={'https://fr.shapeshift.builtby.dad'}
-			/>
-			<Script
-				type={'text/javascript'}
-				src={'https://cdn.weglot.com/weglot.min.js'}
-			/>
-			<Script
-				id={'weglot'}
-				dangerouslySetInnerHTML={{
-					// eslint-disable-next-line @typescript-eslint/naming-convention
-					__html: ` Weglot.initialize({
-        api_key: 'wg_d200799f995ece1df7fb54af8c7397f82'
-    });`
-				}}
-			/>
+			<head>
+				<Script
+					strategy={'beforeInteractive'}
+					type={'text/javascript'}
+					src={'https://cdn.weglot.com/weglot.min.js'}
+					crossOrigin={'anonymous'}
+				/>
+				<Script
+					strategy={'afterInteractive'}
+					id={'weglot'}
+					crossOrigin={'anonymous'}>
+					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
+				</Script>
+			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
 					<NextIntlClientProvider messages={messages}>

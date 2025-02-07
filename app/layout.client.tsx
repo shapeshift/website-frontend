@@ -16,7 +16,6 @@ export function LayoutClient({children}: {children: ReactNode}): ReactNode {
 	return (
 		<div className={'flex flex-col px-4'}>
 			{pathname === '/' ? null : <Header />}
-
 			<main>{children}</main>
 			<Footer />
 		</div>
