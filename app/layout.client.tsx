@@ -4,7 +4,6 @@ import {usePathname} from 'next/navigation';
 
 import {Footer} from '@/components/Footer';
 import {Header} from '@/components/header/Header';
-import {useWeglot} from '@/hooks/useWeglot';
 
 import type {ReactNode} from 'react';
 
@@ -14,11 +13,11 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 export function LayoutClient({children}: {children: ReactNode}): ReactNode {
 	const pathname = usePathname();
-	const [, setLang] = useWeglot('wg_b6fdc2a2e16175fd09ce44998516155b3', 'en');
+	// const [, setLang] = useWeglot('wg_b6fdc2a2e16175fd09ce44998516155b3', 'en');
 	return (
 		<div className={'flex flex-col px-4'}>
-			<button onClick={() => setLang('en')}>{'EN'}</button>
-			<button onClick={() => setLang('fr')}>{'FR'}</button>
+			{/* <button onClick={() => setLang('en')}>{'EN'}</button>
+			<button onClick={() => setLang('fr')}>{'FR'}</button> */}
 			{pathname === '/' ? null : <Header />}
 			<main>{children}</main>
 			<Footer />
