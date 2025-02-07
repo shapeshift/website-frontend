@@ -18,7 +18,7 @@ function WeglotRouteHandler(): null {
 			// Only trigger if not in default language
 			if (currentLang !== (window as any).Weglot.options.language_from) {
 				// Force retranslation by switching to the current language
-				(window as any).Weglot.switchLanguage(currentLang);
+				(window as any).Weglot.switchTo(currentLang);
 			}
 		}
 	}, [pathname]); // Re-run when pathname changes
