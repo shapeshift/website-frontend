@@ -13,11 +13,13 @@ export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [stri
 			// @ts-ignore
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			window.Weglot.initialize({api_key: apiKey});
-
+			// @ts-ignore
+			console.log(window.Weglot.initialized);
 			//@ts-ignore
-			if (Weglot.initialized) {
-				//@ts-ignore
+			if (window.Weglot.initialized) {
+				//@ts-expect-error
 				window.Weglot.switchTo(language);
+				console.log('switched to:', language);
 				clearInterval(x);
 			}
 		}, 500);
