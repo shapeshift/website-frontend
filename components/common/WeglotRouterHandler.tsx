@@ -47,11 +47,12 @@ export function WeglotRouteHandler(): null {
 	// }, [pathname]); // Re-run when pathname changes
 
 	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const currentLang = (window as any).Weglot.getCurrentLang();
 		console.log({currentLang});
 		console.log(pathname);
 		const x = setInterval(() => {
-			//@ts-ignore
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			if ((window as any).Weglot.initialized) {
 				//@ts-ignore
 				Weglot.switchTo(currentLang);
