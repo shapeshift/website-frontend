@@ -46,12 +46,12 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					src={'https://cdn.weglot.com/weglot.min.js'}
 					crossOrigin={'anonymous'}
 				/>
-				{/* <Script
+				<Script
 					strategy={'afterInteractive'}
 					id={'weglot'}
 					crossOrigin={'anonymous'}>
 					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
-				</Script> */}
+				</Script>
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
