@@ -20,14 +20,14 @@ export async function getSubdomain(): Promise<string | null> {
 
 	// Remove port number if present
 	const hostname = host.split(':')[0];
-
+	console.log('host:', hostname);
 	// Split hostname into parts
 	const parts = hostname.split('.');
-
+	console.log('parts:', parts);
 	// Check if we have a subdomain
 	if (parts.length > 2) {
 		// Return first part as subdomain
-		return parts[0] === 'www' ? null : parts[0];
+		return parts[0] === 'www' || parts[0] === 'shapeshift' ? null : parts[0];
 	}
 
 	return null;
