@@ -30,21 +30,36 @@ export function WeglotRouteHandler(): null {
 	const pathname = usePathname();
 	// const subdomain = getSubdomain();
 
+	// useEffect(() => {
+	// 	// Check if Weglot is available and initialized
+	// 	if (typeof window !== 'undefined' && (window as any).Weglot) {
+	// 		const currentLang = (window as any).Weglot.getCurrentLang();
+	// 		console.log({currentLang});
+	// 		console.log((window as any).Weglot);
+	// 		console.log((window as any).Weglot.options);
+	// 		// Only trigger if not in default language
+	// 		if (currentLang !== (window as any).Weglot.options.language_from) {
+	// 			// Force retranslation by switching to the current language
+	// 			(window as any).Weglot.switchTo(currentLang);
+	// 			console.log('switched');
+	// 		}
+	// 	}
+	// }, [pathname]); // Re-run when pathname changes
+
 	useEffect(() => {
-		// Check if Weglot is available and initialized
-		if (typeof window !== 'undefined' && (window as any).Weglot) {
-			const currentLang = (window as any).Weglot.getCurrentLang();
-			console.log({currentLang});
-			console.log((window as any).Weglot);
-			console.log((window as any).Weglot.options);
-			// Only trigger if not in default language
-			if (currentLang !== (window as any).Weglot.options.language_from) {
-				// Force retranslation by switching to the current language
-				(window as any).Weglot.switchTo(currentLang);
-				console.log('switched');
+		const currentLang = (window as any).Weglot.getCurrentLang();
+		console.log({currentLang});
+		console.log(pathname);
+		const x = setInterval(() => {
+			//@ts-ignore
+			if ((window as any).Weglot.initialized) {
+				//@ts-ignore
+				Weglot.switchTo(currentLang);
+				console.log('switched to', currentLang);
+				clearInterval(x);
 			}
-		}
-	}, [pathname]); // Re-run when pathname changes
+		}, 500);
+	}, [pathname]);
 
 	return null;
 }
