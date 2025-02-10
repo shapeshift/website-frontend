@@ -34,7 +34,7 @@ export async function getSubdomain(): Promise<string | null> {
 }
 
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
-	const locale = await getSubdomain();
+	// const locale = await getSubdomain();
 	const messages = await getMessages();
 
 	return (
@@ -56,7 +56,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
 					<NextIntlClientProvider messages={messages}>
-						<LayoutClient lang={locale || 'en'}>{children}</LayoutClient>
+						<LayoutClient>{children}</LayoutClient>
 					</NextIntlClientProvider>
 				</WithFonts>
 			</body>
