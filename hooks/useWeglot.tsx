@@ -7,6 +7,8 @@ export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [stri
 		const script = document.createElement('script');
 		script.src = 'https://cdn.weglot.com/weglot.min.js';
 		script.async = true;
+		script.type = 'text/javascript';
+		script.crossOrigin = 'anonymous';
 		document.body.appendChild(script);
 
 		const x = setInterval(() => {
