@@ -2,6 +2,7 @@ import Script from 'next/script';
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale, getMessages} from 'next-intl/server';
 
+import {WeglotRouteHandler} from '@/components/common/WeglotRouterHandler';
 import {WithFonts} from '@/components/common/WithFonts';
 
 import './globals.css';
@@ -31,6 +32,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
+					<WeglotRouteHandler />
 					<NextIntlClientProvider messages={messages}>
 						<LayoutClient>{children}</LayoutClient>
 					</NextIntlClientProvider>
