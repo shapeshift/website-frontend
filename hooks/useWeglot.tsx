@@ -11,7 +11,7 @@ export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [stri
 
 		const x = setInterval(() => {
 			// @ts-ignore
-			console.log(window.Weglot, Weglot);
+			console.log(window.Weglot);
 			// @ts-ignore
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			window.Weglot.initialize({api_key: apiKey});
