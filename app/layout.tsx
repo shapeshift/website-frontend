@@ -9,6 +9,8 @@ import {LayoutClient} from './layout.client';
 
 import type {ReactNode} from 'react';
 
+import Script from 'next/script';
+
 export async function getSubdomain(): Promise<string | null> {
 	const headersList = await headers();
 	const host = headersList.get('host');
@@ -38,20 +40,20 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 
 	return (
 		<html>
-			{/* <head>
+			<head>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}
 					src={'https://cdn.weglot.com/weglot.min.js'}
 					crossOrigin={'anonymous'}
 				/>
-				<Script
+				{/* <Script
 					strategy={'afterInteractive'}
 					id={'weglot'}
 					crossOrigin={'anonymous'}>
 					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
-				</Script>
-			</head> */}
+				</Script> */}
+			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
 					<NextIntlClientProvider messages={messages}>

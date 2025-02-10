@@ -4,10 +4,10 @@ export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [stri
 	const [language, setLanguage] = useState<string>(defaultLanguage);
 
 	useEffect(() => {
-		const script = document.createElement('script');
-		script.src = 'https://cdn.weglot.com/weglot.min.js';
-		script.async = true;
-		document.body.appendChild(script);
+		// const script = document.createElement('script');
+		// script.src = 'https://cdn.weglot.com/weglot.min.js';
+		// script.async = true;
+		// document.body.appendChild(script);
 
 		const x = setInterval(() => {
 			// @ts-ignore
@@ -25,9 +25,9 @@ export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [stri
 				clearInterval(x);
 			}
 		}, 500);
-		return () => {
-			document.body.removeChild(script);
-		};
+		// return () => {
+		// 	document.body.removeChild(script);
+		// };
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
