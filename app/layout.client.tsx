@@ -15,7 +15,7 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 export function LayoutClient({children, lang}: {children: ReactNode; lang: string}): ReactNode {
 	const pathname = usePathname();
-	const [, setLang] = useWeglot('wg_b6fdc2a2e16175fd09ce44998516155b3', lang);
+	const [, setLang] = useWeglot('wg_b6fdc2a2e16175fd09ce44998516155b3', 'en');
 
 	useEffect(() => {
 		console.log('set:', lang);
