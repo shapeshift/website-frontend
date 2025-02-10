@@ -1,4 +1,5 @@
 import {headers} from 'next/headers';
+import Script from 'next/script';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
@@ -8,8 +9,6 @@ import './globals.css';
 import {LayoutClient} from './layout.client';
 
 import type {ReactNode} from 'react';
-
-import Script from 'next/script';
 
 export async function getSubdomain(): Promise<string | null> {
 	const headersList = await headers();
