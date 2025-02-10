@@ -1,5 +1,4 @@
 import {headers} from 'next/headers';
-import Script from 'next/script';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
@@ -34,12 +33,12 @@ export async function getSubdomain(): Promise<string | null> {
 }
 
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
-	// const locale = await getSubdomain();
+	const locale = await getSubdomain();
 	const messages = await getMessages();
 
 	return (
 		<html>
-			<head>
+			{/* <head>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}
@@ -52,11 +51,11 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					crossOrigin={'anonymous'}>
 					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
 				</Script>
-			</head>
+			</head> */}
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
 					<NextIntlClientProvider messages={messages}>
-						<LayoutClient>{children}</LayoutClient>
+						<LayoutClient lang={locale || 'en'}>{children}</LayoutClient>
 					</NextIntlClientProvider>
 				</WithFonts>
 			</body>
