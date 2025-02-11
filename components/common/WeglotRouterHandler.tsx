@@ -52,7 +52,7 @@ export function WeglotRouteHandler(): null {
 		console.log(pathname);
 		const x = setInterval(() => {
 			if ((window as any).Weglot.initialized) {
-				(window as any).ßWeglot.switchTo(currentLang);
+				(window as any).Weglot.switchTo(currentLang);
 				console.log('switched to', currentLang);
 				clearInterval(x);
 			}
