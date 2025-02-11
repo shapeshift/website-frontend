@@ -46,18 +46,18 @@ export function WeglotRouteHandler(): null {
 		}
 	}, [pathname]); // Re-run when pathname changes
 
-	useEffect(() => {
-		const currentLang = (window as any).Weglot.getCurrentLang();
-		console.log({currentLang});
-		console.log(pathname);
-		const x = setInterval(() => {
-			if ((window as any).Weglot.initialized) {
-				(window as any).Weglot.switchTo(currentLang);
-				console.log('switched to', currentLang);
-				clearInterval(x);
-			}
-		}, 500);
-	}, [pathname]);
+	// useEffect(() => {
+	// 	const currentLang = (window as any).Weglot.getCurrentLang();
+	// 	console.log({currentLang});
+	// 	console.log(pathname);
+	// 	const x = setInterval(() => {
+	// 		if ((window as any).Weglot.initialized) {
+	// 			(window as any).Weglot.switchTo(currentLang);
+	// 			console.log('switched to', currentLang);
+	// 			clearInterval(x);
+	// 		}
+	// 	}, 500);
+	// }, [pathname]);
 
 	return null;
 }
