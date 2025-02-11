@@ -16,7 +16,7 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 				<div className={'mb-5 flex items-center gap-2'}>
 					<div className={'mr-4 size-10'}>
 						<Image
-							src={'/foxLogo.png'}
+							src={'/fox-token/foxLogo.png'}
 							alt={'Fox Token'}
 							width={80}
 							height={80}
