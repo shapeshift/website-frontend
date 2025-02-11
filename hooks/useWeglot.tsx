@@ -2,28 +2,19 @@ import {useEffect, useState} from 'react';
 
 export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [string, (language: string) => void] => {
 	const [language, setLanguage] = useState<string>(defaultLanguage);
-
 	useEffect(() => {
 		const script = document.createElement('script');
 		script.src = 'https://cdn.weglot.com/weglot.min.js';
 		script.async = true;
-		script.type = 'text/javascript';
-		script.crossOrigin = 'anonymous';
 		document.body.appendChild(script);
-
 		const x = setInterval(() => {
-			// @ts-ignore
-			console.log(window.Weglot);
 			// @ts-ignore
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			window.Weglot.initialize({api_key: apiKey});
-			// @ts-ignore
-			console.log(window.Weglot.initialized);
 			//@ts-ignore
-			if (window.Weglot.initialized) {
-				//@ts-expect-error
+			if (Weglot.initialized) {
+				//@ts-ignore
 				window.Weglot.switchTo(language);
-				console.log('switched to:', language);
 				clearInterval(x);
 			}
 		}, 500);
@@ -32,15 +23,16 @@ export const useWeglot = (apiKey: string, defaultLanguage: string = 'en'): [stri
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	// useEffect(() => {
-	// 	// @ts-ignore
-	// 	if (window.Weglot.initialized) {
-	// 		// @ts-ignore
-	// 		window.Weglot.switchTo(language);
-	// 		console.log('switched to', language);
-	// 	}
-	// }, [language]);
-
+	useEffect(() => {
+		// @ts-ignore
+		if (window.Weglot) {
+			// @ts-ignore
+			if (window.Weglot.initialized) {
+				// @ts-ignore
+				window.Weglot.switchTo(language);
+				console.log('switched to', language);
+			}
+		}
+	}, [language]);
 	return [language, setLanguage] as const;
 };
