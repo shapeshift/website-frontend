@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 
 import {cl} from '@/components/utils/cl';
@@ -6,6 +7,7 @@ import type {TCard} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 export function Card({data}: {data: TCard}): ReactNode {
+	console.log(`${process.env.STRAPI_URL}${data?.image.url}`);
 	return (
 		<div
 			className={cl(
@@ -23,7 +25,6 @@ export function Card({data}: {data: TCard}): ReactNode {
 					width={461}
 					height={219}
 					className={'size-full object-cover'}
-					unoptimized
 				/>
 			</div>
 		</div>

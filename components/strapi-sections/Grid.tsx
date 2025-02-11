@@ -70,7 +70,6 @@ function Card({data}: {data: TCard}): ReactNode {
 				width={461}
 				height={219}
 				className={'w-full'}
-				unoptimized
 			/>
 		</div>
 	);

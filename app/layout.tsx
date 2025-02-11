@@ -40,11 +40,6 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	return (
 		<html>
 			<head>
-				{/* TODO: Update when we have a proper CSP */}
-				<meta
-					httpEquiv={'Content-Security-Policy'}
-					content={'upgrade-insecure-requests'}
-				/>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}

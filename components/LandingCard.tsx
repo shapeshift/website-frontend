@@ -32,7 +32,6 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 					width={461}
 					height={219}
 					className={cl('size-full object-cover', data.isTextFirst ? 'rounded-t-2xl' : 'rounded-b-2xl')}
-					unoptimized
 				/>
 			</div>
 		</div>
