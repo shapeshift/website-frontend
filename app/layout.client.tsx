@@ -1,6 +1,7 @@
 'use client';
 
 import {usePathname} from 'next/navigation';
+import {useWeglot} from 'react-weglot';
 
 import {Footer} from '@/components/Footer';
 import {Header} from '@/components/header/Header';
@@ -13,7 +14,7 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 export function LayoutClient({children}: {children: ReactNode}): ReactNode {
 	const pathname = usePathname();
-	// const [, setLang] = useWeglot('wg_b6fdc2a2e16175fd09ce44998516155b3', 'en');
+	useWeglot('wg_b6fdc2a2e16175fd09ce44998516155b3', 'en');
 	// useEffect(() => {
 	// 	console.log('set:', lang);
 	// 	setLang(lang);
