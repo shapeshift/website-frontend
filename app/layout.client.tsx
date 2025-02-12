@@ -22,7 +22,7 @@ export function LayoutClient({children}: {children: ReactNode}): ReactNode {
 		<div className={'flex flex-col px-4'}>
 			{/* <button onClick={() => setLang('en')}>{'EN'}</button>
 			<button onClick={() => setLang('fr')}>{'FR'}</button> */}
-			{pathname === '/' ? null : <Header />}
+			<Header variant={pathname === '/' ? 'transparent' : 'default'} />
 			<main>{children}</main>
 			<Footer />
 		</div>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import {Button} from './Button';
+import {dAppUrl} from '../constants';
 
 import type {ReactNode} from 'react';
 
@@ -22,6 +23,7 @@ export function Banner(): ReactNode {
 					<Button
 						variant={'blue'}
 						title={'Launch dApp'}
+						href={dAppUrl}
 					/>
 					<Button
 						variant={'white'}

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import {RoundButton} from '../../common/RoundButton';
 
 import type {TCard, TCardsRowSection} from '@/types/strapi';
@@ -29,16 +31,17 @@ export default function CardsRow({
 				)}
 			</div>
 			{data.ctaBlock && (
-				<div className={'group mt-2 flex w-full items-center justify-between rounded-2xl bg-secondBg p-10'}>
+				<Link
+					className={'group mt-2 flex w-full items-center justify-between rounded-2xl bg-secondBg p-10'}
+					href={data?.ctaBlock?.url ?? '/'}>
 					<div className={'text-2xl text-white'}>{data?.ctaBlock?.title}</div>
 					<RoundButton
 						iconName={'arrow'}
 						className={
 							'bg-blue-500 transition-all duration-300 group-hover:scale-110 group-hover:bg-blueHover'
 						}
-						href={data?.ctaBlock?.url ?? '/'}
 					/>
-				</div>
+				</Link>
 			)}
 		</section>
 	);

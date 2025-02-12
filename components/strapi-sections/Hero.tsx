@@ -23,6 +23,7 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 								variant={'blue'}
 								title={data.buttonCta?.title ?? 'Title'}
 								href={data.buttonCta?.url ?? '/'}
+								hasArrow
 							/>
 						) : data.buttonDownload.length > 0 ? (
 							<div className={'flex gap-4'}>

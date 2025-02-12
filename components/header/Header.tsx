@@ -7,7 +7,7 @@ import {useMemo, useState} from 'react';
 import {containerAnimation} from './animations';
 import {Button} from '../common/Button';
 import {ShapeshiftLogo} from '../common/icons/ShapeshiftLogo';
-import {headerTabs} from '../constants';
+import {dAppUrl, headerTabs} from '../constants';
 import {DAOExpand} from './DaoExpand';
 import {ProductsExpand} from './ProductsExpand';
 import {ResourcesExpand} from './ResourcesExpand';
@@ -15,7 +15,13 @@ import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
 
-export function Header({className}: {className?: string}): ReactNode {
+export function Header({
+	className,
+	variant = 'default'
+}: {
+	className?: string;
+	variant?: 'transparent' | 'default';
+}): ReactNode {
 	const [currentTab, setCurrentTab] = useState<string>('empty');
 
 	/**********************************************************************************************
@@ -39,7 +45,8 @@ export function Header({className}: {className?: string}): ReactNode {
 			className={'relative z-50'}>
 			<div
 				className={cl(
-					'fixed flex flex-col bg-secondBg w-[calc(100%-2rem)] items-center justify-between rounded-lg mt-4 px-6 py-3',
+					'fixed flex flex-col  w-[calc(100%-2rem)] items-center transition-all duration-300 justify-between rounded-lg mt-4 px-6 py-3',
+					variant === 'transparent' ? 'hover:bg-secondBg bg-headerBg/10 backdrop-blur-lg' : 'bg-secondBg',
 					className
 				)}>
 				<div className={'flex w-full items-center justify-between'}>
@@ -67,6 +74,7 @@ export function Header({className}: {className?: string}): ReactNode {
 					<Button
 						variant={'blue'}
 						title={'Launch dApp'}
+						href={dAppUrl}
 					/>
 				</div>
 				<AnimatePresence mode={'wait'}>

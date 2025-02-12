@@ -10,7 +10,6 @@ import {Button} from '@/components/common/Button';
 import {ShapeshiftLogo} from '@/components/common/icons/ShapeshiftLogo';
 import {TabItem} from '@/components/common/TabItem';
 import {landingCards} from '@/components/constants';
-import {Header} from '@/components/header/Header';
 import {LandingCard} from '@/components/LandingCard';
 import {QuestionSection} from '@/components/QuestionSection';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
@@ -73,10 +72,6 @@ export default function HomePage(): ReactNode {
 					</div>
 				</div>
 			</div>
-			<div className={'sticky top-4 z-50 w-full rounded-2xl'}>
-				<Header className={'!static'} />
-			</div>
-
 			<div className={'container'}>
 				<div className={'mb-14 mt-40 flex flex-col'}>
 					<h1 className={'text-7xl text-white'}>{'Your Wallet. One App.'}</h1>
@@ -176,7 +171,10 @@ export default function HomePage(): ReactNode {
 					<div className={'mb-[240px] grid w-full grid-cols-3 gap-4'}>
 						<div className={'col-span-1 flex flex-col gap-16'}>
 							<h1 className={'text-7xl text-white'}>{'Read more about ShapeShift.'}</h1>
-							<Button title={'See all articles'} />
+							<Button
+								title={'See all articles'}
+								href={'/resources/blog'}
+							/>
 						</div>
 						{posts.slice(0, 2).map(post => (
 							<BlogPost

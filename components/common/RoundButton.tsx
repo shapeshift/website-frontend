@@ -10,7 +10,8 @@ import type {ReactNode} from 'react';
 const icons = {
 	arrow: <IconArrow className={'text-white'} />,
 	plus: <IconPlus className={'text-white'} />,
-	minus: <IconMinus className={'text-white'} />
+	minus: <IconMinus className={'text-white'} />,
+	cross: <IconPlus className={'rotate-45 text-white'} />
 };
 
 export function RoundButton({
@@ -21,7 +22,7 @@ export function RoundButton({
 }: {
 	className?: string;
 	href?: string;
-	iconName: 'arrow' | 'plus' | 'minus';
+	iconName: 'arrow' | 'plus' | 'minus' | 'cross';
 	onClick?: () => void;
 }): ReactNode {
 	return (

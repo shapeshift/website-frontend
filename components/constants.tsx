@@ -6,6 +6,11 @@ import {IconWarpcast} from './common/icons/IconWarpcast';
 
 import type {TCardsRowSection} from '@/types/strapi';
 
+export const dAppUrl =
+	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
+
+export const docsUrl = 'https://github.com/shapeshift';
+
 export const appResources = [
 	{name: 'Blog', href: '/resources/blog', description: 'Latest news and updates'},
 	{name: 'FAQ', href: '/resources/faq', description: 'Frequently asked questions'},
@@ -16,18 +21,26 @@ export const appResources = [
 
 export const appDao = [
 	{name: 'Fox token', href: '/dao/fox-token', description: 'Our governance token'},
-	{name: 'Governance', href: '/dao/governance', description: 'Participate in decision making'},
-	{name: 'Docs', href: '/dao/docs', description: 'Technical documentation'},
+	{
+		name: 'Governance',
+		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
+		description: 'Participate in decision making'
+	},
+	{name: 'Docs', href: docsUrl, description: 'Technical documentation'},
 	{name: 'Forum', href: '/dao/forum', description: 'Community discussions'}
 ];
 
 export const appProducts = [
-	{name: 'dApp', href: '/products/dapp', description: 'A decentralized finance wallet'},
+	{
+		name: 'dApp',
+		href: dAppUrl,
+		description: 'A decentralized finance wallet'
+	},
 	{name: 'Trade', href: '/products/trade', description: 'A decentralized finance wallet'},
 	{name: 'DeFi Wallet', href: '/products/defi-wallet', description: 'A decentralized finance wallet'},
 	{name: 'Earn', href: '/products/earn', description: 'A decentralized finance wallet'},
 	{name: 'Mobile app', href: '/products/mobile-app', description: 'A decentralized finance wallet'},
-	{name: 'KeepKey', href: '/products/keep-key', description: 'A decentralized finance wallet'}
+	{name: 'KeepKey', href: 'https://www.keepkey.com/', description: 'A decentralized finance wallet'}
 ];
 
 export const headerTabs = [
@@ -248,11 +261,11 @@ export const foxTokenContributeItems = [
 	},
 	{
 		title: 'Govern',
-		href: '#'
+		href: 'https://snapshot.box/#/s:shapeshiftdao.eth'
 	},
 	{
 		title: 'Read Docs',
-		href: '#'
+		href: docsUrl
 	},
 	{
 		title: 'Discuss',

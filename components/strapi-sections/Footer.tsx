@@ -40,6 +40,7 @@ export default function Footer({data}: {data: TFooterSection}): ReactNode | null
 						variant={'blue'}
 						href={data?.buttonCta?.url ?? '/'}
 						title={data?.buttonCta?.title}
+						hasArrow
 					/>
 				</div>
 			</div>

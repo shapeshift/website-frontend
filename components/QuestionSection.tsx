@@ -1,6 +1,6 @@
 'use client';
 
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import {useState} from 'react';
 
 import type {TFaqSectionItem} from '@/types/strapi';
@@ -47,6 +47,7 @@ const AnimatedPlusMinusIcon = ({isOpen}: {isOpen: boolean}): ReactNode => {
  */
 export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionItem}): ReactNode | null => {
 	const [isOpen, setIsOpen] = useState(false);
+
 	return (
 		<div
 			className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}
@@ -61,7 +62,21 @@ export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionIt
 					<AnimatedPlusMinusIcon isOpen={isOpen} />
 				</div>
 			</div>
-			{isOpen && <div className={'rounded-2xl px-10 pb-6 text-gray-500'}>{faqSectionItem.answer}</div>}
+			<AnimatePresence>
+				{isOpen && (
+					<motion.div
+						initial={{height: 0, opacity: 0}}
+						animate={{height: 'auto', opacity: 1}}
+						exit={{height: 0, opacity: 0}}
+						transition={{
+							duration: 0.3,
+							ease: 'easeInOut'
+						}}
+						className={'overflow-hidden'}>
+						<div className={'rounded-2xl px-10 pb-6 text-gray-500'}>{faqSectionItem.answer}</div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

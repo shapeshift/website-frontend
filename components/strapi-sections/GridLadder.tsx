@@ -53,6 +53,7 @@ const LadderItem = ({data}: {data: TGridLadderStep}): ReactNode | null => {
 					variant={'blue'}
 					title={data.buttonCta.title}
 					href={data.buttonCta.url}
+					hasArrow
 				/>
 			)}
 		</div>

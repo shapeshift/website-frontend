@@ -45,14 +45,17 @@ export function Footer(): ReactNode {
 								))}
 							</div>
 							<Button
-								href={'/'}
+								href={'https://giveth.io/project/shapeshift-dao'}
 								variant={'blue'}
 								title={'Donate'}
+								hasArrow
 							/>
 						</div>
 
 						<div className={'flex items-center justify-between gap-2'}>
-							<div className={'text-sm text-gray-500'}>{'© 2022 ShapeShift. All Rights Reserved'}</div>
+							<div className={'text-sm text-gray-500'}>
+								{`© ${new Date().getFullYear()} ShapeShift. All Rights Reserved`}
+							</div>
 
 							<div className={'flex items-center gap-6 rounded-2xl border border-stoke bg-black/95 p-2'}>
 								<span className={'p-4 text-2xl text-white'}>{'Get the app'}</span>
