@@ -12,7 +12,7 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 async function getBlogPost(slug: string): Promise<TBlogPost | null> {
 	// First, get all posts to find the documentId
-	const postsRes = await fetch('https://172.233.242.224:1337/api/posts', {
+	const postsRes = await fetch(`${process.env.STRAPI_URL}/api/posts`, {
 		headers: {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
 		}
@@ -30,7 +30,7 @@ async function getBlogPost(slug: string): Promise<TBlogPost | null> {
 	}
 
 	// Then fetch the specific post using documentId
-	const postRes = await fetch(`https://172.233.242.224:1337/api/posts/${post.documentId}`, {
+	const postRes = await fetch(`${process.env.STRAPI_URL}/api/posts/${post.documentId}`, {
 		headers: {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
 		}

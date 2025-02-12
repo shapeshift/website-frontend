@@ -19,8 +19,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: '172.233.242.224',
-				port: '1337'
+				hostname: 'www.ghosticmom.site'
 			}
 		]
 	},

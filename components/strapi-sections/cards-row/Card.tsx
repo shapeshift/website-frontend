@@ -7,7 +7,6 @@ import type {TCard} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 export function Card({data}: {data: TCard}): ReactNode {
-	console.log(`${process.env.STRAPI_URL}${data?.image.url}`);
 	return (
 		<div
 			className={cl(
