@@ -17,7 +17,7 @@ import {cl} from '@/components/utils/cl';
 import {useFaq} from '@/hooks/useFaq';
 import {usePosts} from '@/hooks/usePosts';
 
-import type {TCard, TFaqSectionItem} from '@/types/strapi';
+import type {TBlogPost, TCard, TFaqSectionItem} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {
@@ -176,7 +176,7 @@ export default function HomePage(): ReactNode {
 								href={'/resources/blog'}
 							/>
 						</div>
-						{posts.slice(0, 2).map(post => (
+						{posts.slice(0, 2).map((post: TBlogPost) => (
 							<BlogPost
 								key={post.id}
 								post={post}
