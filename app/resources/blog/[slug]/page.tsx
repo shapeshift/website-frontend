@@ -44,6 +44,18 @@ async function getBlogPost(slug: string): Promise<TBlogPost | null> {
 	return data;
 }
 
+function BlogContent({content}: {content: string}): ReactNode {
+	console.log(content);
+	// Check if content looks like HTML (contains HTML tags)
+	const isHtml = /<[a-z][\s\S]*>/i.test(content);
+	if (isHtml) {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+		return <div dangerouslySetInnerHTML={{__html: content}} />;
+	}
+
+	return <ReactMarkdown>{content}</ReactMarkdown>;
+}
+
 export default async function BlogPost({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	const {slug} = await params;
 	const post = await getBlogPost(slug);
@@ -57,7 +69,7 @@ export default async function BlogPost({params}: {params: Promise<{slug: string}
 			<article className={'prose prose-invert container mx-auto mb-20 mt-40 max-w-4xl px-4 py-8'}>
 				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
 				<div className={'mb-8 text-gray-400'}>{new Date(post.publishedAt).toLocaleDateString()}</div>
-				<ReactMarkdown>{post.content}</ReactMarkdown>
+				<BlogContent content={post.content} />
 			</article>
 			<Banner />
 		</>
