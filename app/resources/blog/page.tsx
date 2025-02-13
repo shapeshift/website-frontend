@@ -15,16 +15,36 @@ const tabs = [
 		slug: 'all'
 	},
 	{
-		title: 'News',
-		slug: 'news'
+		title: 'Partner Integrations',
+		slug: 'Partner Integrations'
 	},
 	{
-		title: 'Announcements',
-		slug: 'announcements'
+		title: 'Ethereum',
+		slug: 'Ethereum'
 	},
 	{
-		title: 'Tutorials',
-		slug: 'tutorials'
+		title: 'Crypto 101',
+		slug: 'Crypto 101'
+	},
+	{
+		title: 'Bitcoin',
+		slug: 'Bitcoin'
+	},
+	{
+		title: 'Crypto pro',
+		slug: 'Crypto pro'
+	},
+	{
+		title: 'Thought Leadership',
+		slug: 'Thought Leadership'
+	},
+	{
+		title: 'Governance Newsletters',
+		slug: 'Governance Newsletters'
+	},
+	{
+		title: 'Newsletter',
+		slug: 'Newsletter'
 	}
 ];
 
@@ -36,7 +56,19 @@ export default function BlogList(): ReactNode {
 		if (currentTab === 'all') {
 			return posts;
 		}
-		return posts.filter(post => post.type.includes(currentTab as 'announcements' | 'tutorials' | 'news'));
+		return posts.filter(post =>
+			post.type.includes(
+				currentTab as
+					| 'all'
+					| 'Partner Integrations'
+					| 'Ethereum'
+					| 'Bitcoin'
+					| 'Crypto Pro'
+					| 'Thought Leadership'
+					| 'Governance Newsletters'
+					| 'Newsletter'
+			)
+		);
 	}, [posts, currentTab]);
 
 	return (

@@ -50,7 +50,7 @@ export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionIt
 
 	return (
 		<div
-			className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}
+			className={'group cursor-pointer rounded-2xl bg-secondBg hover:bg-secondHoverBg'}
 			onClick={() => setIsOpen(!isOpen)}>
 			<div className={'flex items-center justify-between px-10 py-8'}>
 				<div className={'text-2xl'}>{faqSectionItem.question}</div>

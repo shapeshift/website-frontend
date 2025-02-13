@@ -9,7 +9,7 @@ import type {TCardsRowSection} from '@/types/strapi';
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
 
-export const docsUrl = 'https://github.com/shapeshift';
+export const docsUrl = 'https://docs.shapeshift.com/';
 
 export const appResources = [
 	{name: 'Blog', href: '/resources/blog', description: 'Latest news and updates'},
