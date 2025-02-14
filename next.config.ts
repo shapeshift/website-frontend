@@ -20,6 +20,10 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'www.ghosticmom.site'
+			},
+			{
+				protocol: 'https',
+				hostname: 'octodex.github.com' //TODO: Remove this
 			}
 		]
 	},
