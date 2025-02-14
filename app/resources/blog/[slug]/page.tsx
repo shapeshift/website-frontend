@@ -246,13 +246,21 @@ export default function BlogPost(): ReactNode {
 				<div className={'mb-8 text-gray-400'}>{new Date(post.publishedAt).toLocaleDateString()}</div>
 
 				<div className={'mb-8 flex flex-wrap gap-2'}>
-					{post.type.map(type => (
+					{Array.isArray(post.type) ? (
+						post.type.map(type => (
+							<p
+								className={'text-blue'}
+								key={type}>
+								{`#${type}`}
+							</p>
+						))
+					) : (
 						<p
 							className={'text-blue'}
-							key={type}>
-							{`#${type}`}
+							key={post.type}>
+							{`#${post.type}`}
 						</p>
-					))}
+					)}
 				</div>
 				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
 				<BlogContent content={post.content} />
