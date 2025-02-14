@@ -5,7 +5,7 @@ import {useMemo, useState} from 'react';
 import {BlogPost} from '@/components/BlogPost';
 import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
-import {usePosts} from '@/hooks/usePosts';
+import {usePosts} from '@/components/contexts/BlogContext';
 
 import type {ReactNode} from 'react';
 

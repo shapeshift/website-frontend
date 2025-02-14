@@ -7,7 +7,7 @@ import {BlogPost} from '@/components/BlogPost';
 import {Banner} from '@/components/common/Banner';
 import {RoundButton} from '@/components/common/RoundButton';
 import {foxTokenBenefits, foxTokenCommunityItems, foxTokenContributeItems} from '@/components/constants';
-import {usePosts} from '@/hooks/usePosts';
+import {usePosts} from '@/components/contexts/BlogContext';
 
 import type {ReactNode} from 'react';
 

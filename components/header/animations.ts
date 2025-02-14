@@ -23,7 +23,7 @@ export const containerAnimation = {
 		opacity: 0,
 		y: 20,
 		scaleY: 0.95,
-		transition: {duration: 0.2, ease: 'easeInOut'}
+		transition: {duration: 0.1, ease: 'easeInOut'}
 	},
 	transition: {duration: 0.4, ease: 'easeInOut'}
 };
