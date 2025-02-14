@@ -19,6 +19,9 @@ export default {
 				blue: '#386FF9',
 				blueHover: '#1A5BFF',
 				secondary: '#E6E6E6'
+			},
+			listStyleType: {
+				roman: 'lower-roman'
 			}
 		}
 	},
