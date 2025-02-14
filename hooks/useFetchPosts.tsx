@@ -1,3 +1,5 @@
+'use client';
+
 import {useEffect, useState} from 'react';
 
 import type {TBlogListResponse, TBlogPost} from '@/types/strapi';
@@ -10,7 +12,7 @@ import type {TBlogListResponse, TBlogPost} from '@/types/strapi';
  * @returns {boolean} isLoading - Loading state indicator
  * @returns {Error | null} error - Error object if fetch fails
  ********************************************************************************************/
-export function usePosts(): {
+export function useFetchPosts(): {
 	posts: TBlogPost[];
 	isLoading: boolean;
 	error: Error | null;
@@ -47,8 +49,8 @@ export function usePosts(): {
 			}
 		}
 
-		void fetchPosts();
-	}, []); // Empty dependency array means this effect runs once on mount
+		fetchPosts();
+	}, []);
 
 	return {posts, isLoading, error};
 }

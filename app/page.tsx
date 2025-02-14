@@ -10,12 +10,12 @@ import {Button} from '@/components/common/Button';
 import {ShapeshiftLogo} from '@/components/common/icons/ShapeshiftLogo';
 import {TabItem} from '@/components/common/TabItem';
 import {landingCards} from '@/components/constants';
+import {usePosts} from '@/components/contexts/BlogContext';
 import {LandingCard} from '@/components/LandingCard';
 import {QuestionSection} from '@/components/QuestionSection';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
 import {cl} from '@/components/utils/cl';
 import {useFaq} from '@/hooks/useFaq';
-import {usePosts} from '@/hooks/usePosts';
 
 import type {TBlogPost, TCard, TFaqSectionItem} from '@/types/strapi';
 import type {ReactNode} from 'react';

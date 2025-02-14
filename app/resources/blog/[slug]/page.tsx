@@ -4,12 +4,11 @@ import {notFound, useParams} from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 
 import {Banner} from '@/components/common/Banner';
-import {usePosts} from '@/hooks/usePosts';
+import {usePosts} from '@/components/contexts/BlogContext';
 
 import type {ReactNode} from 'react';
 
 function BlogContent({content}: {content: string}): ReactNode {
-	console.log(content);
 	// Check if content looks like HTML (contains HTML tags)
 	const isHtml = /<[a-z][\s\S]*>/i.test(content);
 
@@ -47,6 +46,7 @@ function BlogContent({content}: {content: string}): ReactNode {
 
 export default function BlogPost(): ReactNode {
 	const {posts, isLoading} = usePosts();
+
 	const {slug} = useParams();
 	const post = posts.find(p => p.slug === slug);
 

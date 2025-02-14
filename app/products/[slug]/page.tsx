@@ -12,6 +12,7 @@ import type {ReactNode} from 'react';
  * Returns null if page is not found
  ********************************************************************************************/
 async function getPageData(slug: string): Promise<TPageData | null> {
+	console.time(slug);
 	const pages = await fetch(`${process.env.STRAPI_URL}/api/pages`, {
 		headers: {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -40,6 +41,7 @@ async function getPageData(slug: string): Promise<TPageData | null> {
 	}
 
 	const json = await res.json();
+	console.timeEnd(slug);
 	return json.data;
 }
 
