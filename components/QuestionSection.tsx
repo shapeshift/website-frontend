@@ -49,10 +49,10 @@ export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionIt
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div
-			className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}
-			onClick={() => setIsOpen(!isOpen)}>
-			<div className={'flex items-center justify-between px-10 py-8'}>
+		<div className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}>
+			<div
+				className={'flex cursor-pointer items-center justify-between px-10 py-8'}
+				onClick={() => setIsOpen(!isOpen)}>
 				<div className={'text-2xl'}>{faqSectionItem.question}</div>
 				{/* Render the animated icon inside a button-like container with blue hover background */}
 				<div

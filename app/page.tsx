@@ -1,38 +1,24 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import {useMemo} from 'react';
 
-import {BlogPost} from '@/components/BlogPost';
+import {BlogList} from '@/components/BlogList';
 import {Banner} from '@/components/common/Banner';
-import {Button} from '@/components/common/Button';
 import {ShapeshiftLogo} from '@/components/common/icons/ShapeshiftLogo';
 import {TabItem} from '@/components/common/TabItem';
 import {landingCards} from '@/components/constants';
-import {usePosts} from '@/components/contexts/BlogContext';
 import {LandingCard} from '@/components/LandingCard';
 import {QuestionSection} from '@/components/QuestionSection';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
 import {cl} from '@/components/utils/cl';
-import {useFaq} from '@/hooks/useFaq';
+import {getFaq} from '@/components/utils/query';
 
-import type {TBlogPost, TCard, TFaqSectionItem} from '@/types/strapi';
+import type {TCard} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export default function HomePage(): ReactNode {
-	const {posts} = usePosts();
-	const {data} = useFaq();
+export default async function HomePage(): Promise<ReactNode> {
+	const data = await getFaq();
 
-	const allQuestions = useMemo(() => {
-		const questions: TFaqSectionItem[] = [];
-		data?.faqSection.forEach(item => {
-			item.faqSectionItem.forEach(item => {
-				questions.push(item);
-			});
-		});
-		return questions;
-	}, [data]);
+	const allQuestions = data?.faqSection.map(section => section.faqSectionItem).flat() ?? [];
 
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
@@ -168,21 +154,7 @@ export default function HomePage(): ReactNode {
 							/>
 						</Card>
 					</div>
-					<div className={'mb-[240px] grid w-full grid-cols-3 gap-4'}>
-						<div className={'col-span-1 flex flex-col gap-16'}>
-							<h1 className={'text-7xl text-white'}>{'Read more about ShapeShift.'}</h1>
-							<Button
-								title={'See all articles'}
-								href={'/resources/blog'}
-							/>
-						</div>
-						{posts.slice(0, 2).map((post: TBlogPost) => (
-							<BlogPost
-								key={post.id}
-								post={post}
-							/>
-						))}
-					</div>
+					<BlogList />
 
 					<div>
 						<div className={'mb-[77px] text-7xl'}>{'FAQ'}</div>
