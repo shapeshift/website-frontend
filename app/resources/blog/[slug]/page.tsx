@@ -96,7 +96,11 @@ function BlogContent({content}: {content: string}): ReactNode {
 						// Images
 						img: ({...props}) => (
 							<Image
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								// @ts-ignore
 								width={1200}
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								// @ts-ignore
 								height={1200}
 								className={'my-8 h-auto max-w-full rounded-lg shadow-lg'}
 								loading={'lazy'}
