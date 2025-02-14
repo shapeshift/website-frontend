@@ -63,7 +63,7 @@ export function Banner(): ReactNode {
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
 							<Image
-								src={'/googleplay.png'}
+								src={'/google_play.png'}
 								alt={'googleplay'}
 								width={390}
 								height={120}
