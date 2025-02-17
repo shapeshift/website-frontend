@@ -9,6 +9,7 @@ import {landingCards} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import {QuestionSection} from '@/components/QuestionSection';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
+import {TradingWidget} from '@/components/trading/TradingWidget';
 import {cl} from '@/components/utils/cl';
 import {getFaq} from '@/components/utils/query';
 
@@ -48,13 +49,7 @@ export default async function HomePage(): Promise<ReactNode> {
 						</div>
 					</div>
 					<div className={'h-[508px] w-[500px]'}>
-						<Image
-							src={'/widget.png'}
-							alt={'widget'}
-							width={'1000'}
-							height={'1016'}
-							className={'size-full rounded-2xl object-cover'}
-						/>
+						<TradingWidget />
 					</div>
 				</div>
 			</div>
