@@ -1,4 +1,3 @@
-import {motion} from 'framer-motion';
 import Image from 'next/image';
 
 import HeaderItem from '../common/HeaderItem';
@@ -9,7 +8,7 @@ import type {ReactNode} from 'react';
 
 export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
-		<motion.div
+		<div
 			className={'mt-16 flex max-w-[1400px] justify-between pb-10'}
 			{...expandAnimation}>
 			<div className={'max-w-[320px] border-r border-stoke pr-10'}>
@@ -42,6 +41,6 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 					))}
 				</div>
 			</div>
-		</motion.div>
+		</div>
 	);
 }

@@ -1,5 +1,3 @@
-import {motion} from 'framer-motion';
-
 import {Button} from '../common/Button';
 import HeaderItem from '../common/HeaderItem';
 import {appProducts} from '../constants';
@@ -14,7 +12,7 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
-		<motion.div
+		<div
 			className={'mt-16 flex max-w-[1400px] justify-between pb-10'}
 			{...expandAnimation}>
 			{/* Left section with main CTA */}
@@ -48,6 +46,6 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 					))}
 				</div>
 			</div>
-		</motion.div>
+		</div>
 	);
 }

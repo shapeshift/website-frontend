@@ -9,8 +9,10 @@ import {Button} from '../common/Button';
 import {ShapeshiftLogo} from '../common/icons/ShapeshiftLogo';
 import {dAppUrl, headerTabs} from '../constants';
 import {DAOExpand} from './DaoExpand';
+import {LanguageExpand} from './LanguageExpand';
 import {ProductsExpand} from './ProductsExpand';
 import {ResourcesExpand} from './ResourcesExpand';
+import {IconPlanet} from '../common/icons/IconPlanet';
 import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
@@ -34,6 +36,7 @@ export function Header({
 			products: <ProductsExpand setCurrentTab={setCurrentTab} />,
 			resources: <ResourcesExpand setCurrentTab={setCurrentTab} />,
 			dao: <DAOExpand setCurrentTab={setCurrentTab} />,
+			language: <LanguageExpand />,
 			empty: null
 		}),
 		[]
@@ -81,15 +84,25 @@ export function Header({
 							))}
 						</nav>
 
-						<Button
-							variant={'blue'}
-							title={'Launch dApp'}
-							href={dAppUrl}
-						/>
+						<div className={'flex gap-2'}>
+							<button
+								onMouseEnter={() => setCurrentTab('language')}
+								className={
+									'group flex aspect-square h-14 items-center justify-center rounded-[20px] border border-white/5'
+								}>
+								<IconPlanet className={'opacity-50 transition-opacity group-hover:opacity-100'} />
+							</button>
+							<Button
+								variant={'blue'}
+								title={'Launch dApp'}
+								href={dAppUrl}
+							/>
+						</div>
 					</div>
 				</div>{' '}
 				<AnimatePresence mode={'wait'}>
 					<motion.div
+						className={'flex justify-center'}
 						key={currentTab}
 						initial={containerAnimation.initial}
 						animate={containerAnimation.animate(!!currentTab)}
