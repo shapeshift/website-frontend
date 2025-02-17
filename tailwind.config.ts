@@ -21,7 +21,8 @@ export default {
 				secondary: '#E6E6E6'
 			},
 			listStyleType: {
-				roman: 'lower-roman'
+				roman: 'lower-roman',
+				latin: 'lower-alpha'
 			}
 		}
 	},
