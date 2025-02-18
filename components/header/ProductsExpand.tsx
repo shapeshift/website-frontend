@@ -43,6 +43,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 							name={product.name}
 							href={product.href}
 							description={product.description}
+							icon={product.icon}
 						/>
 					))}
 				</div>

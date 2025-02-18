@@ -1,6 +1,18 @@
+import {IconBlog} from './common/icons/IconBlog';
+import {IconChains} from './common/icons/IconChains';
+import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
+import {IconDocs} from './common/icons/IconDocs';
+import {IconFox} from './common/icons/IconFox';
+import {IconGovern} from './common/icons/IconGovern';
+import {IconKey} from './common/icons/IconKey';
 import {IconMedium} from './common/icons/IconMedium';
+import {IconMobile} from './common/icons/IconMobile';
+import {IconPercent} from './common/icons/IconPercent';
+import {IconQuestion} from './common/icons/IconQuestion';
+import {IconResource} from './common/icons/IconResource';
 import {IconTelegram} from './common/icons/IconTelegram';
+import {IconTrade} from './common/icons/IconTrade';
 import {IconTwitter} from './common/icons/IconTwitter';
 import {IconWarpcast} from './common/icons/IconWarpcast';
 
@@ -12,35 +24,56 @@ export const dAppUrl =
 export const docsUrl = 'https://docs.shapeshift.com/';
 
 export const appResources = [
-	{name: 'Blog', href: '/resources/blog', description: 'Latest news and updates'},
-	{name: 'FAQ', href: '/resources/faq', description: 'Frequently asked questions'},
-	{name: 'Supported chains', href: '/resources/supported-chains', description: 'Blockchain networks we support'},
+	{name: 'Blog', href: '/resources/blog', description: 'Latest news and updates', icon: <IconBlog />},
+	{name: 'FAQ', href: '/resources/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
+	{
+		name: 'Supported chains',
+		href: '/resources/supported-chains',
+		description: 'Blockchain networks we support',
+		icon: <IconChains />
+	},
 	{name: 'Terms of Service', href: '/resources/terms-of-service', description: 'Our terms and conditions'},
 	{name: 'Privacy Policy', href: '/resources/privacy-policy', description: 'How we handle your data'}
 ];
 
 export const appDao = [
-	{name: 'Fox token', href: '/dao/fox-token', description: 'Our governance token'},
+	{name: 'Fox token', href: '/dao/fox-token', description: 'Our governance token', icon: <IconFox />},
 	{
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
-		description: 'Participate in decision making'
+		description: 'Participate in decision making',
+		icon: <IconGovern />
 	},
-	{name: 'Docs', href: docsUrl, description: 'Technical documentation'},
-	{name: 'Forum', href: '/dao/forum', description: 'Community discussions'}
+	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />}
 ];
 
 export const appProducts = [
 	{
 		name: 'dApp',
 		href: dAppUrl,
-		description: 'A decentralized finance wallet'
+		description: 'A decentralized finance wallet',
+		icon: <IconDapp />
 	},
-	{name: 'Trade', href: '/products/trade', description: 'A decentralized finance wallet'},
-	{name: 'DeFi Wallet', href: '/products/defi-wallet', description: 'A decentralized finance wallet'},
-	{name: 'Earn', href: '/products/earn', description: 'A decentralized finance wallet'},
-	{name: 'Mobile app', href: '/products/mobile-app', description: 'A decentralized finance wallet'},
-	{name: 'KeepKey', href: 'https://www.keepkey.com/', description: 'A decentralized finance wallet'}
+	{name: 'Trade', href: '/products/trade', description: 'A decentralized finance wallet', icon: <IconTrade />},
+	{
+		name: 'DeFi Wallet',
+		href: '/products/defi-wallet',
+		description: 'A decentralized finance wallet',
+		icon: <IconResource />
+	},
+	{name: 'Earn', href: '/products/earn', description: 'A decentralized finance wallet', icon: <IconPercent />},
+	{
+		name: 'Mobile app',
+		href: '/products/mobile-app',
+		description: 'A decentralized finance wallet',
+		icon: <IconMobile />
+	},
+	{
+		name: 'KeepKey',
+		href: 'https://www.keepkey.com/',
+		description: 'A decentralized finance wallet',
+		icon: <IconKey />
+	}
 ];
 
 export const headerTabs = [
@@ -270,5 +303,44 @@ export const foxTokenContributeItems = [
 	{
 		title: 'Discuss',
 		href: '#'
+	}
+];
+
+export const blogTabs = [
+	{
+		title: 'All posts',
+		slug: 'all'
+	},
+	{
+		title: 'Partner Integrations',
+		slug: 'Partner Integrations'
+	},
+	{
+		title: 'Ethereum',
+		slug: 'Ethereum'
+	},
+	{
+		title: 'Crypto 101',
+		slug: 'Crypto 101'
+	},
+	{
+		title: 'Bitcoin',
+		slug: 'Bitcoin'
+	},
+	{
+		title: 'Crypto pro',
+		slug: 'Crypto pro'
+	},
+	{
+		title: 'Thought Leadership',
+		slug: 'Thought Leadership'
+	},
+	{
+		title: 'Governance Newsletters',
+		slug: 'Governance Newsletters'
+	},
+	{
+		title: 'Newsletter',
+		slug: 'Newsletter'
 	}
 ];

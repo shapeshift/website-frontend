@@ -151,7 +151,7 @@ export type TBlogPost = {
 		| 'Governance Newsletters'
 		| 'Newsletter'
 	)[];
-	description: string;
+	summary: string;
 };
 
 export type TBlogListResponse = {
