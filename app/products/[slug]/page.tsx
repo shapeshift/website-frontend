@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Card} from '@/components/strapi-sections/cards-row/Card';
@@ -54,6 +55,14 @@ export default async function Page({params}: {params: Promise<{slug: string}>}):
 
 	return (
 		<main className={'flex w-full flex-col items-center justify-center'}>
+			<div className={'absolute inset-0'}>
+				<Image
+					src={'/heroBg.png'}
+					alt={'hero-bg'}
+					height={'2256'}
+					width={'3840'}
+				/>
+			</div>
 			{/* Render sections conditionally based on presence in API response */}
 			{Object.entries(page).map(([key, data]) => {
 				const Section = sections[key as TSectionType];

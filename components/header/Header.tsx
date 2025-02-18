@@ -59,7 +59,7 @@ export function Header({
 				className={cl('fixed w-[calc(100%-2rem)]', getVariant())}>
 				<div
 					className={cl(
-						'flex flex-col items-center transition-all backdrop-blur-lg duration-300 justify-between rounded-lg mt-4 px-6 py-3',
+						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between rounded-lg mt-4 px-6 py-3',
 						className
 					)}>
 					<div className={'flex w-full items-center justify-between'}>
@@ -99,7 +99,7 @@ export function Header({
 							/>
 						</div>
 					</div>
-				</div>{' '}
+				</div>
 				<AnimatePresence mode={'wait'}>
 					<motion.div
 						className={'flex justify-center'}

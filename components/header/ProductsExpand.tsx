@@ -1,6 +1,6 @@
 import {Button} from '../common/Button';
 import HeaderItem from '../common/HeaderItem';
-import {appProducts} from '../constants';
+import {appProducts, dAppUrl} from '../constants';
 import {expandAnimation} from './animations';
 
 import type {ReactNode} from 'react';
@@ -13,10 +13,10 @@ import type {ReactNode} from 'react';
 export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div
-			className={'mt-16 flex max-w-[1400px] justify-between pb-10'}
+			className={'flex max-w-[1400px] justify-between'}
 			{...expandAnimation}>
 			{/* Left section with main CTA */}
-			<div className={'flex flex-col border-r border-stoke pr-10'}>
+			<div className={'mt-16 flex flex-col pb-10 pr-10'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Your Wallet. One App.'}
 					<br />
@@ -28,12 +28,13 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 				<Button
 					variant={'blue'}
 					title={'Get Started'}
-					href={'/products/dapp'}
+					href={dAppUrl}
 				/>
 			</div>
+			<div className={'mx-16 border border-white/5'} />
 
 			{/* Right section with product grid */}
-			<div>
+			<div className={'mt-16 pb-10'}>
 				<div className={'grid grid-cols-3 gap-4'}>
 					{appProducts.map(product => (
 						<HeaderItem
@@ -42,6 +43,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 							name={product.name}
 							href={product.href}
 							description={product.description}
+							icon={product.icon}
 						/>
 					))}
 				</div>

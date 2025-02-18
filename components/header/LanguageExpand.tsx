@@ -13,13 +13,16 @@ const LANGUAGES = [
 ];
 
 export function LanguageExpand(): ReactNode {
+	// eslint-disable-next-line
 	//@ts-ignore
 	const staticCurrentLanguage = window.Weglot.getCurrentLang();
 	const [dynamicCurrentLang, setDynamicCurrentLang] = useState(staticCurrentLanguage);
 
 	const switchLanguage = (symbol: string): void => {
+		// eslint-disable-next-line
 		//@ts-ignore
 		if (window.Weglot.initialized) {
+			// eslint-disable-next-line
 			//@ts-ignore
 			window.Weglot.switchTo(symbol);
 			setDynamicCurrentLang(symbol);

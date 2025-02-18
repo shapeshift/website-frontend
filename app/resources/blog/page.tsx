@@ -5,70 +5,30 @@ import {useMemo, useState} from 'react';
 import {BlogPost} from '@/components/BlogPost';
 import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
+import {blogTabs} from '@/components/constants';
 import {usePosts} from '@/components/contexts/BlogContext';
 
 import type {ReactNode} from 'react';
 
-const tabs = [
-	{
-		title: 'All posts',
-		slug: 'all'
-	},
-	{
-		title: 'Partner Integrations',
-		slug: 'Partner Integrations'
-	},
-	{
-		title: 'Ethereum',
-		slug: 'Ethereum'
-	},
-	{
-		title: 'Crypto 101',
-		slug: 'Crypto 101'
-	},
-	{
-		title: 'Bitcoin',
-		slug: 'Bitcoin'
-	},
-	{
-		title: 'Crypto pro',
-		slug: 'Crypto pro'
-	},
-	{
-		title: 'Thought Leadership',
-		slug: 'Thought Leadership'
-	},
-	{
-		title: 'Governance Newsletters',
-		slug: 'Governance Newsletters'
-	},
-	{
-		title: 'Newsletter',
-		slug: 'Newsletter'
-	}
-];
+type TPostType =
+	| 'all'
+	| 'Partner Integrations'
+	| 'Ethereum'
+	| 'Bitcoin'
+	| 'Crypto Pro'
+	| 'Thought Leadership'
+	| 'Governance Newsletters'
+	| 'Newsletter';
 
 export default function BlogList(): ReactNode {
 	const {posts} = usePosts();
-	const [currentTab, setCurrentTab] = useState<string>('all');
+	const [currentTab, setCurrentTab] = useState('all');
 
 	const filteredPosts = useMemo(() => {
 		if (currentTab === 'all') {
 			return posts;
 		}
-		return posts.filter(post =>
-			post.type.includes(
-				currentTab as
-					| 'all'
-					| 'Partner Integrations'
-					| 'Ethereum'
-					| 'Bitcoin'
-					| 'Crypto Pro'
-					| 'Thought Leadership'
-					| 'Governance Newsletters'
-					| 'Newsletter'
-			)
-		);
+		return posts.filter(post => post.type.includes(currentTab as TPostType));
 	}, [posts, currentTab]);
 
 	return (
@@ -79,8 +39,8 @@ export default function BlogList(): ReactNode {
 				<span className={'text-blue'}>{'Blog.'}</span>
 			</div>
 
-			<div className={'mb-6 flex w-min gap-4 rounded-full border border-white/10 p-1'}>
-				{tabs.map(tab => (
+			<div className={'container mb-6 flex w-max flex-wrap gap-4 rounded-full p-1'}>
+				{blogTabs.map(tab => (
 					<TabItem
 						key={tab.slug}
 						title={tab.title}
@@ -97,6 +57,7 @@ export default function BlogList(): ReactNode {
 						<BlogPost
 							key={post.slug}
 							post={post}
+							className={'!bg-stroke'}
 						/>
 					))}
 				</div>
