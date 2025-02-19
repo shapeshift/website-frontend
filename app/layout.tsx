@@ -4,11 +4,13 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
 import {WithFonts} from '@/components/common/WithFonts';
-import {PostsProvider} from '@/components/contexts/BlogContext';
+import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
 
 import './globals.css';
 import {LayoutClient} from './layout.client';
+import {defaultMetadata} from './metadata';
 
+import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 export async function getSubdomain(): Promise<string | null> {
@@ -34,6 +36,8 @@ export async function getSubdomain(): Promise<string | null> {
 	return null;
 }
 
+export const metadata: Metadata = defaultMetadata;
+
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
 	// const locale = await getSubdomain();
 	const messages = await getMessages();
@@ -57,9 +61,9 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
 					<NextIntlClientProvider messages={messages}>
-						<PostsProvider>
+						<CachedPostsProvider>
 							<LayoutClient>{children}</LayoutClient>
-						</PostsProvider>
+						</CachedPostsProvider>
 					</NextIntlClientProvider>
 				</WithFonts>
 			</body>
