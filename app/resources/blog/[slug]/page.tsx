@@ -2,6 +2,7 @@
 
 import 'highlight.js/styles/github-dark.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import {notFound, useParams, useRouter} from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -292,21 +293,14 @@ export default function BlogPost(): ReactNode {
 				<div className={'mb-8 text-gray-400'}>{new Date(post.publishedAt).toLocaleDateString()}</div>
 
 				<div className={'mb-8 flex flex-wrap gap-2'}>
-					{Array.isArray(post.type) ? (
-						post.type.map(type => (
-							<p
-								className={'text-blue'}
-								key={type}>
-								{`#${type}`}
-							</p>
-						))
-					) : (
-						<p
+					{post.tags.map((tag: string, index: number) => (
+						<Link
+							href={`/resources/blog/tags/${tag}`}
 							className={'text-blue'}
-							key={post.type}>
-							{`#${post.type}`}
-						</p>
-					)}
+							key={index}>
+							{`#${tag}`}
+						</Link>
+					))}
 				</div>
 				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
 				<BlogContent content={post.content} />

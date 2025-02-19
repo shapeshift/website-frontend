@@ -141,6 +141,7 @@ export type TBlogPost = {
 	updatedAt: string;
 	publishedAt: string;
 	imageFeatured: TStrapiImage;
+	tags: string[];
 	type: (
 		| 'all'
 		| 'Partner Integrations'
