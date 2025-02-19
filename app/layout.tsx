@@ -8,7 +8,9 @@ import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
 
 import './globals.css';
 import {LayoutClient} from './layout.client';
+import {defaultMetadata} from './metadata';
 
+import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 export async function getSubdomain(): Promise<string | null> {
@@ -33,6 +35,8 @@ export async function getSubdomain(): Promise<string | null> {
 
 	return null;
 }
+
+export const metadata: Metadata = defaultMetadata;
 
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
 	// const locale = await getSubdomain();
