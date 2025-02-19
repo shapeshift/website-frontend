@@ -7,8 +7,8 @@ import {IconBack} from '@/components/common/icons/IconBack';
 
 import type {TBlogPost} from '@/types/strapi';
 
-export default async function BlogTagsPage({params}: {params: {tag: string}}): Promise<React.ReactNode> {
-	const tag = await params.tag;
+export default async function BlogTagsPage({params}: {params: Promise<{tag: string}>}): Promise<React.ReactNode> {
+	const {tag} = await params;
 	const data = await fetch(
 		`${process.env.STRAPI_URL}/api/posts?filters[tags][$contains]=${tag}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=imageFeatured&sort[0]=publishedAt:desc`,
 		{
