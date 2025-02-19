@@ -5,9 +5,10 @@ import type {Metadata} from 'next';
  * Handles metadata generation for SEO and social sharing
  * Uses Next.js 13+ Metadata API
  ************************************************************************************************/
-export async function generateMetadata({params}: {params: {slug: string}}): Promise<Metadata> {
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+	const {slug} = await params;
 	const data = await fetch(
-		`${process.env.STRAPI_URL}/api/posts?filters[slug][$eq]=${params.slug}&fields[0]=summary&fields[2]=tags&fields[3]=title&fields[4]=publishedAt&populate[0]=imageFeatured`,
+		`${process.env.STRAPI_URL}/api/posts?filters[slug][$eq]=${slug}&fields[0]=summary&fields[2]=tags&fields[3]=title&fields[4]=publishedAt&populate[0]=imageFeatured`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
