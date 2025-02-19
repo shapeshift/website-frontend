@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import {usePosts} from '@/components/contexts/BlogContext';
+import {useFetchPosts} from '@/hooks/useFetchPosts';
 
 import {BlogPost} from './BlogPost';
 import {Button} from './common/Button';
@@ -10,8 +10,8 @@ import {Button} from './common/Button';
 import type {TBlogPost} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function BlogList(): ReactNode {
-	const {posts} = usePosts();
+export function LatestBlogPosts({limit}: {limit: number}): ReactNode {
+	const {posts} = useFetchPosts({page: 1, pageSize: limit, sort: 'desc'});
 	return (
 		<div className={'mb-[240px] grid w-full grid-cols-3 gap-4'}>
 			<div className={'col-span-1 flex flex-col gap-16'}>
@@ -20,7 +20,7 @@ export function BlogList(): ReactNode {
 					<Button title={'See all articles'} />
 				</Link>
 			</div>
-			{posts.slice(0, 2).map((post: TBlogPost) => (
+			{posts.map((post: TBlogPost) => (
 				<BlogPost
 					key={post.id}
 					post={post}

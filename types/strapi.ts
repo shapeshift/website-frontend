@@ -154,15 +154,17 @@ export type TBlogPost = {
 	summary: string;
 };
 
+export type TPagination = {
+	page: number;
+	pageSize: number;
+	pageCount: number;
+	total: number;
+};
+
 export type TBlogListResponse = {
 	data: TBlogPost[];
 	meta: {
-		pagination: {
-			page: number;
-			pageSize: number;
-			pageCount: number;
-			total: number;
-		};
+		pagination: TPagination;
 	};
 };
 

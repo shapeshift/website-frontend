@@ -12,9 +12,43 @@ import remarkMath from 'remark-math'; // For math equations
 
 import {Banner} from '@/components/common/Banner';
 import {IconBack} from '@/components/common/icons/IconBack';
-import {usePosts} from '@/components/contexts/BlogContext';
+import {useCachedPosts} from '@/components/contexts/CachedPosts';
+import {useFetchPosts} from '@/hooks/useFetchPosts';
 
 import type {ReactNode} from 'react';
+
+function LoadingSkeleton(): ReactNode {
+	return (
+		<div className={'container relative mx-auto mb-96 mt-40 max-w-4xl px-4'}>
+			<div className={'absolute -left-32 top-0 h-10 w-20 animate-pulse rounded-lg bg-gray-800'} />
+			<div className={'mb-8 h-6 w-32 animate-pulse rounded-lg bg-gray-800'} />
+			<div className={'mb-8 flex gap-2'}>
+				<div className={'h-6 w-24 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-6 w-24 animate-pulse rounded-lg bg-gray-800'} />
+			</div>
+			<div className={'mb-8 h-12 w-3/4 animate-pulse rounded-lg bg-gray-800'} />
+			<div className={'space-y-4'}>
+				<div className={'h-4 w-full animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-5/6 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-4/6 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-3/4 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-full animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-2/3 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-5/6 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-4/6 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-3/4 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-full animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-2/3 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-3/4 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-full animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-4/6 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-3/4 animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-full animate-pulse rounded-lg bg-gray-800'} />
+				<div className={'h-4 w-2/3 animate-pulse rounded-lg bg-gray-800'} />
+			</div>
+		</div>
+	);
+}
 
 function BlogContent({content}: {content: string}): ReactNode {
 	// Check if content looks like HTML (contains HTML tags)
@@ -220,14 +254,26 @@ function BlogContent({content}: {content: string}): ReactNode {
 }
 
 export default function BlogPost(): ReactNode {
-	const {posts, isLoading} = usePosts();
-
 	const {slug} = useParams();
-	const post = posts.find(p => p.slug === slug);
+
+	const {
+		cachedResponse: {data: cachedPosts}
+	} = useCachedPosts();
+	const {posts, isLoading} = useFetchPosts({
+		page: 1,
+		pageSize: 1,
+		sort: 'desc',
+		populateContent: true,
+		cachePosts: true,
+		slug: slug as string,
+		skip: !!cachedPosts.find(p => p.slug === slug)
+	});
+
+	const post = [...cachedPosts, ...posts].find(p => p.slug === slug);
 	const router = useRouter();
 
 	if (isLoading) {
-		return <div>{'Loading...'}</div>;
+		return <LoadingSkeleton />;
 	}
 
 	if (!post) {
@@ -265,9 +311,11 @@ export default function BlogPost(): ReactNode {
 				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
 				<BlogContent content={post.content} />
 			</article>
-			<div className={'container mx-auto'}>
-				<Banner />
-			</div>
+			{!isLoading && (
+				<div className={'container mx-auto'}>
+					<Banner />
+				</div>
+			)}
 		</>
 	);
 }

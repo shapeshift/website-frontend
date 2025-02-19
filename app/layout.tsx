@@ -4,7 +4,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
 import {WithFonts} from '@/components/common/WithFonts';
-import {PostsProvider} from '@/components/contexts/BlogContext';
+import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
 
 import './globals.css';
 import {LayoutClient} from './layout.client';
@@ -57,9 +57,9 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
 					<NextIntlClientProvider messages={messages}>
-						<PostsProvider>
+						<CachedPostsProvider>
 							<LayoutClient>{children}</LayoutClient>
-						</PostsProvider>
+						</CachedPostsProvider>
 					</NextIntlClientProvider>
 				</WithFonts>
 			</body>

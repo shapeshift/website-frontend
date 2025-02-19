@@ -1,19 +1,14 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {BlogPost} from '@/components/BlogPost';
+import {LatestBlogPosts} from '@/components/BlogList';
 import {Banner} from '@/components/common/Banner';
 import {RoundButton} from '@/components/common/RoundButton';
 import {foxTokenBenefits, foxTokenCommunityItems, foxTokenContributeItems} from '@/components/constants';
-import {usePosts} from '@/components/contexts/BlogContext';
 
 import type {ReactNode} from 'react';
 
 export default function FoxTokenPage(): ReactNode {
-	const {posts} = usePosts();
-
 	return (
 		<div className={'relative mt-28 flex w-full flex-col items-center justify-center'}>
 			<div className={'relative mb-40 flex h-[440px] w-full flex-col items-center justify-center py-20'}>
@@ -128,12 +123,7 @@ export default function FoxTokenPage(): ReactNode {
 				<h1 className={'mb-14 text-7xl'}>{'Resources'}</h1>
 
 				<div className={'mb-[240px] grid grid-cols-3 gap-4'}>
-					{posts.slice(0, 3).map(post => (
-						<BlogPost
-							post={post}
-							key={post.id}
-						/>
-					))}
+					<LatestBlogPosts limit={3} />
 				</div>
 				<h1 className={'mb-14 text-7xl text-white'}>{'Join our community'}</h1>
 
