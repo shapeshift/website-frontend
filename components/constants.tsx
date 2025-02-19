@@ -344,3 +344,61 @@ export const blogTabs = [
 		slug: 'Newsletter'
 	}
 ];
+
+export const SUPPORTED_TOKENS = [
+	{symbol: 'ETH', name: 'Ethereum', icon: '/widget/eth_icon.png', slug: 'ethereum'},
+	{symbol: 'BTC', name: 'Bitcoin', icon: '/widget/btc_icon.png', slug: 'bitcoin'},
+	{
+		symbol: 'USDT',
+		name: 'Tether on Ethereum',
+		icon: '/widget/usdt_icon.png',
+		sublogo: '/widget/eth_icon.png',
+		slug: 'tether-on-ethereum'
+	},
+	{symbol: 'BNB', name: 'BNB', icon: '/widget/bnb_icon.png', slug: 'bnb'},
+	{
+		symbol: 'BNBETH',
+		name: 'BNB on Ethereum',
+		icon: '/widget/bnb_icon.png',
+		sublogo: '/widget/eth_icon.png',
+		slug: 'bnb-on-ethereum'
+	},
+	{symbol: 'SOL', name: 'Solana', icon: '/widget/sol_icon.png', slug: 'solana'}
+];
+
+export const SUPPORTED_CHAINS = [
+	{id: 'arbitrum', name: 'Arbitrum One', icon: '/widget/arb_icon.png'},
+	{id: 'base', name: 'Base', icon: '/widget/base_icon.png'},
+	{id: 'ethereum', name: 'Ethereum', icon: '/widget/eth_icon.png'},
+	{id: 'optimism', name: 'Optimism', icon: '/widget/op_icon.webp'},
+	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png'},
+	{id: 'bitcoin', name: 'Bitcoin', icon: '/widget/btc_icon.png'},
+	{id: 'bnb', name: 'BNB Smart Chain', icon: '/widget/bnb_icon.png'}
+];
+
+export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
+	USDT: ['arbitrum', 'ethereum', 'optimism'],
+	BTC: ['bitcoin'],
+	BNBETH: ['ethereum'],
+	BNB: ['bnb'],
+	SOL: ['solana'],
+	ETH: ['arbitrum', 'base', 'optimism', 'ethereum']
+};
+
+export const TOKEN_DECIMALS = [
+	{symbol: 'USDT', decimals: 6},
+	{symbol: 'BTC', decimals: 8},
+	{symbol: 'BNB', decimals: 18},
+	{symbol: 'ETH', decimals: 18},
+	{symbol: 'BNBETH', decimals: 18},
+	{symbol: 'SOL', decimals: 9}
+];
+
+export const TOKENS_SYMBOLS = [
+	{symbol: 'USDT', key: 'USDT-0XDAC17F958D2EE523A2206206994597C13D831EC7'},
+	{symbol: 'BTC', key: 'BTC'},
+	{symbol: 'BNB', key: 'BNB'},
+	{symbol: 'ETH', key: 'ETH'},
+	{symbol: 'BNBETH', key: 'BNBETH-0XBB4CDB9CBD36B01BD1CBABEBF2DE08D9173BC095C'},
+	{symbol: 'SOL', key: 'SOL-0XBB4CDB9CBD36B01BD1CBABEBF2DE08D9173BC095C'}
+];
