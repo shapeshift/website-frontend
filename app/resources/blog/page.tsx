@@ -71,7 +71,9 @@ export default function BlogList(): ReactNode {
 				))}
 			</div>
 			{posts.length === 0 ? (
-				<p className={'mb-20 text-gray-400'}>{'No blog posts found.'}</p>
+				<p className={'my-20 text-center text-2xl text-gray-400'}>
+					{"We couldn't find any blog posts matching your criteria."}
+				</p>
 			) : (
 				<div className={'mb-20 grid gap-6 lg:grid-cols-3'}>
 					{posts.map(post => (
