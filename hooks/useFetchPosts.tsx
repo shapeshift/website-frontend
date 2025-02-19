@@ -19,7 +19,7 @@ export function useFetchPosts({
 	pageSize = 12,
 	sort = 'asc',
 	slug,
-	tag,
+	type,
 	populateContent = false,
 	cachePosts = false,
 	skip = false
@@ -28,7 +28,7 @@ export function useFetchPosts({
 	pageSize: number;
 	sort: 'asc' | 'desc';
 	slug?: string;
-	tag?: string;
+	type?: string;
 	populateContent?: boolean;
 	cachePosts?: boolean;
 	skip?: boolean;
@@ -58,7 +58,7 @@ export function useFetchPosts({
 			cachedParams.sort === sort &&
 			cachedParams.slug === slug &&
 			cachedParams.populateContent === populateContent &&
-			cachedParams.tag === tag
+			cachedParams.type === type
 		) {
 			setPosts(cachedResponse.data);
 			setPagination(cachedResponse.meta.pagination);
@@ -74,7 +74,7 @@ export function useFetchPosts({
 			try {
 				// Fetch posts with featured image population
 				const res = await fetch(
-					`${process.env.STRAPI_URL}/api/posts?populate[0]=imageFeatured&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=type&fields[4]=tags&fields[5]=publishedAt&sort[0]=id:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[6]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${tag ? `&filters[tags][$contains]=${tag}` : ''}`,
+					`${process.env.STRAPI_URL}/api/posts?populate[0]=imageFeatured&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=type&fields[4]=tags&fields[5]=publishedAt&sort[0]=id:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[6]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${type ? `&filters[type][$contains]=${type.replace(/ /g, '_')}` : ''}`,
 					{
 						headers: {
 							Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -89,9 +89,13 @@ export function useFetchPosts({
 				const data: TBlogListResponse = await res.json();
 				setPosts(data.data);
 				setPagination(data.meta.pagination);
+				console.log('set posts', data.data);
+				console.log('set pagination', data.meta.pagination);
 				if (cachePosts) {
 					setCachedResponse(data);
-					setCachedParams({page, pageSize, sort, slug, populateContent, tag});
+					setCachedParams({page, pageSize, sort, slug, populateContent, type});
+					console.log('set cached', data);
+					console.log('set cachedParams', {page, pageSize, sort, slug, populateContent, type});
 				}
 			} catch (err) {
 				setError(err as Error);
@@ -102,6 +106,7 @@ export function useFetchPosts({
 		}
 
 		fetchPosts();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		cachePosts,
 		cachedParams.page,
@@ -109,9 +114,15 @@ export function useFetchPosts({
 		cachedParams.populateContent,
 		cachedParams.slug,
 		cachedParams.sort,
-		cachedParams.tag,
-		cachedResponse.data,
-		cachedResponse.meta.pagination,
+		cachedParams.type,
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		JSON.stringify(cachedResponse.data),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		JSON.stringify(cachedResponse.meta.pagination),
+		cachedResponse.meta.pagination.page,
+		cachedResponse.meta.pagination.pageCount,
+		cachedResponse.meta.pagination.pageSize,
+		cachedResponse.meta.pagination.total,
 		page,
 		pageSize,
 		populateContent,
@@ -120,7 +131,7 @@ export function useFetchPosts({
 		skip,
 		slug,
 		sort,
-		tag
+		type
 	]);
 
 	return {posts, isLoading, pagination, error};

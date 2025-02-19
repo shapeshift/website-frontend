@@ -23,7 +23,7 @@ export default function BlogList(): ReactNode {
 		page,
 		pageSize: PAGE_SIZE,
 		sort: SORT,
-		tag: currentTab === 'all' ? undefined : currentTab,
+		type: currentTab === 'all' ? undefined : currentTab,
 		populateContent: true,
 		cachePosts: true
 	});
