@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import {useState} from 'react';
 
 import {IconBack} from '../common/icons/IconBack';
 import {IconCheck} from '../common/icons/IconCheck';
@@ -15,19 +14,24 @@ export type TToken = {
 	icon: string;
 	sublogo?: string;
 	slug: string;
+	decimals: number;
+	requestKey?: string;
+	tokenAddress?: string;
 };
 
 export function TokenSelect({
 	tokens,
 	selectedToken,
-	onSelectAction
+	onSelectAction,
+	isOpen,
+	setIsOpen
 }: {
 	tokens: TToken[];
 	selectedToken: TToken;
 	onSelectAction: (token: TToken) => void;
+	isOpen: boolean;
+	setIsOpen: (isOpen: boolean) => void;
 }): ReactNode {
-	const [isOpen, setIsOpen] = useState(false);
-
 	return (
 		<div className={'relative'}>
 			<button

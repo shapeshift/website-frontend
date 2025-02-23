@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import {useState} from 'react';
 
 import {IconBack} from '../common/icons/IconBack';
 import {IconCheck} from '../common/icons/IconCheck';
@@ -13,25 +12,29 @@ export type TChain = {
 	id: string;
 	name: string;
 	icon: string;
+	requestKey: string;
+	chainId?: string;
 };
 
 export function ChainSelect({
 	chains,
 	selectedChain,
 	onSelectAction,
-	disabled
+	disabled,
+	isOpen,
+	setIsOpenAction
 }: {
 	chains: TChain[];
 	selectedChain: TChain;
 	onSelectAction: (chain: TChain) => void;
 	disabled?: boolean;
+	isOpen: boolean;
+	setIsOpenAction: (isOpen: boolean) => void;
 }): ReactNode {
-	const [isOpen, setIsOpen] = useState(false);
-
 	return (
 		<div className={'group relative'}>
 			<button
-				onClick={() => !disabled && setIsOpen(!isOpen)}
+				onClick={() => !disabled && setIsOpenAction(!isOpen)}
 				className={cl(
 					'flex items-center gap-2 rounded-full bg-[#a1bdd914] p-2',
 					disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/10'
@@ -64,7 +67,7 @@ export function ChainSelect({
 							key={chain.id}
 							onClick={() => {
 								onSelectAction(chain);
-								setIsOpen(false);
+								setIsOpenAction(false);
 							}}
 							className={cl(
 								'flex w-full items-center gap-3 justify-start rounded-lg px-4 py-3 hover:bg-white/5',

@@ -346,34 +346,52 @@ export const blogTabs = [
 ];
 
 export const SUPPORTED_TOKENS = [
-	{symbol: 'ETH', name: 'Ethereum', icon: '/widget/eth_icon.png', slug: 'ethereum'},
-	{symbol: 'BTC', name: 'Bitcoin', icon: '/widget/btc_icon.png', slug: 'bitcoin'},
+	{
+		symbol: 'ETH',
+		name: 'Ethereum',
+		icon: '/widget/eth_icon.png',
+		slug: 'ethereum',
+		decimals: 18,
+		requestKey: 'ETH',
+		tokenAddress: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+	},
+	{symbol: 'BTC', name: 'Bitcoin', icon: '/widget/btc_icon.png', slug: 'bitcoin', decimals: 8, requestKey: 'BTC'},
 	{
 		symbol: 'USDT',
 		name: 'Tether on Ethereum',
 		icon: '/widget/usdt_icon.png',
 		sublogo: '/widget/eth_icon.png',
-		slug: 'tether-on-ethereum'
+		slug: 'tether-on-ethereum',
+		decimals: 8,
+		requestKey: 'USDT-0XDAC17F958D2EE523A2206206994597C13D831EC7',
+		tokenAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7'
 	},
-	{symbol: 'BNB', name: 'BNB', icon: '/widget/bnb_icon.png', slug: 'bnb'},
+	{symbol: 'BNB', name: 'BNB', icon: '/widget/bnb_icon.png', slug: 'bnb', decimals: 8, requestKey: 'BNB'},
 	{
 		symbol: 'BNBETH',
 		name: 'BNB on Ethereum',
 		icon: '/widget/bnb_icon.png',
 		sublogo: '/widget/eth_icon.png',
-		slug: 'bnb-on-ethereum'
+		slug: 'bnb-on-ethereum',
+		decimals: 18,
+		tokenAddress: '0xb8c77482e45f1f44de1745f52c74426c631bdd52'
 	},
-	{symbol: 'SOL', name: 'Solana', icon: '/widget/sol_icon.png', slug: 'solana'}
+	{
+		symbol: 'SOL',
+		name: 'Solana',
+		icon: '/widget/sol_icon.png',
+		slug: 'solana',
+		decimals: 18,
+		requestKey: 'SOL'
+	}
 ];
 
 export const SUPPORTED_CHAINS = [
-	{id: 'arbitrum', name: 'Arbitrum One', icon: '/widget/arb_icon.png'},
-	{id: 'base', name: 'Base', icon: '/widget/base_icon.png'},
-	{id: 'ethereum', name: 'Ethereum', icon: '/widget/eth_icon.png'},
-	{id: 'optimism', name: 'Optimism', icon: '/widget/op_icon.webp'},
-	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png'},
-	{id: 'bitcoin', name: 'Bitcoin', icon: '/widget/btc_icon.png'},
-	{id: 'bnb', name: 'BNB Smart Chain', icon: '/widget/bnb_icon.png'}
+	{id: 'bitcoin', name: 'Bitcoin', icon: '/widget/btc_icon.png', requestKey: 'BTC'},
+	{id: 'base', name: 'Base', icon: '/widget/base_icon.png', requestKey: 'BASE'},
+	{id: 'ethereum', name: 'Ethereum', icon: '/widget/eth_icon.png', requestKey: 'ETH', chainId: '1'},
+	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png', requestKey: 'SOL'},
+	{id: 'bnb', name: 'BNB Smart Chain', icon: '/widget/bnb_icon.png', requestKey: 'BSC'}
 ];
 
 export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
@@ -384,21 +402,3 @@ export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
 	SOL: ['solana'],
 	ETH: ['arbitrum', 'base', 'optimism', 'ethereum']
 };
-
-export const TOKEN_DECIMALS = [
-	{symbol: 'USDT', decimals: 6},
-	{symbol: 'BTC', decimals: 8},
-	{symbol: 'BNB', decimals: 18},
-	{symbol: 'ETH', decimals: 18},
-	{symbol: 'BNBETH', decimals: 18},
-	{symbol: 'SOL', decimals: 9}
-];
-
-export const TOKENS_SYMBOLS = [
-	{symbol: 'USDT', key: 'USDT-0XDAC17F958D2EE523A2206206994597C13D831EC7'},
-	{symbol: 'BTC', key: 'BTC'},
-	{symbol: 'BNB', key: 'BNB'},
-	{symbol: 'ETH', key: 'ETH'},
-	{symbol: 'BNBETH', key: 'BNBETH-0XBB4CDB9CBD36B01BD1CBABEBF2DE08D9173BC095C'},
-	{symbol: 'SOL', key: 'SOL-0XBB4CDB9CBD36B01BD1CBABEBF2DE08D9173BC095C'}
-];

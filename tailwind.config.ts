@@ -23,6 +23,25 @@ export default {
 			listStyleType: {
 				roman: 'lower-roman',
 				latin: 'lower-alpha'
+			},
+			keyframes: {
+				'border-loading': {
+					'0%': {clipPath: 'inset(0 0 0 0)'},
+					'25%': {clipPath: 'inset(0 0 0 95%)'},
+					'50%': {clipPath: 'inset(95% 0 0 95%)'},
+					'75%': {clipPath: 'inset(95% 95% 0 0)'},
+					'100%': {clipPath: 'inset(0 95% 0 0)'}
+				},
+				shimmer: {
+					'100%': {
+						transform: 'translateX(100%)'
+					}
+				}
+			},
+			animation: {
+				'border-loading': 'border-loading 1.5s infinite linear',
+				spin: 'spin 1s linear infinite',
+				shimmer: 'shimmer 1.5s infinite'
 			}
 		}
 	},
