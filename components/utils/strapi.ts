@@ -4,11 +4,11 @@
  ********************************************************************************************/
 
 import CardsRow from '../strapi-sections/cards-row/CardsRow';
-import Footer from '../strapi-sections/Footer';
-import Grid from '../strapi-sections/Grid';
-import GridDisplaced from '../strapi-sections/GridDisplaced';
-import GridLadder from '../strapi-sections/GridLadder';
-import Hero from '../strapi-sections/Hero';
+import Footer from '../strapi-sections/products/Footer';
+import Grid from '../strapi-sections/products/Grid';
+import GridDisplaced from '../strapi-sections/products/GridDisplaced';
+import GridLadder from '../strapi-sections/products/GridLadder';
+import Hero from '../strapi-sections/products/Hero';
 
 export const sections = {
 	hero: Hero,
