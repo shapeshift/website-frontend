@@ -4,8 +4,9 @@ import {notFound} from 'next/navigation';
 import {Button} from '@/components/common/Button';
 import {Card} from '@/components/strapi-sections/cards-row/Card';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
+import Footer from '@/components/strapi-sections/products/Footer';
 
-import type {TButton, TCard, TCardsRowSection, TStrapiImage} from '@/types/strapi';
+import type {TButton, TCard, TCardsRowSection, TFooterSection, TStrapiImage} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 type TPage = {
@@ -15,6 +16,7 @@ type TPage = {
 	featuredImg: TStrapiImage;
 	buttonDownload: TButton[];
 	cardsRow: TCardsRowSection;
+	footer: TFooterSection;
 };
 
 /********************************************************************************************
@@ -91,6 +93,7 @@ export default async function Page(): Promise<ReactNode> {
 				data={page.cardsRow}
 				children={(card: TCard) => <Card data={card} />}
 			/>
+			<Footer data={page.footer} />
 		</main>
 	);
 }

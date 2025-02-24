@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {notFound} from 'next/navigation';
 
+import {Button} from '@/components/common/Button';
 import Footer from '@/components/strapi-sections/products/Footer';
-import GridLadder from '@/components/strapi-sections/products/GridLadder';
+import Grid from '@/components/strapi-sections/products/Grid';
 
-import type {TButton, TDownloadButton, TFooterSection, TGridLadderSection, TStrapiImage} from '@/types/strapi';
+import type {TButton, TFooterSection, TGridSection, TStrapiImage} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 type TPage = {
@@ -13,8 +13,8 @@ type TPage = {
 	description: string;
 	buttonCta: TButton;
 	featuredImg: TStrapiImage;
-	buttonDownload: TDownloadButton[];
-	gridLadder: TGridLadderSection;
+	buttonDownload: TButton[];
+	grid: TGridSection;
 	footer: TFooterSection;
 };
 
@@ -24,7 +24,7 @@ type TPage = {
  ********************************************************************************************/
 async function getPageData(): Promise<TPage | null> {
 	const pages = await fetch(
-		`${process.env.STRAPI_URL}/api/mobile-app?fields[0]=title&populate[1]=buttonDownload&fields[2]=description&populate[3]=featuredImg&populate[4]=gridLadder&populate[5]=gridLadder.steps&populate[6]=gridLadder.steps.buttonCta&populate[7]=gridLadder.steps.image&populate[8]=footer&populate[9]=footer.buttonDownload&populate[10]=footer.imageBg&pagination[pageSize]=1&pagination[page]=1&status=published`,
+		`${process.env.STRAPI_URL}/api/earn?fields[0]=title&populate[1]=buttonCta&populate[3]=featuredImg&fields[4]=description&populate[10]=grid&populate[11]=grid.cardCta&populate[12]=grid.cardCta.buttonCta&populate[13]=grid.cardCta.imageBg&populate[14]=grid.card&populate[15]=grid.card.image&populate[23]=footer&populate[24]=footer.buttonCta&populate[25]=footer.buttonDownload&populate[26]=footer.imageBg&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -33,11 +33,12 @@ async function getPageData(): Promise<TPage | null> {
 	);
 
 	const pagesJson = await pages.json();
+	console.log(pagesJson);
 	return pagesJson.data;
 }
 
 function Hero(props: TPage): ReactNode | null {
-	const {title, description, buttonDownload, featuredImg} = props;
+	const {title, description, buttonCta, featuredImg} = props;
 
 	return (
 		<section className={'relative mb-60 pt-52 md:px-4 lg:px-0'}>
@@ -46,22 +47,12 @@ function Hero(props: TPage): ReactNode | null {
 					<h1 className={'mb-4 text-7xl font-normal'}>{title}</h1>
 					<div className={'flex flex-col'}>
 						<p className={'mb-8 text-xl font-normal text-gray-500'}>{description}</p>
-						<div className={'flex gap-4'}>
-							{buttonDownload.map(button => (
-								<Link
-									href={button.url ?? ''}
-									target={'_blank'}
-									className={'h-[40px] w-[130px]'}
-									key={button.id}>
-									<Image
-										src={`/${button.variant}.png`}
-										alt={button.id.toString()}
-										width={390}
-										height={120}
-									/>
-								</Link>
-							))}
-						</div>
+						<Button
+							variant={'blue'}
+							title={buttonCta?.title ?? 'Title'}
+							href={buttonCta?.url ?? '/'}
+							hasArrow
+						/>
 					</div>
 				</div>
 
@@ -98,7 +89,7 @@ export default async function Page(): Promise<ReactNode> {
 			</div>
 
 			<Hero {...page} />
-			<GridLadder data={page.gridLadder} />
+			<Grid data={page.grid} />
 			<Footer data={page.footer} />
 		</main>
 	);
