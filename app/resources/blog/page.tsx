@@ -54,13 +54,13 @@ export default function BlogList(): ReactNode {
 
 	return (
 		<main className={'container mx-auto mt-40 px-4 py-8'}>
-			<div className={'mb-8 text-7xl'}>
+			<div className={'mb-8 text-[40px] leading-10 lg:text-7xl'}>
 				<span className={'text-white'}>{'ShapeShift'}</span>
 				&nbsp;
 				<span className={'text-blue'}>{'Blog.'}</span>
 			</div>
 
-			<div className={'container mb-6 flex w-max flex-wrap gap-4 rounded-full p-1'}>
+			<div className={'container mb-6 flex flex-wrap gap-2 overflow-y-scroll p-1  md:gap-4 md:overflow-y-auto'}>
 				{blogTabs.map(tab => (
 					<TabItem
 						key={tab.slug}
@@ -75,7 +75,7 @@ export default function BlogList(): ReactNode {
 					{"We couldn't find any blog posts matching your criteria."}
 				</p>
 			) : (
-				<div className={'mb-20 grid gap-6 lg:grid-cols-3'}>
+				<div className={'mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3'}>
 					{posts.map(post => (
 						<BlogPost
 							key={post.slug}
