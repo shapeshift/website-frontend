@@ -13,7 +13,7 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 				'flex overflow-hidden rounded-t-2xl group h-full bg-secondBg hover:bg-secondHoverBg cursor-pointer',
 				data.isTextFirst ? 'flex-col-reverse rounded-b-2xl' : 'flex-col'
 			)}>
-			<div className={'relative h-full p-10'}>
+			<div className={'relative h-full p-6 lg:p-10'}>
 				<div>
 					<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 					<div className={'text-gray-500'}>{data?.description}</div>
@@ -21,7 +21,9 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 
 				<RoundButton
 					iconName={'arrow'}
-					className={'bg-blue-500 !absolute right-6 top-6 group-hover:scale-110 group-hover:bg-blueHover'}
+					className={
+						'bg-blue-500 !absolute right-4 top-4 group-hover:scale-110 group-hover:bg-blueHover lg:right-6 lg:top-6'
+					}
 					href={data?.href}
 				/>
 			</div>

@@ -23,7 +23,7 @@ export function StrapiFAQ(): ReactNode {
 
 	return (
 		<div>
-			<div className={'mb-[77px] text-7xl'}>{'FAQ'}</div>
+			<div className={'mb-6 text-[40px] leading-10 lg:mb-[77px] lg:text-7xl'}>{'FAQ'}</div>
 			<div className={'flex flex-col gap-2'}>
 				{faqItems.slice(0, 7).map(question => (
 					<div key={question.id}>

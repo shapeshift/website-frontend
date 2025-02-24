@@ -17,7 +17,7 @@ export default function CardsRow({
 	}
 
 	return (
-		<section className={'container relative mx-auto mb-60 md:px-4 lg:px-0'}>
+		<section className={'container relative mx-auto md:px-4 lg:px-0'}>
 			<div className={'mb-8 text-left text-[40px] font-normal leading-[48px] text-white'}>{data?.title}</div>
 			<div className={'row-span-full grid place-items-start gap-2 lg:grid-cols-3'}>
 				{data?.cards.map(

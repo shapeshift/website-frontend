@@ -26,7 +26,8 @@ export function Button(props: TButtonProps): ReactNode {
 						props.hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
 						props.variant === 'blue'
 							? 'bg-blue hover:bg-blueHover'
-							: 'bg-white/10 border border-white/50 hover:bg-white/5'
+							: 'bg-white/10 border border-white/50 hover:bg-white/5',
+						props.className
 					)}
 					href={props.href}
 					target={'_blank'}>
