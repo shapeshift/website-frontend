@@ -313,34 +313,38 @@ export const blogTabs = [
 	},
 	{
 		title: 'Partner Integrations',
-		slug: 'Partner Integrations'
+		slug: 'partner-integrations'
 	},
 	{
 		title: 'Ethereum',
-		slug: 'Ethereum'
+		slug: 'ethereum'
 	},
 	{
 		title: 'Crypto 101',
-		slug: 'Crypto 101'
+		slug: 'crypto-101'
 	},
 	{
 		title: 'Bitcoin',
-		slug: 'Bitcoin'
+		slug: 'bitcoin'
 	},
 	{
 		title: 'Crypto pro',
-		slug: 'Crypto pro'
+		slug: 'crypto-pro'
 	},
 	{
 		title: 'Thought Leadership',
-		slug: 'Thought Leadership'
+		slug: 'thought-leadership'
 	},
 	{
 		title: 'Governance Newsletters',
-		slug: 'Governance Newsletters'
+		slug: 'governance-newsletters'
 	},
 	{
 		title: 'Newsletter',
-		slug: 'Newsletter'
+		slug: 'newsletter'
 	}
 ];
+
+export function blogTagsSlugToCategory(slug: string): string {
+	return blogTabs.find(tab => tab.slug === slug)?.title ?? slug;
+}

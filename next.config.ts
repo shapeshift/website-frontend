@@ -22,8 +22,8 @@ const nextConfig = {
 				hostname: 'www.ghosticmom.site'
 			},
 			{
-				protocol: 'https',
-				hostname: 'octodex.github.com' //TODO: Remove this
+				protocol: 'http',
+				hostname: '172.233.242.224'
 			}
 		]
 	},

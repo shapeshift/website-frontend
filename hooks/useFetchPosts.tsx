@@ -20,6 +20,7 @@ export function useFetchPosts({
 	sort = 'asc',
 	slug,
 	type,
+	tag,
 	populateContent = false,
 	cachePosts = false,
 	skip = false
@@ -29,6 +30,7 @@ export function useFetchPosts({
 	sort: 'asc' | 'desc';
 	slug?: string;
 	type?: string;
+	tag?: string;
 	populateContent?: boolean;
 	cachePosts?: boolean;
 	skip?: boolean;
@@ -74,7 +76,7 @@ export function useFetchPosts({
 			try {
 				// Fetch posts with featured image population
 				const res = await fetch(
-					`${process.env.STRAPI_URL}/api/posts?populate[0]=imageFeatured&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=type&fields[4]=tags&fields[5]=publishedAt&sort[0]=id:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[6]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${type ? `&filters[type][$contains]=${type.replace(/ /g, '_')}` : ''}`,
+					`${process.env.STRAPI_URL}/api/posts?populate[0]=imageFeatured&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=type&fields[4]=tags&fields[5]=publishedAt&sort[0]=id:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[6]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${type ? `&filters[type][$contains]=${type.replace(/ /g, '_')}` : ''}${tag ? `&filters[tags][$contains]=${tag.replace(/ /g, '_')}` : ''}`,
 					{
 						headers: {
 							Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -131,7 +133,8 @@ export function useFetchPosts({
 		skip,
 		slug,
 		sort,
-		type
+		type,
+		tag
 	]);
 
 	return {posts, isLoading, pagination, error};
