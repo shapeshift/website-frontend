@@ -32,6 +32,7 @@ export const appResources = [
 		description: 'Blockchain networks we support',
 		icon: <IconChains />
 	},
+	{name: 'Support', href: 'https://shapeshift.zendesk.com/', description: 'Support portal'},
 	{name: 'Terms of Service', href: '/resources/terms-of-service', description: 'Our terms and conditions'},
 	{name: 'Privacy Policy', href: '/resources/privacy-policy', description: 'How we handle your data'}
 ];
@@ -44,7 +45,9 @@ export const appDao = [
 		description: 'Participate in decision making',
 		icon: <IconGovern />
 	},
-	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />}
+	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
+	{name: 'Join us', href: 'https://forum.shapeshift.com/', description: 'Join the community'},
+	{name: 'Share your ideas', href: 'https://shapeshift.canny.io/', description: 'Share your ideas'}
 ];
 
 export const appProducts = [

@@ -128,6 +128,47 @@ export type TPageData = {
 	publishedAt: string;
 };
 
+export type TTemplateData = {
+	id: number;
+	documentId: string;
+	slug: string;
+	sections: TSections;
+	title: string;
+	description: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TTemplateDescriptionSection = {
+	id: number;
+	title: string;
+	articles: string[];
+};
+
+export type TTemplateChainActionsSection = {
+	id: number;
+	title: string;
+	actions: {
+		id: number;
+		title: string;
+		description: string;
+		icon: TStrapiImage;
+	}[];
+};
+export type TTemplateHeroSection = {
+	id: number;
+	image: TStrapiImage;
+};
+
+export type TTemplateHeaderData = {
+	id: number;
+	title: string;
+	description: string;
+	items: string[];
+	ctaButton: TButton;
+};
+
 /********************************************************************************************
  * Types for Strapi Blog API responses
  * Includes both list and single post interfaces
