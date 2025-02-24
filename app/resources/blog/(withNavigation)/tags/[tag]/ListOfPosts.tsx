@@ -6,7 +6,6 @@ import ReactPaginate from 'react-paginate';
 import {BlogPost} from '@/components/BlogPost';
 import {Banner} from '@/components/common/Banner';
 import {IconChevron} from '@/components/common/icons/IconChevron';
-import {blogTypesSlugToCategory} from '@/components/constants';
 import {cl} from '@/components/utils/cl';
 import {useFetchPosts} from '@/hooks/useFetchPosts';
 
@@ -15,14 +14,14 @@ import type {ReactElement} from 'react';
 
 const PAGE_SIZE = 12;
 const SORT = 'desc';
-export function ListOfPosts(props: {category: string}): ReactElement {
-	const {category} = props;
+export function ListOfPosts(props: {tag: string}): ReactElement {
+	const {tag} = props;
 	const [page, setPage] = useState(1);
 	const {posts, pagination, isLoading} = useFetchPosts({
 		page,
 		pageSize: PAGE_SIZE,
 		sort: SORT,
-		type: blogTypesSlugToCategory(category),
+		tag: tag,
 		populateContent: true,
 		cachePosts: true
 	});

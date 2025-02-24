@@ -47,6 +47,12 @@ const nextConfig = {
 				source: '/library/:slug',
 				destination: '/resources/blog/:slug',
 				permanent: true
+			},
+			{
+				// Redirects from old blog posts to new blog posts
+				source: '/category/:slug',
+				destination: '/resources/blog/categories/:slug',
+				permanent: true
 			}
 		];
 	}

@@ -6,23 +6,20 @@ import ReactPaginate from 'react-paginate';
 import {BlogPost} from '@/components/BlogPost';
 import {Banner} from '@/components/common/Banner';
 import {IconChevron} from '@/components/common/icons/IconChevron';
-import {blogTypesSlugToCategory} from '@/components/constants';
 import {cl} from '@/components/utils/cl';
 import {useFetchPosts} from '@/hooks/useFetchPosts';
 
-import type {TBlogPost} from '@/types/strapi';
-import type {ReactElement} from 'react';
+import type {ReactNode} from 'react';
 
 const PAGE_SIZE = 12;
 const SORT = 'desc';
-export function ListOfPosts(props: {category: string}): ReactElement {
-	const {category} = props;
+
+export default function BlogList(): ReactNode {
 	const [page, setPage] = useState(1);
 	const {posts, pagination, isLoading} = useFetchPosts({
 		page,
 		pageSize: PAGE_SIZE,
 		sort: SORT,
-		type: blogTypesSlugToCategory(category),
 		populateContent: true,
 		cachePosts: true
 	});
@@ -47,23 +44,22 @@ export function ListOfPosts(props: {category: string}): ReactElement {
 					{"We couldn't find any blog posts matching your criteria."}
 				</p>
 			) : (
-				<div className={'mb-20 grid gap-6 lg:grid-cols-3'}>
-					{posts.map((post: TBlogPost) => (
+				<div className={'mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3'}>
+					{posts.map(post => (
 						<BlogPost
-							key={post.documentId}
+							key={post.slug}
 							post={post}
 							className={'!bg-stroke'}
 						/>
 					))}
 				</div>
 			)}
-
 			<ReactPaginate
 				pageCount={pagination?.pageCount ?? 1}
 				pageRangeDisplayed={5}
 				marginPagesDisplayed={2}
 				onPageChange={({selected}) => setPage(selected + 1)}
-				containerClassName={'flex gap-2 items-center justify-center mb-16'}
+				containerClassName={'flex gap-2 items-center justify-center'}
 				pageClassName={'opacity-20 hover:opacity-100 transition-opacity'}
 				pageLinkClassName={'px-6 py-4 flex items-center justify-center'}
 				activeClassName={'!opacity-100'}
@@ -82,7 +78,6 @@ export function ListOfPosts(props: {category: string}): ReactElement {
 				previousLabel={<IconChevron />}
 				nextLabel={<IconChevron className={'rotate-180'} />}
 			/>
-
 			<Banner />
 		</Fragment>
 	);
