@@ -23,7 +23,7 @@ export function Card({data}: {data: TCard}): ReactNode {
 					alt={data?.title}
 					width={461}
 					height={219}
-					className={'size-full object-cover'}
+					className={'size-full object-cover transition-all duration-300 hover:scale-105'}
 				/>
 			</div>
 		</div>
