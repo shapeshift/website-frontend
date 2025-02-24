@@ -60,7 +60,7 @@ export const appProducts = [
 	{name: 'Trade', href: '/products/trade', description: 'A decentralized finance wallet', icon: <IconTrade />},
 	{
 		name: 'DeFi Wallet',
-		href: '/products/defi-wallet',
+		href: '/defi-wallet',
 		description: 'A decentralized finance wallet',
 		icon: <IconResource />
 	},

@@ -18,19 +18,13 @@ export default function CardsRow({
 
 	return (
 		<section className={'container relative mx-auto mb-60 md:px-4 lg:px-0'}>
-			<div className={'mb-8 text-left text-[40px] font-normal leading-[48px] text-white'}>{data?.title}</div>
-			<div className={'row-span-full grid place-items-start gap-2 lg:grid-cols-3'}>
-				{data?.cards.map(
-					(card): ReactNode => (
-						<div
-							className={'h-full'}
-							key={card.id}>
-							{children?.(card)}
-						</div>
-					)
-				)}
+			<div className={'mb-8 max-w-[60%] text-left text-[40px] font-normal leading-[48px] text-white'}>
+				{data?.title}
 			</div>
-			{data.ctaBlock && (
+			<div className={'row-span-full grid place-items-start gap-2 lg:grid-cols-3'}>
+				{data?.cards?.map((card): ReactNode => children?.(card))}
+			</div>
+			{data?.ctaBlock && (
 				<Link
 					className={'group mt-2 flex w-full items-center justify-between rounded-2xl bg-secondBg p-10'}
 					href={data?.ctaBlock?.url ?? '/'}>
