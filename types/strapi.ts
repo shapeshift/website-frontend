@@ -143,16 +143,7 @@ export type TBlogPost = {
 	publishedAt: string;
 	imageFeatured: TStrapiImage;
 	tags: string[];
-	type: (
-		| 'all'
-		| 'Partner Integrations'
-		| 'Ethereum'
-		| 'Bitcoin'
-		| 'Crypto Pro'
-		| 'Thought Leadership'
-		| 'Governance Newsletters'
-		| 'Newsletter'
-	)[];
+	type: string[];
 	summary: string;
 };
 
