@@ -4,13 +4,19 @@ import {Banner} from '@/components/common/Banner';
 import {Hero} from '@/components/strapi-sections/templates/Hero';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
 
+import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 const WALLET_NAME = 'KeepKey';
 const WALLET_DESCRIPTION =
 	'ShapeShift is the main interface for KeepKey, letting you manage and trade your assets securely and easily. With this combo, you get strong security and user-friendly features for a great crypto experience';
 
-export default function TemplatesPage(): ReactNode {
+export const metadata: Metadata = {
+	title: `ShapeShift supports ${WALLET_NAME}`,
+	description: WALLET_DESCRIPTION
+};
+
+export default function WalletPage(): ReactNode {
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'context mt-[220px] flex flex-col justify-center'}>
