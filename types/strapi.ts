@@ -223,3 +223,15 @@ export type TFaqSectionItem = {
 	question: string;
 	answer: string;
 };
+
+export type TSupportedWalletData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	slug: string;
+	image: TStrapiImage;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};

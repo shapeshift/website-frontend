@@ -1,8 +1,11 @@
+import {notFound} from 'next/navigation';
+
 import {AccelerateData} from '@/app/resources/supported-wallets/AccelerateData';
 import {Header} from '@/app/resources/supported-wallets/Header';
+import {Hero} from '@/app/resources/supported-wallets/Hero';
 import {Banner} from '@/components/common/Banner';
-import {Hero} from '@/components/strapi-sections/templates/Hero';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
+import {getSupportedWallet} from '@/components/utils/query';
 
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
@@ -16,28 +19,28 @@ export const metadata: Metadata = {
 	description: WALLET_DESCRIPTION
 };
 
-export default function WalletPage(): ReactNode {
+export default async function WalletPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
+	const {slug} = await params;
+	const wallet = await getSupportedWallet(slug);
+
+	if (!wallet) {
+		return notFound();
+	}
+
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'context mt-[220px] flex flex-col justify-center'}>
 				<div className={'mb-12'}>
 					<Hero
-						data={{
-							id: 1,
-							image: {
-								url: '/supported-wallets/keepkey.jpg',
-								width: 1400,
-								height: 360,
-								formats: {
-									thumbnail: {url: '/templates/keepkey.jpg', width: 3840, height: 2256}
-								}
-							}
-						}}
+						url={`${process.env.STRAPI_URL}${wallet?.image?.url}`}
+						name={wallet?.name}
+						width={wallet?.image?.width}
+						height={wallet?.image?.height}
 					/>
 				</div>
 				<Header
-					title={WALLET_NAME}
-					description={WALLET_DESCRIPTION}
+					title={wallet?.name}
+					description={wallet?.description}
 					items={['Self-custodial', 'Private', 'Multichain trading']}
 				/>
 
