@@ -13,7 +13,7 @@ import {useFetchPosts} from '@/hooks/useFetchPosts';
 
 import type {ReactNode} from 'react';
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 12 - 1;
 const SORT = 'desc';
 
 export default function BlogList(): ReactNode {

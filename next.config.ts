@@ -39,6 +39,16 @@ const nextConfig = {
 				]
 			}
 		];
+	},
+	async redirects() {
+		return [
+			{
+				// Redirects from old blog posts to new blog posts
+				source: '/library/:slug',
+				destination: '/resources/blog/:slug',
+				permanent: true
+			}
+		];
 	}
 };
 
