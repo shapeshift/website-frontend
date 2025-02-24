@@ -42,8 +42,8 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 			</div>
 
 			<div className={'mt-6 flex flex-col gap-2'}>
-				<div className={'flex items-center gap-2'}>
-					<p className={'text-xs text-blue'}>{post.type.join(', ')}</p>
+				<div className={'flex items-center'}>
+					{post.type.length > 1 && <p className={'mr-2 text-xs text-blue'}>{post.type.join(', ')}</p>}
 					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
 				</div>
 				<div>
