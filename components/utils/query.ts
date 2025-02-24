@@ -18,7 +18,7 @@ export async function getFaq(): Promise<TFaqData | null> {
 }
 
 export async function getSupportedWallets(): Promise<TSupportedWalletData[] | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-wallet?populate=*`, {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-wallets?populate=*`, {
 		headers: {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
 		}
