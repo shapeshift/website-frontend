@@ -9,6 +9,7 @@ import {landingCards} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
+import {TradingWidget} from '@/components/trading/TradingWidget';
 import {cl} from '@/components/utils/cl';
 
 import type {TCard} from '@/types/strapi';
@@ -43,13 +44,7 @@ export default function HomePage(): ReactNode {
 						</div>
 					</div>
 					<div className={'h-[508px] w-[500px]'}>
-						<Image
-							src={'/widget.png'}
-							alt={'widget'}
-							width={'1000'}
-							height={'1016'}
-							className={'size-full rounded-2xl object-cover'}
-						/>
+						<TradingWidget />
 					</div>
 				</div>
 			</div>
