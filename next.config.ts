@@ -92,13 +92,8 @@ const nextConfig = {
 				permanent: true
 			},
 			{
-				source: '/defi-wallet',
-				destination: '/products/defi-wallet',
-				permanent: true
-			},
-			{
 				source: '/earn-crypto',
-				destination: '/products/earn',
+				destination: '/earn',
 				permanent: true
 			},
 			{
@@ -118,16 +113,30 @@ const nextConfig = {
 			},
 			{
 				source: '/android-notify',
-				destination: '/products/mobile-app',
+				destination: '/mobile-app',
 				permanent: true
 			},
 			{
 				source: '/download',
-				destination: '/products/mobile-app',
+				destination: '/mobile-app',
 				permanent: true
 			},
 			{source: '/br', destination: '/', permanent: true},
-			{source: '/feature-requests', destination: 'https://shapeshift.canny.io', permanent: true}
+			{source: '/feature-requests', destination: 'https://shapeshift.canny.io', permanent: true},
+
+			// Wallet redirects
+			{source: '/wallet-connect', destination: 'resources/supported-wallets/wallet-connect', permanent: true},
+			{source: '/ledger', destination: 'resources/supported-wallets/ledger', permanent: true},
+			{source: '/coinbase-wallet', destination: 'resources/supported-wallets/coinbase-wallet', permanent: true},
+			{source: '/phantom-wallet', destination: 'resources/supported-wallets/phantom', permanent: true},
+			{source: '/keplr', destination: 'resources/supported-wallets/keplr', permanent: true},
+			{source: '/trust-wallet', destination: 'resources/supported-wallets/trust-wallet', permanent: true},
+			{source: '/rabby-wallet', destination: 'resources/supported-wallets/rabby', permanent: true},
+			{source: '/1inch-wallet', destination: 'resources/supported-wallets/1inch-wallet', permanent: true},
+			{source: '/frame-wallet', destination: 'resources/supported-wallets/frame', permanent: true},
+			{source: '/zerion-wallet', destination: 'resources/supported-wallets/zerion', permanent: true},
+			{source: '/rainbow-wallet', destination: 'resources/supported-wallets/rainbow', permanent: true}
+
 			// {
 			// 	source: '/roadmap',
 			// 	destination:

@@ -13,17 +13,17 @@ export function Card({data}: {data: TCard}): ReactNode {
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-t-2xl',
 				data.isTextFirst ? 'flex-col-reverse rounded-b-2xl' : 'flex-col'
 			)}>
-			<div className={'h-full p-10'}>
+			<div className={'p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 				<div className={'text-gray-500'}>{data?.description}</div>
 			</div>
-			<div className={cl('overflow-hidden min-h-64', data.isTextFirst ? 'rounded-t-2xl' : 'rounded-b-2xl')}>
+			<div className={cl('overflow-hidden aspect-[4/3]', data.isTextFirst ? 'rounded-t-2xl' : 'rounded-b-2xl')}>
 				<Image
 					src={`${process.env.STRAPI_URL}${data?.image.url}`}
 					alt={data?.title}
 					width={461}
 					height={219}
-					className={'size-full object-cover'}
+					className={'size-full object-cover transition-all duration-300 hover:scale-105'}
 				/>
 			</div>
 		</div>

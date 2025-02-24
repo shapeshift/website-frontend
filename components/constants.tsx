@@ -60,14 +60,14 @@ export const appProducts = [
 	{name: 'Trade', href: '/products/trade', description: 'A decentralized finance wallet', icon: <IconTrade />},
 	{
 		name: 'DeFi Wallet',
-		href: '/products/defi-wallet',
+		href: '/defi-wallet',
 		description: 'A decentralized finance wallet',
 		icon: <IconResource />
 	},
-	{name: 'Earn', href: '/products/earn', description: 'A decentralized finance wallet', icon: <IconPercent />},
+	{name: 'Earn', href: '/earn', description: 'A decentralized finance wallet', icon: <IconPercent />},
 	{
 		name: 'Mobile app',
-		href: '/products/mobile-app',
+		href: '/mobile-app',
 		description: 'A decentralized finance wallet',
 		icon: <IconMobile />
 	},
