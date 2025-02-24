@@ -90,7 +90,56 @@ const nextConfig = {
 				source: '/reports/yield-unchained',
 				destination: '/reports/yield-unchained.pdf',
 				permanent: true
-			}
+			},
+			{
+				source: '/defi-wallet',
+				destination: '/products/defi-wallet',
+				permanent: true
+			},
+			{
+				source: '/earn-crypto',
+				destination: '/products/earn',
+				permanent: true
+			},
+			{
+				source: '/supported-chains',
+				destination: '/resources/supported-chains',
+				permanent: true
+			},
+			{
+				source: '/research',
+				destination: '/resources/blog',
+				permanent: true
+			},
+			{
+				source: '/faqs',
+				destination: '/resources/faq',
+				permanent: true
+			},
+			{
+				source: '/android-notify',
+				destination: '/products/mobile-app',
+				permanent: true
+			},
+			{
+				source: '/download',
+				destination: '/products/mobile-app',
+				permanent: true
+			},
+			{source: '/br', destination: '/', permanent: true},
+			{source: '/feature-requests', destination: 'https://shapeshift.canny.io', permanent: true}
+			// {
+			// 	source: '/roadmap',
+			// 	destination:
+			// 		'https://shapeshift.notion.site/d6e396d4e89d4264b936c2165f0f5dd1?v=502cce10c01d4a1b95eb8f96077c68ce',
+			// 	permanent: true
+			// },
+			// {
+			// 	source: '/genesis-dao-roadmap',
+			// 	destination:
+			// 		'https://shapeshift.notion.site/d6e396d4e89d4264b936c2165f0f5dd1?v=502cce10c01d4a1b95eb8f96077c68ce',
+			// 	permanent: true
+			// }
 		];
 	}
 };
