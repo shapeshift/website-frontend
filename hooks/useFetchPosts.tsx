@@ -44,7 +44,6 @@ export function useFetchPosts({
 	const [pagination, setPagination] = useState<TPagination | undefined>(undefined);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [error, setError] = useState<Error | null>(null);
-
 	const {setCachedResponse, setCachedParams, cachedResponse, cachedParams} = useCachedPosts();
 
 	useEffect(() => {
@@ -60,7 +59,8 @@ export function useFetchPosts({
 			cachedParams.sort === sort &&
 			cachedParams.slug === slug &&
 			cachedParams.populateContent === populateContent &&
-			cachedParams.type === type
+			cachedParams.type === type &&
+			cachedParams.tag === tag
 		) {
 			setPosts(cachedResponse.data);
 			setPagination(cachedResponse.meta.pagination);
@@ -91,13 +91,9 @@ export function useFetchPosts({
 				const data: TBlogListResponse = await res.json();
 				setPosts(data.data);
 				setPagination(data.meta.pagination);
-				console.log('set posts', data.data);
-				console.log('set pagination', data.meta.pagination);
 				if (cachePosts) {
 					setCachedResponse(data);
-					setCachedParams({page, pageSize, sort, slug, populateContent, type});
-					console.log('set cached', data);
-					console.log('set cachedParams', {page, pageSize, sort, slug, populateContent, type});
+					setCachedParams({page, pageSize, sort, slug, populateContent, type, tag});
 				}
 			} catch (err) {
 				setError(err as Error);

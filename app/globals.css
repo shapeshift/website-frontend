@@ -22,3 +22,7 @@ body {
 	--color-*: initial;
 	--color-secondary: #e6e6e6;
 }
+
+.wg-default {
+	display: none !important;
+}

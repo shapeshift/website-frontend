@@ -12,6 +12,7 @@ type TCachedParams = {
 	slug: string | undefined;
 	populateContent: boolean | undefined;
 	type: string | undefined;
+	tag: string | undefined;
 };
 
 const PostsContext = createContext<{
@@ -38,7 +39,8 @@ const PostsContext = createContext<{
 		sort: undefined,
 		slug: undefined,
 		populateContent: undefined,
-		type: undefined
+		type: undefined,
+		tag: undefined
 	},
 	setCachedParams: () => {}
 });
@@ -61,7 +63,8 @@ export function CachedPostsProvider({children}: {children: ReactNode}): ReactNod
 		sort: undefined,
 		slug: undefined,
 		populateContent: undefined,
-		type: undefined
+		type: undefined,
+		tag: undefined
 	});
 
 	return (

@@ -6,9 +6,7 @@ export default async function BlogPageLayout(props: {
 	children: React.ReactNode;
 	params: Promise<{category: string}>;
 }): Promise<React.ReactNode> {
-	const {category} = await props.params;
-
-	console.warn(category);
+	await props.params;
 
 	return (
 		<main className={'container mx-auto mt-32 px-4 py-8'}>
