@@ -44,6 +44,12 @@ const nextConfig = {
 		return [
 			{
 				// Redirects from old blog posts to new blog posts
+				source: '/library',
+				destination: '/resources/blog',
+				permanent: true
+			},
+			{
+				// Redirects from old blog posts to new blog posts
 				source: '/library/:slug',
 				destination: '/resources/blog/:slug',
 				permanent: true
@@ -58,6 +64,31 @@ const nextConfig = {
 				// Redirects from old blog tags to new blog tags
 				source: '/tag/:slug',
 				destination: '/resources/blog/tags/:slug',
+				permanent: true
+			},
+			{
+				source: '/reports/algorithmic-stablecoins',
+				destination: '/reports/algorithmic-stablecoins.pdf',
+				permanent: true
+			},
+			{
+				source: '/reports/decentralized-insurance',
+				destination: '/reports/decentralized-insurance.pdf',
+				permanent: true
+			},
+			{
+				source: '/reports/enter-the-metaverse',
+				destination: '/reports/enter-the-metaverse.pdf',
+				permanent: true
+			},
+			{
+				source: '/reports/new-frontiers',
+				destination: '/reports/new-frontiers.pdf',
+				permanent: true
+			},
+			{
+				source: '/reports/yield-unchained',
+				destination: '/reports/yield-unchained.pdf',
 				permanent: true
 			}
 		];
