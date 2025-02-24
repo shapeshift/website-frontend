@@ -1,14 +1,14 @@
 import {Button} from '@/components/common/Button';
 import {IconCheck} from '@/components/common/icons/IconCheck';
 
-import type {TTemplateHeaderData} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function Header({data}: {data: TTemplateHeaderData}): ReactNode {
-	if (!data) {
-		return null;
-	}
-
+type THeaderData = {
+	title: string;
+	description: string;
+	items: string[];
+};
+export function Header(data: THeaderData): ReactNode {
 	return (
 		<section className={'flex flex-col items-center'}>
 			<div className={'mb-10 flex gap-2'}>
@@ -22,12 +22,12 @@ export function Header({data}: {data: TTemplateHeaderData}): ReactNode {
 				))}
 			</div>
 			<div className={'mb-10 flex flex-col items-center gap-2'}>
-				<h1 className={'mb-6 text-7xl'}>{data.title}</h1>
+				<h1 className={'mb-6 text-7xl'}>{`ShapeShift supports ${data.title}`}</h1>
 				<p className={'mx-auto max-w-screen-lg text-center text-xl text-gray-500'}>{data.description}</p>
 			</div>
 			<Button
 				variant={'blue'}
-				href={data.ctaButton.url}
+				href={'https://app.shapeshift.com/#/demo/'}
 				title={'Get Started'}
 			/>
 		</section>
