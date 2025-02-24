@@ -24,17 +24,19 @@ export default function SupportedChainsPage(): ReactNode {
 
 			<div className={'container flex flex-col'}>
 				<div>
-					<table className={'border-stoke w-full border-collapse rounded-2xl border'}>
+					<table className={'w-full border-collapse rounded-2xl border border-stroke'}>
 						<thead>
 							<tr>
 								<th
-									className={'border-stoke sticky left-0 border pb-6 text-left text-sm text-gray-500'}
+									className={
+										'sticky left-0 border border-stroke pb-6 text-left text-sm text-gray-500'
+									}
 								/>
 								{allWallets.map(wallet => (
 									<th
 										key={wallet}
 										className={
-											'border-stoke h-20 w-[184px] border text-center font-normal text-gray-500'
+											'h-20 w-[184px] border border-stroke text-center font-normal text-gray-500'
 										}>
 										{wallet}
 									</th>
@@ -46,14 +48,14 @@ export default function SupportedChainsPage(): ReactNode {
 								<tr key={chain}>
 									<td
 										align={'center'}
-										className={'border-stoke left-0 h-20 w-[184px] border py-4 text-gray-500'}>
+										className={'left-0 h-20 w-[184px] border border-stroke py-4 text-gray-500'}>
 										{supportedChains[chain as keyof typeof supportedChains].name}
 									</td>
 									{allWallets.map(wallet => (
 										<td
 											align={'center'}
 											key={wallet}
-											className={'border-stoke h-20 w-[184px] border'}>
+											className={'h-20 w-[184px] border border-stroke'}>
 											{supportedChains[chain as keyof typeof supportedChains].supported.includes(
 												wallet
 											) ? (
