@@ -67,7 +67,7 @@ export const appProducts = [
 	{name: 'Earn', href: '/products/earn', description: 'A decentralized finance wallet', icon: <IconPercent />},
 	{
 		name: 'Mobile app',
-		href: '/products/mobile-app',
+		href: '/mobile-app',
 		description: 'A decentralized finance wallet',
 		icon: <IconMobile />
 	},

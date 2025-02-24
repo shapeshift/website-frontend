@@ -101,7 +101,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'col-span-1 row-span-2'}
-							href={'/products/mobile-app'}>
+							href={'/mobile-app'}>
 							<Image
 								src={'/landing/landingCard2.png'}
 								alt={'tab_bg'}

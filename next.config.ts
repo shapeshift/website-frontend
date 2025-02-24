@@ -113,12 +113,12 @@ const nextConfig = {
 			},
 			{
 				source: '/android-notify',
-				destination: '/products/mobile-app',
+				destination: '/mobile-app',
 				permanent: true
 			},
 			{
 				source: '/download',
-				destination: '/products/mobile-app',
+				destination: '/mobile-app',
 				permanent: true
 			},
 			{source: '/br', destination: '/', permanent: true},
