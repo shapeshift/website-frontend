@@ -39,13 +39,14 @@ export function Button(props: TButtonProps): ReactNode {
 					className={cl(
 						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300',
 						props.className,
-						props.href ? 'w-[232px]' : 'w-[152px]',
+						props.href || props.hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
 						props.variant === 'blue'
 							? 'bg-blue hover:bg-blueHover'
 							: 'bg-white/10 border border-white/50 hover:bg-white/5'
 					)}
 					onClick={props.onClick}>
 					{props.title}
+					{props.hasArrow ? <IconNext /> : null}
 				</button>
 			)}
 		</>

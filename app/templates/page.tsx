@@ -1,5 +1,6 @@
 import {Banner} from '@/components/common/Banner';
 import {ChainActions} from '@/components/strapi-sections/templates/ChainActions';
+import {ChainFeatures} from '@/components/strapi-sections/templates/ChainFeatures';
 import {Description} from '@/components/strapi-sections/templates/Description';
 import {Header} from '@/components/strapi-sections/templates/Header';
 import {Hero} from '@/components/strapi-sections/templates/Hero';
@@ -129,11 +130,18 @@ export default function TemplatesPage(): ReactNode {
 				</div>
 				<Description data={descriptionData} />
 
-				<div className={'my-[240px]'}>
+				<div className={'mt-[240px]'}>
 					<ChainActions data={chainActionsData} />
 				</div>
 
-				<div className={'my-16'}>
+				<div className={'mt-[240px]'}>
+					<ChainFeatures
+						chainName={'Bitcoin'}
+						data={chainActionsData}
+					/>
+				</div>
+
+				<div className={'mt-[240px]'}>
 					<Banner />
 				</div>
 			</div>
