@@ -29,7 +29,7 @@ export function StrapiWallets(): ReactNode {
 						return (
 							<Link
 								key={wallet.slug}
-								href={`/resources/blog/${wallet.slug}`}
+								href={`/resources/supported-wallets/${wallet.slug}`}
 								className={cl(
 									'rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:bg-secondHoverBg'
 								)}>
