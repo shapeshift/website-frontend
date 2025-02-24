@@ -49,9 +49,15 @@ const nextConfig = {
 				permanent: true
 			},
 			{
-				// Redirects from old blog posts to new blog posts
+				// Redirects from old blog categories to new blog categories
 				source: '/category/:slug',
 				destination: '/resources/blog/categories/:slug',
+				permanent: true
+			},
+			{
+				// Redirects from old blog tags to new blog tags
+				source: '/tag/:slug',
+				destination: '/resources/blog/tags/:slug',
 				permanent: true
 			}
 		];
