@@ -1,3 +1,5 @@
+import {cl} from '@/components/utils/cl';
+
 import {Button} from '../common/Button';
 import HeaderItem from '../common/HeaderItem';
 import {appProducts, dAppUrl} from '../constants';
@@ -13,7 +15,7 @@ import type {ReactNode} from 'react';
 export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div
-			className={'flex max-w-[1400px] justify-between'}
+			className={cl('flex justify-between')}
 			{...expandAnimation}>
 			{/* Left section with main CTA */}
 			<div className={'mt-16 flex flex-col pb-10 pr-10'}>

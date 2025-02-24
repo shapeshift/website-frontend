@@ -9,7 +9,7 @@ import type {ReactNode} from 'react';
 export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div
-			className={'flex max-w-[1400px] justify-between'}
+			className={'flex justify-between'}
 			{...expandAnimation}>
 			<div className={'mt-16 max-w-[320px] pb-16 pr-10'}>
 				<div className={'mb-5 flex items-center gap-2'}>

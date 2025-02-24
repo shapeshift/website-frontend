@@ -102,7 +102,7 @@ export function Header({
 				</div>
 				<AnimatePresence mode={'wait'}>
 					<motion.div
-						className={'flex justify-center'}
+						className={cl('flex justify-center')}
 						key={currentTab}
 						initial={containerAnimation.initial}
 						animate={containerAnimation.animate(!!currentTab)}

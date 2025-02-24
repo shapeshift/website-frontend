@@ -1,11 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {notFound} from 'next/navigation';
 
-import {Button} from '@/components/common/Button';
-import {Card} from '@/components/strapi-sections/cards-row/Card';
-import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
+import GridLadder from '@/components/strapi-sections/products/GridLadder';
 
-import type {TButton, TCard, TCardsRowSection, TStrapiImage} from '@/types/strapi';
+import type {TButton, TDownloadButton, TGridLadderSection, TStrapiImage} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 type TPage = {
@@ -13,8 +12,8 @@ type TPage = {
 	description: string;
 	buttonCta: TButton;
 	featuredImg: TStrapiImage;
-	buttonDownload: TButton[];
-	cardsRow: TCardsRowSection;
+	buttonDownload: TDownloadButton[];
+	gridLadder: TGridLadderSection;
 };
 
 /********************************************************************************************
@@ -23,7 +22,7 @@ type TPage = {
  ********************************************************************************************/
 async function getPageData(): Promise<TPage | null> {
 	const pages = await fetch(
-		`${process.env.STRAPI_URL}/api/defi-wallet?fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=cardsRow&populate[5]=cardsRow.cards&populate[6]=cardsRow.cards.image&populate[7]=cardsRow.ctaBlock&populate[8]=cardsRow.ctaBlock.icon&populate[9]=footer&populate[10]=footer.buttonCta&populate[11]=footer.imageBg&pagination[pageSize]=1&pagination[page]=1&status=published`,
+		`${process.env.STRAPI_URL}/api/mobile-app?fields[0]=title&populate[1]=buttonDownload&fields[2]=description&populate[3]=featuredImg&populate[4]=gridLadder&populate[5]=gridLadder.steps&populate[6]=gridLadder.steps.buttonCta&populate[7]=gridLadder.steps.image&populate[8]=footer&populate[9]=footer.buttonDownload&populate[10]=footer.imageBg&pagination[pageSize]=1&pagination[page]=1&status=published`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -36,7 +35,7 @@ async function getPageData(): Promise<TPage | null> {
 }
 
 function Hero(props: TPage): ReactNode | null {
-	const {title, description, buttonCta, featuredImg} = props;
+	const {title, description, buttonDownload, featuredImg} = props;
 
 	return (
 		<section className={'relative mb-60 pt-52 md:px-4 lg:px-0'}>
@@ -45,12 +44,22 @@ function Hero(props: TPage): ReactNode | null {
 					<h1 className={'mb-4 text-7xl font-normal'}>{title}</h1>
 					<div className={'flex flex-col'}>
 						<p className={'mb-8 text-xl font-normal text-gray-500'}>{description}</p>
-						<Button
-							variant={'blue'}
-							title={buttonCta?.title ?? 'Title'}
-							href={buttonCta?.url ?? '/'}
-							hasArrow
-						/>
+						<div className={'flex gap-4'}>
+							{buttonDownload.map(button => (
+								<Link
+									href={button.url ?? ''}
+									target={'_blank'}
+									className={'h-[40px] w-[130px]'}
+									key={button.id}>
+									<Image
+										src={`/${button.variant}.png`}
+										alt={button.id.toString()}
+										width={390}
+										height={120}
+									/>
+								</Link>
+							))}
+						</div>
 					</div>
 				</div>
 
@@ -87,10 +96,7 @@ export default async function Page(): Promise<ReactNode> {
 			</div>
 
 			<Hero {...page} />
-			<CardsRow
-				data={page.cardsRow}
-				children={(card: TCard) => <Card data={card} />}
-			/>
+			<GridLadder data={page.gridLadder} />
 		</main>
 	);
 }
