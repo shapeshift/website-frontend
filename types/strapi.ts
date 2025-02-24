@@ -235,3 +235,28 @@ export type TSupportedWalletData = {
 	updatedAt: string;
 	publishedAt: string;
 };
+
+export type TNewsroomPost = {
+	id: number;
+	documentId: string;
+	slug: string;
+	title: string;
+	content: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	publishedOn: string;
+	featureImage: TStrapiImage;
+	tags: string[];
+	category: string[];
+	author: string;
+	postSummary: string;
+	externalURL: string;
+};
+
+export type TNewsroomListResponse = {
+	data: TNewsroomPost[];
+	meta: {
+		pagination: TPagination;
+	};
+};
