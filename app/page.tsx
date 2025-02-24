@@ -123,7 +123,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'col-span-1 row-span-1'}
-							href={'/products/earn'}>
+							href={'/earn'}>
 							<Image
 								src={'/landing/landingCard4.png'}
 								alt={'tab_bg'}

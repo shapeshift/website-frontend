@@ -93,7 +93,7 @@ const nextConfig = {
 			},
 			{
 				source: '/earn-crypto',
-				destination: '/products/earn',
+				destination: '/earn',
 				permanent: true
 			},
 			{
