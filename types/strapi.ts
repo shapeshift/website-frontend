@@ -128,6 +128,47 @@ export type TPageData = {
 	publishedAt: string;
 };
 
+export type TTemplateData = {
+	id: number;
+	documentId: string;
+	slug: string;
+	sections: TSections;
+	title: string;
+	description: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TTemplateDescriptionSection = {
+	id: number;
+	title: string;
+	articles: string[];
+};
+
+export type TTemplateChainActionsSection = {
+	id: number;
+	title: string;
+	actions: {
+		id: number;
+		title: string;
+		description: string;
+		icon: TStrapiImage;
+	}[];
+};
+export type TTemplateHeroSection = {
+	id: number;
+	image: TStrapiImage;
+};
+
+export type TTemplateHeaderData = {
+	id: number;
+	title: string;
+	description: string;
+	items: string[];
+	ctaButton: TButton;
+};
+
 /********************************************************************************************
  * Types for Strapi Blog API responses
  * Includes both list and single post interfaces
@@ -136,22 +177,14 @@ export type TBlogPost = {
 	id: number;
 	documentId: string;
 	slug: string;
+	title: string;
 	content: string;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
 	imageFeatured: TStrapiImage;
 	tags: string[];
-	type: (
-		| 'all'
-		| 'Partner Integrations'
-		| 'Ethereum'
-		| 'Bitcoin'
-		| 'Crypto Pro'
-		| 'Thought Leadership'
-		| 'Governance Newsletters'
-		| 'Newsletter'
-	)[];
+	type: string[];
 	summary: string;
 };
 
@@ -189,4 +222,16 @@ export type TFaqSectionItem = {
 	id: number;
 	question: string;
 	answer: string;
+};
+
+export type TSupportedWalletData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	slug: string;
+	image: TStrapiImage;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
 };

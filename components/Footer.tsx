@@ -12,7 +12,7 @@ import type {ReactNode} from 'react';
 export function Footer(): ReactNode {
 	return (
 		<div className={'relative'}>
-			<div className={'rounded-lg border border-stoke bg-secondBg'}>
+			<div className={'rounded-lg border border-stroke bg-secondBg'}>
 				<div className={'h-[480px]'}>
 					<div className={'flex h-full flex-col p-12'}>
 						<div className={'flex justify-between'}>
@@ -57,7 +57,7 @@ export function Footer(): ReactNode {
 								{`© ${new Date().getFullYear()} ShapeShift. All Rights Reserved`}
 							</div>
 
-							<div className={'flex items-center gap-6 rounded-2xl border border-stoke bg-black/95 p-2'}>
+							<div className={'flex items-center gap-6 rounded-2xl border border-stroke bg-black/95 p-2'}>
 								<span className={'p-4 text-2xl text-white'}>{'Get the app'}</span>
 								<div>
 									<Image

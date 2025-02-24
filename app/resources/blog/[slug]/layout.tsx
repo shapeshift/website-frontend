@@ -1,3 +1,5 @@
+import {notFound} from 'next/navigation';
+
 import type {Metadata} from 'next';
 
 /************************************************************************************************
@@ -17,6 +19,11 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	).then(async res => res.json());
 
 	const post = data.data[0];
+
+	if (!post) {
+		return notFound();
+	}
+
 	const imageUrl = post.imageFeatured.formats.thumbnail.url;
 
 	return {

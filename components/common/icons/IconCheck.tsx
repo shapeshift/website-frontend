@@ -11,8 +11,8 @@ export function IconCheck(props: SVGProps<SVGSVGElement>): ReactNode {
 			xmlns={'http://www.w3.org/2000/svg'}>
 			<path
 				d={'M2.0835 3.58329L4.5835 6.08329L8.75016 1.91663'}
-				stroke={'white'}
-				strokeWidth={'2'}
+				stroke={'currentColor'}
+				strokeWidth={'2.5'}
 				strokeLinecap={'round'}
 				strokeLinejoin={'round'}
 			/>

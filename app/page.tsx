@@ -7,20 +7,15 @@ import {ShapeshiftLogo} from '@/components/common/icons/ShapeshiftLogo';
 import {TabItem} from '@/components/common/TabItem';
 import {landingCards} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
-import {QuestionSection} from '@/components/QuestionSection';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
+import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {TradingWidget} from '@/components/trading/TradingWidget';
 import {cl} from '@/components/utils/cl';
-import {getFaq} from '@/components/utils/query';
 
 import type {TCard} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export default async function HomePage(): Promise<ReactNode> {
-	const data = await getFaq();
-
-	const allQuestions = data?.faqSection.map(section => section.faqSectionItem).flat() ?? [];
-
+export default function HomePage(): ReactNode {
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl'}>
@@ -151,16 +146,7 @@ export default async function HomePage(): Promise<ReactNode> {
 					</div>
 					<LatestBlogPosts limit={3} />
 
-					<div>
-						<div className={'mb-[77px] text-7xl'}>{'FAQ'}</div>
-						<div className={'flex flex-col gap-2'}>
-							{allQuestions.slice(0, 7).map(question => (
-								<div key={question.id}>
-									<QuestionSection faqSectionItem={question} />
-								</div>
-							))}
-						</div>
-					</div>
+					<StrapiFAQ />
 				</div>
 				<Banner />
 			</div>

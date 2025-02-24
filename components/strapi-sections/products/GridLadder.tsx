@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
-import {Button} from '../common/Button';
-import {cl} from '../utils/cl';
+import {Button} from '../../common/Button';
+import {cl} from '../../utils/cl';
 
 import type {TGridLadderSection, TGridLadderStep} from '@/types/strapi';
 import type {ReactNode} from 'react';

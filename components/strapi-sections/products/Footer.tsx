@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import {Button} from '../common/Button';
-import {cl} from '../utils/cl';
+import {Button} from '../../common/Button';
+import {cl} from '../../utils/cl';
 
 import type {TFooterSection} from '@/types/strapi';
 import type {ReactNode} from 'react';
