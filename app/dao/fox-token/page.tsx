@@ -84,7 +84,7 @@ export default function FoxTokenPage(): ReactNode {
 						<h1 className={'mb-8 text-7xl'}>{'How is a DAO different than a centralized company?'}</h1>
 						<p>
 							{
-								'DAOs (Decentralized Autonomous Organizations) are a collective organization owned and managed by its members with all of them having a voice. We are actively building a powerful community around the open-source, self-custody, multi-chain crypto platform for the world.‍FOX token holders govern the ShapeShift DAO—a treasury endowed with 567,000,000 FOX Tokens (56.7% of all FOX) and actively generating revenue.\t\t\t\t\t\t'
+								'DAOs (Decentralized Autonomous Organizations) are a collective organization owned and managed by its members with all of them having a voice. We are actively building a powerful community around the open-source, self-custody, multi-chain crypto platform for the world. FOX token holders govern the ShapeShift DAO—a treasury endowed with 567,000,000 FOX Tokens (56.7% of all FOX) and actively generating revenue.'
 							}
 						</p>
 					</div>
@@ -122,9 +122,7 @@ export default function FoxTokenPage(): ReactNode {
 
 				<h1 className={'mb-14 text-7xl'}>{'Resources'}</h1>
 
-				<div className={'mb-[240px] grid grid-cols-3 gap-4'}>
-					<LatestBlogPosts limit={3} />
-				</div>
+				<LatestBlogPosts limit={3} />
 				<h1 className={'mb-14 text-7xl text-white'}>{'Join our community'}</h1>
 
 				<div className={'mb-[240px] grid grid-cols-5 gap-2'}>

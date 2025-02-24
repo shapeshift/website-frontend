@@ -36,9 +36,11 @@ export function BlogTitle(): React.ReactNode {
 		);
 	}
 	return (
-		<div className={'mb-8 text-7xl'}>
+		<div className={'mb-8 text-[40px] leading-10 lg:text-7xl'}>
 			<span className={'text-white'}>{'ShapeShift'}</span>
-			<span className={'text-blue'}>{'Blog.'}</span>
+			&nbsp;
+			<span className={'text-blue'}>{'Blog'}</span>
+			<span className={'hidden text-blue lg:inline'}>{'.'}</span>
 		</div>
 	);
 }
