@@ -1,4 +1,10 @@
-import type {TFaqData, TSupportedChainData, TSupportedWalletData} from '@/types/strapi';
+import type {
+	TFaqData,
+	TPrivacyPolicyData,
+	TSupportedChainData,
+	TSupportedWalletData,
+	TTermsOfServiceData
+} from '@/types/strapi';
 
 export async function getFaq(): Promise<TFaqData | null> {
 	const res = await fetch(
@@ -71,4 +77,32 @@ export async function getSupportedChain(slug: string): Promise<TSupportedChainDa
 	}
 	const data = await res.json();
 	return data.data[0];
+}
+
+export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/privacy-policy?populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data;
+}
+
+export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/terms-of-service?populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data;
 }

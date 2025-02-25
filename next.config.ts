@@ -72,6 +72,7 @@ const nextConfig = {
 			{source: '/rune', destination: '/resources/supported-chains/rune', permanent: true},
 			{source: '/base', destination: '/resources/supported-chains/base', permanent: true},
 			{source: '/thorchain', destination: '/resources/supported-chains/thorchain', permanent: true},
+			{source: '/buy-and-sell-bitcoin', destination: '/resources/supported-chains/bitcoin', permanent: true},
 
 			// Reports
 			{
@@ -108,7 +109,15 @@ const nextConfig = {
 			{source: '/frame-wallet', destination: 'resources/supported-wallets/frame', permanent: true},
 			{source: '/zerion-wallet', destination: 'resources/supported-wallets/zerion', permanent: true},
 			{source: '/rainbow-wallet', destination: 'resources/supported-wallets/rainbow', permanent: true},
-			{source: '/safe-wallet', destination: 'resources/supported-wallets/safe-wallet', permanent: true}
+			{source: '/safe-wallet', destination: 'resources/supported-wallets/safe-wallet', permanent: true},
+
+			// Privacy policy
+			{source: '/dao-privacy-policy', destination: '/privacy-policy', permanent: true},
+			{source: '/recruitment-privacy-policy', destination: '/privacy-policy', permanent: true},
+			{source: '/privacy', destination: '/privacy-policy', permanent: true},
+			{source: '/dao-terms-of-service', destination: '/terms-of-service', permanent: true},
+			{source: '/social-promotion-rules', destination: '/terms-of-service', permanent: true},
+			{source: '/responsible-disclosure-program', destination: '/terms-of-service', permanent: true}
 
 			// {
 			// 	source: '/roadmap',

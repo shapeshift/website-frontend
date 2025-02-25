@@ -128,9 +128,15 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						// Links
 						a: ({...props}) => (
 							<a
-								className={'text-blue-400 hover:text-blue-300 transition-colors'}
+								className={'text-blue underline transition-colors hover:text-blueHover'}
 								target={'_blank'}
 								rel={'noopener noreferrer'}
+								{...props}
+							/>
+						),
+						p: ({...props}) => (
+							<p
+								className={'mb-4'}
 								{...props}
 							/>
 						)

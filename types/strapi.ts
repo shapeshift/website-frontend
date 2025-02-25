@@ -269,6 +269,34 @@ export type TNewsroomPost = {
 	externalURL: string;
 };
 
+export type TPrivacyPolicyData = {
+	id: number;
+	documentId: string;
+	policy: {
+		id: number;
+		title: string;
+		createdAt: string;
+		updatedAt: string;
+		publishedAt: string;
+		policy: string;
+		date: string;
+	}[];
+};
+
+export type TTermsOfServiceData = {
+	id: number;
+	documentId: string;
+	terms: {
+		id: number;
+		title: string;
+		createdAt: string;
+		updatedAt: string;
+		publishedAt: string;
+		policy: string;
+		date: string;
+	}[];
+};
+
 export type TNewsroomListResponse = {
 	data: TNewsroomPost[];
 	meta: {

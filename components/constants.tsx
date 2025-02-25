@@ -33,8 +33,8 @@ export const appResources = [
 		icon: <IconChains />
 	},
 	{name: 'Support', href: 'https://shapeshift.zendesk.com/', description: 'Support portal'},
-	{name: 'Terms of Service', href: '/resources/terms-of-service', description: 'Our terms and conditions'},
-	{name: 'Privacy Policy', href: '/resources/privacy-policy', description: 'How we handle your data'}
+	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions'},
+	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data'}
 ];
 
 export const appDao = [
