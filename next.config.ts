@@ -117,7 +117,15 @@ const nextConfig = {
 			{source: '/privacy', destination: '/privacy-policy', permanent: true},
 			{source: '/dao-terms-of-service', destination: '/terms-of-service', permanent: true},
 			{source: '/social-promotion-rules', destination: '/terms-of-service', permanent: true},
-			{source: '/responsible-disclosure-program', destination: '/terms-of-service', permanent: true}
+			{source: '/responsible-disclosure-program', destination: '/terms-of-service', permanent: true},
+
+			// Deprecated
+			{source: '/waitlist/thank-you', destination: '/', permanent: true},
+			{source: '/waitlist', destination: '/', permanent: true},
+			{source: '/wallet/apps', destination: '/', permanent: true},
+			{source: '/wallet-backup', destination: '/', permanent: true},
+			{source: '/dao-resources', destination: '/', permanent: true},
+			{source: '/shapeshift-decentralize-airdrop', destination: '/', permanent: true}
 
 			// {
 			// 	source: '/roadmap',
