@@ -45,6 +45,20 @@ export async function getSupportedWallet(slug: string): Promise<TSupportedWallet
 	return data.data[0];
 }
 
+export async function getSupportedChains(): Promise<TSupportedChainData[] | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-chains?populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data;
+}
+
 export async function getSupportedChain(slug: string): Promise<TSupportedChainData | null> {
 	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`, {
 		headers: {

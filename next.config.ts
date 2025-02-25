@@ -48,12 +48,15 @@ const nextConfig = {
 			{source: '/category/:slug', destination: '/resources/blog/categories/:slug', permanent: true},
 			{source: '/tag/:slug', destination: '/resources/blog/tags/:slug', permanent: true},
 
+			// Newsletter
 			{source: '/newsletter', destination: '/resources/newsroom', permanent: true},
 			{source: '/newsletter-french', destination: '/resources/newsroom', permanent: true},
 			{source: '/newsletter-portuguese', destination: '/resources/newsroom', permanent: true},
 			{source: '/newsletter-spanish', destination: '/resources/newsroom', permanent: true},
 			{source: '/newsroom', destination: '/resources/newsroom', permanent: true},
 			{source: '/newsroom/:slug', destination: '/resources/newsroom/:slug', permanent: true},
+
+			// Reports
 			{
 				source: '/reports/algorithmic-stablecoins',
 				destination: '/reports/algorithmic-stablecoins.pdf',
@@ -67,37 +70,12 @@ const nextConfig = {
 			{source: '/reports/enter-the-metaverse', destination: '/reports/enter-the-metaverse.pdf', permanent: true},
 			{source: '/reports/new-frontiers', destination: '/reports/new-frontiers.pdf', permanent: true},
 			{source: '/reports/yield-unchained', destination: '/reports/yield-unchained.pdf', permanent: true},
-
-			{
-				source: '/earn-crypto',
-				destination: '/earn',
-				permanent: true
-			},
-			{
-				source: '/supported-chains',
-				destination: '/resources/supported-chains',
-				permanent: true
-			},
-			{
-				source: '/research',
-				destination: '/resources/blog',
-				permanent: true
-			},
-			{
-				source: '/faqs',
-				destination: '/resources/faq',
-				permanent: true
-			},
-			{
-				source: '/android-notify',
-				destination: '/mobile-app',
-				permanent: true
-			},
-			{
-				source: '/download',
-				destination: '/mobile-app',
-				permanent: true
-			},
+			{source: '/earn-crypto', destination: '/earn', permanent: true},
+			{source: '/supported-chains', destination: '/resources/supported-chains', permanent: true},
+			{source: '/research', destination: '/resources/blog', permanent: true},
+			{source: '/faqs', destination: '/resources/faq', permanent: true},
+			{source: '/android-notify', destination: '/mobile-app', permanent: true},
+			{source: '/download', destination: '/mobile-app', permanent: true},
 			{source: '/br', destination: '/', permanent: true},
 			{source: '/feature-requests', destination: 'https://shapeshift.canny.io', permanent: true},
 

@@ -29,7 +29,7 @@ export default async function WalletPage({params}: {params: Promise<{slug: strin
 
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'context mt-[220px] flex flex-col justify-center'}>
+			<div className={'container mt-[220px] flex flex-col justify-center'}>
 				<div className={'mb-12'}>
 					<Hero
 						url={`${process.env.STRAPI_URL}${wallet?.featuredImg?.url}`}
