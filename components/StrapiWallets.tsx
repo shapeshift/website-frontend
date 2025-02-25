@@ -23,7 +23,7 @@ export function StrapiWallets(): ReactNode {
 
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'context flex flex-col justify-center'}>
+			<div className={'container flex flex-col justify-center'}>
 				<div className={'mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3'}>
 					{(chains || []).map(chain => {
 						return (

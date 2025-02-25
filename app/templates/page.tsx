@@ -10,7 +10,7 @@ import type {ReactNode} from 'react';
 export default function TemplatesPage(): ReactNode {
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'context mt-[220px] flex flex-col justify-center'}>
+			<div className={'container mt-[220px] flex flex-col justify-center'}>
 				<ChainHeader chainName={'Bitcoin'} />
 
 				<div className={'mb-[240px] mt-16'}>
