@@ -31,7 +31,7 @@ export function Button(props: TButtonProps): ReactNode {
 						props.className
 					)}
 					href={props.href}
-					target={'_blank'}>
+					target={props.href?.startsWith('http') ? '_blank' : undefined}>
 					<span>{props.title}</span>
 					{hasArrow ? <IconNext /> : null}
 				</Link>
