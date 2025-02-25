@@ -16,6 +16,7 @@ export default function TemplatesPage(): ReactNode {
 				<div className={'mb-[240px] mt-16'}>
 					<ChainHero
 						url={'/templates/templateHeroBg.png'}
+						name={'Bitcoin'}
 						width={1400}
 						height={360}
 					/>
@@ -35,7 +36,15 @@ export default function TemplatesPage(): ReactNode {
 				</div>
 
 				<div className={'mt-[240px]'}>
-					<ChainFeatures chainName={'Bitcoin'} />
+					<ChainFeatures
+						chainName={'Bitcoin'}
+						foxImg={{
+							url: '/templates/fox.png',
+							width: 100,
+							height: 100,
+							formats: {thumbnail: {url: '/templates/fox.png', width: 100, height: 100}}
+						}}
+					/>
 				</div>
 
 				<div className={'mt-[240px]'}>
