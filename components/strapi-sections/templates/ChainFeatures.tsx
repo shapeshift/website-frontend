@@ -12,7 +12,9 @@ export function ChainFeatures({chainName, foxImg}: {chainName: string; foxImg: T
 
 			<div className={'grid gap-2'}>
 				<div
-					className={'grid aspect-[760/540] h-[540px] w-full grid-cols-2 overflow-hidden rounded-2xl'}
+					className={
+						'container grid aspect-[760/540] h-[540px] w-full grid-cols-2 overflow-hidden rounded-2xl'
+					}
 					style={{
 						backgroundImage: "url('/supported-wallets/cover.png')",
 						backgroundSize: 'cover',
@@ -48,7 +50,7 @@ export function ChainFeatures({chainName, foxImg}: {chainName: string; foxImg: T
 
 				<div
 					className={
-						'grid aspect-[1400/476] h-[476px] grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-10'
+						'container grid aspect-[1400/476] h-[476px] grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-10'
 					}
 					style={{
 						backgroundImage: "url('/supported-chains/grid-bg.png')",
@@ -88,7 +90,7 @@ export function ChainFeatures({chainName, foxImg}: {chainName: string; foxImg: T
 					</div>
 				</div>
 
-				<div className={'grid grid-cols-2 gap-2'}>
+				<div className={'container grid grid-cols-2 gap-2'}>
 					<div
 						style={{
 							background: 'linear-gradient(180deg, #101114 0%, #16181C 100%)'
