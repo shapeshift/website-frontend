@@ -25,7 +25,6 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	}
 
 	const imageUrl = post.featuredImg.formats.thumbnail.url;
-
 	return {
 		title: `${post.title} | ShapeShift Blog`,
 		description: post.summary || `Read ${post.title} on ShapeShift Blog`,
