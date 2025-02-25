@@ -67,12 +67,12 @@ export default function HomePage(): ReactNode {
 					<span className={'text-[40px] leading-10 text-blue lg:text-7xl'}>{'Endless Opportunity.'}</span>
 				</div>
 
-				<div className={'mb-[120px] lg:mb-60'}>
-					<CardsRow data={landingCards}>{(card: TCard) => <LandingCard data={card} />}</CardsRow>
-				</div>
+				<CardsRow data={landingCards}>{(card: TCard) => <LandingCard data={card} />}</CardsRow>
 
 				<div className={'mb-[120px] lg:mb-60'}>
-					<h1 className={'mb-14 text-[40px] leading-10 text-white lg:text-7xl'}>{'Explore our features.'}</h1>
+					<h1 className={'mb-8 text-[40px] leading-10 text-white lg:mb-14 lg:text-7xl'}>
+						{'Explore our features.'}
+					</h1>
 					<div className={'group relative h-[674px] overflow-hidden rounded-2xl'}>
 						<Image
 							src={'/landing/landingTabsBg.png'}
@@ -90,7 +90,7 @@ export default function HomePage(): ReactNode {
 							className={'absolute bottom-0 left-1/2 -translate-x-1/2'}
 						/>
 
-						<div className={'absolute left-0 top-0 mt-16 flex size-full flex-col items-center'}>
+						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
 							<h1 className={'mb-7 text-center text-[40px] leading-[40px] text-white'}>
 								{'Multichain crypto home base'}
 							</h1>

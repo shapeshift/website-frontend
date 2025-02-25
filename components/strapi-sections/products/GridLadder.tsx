@@ -13,17 +13,17 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 	}
 
 	return (
-		<section className={'container mb-60'}>
+		<section className={'container mb-[120px] lg:mb-60'}>
 			<div className={'grid gap-x-[120px] gap-y-40 lg:grid-cols-1'}>
 				{data.steps.map((step, index) => (
 					<div
 						className={cl(
-							'flex gap-x-[120px] justify-between md:flex-col',
+							'flex gap-x-[120px] justify-between flex-col ga',
 							index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 						)}
 						key={step.id}>
 						<LadderItem data={step} />
-						<div className={'h-[400px] w-[640px] overflow-hidden rounded-2xl'}>
+						<div className={'overflow-hidden rounded-2xl lg:h-[400px] lg:w-[640px]'}>
 							<Image
 								src={`${process.env.STRAPI_URL}${step.image?.url}`}
 								alt={step.id.toString()}
@@ -32,6 +32,15 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 								className={'size-full object-cover'}
 							/>
 						</div>
+						{step.buttonCta && (
+							<Button
+								variant={'blue'}
+								title={step.buttonCta.title}
+								href={step.buttonCta.url}
+								hasArrow
+								className={'mt-10 block !w-full lg:hidden'}
+							/>
+						)}
 					</div>
 				))}
 			</div>
@@ -54,6 +63,7 @@ const LadderItem = ({data}: {data: TGridLadderStep}): ReactNode | null => {
 					title={data.buttonCta.title}
 					href={data.buttonCta.url}
 					hasArrow
+					className={'hidden lg:block'}
 				/>
 			)}
 		</div>

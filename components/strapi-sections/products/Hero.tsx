@@ -12,18 +12,23 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 	}
 
 	return (
-		<section className={'relative mb-60 pt-52 md:px-4 lg:px-0'}>
+		<section className={'relative pt-20 md:px-4 lg:mb-60 lg:px-0 lg:pt-52'}>
 			<div className={'container mx-auto'}>
-				<div className={'grid gap-10 lg:grid-cols-2'}>
-					<h1 className={'mb-4 text-7xl font-normal'}>{data.title}</h1>
+				<div className={'grid gap-4 lg:grid-cols-2 lg:gap-10'}>
+					<h1 className={'mb-4 text-center text-4xl font-normal leading-10 lg:text-left lg:text-7xl'}>
+						{data.title}
+					</h1>
 					<div className={'flex flex-col'}>
-						<p className={'mb-8 text-xl font-normal text-gray-500'}>{data.description}</p>
+						<p className={'mb-8 text-center text-sm font-normal text-gray-500 lg:text-left lg:text-xl'}>
+							{data.description}
+						</p>
 						{data.buttonCta ? (
 							<Button
 								variant={'blue'}
-								title={data.buttonCta?.title ?? 'Title'}
+								title={data.buttonCta?.title ?? 'Click here'}
 								href={data.buttonCta?.url ?? '/'}
 								hasArrow
+								className={'!w-full'}
 							/>
 						) : data.buttonDownload.length > 0 ? (
 							<div className={'flex gap-4'}>
@@ -52,11 +57,19 @@ export default function Hero({data}: {data: THeroSection}): ReactNode | null {
 						alt={data.title}
 						width={1400}
 						height={data?.featuredImg?.formats.large?.height ?? 0}
+						className={'hidden lg:block'}
+					/>
+					<Image
+						src={`${process.env.STRAPI_URL}${data?.featuredImg.formats.large?.url}`}
+						alt={data.title}
+						width={1000}
+						height={data?.featuredImg?.formats.large?.height ?? 0}
+						className={'block lg:hidden'}
 					/>
 				</div>
 
 				{/* Stats */}
-				<div className={'mb-16 mt-20 flex w-full justify-center gap-4'}>
+				<div className={'mb-16 mt-20 flex w-full flex-col items-center justify-center gap-4 lg:flex-row'}>
 					{data.stats.map(stat => (
 						<div
 							key={stat.id}

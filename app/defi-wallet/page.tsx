@@ -41,12 +41,12 @@ function Hero(props: TPage): ReactNode | null {
 	const {title, description, buttonCta, featuredImg} = props;
 
 	return (
-		<section className={'relative mb-60 pt-52 md:px-4 lg:px-0'}>
+		<section className={'relative mb-[120px] pt-10 md:px-4 lg:mb-60 lg:px-0 lg:pt-52'}>
 			<div className={'container mx-auto'}>
 				<div className={'grid gap-10 lg:grid-cols-2'}>
-					<h1 className={'mb-4 text-7xl font-normal'}>{title}</h1>
+					<h1 className={'mb-4 text-4xl font-normal leading-10 lg:text-7xl'}>{title}</h1>
 					<div className={'flex flex-col'}>
-						<p className={'mb-8 text-xl font-normal text-gray-500'}>{description}</p>
+						<p className={'mb-8 text-sm font-normal text-gray-500 lg:text-xl'}>{description}</p>
 						<Button
 							variant={'blue'}
 							title={buttonCta?.title ?? 'Title'}
@@ -79,7 +79,7 @@ export default async function Page(): Promise<ReactNode> {
 
 	return (
 		<main className={'flex w-full flex-col items-center justify-center'}>
-			<div className={'absolute inset-0'}>
+			<div className={'absolute inset-0 hidden lg:block'}>
 				<Image
 					src={'/heroBg.png'}
 					alt={'hero-bg'}

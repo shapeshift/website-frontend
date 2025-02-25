@@ -93,7 +93,7 @@ export function Header({
 	return (
 		<>
 			<div>
-				<div className={'flex w-full items-center justify-between pt-6 lg:hidden'}>
+				<div className={'z-50 flex w-full items-center justify-between pt-6 lg:hidden'}>
 					<IconShapeshift />
 					<button
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
