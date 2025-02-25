@@ -56,6 +56,22 @@ const nextConfig = {
 			{source: '/newsroom', destination: '/resources/newsroom', permanent: true},
 			{source: '/newsroom/:slug', destination: '/resources/newsroom/:slug', permanent: true},
 
+			// Chains
+			{source: '/supported-assets', destination: '/resources/supported-chains', permanent: true},
+			{source: '/solana', destination: '/resources/supported-chains/solana', permanent: true},
+			{source: '/optimism', destination: '/resources/supported-chains/optimism', permanent: true},
+			{source: '/polygon', destination: '/resources/supported-chains/polygon', permanent: true},
+			{source: '/avalanche', destination: '/resources/supported-chains/avalanche', permanent: true},
+			{source: '/ethereum', destination: '/resources/supported-chains/ethereum', permanent: true},
+			{source: '/bitcoin', destination: '/resources/supported-chains/bitcoin', permanent: true},
+			{source: '/arbitrum', destination: '/resources/supported-chains/arbitrum', permanent: true},
+			{source: '/dogecoin', destination: '/resources/supported-chains/dogecoin', permanent: true},
+			{source: '/fox', destination: '/resources/supported-chains/fox', permanent: true},
+			{source: '/atom', destination: '/resources/supported-chains/cosmos', permanent: true},
+			{source: '/binance-chain', destination: '/resources/supported-chains/binance-chain', permanent: true},
+			{source: '/rune', destination: '/resources/supported-chains/rune', permanent: true},
+			{source: '/base', destination: '/resources/supported-chains/base', permanent: true},
+
 			// Reports
 			{
 				source: '/reports/algorithmic-stablecoins',
