@@ -33,7 +33,6 @@ async function getPageData(): Promise<TPage | null> {
 	);
 
 	const pagesJson = await pages.json();
-	console.log(pagesJson);
 	return pagesJson.data;
 }
 
