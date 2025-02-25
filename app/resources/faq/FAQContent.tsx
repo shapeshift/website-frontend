@@ -17,7 +17,7 @@ import type {ReactNode} from 'react';
  * - Smooth scroll to section on click
  * - Sticky navigation sidebar
  ********************************************************************************************/
-export default function FaqPage({faqData}: {faqData: TFaqData}): ReactNode {
+export function FAQContent({faqData}: {faqData: TFaqData}): ReactNode {
 	const [activeSection, setActiveSection] = useState<string>('');
 	const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 	const isManualScrolling = useRef(false);
