@@ -533,7 +533,7 @@ function SaverVaultFeature(): ReactNode {
 			<div className={'flex flex-row justify-between'}>
 				<Image
 					src={'/supported-chains/feature-vaults.png'}
-					alt={'Ledger'}
+					alt={'feature-vaults'}
 					width={349}
 					height={204}
 				/>
