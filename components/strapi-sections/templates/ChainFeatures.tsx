@@ -61,7 +61,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 	return (
 		<div
 			className={
-				'container col-span-6 grid aspect-[1400/476] h-[476px] grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-10'
+				'container col-span-1 grid aspect-[1400/476] h-[476px] grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-6 lg:col-span-6 lg:p-10'
 			}
 			style={{
 				backgroundImage: "url('/supported-chains/grid-bg.png')",
@@ -124,7 +124,7 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -175,7 +175,7 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -216,7 +216,7 @@ function SolanaJupiterExchangeFeature(): ReactNode {
 		<div
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col-reverse rounded-b-2xl col-span-2'
+				'flex-col-reverse rounded-b-2xl col-span-1 lg:col-span-2'
 			)}>
 			<div className={'p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{'Jupiter Exchange'}</div>
@@ -244,7 +244,7 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 		<div
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col-reverse rounded-b-2xl col-span-2'
+				'flex-col-reverse rounded-b-2xl col-span-1 lg:col-span-2'
 			)}>
 			<div className={'p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{'Multichain Snap'}</div>
@@ -313,7 +313,7 @@ function YourKeyFeature(): ReactNode {
 		<div
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col-reverse rounded-b-2xl col-span-2'
+				'flex-col-reverse rounded-b-2xl col-span-1 lg:col-span-2'
 			)}>
 			<div className={'p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{'You control your keys'}</div>
@@ -342,7 +342,7 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -391,7 +391,7 @@ function ThorChainTradeFeature(): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -454,7 +454,7 @@ function RFoxFeature(): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -494,7 +494,7 @@ function ThorChainLendingFeature(): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -554,7 +554,7 @@ function LiquidityPoolFeature(): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -607,7 +607,7 @@ function ThorChainRunePoolFeature(): ReactNode {
 			}}
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
-				'flex-col col-span-3'
+				'flex-col col-span-1 lg:col-span-3'
 			)}>
 			<div className={'aspect-video p-10 text-left'}>
 				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
@@ -813,7 +813,7 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 			</h1>
 
 			<div className={'grid gap-2'}>
-				<div className={'container grid grid-cols-6 gap-2'}>{featuresComponents}</div>
+				<div className={'container grid grid-cols-1 gap-2 lg:grid-cols-6'}>{featuresComponents}</div>
 			</div>
 		</section>
 	);

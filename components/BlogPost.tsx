@@ -24,7 +24,7 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 		<Link
 			href={`/resources/blog/${post.slug}`}
 			className={cl(
-				'rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
+				'rounded-2xl p-6 transition-all bg-secondBg duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
 				className
 			)}>
 			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>

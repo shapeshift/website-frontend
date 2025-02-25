@@ -1,18 +1,24 @@
+import {IconActivityRings} from './common/icons/IconActivityRings';
 import {IconBlog} from './common/icons/IconBlog';
 import {IconChains} from './common/icons/IconChains';
 import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
 import {IconDocs} from './common/icons/IconDocs';
+import {IconDollar} from './common/icons/IconDollar';
 import {IconFox} from './common/icons/IconFox';
+import {IconGlobe} from './common/icons/IconGlobe';
 import {IconGovern} from './common/icons/IconGovern';
+import {IconHeart} from './common/icons/IconHeart';
 import {IconKey} from './common/icons/IconKey';
 import {IconMedium} from './common/icons/IconMedium';
 import {IconMobile} from './common/icons/IconMobile';
 import {IconPercent} from './common/icons/IconPercent';
 import {IconQuestion} from './common/icons/IconQuestion';
 import {IconResource} from './common/icons/IconResource';
+import {IconShield} from './common/icons/IconShield';
 import {IconTelegram} from './common/icons/IconTelegram';
 import {IconTrade} from './common/icons/IconTrade';
+import {IconTriLink} from './common/icons/IconTriLink';
 import {IconTwitter} from './common/icons/IconTwitter';
 import {IconWarpcast} from './common/icons/IconWarpcast';
 
@@ -243,27 +249,27 @@ export const landingCards: TCardsRowSection = {
 export const foxTokenBenefits = [
 	{
 		title: 'Work from anywhere in the World.',
-		icon: null
+		icon: <IconGlobe />
 	},
 	{
 		title: 'Get healthcare coverage (for US based workers)*',
-		icon: null
+		icon: <IconHeart />
 	},
 	{
 		title: 'Work anonymously',
-		icon: null
+		icon: <IconShield />
 	},
 	{
 		title: 'Optional W2s for US contributors*',
-		icon: null
+		icon: <IconActivityRings />
 	},
 	{
 		title: 'Get paid in USDC, FOX, or Fiat*',
-		icon: null
+		icon: <IconDollar />
 	},
 	{
 		title: 'Work with a fully distributed team of top talent',
-		icon: null
+		icon: <IconTriLink />
 	}
 ];
 

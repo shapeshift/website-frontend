@@ -14,7 +14,7 @@ export function Card({data}: {data: TCard}): ReactNode {
 				'w-full',
 				data.isTextFirst ? 'flex-col' : 'flex-col-reverse'
 			)}>
-			<div className={'p-10'}>
+			<div className={'h-1/2 p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 				<div className={'text-gray-500'}>{data?.description}</div>
 			</div>

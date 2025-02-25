@@ -104,7 +104,7 @@ export function Header({
 				<AnimatePresence>
 					{isMenuOpen && (
 						<motion.div
-							className={'fixed left-0 top-0 z-50 h-screen w-full bg-bg px-4 py-6'}
+							className={'fixed left-0 top-0 z-50 h-screen w-full overflow-y-auto bg-bg px-4 py-6'}
 							{...mobileMenuAnimation}>
 							<div className={'flex items-center justify-between'}>
 								<IconShapeshift />
@@ -115,67 +115,73 @@ export function Header({
 								</button>
 							</div>
 
-							<div className={'mt-10'}>
-								<Link
-									href={'/'}
-									onClick={() => setIsMenuOpen(false)}
-									className={'mb-2 block rounded-2xl bg-secondBg p-8 text-2xl'}>
-									{'Home'}
-								</Link>
+							<div className={'flex min-h-[calc(100vh-100px)] flex-col justify-between'}>
+								<div className={'mt-10'}>
+									<Link
+										href={'/'}
+										onClick={() => setIsMenuOpen(false)}
+										className={'mb-2 block rounded-2xl bg-secondBg p-8 text-2xl'}>
+										{'Home'}
+									</Link>
 
-								<div className={'space-y-2'}>
-									{headerTabs.map(tab => (
-										<div
-											key={tab.name}
-											className={'overflow-hidden rounded-2xl bg-secondBg'}>
-											<button
-												onClick={() => {
-													setExpandedSection(expandedSection === tab.value ? '' : tab.value);
-												}}
-												className={'flex w-full items-center justify-between p-6 text-2xl'}>
-												{tab.name}
-												<div
-													className={'flex items-center gap-2 rounded-[100%] bg-white/5 p-2'}>
-													<AnimatedPlusMinusIcon isOpen={expandedSection === tab.value} />
-												</div>
-											</button>
-											<AnimatePresence>
-												{expandedSection === tab.value && (
-													<motion.div
-														className={'space-y-4 p-6 pt-0'}
-														{...expandAnimation}>
-														{mobileTabs
-															.find(t => t.value === tab.value)
-															?.items?.map(item => (
-																<motion.div
-																	initial={{opacity: 0, x: -20}}
-																	animate={{opacity: 1, x: 0}}
-																	transition={{delay: 0.1}}
-																	key={item.name}>
-																	<Link
-																		onClick={() => setIsMenuOpen(false)}
-																		href={item.href}
-																		className={'flex gap-4 pt-6 text-lg'}>
-																		<div
-																			className={
-																				'flex w-6 items-center justify-center gap-2'
-																			}>
-																			{item.icon}
-																		</div>
-																		<div>{item.name}</div>
-																	</Link>
-																</motion.div>
-															))}
-													</motion.div>
-												)}
-											</AnimatePresence>
-										</div>
-									))}
+									<div className={'space-y-2'}>
+										{headerTabs.map(tab => (
+											<div
+												key={tab.name}
+												className={'overflow-hidden rounded-2xl bg-secondBg'}>
+												<button
+													onClick={() => {
+														setExpandedSection(
+															expandedSection === tab.value ? '' : tab.value
+														);
+													}}
+													className={'flex w-full items-center justify-between p-6 text-2xl'}>
+													{tab.name}
+													<div
+														className={
+															'flex items-center gap-2 rounded-[100%] bg-white/5 p-2'
+														}>
+														<AnimatedPlusMinusIcon isOpen={expandedSection === tab.value} />
+													</div>
+												</button>
+												<AnimatePresence>
+													{expandedSection === tab.value && (
+														<motion.div
+															className={'space-y-4 p-6 pt-0'}
+															{...expandAnimation}>
+															{mobileTabs
+																.find(t => t.value === tab.value)
+																?.items?.map(item => (
+																	<motion.div
+																		initial={{opacity: 0, x: -20}}
+																		animate={{opacity: 1, x: 0}}
+																		transition={{delay: 0.1}}
+																		key={item.name}>
+																		<Link
+																			onClick={() => setIsMenuOpen(false)}
+																			href={item.href}
+																			className={'flex gap-4 pt-6 text-lg'}>
+																			<div
+																				className={
+																					'flex w-6 items-center justify-center gap-2'
+																				}>
+																				{item.icon}
+																			</div>
+																			<div>{item.name}</div>
+																		</Link>
+																	</motion.div>
+																))}
+														</motion.div>
+													)}
+												</AnimatePresence>
+											</div>
+										))}
+									</div>
 								</div>
-							</div>
-
-							<div className={'fixed inset-x-4 bottom-6'}>
-								<div className={'mb-4 flex items-center gap-2 rounded-2xl border border-stroke p-4'}>
+								<div
+									className={
+										'mb-10 mt-6 flex items-center gap-2 rounded-2xl border border-stroke p-4'
+									}>
 									<IconPlanet className={'text-white/50'} />
 									<span>{'English'}</span>
 								</div>
