@@ -45,6 +45,7 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 
 				<div className={'mt-[240px]'}>
 					<ChainFeatures
+						features={chain.features}
 						chainName={chain.name}
 						foxImg={chain.foxImg}
 					/>
