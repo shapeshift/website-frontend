@@ -14,7 +14,7 @@ import type {ReactNode} from 'react';
 
 export default function SupportedChainsPage(): ReactNode {
 	const searchParams = useSearchParams();
-	const currentTab = searchParams.get('tab');
+	const currentTab = searchParams.get('tab') || 'wallets';
 
 	return (
 		<main className={'relative mt-40 flex w-full flex-col items-center justify-center gap-20'}>
@@ -97,7 +97,7 @@ export default function SupportedChainsPage(): ReactNode {
 								/>
 							))}
 						</div>
-						{currentTab === 'wallets' && <StrapiWallets />}
+						{!currentTab || (currentTab === 'wallets' && <StrapiWallets />)}
 						{currentTab === 'chains' && <StrapiChains />}
 					</section>
 

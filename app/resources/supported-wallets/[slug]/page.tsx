@@ -7,17 +7,57 @@ import {Banner} from '@/components/common/Banner';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {getSupportedWallet} from '@/components/utils/query';
 
+import type {TSupportedWalletData} from '@/types/strapi';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
-const WALLET_NAME = 'KeepKey';
-const WALLET_DESCRIPTION =
-	'ShapeShift is the main interface for KeepKey, letting you manage and trade your assets securely and easily. With this combo, you get strong security and user-friendly features for a great crypto experience';
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+	const {slug} = await params;
+	if (!slug) {
+		return notFound();
+	}
 
-export const metadata: Metadata = {
-	title: `ShapeShift supports ${WALLET_NAME}`,
-	description: WALLET_DESCRIPTION
-};
+	const response = await fetch(
+		`${process.env.STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
+		{
+			headers: {
+				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+			}
+		}
+	);
+	const data = await response.json();
+	const wallet = data.data[0] as TSupportedWalletData;
+	if (!wallet) {
+		return notFound();
+	}
+
+	const imageUrl = wallet.featuredImg.formats.thumbnail.url;
+	return {
+		title: `${wallet.name} | ShapeShift Wallets`,
+		description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`,
+		keywords: `${wallet.name}, Shapeshift`,
+		openGraph: {
+			title: wallet.name,
+			description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`,
+			type: 'website',
+			images: [
+				{
+					url: `${process.env.STRAPI_URL}${imageUrl}`
+				}
+			]
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: wallet.name,
+			description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`,
+			images: [
+				{
+					url: `${process.env.STRAPI_URL}${imageUrl}`
+				}
+			]
+		}
+	};
+}
 
 export default async function WalletPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	const {slug} = await params;

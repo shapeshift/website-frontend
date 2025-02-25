@@ -27,12 +27,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	const imageUrl = post.featuredImg.formats.thumbnail.url;
 
 	return {
-		title: `${post.title} | ShapeShift Blog`,
-		description: post.summary || `Read ${post.title} on ShapeShift Blog`,
+		title: `${post.title} | ShapeShift Newsroom`,
+		description: post.postSummary || `Read ${post.title} on ShapeShift Newsroom`,
 		keywords: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags,
 		openGraph: {
 			title: post.title,
-			description: post.summary,
+			description: post.postSummary,
 			type: 'article',
 			publishedTime: post.publishedAt,
 			images: [
@@ -46,7 +46,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 		twitter: {
 			card: 'summary_large_image',
 			title: post.title,
-			description: post.summary || `Read ${post.title} on ShapeShift Blog`,
+			description: post.postSummary || `Read ${post.title} on ShapeShift Newsroom`,
 			images: [
 				{
 					url: `${process.env.STRAPI_URL}${imageUrl}`
@@ -56,6 +56,6 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	};
 }
 
-export default function BlogPostLayout({children}: {children: React.ReactNode}): React.ReactNode {
+export default function NewsroomPostLayout({children}: {children: React.ReactNode}): React.ReactNode {
 	return children;
 }

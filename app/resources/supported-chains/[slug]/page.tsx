@@ -8,7 +8,57 @@ import {ChainHeader} from '@/components/strapi-sections/templates/ChainHeader';
 import {ChainHero} from '@/components/strapi-sections/templates/ChainHero';
 import {getSupportedChain} from '@/components/utils/query';
 
+import type {TSupportedChainData} from '@/types/strapi';
+import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
+
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+	const {slug} = await params;
+	if (!slug) {
+		return notFound();
+	}
+
+	const response = await fetch(
+		`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
+		{
+			headers: {
+				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+			}
+		}
+	);
+	const data = await response.json();
+	const chain = data.data[0] as TSupportedChainData;
+	if (!chain) {
+		return notFound();
+	}
+
+	const imageUrl = chain.featuredImg.formats.thumbnail.url;
+	return {
+		title: `${chain.name} | ShapeShift Chains`,
+		description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
+		keywords: `${chain.name}, Shapeshift`,
+		openGraph: {
+			title: chain.name,
+			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
+			type: 'website',
+			images: [
+				{
+					url: `${process.env.STRAPI_URL}${imageUrl}`
+				}
+			]
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: chain.name,
+			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
+			images: [
+				{
+					url: `${process.env.STRAPI_URL}${imageUrl}`
+				}
+			]
+		}
+	};
+}
 
 export default async function ChainPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	const {slug} = await params;
