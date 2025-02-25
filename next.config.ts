@@ -71,6 +71,7 @@ const nextConfig = {
 			{source: '/binance-chain', destination: '/resources/supported-chains/binance-chain', permanent: true},
 			{source: '/rune', destination: '/resources/supported-chains/rune', permanent: true},
 			{source: '/base', destination: '/resources/supported-chains/base', permanent: true},
+			{source: '/thorchain', destination: '/resources/supported-chains/thorchain', permanent: true},
 
 			// Reports
 			{
@@ -106,7 +107,8 @@ const nextConfig = {
 			{source: '/1inch-wallet', destination: 'resources/supported-wallets/1inch-wallet', permanent: true},
 			{source: '/frame-wallet', destination: 'resources/supported-wallets/frame', permanent: true},
 			{source: '/zerion-wallet', destination: 'resources/supported-wallets/zerion', permanent: true},
-			{source: '/rainbow-wallet', destination: 'resources/supported-wallets/rainbow', permanent: true}
+			{source: '/rainbow-wallet', destination: 'resources/supported-wallets/rainbow', permanent: true},
+			{source: '/safe-wallet', destination: 'resources/supported-wallets/safe-wallet', permanent: true}
 
 			// {
 			// 	source: '/roadmap',
