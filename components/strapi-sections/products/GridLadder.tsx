@@ -13,7 +13,7 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 	}
 
 	return (
-		<section className={'container mb-60'}>
+		<section className={'container mb-[120px] lg:mb-60'}>
 			<div className={'grid gap-x-[120px] gap-y-40 lg:grid-cols-1'}>
 				{data.steps.map((step, index) => (
 					<div
@@ -41,6 +41,15 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 								/>
 							</div>
 						</div>
+						{step.buttonCta && (
+							<Button
+								variant={'blue'}
+								title={step.buttonCta.title}
+								href={step.buttonCta.url}
+								hasArrow
+								className={'mt-10 block !w-full lg:hidden'}
+							/>
+						)}
 					</div>
 				))}
 			</div>
@@ -63,6 +72,7 @@ const LadderItem = ({data}: {data: TGridLadderStep}): ReactNode | null => {
 					title={data.buttonCta.title}
 					href={data.buttonCta.url}
 					hasArrow
+					className={'hidden lg:block'}
 				/>
 			)}
 		</div>

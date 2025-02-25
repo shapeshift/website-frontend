@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import {cl} from '../utils/cl';
 import {IconArrow} from './icons/IconArrow';
+import {IconClose} from './icons/IconClose';
 import {IconMinus} from './icons/IconMinus';
 import {IconPlus} from './icons/IconPlus';
 
@@ -11,7 +12,7 @@ const icons = {
 	arrow: <IconArrow className={'text-white'} />,
 	plus: <IconPlus className={'text-white'} />,
 	minus: <IconMinus className={'text-white'} />,
-	cross: <IconPlus className={'rotate-45 text-white'} />
+	cross: <IconClose className={'text-white'} />
 };
 
 export function RoundButton({

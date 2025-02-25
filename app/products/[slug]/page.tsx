@@ -55,7 +55,7 @@ export default async function Page({params}: {params: Promise<{slug: string}>}):
 
 	return (
 		<main className={'flex w-full flex-col items-center justify-center'}>
-			<div className={'absolute inset-0'}>
+			<div className={'absolute inset-0 hidden lg:block'}>
 				<Image
 					src={'/heroBg.png'}
 					alt={'hero-bg'}

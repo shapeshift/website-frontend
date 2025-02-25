@@ -189,8 +189,8 @@ export function TradingWidget(): ReactNode {
 	};
 
 	return (
-		<div className={'flex w-[400px] flex-col rounded-2xl bg-[#17191c]'}>
-			<div className={'mb-6 flex items-center justify-between p-6'}>{'Trade/Bridge'}</div>
+		<div className={'flex max-w-[400px] flex-col rounded-2xl bg-[#17191c] lg:w-[400px]'}>
+			<div className={'flex items-center justify-between p-4 lg:p-6'}>{'Trade/Bridge'}</div>
 
 			<div className={'mb-2 px-6'}>
 				<div className={'mb-2 text-sm'}>{'Pay With'}</div>
@@ -222,7 +222,7 @@ export function TradingWidget(): ReactNode {
 				/>
 			</div>
 
-			<div className={'relative flex items-center justify-center p-2'}>
+			<div className={'relative flex items-center justify-center px-2 lg:p-2'}>
 				<div
 					className={cl(
 						'relative z-10 group rounded-full border p-3 cursor-pointer',
@@ -282,7 +282,7 @@ export function TradingWidget(): ReactNode {
 				</div>
 			)}
 
-			<div className={'w-full rounded-b-2xl border-t border-t-white/5 bg-[#1e2024] px-5 py-4'}>
+			<div className={'w-full rounded-b-2xl border-t border-t-white/5 bg-[#1e2024] px-4 py-3 lg:px-5 lg:py-4'}>
 				<button className={'w-full rounded-2xl bg-blue py-4 font-medium hover:bg-blueHover'}>
 					{'Get Started'}
 				</button>

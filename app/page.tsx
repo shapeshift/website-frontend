@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import {LatestBlogPosts} from '@/components/BlogList';
 import {Banner} from '@/components/common/Banner';
-import {ShapeshiftLogo} from '@/components/common/icons/ShapeshiftLogo';
 import {TabItem} from '@/components/common/TabItem';
 import {landingCards} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
@@ -18,46 +17,62 @@ import type {ReactNode} from 'react';
 export default function HomePage(): ReactNode {
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
-			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl'}>
+			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
 				<Image
 					src={'/homepageBanner.png'}
 					alt={'homepage_banner'}
 					width={'3776'}
 					height={'1628'}
-					className={'absolute left-0 top-0 -z-10 size-full rounded-2xl object-cover'}
+					className={'absolute left-0 top-0 -z-10 hidden size-full rounded-2xl object-cover lg:block'}
 				/>
 
-				<div className={'container flex w-full items-center justify-between pb-20 pt-6'}>
-					<div className={'flex h-full max-w-[800px] flex-col justify-between'}>
-						<ShapeshiftLogo />
+				<Image
+					src={'/homepageBanner.png'}
+					alt={'homepage_banner'}
+					width={'3776'}
+					height={'1628'}
+					className={'absolute left-0 top-0 -z-10 size-full rounded-2xl object-cover lg:hidden'}
+				/>
+
+				<div className={'container flex w-full flex-col items-center justify-between pb-20 pt-6 lg:flex-row'}>
+					<div className={'flex h-full max-w-[800px] flex-col justify-end'}>
 						<div className={'flex flex-col gap-6'}>
-							<h1 className={'text-7xl text-white'}>
+							<h1
+								className={
+									'mb-6 text-center text-[40px] leading-10 text-white lg:text-left lg:text-7xl'
+								}>
 								{'Your multichain '}
 								{'crypto home base.'}
 							</h1>
 
-							<p className={'text-xl text-white'}>
+							<p className={'mb-[60px] text-center text-sm text-white lg:text-left lg:text-xl'}>
 								{
 									'Your gateway to trading, tracking, earning, and exploring crypto effortlessly. A community-owned, private, non-custodial, multichain platform putting you in full control of your digital assets.'
 								}
 							</p>
 						</div>
 					</div>
-					<div className={'h-[508px] w-[500px]'}>
+					<div className={''}>
 						<TradingWidget />
 					</div>
 				</div>
 			</div>
-			<div className={'container'}>
-				<div className={'mb-14 mt-40 flex flex-col'}>
-					<h1 className={'text-7xl text-white'}>{'Your Wallet. One App.'}</h1>
-					<h1 className={'text-7xl text-blue'}>{'Endless Opportunity.'}</h1>
+			<div className={'container mt-[120px]'}>
+				<div className={'mb-14 mt-40 inline'}>
+					<span className={'mb-6 text-[40px] leading-10 text-white lg:text-7xl'}>
+						{'Your Wallet. One App.'}
+					</span>
+					<br className={'hidden lg:block'} />
+					&nbsp;
+					<span className={'text-[40px] leading-10 text-blue lg:text-7xl'}>{'Endless Opportunity.'}</span>
 				</div>
 
 				<CardsRow data={landingCards}>{(card: TCard) => <LandingCard data={card} />}</CardsRow>
 
-				<div className={'mb-[240px]'}>
-					<h1 className={'mb-14 text-7xl text-white'}>{'Explore our features.'}</h1>
+				<div className={'mb-[120px] lg:mb-60'}>
+					<h1 className={'mb-8 text-[40px] leading-10 text-white lg:mb-14 lg:text-7xl'}>
+						{'Explore our features.'}
+					</h1>
 					<div className={'group relative h-[674px] overflow-hidden rounded-2xl'}>
 						<Image
 							src={'/landing/landingTabsBg.png'}
@@ -75,7 +90,7 @@ export default function HomePage(): ReactNode {
 							className={'absolute bottom-0 left-1/2 -translate-x-1/2'}
 						/>
 
-						<div className={'absolute left-0 top-0 mt-16 flex size-full flex-col items-center'}>
+						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
 							<h1 className={'mb-7 text-center text-[40px] leading-[40px] text-white'}>
 								{'Multichain crypto home base'}
 							</h1>
@@ -89,8 +104,8 @@ export default function HomePage(): ReactNode {
 							</div>
 						</div>
 					</div>
-					<div className={'mb-[240px] mt-2 grid w-full grid-cols-3 gap-2'}>
-						<Card className={'col-span-2 row-span-1'}>
+					<div className={'mb-[120px] mt-2 grid w-full grid-cols-1 gap-2 lg:mb-60 lg:grid-cols-3'}>
+						<Card className={'col-span-1 lg:col-span-2 lg:row-span-1'}>
 							<Image
 								src={'/landing/landingCard1.png'}
 								alt={'tab_bg'}
@@ -133,7 +148,7 @@ export default function HomePage(): ReactNode {
 							/>
 						</Card>
 						<Card
-							className={'col-span-3'}
+							className={'col-span-1 row-span-1 lg:col-span-3'}
 							href={'/'}>
 							<Image
 								src={'/landing/landingCard5.png'}
@@ -144,7 +159,9 @@ export default function HomePage(): ReactNode {
 							/>
 						</Card>
 					</div>
-					<LatestBlogPosts limit={3} />
+					<div className={'mb-[120px] lg:mb-60'}>
+						<LatestBlogPosts limit={2} />
+					</div>
 
 					<StrapiFAQ />
 				</div>

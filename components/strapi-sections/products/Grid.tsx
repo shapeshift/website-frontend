@@ -13,9 +13,9 @@ export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 	}
 
 	return (
-		<section className={'container mb-60 grid w-full grid-cols-3 gap-2'}>
+		<section className={'container mb-60 grid w-full grid-cols-1 gap-2 lg:grid-cols-3'}>
 			<div
-				className={cl('col-span-1 row-span-2 rounded-2xl')}
+				className={'col-span-1 row-span-3 hidden rounded-2xl lg:block'}
 				style={{
 					background: 'linear-gradient(180deg, #FBA590 0%, #AE5367 50%, #1F5A9E 100%)',
 					padding: 2
@@ -36,17 +36,20 @@ export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 					</div>
 				</div>
 			</div>
+			<div>
+				<div className={'mb-6 text-left text-[28px] leading-[32px] lg:hidden'}>{data?.cardCta[0]?.title}</div>
+			</div>
 			<Card
 				data={data?.card[0]}
-				className={'col-span-2 md:h-[356px]'}
+				className={'col-span-1 h-[356px] lg:col-span-2'}
 			/>
 			<Card
 				data={data?.card[1]}
-				className={'col-span-1 md:h-[356px]'}
+				className={'col-span-1 h-[356px]'}
 			/>
 			<Card
 				data={data?.card[2]}
-				className={'col-span-1 md:h-[356px]'}
+				className={'col-span-1 h-[356px]'}
 			/>
 		</section>
 	);
@@ -55,7 +58,7 @@ export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 function Card({data, className}: {data: TCard; className: string}): ReactNode {
 	return (
 		<div className={`relative overflow-hidden rounded-2xl bg-secondBg ${className}`}>
-			<div className={'relative z-50 p-10'}>
+			<div className={'relative z-30 p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 				<div className={'text-gray-500'}>{data?.description}</div>
 			</div>

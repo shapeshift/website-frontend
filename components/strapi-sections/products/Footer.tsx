@@ -12,10 +12,7 @@ export default function Footer({data}: {data: TFooterSection}): ReactNode | null
 	}
 
 	return (
-		<section
-			className={
-				'relative mb-40 h-[100px] w-full max-w-[1400px] overflow-hidden rounded-2xl sm:h-[200px] md:h-[300px] lg:h-[504px]'
-			}>
+		<section className={'relative mb-40 h-[424px] w-full max-w-[1400px] overflow-hidden rounded-2xl lg:h-[504px]'}>
 			<div className={'mx-auto'}>
 				{data?.imageBg?.url && (
 					<Image
@@ -23,7 +20,7 @@ export default function Footer({data}: {data: TFooterSection}): ReactNode | null
 						alt={data?.title}
 						width={2800}
 						height={1008}
-						className={'absolute inset-0 w-full object-cover'}
+						className={'absolute inset-0 size-full object-cover'}
 					/>
 				)}
 
@@ -41,6 +38,7 @@ export default function Footer({data}: {data: TFooterSection}): ReactNode | null
 						href={data?.buttonCta?.url ?? '/'}
 						title={data?.buttonCta?.title}
 						hasArrow
+						className={'w-full lg:w-[232px]'}
 					/>
 				</div>
 			</div>

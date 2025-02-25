@@ -629,7 +629,9 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 
 	return (
 		<section className={'container flex flex-col'}>
-			<h1 className={'mb-16 max-w-[700px] text-7xl'}>{'Explore our features.'}</h1>
+			<h1 className={'mb-6 max-w-[700px] text-[28px] leading-[32px] lg:mb-16 lg:text-7xl'}>
+				{'Explore our features.'}
+			</h1>
 
 			<div className={'grid gap-2'}>
 				<div className={'container grid grid-cols-6 gap-2'}>{featuresComponents}</div>

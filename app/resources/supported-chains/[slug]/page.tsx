@@ -20,10 +20,10 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'container mt-[220px] flex flex-col justify-center'}>
+			<div className={'container mt-20 flex flex-col justify-center lg:mt-[220px]'}>
 				<ChainHeader chainName={chain.name} />
 
-				<div className={'mb-[240px] mt-16'}>
+				<div className={'mb-20 mt-16 lg:mb-60'}>
 					<ChainHero
 						url={`${process.env.STRAPI_URL}${chain?.featuredImg?.url}`}
 						name={chain?.name}
@@ -36,14 +36,14 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 					description={chain.description}
 				/>
 
-				<div className={'mt-[240px]'}>
+				<div className={'mt-[120px] lg:mt-60'}>
 					<ChainActions
 						features={chain.actions}
 						chainName={chain.name}
 					/>
 				</div>
 
-				<div className={'mt-[240px]'}>
+				<div className={'mt-[120px] lg:mt-60'}>
 					<ChainFeatures
 						features={chain.features}
 						chainName={chain.name}
@@ -51,7 +51,7 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 					/>
 				</div>
 
-				<div className={'mt-[240px]'}>
+				<div className={'mt-[120px] lg:mt-60'}>
 					<Banner />
 				</div>
 			</div>

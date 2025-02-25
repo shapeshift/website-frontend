@@ -9,13 +9,13 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 	}
 
 	return (
-		<section className={'container relative mb-60'}>
-			<div className={'grid lg:grid-cols-2 lg:gap-2'}>
+		<section className={'container relative mb-[120px] lg:mb-60'}>
+			<div className={'grid gap-2 lg:grid-cols-2'}>
 				<div className={'grid max-h-[744px] gap-2 overflow-hidden rounded-2xl'}>
 					<div className={'grid-span-1 p-10'}>
-						<p className={'text-[40px] leading-[48px]'}>{data?.title}</p>
+						<p className={'text-[28px] leading-[32px] lg:text-[40px] lg:leading-[48px]'}>{data?.title}</p>
 					</div>
-					<div className={'grid-span-3 overflow-hidden rounded-2xl'}>
+					<div className={'grid-span-3	 overflow-hidden rounded-2xl'}>
 						<GridCard
 							data={data?.cards[0]}
 							imageWidth={696}
@@ -23,7 +23,7 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 						/>
 					</div>
 				</div>
-				<div className={'grid max-h-[744px] grid-rows-2 gap-2'}>
+				<div className={'grid grid-rows-2 gap-2 lg:max-h-[744px]'}>
 					<div className={'row-span-1 overflow-hidden rounded-2xl'}>
 						<GridCard
 							data={data?.cards[1]}

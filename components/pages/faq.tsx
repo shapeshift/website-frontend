@@ -94,11 +94,13 @@ export default function FaqPage({faqData}: {faqData: TFaqData}): ReactNode {
 	};
 
 	return (
-		<div className={'relative mt-40 flex w-full flex-col items-center justify-center gap-20'}>
+		<div className={'relative mt-10 flex w-full flex-col items-center justify-center lg:mt-40 lg:gap-20'}>
 			<div className={'container flex flex-col'}>
-				<div className={'max-w-[600px] text-7xl'}>{faqData?.title}</div>
-				<div className={'my-14 flex justify-between'}>
-					<div className={'flex w-3/4 flex-col gap-10'}>
+				<div className={'text-center text-[40px] leading-10 lg:max-w-[600px] lg:text-left lg:text-7xl'}>
+					{faqData?.title}
+				</div>
+				<div className={'my-14 flex justify-center lg:justify-between'}>
+					<div className={'flex flex-col gap-10 lg:w-3/4'}>
 						{faqData?.faqSection.map(section => (
 							<div
 								key={section.id}
@@ -118,7 +120,7 @@ export default function FaqPage({faqData}: {faqData: TFaqData}): ReactNode {
 						))}
 					</div>
 
-					<div className={'sticky top-[360px] col-span-1 ml-20 h-full'}>
+					<div className={'sticky top-[360px] ml-20 hidden h-full lg:block'}>
 						<div className={'flex flex-col gap-4'}>
 							{faqData?.faqSection.map(section => (
 								<button
@@ -135,9 +137,7 @@ export default function FaqPage({faqData}: {faqData: TFaqData}): ReactNode {
 					</div>
 				</div>
 
-				<div className={'col-span-4'}>
-					<Banner />
-				</div>
+				<Banner />
 			</div>
 		</div>
 	);
