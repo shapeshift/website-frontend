@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import {cl} from '@/components/utils/cl';
+
 import type {TCard, TGridDisplacedSection} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
@@ -15,7 +17,7 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 					<div className={'grid-span-1 p-10'}>
 						<p className={'text-[28px] leading-[32px] lg:text-[40px] lg:leading-[48px]'}>{data?.title}</p>
 					</div>
-					<div className={'grid-span-3	 overflow-hidden rounded-2xl'}>
+					<div className={'grid-span-3 overflow-hidden rounded-2xl'}>
 						<GridCard
 							data={data?.cards[0]}
 							imageWidth={696}
@@ -24,48 +26,40 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 					</div>
 				</div>
 				<div className={'grid grid-rows-2 gap-2 lg:max-h-[744px]'}>
-					<div className={'row-span-1 overflow-hidden rounded-2xl'}>
-						<GridCard
-							data={data?.cards[1]}
-							imageWidth={696}
-							imageHeight={168}
-						/>
-					</div>
-					<div className={'row-span-1 overflow-hidden rounded-2xl'}>
-						<GridCard
-							data={data?.cards[2]}
-							imageWidth={696}
-							imageHeight={168}
-						/>
-					</div>
+					<GridCard
+						className={'row-span-1 overflow-hidden'}
+						data={data?.cards[1]}
+						imageWidth={696}
+						imageHeight={168}
+					/>
+					<GridCard
+						className={'row-span-1 overflow-hidden'}
+						data={data?.cards[2]}
+						imageWidth={696}
+						imageHeight={168}
+					/>
 				</div>
 			</div>
 		</section>
 	);
 }
 
-const GridCard = ({
-	data,
-	imageWidth,
-	imageHeight
-}: {
-	data: TCard;
-	imageWidth: number;
-	imageHeight: number;
-}): ReactNode => {
+const GridCard = (props: {data: TCard; imageWidth: number; imageHeight: number; className?: string}): ReactNode => {
+	const {data, imageWidth, imageHeight, className} = props;
+
 	return (
-		<div className={'flex flex-col'}>
-			<div className={'bg-secondBg p-10'}>
+		<div className={cl('flex flex-col rounded-2xl bg-secondBg', className)}>
+			<div className={'p-10'}>
 				<p className={'text-2xl text-white'}>{data?.title}</p>
 				<p className={'text-gray-500'}>{data?.description}</p>
 			</div>
-			<div className={'overflow-hidden rounded-b-2xl'}>
+			<div className={'mt-auto overflow-hidden'}>
 				<Image
 					src={`${process.env.STRAPI_URL}${data?.image.url}`}
 					alt={data?.title}
 					width={imageWidth}
 					height={imageHeight}
-					className={'w-full object-cover'}
+					className={'w-full object-contain'}
 				/>
 			</div>
 		</div>

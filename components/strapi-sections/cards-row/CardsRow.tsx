@@ -6,13 +6,11 @@ import {RoundButton} from '../../common/RoundButton';
 import type {TCard, TCardsRowSection} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export default function CardsRow({
-	data,
-	children
-}: {
+export default function CardsRow(props: {
 	data: TCardsRowSection;
 	children: (card: TCard) => ReactNode;
 }): ReactNode | null {
+	const {data, children} = props;
 	if (!data) {
 		return null;
 	}
@@ -22,7 +20,7 @@ export default function CardsRow({
 			<div className={'mb-8 text-left text-[40px] font-normal leading-[48px] text-white lg:max-w-[60%]'}>
 				{data?.title}
 			</div>
-			<div className={'row-span-full grid place-items-start gap-2 lg:grid-cols-3'}>
+			<div className={'row-span-full grid place-items-start gap-2 md:grid-cols-3'}>
 				{data?.cards?.map((card): ReactNode => <Fragment key={card.id}>{children?.(card)}</Fragment>)}
 			</div>
 			{data?.ctaBlock && (
