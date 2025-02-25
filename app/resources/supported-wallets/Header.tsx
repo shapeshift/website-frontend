@@ -22,8 +22,13 @@ export function Header(data: THeaderData): ReactNode {
 				))}
 			</div>
 			<div className={'mb-10 flex flex-col items-center gap-2'}>
-				<h1 className={'mb-6 text-7xl'}>{`ShapeShift supports ${data.title}`}</h1>
-				<p className={'mx-auto max-w-screen-lg text-center text-xl text-gray-500'}>{data.description}</p>
+				<h1 className={'mb-6 text-center text-7xl'}>{`ShapeShift supports ${data.title}`}</h1>
+				<p
+					className={
+						'mx-auto max-w-screen-lg whitespace-break-spaces break-keep text-center text-xl text-gray-500'
+					}>
+					{data.description}
+				</p>
 			</div>
 			<Button
 				variant={'blue'}

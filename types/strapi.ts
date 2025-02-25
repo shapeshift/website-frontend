@@ -182,7 +182,7 @@ export type TBlogPost = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
-	imageFeatured: TStrapiImage;
+	featuredImg: TStrapiImage;
 	tags: string[];
 	type: string[];
 	summary: string;
@@ -230,8 +230,47 @@ export type TSupportedWalletData = {
 	name: string;
 	description: string;
 	slug: string;
-	image: TStrapiImage;
+	featuredImg: TStrapiImage;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
+};
+
+export type TSupportedChainData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	foxImg: TStrapiImage;
+	actions: string[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TNewsroomPost = {
+	id: number;
+	documentId: string;
+	slug: string;
+	title: string;
+	content: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	publishedOn: string;
+	featuredImg: TStrapiImage;
+	tags: string[];
+	category: string[];
+	author: string;
+	postSummary: string;
+	externalURL: string;
+};
+
+export type TNewsroomListResponse = {
+	data: TNewsroomPost[];
+	meta: {
+		pagination: TPagination;
+	};
 };

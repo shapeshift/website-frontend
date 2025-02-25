@@ -4,10 +4,10 @@ import {useMemo} from 'react';
 
 import {cl} from './utils/cl';
 
-import type {TBlogPost} from '@/types/strapi';
+import type {TNewsroomPost} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function BlogPost({post, className}: {post: TBlogPost; className?: string}): ReactNode {
+export function NewsPost({post, className}: {post: TNewsroomPost; className?: string}): ReactNode {
 	const formatDate = useMemo(
 		() =>
 			(date: string): string => {
@@ -22,7 +22,9 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 
 	return (
 		<Link
-			href={`/resources/blog/${post.slug}`}
+			rel={'noopener noreferrer'}
+			target={post.externalURL ? '_blank' : '_self'}
+			href={post.externalURL ? post.externalURL : `/resources/newsroom/${post.slug}`}
 			className={cl(
 				'rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
 				className
@@ -43,8 +45,8 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 
 			<div className={'mt-6 flex flex-col gap-2'}>
 				<div className={'flex items-center'}>
-					{post.type?.length > 1 && <p className={'mr-2 text-xs text-blue'}>{post?.type.join(', ')}</p>}
-					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
+					<p className={'mr-2 text-xs text-blue'}>{post.author || post.category}</p>
+					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedOn || post.publishedAt)}</p>
 				</div>
 				<div>
 					<p className={'text-2xl text-white'}>{post.title}</p>

@@ -32,10 +32,10 @@ export default async function WalletPage({params}: {params: Promise<{slug: strin
 			<div className={'context mt-[220px] flex flex-col justify-center'}>
 				<div className={'mb-12'}>
 					<Hero
-						url={`${process.env.STRAPI_URL}${wallet?.image?.url}`}
+						url={`${process.env.STRAPI_URL}${wallet?.featuredImg?.url}`}
 						name={wallet?.name}
-						width={wallet?.image?.width}
-						height={wallet?.image?.height}
+						width={wallet?.featuredImg?.width}
+						height={wallet?.featuredImg?.height}
 					/>
 				</div>
 				<Header

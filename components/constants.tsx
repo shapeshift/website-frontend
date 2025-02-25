@@ -347,6 +347,27 @@ export const blogTypes = [
 		slug: 'newsletter'
 	}
 ];
+export function blogTypesSlugToCategory(slug: string): string {
+	return blogTypes.find(tab => tab.slug === slug)?.title ?? slug;
+}
+
+export const newsroomCategories = [
+	{
+		title: 'All',
+		slug: 'all'
+	},
+	{
+		title: 'In The News',
+		slug: 'in-the-news'
+	},
+	{
+		title: 'Press Releases',
+		slug: 'press-releases'
+	}
+];
+export function newsroomCategoriesSlugToCategory(slug: string): string {
+	return newsroomCategories.find(tab => tab.slug === slug)?.title ?? slug;
+}
 
 export const SUPPORTED_TOKENS = [
 	{
@@ -405,9 +426,6 @@ export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
 	SOL: ['solana'],
 	ETH: ['arbitrum', 'base', 'optimism', 'ethereum']
 };
-export function blogTypesSlugToCategory(slug: string): string {
-	return blogTypes.find(tab => tab.slug === slug)?.title ?? slug;
-}
 
 export const blogTags = [
 	{
@@ -526,4 +544,95 @@ export const blogTags = [
 
 export function blogTagsSlugToCategory(slug: string): string {
 	return blogTags.find(tab => tab.slug === slug)?.title ?? slug;
+}
+
+export const newsroomTags = [
+	{
+		title: 'All tags',
+		slug: 'all'
+	},
+	{
+		title: 'Cryptocurrency',
+		slug: 'cryptocurrency'
+	},
+	{
+		title: 'DeFi',
+		slug: 'defi'
+	},
+	{
+		title: 'Ethereum',
+		slug: 'ethereum'
+	},
+	{
+		title: 'Finance',
+		slug: 'finance'
+	},
+	{
+		title: 'Culture',
+		slug: 'culture'
+	},
+	{
+		title: 'DEX',
+		slug: 'dex'
+	},
+	{
+		title: 'Bitcoin',
+		slug: 'bitcoin'
+	},
+	{
+		title: 'DAO',
+		slug: 'dao'
+	},
+	{
+		title: 'ShapeShift',
+		slug: 'shapeshift'
+	},
+	{
+		title: 'KeepKey',
+		slug: 'keepkey'
+	},
+	{
+		title: 'News',
+		slug: 'news'
+	},
+	{
+		title: 'Trading',
+		slug: 'trading'
+	},
+	{
+		title: 'Bitcoin Wallet',
+		slug: 'bitcoin-wallet'
+	},
+	{
+		title: 'Security',
+		slug: 'security'
+	},
+	{
+		title: 'Developer',
+		slug: 'developer'
+	},
+	{
+		title: 'Bitcoin Price',
+		slug: 'bitcoin-price'
+	},
+	{
+		title: 'Optimism',
+		slug: 'optimism'
+	},
+	{
+		title: 'Trader',
+		slug: 'trader'
+	},
+	{
+		title: 'Ledger',
+		slug: 'ledger'
+	},
+	{
+		title: 'Mobile',
+		slug: 'mobile'
+	}
+];
+
+export function newsroomTagsSlugToCategory(slug: string): string {
+	return newsroomTags.find(tab => tab.slug === slug)?.title ?? slug;
 }

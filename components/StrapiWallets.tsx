@@ -40,12 +40,12 @@ export function StrapiWallets(): ReactNode {
 										backgroundSize: 'cover',
 										backgroundPosition: 'center'
 									}}>
-									{wallet?.image?.url ? (
+									{wallet?.featuredImg?.url ? (
 										<Image
-											src={`${process.env.STRAPI_URL}${wallet?.image?.url}`}
+											src={`${process.env.STRAPI_URL}${wallet?.featuredImg?.url}`}
 											alt={wallet.slug}
-											width={wallet?.image?.width ?? 0}
-											height={wallet?.image?.height ?? 0}
+											width={wallet?.featuredImg?.width ?? 0}
+											height={wallet?.featuredImg?.height ?? 0}
 											className={'size-full object-contain'}
 										/>
 									) : (
@@ -56,7 +56,12 @@ export function StrapiWallets(): ReactNode {
 								<div className={'mt-6 flex flex-col gap-2'}>
 									<div>
 										<p className={'text-2xl text-white'}>{wallet.name}</p>
-										<p className={'text-sm text-gray-500'}>{wallet.description}</p>
+										<p
+											className={
+												'line-clamp-6 whitespace-break-spaces break-keep text-sm text-gray-500'
+											}>
+											{wallet.description}
+										</p>
 									</div>
 								</div>
 							</Link>
