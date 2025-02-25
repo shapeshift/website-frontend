@@ -1,12 +1,21 @@
+'use client';
+
+import {useSearchParams} from 'next/navigation';
+
 import {Banner} from '@/components/common/Banner';
 import {Button} from '@/components/common/Button';
 import {IconPlus} from '@/components/common/icons/IconPlus';
+import {TabItem} from '@/components/common/TabItem';
 import {allWallets, supportedChains} from '@/components/constants';
+import {StrapiChains} from '@/components/StrapiChains';
 import {StrapiWallets} from '@/components/StrapiWallets';
 
 import type {ReactNode} from 'react';
 
 export default function SupportedChainsPage(): ReactNode {
+	const searchParams = useSearchParams();
+	const currentTab = searchParams.get('tab');
+
 	return (
 		<main className={'relative mt-40 flex w-full flex-col items-center justify-center gap-20'}>
 			<div className={'flex w-full justify-center'}>
@@ -78,7 +87,18 @@ export default function SupportedChainsPage(): ReactNode {
 
 				<div className={'context flex flex-col justify-center'}>
 					<section className={'mt-16'}>
-						<StrapiWallets />
+						<div className={'mb-6 flex w-full flex-wrap gap-4 rounded-full p-1 pl-4'}>
+							{['Wallets', 'Chains'].map(tab => (
+								<TabItem
+									key={tab}
+									title={tab}
+									selected={currentTab === tab.toLowerCase() || (!currentTab && tab === 'wallets')}
+									href={`/resources/supported-chains?tab=${tab.toLowerCase()}`}
+								/>
+							))}
+						</div>
+						{currentTab === 'wallets' && <StrapiWallets />}
+						{currentTab === 'chains' && <StrapiChains />}
 					</section>
 
 					<div className={'my-16'}>
