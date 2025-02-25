@@ -28,12 +28,12 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 				className
 			)}>
 			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
-				{post?.imageFeatured?.url ? (
+				{post?.featuredImg?.url ? (
 					<Image
-						src={`${process.env.STRAPI_URL}${post?.imageFeatured?.url}`}
+						src={`${process.env.STRAPI_URL}${post?.featuredImg?.url}`}
 						alt={post.slug}
-						width={post?.imageFeatured?.width ?? 0}
-						height={post?.imageFeatured?.height ?? 0}
+						width={post?.featuredImg?.width ?? 0}
+						height={post?.featuredImg?.height ?? 0}
 						className={'size-full object-cover'}
 					/>
 				) : (

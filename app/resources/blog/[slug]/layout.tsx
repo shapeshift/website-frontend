@@ -10,7 +10,7 @@ import type {Metadata} from 'next';
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
 	const {slug} = await params;
 	const data = await fetch(
-		`${process.env.STRAPI_URL}/api/posts?filters[slug][$eq]=${slug}&fields[0]=summary&fields[2]=tags&fields[3]=title&fields[4]=publishedAt&populate[0]=imageFeatured`,
+		`${process.env.STRAPI_URL}/api/posts?filters[slug][$eq]=${slug}&fields[0]=summary&fields[2]=tags&fields[3]=title&fields[4]=publishedAt&populate[0]=featuredImg`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -24,7 +24,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 		return notFound();
 	}
 
-	const imageUrl = post.imageFeatured.formats.thumbnail.url;
+	const imageUrl = post.featuredImg.formats.thumbnail.url;
 
 	return {
 		title: `${post.title} | ShapeShift Blog`,

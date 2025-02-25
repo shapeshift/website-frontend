@@ -1,18 +1,13 @@
 import {Button} from '@/components/common/Button';
 import {IconCheck} from '@/components/common/icons/IconCheck';
 
-import type {TTemplateHeaderData} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function Header({data}: {data: TTemplateHeaderData}): ReactNode {
-	if (!data) {
-		return null;
-	}
-
+export function Header({chainName}: {chainName: string}): ReactNode {
 	return (
 		<section className={'flex flex-col items-center'}>
 			<div className={'mb-10 flex gap-2'}>
-				{data.items.map(item => (
+				{['Self-custodial', 'Private', 'Multichain trading'].map(item => (
 					<div
 						className={'flex items-center gap-1 rounded-[24px] bg-secondBg px-4 py-[10px]'}
 						key={item}>
@@ -22,12 +17,14 @@ export function Header({data}: {data: TTemplateHeaderData}): ReactNode {
 				))}
 			</div>
 			<div className={'mb-10 flex flex-col items-center gap-2'}>
-				<h1 className={'mb-6 text-7xl'}>{data.title}</h1>
-				<p className={'mx-auto max-w-screen-lg text-center text-xl text-gray-500'}>{data.description}</p>
+				<h1 className={'mb-6 text-7xl'}>{`ShapeShift supports ${chainName}`}</h1>
+				<p className={'mx-auto max-w-screen-lg text-center text-xl text-gray-500'}>
+					{`Unlock the best way to use and manage your ${chainName}`}
+				</p>
 			</div>
 			<Button
 				variant={'blue'}
-				href={data.ctaButton.url}
+				href={'https://app.shapeshift.com'}
 				title={'Get Started'}
 			/>
 		</section>

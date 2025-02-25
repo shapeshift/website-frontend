@@ -76,7 +76,7 @@ export function useFetchNewsroom({
 			try {
 				// Fetch posts with featured image population
 				const res = await fetch(
-					`${process.env.STRAPI_URL}/api/newsrooms?populate[0]=featureImage&fields[0]=slug&fields[1]=postSummary&fields[2]=title&fields[3]=category&fields[4]=tags&fields[5]=publishedAt&fields[7]=publishedOn&fields[14]=author&fields[8]=externalURL&sort[0]=publishedOn:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[6]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${category ? `&filters[category][$contains]=${category.replace(/ /g, '_')}` : ''}${tag ? `&filters[tags][$contains]=${tag.replace(/ /g, '_')}` : ''}`,
+					`${process.env.STRAPI_URL}/api/newsrooms?populate[0]=featuredImg&fields[0]=slug&fields[1]=postSummary&fields[2]=title&fields[3]=category&fields[4]=tags&fields[5]=publishedAt&fields[7]=publishedOn&fields[14]=author&fields[8]=externalURL&sort[0]=publishedOn:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[6]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${category ? `&filters[category][$contains]=${category.replace(/ /g, '_')}` : ''}${tag ? `&filters[tags][$contains]=${tag.replace(/ /g, '_')}` : ''}`,
 					{
 						headers: {
 							Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`

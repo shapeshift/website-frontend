@@ -182,7 +182,7 @@ export type TBlogPost = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
-	imageFeatured: TStrapiImage;
+	featuredImg: TStrapiImage;
 	tags: string[];
 	type: string[];
 	summary: string;
@@ -230,7 +230,7 @@ export type TSupportedWalletData = {
 	name: string;
 	description: string;
 	slug: string;
-	image: TStrapiImage;
+	featuredImg: TStrapiImage;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
@@ -246,7 +246,7 @@ export type TNewsroomPost = {
 	updatedAt: string;
 	publishedAt: string;
 	publishedOn: string;
-	featureImage: TStrapiImage;
+	featuredImg: TStrapiImage;
 	tags: string[];
 	category: string[];
 	author: string;

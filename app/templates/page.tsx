@@ -5,37 +5,8 @@ import {Description} from '@/components/strapi-sections/templates/Description';
 import {Header} from '@/components/strapi-sections/templates/Header';
 import {Hero} from '@/components/strapi-sections/templates/Hero';
 
-import type {
-	TTemplateChainActionsSection,
-	TTemplateDescriptionSection,
-	TTemplateHeaderData,
-	TTemplateHeroSection
-} from '@/types/strapi';
+import type {TTemplateChainActionsSection, TTemplateDescriptionSection} from '@/types/strapi';
 import type {ReactNode} from 'react';
-
-const headerData: TTemplateHeaderData = {
-	id: 1,
-	title: 'ShapeShift supports Bitcoin',
-	description: 'Unlock the best way to use and manage your Bitcoin',
-	items: ['Self-custodial', 'Private', 'Multichain trading'],
-	ctaButton: {
-		id: 1,
-		title: 'Get Started',
-		url: '#'
-	}
-};
-
-const heroData: TTemplateHeroSection = {
-	id: 1,
-	image: {
-		url: '/templates/templateHeroBg.png',
-		width: 1400,
-		height: 360,
-		formats: {
-			thumbnail: {url: '/templates/templateHeroBg.png', width: 3840, height: 2256}
-		}
-	}
-};
 
 const descriptionData: TTemplateDescriptionSection = {
 	id: 1,
@@ -123,10 +94,10 @@ export default function TemplatesPage(): ReactNode {
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'context mt-[220px] flex flex-col justify-center'}>
-				<Header data={headerData} />
+				<Header chainName={'Bitcoin'} />
 
 				<div className={'mb-[240px] mt-16'}>
-					<Hero data={heroData} />
+					<Hero featuredImg={'/templates/templateHeroBg.png'} />
 				</div>
 				<Description data={descriptionData} />
 

@@ -30,12 +30,12 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 				className
 			)}>
 			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
-				{post?.featureImage?.url ? (
+				{post?.featuredImg?.url ? (
 					<Image
-						src={`${process.env.STRAPI_URL}${post?.featureImage?.url}`}
+						src={`${process.env.STRAPI_URL}${post?.featuredImg?.url}`}
 						alt={post.slug}
-						width={post?.featureImage?.width ?? 0}
-						height={post?.featureImage?.height ?? 0}
+						width={post?.featuredImg?.width ?? 0}
+						height={post?.featuredImg?.height ?? 0}
 						className={'size-full object-cover'}
 					/>
 				) : (
