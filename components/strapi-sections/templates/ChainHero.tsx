@@ -17,7 +17,7 @@ export function ChainHero(props: {url: string; width: number; height: number; na
 					alt={props.name}
 					width={props.width}
 					height={props.height}
-					className={'my-auto h-full w-auto'}
+					className={'my-auto h-full max-h-[220px] w-auto'}
 				/>
 			</div>
 		</section>
