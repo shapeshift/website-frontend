@@ -245,6 +245,7 @@ export type TSupportedChainData = {
 	featuredImg: TStrapiImage;
 	foxImg: TStrapiImage;
 	actions: string[];
+	features: string[];
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
