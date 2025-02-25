@@ -236,6 +236,20 @@ export type TSupportedWalletData = {
 	publishedAt: string;
 };
 
+export type TSupportedChainData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	foxImg: TStrapiImage;
+	actions: string[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
 export type TNewsroomPost = {
 	id: number;
 	documentId: string;

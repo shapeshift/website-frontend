@@ -2,14 +2,10 @@ import Image from 'next/image';
 
 import {Button} from '@/components/common/Button';
 
-import type {TTemplateChainActionsSection} from '@/types/strapi';
+import type {TStrapiImage} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function ChainFeatures({data, chainName}: {data: TTemplateChainActionsSection; chainName: string}): ReactNode {
-	if (!data) {
-		return null;
-	}
-
+export function ChainFeatures({chainName, foxImg}: {chainName: string; foxImg: TStrapiImage}): ReactNode {
 	return (
 		<section className={'container flex flex-col'}>
 			<h1 className={'mb-16 max-w-[700px] text-7xl'}>{'Explore our features.'}</h1>
@@ -97,8 +93,8 @@ export function ChainFeatures({data, chainName}: {data: TTemplateChainActionsSec
 						style={{
 							background: 'linear-gradient(180deg, #101114 0%, #16181C 100%)'
 						}}
-						className={'flex w-full flex-col items-center gap-6 rounded-2xl px-20 pt-20'}>
-						<div className={'text-left'}>
+						className={'flex w-full flex-col items-center gap-6 rounded-2xl pt-20'}>
+						<div className={'px-20 text-left'}>
 							<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
 								<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
 									{`Easily buy ${chainName} in seconds`}
@@ -122,8 +118,8 @@ export function ChainFeatures({data, chainName}: {data: TTemplateChainActionsSec
 							<Image
 								src={'/supported-chains/buy-mockup.png'}
 								alt={''}
-								className={'h-[368px] w-auto'}
-								width={696}
+								className={'h-[368px] w-full'}
+								width={515}
 								height={368}
 							/>
 						</div>
@@ -132,8 +128,8 @@ export function ChainFeatures({data, chainName}: {data: TTemplateChainActionsSec
 						style={{
 							background: 'linear-gradient(180deg, #101114 0%, #16181C 100%)'
 						}}
-						className={'flex w-full flex-col items-center gap-6 rounded-2xl px-20 pt-20'}>
-						<div className={'text-left'}>
+						className={'flex w-full flex-col items-center gap-6 rounded-2xl pt-20'}>
+						<div className={'px-20 text-left'}>
 							<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
 								<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
 									{`Self-custodial ${chainName}: Redefined`}
@@ -155,11 +151,11 @@ export function ChainFeatures({data, chainName}: {data: TTemplateChainActionsSec
 						</div>
 						<div className={'mr-[-20%] mt-auto flex items-end justify-end pt-5'}>
 							<Image
-								src={'/supported-chains/op-fox.png'}
+								src={`${process.env.STRAPI_URL}${foxImg.url}`}
 								alt={''}
-								className={'h-[368px] w-auto'}
-								width={696}
-								height={368}
+								className={'h-[368px] w-full'}
+								width={foxImg.width}
+								height={foxImg.height}
 							/>
 						</div>
 					</div>

@@ -3,7 +3,7 @@ import {IconCheck} from '@/components/common/icons/IconCheck';
 
 import type {ReactNode} from 'react';
 
-export function Header({chainName}: {chainName: string}): ReactNode {
+export function ChainHeader({chainName}: {chainName: string}): ReactNode {
 	return (
 		<section className={'flex flex-col items-center'}>
 			<div className={'mb-10 flex gap-2'}>
