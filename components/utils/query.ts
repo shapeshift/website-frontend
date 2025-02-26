@@ -2,6 +2,7 @@ import type {
 	TFaqData,
 	TPrivacyPolicyData,
 	TSupportedChainData,
+	TSupportedProtocolData,
 	TSupportedWalletData,
 	TTermsOfServiceData
 } from '@/types/strapi';
@@ -67,6 +68,34 @@ export async function getSupportedChains(): Promise<TSupportedChainData[] | null
 
 export async function getSupportedChain(slug: string): Promise<TSupportedChainData | null> {
 	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data[0];
+}
+
+export async function getSupportedProtocols(): Promise<TSupportedProtocolData[] | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-protocols?populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data;
+}
+
+export async function getSupportedProtocol(slug: string): Promise<TSupportedProtocolData | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-protocols?filters[slug][$eq]=${slug}&populate=*`, {
 		headers: {
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
 		}

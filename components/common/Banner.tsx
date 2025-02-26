@@ -64,7 +64,7 @@ export function Banner(): ReactNode {
 
 					<div className={'mb-[180px] flex items-center justify-center gap-3 lg:mb-0 lg:flex-col'}>
 						<Link
-							href={'/'}
+							href={'/apple-app-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
 							<Image
@@ -76,7 +76,7 @@ export function Banner(): ReactNode {
 						</Link>
 
 						<Link
-							href={'/'}
+							href={'/google-play-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
 							<Image

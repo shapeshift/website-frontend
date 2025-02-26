@@ -251,6 +251,19 @@ export type TSupportedChainData = {
 	publishedAt: string;
 };
 
+export type TSupportedProtocolData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	collabDescription: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
 export type TNewsroomPost = {
 	id: number;
 	documentId: string;

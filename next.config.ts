@@ -125,7 +125,10 @@ const nextConfig = {
 			{source: '/wallet/apps', destination: '/', permanent: true},
 			{source: '/wallet-backup', destination: '/', permanent: true},
 			{source: '/dao-resources', destination: '/', permanent: true},
-			{source: '/shapeshift-decentralize-airdrop', destination: '/', permanent: true}
+			{source: '/shapeshift-decentralize-airdrop', destination: '/', permanent: true},
+
+			{source: '/apple-app-store', destination: '/mobile-app', permanent: true},
+			{source: '/google-play-store', destination: '/mobile-app', permanent: true}
 
 			// {
 			// 	source: '/roadmap',
