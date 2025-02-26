@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import {useState} from 'react';
 
 import {LatestBlogPosts} from '@/components/BlogList';
 import {Carousel} from '@/components/Carousel';
@@ -16,6 +19,7 @@ import type {TCard} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {
+	const [tab, setTab] = useState('Buy');
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
@@ -86,13 +90,31 @@ export default function HomePage(): ReactNode {
 							className={
 								'absolute bottom-0 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
 							}>
-							<Image
-								src={'/landing/tabWidget.png'}
-								alt={'img'}
-								width={'2160'}
-								height={'1000'}
-								className={'object-cover'}
-							/>
+							{tab === 'Buy' ? (
+								<Image
+									src={'/landing/tabBuy.png'}
+									alt={'img'}
+									width={'2160'}
+									height={'868'}
+									className={'object-cover'}
+								/>
+							) : tab === 'Trade' ? (
+								<Image
+									src={'/landing/tabTrade.png'}
+									alt={'img'}
+									width={'2160'}
+									height={'868'}
+									className={'object-cover'}
+								/>
+							) : (
+								<Image
+									src={'/landing/tabEarn.png'}
+									alt={'img'}
+									width={'2160'}
+									height={'868'}
+									className={'object-cover'}
+								/>
+							)}
 						</div>
 
 						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
@@ -100,12 +122,16 @@ export default function HomePage(): ReactNode {
 								{'Multichain crypto home base'}
 							</h1>
 							<div className={'flex w-min gap-4 rounded-full border border-white/10 p-2'}>
-								{[{title: 'Buy'}, {title: 'Trade'}, {title: 'Earn'}].map(item => (
-									<TabItem
-										className={'!px-10'}
-										key={item.title}
-										title={item.title}
-									/>
+								{['Buy', 'Trade', 'Earn'].map(item => (
+									<button
+										key={item}
+										onClick={() => setTab(item)}>
+										<TabItem
+											className={'!px-10'}
+											title={item}
+											selected={tab === item}
+										/>
+									</button>
 								))}
 							</div>
 						</div>

@@ -49,7 +49,7 @@ export function Banner(): ReactNode {
 			<p className={'mb-4 text-center lg:mb-0 lg:hidden'}>{'Or download the app'}</p>
 
 			<div className={'flex flex-col lg:max-w-[511px]'}>
-				<h2 className={'mb-10 hidden text-center text-[40px] leading-[40px] lg:block'}>
+				<h2 className={'mb-10 hidden text-left text-[40px] leading-[40px] lg:block'}>
 					{'Defi everywhere, anytime with ShapeShift mobile.'}
 				</h2>
 				<div className={'flex justify-center gap-6 lg:justify-start'}>

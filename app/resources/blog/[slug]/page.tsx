@@ -43,7 +43,7 @@ export default function BlogPost(): ReactNode {
 		<>
 			<article className={'prose prose-invert container relative mx-auto mb-20 mt-40 max-w-4xl px-4'}>
 				<button
-					className={'absolute -left-32 top-0 flex items-center gap-1 p-3 text-gray-500'}
+					className={'absolute -left-32 top-0 flex items-center gap-1 p-3 pt-0 text-gray-500'}
 					onClick={() => router.back()}>
 					<IconBack />
 					<span>{'Back'}</span>

@@ -12,12 +12,12 @@ export function BlogBreadcrumb(): React.ReactNode {
 	return (
 		<Link
 			className={cl(
-				'mb-6 flex items-center gap-1 px-4 py-2 text-gray-500',
+				'mb-6 flex items-center gap-1 py-2 text-gray-500',
 				pathname === '/resources/blog' ? 'invisible pointer-events-none' : ''
 			)}
 			href={'/resources/blog'}>
 			<IconBack />
-			<span>{'Back to blog'}</span>
+			<span className={'ml-2'}>{'Back to blog'}</span>
 		</Link>
 	);
 }

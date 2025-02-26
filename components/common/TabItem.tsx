@@ -40,7 +40,7 @@ export function TabItem(props: {
 	}
 
 	return (
-		<button
+		<div
 			className={cl(
 				'w-max h-7 md:h-9 backdrop-blur-lg border border-white/50',
 				'transition-all duration-300 hover:scale-105 px-[22px] py-[6px]',
@@ -56,6 +56,6 @@ export function TabItem(props: {
 				)}>
 				{title}
 			</p>
-		</button>
+		</div>
 	);
 }

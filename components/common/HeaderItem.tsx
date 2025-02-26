@@ -21,7 +21,7 @@ export default function HeaderItem({name, href, target, description, onClick, ic
 			<div>{icon}</div>
 			<div className={'ml-4 flex flex-col gap-1'}>
 				<span className={'font-medium'}>{name}</span>
-				<span className={'text-secondary'}>{description}</span>
+				<span className={'text-gray-500'}>{description}</span>
 			</div>
 		</Link>
 	);

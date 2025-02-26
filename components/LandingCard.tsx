@@ -10,7 +10,7 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 	return (
 		<div
 			className={cl(
-				'flex overflow-hidden rounded-2xl group h-full bg-secondBg hover:bg-secondHoverBg cursor-pointer',
+				'flex overflow-hidden group rounded-2xl group h-full bg-secondBg hover:bg-secondHoverBg cursor-pointer',
 				data.isTextFirst ? 'flex-col-reverse rounded-b-2xl' : 'flex-col'
 			)}>
 			<div className={'relative h-full p-6 lg:p-10'}>
@@ -27,7 +27,11 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 					href={data?.href}
 				/>
 			</div>
-			<div className={cl('overflow-hidden min-h-64', data.isTextFirst ? 'rounded-t-2xl' : 'rounded-b-2xl')}>
+			<div
+				className={cl(
+					'overflow-hidden min-h-64 group-hover:scale-[1.02] duration-300 transition-all',
+					data.isTextFirst ? 'rounded-t-2xl' : 'rounded-b-2xl'
+				)}>
 				<Image
 					src={data?.image.url}
 					alt={data?.title}
