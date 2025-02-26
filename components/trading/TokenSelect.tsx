@@ -14,7 +14,7 @@ export type TToken = {
 	icon: string;
 	sublogo?: string;
 	slug: string;
-	decimals: number;
+	decimals: Record<string, number>;
 	requestKey?: string;
 	tokenAddress?: string;
 };
@@ -24,18 +24,18 @@ export function TokenSelect({
 	selectedToken,
 	onSelectAction,
 	isOpen,
-	setIsOpen
+	setIsOpenAction
 }: {
 	tokens: TToken[];
 	selectedToken: TToken;
 	onSelectAction: (token: TToken) => void;
 	isOpen: boolean;
-	setIsOpen: (isOpen: boolean) => void;
+	setIsOpenAction: (isOpen: boolean) => void;
 }): ReactNode {
 	return (
 		<div className={'relative'}>
 			<button
-				onClick={() => setIsOpen(!isOpen)}
+				onClick={() => setIsOpenAction(!isOpen)}
 				className={'flex items-center gap-2 rounded-full bg-[#a1bdd914] p-2 hover:bg-white/10'}>
 				<div className={'relative flex size-6 items-center justify-center rounded-[100%]'}>
 					{selectedToken.sublogo && (
@@ -65,7 +65,7 @@ export function TokenSelect({
 							key={token.slug}
 							onClick={() => {
 								onSelectAction(token);
-								setIsOpen(false);
+								setIsOpenAction(false);
 							}}
 							className={cl(
 								'flex w-full items-center gap-4 rounded-lg px-3 py-2 hover:bg-white/5',

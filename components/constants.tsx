@@ -395,37 +395,89 @@ export const SUPPORTED_TOKENS = [
 		name: 'Ethereum',
 		icon: '/widget/eth_icon.png',
 		slug: 'ethereum',
-		decimals: 18,
+		decimals: {
+			btc: 8,
+			eth: 18,
+			sol: 8,
+			usdt: 8,
+			bnbeth: 18
+		},
 		requestKey: 'ETH',
 		tokenAddress: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 	},
-	{symbol: 'BTC', name: 'Bitcoin', icon: '/widget/btc_icon.png', slug: 'bitcoin', decimals: 8, requestKey: 'BTC'},
+	{
+		symbol: 'BTC',
+		name: 'Bitcoin',
+		icon: '/widget/btc_icon.png',
+		slug: 'bitcoin',
+		decimals: {
+			btc: 8,
+			eth: 8,
+			sol: 8,
+			usdt: 8,
+			bnbeth: 18
+		},
+		requestKey: 'BTC'
+	},
 	{
 		symbol: 'USDT',
 		name: 'Tether on Ethereum',
 		icon: '/widget/usdt_icon.png',
 		sublogo: '/widget/eth_icon.png',
 		slug: 'tether-on-ethereum',
-		decimals: 8,
+		decimals: {
+			btc: 8,
+			eth: 8,
+			sol: 5,
+			usdt: 8,
+			bnbeth: 6
+		},
 		requestKey: 'USDT-0XDAC17F958D2EE523A2206206994597C13D831EC7',
 		tokenAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7'
 	},
-	{symbol: 'BNB', name: 'BNB', icon: '/widget/bnb_icon.png', slug: 'bnb', decimals: 8, requestKey: 'BNB'},
+	{
+		symbol: 'BNB',
+		name: 'BNB',
+		icon: '/widget/bnb_icon.png',
+		slug: 'bnb',
+		decimals: {
+			eth: 18,
+			btc: 8,
+			sol: 8,
+			usdt: 8,
+			bnbeth: 18
+		},
+		requestKey: 'BNB',
+		tokenAddress: ''
+	},
 	{
 		symbol: 'BNBETH',
 		name: 'BNB on Ethereum',
 		icon: '/widget/bnb_icon.png',
 		sublogo: '/widget/eth_icon.png',
 		slug: 'bnb-on-ethereum',
-		decimals: 18,
-		tokenAddress: '0xb8c77482e45f1f44de1745f52c74426c631bdd52'
+		decimals: {
+			btc: 8,
+			eth: 18,
+			sol: 8,
+			usdt: 8,
+			bnbeth: 18
+		},
+		tokenAddress: '0xb8c77482e45f1f44de1745f52c74426c631bdd52',
+		requestKey: 'BNB'
 	},
 	{
 		symbol: 'SOL',
 		name: 'Solana',
 		icon: '/widget/sol_icon.png',
 		slug: 'solana',
-		decimals: 18,
+		decimals: {
+			btc: 8,
+			eth: 18,
+			sol: 8,
+			usdt: 8,
+			bnbeth: 18
+		},
 		requestKey: 'SOL'
 	}
 ];

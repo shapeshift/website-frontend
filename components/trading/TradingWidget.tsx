@@ -25,58 +25,62 @@ export function TradingWidget(): ReactNode {
 	const [outputAmount, setOutputAmount] = useState({amount: 0, isNative: true});
 	const [openSelect, setOpenSelect] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const [isError, setIsError] = useState(false);
+	const [error, setError] = useState('');
 
 	const debouncedAmount = useDebounce(amount, 500);
 
 	useEffect(() => {
-		if (isError) {
+		if (error) {
 			setOutputAmount({amount: 0, isNative: true});
 		}
-	}, [isError]);
+	}, [error, fromChain.id, fromToken.symbol, toChain.id, toToken.symbol]);
 
 	const fetchFromProxy = useCallback((): void => {
-		setIsError(false);
+		setError('');
 		try {
 			setIsLoading(true);
 			fetch(
-				`https://api.proxy.shapeshift.com/api/v1/zrx/swap/permit2/price?chainId=${fromChain.chainId}&buyToken=${toToken.tokenAddress}&sellToken=${fromToken.tokenAddress}&sellAmount=${amount * 10 ** (fromToken.decimals || 6)}&swapFeeBps=68&swapFeeToken=${fromToken.tokenAddress}&slippageBps=20&swapFeeRecipient=0x90a48d5cf7343b08da12e067680b4c6dbfe551be&feeRecipientTradeSurplus=0x90a48d5cf7343b08da12e067680b4c6dbfe551be`
+				`https://api.proxy.shapeshift.com/api/v1/zrx/swap/permit2/price?chainId=${fromChain.chainId}&buyToken=${toToken.tokenAddress}&sellToken=${fromToken.tokenAddress}&sellAmount=${amount * 10 ** (fromToken.decimals[fromChain.requestKey.toLowerCase()] || 6)}&swapFeeBps=68&swapFeeToken=${fromToken.tokenAddress}&slippageBps=20&swapFeeRecipient=0x90a48d5cf7343b08da12e067680b4c6dbfe551be&feeRecipientTradeSurplus=0x90a48d5cf7343b08da12e067680b4c6dbfe551be`
 			)
 				.then(async res => res.json())
 				.then(data => {
-					console.log(data);
 					setOutputAmount({amount: data.buyAmount, isNative: true});
 				})
 				.finally(() => {
 					setIsLoading(false);
 				});
 		} catch (error) {
-			setIsError(true);
+			setError('No rate available');
 			setIsLoading(false);
 		}
-	}, [amount, fromChain.chainId, fromToken.decimals, fromToken.tokenAddress, toToken.tokenAddress]);
+	}, [
+		amount,
+		fromChain.chainId,
+		fromChain.requestKey,
+		fromToken.decimals,
+		fromToken.tokenAddress,
+		toToken.tokenAddress
+	]);
 
 	const fetchFromDaemon = useCallback((): void => {
-		setIsError(false);
-		console.log(amount * 10 ** fromToken.decimals);
+		setError('');
 		try {
 			setIsLoading(true);
 			fetch(
-				`https://daemon.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${amount * 10 ** (fromToken.decimals || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
+				`https://daemon.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${amount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
 			)
 				.then(async res => res.json())
 				.then(data => {
-					console.log(data);
 					setOutputAmount({amount: data.expected_amount_out, isNative: true});
 					if (!data.expected_amount_out) {
-						setIsError(true);
+						setError('No rate available');
 					}
 				})
 				.finally(() => {
 					setIsLoading(false);
 				});
 		} catch (error) {
-			setIsError(true);
+			setError('No rate available');
 			setIsLoading(false);
 		}
 	}, [
@@ -85,46 +89,74 @@ export function TradingWidget(): ReactNode {
 		fromToken.decimals,
 		fromToken.requestKey,
 		toChain.requestKey,
-		toToken.requestKey
+		toToken.requestKey,
+		toToken.symbol
 	]);
 
 	const fetchFromChainFlip = useCallback((): void => {
-		setIsError(false);
+		setError('');
 		setIsLoading(true);
 		try {
 			fetch(
-				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${fromToken.symbol}.${fromChain.requestKey}&destinationAsset=${toToken.symbol}.${toChain.requestKey}&amount=${Number(debouncedAmount) * 10 ** 8}&commissionBps=63`
+				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${fromToken.symbol}.${fromChain.requestKey}&destinationAsset=${toToken.symbol}.${toChain.requestKey}&amount=${Number(debouncedAmount) * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
 			)
 				.then(async res => res.json())
 				.then(data => {
-					setOutputAmount({amount: data[0]?.egressAmount, isNative: false});
-					if (!data?.[0]?.egressAmount) {
-						setIsError(true);
+					setOutputAmount({amount: data[0]?.egressAmountNative, isNative: true});
+					if (!data?.[0]?.egressAmountNative) {
+						setError('No rate available');
 					}
 				})
 				.finally(() => {
 					setIsLoading(false);
 				});
 		} catch (error) {
-			setIsError(true);
+			setError('No rate available');
 			setIsLoading(false);
 		}
-	}, [fromToken.symbol, fromChain.requestKey, toToken.symbol, toChain.requestKey, debouncedAmount]);
+	}, [
+		fromToken.symbol,
+		fromToken.decimals,
+		fromChain.requestKey,
+		toToken.symbol,
+		toChain.requestKey,
+		debouncedAmount
+	]);
 
 	useEffect(() => {
 		if (debouncedAmount === 0) {
 			return;
 		}
 
+		if (toToken.symbol === fromToken.symbol && toChain.id === fromChain.id) {
+			return setError('Please select different tokens');
+		}
+		if (
+			(fromChain.id === 'solana' && toChain.id === 'bitcoin') ||
+			(fromToken.symbol === 'BNBETH' && toToken.symbol === 'BTC') ||
+			(fromToken.symbol === 'BTC' && toToken.symbol === 'BNBETH') ||
+			(fromToken.symbol === 'BNBETH' && toToken.symbol === 'SOL') ||
+			(fromToken.symbol === 'SOL' && toToken.symbol === 'BNBETH') ||
+			(fromToken.symbol === 'SOL' && toToken.symbol === 'BNB') ||
+			(fromToken.symbol === 'BNB' && toToken.symbol === 'SOL') ||
+			(fromToken.symbol === 'SOL' && toToken.symbol === 'ETH') ||
+			(fromToken.symbol === 'ETH' && toToken.symbol === 'SOL') ||
+			(fromToken.symbol === 'BNBETH' && toToken.symbol === 'BNB')
+		) {
+			return setError('No rate available');
+		}
+
 		if (fromChain.id === 'solana' || toChain.id === 'solana') {
 			return fetchFromChainFlip();
 		}
+
 		if (
 			(fromChain.name === 'Ethereum' && fromToken.symbol === 'BNBETH') ||
 			(toChain.name === 'Ethereum' && toToken.symbol === 'BNBETH')
 		) {
 			return fetchFromProxy();
 		}
+
 		return fetchFromDaemon();
 	}, [
 		debouncedAmount,
@@ -200,7 +232,7 @@ export function TradingWidget(): ReactNode {
 						selectedToken={fromToken}
 						onSelectAction={token => handleTokenSelect(token, true)}
 						isOpen={openSelect === 'fromToken'}
-						setIsOpen={isOpen => setOpenSelect(isOpen ? 'fromToken' : null)}
+						setIsOpenAction={isOpen => setOpenSelect(isOpen ? 'fromToken' : null)}
 					/>
 					<span className={'text-sm text-gray-400'}>{'on'}</span>
 					<ChainSelect
@@ -246,7 +278,7 @@ export function TradingWidget(): ReactNode {
 						selectedToken={toToken}
 						onSelectAction={token => handleTokenSelect(token, false)}
 						isOpen={openSelect === 'toToken'}
-						setIsOpen={isOpen => setOpenSelect(isOpen ? 'toToken' : null)}
+						setIsOpenAction={isOpen => setOpenSelect(isOpen ? 'toToken' : null)}
 					/>
 					<span className={'text-sm text-gray-400'}>{'on'}</span>
 					<ChainSelect
@@ -269,16 +301,22 @@ export function TradingWidget(): ReactNode {
 							/>
 						</div>
 					) : (
-						<div>{formatNumber(outputAmount.amount, outputAmount.isNative, fromToken.decimals)}</div>
+						<div>
+							{formatNumber(
+								outputAmount.amount,
+								outputAmount.isNative,
+								toToken.decimals[fromToken.symbol?.toLowerCase() || 'eth'] || 6
+							)}
+						</div>
 					)}
 				</div>
 			</div>
-			{isError && (
+			{error && (
 				<div className={'flex items-center gap-2 border-t border-t-white/5 p-4 text-gray-500'}>
 					<div className={'flex size-5 items-center justify-center rounded-[100%] bg-gray-500'}>
 						<IconQuestion className={'size-2 text-white'} />
 					</div>
-					<span className={'text-sm text-gray-400'}>{'No rate available.'}</span>
+					<span className={'text-sm text-gray-400'}>{error}</span>
 				</div>
 			)}
 
