@@ -15,15 +15,15 @@ export function Banner(): ReactNode {
 			<Image
 				src={'/bannerBg.png'}
 				alt={'banner'}
-				width={1400}
-				height={467}
+				width={2800}
+				height={952}
 				className={'absolute inset-0 -z-10 hidden size-full object-cover lg:block'}
 			/>
 			<Image
 				src={'/bannerBg.png'}
 				alt={'banner'}
-				width={1400}
-				height={560}
+				width={2800}
+				height={952}
 				className={'absolute inset-0 -z-10 size-full object-cover lg:hidden'}
 			/>
 			<div className={'flex flex-col lg:max-w-[511px]'}>
@@ -42,6 +42,7 @@ export function Banner(): ReactNode {
 						variant={'white'}
 						title={'Try Demo'}
 						className={'hidden lg:block'}
+						href={'https://app.shapeshift.com/#/demo/dashboard'}
 					/>
 				</div>
 			</div>

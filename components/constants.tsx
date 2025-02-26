@@ -1,6 +1,10 @@
+import Image from 'next/image';
+
 import {IconActivityRings} from './common/icons/IconActivityRings';
 import {IconBlog} from './common/icons/IconBlog';
+import {IconBulb} from './common/icons/IconBulb';
 import {IconChains} from './common/icons/IconChains';
+import {IconCheckCircle} from './common/icons/IconCheckCircle';
 import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
 import {IconDocs} from './common/icons/IconDocs';
@@ -16,8 +20,8 @@ import {IconPercent} from './common/icons/IconPercent';
 import {IconQuestion} from './common/icons/IconQuestion';
 import {IconResource} from './common/icons/IconResource';
 import {IconShield} from './common/icons/IconShield';
+import {IconStar} from './common/icons/IconStar';
 import {IconTelegram} from './common/icons/IconTelegram';
-import {IconTrade} from './common/icons/IconTrade';
 import {IconTriLink} from './common/icons/IconTriLink';
 import {IconTwitter} from './common/icons/IconTwitter';
 import {IconWarpcast} from './common/icons/IconWarpcast';
@@ -38,9 +42,14 @@ export const appResources = [
 		description: 'Blockchain networks we support',
 		icon: <IconChains />
 	},
-	{name: 'Support', href: 'https://shapeshift.zendesk.com/', description: 'Support portal'},
-	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions'},
-	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data'}
+	{
+		name: 'Support',
+		href: 'https://shapeshift.zendesk.com/',
+		description: 'Support portal',
+		icon: <IconCheckCircle />
+	},
+	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions', icon: <IconDocs />},
+	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data', icon: <IconDocs />}
 ];
 
 export const appDao = [
@@ -52,8 +61,13 @@ export const appDao = [
 		icon: <IconGovern />
 	},
 	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
-	{name: 'Join us', href: 'https://forum.shapeshift.com/', description: 'Join the community'},
-	{name: 'Share your ideas', href: 'https://shapeshift.canny.io/', description: 'Share your ideas'}
+	{name: 'Join us', href: 'https://forum.shapeshift.com/', description: 'Join the community', icon: <IconStar />},
+	{
+		name: 'Share your ideas',
+		href: 'https://shapeshift.canny.io/',
+		description: 'Share your ideas',
+		icon: <IconBulb />
+	}
 ];
 
 export const appProducts = [
@@ -63,7 +77,7 @@ export const appProducts = [
 		description: 'A decentralized finance wallet',
 		icon: <IconDapp />
 	},
-	{name: 'Trade', href: '/trade', description: 'A decentralized finance wallet', icon: <IconTrade />},
+	{name: 'Trade', href: '/trade', description: 'A decentralized finance wallet', icon: <IconDollar />},
 	{
 		name: 'DeFi Wallet',
 		href: '/defi-wallet',
@@ -194,9 +208,9 @@ export const landingCards: TCardsRowSection = {
 			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
 			isTextFirst: false,
 			image: {
-				url: '/homepageBanner.png',
-				width: 461,
-				height: 219,
+				url: '/landing/cardBuyAndSell.png',
+				width: 922,
+				height: 512,
 				formats: {
 					thumbnail: {
 						width: 245,
@@ -212,9 +226,9 @@ export const landingCards: TCardsRowSection = {
 			description: 'FOX token has power on ShapeShift! Get discounts on fees when you hold FOX.',
 			isTextFirst: false,
 			image: {
-				url: '/homepageBanner.png',
-				width: 461,
-				height: 219,
+				url: '/landing/cardethbtc.png',
+				width: 922,
+				height: 512,
 				formats: {
 					thumbnail: {
 						width: 245,
@@ -231,14 +245,14 @@ export const landingCards: TCardsRowSection = {
 				'Earn up to 12% on your Bitcoin, Ethereum, Dogecoin, Cosmos and more. Always non-custodial. Always real yield.',
 			isTextFirst: false,
 			image: {
-				url: '/homepageBanner.png',
-				width: 461,
-				height: 219,
+				url: '/landing/cardShapeshiftDAO.png',
+				width: 922,
+				height: 512,
 				formats: {
 					thumbnail: {
 						width: 245,
 						height: 116,
-						url: '/homepageBanner.png'
+						url: '/landing/cardShapeshiftDAO.png'
 					}
 				}
 			}
@@ -642,3 +656,73 @@ export const newsroomTags = [
 export function newsroomTagsSlugToCategory(slug: string): string {
 	return newsroomTags.find(tab => tab.slug === slug)?.title ?? slug;
 }
+
+export const CarouselLogos = {
+	cowSwap: () => (
+		<Image
+			src={'/landing/cow-swap.png'}
+			alt={'cow swap'}
+			width={'200'}
+			height={'40'}
+		/>
+	),
+
+	thorchain: () => (
+		<Image
+			src={'/landing/thorchain.png'}
+			alt={'thorchain'}
+			width={'180'}
+			height={'40'}
+		/>
+	),
+	onramper: () => (
+		<Image
+			src={'/landing/onramper.png'}
+			alt={'onramper'}
+			width={'190'}
+			height={'40'}
+		/>
+	),
+	nownodes: () => (
+		<Image
+			src={'/landing/nownodes.png'}
+			alt={'nownodes'}
+			width={'160'}
+			height={'40'}
+		/>
+	),
+
+	banxa: () => (
+		<Image
+			src={'/landing/banxa.png'}
+			alt={'banxa'}
+			width={'170'}
+			height={'40'}
+		/>
+	),
+	zerion: () => (
+		<Image
+			src={'/landing/zerion.png'}
+			alt={'zerion'}
+			width={'170'}
+			height={'40'}
+		/>
+	),
+	lifi: () => (
+		<Image
+			src={'/landing/lifi.png'}
+			alt={'lifi'}
+			width={'100'}
+			height={'40'}
+		/>
+	),
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	Ox: () => (
+		<Image
+			src={'/landing/0x.png'}
+			alt={'0x'}
+			width={'55'}
+			height={'40'}
+		/>
+	)
+};

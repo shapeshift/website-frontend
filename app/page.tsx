@@ -2,9 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import {LatestBlogPosts} from '@/components/BlogList';
+import {Carousel} from '@/components/Carousel';
 import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
-import {landingCards} from '@/components/constants';
+import {CarouselLogos, landingCards} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
@@ -81,14 +82,18 @@ export default function HomePage(): ReactNode {
 							height={'1348'}
 							className={'size-full object-cover transition-all duration-300 group-hover:scale-[1.02]'}
 						/>
-
-						<Image
-							src={'/landing/tabWidget.png'}
-							alt={'tab_bg'}
-							width={'400'}
-							height={'500'}
-							className={'absolute bottom-0 left-1/2 -translate-x-1/2'}
-						/>
+						<div
+							className={
+								'absolute bottom-0 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
+							}>
+							<Image
+								src={'/landing/tabWidget.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'1000'}
+								className={'object-cover'}
+							/>
+						</div>
 
 						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
 							<h1 className={'mb-7 text-center text-[40px] leading-[40px] text-white'}>
@@ -97,6 +102,7 @@ export default function HomePage(): ReactNode {
 							<div className={'flex w-min gap-4 rounded-full border border-white/10 p-2'}>
 								{[{title: 'Buy'}, {title: 'Trade'}, {title: 'Earn'}].map(item => (
 									<TabItem
+										className={'!px-10'}
 										key={item.title}
 										title={item.title}
 									/>
@@ -105,14 +111,26 @@ export default function HomePage(): ReactNode {
 						</div>
 					</div>
 					<div className={'mb-[120px] mt-2 grid w-full grid-cols-1 gap-2 lg:mb-60 lg:grid-cols-3'}>
-						<Card className={'col-span-1 lg:col-span-2 lg:row-span-1'}>
+						<Card
+							className={
+								'relative col-span-1 rounded-2xl bg-gradient-to-b from-[#101114] to-[#16181C] transition-all duration-300 hover:scale-[1.02] lg:col-span-2 lg:row-span-1'
+							}>
 							<Image
 								src={'/landing/landingCard1.png'}
 								alt={'tab_bg'}
 								width={'931'}
 								height={'322'}
-								className={'size-full object-cover transition-all duration-300 hover:scale-[1.02]'}
+								className={'size-full object-cover'}
 							/>
+							<div
+								className={
+									'absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
+								}>
+								<span className={'max-w-[560px] text-center text-white'}>
+									{'Easily send and receive your favorite crypto assets across '}
+									<span className={'text-blue'}>{'multiple chains'}</span>
+								</span>
+							</div>
 						</Card>
 						<Card
 							className={'col-span-1 row-span-2'}
@@ -126,37 +144,57 @@ export default function HomePage(): ReactNode {
 							/>
 						</Card>
 						<Card
-							className={'col-span-1 row-span-1'}
+							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
 							href={'/resources/supported-chains'}>
 							<Image
 								src={'/landing/landingCard3.png'}
 								alt={'tab_bg'}
 								width={'461'}
 								height={'322'}
-								className={'size-full object-cover transition-all duration-300 hover:scale-[1.02]'}
+								className={'size-full object-cover transition-all duration-300 '}
 							/>
+							<div
+								className={
+									'absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
+								}>
+								<span className={'text-center text-[64px] italic leading-[64px] text-blue'}>
+									{'All-In-One'}
+								</span>
+								<span className={'text-center text-[40px] leading-[48px]'}>{'ShapeShift wallet'}</span>
+							</div>
 						</Card>
 						<Card
-							className={'col-span-1 row-span-1'}
+							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
 							href={'/earn'}>
 							<Image
 								src={'/landing/landingCard4.png'}
 								alt={'tab_bg'}
 								width={'461'}
 								height={'322'}
-								className={'size-full object-cover transition-all duration-300 hover:scale-[1.02]'}
+								className={'size-full object-cover'}
 							/>
+							<div
+								className={
+									'absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
+								}>
+								<span className={'text-center text-[64px] italic leading-[64px] text-blue'}>
+									{'Earn more'}
+								</span>
+								<span className={'text-center text-[40px] leading-[48px]'}>{'with DeFi'}</span>
+							</div>
 						</Card>
 						<Card
-							className={'col-span-1 row-span-1 lg:col-span-3'}
+							className={'col-span-1 row-span-1 flex items-center bg-secondBg lg:col-span-3'}
 							href={'/'}>
-							<Image
-								src={'/landing/landingCard5.png'}
-								alt={'tab_bg'}
-								width={'1400'}
-								height={'80'}
-								className={'size-full object-cover transition-all duration-300 hover:scale-[1.02]'}
-							/>
+							<Carousel pauseOnHover>
+								{Object.values(CarouselLogos).map((Logo, index) => (
+									<div
+										key={index}
+										className={'relative mx-10 flex max-h-10 w-max items-center justify-start'}>
+										<Logo />
+									</div>
+								))}
+							</Carousel>
 						</Card>
 					</div>
 					<div className={'mb-[120px] lg:mb-60'}>

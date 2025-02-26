@@ -94,7 +94,9 @@ export function Header({
 		<>
 			<div>
 				<div className={'z-50 flex w-full items-center justify-between pt-6 lg:hidden'}>
-					<IconShapeshift />
+					<Link href={'/'}>
+						<IconShapeshift />
+					</Link>
 					<button
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
 						className={'min-h-[56px] min-w-[56px] rounded-[20px] border border-stroke p-4'}>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -36,12 +37,16 @@ export default {
 					'100%': {
 						transform: 'translateX(100%)'
 					}
+				},
+				carousel: {
+					to: {transform: 'translateX(-50%)'}
 				}
 			},
 			animation: {
 				'border-loading': 'border-loading 1.5s infinite linear',
 				spin: 'spin 1s linear infinite',
-				shimmer: 'shimmer 1.5s infinite'
+				shimmer: 'shimmer 1.5s infinite',
+				carousel: 'carousel var(--duration, 30s) linear infinite'
 			}
 		}
 	},
