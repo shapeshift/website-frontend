@@ -19,11 +19,13 @@ import {IconMobile} from './common/icons/IconMobile';
 import {IconPercent} from './common/icons/IconPercent';
 import {IconQuestion} from './common/icons/IconQuestion';
 import {IconResource} from './common/icons/IconResource';
+import {IconScanDevice} from './common/icons/IconScanDevice';
 import {IconShield} from './common/icons/IconShield';
 import {IconStar} from './common/icons/IconStar';
 import {IconTelegram} from './common/icons/IconTelegram';
 import {IconTriLink} from './common/icons/IconTriLink';
 import {IconTwitter} from './common/icons/IconTwitter';
+import {IconWallet} from './common/icons/IconWallet';
 import {IconWarpcast} from './common/icons/IconWarpcast';
 
 import type {TCardsRowSection} from '@/types/strapi';
@@ -42,6 +44,19 @@ export const appResources = [
 		description: 'Blockchain networks we support',
 		icon: <IconChains />
 	},
+	{
+		name: 'Supported wallets',
+		href: '/resources/supported-wallets',
+		description: 'Wallets we support',
+		icon: <IconWallet />
+	},
+	{
+		name: 'Supported protocols',
+		href: '/resources/supported-protocols',
+		description: 'Protocols we support',
+		icon: <IconScanDevice />
+	},
+
 	{
 		name: 'Support',
 		href: 'https://shapeshift.zendesk.com/',
@@ -74,7 +89,7 @@ export const appProducts = [
 	{
 		name: 'dApp',
 		href: dAppUrl,
-		description: 'A decentralized finance wallet',
+		description: 'A decentralized application',
 		icon: <IconDapp />
 	},
 	{name: 'Trade', href: '/trade', description: 'A decentralized finance wallet', icon: <IconDollar />},
