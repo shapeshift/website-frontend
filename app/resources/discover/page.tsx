@@ -1,10 +1,13 @@
 import {Banner} from '@/components/common/Banner';
 import {Button} from '@/components/common/Button';
 import {StrapiDiscover} from '@/components/StrapiDiscover';
+import {getDiscovers} from '@/components/utils/query';
 
 import type {ReactNode} from 'react';
 
-export default function ProtocolsPage(): ReactNode {
+export default async function DiscoverPage(): Promise<ReactNode> {
+	const discover = await getDiscovers();
+
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'container mt-[220px] flex flex-col justify-center'}>
@@ -20,9 +23,8 @@ export default function ProtocolsPage(): ReactNode {
 				</section>
 
 				<section className={'mt-16'}>
-					<StrapiDiscover />
+					<StrapiDiscover discover={discover} />
 				</section>
-
 				<div className={'my-16'}>
 					<Banner />
 				</div>

@@ -1,10 +1,13 @@
 import {Banner} from '@/components/common/Banner';
 import {Button} from '@/components/common/Button';
 import {StrapiWallets} from '@/components/StrapiWallets';
+import {getSupportedWallets} from '@/components/utils/query';
 
 import type {ReactNode} from 'react';
 
-export default function WalletPage(): ReactNode {
+export default async function WalletPage(): Promise<ReactNode> {
+	const wallets = await getSupportedWallets();
+
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'container mt-[220px] flex flex-col justify-center'}>
@@ -20,7 +23,7 @@ export default function WalletPage(): ReactNode {
 				</section>
 
 				<section className={'mt-16'}>
-					<StrapiWallets />
+					<StrapiWallets wallets={wallets} />
 				</section>
 
 				<div className={'my-16'}>

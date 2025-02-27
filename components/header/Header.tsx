@@ -2,6 +2,7 @@
 
 import {AnimatePresence, motion} from 'framer-motion';
 import Link from 'next/link';
+import {usePathname} from 'next/navigation';
 import {useMemo, useState} from 'react';
 
 import {containerAnimation} from './animations';
@@ -53,13 +54,10 @@ const expandAnimation = {
 	transition: {duration: 0.2}
 };
 
-export function Header({
-	className,
-	variant = 'default'
-}: {
-	className?: string;
-	variant?: 'transparent' | 'default';
-}): ReactNode {
+export function Header(props: {className?: string}): ReactNode {
+	const pathname = usePathname();
+	const {className} = props;
+	const variant = pathname === '/' ? 'transparent' : 'default';
 	const [currentTab, setCurrentTab] = useState<string>('');
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 	const [expandedSection, setExpandedSection] = useState<string>('');

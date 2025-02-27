@@ -1,14 +1,13 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
 
 import {WithFonts} from '@/components/common/WithFonts';
 import {CachedNewsProvider} from '@/components/contexts/CachedNews';
 import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
+import {Footer} from '@/components/Footer';
+import {Header} from '@/components/header/Header';
 
 import './globals.css';
-import {LayoutClient} from './layout.client';
 import {defaultMetadata} from './metadata';
 
 import type {Metadata} from 'next';
@@ -40,9 +39,6 @@ export async function getSubdomain(): Promise<string | null> {
 export const metadata: Metadata = defaultMetadata;
 
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
-	// const locale = await getSubdomain();
-	const messages = await getMessages();
-
 	return (
 		<html>
 			<head>
@@ -61,13 +57,15 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
 				<WithFonts>
-					<NextIntlClientProvider messages={messages}>
-						<CachedNewsProvider>
-							<CachedPostsProvider>
-								<LayoutClient>{children}</LayoutClient>
-							</CachedPostsProvider>
-						</CachedNewsProvider>
-					</NextIntlClientProvider>
+					<CachedNewsProvider>
+						<CachedPostsProvider>
+							<div className={'flex flex-col px-4'}>
+								<Header />
+								<main>{children}</main>
+								<Footer />
+							</div>
+						</CachedPostsProvider>
+					</CachedNewsProvider>
 				</WithFonts>
 			</body>
 		</html>
