@@ -94,7 +94,7 @@ export function FAQContent({faqData}: {faqData: TFaqData}): ReactNode {
 	};
 
 	return (
-		<div className={'relative mt-10 flex w-full flex-col items-center justify-center lg:mt-40 lg:gap-20'}>
+		<div className={'container relative mt-[220px] flex w-full flex-col items-center justify-center lg:gap-20'}>
 			<div className={'container flex flex-col'}>
 				<div className={'text-center text-[40px] leading-10 lg:max-w-[600px] lg:text-left lg:text-7xl'}>
 					{faqData?.title}

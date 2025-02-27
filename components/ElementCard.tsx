@@ -33,7 +33,7 @@ export function ElementCard(props: TElementCardProps): ReactNode {
 			animate={{opacity: 1, scale: 1}}
 			transition={{duration: 0.3, ease: 'easeInOut'}}
 			href={`${baseURL}/${slug}`}
-			className={cl('rounded-2xl p-6 transition-colors hover:bg-secondHoverBg group')}>
+			className={cl('rounded-2xl p-6 transition-colors bg-secondBg hover:bg-secondHoverBg group')}>
 			<div
 				className={cl(
 					'relative h-[204px] max-w-[408px] overflow-hidden rounded-2xl',

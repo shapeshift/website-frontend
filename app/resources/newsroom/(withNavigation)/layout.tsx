@@ -9,7 +9,7 @@ export default async function BlogPageLayout(props: {
 	await props.params;
 
 	return (
-		<main className={'container mx-auto mt-32 px-4 py-8'}>
+		<main className={'container mx-auto mt-32 py-8'}>
 			<BlogBreadcrumb />
 			<BlogTitle />
 			<BlogNav />

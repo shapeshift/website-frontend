@@ -3,7 +3,7 @@
 import {AnimatePresence, motion} from 'framer-motion';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
 import {containerAnimation} from './animations';
 import {Button} from '../common/Button';
@@ -87,6 +87,10 @@ export function Header(props: {className?: string}): ReactNode {
 		}
 		return 'bg-secondBg';
 	};
+
+	useEffect(() => {
+		setIsMenuOpen(false);
+	}, [pathname]);
 
 	return (
 		<>
