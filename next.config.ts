@@ -127,8 +127,17 @@ const nextConfig = {
 			{source: '/dao-resources', destination: '/', permanent: true},
 			{source: '/shapeshift-decentralize-airdrop', destination: '/', permanent: true},
 
-			{source: '/apple-app-store', destination: '/mobile-app', permanent: true},
-			{source: '/google-play-store', destination: '/mobile-app', permanent: true}
+			{
+				source: '/apple-app-store',
+				destination: 'https://apps.apple.com/us/app/shapeshift-crypto-platform/id996569075',
+				permanent: true
+			},
+			{
+				source: '/google-play-store',
+				destination:
+					'https://play.google.com/store/apps/details?id=com.shapeshift.droid_shapeshift&hl=en_US&gl=US',
+				permanent: true
+			}
 
 			// {
 			// 	source: '/roadmap',

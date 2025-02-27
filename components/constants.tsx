@@ -214,7 +214,7 @@ export const landingCards: TCardsRowSection = {
 	ctaBlock: {
 		id: 1,
 		title: 'Get the app',
-		url: 'https://apps.apple.com/app/id1564826778'
+		url: '/apple-app-store'
 	},
 	cards: [
 		{
