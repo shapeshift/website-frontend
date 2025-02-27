@@ -1,4 +1,5 @@
 import type {
+	TDiscoverData,
 	TFaqData,
 	TPrivacyPolicyData,
 	TSupportedChainData,
@@ -100,6 +101,37 @@ export async function getSupportedProtocol(slug: string): Promise<TSupportedProt
 			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
 		}
 	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data[0];
+}
+
+export async function getDiscovers(): Promise<TDiscoverData[] | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/discovers?populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data;
+}
+
+export async function getDiscover(slug: string): Promise<TDiscoverData | null> {
+	const res = await fetch(
+		`${process.env.STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image`,
+		{
+			headers: {
+				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+			}
+		}
+	);
 
 	if (!res.ok) {
 		return null;

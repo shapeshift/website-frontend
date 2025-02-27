@@ -1,6 +1,6 @@
 import {Banner} from '@/components/common/Banner';
 import {Button} from '@/components/common/Button';
-import {StrapiProtocols} from '@/components/StrapiProtocols';
+import {StrapiDiscover} from '@/components/StrapiDiscover';
 
 import type {ReactNode} from 'react';
 
@@ -10,7 +10,7 @@ export default function ProtocolsPage(): ReactNode {
 			<div className={'container mt-[220px] flex flex-col justify-center'}>
 				<section className={'flex flex-col items-center'}>
 					<div className={'mb-10 flex flex-col items-center gap-2'}>
-						<h1 className={'mb-6 text-7xl'}>{'Shift into DeFi with ShapeShift'}</h1>
+						<h1 className={'mb-6 text-7xl'}>{'Explore Web3 with ShapeShift'}</h1>
 					</div>
 					<Button
 						variant={'blue'}
@@ -20,7 +20,7 @@ export default function ProtocolsPage(): ReactNode {
 				</section>
 
 				<section className={'mt-16'}>
-					<StrapiProtocols />
+					<StrapiDiscover />
 				</section>
 
 				<div className={'my-16'}>

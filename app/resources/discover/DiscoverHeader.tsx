@@ -2,7 +2,6 @@ import Image from 'next/image';
 import {Fragment} from 'react';
 
 import {Button} from '@/components/common/Button';
-import {IconCheck} from '@/components/common/icons/IconCheck';
 
 import type {ReactNode} from 'react';
 
@@ -14,28 +13,14 @@ type THeaderData = {
 	height: number;
 	name: string;
 };
-export function ProtocolHeader(data: THeaderData): ReactNode {
+export function DiscoverHeader(data: THeaderData): ReactNode {
 	return (
 		<Fragment>
 			<section className={'flex flex-col items-center'}>
-				<div className={'mb-10 hidden gap-2 lg:flex'}>
-					{data.items.map(item => (
-						<div
-							className={'flex items-center gap-1 rounded-[24px] bg-secondBg px-4 py-[10px]'}
-							key={item}>
-							<IconCheck className={'text-blue'} />
-							<span className={'text-blue'}>{item}</span>
-						</div>
-					))}
-				</div>
 				<div className={'mb-10 flex flex-col items-center gap-2'}>
-					<h1 className={'mb-6 text-center text-[40px] leading-10 lg:text-7xl'}>
-						{`Shift into ${data.name}`}
-					</h1>
+					<h1 className={'mb-6 text-center text-[40px] leading-10 lg:text-7xl'}>{data.name}</h1>
 					<p className={'mx-auto max-w-screen-md text-center text-base text-gray-500 lg:text-xl'}>
-						{
-							'Say goodbye to having to do multiple complex transactions, going to multiple interfaces, and hello to Shifts with ShapeShift.'
-						}
+						{data.description}
 					</p>
 				</div>
 				<Button

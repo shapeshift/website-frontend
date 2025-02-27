@@ -42,7 +42,7 @@ export function Banner(): ReactNode {
 						variant={'white'}
 						title={'Try the demo'}
 						className={'hidden lg:flex'}
-						href={'https://app.shapeshift.com/#/demo/dashboard'}
+						href={'https://app.shapeshift.com/dashboard'}
 					/>
 				</div>
 			</div>

@@ -264,6 +264,19 @@ export type TSupportedProtocolData = {
 	publishedAt: string;
 };
 
+export type TDiscoverData = {
+	id: number;
+	documentId: string;
+	title: string;
+	description: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	features: TCard[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
 export type TNewsroomPost = {
 	id: number;
 	documentId: string;

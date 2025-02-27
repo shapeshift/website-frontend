@@ -14,7 +14,7 @@ export default function WalletPage(): ReactNode {
 					</div>
 					<Button
 						variant={'blue'}
-						href={'https://app.shapeshift.com/#/demo/'}
+						href={'https://app.shapeshift.com/'}
 						title={'Get Started'}
 					/>
 				</section>

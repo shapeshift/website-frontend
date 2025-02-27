@@ -25,7 +25,7 @@ export default function SupportedChainsPage(): ReactNode {
 					</div>
 					<Button
 						variant={'blue'}
-						href={'https://app.shapeshift.com/#/demo/'}
+						href={'https://app.shapeshift.com/'}
 						title={'Get Started'}
 					/>
 				</section>

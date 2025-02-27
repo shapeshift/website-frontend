@@ -21,7 +21,7 @@ export default async function PrivacyPolicyPage(): Promise<ReactNode> {
 					<h1 className={'mb-6 text-7xl'}>{'Privacy Policy'}</h1>
 					<Button
 						variant={'blue'}
-						href={'https://app.shapeshift.com/#/demo/'}
+						href={'https://app.shapeshift.com/'}
 						title={'Get Started'}
 					/>
 				</section>
