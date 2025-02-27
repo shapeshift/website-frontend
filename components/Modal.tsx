@@ -86,8 +86,8 @@ export function Modal({isOpen, onClose, notification, className}: TModalProps): 
 									/>
 
 									<Image
-										src={'/modalImage.png'}
-										alt={'modalImage'}
+										src={'/modalBg.png'}
+										alt={'modal-background'}
 										width={1600}
 										height={480}
 										className={'absolute inset-x-0 bottom-0'}
