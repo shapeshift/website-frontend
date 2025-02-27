@@ -40,8 +40,8 @@ export function Banner(): ReactNode {
 					/>
 					<Button
 						variant={'white'}
-						title={'Try Demo'}
-						className={'hidden lg:block'}
+						title={'Try the demo'}
+						className={'hidden lg:flex'}
 						href={'https://app.shapeshift.com/#/demo/dashboard'}
 					/>
 				</div>

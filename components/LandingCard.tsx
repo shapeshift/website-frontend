@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import {RoundButton} from './common/RoundButton';
 import {cl} from './utils/cl';
@@ -6,7 +7,7 @@ import {cl} from './utils/cl';
 import type {TCard} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function LandingCard({data}: {data: TCard}): ReactNode {
+function Card({data}: {data: TCard}): ReactNode {
 	return (
 		<div
 			className={cl(
@@ -24,7 +25,6 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 					className={
 						'bg-blue-500 !absolute right-4 top-4 group-hover:scale-110 group-hover:bg-blueHover lg:right-6 lg:top-6'
 					}
-					href={data?.href}
 				/>
 			</div>
 			<div
@@ -42,4 +42,17 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 			</div>
 		</div>
 	);
+}
+
+export function LandingCard({data}: {data: TCard}): ReactNode {
+	if (data?.href) {
+		return (
+			<Link
+				href={data?.href}
+				className={'h-full'}>
+				<Card data={data} />
+			</Link>
+		);
+	}
+	return <Card data={data} />;
 }

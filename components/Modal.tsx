@@ -85,7 +85,7 @@ export function Modal({isOpen, onClose, title, className}: TModalProps): ReactEl
 									</p>
 
 									<Button
-										href={'#'}
+										href={'https://app.shapeshift.com/'}
 										title={'Learn more'}
 										variant={'blue'}
 										hasArrow

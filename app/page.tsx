@@ -209,15 +209,19 @@ export default function HomePage(): ReactNode {
 								<span className={'text-center text-[40px] leading-[48px]'}>{'with DeFi'}</span>
 							</div>
 						</Card>
-						<Card
-							className={'col-span-1 row-span-1 flex items-center bg-secondBg lg:col-span-3'}
-							href={'/'}>
+						<Card className={'col-span-1 row-span-1 flex items-center bg-secondBg lg:col-span-3'}>
 							<Carousel pauseOnHover>
-								{Object.values(CarouselLogos).map((Logo, index) => (
+								{Object.values(CarouselLogos).map(({Logo, href}, index) => (
 									<div
 										key={index}
-										className={'relative mx-10 flex max-h-10 w-max items-center justify-start'}>
-										<Logo />
+										className={'mx-10'}>
+										<Link
+											href={href}
+											target={'_blank'}
+											rel={'noopener noreferrer'}
+											className={'relative flex max-h-10 w-max items-center justify-start'}>
+											<Logo />
+										</Link>
 									</div>
 								))}
 							</Carousel>
@@ -246,7 +250,7 @@ const Card = ({children, className, href}: {children: ReactNode; className: stri
 					{children}
 				</Link>
 			) : (
-				<div className={cl('cursor-pointer overflow-hidden rounded-2xl', className)}>{children}</div>
+				<div className={cl('overflow-hidden rounded-2xl', className)}>{children}</div>
 			)}
 		</>
 	);

@@ -72,7 +72,7 @@ const LadderItem = ({data}: {data: TGridLadderStep}): ReactNode | null => {
 					title={data.buttonCta.title}
 					href={data.buttonCta.url}
 					hasArrow
-					className={'hidden lg:block'}
+					className={'hidden lg:flex'}
 				/>
 			)}
 		</div>

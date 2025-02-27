@@ -222,6 +222,7 @@ export const landingCards: TCardsRowSection = {
 			title: 'Trade',
 			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
 			isTextFirst: false,
+			href: 'https://app.shapeshift.com/',
 			image: {
 				url: '/landing/cardBuyAndSell.png',
 				width: 922,
@@ -240,6 +241,7 @@ export const landingCards: TCardsRowSection = {
 			title: 'Save',
 			description: 'FOX token has power on ShapeShift! Get discounts on fees when you hold FOX.',
 			isTextFirst: false,
+			href: 'https://app.shapeshift.com/pools#/fox',
 			image: {
 				url: '/landing/cardethbtc.png',
 				width: 922,
@@ -259,6 +261,7 @@ export const landingCards: TCardsRowSection = {
 			description:
 				'Earn up to 12% on your Bitcoin, Ethereum, Dogecoin, Cosmos and more. Always non-custodial. Always real yield.',
 			isTextFirst: false,
+			href: 'https://app.shapeshift.com/pools#/earn',
 			image: {
 				url: '/landing/cardShapeshiftDAO.png',
 				width: 922,
@@ -725,71 +728,101 @@ export function newsroomTagsSlugToCategory(slug: string): string {
 }
 
 export const CarouselLogos = {
-	cowSwap: () => (
-		<Image
-			src={'/landing/cow-swap.png'}
-			alt={'cow swap'}
-			width={'200'}
-			height={'40'}
-		/>
-	),
-
-	thorchain: () => (
-		<Image
-			src={'/landing/thorchain.png'}
-			alt={'thorchain'}
-			width={'180'}
-			height={'40'}
-		/>
-	),
-	onramper: () => (
-		<Image
-			src={'/landing/onramper.png'}
-			alt={'onramper'}
-			width={'190'}
-			height={'40'}
-		/>
-	),
-	nownodes: () => (
-		<Image
-			src={'/landing/nownodes.png'}
-			alt={'nownodes'}
-			width={'160'}
-			height={'40'}
-		/>
-	),
-
-	banxa: () => (
-		<Image
-			src={'/landing/banxa.png'}
-			alt={'banxa'}
-			width={'170'}
-			height={'40'}
-		/>
-	),
-	zerion: () => (
-		<Image
-			src={'/landing/zerion.png'}
-			alt={'zerion'}
-			width={'170'}
-			height={'40'}
-		/>
-	),
-	lifi: () => (
-		<Image
-			src={'/landing/lifi.png'}
-			alt={'lifi'}
-			width={'100'}
-			height={'40'}
-		/>
-	),
+	cowSwap: {
+		href: 'https://cow.fi/',
+		src: '/landing/cow-swap.png',
+		Logo: () => (
+			<Image
+				src={'/landing/cow-swap.png'}
+				alt={'cow swap'}
+				width={'200'}
+				height={'40'}
+			/>
+		)
+	},
+	thorchain: {
+		href: 'https://thorchain.org/',
+		src: '/landing/thorchain.png',
+		Logo: () => (
+			<Image
+				src={'/landing/thorchain.png'}
+				alt={'thorchain'}
+				width={'180'}
+				height={'40'}
+			/>
+		)
+	},
+	onramper: {
+		href: 'https://www.onramper.com/',
+		src: '/landing/onramper.png',
+		Logo: () => (
+			<Image
+				src={'/landing/onramper.png'}
+				alt={'onramper'}
+				width={'190'}
+				height={'40'}
+			/>
+		)
+	},
+	nownodes: {
+		href: 'https://nownodes.io/',
+		src: '/landing/nownodes.png',
+		Logo: () => (
+			<Image
+				src={'/landing/nownodes.png'}
+				alt={'nownodes'}
+				width={'160'}
+				height={'40'}
+			/>
+		)
+	},
+	banxa: {
+		href: 'https://banxa.com/',
+		src: '/landing/banxa.png',
+		Logo: () => (
+			<Image
+				src={'/landing/banxa.png'}
+				alt={'banxa'}
+				width={'170'}
+				height={'40'}
+			/>
+		)
+	},
+	zerion: {
+		href: 'https://zerion.io/',
+		src: '/landing/zerion.png',
+		Logo: () => (
+			<Image
+				src={'/landing/zerion.png'}
+				alt={'zerion'}
+				width={'170'}
+				height={'40'}
+			/>
+		)
+	},
+	lifi: {
+		href: 'https://li.fi/',
+		src: '/landing/lifi.png',
+		Logo: () => (
+			<Image
+				src={'/landing/lifi.png'}
+				alt={'lifi'}
+				width={'100'}
+				height={'40'}
+			/>
+		)
+	},
 	// eslint-disable-next-line @typescript-eslint/naming-convention
-	Ox: () => (
-		<Image
-			src={'/landing/0x.png'}
-			alt={'0x'}
-			width={'55'}
-			height={'40'}
-		/>
-	)
+	Ox: {
+		href: 'https://0x.org/',
+		src: '/landing/0x.png',
+		Logo: () => (
+			<Image
+				src={'/landing/0x.png'}
+				alt={'0x'}
+				width={'55'}
+				height={'40'}
+			/>
+		)
+	}
 };
