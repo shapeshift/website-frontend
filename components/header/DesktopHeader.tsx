@@ -64,7 +64,8 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 				className={cl('fixed w-[calc(100%-2rem)]', getVariant())}>
 				<div
 					className={cl(
-						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between rounded-lg mt-4 px-6 py-3',
+						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between mt-4 px-6 py-3',
+						currentTab ? 'rounded-t-lg' : 'rounded-lg',
 						className
 					)}>
 					<div className={'flex w-full items-center justify-between'}>
@@ -107,8 +108,7 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 				</div>
 				<AnimatePresence mode={'wait'}>
 					<motion.div
-						className={'flex justify-center'}
-						key={currentTab}
+						className={'flex justify-center overflow-hidden rounded-b-lg border-x border-b border-white/5'}
 						initial={containerAnimation.initial}
 						animate={containerAnimation.animate(!!currentTab)}
 						exit={containerAnimation.exit}

@@ -89,27 +89,27 @@ export const appProducts = [
 	{
 		name: 'dApp',
 		href: dAppUrl,
-		description: 'A decentralized application',
+		description: 'Trade, track, buy, and earn with your favorite crypto.',
 		icon: <IconDapp />
 	},
-	{name: 'Trade', href: '/trade', description: 'A decentralized finance wallet', icon: <IconDollar />},
+	{name: 'Trade', href: '/trade', description: 'Trade 10,000+ assets with one click.', icon: <IconDollar />},
 	{
 		name: 'DeFi Wallet',
 		href: '/defi-wallet',
-		description: 'A decentralized finance wallet',
+		description: 'All-In-One ShapeShift DeFi wallet.',
 		icon: <IconResource />
 	},
-	{name: 'Earn', href: '/earn', description: 'A decentralized finance wallet', icon: <IconPercent />},
+	{name: 'Earn', href: '/earn', description: 'Easiest and fastest way to earn crypto.', icon: <IconPercent />},
 	{
 		name: 'Mobile app',
 		href: '/mobile-app',
-		description: 'A decentralized finance wallet',
+		description: 'The only crypto app you need.',
 		icon: <IconMobile />
 	},
 	{
 		name: 'KeepKey',
 		href: 'https://www.keepkey.com/',
-		description: 'A decentralized finance wallet',
+		description: 'The Next Frontier of Crypto Security.',
 		icon: <IconKey />
 	}
 ];

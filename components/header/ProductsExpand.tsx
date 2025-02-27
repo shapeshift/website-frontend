@@ -15,10 +15,10 @@ import type {ReactNode} from 'react';
 export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div
-			className={cl('flex justify-between')}
+			className={cl('grid grid-cols-12')}
 			{...expandAnimation}>
 			{/* Left section with main CTA */}
-			<div className={'mt-16 flex flex-col pb-10 pr-10'}>
+			<div className={'col-span-5 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Your Wallet. One App.'}
 					<br />
@@ -33,11 +33,10 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 					href={dAppUrl}
 				/>
 			</div>
-			<div className={'mx-16 border border-white/5'} />
 
 			{/* Right section with product grid */}
-			<div className={'mt-16 pb-10'}>
-				<div className={'grid grid-cols-3 gap-4'}>
+			<div className={'col-span-7 p-16'}>
+				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appProducts.map(product => (
 						<HeaderItem
 							onClick={() => setCurrentTab('empty')}

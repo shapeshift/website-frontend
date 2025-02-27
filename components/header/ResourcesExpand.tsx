@@ -9,9 +9,9 @@ import type {ReactNode} from 'react';
 export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<motion.div
-			className={'flex max-w-[1400px] justify-between'}
+			className={'grid grid-cols-12'}
 			{...expandAnimation}>
-			<div className={'mt-16 pb-10 pr-10'}>
+			<div className={'col-span-5 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Learn more about'}
 					<br />
@@ -19,10 +19,9 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 				</p>
 				<p className={'text-sm text-gray-500'}>{'Frequently asked questions about ShapeShift.'}</p>
 			</div>
-			<div className={'mx-16 border border-white/5'} />
 
-			<div className={'mt-16 pb-10'}>
-				<div className={'grid grid-cols-3 gap-4'}>
+			<div className={'col-span-7 p-16'}>
+				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appResources.slice(0, 5).map(resource => (
 						<HeaderItem
 							onClick={() => setCurrentTab('empty')}

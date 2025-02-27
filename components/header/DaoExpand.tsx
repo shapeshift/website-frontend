@@ -9,9 +9,9 @@ import type {ReactNode} from 'react';
 export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
 		<div
-			className={'flex justify-between'}
+			className={'grid grid-cols-12'}
 			{...expandAnimation}>
-			<div className={'mt-16 max-w-[320px] pb-16 pr-10'}>
+			<div className={'col-span-5 flex flex-col border-r border-white/5 p-16'}>
 				<div className={'mb-5 flex items-center gap-2'}>
 					<div className={'mr-4 size-10'}>
 						<Image
@@ -28,9 +28,8 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 				</div>
 				<p className={'text-sm text-gray-500'}>{'FOX Tokens wield mighty powers for those who hodl them.'}</p>
 			</div>
-			<div className={'mx-16 border border-white/5'} />
-			<div className={'mt-16 pb-10'}>
-				<div className={'grid grid-cols-3 gap-4'}>
+			<div className={'col-span-7 p-16'}>
+				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appDao.slice(0, 3).map(dao => (
 						<HeaderItem
 							onClick={() => setCurrentTab('empty')}
