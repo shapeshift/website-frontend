@@ -263,7 +263,7 @@ export function TradingWidget(): ReactNode {
 							: 'border-white/5 bg-[#17191c] hover:bg-[#17191c]'
 					)}
 					onClick={handleSwap}>
-					<div className={'relative z-20'}>
+					<div className={'relative z-10'}>
 						<IconArrow className={'size-3 rotate-[135deg] text-white/50 group-hover:text-white'} />
 					</div>
 				</div>

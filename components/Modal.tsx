@@ -1,4 +1,4 @@
-import {Dialog, DialogPanel, DialogTitle, Transition, TransitionChild} from '@headlessui/react';
+import {Dialog, DialogPanel, Transition, TransitionChild} from '@headlessui/react';
 import Image from 'next/image';
 import {Fragment} from 'react';
 
@@ -6,16 +6,17 @@ import {Button} from './common/Button';
 import {RoundButton} from './common/RoundButton';
 import {cl} from './utils/cl';
 
+import type {TStrapiNotification} from '@/types/strapi';
 import type {ReactElement} from 'react';
 
 type TModalProps = {
 	isOpen: boolean;
 	onClose: VoidFunction;
-	title?: string;
+	notification: TStrapiNotification | null;
 	className?: string;
 };
 
-export function Modal({isOpen, onClose, title, className}: TModalProps): ReactElement {
+export function Modal({isOpen, onClose, notification, className}: TModalProps): ReactElement {
 	return (
 		<Transition
 			show={isOpen}
@@ -63,26 +64,17 @@ export function Modal({isOpen, onClose, title, className}: TModalProps): ReactEl
 										onClick={onClose}>
 										<RoundButton iconName={'cross'} />
 									</div>
-									<DialogTitle
-										as={'h3'}
-										className={
-											'text-primary-900 mx-2 text-xl font-bold leading-6 md:mx-4 md:text-3xl'
-										}>
-										{title}
-									</DialogTitle>
 								</div>
 								<div className={'flex flex-col items-center'}>
-									<div className={'mb-6 rounded-[24px] bg-blue/10 px-6 py-2 text-blue'}>
-										{'Product update'}
-									</div>
+									{notification?.tag && (
+										<div className={'mb-6 rounded-[24px] bg-blue/10 px-6 py-2 text-blue'}>
+											{notification?.tag}
+										</div>
+									)}
 
-									<h2 className={'mb-4 text-[40px] leading-[40px]'}>{'Multichain Snap is LIVE!'}</h2>
+									<h2 className={'mb-4 text-[40px] leading-[40px]'}>{notification?.title ?? ''}</h2>
 
-									<p className={'mb-10 text-gray-500'}>
-										{
-											"We don't track any personal information, including your IP address or wallet balances."
-										}
-									</p>
+									<p className={'mb-10 text-gray-500'}>{notification?.description ?? ''}</p>
 
 									<Button
 										href={'https://app.shapeshift.com/'}

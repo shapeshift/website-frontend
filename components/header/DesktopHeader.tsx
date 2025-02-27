@@ -61,7 +61,7 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 		<div className={'relative z-50 hidden lg:block'}>
 			<div
 				onMouseLeave={() => setCurrentTab('')}
-				className={cl('fixed w-[calc(100%-2rem)]', getVariant())}>
+				className={cl('sticky top-0 w-[calc(100%-2rem)]', getVariant())}>
 				<div
 					className={cl(
 						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between mt-4 px-6 py-3',

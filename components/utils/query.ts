@@ -2,6 +2,7 @@ import type {
 	TDiscoverData,
 	TFaqData,
 	TPrivacyPolicyData,
+	TStrapiNotification,
 	TSupportedChainData,
 	TSupportedProtocolData,
 	TSupportedWalletData,
@@ -201,6 +202,20 @@ export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
  */
 export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
 	const res = await fetch(`${process.env.STRAPI_URL}/api/terms-of-service?populate=*`, apiHeaders);
+
+	if (!res.ok) {
+		return null;
+	}
+	const data = await res.json();
+	return data.data;
+}
+
+export async function getNotification(): Promise<TStrapiNotification | null> {
+	const res = await fetch(`${process.env.STRAPI_URL}/api/notification?populate=*`, {
+		headers: {
+			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		}
+	});
 
 	if (!res.ok) {
 		return null;

@@ -6,6 +6,7 @@ import {CachedNewsProvider} from '@/components/contexts/CachedNews';
 import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
 import {Footer} from '@/components/Footer';
 import {Header} from '@/components/header/Header';
+import {Notification} from '@/components/Notification';
 
 import './globals.css';
 import {defaultMetadata} from './metadata';
@@ -59,11 +60,14 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 				<WithFonts>
 					<CachedNewsProvider>
 						<CachedPostsProvider>
-							<div className={'flex flex-col px-4'}>
-								<Header />
-								<main>{children}</main>
-								<Footer />
-							</div>
+							<>
+								<Notification />
+								<div className={'flex flex-col px-4'}>
+									<Header />
+									<main>{children}</main>
+									<Footer />
+								</div>
+							</>
 						</CachedPostsProvider>
 					</CachedNewsProvider>
 				</WithFonts>

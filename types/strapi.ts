@@ -329,3 +329,12 @@ export type TNewsroomListResponse = {
 		pagination: TPagination;
 	};
 };
+
+export type TStrapiNotification = {
+	id: number;
+	title: string;
+	description: string;
+	href?: string;
+	tag?: string;
+	type: 'popup' | 'modal' | 'bar';
+};
