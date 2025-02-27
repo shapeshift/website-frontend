@@ -72,12 +72,14 @@ export function Modal({isOpen, onClose, notification, className}: TModalProps): 
 										</div>
 									)}
 
-									<h2 className={'mb-4 text-[40px] leading-[40px]'}>{notification?.title ?? ''}</h2>
+									<h2 className={'mb-4 text-2xl lg:text-[40px] lg:leading-[40px]'}>
+										{notification?.title ?? ''}
+									</h2>
 
 									<p className={'mb-10 text-gray-500'}>{notification?.description ?? ''}</p>
 
 									<Button
-										href={'https://app.shapeshift.com/'}
+										href={notification?.href ?? 'https://app.shapeshift.com/'}
 										title={'Learn more'}
 										variant={'blue'}
 										hasArrow

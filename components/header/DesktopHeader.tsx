@@ -60,15 +60,16 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 	};
 
 	return (
-		<div className={'sticky top-0 z-50 hidden lg:block'}>
+		<div className={'sticky top-0 z-50 hidden rounded-2xl lg:block'}>
 			<Notification />
 			<div
 				onMouseLeave={() => setCurrentTab('')}
-				className={cl('relative w-full mt-3', getVariant())}>
+				className={'roudnded-2xl relative mt-3 w-full bg-transparent'}>
 				<div
 					className={cl(
 						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between px-6 py-3',
 						currentTab ? 'rounded-t-lg' : 'rounded-lg',
+						getVariant(),
 						className
 					)}>
 					<div className={'flex w-full items-center justify-between'}>
