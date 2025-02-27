@@ -22,12 +22,11 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 						title={'Get Started'}
 					/>
 				</section>
-
-				<section className={'mt-16'}>
-					<SupportedTable />
-				</section>
 				<section className={'mt-16'}>
 					<StrapiChains chains={chains} />
+				</section>
+				<section className={'mt-16'}>
+					<SupportedTable />
 				</section>
 				<div className={'my-16'}>
 					<Banner />
