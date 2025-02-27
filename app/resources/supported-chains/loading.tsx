@@ -1,7 +1,7 @@
 import SupportedTable from '@/app/resources/supported-chains/SupportedTable';
 import {Banner} from '@/components/common/Banner';
 import {Button} from '@/components/common/Button';
-import {StrapiDiscover} from '@/components/StrapiDiscover';
+import {StrapiChains} from '@/components/StrapiChains';
 
 import type {ReactNode} from 'react';
 
@@ -21,10 +21,10 @@ export default function Loading(): ReactNode {
 				</section>
 
 				<section className={'mt-8'}>
-					<SupportedTable />
+					<StrapiChains isLoading />
 				</section>
-				<section className={'mt-16'}>
-					<StrapiDiscover isLoading />
+				<section className={'mt-8'}>
+					<SupportedTable />
 				</section>
 				<div className={'my-16'}>
 					<Banner />
