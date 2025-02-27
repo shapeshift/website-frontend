@@ -6,7 +6,6 @@ import {CachedNewsProvider} from '@/components/contexts/CachedNews';
 import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
 import {Footer} from '@/components/Footer';
 import {Header} from '@/components/header/Header';
-import {Notification} from '@/components/Notification';
 
 import './globals.css';
 import {defaultMetadata} from './metadata';
@@ -56,18 +55,15 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
 				</Script>
 			</head>
-			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
+			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 text-white'}>
 				<WithFonts>
 					<CachedNewsProvider>
 						<CachedPostsProvider>
-							<>
-								<Notification />
-								<div className={'flex flex-col px-4'}>
-									<Header />
-									<main>{children}</main>
-									<Footer />
-								</div>
-							</>
+							<div className={'flex flex-col'}>
+								<Header />
+								{children}
+								<Footer />
+							</div>
 						</CachedPostsProvider>
 					</CachedNewsProvider>
 				</WithFonts>

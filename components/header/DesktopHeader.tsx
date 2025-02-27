@@ -5,6 +5,8 @@ import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useMemo, useState} from 'react';
 
+import {Notification} from '@/components/Notification';
+
 import {containerAnimation} from './animations';
 import {IconPlanet} from '../common/icons/IconPlanet';
 import {dAppUrl, headerTabs} from '../constants';
@@ -52,19 +54,20 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 			if (currentTab) {
 				return 'bg-secondBg';
 			}
-			return 'bg-headerBg/10 ';
+			return 'bg-transparent';
 		}
 		return 'bg-secondBg';
 	};
 
 	return (
-		<div className={'relative z-50 hidden lg:block'}>
+		<div className={'sticky top-0 z-50 hidden lg:block'}>
+			<Notification />
 			<div
 				onMouseLeave={() => setCurrentTab('')}
-				className={cl('sticky top-0 w-[calc(100%-2rem)]', getVariant())}>
+				className={cl('relative w-full mt-3', getVariant())}>
 				<div
 					className={cl(
-						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between mt-4 px-6 py-3',
+						'flex flex-col border border-white/5 items-center transition-all backdrop-blur-lg duration-300 justify-between px-6 py-3',
 						currentTab ? 'rounded-t-lg' : 'rounded-lg',
 						className
 					)}>
@@ -108,7 +111,9 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 				</div>
 				<AnimatePresence mode={'wait'}>
 					<motion.div
-						className={'flex justify-center overflow-hidden rounded-b-lg border-x border-b border-white/5'}
+						className={
+							'absolute top-full flex justify-center overflow-hidden rounded-b-lg border-x border-b border-white/5 bg-secondBg'
+						}
 						initial={containerAnimation.initial}
 						animate={containerAnimation.animate(!!currentTab)}
 						exit={containerAnimation.exit}
