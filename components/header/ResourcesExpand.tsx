@@ -11,7 +11,7 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 		<motion.div
 			className={'grid grid-cols-12'}
 			{...expandAnimation}>
-			<div className={'col-span-5 flex flex-col border-r border-white/5 p-16'}>
+			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Learn more about'}
 					<br />
@@ -20,7 +20,7 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 				<p className={'text-sm text-gray-500'}>{'Frequently asked questions about ShapeShift.'}</p>
 			</div>
 
-			<div className={'col-span-7 p-16'}>
+			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appResources.slice(0, 5).map(resource => (
 						<HeaderItem

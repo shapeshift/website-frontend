@@ -11,7 +11,7 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 		<div
 			className={'grid grid-cols-12'}
 			{...expandAnimation}>
-			<div className={'col-span-5 flex flex-col border-r border-white/5 p-16'}>
+			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<div className={'mb-5 flex items-center gap-2'}>
 					<div className={'mr-4 size-10'}>
 						<Image
@@ -28,7 +28,7 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 				</div>
 				<p className={'text-sm text-gray-500'}>{'FOX Tokens wield mighty powers for those who hodl them.'}</p>
 			</div>
-			<div className={'col-span-7 p-16'}>
+			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appDao.slice(0, 3).map(dao => (
 						<HeaderItem

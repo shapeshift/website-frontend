@@ -18,7 +18,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 			className={cl('grid grid-cols-12')}
 			{...expandAnimation}>
 			{/* Left section with main CTA */}
-			<div className={'col-span-5 flex flex-col border-r border-white/5 p-16'}>
+			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Your Wallet. One App.'}
 					<br />
@@ -35,7 +35,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 			</div>
 
 			{/* Right section with product grid */}
-			<div className={'col-span-7 p-16'}>
+			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appProducts.map(product => (
 						<HeaderItem
