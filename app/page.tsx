@@ -88,8 +88,13 @@ export default function HomePage(): ReactNode {
 						/>
 						<div
 							className={
-								'absolute bottom-0 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
+								'absolute -bottom-6 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
 							}>
+							<div
+								className={
+									'to-transparents absolute bottom-6 h-10 w-full bg-gradient-to-t from-[#111214] lg:h-20'
+								}
+							/>
 							{tab === 'Buy' ? (
 								<Image
 									src={'/landing/tabBuy.png'}
