@@ -10,7 +10,7 @@ import type {
 
 /**
  * API utility functions to fetch data from Strapi CMS
- * 
+ *
  * Each function fetches specific content types and handles error cases uniformly.
  * All API calls include authentication via STRAPI_API_TOKEN environment variable.
  */
@@ -26,7 +26,7 @@ const apiHeaders = {
 
 /**
  * Fetches FAQ sections with nested items
- * 
+ *
  * @returns Promise with FAQ data or null if request fails
  */
 export async function getFaq(): Promise<TFaqData | null> {
@@ -44,7 +44,7 @@ export async function getFaq(): Promise<TFaqData | null> {
 
 /**
  * Fetches all supported wallets
- * 
+ *
  * @returns Promise with array of wallet data or null if request fails
  */
 export async function getSupportedWallets(): Promise<TSupportedWalletData[] | null> {
@@ -59,13 +59,13 @@ export async function getSupportedWallets(): Promise<TSupportedWalletData[] | nu
 
 /**
  * Fetches a specific wallet by its slug
- * 
+ *
  * @param slug - Unique identifier for the wallet
  * @returns Promise with wallet data or null if request fails or wallet not found
  */
 export async function getSupportedWallet(slug: string): Promise<TSupportedWalletData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`, 
+		`${process.env.STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
 	);
 
@@ -78,7 +78,7 @@ export async function getSupportedWallet(slug: string): Promise<TSupportedWallet
 
 /**
  * Fetches all supported blockchain networks
- * 
+ *
  * @returns Promise with array of chain data or null if request fails
  */
 export async function getSupportedChains(): Promise<TSupportedChainData[] | null> {
@@ -93,13 +93,13 @@ export async function getSupportedChains(): Promise<TSupportedChainData[] | null
 
 /**
  * Fetches a specific blockchain network by its slug
- * 
+ *
  * @param slug - Unique identifier for the chain
  * @returns Promise with chain data or null if request fails or chain not found
  */
 export async function getSupportedChain(slug: string): Promise<TSupportedChainData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`, 
+		`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
 	);
 
@@ -112,7 +112,7 @@ export async function getSupportedChain(slug: string): Promise<TSupportedChainDa
 
 /**
  * Fetches all supported protocols
- * 
+ *
  * @returns Promise with array of protocol data or null if request fails
  */
 export async function getSupportedProtocols(): Promise<TSupportedProtocolData[] | null> {
@@ -127,7 +127,7 @@ export async function getSupportedProtocols(): Promise<TSupportedProtocolData[] 
 
 /**
  * Fetches a specific protocol by its slug
- * 
+ *
  * @param slug - Unique identifier for the protocol
  * @returns Promise with protocol data or null if request fails or protocol not found
  */
@@ -146,7 +146,7 @@ export async function getSupportedProtocol(slug: string): Promise<TSupportedProt
 
 /**
  * Fetches all discover section entries
- * 
+ *
  * @returns Promise with array of discover data or null if request fails
  */
 export async function getDiscovers(): Promise<TDiscoverData[] | null> {
@@ -162,7 +162,7 @@ export async function getDiscovers(): Promise<TDiscoverData[] | null> {
 /**
  * Fetches a specific discover section by its slug
  * Includes related features, title, description, and images
- * 
+ *
  * @param slug - Unique identifier for the discover section
  * @returns Promise with discover data or null if request fails or section not found
  */
@@ -181,7 +181,7 @@ export async function getDiscover(slug: string): Promise<TDiscoverData | null> {
 
 /**
  * Fetches privacy policy content
- * 
+ *
  * @returns Promise with privacy policy data or null if request fails
  */
 export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
@@ -196,7 +196,7 @@ export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
 
 /**
  * Fetches terms of service content
- * 
+ *
  * @returns Promise with terms of service data or null if request fails
  */
 export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
