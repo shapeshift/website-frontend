@@ -7,6 +7,7 @@ import {IconChains} from './common/icons/IconChains';
 import {IconCheckCircle} from './common/icons/IconCheckCircle';
 import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
+import {IconDiscover} from './common/icons/IconDiscover';
 import {IconDocs} from './common/icons/IconDocs';
 import {IconDollar} from './common/icons/IconDollar';
 import {IconFox} from './common/icons/IconFox';
@@ -56,7 +57,12 @@ export const appResources = [
 		description: 'Protocols we support',
 		icon: <IconScanDevice />
 	},
-
+	{
+		name: 'Discover',
+		description: 'Learn more about the ShapeShift ecosystem',
+		href: '/discover',
+		icon: <IconDiscover />
+	},
 	{
 		name: 'Support',
 		href: 'https://shapeshift.zendesk.com/',
