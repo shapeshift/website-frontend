@@ -4,7 +4,6 @@
  ********************************************************************************************/
 
 import CardsRow from '../strapi-sections/cards-row/CardsRow';
-import Footer from '../FooterBanner';
 import Grid from '../strapi-sections/products/Grid';
 import GridDisplaced from '../strapi-sections/products/GridDisplaced';
 import GridLadder from '../strapi-sections/products/GridLadder';
@@ -15,8 +14,7 @@ export const sections = {
 	cardsRow: CardsRow,
 	gridLadder: GridLadder,
 	grid: Grid,
-	gridDisplaced: GridDisplaced,
-	footer: Footer
+	gridDisplaced: GridDisplaced
 } as const;
 
 export type TSectionType = keyof typeof sections;
