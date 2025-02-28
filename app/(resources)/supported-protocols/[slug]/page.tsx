@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {ProtocolAbout} from '@/app/(resources)/supported-protocols/ProtocolAbout';
@@ -69,6 +70,15 @@ export default async function ProtocolPage({params}: {params: Promise<{slug: str
 
 	return (
 		<div className={'flex w-full justify-center'}>
+			<div className={'absolute inset-0 -z-10 hidden lg:block'}>
+				<Image
+					src={'/heroBg.png'}
+					alt={'hero-bg'}
+					height={'2256'}
+					width={'3840'}
+					className={'object-cover'}
+				/>
+			</div>
 			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<ProtocolHeader
 					name={protocol?.name}

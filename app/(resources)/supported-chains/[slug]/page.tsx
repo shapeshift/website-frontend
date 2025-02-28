@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Banner} from '@/components/common/Banner';
@@ -70,6 +71,15 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 
 	return (
 		<div className={'flex w-full justify-center'}>
+			<div className={'absolute inset-0 -z-10 hidden lg:block'}>
+				<Image
+					src={'/heroBg.png'}
+					alt={'hero-bg'}
+					height={'2256'}
+					width={'3840'}
+					className={'object-cover'}
+				/>
+			</div>
 			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<ChainHeader chainName={chain.name} />
 

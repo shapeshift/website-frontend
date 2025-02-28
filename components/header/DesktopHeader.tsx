@@ -54,17 +54,19 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 		[switchLanguage, currentLanguage]
 	);
 
+	console.log(currentTab);
+
 	/**
 	 * Determine background style based on variant and active tab
 	 */
 	const getVariant = (): string => {
 		if (variant === 'transparent') {
 			if (currentTab) {
-				return 'bg-secondBg';
+				return 'bg-headerBg';
 			}
 			return 'bg-transparent';
 		}
-		return 'bg-secondBg';
+		return 'bg-headerBg';
 	};
 
 	return (
@@ -120,7 +122,7 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 				</div>
 				<motion.div
 					className={cl(
-						'absolute top-full bg-secondBg',
+						'absolute top-full bg-bg',
 						'rounded-b-lg border-x border-b border-white/5',
 						'flex justify-center w-full',
 						tabContent[currentTab] ? 'opacity-1' : '!opacity-0'
@@ -129,7 +131,9 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 					animate={containerAnimation.animate(true)}
 					exit={containerAnimation.exit}
 					transition={containerAnimation.transition}>
-					<AnimateChangeInHeight>{tabContent[currentTab]}</AnimateChangeInHeight>
+					<div className={'bg-headerBg'}>
+						<AnimateChangeInHeight>{tabContent[currentTab]}</AnimateChangeInHeight>
+					</div>
 				</motion.div>
 			</div>
 		</div>

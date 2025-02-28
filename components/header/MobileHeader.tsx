@@ -69,13 +69,13 @@ export function MobileHeader({
 
 	return (
 		<div className={'sticky top-0 z-50 lg:hidden'}>
-			<div className={'z-50 mt-6 flex w-full items-center justify-between rounded-2xl bg-secondBg p-4'}>
+			<div className={'z-50 mt-6 flex w-full items-center justify-between rounded-2xl bg-headerBg p-4'}>
 				<Link href={'/'}>
 					<IconShapeshift />
 				</Link>
 				<button
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
-					className={'min-h-[56px] min-w-[56px] rounded-[20px] border border-stroke p-4'}>
+					className={'min-h-[56px] min-w-[56px] rounded-[20px] border border-white/5 p-4'}>
 					{isMenuOpen ? <IconClose /> : <IconMenu />}
 				</button>
 			</div>
@@ -88,7 +88,7 @@ export function MobileHeader({
 							<IconShapeshift />
 							<button
 								onClick={() => setIsMenuOpen(false)}
-								className={'min-w-[56px] rounded-[20px] border border-stroke p-4'}>
+								className={'min-w-[56px] rounded-[20px] border border-white/5 p-4'}>
 								<IconClose />
 							</button>
 						</div>

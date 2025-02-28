@@ -56,8 +56,17 @@ export default function HomePage(): ReactNode {
 					</div>
 				</div>
 			</div>
+			<div className={'absolute inset-0 -z-10 mt-[95vh] hidden lg:block'}>
+				<Image
+					src={'/heroBg.png'}
+					alt={'hero-bg'}
+					height={'2256'}
+					width={'3840'}
+					className={'object-cover'}
+				/>
+			</div>
 			<div className={'container mt-[120px]'}>
-				<div className={'mb-14 mt-40 inline'}>
+				<div className={' mb-14 mt-40 inline'}>
 					<span className={'mb-6 text-[40px] leading-10 text-white lg:text-7xl'}>
 						{'Your Wallet. One App.'}
 					</span>

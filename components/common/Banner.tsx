@@ -17,14 +17,7 @@ export function Banner(): ReactNode {
 				alt={'banner'}
 				width={2800}
 				height={952}
-				className={'absolute inset-0 -z-10 hidden size-full object-cover lg:block'}
-			/>
-			<Image
-				src={'/bannerBg.png'}
-				alt={'banner'}
-				width={2800}
-				height={952}
-				className={'absolute inset-0 -z-10 size-full object-cover lg:hidden'}
+				className={'absolute inset-0 -z-10 size-full object-cover'}
 			/>
 			<div className={'flex flex-col lg:max-w-[511px]'}>
 				<h2 className={'mb-24 text-center text-[40px] leading-[40px] lg:text-left'}>
