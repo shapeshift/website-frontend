@@ -49,7 +49,7 @@ export default function FoxTokenPage(): ReactNode {
 			</div>
 
 			<div className={'container mb-[120px] grid grid-cols-1 lg:mb-60 lg:grid-cols-2 lg:gap-20'}>
-				<div className={'w-[640px]'}>
+				<div>
 					<h1 className={'mb-8 text-[28px] leading-[32px] lg:text-7xl'}>{'How do I Participate?'}</h1>
 					<p className={'hidden text-gray-500 lg:block'}>
 						{
