@@ -270,6 +270,7 @@ export type TDiscoverData = {
 	title: string;
 	description: string;
 	slug: string;
+	tag: string;
 	featuredImg: TStrapiImage;
 	features: TCard[];
 	createdAt: string;

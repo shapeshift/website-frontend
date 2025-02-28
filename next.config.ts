@@ -87,7 +87,7 @@ const nextConfig = {
 			{source: '/reports/new-frontiers', destination: '/reports/new-frontiers.pdf', permanent: true},
 			{source: '/reports/yield-unchained', destination: '/reports/yield-unchained.pdf', permanent: true},
 
-			// Resources
+			// Other
 			{source: '/earn-crypto', destination: '/earn', permanent: true},
 			{source: '/research', destination: '/blog', permanent: true},
 			{source: '/faqs', destination: '/faq', permanent: true},
@@ -126,6 +126,12 @@ const nextConfig = {
 			{source: '/dao-resources', destination: '/', permanent: true},
 			{source: '/shapeshift-decentralize-airdrop', destination: '/', permanent: true},
 
+			// Discover
+			{source: '/thorchain/liquidity-pools', destination: '/discover/liquidity-pools', permanent: true},
+			{source: '/thorchain/streaming-swaps', destination: '/discover/streaming-swaps', permanent: true},
+			{source: '/thorchain/lend-borrow', destination: '/discover/lend-borrow', permanent: true},
+
+			// App store
 			{
 				source: '/apple-app-store',
 				destination: 'https://apps.apple.com/us/app/shapeshift-crypto-platform/id996569075',

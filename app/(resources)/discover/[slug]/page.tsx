@@ -64,10 +64,11 @@ export default async function ProtocolPage({params}: {params: Promise<{slug: str
 
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'container mt-[60px] flex flex-col justify-center lg:mt-60'}>
+			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<DiscoverHeader
 					name={discover?.title}
 					description={discover?.description}
+					tag={discover?.tag}
 					items={['Self-custodial', 'Private', 'Multichain trading']}
 					url={`${process.env.STRAPI_URL}${discover?.featuredImg?.url}`}
 					width={discover?.featuredImg?.width}
