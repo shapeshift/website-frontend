@@ -70,7 +70,7 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'container mt-20 flex flex-col justify-center lg:mt-[220px]'}>
+			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<ChainHeader chainName={chain.name} />
 
 				<div className={'mb-20 mt-16 lg:mb-60'}>
