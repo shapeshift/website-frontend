@@ -1,5 +1,7 @@
 'use client';
 
+import {useLanguage} from '@/hooks/useLanguage';
+
 import {DesktopHeader} from './DesktopHeader';
 import {MobileHeader} from './MobileHeader';
 
@@ -14,10 +16,18 @@ type THeaderProps = {
  * Switches between mobile and desktop versions based on screen size
  */
 export function Header({className}: THeaderProps): ReactNode {
+	const {currentLanguage, switchLanguage} = useLanguage();
 	return (
 		<>
-			<MobileHeader />
-			<DesktopHeader className={className} />
+			<MobileHeader
+				switchLanguage={switchLanguage}
+				currentLanguage={currentLanguage}
+			/>
+			<DesktopHeader
+				className={className}
+				switchLanguage={switchLanguage}
+				currentLanguage={currentLanguage}
+			/>
 		</>
 	);
 }

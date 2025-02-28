@@ -5,12 +5,14 @@ import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useEffect, useState} from 'react';
 
+import {IconCheck} from '../common/icons/IconCheck';
 import {IconClose} from '../common/icons/IconClose';
 import {IconMenu} from '../common/icons/IconMenu';
 import {IconPlanet} from '../common/icons/IconPlanet';
 import {IconShapeshift} from '../common/icons/IconShapeshift';
 import {appDao, appProducts, appResources, headerTabs} from '../constants';
 import {AnimatedPlusMinusIcon} from '../QuestionSection';
+import {LANGUAGES} from './LanguageExpand';
 
 import type {ReactNode} from 'react';
 
@@ -49,7 +51,13 @@ const expandAnimation = {
 /**
  * Mobile header component with hamburger menu and expandable sections
  */
-export function MobileHeader(): ReactNode {
+export function MobileHeader({
+	switchLanguage,
+	currentLanguage
+}: {
+	switchLanguage: (symbol: string) => void;
+	currentLanguage: string;
+}): ReactNode {
 	const pathname = usePathname();
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 	const [expandedSection, setExpandedSection] = useState<string>('');
@@ -144,9 +152,39 @@ export function MobileHeader(): ReactNode {
 									))}
 								</div>
 							</div>
-							<div className={'mb-10 mt-6 flex items-center gap-2 rounded-2xl border border-stroke p-4'}>
-								<IconPlanet className={'text-white/50'} />
-								<span>{'English'}</span>
+							<div>
+								<button
+									onClick={() => setExpandedSection(expandedSection === 'language' ? '' : 'language')}
+									className={
+										'mb-10 mt-6 flex w-full items-center justify-between gap-2 rounded-2xl border border-white/50 bg-white/10 p-4'
+									}>
+									<span>{LANGUAGES.find(l => l.symbol === currentLanguage)?.name}</span>
+									<IconPlanet className={'text-white/50'} />
+								</button>
+								<AnimatePresence>
+									{expandedSection === 'language' && (
+										<motion.div
+											className={'space-y-4 p-6 pt-0'}
+											{...expandAnimation}>
+											<div className={'flex flex-col gap-4'}>
+												{LANGUAGES.map(language => (
+													<button
+														key={language.symbol}
+														onClick={() => {
+															switchLanguage(language.symbol);
+															setExpandedSection('');
+														}}
+														className={
+															'flex items-center justify-between rounded-lg px-6 py-4 hover:bg-white/10'
+														}>
+														<span>{language.name}</span>
+														{currentLanguage === language.symbol && <IconCheck />}
+													</button>
+												))}
+											</div>
+										</motion.div>
+									)}
+								</AnimatePresence>
 							</div>
 						</div>
 					</motion.div>
