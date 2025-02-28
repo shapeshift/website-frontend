@@ -22,7 +22,7 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 
 			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>
-					{appResources.slice(0, 5).map(resource => (
+					{appResources.slice(0, 6).map(resource => (
 						<HeaderItem
 							onClick={() => setCurrentTab('empty')}
 							key={resource.name}
