@@ -8,9 +8,9 @@ import {useMemo, useState} from 'react';
 import {AnimateChangeInHeight} from '@/components/AnimatedHeight';
 import {Notification} from '@/components/Notification';
 
-import {containerAnimation} from './animations';
 import {IconPlanet} from '../common/icons/IconPlanet';
 import {dAppUrl, headerTabs} from '../constants';
+import {containerAnimation} from './animations';
 import {DAOExpand} from './DaoExpand';
 import {LanguageExpand} from './LanguageExpand';
 import {ProductsExpand} from './ProductsExpand';
@@ -122,7 +122,8 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 					className={cl(
 						'absolute top-full bg-secondBg',
 						'rounded-b-lg border-x border-b border-white/5',
-						'flex justify-center w-full'
+						'flex justify-center w-full',
+						tabContent[currentTab] ? 'opacity-1' : '!opacity-0'
 					)}
 					initial={containerAnimation.initial}
 					animate={containerAnimation.animate(true)}
