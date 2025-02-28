@@ -12,18 +12,14 @@ export const expandAnimation = {
 };
 
 export const containerAnimation = {
-	initial: {opacity: 0, y: 20},
+	initial: {opacity: 0},
 	animate: (isOpen: boolean) => ({
-		opacity: isOpen ? 1 : 0,
-		y: isOpen ? 0 : 20,
-		scaleY: isOpen ? 1 : 0.95,
-		transformOrigin: 'top'
+		opacity: isOpen ? 1 : 0
 	}),
 	exit: {
 		opacity: 0,
-		y: 20,
-		scaleY: 0.95,
 		transition: {duration: 0.1, ease: 'easeInOut'}
 	},
+
 	transition: {duration: 0.4, ease: 'easeInOut'}
 };

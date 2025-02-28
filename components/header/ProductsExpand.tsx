@@ -1,9 +1,8 @@
-import {motion} from 'framer-motion';
+import {cl} from '@/components/utils/cl';
 
 import {Button} from '../common/Button';
 import HeaderItem from '../common/HeaderItem';
-import {appProducts} from '../constants';
-import {expandAnimation} from './animations';
+import {appProducts, dAppUrl} from '../constants';
 
 import type {ReactNode} from 'react';
 
@@ -14,29 +13,27 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
-		<motion.div
-			className={'mt-16 flex max-w-[1400px] justify-between pb-10'}
-			{...expandAnimation}>
+		<div className={cl('grid grid-cols-12 h-full')}>
 			{/* Left section with main CTA */}
-			<div className={'flex flex-col border-r border-stoke pr-10'}>
+			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
 					{'Your Wallet. One App.'}
 					<br />
 					{'Endless Opportunity'}
 				</p>
 				<p className={'mb-10 max-w-[327px] text-sm text-gray-500'}>
-					{'Trade Bitcoin, Ethereum, and more with top rates across leading DEXs and aggregators.'}
+					{'Trade Bipin, Ethereum, and more with top rates across leading DEXs and aggregators.'}
 				</p>
 				<Button
 					variant={'blue'}
 					title={'Get Started'}
-					href={'/products/dapp'}
+					href={dAppUrl}
 				/>
 			</div>
 
 			{/* Right section with product grid */}
-			<div>
-				<div className={'grid grid-cols-3 gap-4'}>
+			<div className={'col-span-8 p-16'}>
+				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appProducts.map(product => (
 						<HeaderItem
 							onClick={() => setCurrentTab('empty')}
@@ -44,10 +41,11 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 							name={product.name}
 							href={product.href}
 							description={product.description}
+							icon={product.icon}
 						/>
 					))}
 				</div>
 			</div>
-		</motion.div>
+		</div>
 	);
 }

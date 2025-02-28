@@ -11,7 +11,7 @@ import type {ReactNode} from 'react';
  * by collapsing the vertical stroke. The horizontal stroke remains constant.
  * @param isOpen - if true, the vertical stroke scales to 0 (minus state)
  */
-const AnimatedPlusMinusIcon = ({isOpen}: {isOpen: boolean}): ReactNode => {
+export const AnimatedPlusMinusIcon = ({isOpen}: {isOpen: boolean}): ReactNode => {
 	return (
 		<motion.svg
 			width={'24'}
@@ -54,10 +54,9 @@ export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionIt
 				className={'flex cursor-pointer items-center justify-between px-10 py-8'}
 				onClick={() => setIsOpen(!isOpen)}>
 				<div className={'text-2xl'}>{faqSectionItem.question}</div>
-				{/* Render the animated icon inside a button-like container with blue hover background */}
 				<div
 					className={
-						'flex size-12 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:scale-[1.16] group-hover:bg-blueHover'
+						'flex size-12 min-w-[48px] items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:scale-[1.16] group-hover:bg-blueHover'
 					}>
 					<AnimatedPlusMinusIcon isOpen={isOpen} />
 				</div>

@@ -1,14 +1,16 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
 
 import {WithFonts} from '@/components/common/WithFonts';
-import {PostsProvider} from '@/components/contexts/BlogContext';
+import {CachedNewsProvider} from '@/components/contexts/CachedNews';
+import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
+import {Footer} from '@/components/Footer';
+import {Header} from '@/components/header/Header';
 
 import './globals.css';
-import {LayoutClient} from './layout.client';
+import {defaultMetadata} from './metadata';
 
+import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 export async function getSubdomain(): Promise<string | null> {
@@ -34,10 +36,9 @@ export async function getSubdomain(): Promise<string | null> {
 	return null;
 }
 
-export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
-	// const locale = await getSubdomain();
-	const messages = await getMessages();
+export const metadata: Metadata = defaultMetadata;
 
+export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
 	return (
 		<html>
 			<head>
@@ -54,13 +55,17 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
 				</Script>
 			</head>
-			<body className={'relative min-h-screen overflow-x-hidden bg-bg text-white'}>
+			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 text-white'}>
 				<WithFonts>
-					<NextIntlClientProvider messages={messages}>
-						<PostsProvider>
-							<LayoutClient>{children}</LayoutClient>
-						</PostsProvider>
-					</NextIntlClientProvider>
+					<CachedNewsProvider>
+						<CachedPostsProvider>
+							<div className={'flex flex-col'}>
+								<Header />
+								{children}
+								<Footer />
+							</div>
+						</CachedPostsProvider>
+					</CachedNewsProvider>
 				</WithFonts>
 			</body>
 		</html>

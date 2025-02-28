@@ -17,35 +17,38 @@ type TButtonProps = {
 };
 
 export function Button(props: TButtonProps): ReactNode {
+	const {variant = 'blue', hasArrow = false, ...rest} = props;
 	return (
 		<>
 			{props.href ? (
 				<Link
 					className={cl(
-						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300',
-						props.hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
-						props.variant === 'blue'
+						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300 gap-2',
+						hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
+						variant === 'blue'
 							? 'bg-blue hover:bg-blueHover'
-							: 'bg-white/10 border border-white/50 hover:bg-white/5'
+							: 'bg-white/10 border border-white/50 hover:bg-white/5',
+						props.className
 					)}
 					href={props.href}
-					target={'_blank'}>
+					target={props.href?.startsWith('http') ? '_blank' : undefined}>
 					<span>{props.title}</span>
-					{props.hasArrow ? <IconNext /> : null}
+					{hasArrow ? <IconNext /> : null}
 				</Link>
 			) : (
 				<button
-					{...props}
+					{...rest}
 					className={cl(
-						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300',
+						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300 gap-2',
 						props.className,
-						props.href ? 'w-[232px]' : 'w-[152px]',
-						props.variant === 'blue'
+						props.href || hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
+						variant === 'blue'
 							? 'bg-blue hover:bg-blueHover'
 							: 'bg-white/10 border border-white/50 hover:bg-white/5'
 					)}
 					onClick={props.onClick}>
 					{props.title}
+					{hasArrow ? <IconNext /> : null}
 				</button>
 			)}
 		</>

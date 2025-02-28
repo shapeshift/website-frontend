@@ -39,6 +39,7 @@ export type TCard = {
 	isTextFirst: boolean;
 	image: TStrapiImage;
 	href?: string;
+	buttonCta?: TButton;
 };
 
 export type TGridLadderStep = {
@@ -128,6 +129,7 @@ export type TPageData = {
 	publishedAt: string;
 };
 
+
 /********************************************************************************************
  * Types for Strapi Blog API responses
  * Includes both list and single post interfaces
@@ -136,33 +138,28 @@ export type TBlogPost = {
 	id: number;
 	documentId: string;
 	slug: string;
+	title: string;
 	content: string;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
-	imageFeatured: TStrapiImage;
-	type: (
-		| 'all'
-		| 'Partner Integrations'
-		| 'Ethereum'
-		| 'Bitcoin'
-		| 'Crypto Pro'
-		| 'Thought Leadership'
-		| 'Governance Newsletters'
-		| 'Newsletter'
-	)[];
-	description: string;
+	featuredImg: TStrapiImage;
+	tags: string[];
+	type: string[];
+	summary: string;
+};
+
+export type TPagination = {
+	page: number;
+	pageSize: number;
+	pageCount: number;
+	total: number;
 };
 
 export type TBlogListResponse = {
 	data: TBlogPost[];
 	meta: {
-		pagination: {
-			page: number;
-			pageSize: number;
-			pageCount: number;
-			total: number;
-		};
+		pagination: TPagination;
 	};
 };
 
@@ -186,4 +183,121 @@ export type TFaqSectionItem = {
 	id: number;
 	question: string;
 	answer: string;
+};
+
+export type TSupportedWalletData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TSupportedChainData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	foxImg: TStrapiImage;
+	actions: string[];
+	features: string[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TSupportedProtocolData = {
+	id: number;
+	documentId: string;
+	name: string;
+	description: string;
+	collabDescription: string;
+	slug: string;
+	featuredImg: TStrapiImage;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TDiscoverData = {
+	id: number;
+	documentId: string;
+	title: string;
+	description: string;
+	slug: string;
+	tag: string;
+	featuredImg: TStrapiImage;
+	features: TCard[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+};
+
+export type TNewsroomPost = {
+	id: number;
+	documentId: string;
+	slug: string;
+	title: string;
+	content: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	publishedOn: string;
+	featuredImg: TStrapiImage;
+	tags: string[];
+	category: string[];
+	author: string;
+	postSummary: string;
+	externalURL: string;
+};
+
+export type TPrivacyPolicyData = {
+	id: number;
+	documentId: string;
+	policy: {
+		id: number;
+		title: string;
+		createdAt: string;
+		updatedAt: string;
+		publishedAt: string;
+		policy: string;
+		date: string;
+	}[];
+};
+
+export type TTermsOfServiceData = {
+	id: number;
+	documentId: string;
+	terms: {
+		id: number;
+		title: string;
+		createdAt: string;
+		updatedAt: string;
+		publishedAt: string;
+		policy: string;
+		date: string;
+	}[];
+};
+
+export type TNewsroomListResponse = {
+	data: TNewsroomPost[];
+	meta: {
+		pagination: TPagination;
+	};
+};
+
+export type TStrapiNotification = {
+	id: number;
+	title: string;
+	description: string;
+	href?: string;
+	tag?: string;
+	type: 'popup' | 'modal' | 'bar';
+	enabled: boolean;
 };

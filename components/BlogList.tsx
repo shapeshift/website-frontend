@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import {usePosts} from '@/components/contexts/BlogContext';
+import {useFetchPosts} from '@/hooks/useFetchPosts';
 
 import {BlogPost} from './BlogPost';
 import {Button} from './common/Button';
@@ -10,17 +10,19 @@ import {Button} from './common/Button';
 import type {TBlogPost} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-export function BlogList(): ReactNode {
-	const {posts} = usePosts();
+export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isWithTitle?: boolean}): ReactNode {
+	const {posts} = useFetchPosts({page: 1, pageSize: limit, sort: 'desc'});
 	return (
-		<div className={'mb-[240px] grid w-full grid-cols-3 gap-4'}>
-			<div className={'col-span-1 flex flex-col gap-16'}>
-				<h1 className={'text-7xl text-white'}>{'Read more about ShapeShift.'}</h1>
-				<Link href={'/resources/blog'}>
-					<Button title={'See all articles'} />
-				</Link>
-			</div>
-			{posts.slice(0, 2).map((post: TBlogPost) => (
+		<div className={'grid w-full grid-cols-1 gap-4 lg:grid-cols-3'}>
+			{isWithTitle && (
+				<div className={'col-span-1 flex flex-col gap-16'}>
+					<h1 className={'text-[40px] leading-10 text-white lg:text-7xl'}>{'Read more about ShapeShift.'}</h1>
+					<Link href={'/blog'}>
+						<Button title={'See all articles'} />
+					</Link>
+				</div>
+			)}
+			{posts.map((post: TBlogPost) => (
 				<BlogPost
 					key={post.id}
 					post={post}
