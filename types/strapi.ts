@@ -339,4 +339,5 @@ export type TStrapiNotification = {
 	href?: string;
 	tag?: string;
 	type: 'popup' | 'modal' | 'bar';
+	enabled: boolean;
 };
