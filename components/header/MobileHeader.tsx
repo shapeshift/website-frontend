@@ -10,7 +10,6 @@ import {IconMenu} from '../common/icons/IconMenu';
 import {IconPlanet} from '../common/icons/IconPlanet';
 import {IconShapeshift} from '../common/icons/IconShapeshift';
 import {appDao, appProducts, appResources, headerTabs} from '../constants';
-import {Notification} from '../Notification';
 import {AnimatedPlusMinusIcon} from '../QuestionSection';
 
 import type {ReactNode} from 'react';
@@ -62,7 +61,6 @@ export function MobileHeader(): ReactNode {
 
 	return (
 		<div className={'sticky top-0 z-50 lg:hidden'}>
-			<Notification />
 			<div className={'z-50 mt-6 flex w-full items-center justify-between rounded-2xl bg-secondBg p-4'}>
 				<Link href={'/'}>
 					<IconShapeshift />
