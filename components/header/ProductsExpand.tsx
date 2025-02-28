@@ -3,7 +3,6 @@ import {cl} from '@/components/utils/cl';
 import {Button} from '../common/Button';
 import HeaderItem from '../common/HeaderItem';
 import {appProducts, dAppUrl} from '../constants';
-import {expandAnimation} from './animations';
 
 import type {ReactNode} from 'react';
 
@@ -14,9 +13,7 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
-		<div
-			className={cl('grid grid-cols-12')}
-			{...expandAnimation}>
+		<div className={cl('grid grid-cols-12 h-full')}>
 			{/* Left section with main CTA */}
 			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>

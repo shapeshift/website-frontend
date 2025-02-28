@@ -1,10 +1,11 @@
 'use client';
 
-import {AnimatePresence, motion} from 'framer-motion';
+import {motion} from 'framer-motion';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useMemo, useState} from 'react';
 
+import {AnimateChangeInHeight} from '@/components/AnimatedHeight';
 import {Notification} from '@/components/Notification';
 
 import {containerAnimation} from './animations';
@@ -110,20 +111,18 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 						</div>
 					</div>
 				</div>
-				<AnimatePresence mode={'wait'}>
-					<motion.div
-						className={cl(
-							'absolute top-full overflow-hidden bg-secondBg',
-							'rounded-b-lg border-x border-b border-white/5',
-							'flex justify-center w-full'
-						)}
-						initial={containerAnimation.initial}
-						animate={containerAnimation.animate(!!currentTab)}
-						exit={containerAnimation.exit}
-						transition={containerAnimation.transition}>
-						{tabContent[currentTab]}
-					</motion.div>
-				</AnimatePresence>
+				<motion.div
+					className={cl(
+						'absolute top-full bg-secondBg',
+						'rounded-b-lg border-x border-b border-white/5',
+						'flex justify-center w-full'
+					)}
+					initial={containerAnimation.initial}
+					animate={containerAnimation.animate(true)}
+					exit={containerAnimation.exit}
+					transition={containerAnimation.transition}>
+					<AnimateChangeInHeight>{tabContent[currentTab]}</AnimateChangeInHeight>
+				</motion.div>
 			</div>
 		</div>
 	);

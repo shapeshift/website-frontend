@@ -12,15 +12,12 @@ export const expandAnimation = {
 };
 
 export const containerAnimation = {
-	initial: {opacity: 0, height: 0},
+	initial: {opacity: 0},
 	animate: (isOpen: boolean) => ({
-		opacity: isOpen ? 1 : 0,
-		height: isOpen ? 'auto' : 0,
-		transformOrigin: 'top'
+		opacity: isOpen ? 1 : 0
 	}),
 	exit: {
 		opacity: 0,
-		height: 0,
 		transition: {duration: 0.1, ease: 'easeInOut'}
 	},
 
