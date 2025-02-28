@@ -17,7 +17,7 @@ import type {TTermsItemData} from '@/app/(terms)/_components/TermsAccordion';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
-export type TTermsPageProps = {
+type TTermsPageProps = {
 	title: string;
 	items: TTermsItemData[];
 };

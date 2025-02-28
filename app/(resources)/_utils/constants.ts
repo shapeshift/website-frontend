@@ -26,33 +26,6 @@ export const DEFAULT_PAGINATION = {
 };
 
 /************************************************************************************************
- * Metadata templates for different resource types
- * Used for SEO and social sharing
- ************************************************************************************************/
-export const RESOURCE_METADATA = {
-	blog: {
-		titleTemplate: '%s | ShapeShift Blog',
-		defaultDescription: "Explore ShapeShift's blog for the latest updates on DeFi and crypto.",
-		defaultKeywords: 'ShapeShift, blog, cryptocurrency, DeFi, blockchain'
-	},
-	discover: {
-		titleTemplate: '%s | Discover with ShapeShift',
-		defaultDescription: 'Discover %s with ShapeShift!',
-		defaultKeywords: '%s, ShapeShift, discover, cryptocurrency'
-	},
-	protocol: {
-		titleTemplate: '%s Protocol | ShapeShift',
-		defaultDescription: 'Learn about %s protocol and how to use it with ShapeShift.',
-		defaultKeywords: '%s, protocol, ShapeShift, DeFi'
-	},
-	wallet: {
-		titleTemplate: '%s Wallet | ShapeShift',
-		defaultDescription: 'Connect your %s wallet to ShapeShift.',
-		defaultKeywords: '%s, wallet, ShapeShift, cryptocurrency'
-	}
-};
-
-/************************************************************************************************
  * Common feature items displayed on protocol and wallet pages
  ************************************************************************************************/
 export const DEFAULT_FEATURES = ['Self-custodial', 'Private', 'Multichain trading'];

@@ -50,17 +50,6 @@ export type TGridLadderStep = {
 	buttonCta: TButton;
 };
 
-// Component types
-export type THeroSection = {
-	id: number;
-	title: string;
-	description: string;
-	stats: TStat[];
-	featuredImg: TStrapiImage;
-	buttonDownload: TDownloadButton[];
-	buttonCta: TButton;
-};
-
 export type TCardsRowSection = {
 	id: number;
 	title: string;

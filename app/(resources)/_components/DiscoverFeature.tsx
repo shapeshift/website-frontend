@@ -23,7 +23,7 @@ import {cl} from '@/components/utils/cl';
 
 import type {ReactNode} from 'react';
 
-export type TFeatureItem = {
+type TFeatureItem = {
 	id?: number;
 	title: string;
 	description: string;
