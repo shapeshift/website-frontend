@@ -31,7 +31,7 @@ export function StrapiChains(props: {chains?: TSupportedChainData[] | null; isLo
 							title={chain.name}
 							description={chain.description}
 							featuredImg={chain.featuredImg}
-							baseURL={'/resources/supported-chains'}
+							baseURL={'/supported-chains'}
 							position={'bottom'}
 						/>
 					))}

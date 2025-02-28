@@ -24,7 +24,7 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 		<Link
 			rel={'noopener noreferrer'}
 			target={post.externalURL ? '_blank' : '_self'}
-			href={post.externalURL ? post.externalURL : `/resources/newsroom/${post.slug}`}
+			href={post.externalURL ? post.externalURL : `/newsroom/${post.slug}`}
 			className={cl(
 				'rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
 				className

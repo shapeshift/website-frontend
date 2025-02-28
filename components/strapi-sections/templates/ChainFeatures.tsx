@@ -105,7 +105,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 						{'Privately connect your '}
 						<Link
 							className={'text-white underline'}
-							href={'/resources/supported-wallets/ledger'}>
+							href={'/supported-wallets/ledger'}>
 							{'Ledger'}
 						</Link>
 						{` directly to ShapeShift without the need for Ledger Live and enjoy permissionless ${chainName}.`}
@@ -259,37 +259,37 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 					{' wallet. Trade '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/bitcoin'}>
+						href={'/supported-chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/ethereum'}>
+						href={'/supported-chains/ethereum'}>
 						{'Ethereum'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/base'}>
+						href={'/supported-chains/base'}>
 						{'Base'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/cosmos'}>
+						href={'/supported-chains/cosmos'}>
 						{'Cosmos'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/thorchain'}>
+						href={'/supported-chains/thorchain'}>
 						{'THORChain'}
 					</Link>
 					{' and more with your '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-wallets/metamask'}>
+						href={'/supported-wallets/metamask'}>
 						{'MetaMask'}
 					</Link>
 					{'.'}
@@ -416,7 +416,7 @@ function ThorChainTradeFeature(): ReactNode {
 					{' across multiple blockchains directly from your '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-wallets/'}>
+						href={'/supported-wallets/'}>
 						{'DeFi wallet'}
 					</Link>
 					{'.'}
@@ -427,7 +427,7 @@ function ThorChainTradeFeature(): ReactNode {
 					}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/bitcoin'}>
+						href={'/supported-chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{' or Memecoins, trade like the professionals with ShapeShift and THORChain.'}
@@ -515,13 +515,13 @@ function ThorChainLendingFeature(): ReactNode {
 					{'Borrow over 10,000 assets against your '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/bitcoin'}>
+						href={'/supported-chains/bitcoin'}>
 						{'BTC'}
 					</Link>
 					{' and '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/ethereum'}>
+						href={'/supported-chains/ethereum'}>
 						{'ETH'}
 					</Link>
 					{' with 0% APR and no liquidations! Do more with your crypto portfolio with THORChain '}
@@ -627,37 +627,37 @@ function ThorChainRunePoolFeature(): ReactNode {
 					}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/bitcoin'}>
+						href={'/supported-chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/ethereum'}>
+						href={'/supported-chains/ethereum'}>
 						{'Ethereum'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/binance-chain'}>
+						href={'/supported-chains/binance-chain'}>
 						{'BNB'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/dogecoin'}>
+						href={'/supported-chains/dogecoin'}>
 						{'Dogecoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/avalanche'}>
+						href={'/supported-chains/avalanche'}>
 						{'AVAX'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/cosmos'}>
+						href={'/supported-chains/cosmos'}>
 						{'ATOM'}
 					</Link>
 					{', USDC, USDT and any other major gas asset added to THORChain.'}
@@ -695,13 +695,13 @@ function SaverVaultFeature(): ReactNode {
 					}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/bitcoin'}>
+						href={'/supported-chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/resources/supported-chains/dogecoin'}>
+						href={'/supported-chains/dogecoin'}>
 						{'Dogecoin'}
 					</Link>
 					{', Bitcoin Cash, Litecoin, and more.'}

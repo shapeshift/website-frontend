@@ -22,7 +22,7 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 
 	return (
 		<Link
-			href={`/resources/blog/${post.slug}`}
+			href={`/blog/${post.slug}`}
 			className={cl(
 				'rounded-2xl p-6 transition-all bg-secondBg duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
 				className

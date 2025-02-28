@@ -17,7 +17,7 @@ export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isW
 			{isWithTitle && (
 				<div className={'col-span-1 flex flex-col gap-16'}>
 					<h1 className={'text-[40px] leading-10 text-white lg:text-7xl'}>{'Read more about ShapeShift.'}</h1>
-					<Link href={'/resources/blog'}>
+					<Link href={'/blog'}>
 						<Button title={'See all articles'} />
 					</Link>
 				</div>

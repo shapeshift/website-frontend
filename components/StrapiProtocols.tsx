@@ -30,7 +30,7 @@ export function StrapiProtocols(props: {protocols?: TSupportedProtocolData[] | n
 								title={protocol.name}
 								description={protocol.description}
 								featuredImg={protocol.featuredImg}
-								baseURL={'/resources/supported-protocols'}
+								baseURL={'/supported-protocols'}
 								position={'center'}
 							/>
 						);

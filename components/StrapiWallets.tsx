@@ -30,7 +30,7 @@ export function StrapiWallets(props: {wallets?: TSupportedWalletData[] | null; i
 								title={wallet.name}
 								description={wallet.description}
 								featuredImg={wallet.featuredImg}
-								baseURL={'/resources/supported-wallets'}
+								baseURL={'/supported-wallets'}
 								position={'center'}
 							/>
 						);

@@ -30,7 +30,7 @@ export function StrapiDiscover(props: {discover?: TDiscoverData[] | null; isLoad
 							title={discover.title}
 							description={discover.description}
 							featuredImg={discover.featuredImg}
-							baseURL={'/resources/discover'}
+							baseURL={'/discover'}
 							position={'center'}
 						/>
 					))}

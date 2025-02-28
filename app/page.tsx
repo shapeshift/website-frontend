@@ -170,7 +170,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
-							href={'/resources/supported-chains'}>
+							href={'/supported-chains'}>
 							<Image
 								src={'/landing/landingCard3.png'}
 								alt={'tab_bg'}

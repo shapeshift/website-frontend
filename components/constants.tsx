@@ -36,23 +36,23 @@ export const dAppUrl =
 export const docsUrl = 'https://docs.shapeshift.com/';
 
 export const appResources = [
-	{name: 'Blog', href: '/resources/blog', description: 'Latest news and updates', icon: <IconBlog />},
-	{name: 'FAQ', href: '/resources/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
+	{name: 'Blog', href: '/blog', description: 'Latest news and updates', icon: <IconBlog />},
+	{name: 'FAQ', href: '/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
 	{
 		name: 'Supported chains',
-		href: '/resources/supported-chains',
+		href: '/supported-chains',
 		description: 'Blockchain networks we support',
 		icon: <IconChains />
 	},
 	{
 		name: 'Supported wallets',
-		href: '/resources/supported-wallets',
+		href: '/supported-wallets',
 		description: 'Wallets we support',
 		icon: <IconWallet />
 	},
 	{
 		name: 'Supported protocols',
-		href: '/resources/supported-protocols',
+		href: '/supported-protocols',
 		description: 'Protocols we support',
 		icon: <IconScanDevice />
 	},
