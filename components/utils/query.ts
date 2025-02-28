@@ -169,7 +169,7 @@ export async function getDiscovers(): Promise<TDiscoverData[] | null> {
  */
 export async function getDiscover(slug: string): Promise<TDiscoverData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag`,
+		`${process.env.STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag&populate[6]=features.buttonCta`,
 		apiHeaders
 	);
 

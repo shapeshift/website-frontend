@@ -130,6 +130,7 @@ const nextConfig = {
 			{source: '/thorchain/liquidity-pools', destination: '/discover/liquidity-pools', permanent: true},
 			{source: '/thorchain/streaming-swaps', destination: '/discover/streaming-swaps', permanent: true},
 			{source: '/thorchain/lend-borrow', destination: '/discover/lend-borrow', permanent: true},
+			{source: '/thorchain/trade', destination: '/discover/trade', permanent: true},
 
 			// App store
 			{

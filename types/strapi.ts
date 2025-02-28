@@ -39,6 +39,7 @@ export type TCard = {
 	isTextFirst: boolean;
 	image: TStrapiImage;
 	href?: string;
+	buttonCta?: TButton;
 };
 
 export type TGridLadderStep = {

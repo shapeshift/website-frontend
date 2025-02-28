@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 
+import {Button} from '@/components/common/Button';
 import {cl} from '@/components/utils/cl';
 
 import type {TCard} from '@/types/strapi';
@@ -71,11 +72,21 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 					)}
 				/>
 			</div>
-			<div className={'min-h-[50%] p-10'}>
+			<div className={'flex min-h-[50%] flex-col p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 				<div className={cl('text-gray-500 whitespace-break-spaces break-keep', smaller ? 'text-sm' : '')}>
 					{data?.description}
 				</div>
+				{data?.buttonCta?.url && data?.buttonCta?.title && (
+					<div className={'mt-auto pt-2'}>
+						<Button
+							variant={'white'}
+							className={'whitespace-no-wrap !w-fit !text-sm'}
+							href={data?.buttonCta?.url}
+							title={data?.buttonCta?.title}
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	);
