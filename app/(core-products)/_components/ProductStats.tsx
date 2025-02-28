@@ -26,11 +26,7 @@ type TProductStatsProps = {
 export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 	// Handle case where stats is null, undefined, or empty
 	if (!stats || stats.length === 0) {
-		return (
-			<div className={'mb-10 mt-16 text-center text-gray-400'}>
-				No statistics available
-			</div>
-		);
+		return <div className={'mb-10 mt-16 text-center text-gray-400'}>{'No statistics available'}</div>;
 	}
 
 	return (
@@ -40,12 +36,13 @@ export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 					key={stat.id}
 					className={'flex w-min flex-col items-center lg:min-w-[245px]'}
 					aria-label={`${stat.title}: ${stat.value}`}>
-					<div className={'w-min text-2xl md:text-3xl lg:text-[40px] font-normal leading-tight lg:leading-[48px]'}>
+					<div
+						className={
+							'w-min text-2xl font-normal leading-tight md:text-3xl lg:text-[40px] lg:leading-[48px]'
+						}>
 						{stat.value}
 					</div>
-					<div className={'text-lg lg:text-xl text-gray-500'}>
-						{stat.title}
-					</div>
+					<div className={'text-lg text-gray-500 lg:text-xl'}>{stat.title}</div>
 				</div>
 			))}
 		</div>

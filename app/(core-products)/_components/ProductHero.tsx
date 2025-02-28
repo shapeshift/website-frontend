@@ -1,21 +1,21 @@
 /************************************************************************************************
-** ProductHero Component:
-** 
-** Reusable hero section for product pages with consistent layout and styling
-** Displays product title, description, CTA button, and a featured image
-** 
-** Props:
-** - title: Main product title displayed prominently
-** - description: Product description text
-** - buttonCta: Call-to-action button configuration (title, URL)
-** - featuredImg: Featured image to display below the text content
-** - children: Optional additional content to render in the hero section
-**
-** Styling:
-** - Responsive layout with single column on mobile, two columns on desktop
-** - Consistent spacing and typography across product pages
-** - Handles image display with proper responsiveness
-************************************************************************************************/
+ ** ProductHero Component:
+ **
+ ** Reusable hero section for product pages with consistent layout and styling
+ ** Displays product title, description, CTA button, and a featured image
+ **
+ ** Props:
+ ** - title: Main product title displayed prominently
+ ** - description: Product description text
+ ** - buttonCta: Call-to-action button configuration (title, URL)
+ ** - featuredImg: Featured image to display below the text content
+ ** - children: Optional additional content to render in the hero section
+ **
+ ** Styling:
+ ** - Responsive layout with single column on mobile, two columns on desktop
+ ** - Consistent spacing and typography across product pages
+ ** - Handles image display with proper responsiveness
+ ************************************************************************************************/
 
 import Image from 'next/image';
 

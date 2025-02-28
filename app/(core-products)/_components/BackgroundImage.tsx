@@ -26,7 +26,7 @@ export function BackgroundImage(): ReactNode {
 			<Image
 				src={'/heroBg.png'}
 				alt={''} // Empty alt for decorative images
-				aria-hidden="true" // Hide from screen readers
+				aria-hidden={'true'} // Hide from screen readers
 				height={2256}
 				width={3840}
 				priority // Load with priority as it's above the fold

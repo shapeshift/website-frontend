@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /************************************************************************************************
  ** Product Section Constants:
  **
@@ -6,7 +7,7 @@
  **
  ** Contents:
  ** - PRODUCT_FOOTER_CONFIGS: Configuration for footer banners by product type
- ** 
+ **
  ** Benefits:
  ** - Reduces duplication across components
  ** - Makes product-specific configuration easier to maintain

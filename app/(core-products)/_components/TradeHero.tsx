@@ -41,17 +41,15 @@ export function TradeHero({title, description, buttonCta, imageUrl, stats}: TTra
 	};
 
 	return (
-		<section 
+		<section
 			className={'relative mb-[120px] pt-10 md:px-4 lg:mb-60 lg:px-0 lg:pt-52'}
-			aria-labelledby="trade-hero-title"
-		>
+			aria-labelledby={'trade-hero-title'}>
 			<div className={'container mx-auto'}>
 				{/* Title, description and CTA button */}
 				<div className={'grid gap-10 lg:grid-cols-2'}>
-					<h1 
-						id="trade-hero-title" 
-						className={'mb-4 text-4xl font-normal leading-10 lg:text-7xl'}
-					>
+					<h1
+						id={'trade-hero-title'}
+						className={'mb-4 text-4xl font-normal leading-10 lg:text-7xl'}>
 						{title}
 					</h1>
 					<div className={'flex flex-col'}>
@@ -79,7 +77,7 @@ export function TradeHero({title, description, buttonCta, imageUrl, stats}: TTra
 							src={imageUrl}
 							alt={title || 'Trade feature image'}
 							className={'h-auto w-full'}
-							loading="eager" // Load with priority as it's above the fold
+							loading={'eager'} // Load with priority as it's above the fold
 							width={1400}
 							height={400}
 						/>
