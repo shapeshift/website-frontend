@@ -112,9 +112,11 @@ export function DesktopHeader({className}: TDesktopHeaderProps): ReactNode {
 				</div>
 				<AnimatePresence mode={'wait'}>
 					<motion.div
-						className={
-							'absolute top-full flex justify-center overflow-hidden rounded-b-lg border-x border-b border-white/5 bg-secondBg'
-						}
+						className={cl(
+							'absolute top-full overflow-hidden bg-secondBg',
+							'rounded-b-lg border-x border-b border-white/5',
+							'flex justify-center w-full'
+						)}
 						initial={containerAnimation.initial}
 						animate={containerAnimation.animate(!!currentTab)}
 						exit={containerAnimation.exit}
