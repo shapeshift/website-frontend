@@ -5,7 +5,6 @@ export function useLanguage(): {
 	switchLanguage: (symbol: string) => void;
 } {
 	const [dynamicCurrentLang, setDynamicCurrentLang] = useState('en');
-	console.log(dynamicCurrentLang);
 	useEffect(() => {
 		// eslint-disable-next-line
 		//@ts-ignore
