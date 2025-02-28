@@ -7,7 +7,18 @@ import {cl} from './utils/cl';
 import type {TBlogPost} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
+/********************************************************************************************
+ * Blog Post Card Component
+ *
+ * Displays a blog post preview card with image, title, date, and category.
+ * Handles both internal and external blog links.
+ ********************************************************************************************/
+
 export function BlogPost({post, className}: {post: TBlogPost; className?: string}): ReactNode {
+	/********************************************************************************************
+	 * Memo: Creates a date formatting function
+	 * No dependencies as it's a static function
+	 ********************************************************************************************/
 	const formatDate = useMemo(
 		() =>
 			(date: string): string => {

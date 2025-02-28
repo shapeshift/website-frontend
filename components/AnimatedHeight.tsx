@@ -8,10 +8,21 @@ type TAnimateChangeInHeightProps = {
 	className?: string;
 };
 
+/********************************************************************************************
+ * Animated Height Component
+ *
+ * Provides smooth height transitions for dynamic content using ResizeObserver.
+ * Automatically adjusts height based on content changes.
+ ********************************************************************************************/
+
 export const AnimateChangeInHeight: React.FC<TAnimateChangeInHeightProps> = ({children, className}) => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const [height, setHeight] = useState<number | 'auto'>('auto');
 
+	/********************************************************************************************
+	 * Effect: Sets up ResizeObserver to track content height changes
+	 * Deps: None - Observer is set up once on mount
+	 ********************************************************************************************/
 	useEffect(() => {
 		if (containerRef.current) {
 			const resizeObserver = new ResizeObserver(entries => {

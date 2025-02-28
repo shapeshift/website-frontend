@@ -1,3 +1,19 @@
+/********************************************************************************************
+ * News Post Card Component
+ *
+ * Displays a news article preview card with:
+ * - Featured image
+ * - Title and description
+ * - Author/category and publication date
+ * - Handles both internal and external article links
+ *
+ * Features:
+ * - Responsive design
+ * - Hover animations
+ * - Fallback image handling
+ * - Date formatting
+ ********************************************************************************************/
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {useMemo} from 'react';
@@ -8,6 +24,11 @@ import type {TNewsroomPost} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function NewsPost({post, className}: {post: TNewsroomPost; className?: string}): ReactNode {
+	/********************************************************************************************
+	 * Memo: Creates a reusable date formatting function
+	 * Returns date in format: Month Day, Year
+	 * No dependencies as it's a static formatter
+	 ********************************************************************************************/
 	const formatDate = useMemo(
 		() =>
 			(date: string): string => {
@@ -29,6 +50,7 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 				'rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
 				className
 			)}>
+			{/* Featured Image Container */}
 			<div className={'h-[204px] max-w-[408px] overflow-hidden rounded-2xl'}>
 				{post?.featuredImg?.url ? (
 					<Image
@@ -43,6 +65,7 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 				)}
 			</div>
 
+			{/* Post Meta Information */}
 			<div className={'mt-6 flex flex-col gap-2'}>
 				<div className={'flex items-center'}>
 					<p className={'mr-2 text-xs text-blue'}>{post.author || post.category}</p>

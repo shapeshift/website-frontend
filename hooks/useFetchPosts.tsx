@@ -9,8 +9,22 @@ import type {TBlogListResponse, TBlogPost, TPagination} from '@/components/strap
 /********************************************************************************************
  * Custom hook for fetching blog posts from Strapi
  * Handles loading states, errors, and data fetching
+ * Supports caching, pagination, filtering, and sorting
+ *
+ * @param {Object} options - Fetch configuration options
+ * @param {number} options.page - Current page number (default: 1)
+ * @param {number} options.pageSize - Number of posts per page (default: 12)
+ * @param {string} options.sort - Sort direction, 'asc' or 'desc' (default: 'asc')
+ * @param {string} options.slug - Optional slug to filter by specific post
+ * @param {string} options.type - Optional post type/category filter
+ * @param {string} options.tag - Optional tag to filter posts by
+ * @param {boolean} options.populateContent - Whether to include full content (default: false)
+ * @param {boolean} options.cachePosts - Whether to cache results (default: false)
+ * @param {boolean} options.skip - Whether to skip the fetch operation (default: false)
+ *
  * @returns {Object} Posts data and state
  * @returns {TBlogPost[]} posts - Array of blog posts
+ * @returns {TPagination} pagination - Pagination metadata
  * @returns {boolean} isLoading - Loading state indicator
  * @returns {Error | null} error - Error object if fetch fails
  ********************************************************************************************/
@@ -52,6 +66,10 @@ export function useFetchPosts({
 			return;
 		}
 
+		/********************************************************************************************
+		 * Check if we already have cached data for the current query parameters
+		 * If cached data is available and parameters match, use it instead of fetching again
+		 ********************************************************************************************/
 		if (
 			cachedResponse.data.length > 0 &&
 			cachedParams.page === page &&
@@ -70,7 +88,9 @@ export function useFetchPosts({
 
 		/********************************************************************************************
 		 * Fetches blog posts from Strapi API
-		 * Includes error handling and state updates
+		 * Constructs the API URL with appropriate filters and parameters
+		 * Updates state with fetched data and caches results if requested
+		 * Handles errors and loading state
 		 ********************************************************************************************/
 		async function fetchPosts(): Promise<void> {
 			try {

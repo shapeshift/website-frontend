@@ -36,6 +36,8 @@ export const dAppUrl =
 
 export const docsUrl = 'https://docs.shapeshift.com/';
 
+export const githubUrl = 'https://github.com/shapeshift';
+
 export const appResources = [
 	{name: 'Blog', href: '/blog', description: 'Latest news and updates', icon: <IconBlog />},
 	{name: 'FAQ', href: '/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
@@ -337,7 +339,7 @@ export const foxTokenCommunityItems = [
 export const foxTokenContributeItems = [
 	{
 		title: 'Contribute',
-		href: '#'
+		href: githubUrl
 	},
 	{
 		title: 'Govern',
@@ -349,7 +351,7 @@ export const foxTokenContributeItems = [
 	},
 	{
 		title: 'Discuss',
-		href: '#'
+		href: 'https://forum.shapeshift.com/'
 	}
 ];
 
@@ -822,5 +824,43 @@ export const CarouselLogos = {
 				height={'40'}
 			/>
 		)
+	}
+};
+
+/************************************************************************************************
+ * Popup Animation Configuration
+ * Defines the animation for the popup's entrance and exit
+ * - Slides up from bottom
+ * - Fades in
+ * - Spring animation for natural feel
+ ************************************************************************************************/
+export const popupAnimation = {
+	initial: {
+		opacity: 0,
+		y: 100,
+		scale: 0.95,
+		z: 1
+	},
+	animate: {
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		z: 1,
+		transition: {
+			type: 'spring',
+			stiffness: 100,
+			damping: 10,
+			mass: 1,
+			delay: 0.4
+		}
+	},
+	exit: {
+		opacity: 0,
+		y: 50,
+		scale: 0.95,
+		z: 1,
+		transition: {
+			duration: 0.2
+		}
 	}
 };

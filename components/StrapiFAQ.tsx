@@ -1,3 +1,9 @@
+/********************************************************************************************
+ * FAQ Section Component
+ *
+ * Renders a list of FAQ items fetched from Strapi CMS with expandable questions and answers.
+ ********************************************************************************************/
+
 'use client';
 
 import {useCallback, useEffect, useState} from 'react';
@@ -11,12 +17,18 @@ import type {ReactNode} from 'react';
 export function StrapiFAQ(): ReactNode {
 	const [faqItems, setFaqItems] = useState<TFaqSectionItem[]>([]);
 
+	/* Callback: Fetches FAQ items from Strapi CMS
+	 * No dependencies as it's a static fetch
+	 */
 	const handleFAQItems = useCallback(async () => {
 		const data = await getFaq();
 		const allQuestions = data?.faqSection.map(section => section.faqSectionItem).flat() ?? [];
 		setFaqItems(allQuestions);
 	}, []);
 
+	/* Effect: Loads FAQ items on component mount
+	 * Deps: handleFAQItems - Reruns if the callback changes
+	 */
 	useEffect(() => {
 		handleFAQItems();
 	}, [handleFAQItems]);
