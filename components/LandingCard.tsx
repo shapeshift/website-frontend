@@ -49,7 +49,7 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 		return (
 			<Link
 				href={data?.href}
-				className={'h-full'}>
+				className={'size-full'}>
 				<Card data={data} />
 			</Link>
 		);
