@@ -1,39 +1,37 @@
 /************************************************************************************************
-** Discover Detail Page:
-**
-** Displays detailed information about a specific discovery item
-** Shows header with key features, hero banner, and feature details
-**
-** Features:
-** - Dynamic metadata generation for SEO
-** - Responsive layout with feature grid
-** - Proper error handling with notFound()
-** - Uses shared components for consistent layout
-** 
-** Data Flow:
-** - Fetches data based on slug parameter
-** - Populates page with discover details from Strapi CMS
-** - Generates metadata for SEO and social sharing
-************************************************************************************************/
+ ** Discover Detail Page:
+ **
+ ** Displays detailed information about a specific discovery item
+ ** Shows header with key features, hero banner, and feature details
+ **
+ ** Features:
+ ** - Dynamic metadata generation for SEO
+ ** - Responsive layout with feature grid
+ ** - Proper error handling with notFound()
+ ** - Uses shared components for consistent layout
+ **
+ ** Data Flow:
+ ** - Fetches data based on slug parameter
+ ** - Populates page with discover details from Strapi CMS
+ ** - Generates metadata for SEO and social sharing
+ ************************************************************************************************/
 
 import {notFound} from 'next/navigation';
 
-import {Banner} from '@/components/common/Banner';
-
-import {DEFAULT_FEATURES} from '@/app/(resources)/_components/constants';
-import {fetchDiscoverBySlug} from '@/app/(resources)/_components/fetchUtils';
-import {FeatureSection} from '@/app/(resources)/_components/features/FeatureSection';
+import {DiscoverFeature} from '@/app/(resources)/_components/DiscoverFeature';
 import {ResourceHeader} from '@/app/(resources)/_components/ResourceHeader';
 import {ResourceHero} from '@/app/(resources)/_components/ResourceHero';
+import {DEFAULT_FEATURES} from '@/app/(resources)/_utils/constants';
+import {fetchDiscoverBySlug} from '@/app/(resources)/_utils/fetchUtils';
+import {Banner} from '@/components/common/Banner';
 
-import type {TDiscoverData} from '@/components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
-/**
+/************************************************************************************************
  * Generates metadata for the discover page
  * Provides SEO-optimized title, description, and social sharing tags
- */
+ ************************************************************************************************/
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
 	const {slug} = await params;
 	if (!slug) {
@@ -48,7 +46,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 
 	// Get image URL for metadata
 	const imageUrl = discover.featuredImg.formats.thumbnail.url;
-	
+
 	// Metadata with SEO optimization
 	return {
 		title: `${discover.title} | Discover with ShapeShift`,
@@ -82,7 +80,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 export default async function DiscoverDetailPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
 	// Extract slug from params
 	const {slug} = await params;
-	
+
 	// Fetch discover data using utility function
 	const discover = await fetchDiscoverBySlug(slug);
 
@@ -97,12 +95,14 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 		id: feature.id,
 		title: feature.title,
 		description: feature.description,
-		image: feature.image ? {
-			url: `${process.env.STRAPI_URL}${feature.image.url}`,
-			width: feature.image.width,
-			height: feature.image.height,
-			alt: feature.title
-		} : undefined
+		image: feature.image
+			? {
+					url: `${process.env.STRAPI_URL}${feature.image.url}`,
+					width: feature.image.width,
+					height: feature.image.height,
+					alt: feature.title
+				}
+			: undefined
 	}));
 
 	return (
@@ -118,10 +118,10 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 						url: 'https://app.shapeshift.com/'
 					}}
 				/>
-				
+
 				{/* Hero banner with discover image */}
 				<ResourceHero
-					imageSrc="/supported-wallets/hero.jpg"
+					imageSrc={'/supported-wallets/hero.jpg'}
 					imageAlt={`${discover.title} banner image`}
 					logoSrc={`${process.env.STRAPI_URL}${discover.featuredImg.url}`}
 					logoAlt={discover.title}
@@ -129,12 +129,12 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 					logoHeight={discover.featuredImg.height}
 					priority
 				/>
-				
+
 				{/* Features section */}
-				<FeatureSection
+				<DiscoverFeature
 					features={features}
 					title={`Discover ${discover.title}`}
-					description="Explore the features and benefits of this technology."
+					description={'Explore the features and benefits of this technology.'}
 					columns={3}
 				/>
 

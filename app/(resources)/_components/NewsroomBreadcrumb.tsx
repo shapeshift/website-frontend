@@ -6,7 +6,7 @@ import {usePathname} from 'next/navigation';
 import {IconBack} from '@/components/common/icons/IconBack';
 import {cl} from '@/components/utils/cl';
 
-export function BlogBreadcrumb(): React.ReactNode {
+export function NewsroomBreadcrumb(): React.ReactNode {
 	const pathname = usePathname();
 
 	return (

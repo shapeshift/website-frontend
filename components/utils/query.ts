@@ -43,21 +43,6 @@ export async function getFaq(): Promise<TFaqData | null> {
 }
 
 /**
- * Fetches all supported wallets
- *
- * @returns Promise with array of wallet data or null if request fails
- */
-export async function getSupportedWallets(): Promise<TSupportedWalletData[] | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-wallets?populate=*`, apiHeaders);
-
-	if (!res.ok) {
-		return null;
-	}
-	const data = await res.json();
-	return data.data;
-}
-
-/**
  * Fetches a specific wallet by its slug
  *
  * @param slug - Unique identifier for the wallet
@@ -77,21 +62,6 @@ export async function getSupportedWallet(slug: string): Promise<TSupportedWallet
 }
 
 /**
- * Fetches all supported blockchain networks
- *
- * @returns Promise with array of chain data or null if request fails
- */
-export async function getSupportedChains(): Promise<TSupportedChainData[] | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-chains?populate=*`, apiHeaders);
-
-	if (!res.ok) {
-		return null;
-	}
-	const data = await res.json();
-	return data.data;
-}
-
-/**
  * Fetches a specific blockchain network by its slug
  *
  * @param slug - Unique identifier for the chain
@@ -108,21 +78,6 @@ export async function getSupportedChain(slug: string): Promise<TSupportedChainDa
 	}
 	const data = await res.json();
 	return data.data[0];
-}
-
-/**
- * Fetches all supported protocols
- *
- * @returns Promise with array of protocol data or null if request fails
- */
-export async function getSupportedProtocols(): Promise<TSupportedProtocolData[] | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/supported-protocols?populate=*`, apiHeaders);
-
-	if (!res.ok) {
-		return null;
-	}
-	const data = await res.json();
-	return data.data;
 }
 
 /**
@@ -157,26 +112,6 @@ export async function getDiscovers(): Promise<TDiscoverData[] | null> {
 	}
 	const data = await res.json();
 	return data.data;
-}
-
-/**
- * Fetches a specific discover section by its slug
- * Includes related features, title, description, and images
- *
- * @param slug - Unique identifier for the discover section
- * @returns Promise with discover data or null if request fails or section not found
- */
-export async function getDiscover(slug: string): Promise<TDiscoverData | null> {
-	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag&populate[6]=features.buttonCta`,
-		apiHeaders
-	);
-
-	if (!res.ok) {
-		return null;
-	}
-	const data = await res.json();
-	return data.data[0];
 }
 
 /**

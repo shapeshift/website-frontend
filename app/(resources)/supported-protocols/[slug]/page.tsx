@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
-import {ProtocolAbout} from '@/app/(resources)/supported-protocols/ProtocolAbout';
-import {ProtocolEasier} from '@/app/(resources)/supported-protocols/ProtocolEasier';
-import {ProtocolFeatures} from '@/app/(resources)/supported-protocols/ProtocolFeatures';
-import {ProtocolHeader} from '@/app/(resources)/supported-protocols/ProtocolHeader';
+import {ProtocolAbout} from '@/app/(resources)/_components/ProtocolAbout';
+import {ProtocolEasier} from '@/app/(resources)/_components/ProtocolEasier';
+import {ProtocolFeatures} from '@/app/(resources)/_components/ProtocolFeatures';
+import {ProtocolHeader} from '@/app/(resources)/_components/ProtocolHeader';
 import {Banner} from '@/components/common/Banner';
 import {getSupportedProtocol} from '@/components/utils/query';
 

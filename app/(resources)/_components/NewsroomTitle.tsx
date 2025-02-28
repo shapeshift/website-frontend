@@ -4,7 +4,7 @@ import {useParams, usePathname} from 'next/navigation';
 
 import {newsroomCategoriesSlugToCategory} from '@/components/constants';
 
-export function BlogTitle(): React.ReactNode {
+export function NewsroomTitle(): React.ReactNode {
 	const pathname = usePathname();
 	const params = useParams();
 	const category = (params.category as string) || '';

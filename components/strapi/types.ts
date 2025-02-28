@@ -107,29 +107,6 @@ export type TFooterSection = {
 	buttonCta: TButton;
 };
 
-export type TSections = THeroSection &
-	TCardsRowSection &
-	TGridLadderSection &
-	TGridSection &
-	TGridDisplacedSection &
-	TFooterSection;
-
-export type TPageData = {
-	id: number;
-	documentId: string;
-	slug: string;
-	hero?: THeroSection;
-	cardsRow?: TCardsRowSection;
-	grid?: TGridSection;
-	gridLadder?: TGridLadderSection;
-	gridDisplaced?: TGridDisplacedSection;
-	footer?: TFooterSection;
-	createdAt: string;
-	updatedAt: string;
-	publishedAt: string;
-};
-
-
 /********************************************************************************************
  * Types for Strapi Blog API responses
  * Includes both list and single post interfaces
