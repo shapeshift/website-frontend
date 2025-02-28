@@ -22,7 +22,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 					{'Endless Opportunity'}
 				</p>
 				<p className={'mb-10 max-w-[327px] text-sm text-gray-500'}>
-					{'Trade Bitcoin, Ethereum, and more with top rates across leading DEXs and aggregators.'}
+					{'Trade Bipin, Ethereum, and more with top rates across leading DEXs and aggregators.'}
 				</p>
 				<Button
 					variant={'blue'}

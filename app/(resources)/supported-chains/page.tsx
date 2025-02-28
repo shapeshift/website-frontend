@@ -11,10 +11,10 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 
 	return (
 		<div className={'flex w-full justify-center'}>
-			<div className={'container mt-[220px] flex flex-col justify-center'}>
+			<div className={'container mt-[120px] flex flex-col justify-center lg:mt-60'}>
 				<section className={'flex flex-col items-start'}>
 					<div className={'mb-6 flex flex-col items-center gap-2'}>
-						<h1 className={'text-7xl'}>{'Supported chains'}</h1>
+						<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Supported chains'}</h1>
 					</div>
 					<Button
 						variant={'blue'}
