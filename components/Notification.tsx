@@ -7,12 +7,22 @@ import {Popup} from './Popup';
 import type {TStrapiNotification} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
+/********************************************************************************************
+ * Notification System Component
+ *
+ * Manages different types of notifications (modal, banner, popup) fetched from Strapi CMS.
+ * Handles state management for showing/hiding different notification types.
+ ********************************************************************************************/
+
 export function Notification(): ReactNode {
 	const [notification, setNotification] = useState<TStrapiNotification | null>(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
 	const [isBannerOpen, setIsBannerOpen] = useState(false);
 
+	/* Effect: Fetches notification data from Strapi CMS
+	 * Runs once on component mount
+	 */
 	useEffect(() => {
 		const fetchData = async (): Promise<void> => {
 			const res = await fetch(`${process.env.STRAPI_URL}/api/notification?populate=*`, {
@@ -26,6 +36,9 @@ export function Notification(): ReactNode {
 		fetchData();
 	}, []);
 
+	/* Effect: Updates notification visibility based on type and enabled status
+	 * Deps: notification - Reruns when notification data changes
+	 */
 	useEffect(() => {
 		setIsBannerOpen(notification?.type === 'bar' && notification?.enabled);
 		setIsModalOpen(notification?.type === 'modal' && notification?.enabled);

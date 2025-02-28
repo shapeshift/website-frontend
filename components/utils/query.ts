@@ -2,7 +2,6 @@ import type {
 	TDiscoverData,
 	TFaqData,
 	TPrivacyPolicyData,
-	TStrapiNotification,
 	TSupportedChainData,
 	TSupportedProtocolData,
 	TSupportedWalletData,
@@ -209,4 +208,3 @@ export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
 	const data = await res.json();
 	return data.data;
 }
-

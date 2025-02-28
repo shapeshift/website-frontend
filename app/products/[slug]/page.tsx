@@ -8,10 +8,10 @@ import type {TSectionType} from '@/components/utils/strapi';
 import type {TCard, TPageData, TSections} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
-/********************************************************************************************
+/**************************************************************************************************
  * Fetches page data from Strapi API
  * Returns null if page is not found
- ********************************************************************************************/
+ **************************************************************************************************/
 async function getPageData(slug: string): Promise<TPageData | null> {
 	console.time(slug);
 	const pages = await fetch(`${process.env.STRAPI_URL}/api/pages`, {

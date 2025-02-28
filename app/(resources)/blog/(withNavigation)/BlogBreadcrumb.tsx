@@ -6,6 +6,12 @@ import {usePathname} from 'next/navigation';
 import {IconBack} from '@/components/common/icons/IconBack';
 import {cl} from '@/components/utils/cl';
 
+/********************************************************************************************
+ * Blog Breadcrumb Navigation Component
+ *
+ * Provides a back link to the main blog page.
+ * Automatically hides when on the main blog page.
+ ********************************************************************************************/
 export function BlogBreadcrumb(): React.ReactNode {
 	const pathname = usePathname();
 
