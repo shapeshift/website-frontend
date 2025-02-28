@@ -2,7 +2,7 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
-import Footer from '@/components/strapi-sections/products/Footer';
+import {FooterBanner} from '@/components/FooterBanner';
 import Grid from '@/components/strapi-sections/products/Grid';
 
 import type {TButton, TFooterSection, TGridSection, TStrapiImage} from '@/types/strapi';
@@ -90,7 +90,12 @@ export default async function Page(): Promise<ReactNode> {
 
 			<Hero {...page} />
 			<Grid data={page.grid} />
-			<Footer data={page.footer} />
+			<FooterBanner
+				tag={'Earn with ShapeShift'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com/#/earn'}
+				buttonText={'Start Earning'}
+			/>
 		</main>
 	);
 }

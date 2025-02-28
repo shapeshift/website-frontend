@@ -2,9 +2,9 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
+import {FooterBanner} from '@/components/FooterBanner';
 import {Card} from '@/components/strapi-sections/cards-row/Card';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
-import Footer from '@/components/strapi-sections/products/Footer';
 
 import type {TButton, TCard, TCardsRowSection, TFooterSection, TStrapiImage} from '@/types/strapi';
 import type {ReactNode} from 'react';
@@ -93,7 +93,12 @@ export default async function Page(): Promise<ReactNode> {
 				data={page.cardsRow}
 				children={(card: TCard) => <Card data={card} />}
 			/>
-			<Footer data={page.footer} />
+			<FooterBanner
+				tag={'ShapeShift DeFi wallet'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com'}
+				buttonText={'Get started'}
+			/>
 		</main>
 	);
 }

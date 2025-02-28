@@ -2,9 +2,9 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
+import {FooterBanner} from '@/components/FooterBanner';
 import {Card} from '@/components/strapi-sections/cards-row/Card';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
-import Footer from '@/components/strapi-sections/products/Footer';
 import GridDisplaced from '@/components/strapi-sections/products/GridDisplaced';
 
 import type {
@@ -121,7 +121,12 @@ export default async function Page(): Promise<ReactNode> {
 				children={(card: TCard) => <Card data={card} />}
 			/>
 			<GridDisplaced data={page.gridDisplaced} />
-			<Footer data={page.footer} />
+			<FooterBanner
+				tag={'Trade with ShapeShift'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com/'}
+				buttonText={'Start Trading'}
+			/>
 		</main>
 	);
 }
