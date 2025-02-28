@@ -26,7 +26,7 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 						}}>
 						<div
 							className={cl(
-								'flex gap-x-[120px] justify-between md:flex-col',
+								'flex gap-x-[120px] justify-between flex-col',
 								index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 							)}
 							key={step.id}>

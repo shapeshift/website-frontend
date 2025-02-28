@@ -17,7 +17,7 @@ function OgPlatformFeature({description, index}: {description: string; index: nu
 			}}>
 			<div
 				className={cl(
-					'flex gap-x-[120px] justify-between md:flex-col',
+					'flex gap-x-[120px] justify-between flex-col',
 					index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 				)}>
 				<div className={'flex max-w-screen-sm flex-col p-10'}>
@@ -55,7 +55,7 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 			}}>
 			<div
 				className={cl(
-					'flex gap-x-[120px] justify-between md:flex-col',
+					'flex gap-x-[120px] justify-between 	flex-col',
 					index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 				)}>
 				<div className={'flex max-w-screen-sm flex-col p-10'}>
@@ -146,7 +146,7 @@ function GetPaidToTradeFeature({index}: {index: number}): ReactNode {
 			}}>
 			<div
 				className={cl(
-					'flex gap-x-[120px] justify-between md:flex-col',
+					'flex gap-x-[120px] justify-between flex-col',
 					index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 				)}>
 				<div className={'flex max-w-screen-sm flex-col p-10'}>
@@ -187,7 +187,7 @@ function PortalsFeature({index}: {index: number}): ReactNode {
 			}}>
 			<div
 				className={cl(
-					'flex gap-x-[120px] justify-between md:flex-col',
+					'flex gap-x-[120px] justify-between flex-col',
 					index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 				)}>
 				<div className={'flex max-w-screen-sm flex-col p-10'}>

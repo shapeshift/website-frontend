@@ -12,7 +12,7 @@ function WalletFeature({chainName}: {chainName: string}): ReactNode {
 	return (
 		<div
 			className={
-				'container col-span-6 grid aspect-[760/540] h-[540px] w-full grid-cols-2 overflow-hidden rounded-2xl'
+				'container col-span-6 grid w-full grid-cols-2 overflow-hidden rounded-2xl lg:aspect-[760/540] lg:h-[540px]'
 			}
 			style={{
 				backgroundImage: "url('/supported-wallets/cover.png')",
@@ -61,7 +61,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 	return (
 		<div
 			className={
-				'container col-span-1 grid aspect-[1400/476] h-[476px] grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-6 lg:col-span-6 lg:p-10'
+				'container col-span-1 grid grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-6 lg:col-span-6 lg:aspect-[1400/476] lg:h-[476px] lg:p-10'
 			}
 			style={{
 				backgroundImage: "url('/supported-chains/grid-bg.png')",

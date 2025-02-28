@@ -11,7 +11,7 @@ export function ProtocolAbout(data: THeaderData): ReactNode {
 				className={
 					'grid grid-cols-1 items-center rounded-2xl bg-gradient-to-b from-[#101114] to-[#16181C] p-6 lg:grid-cols-2 lg:p-20'
 				}>
-				<h2 className={'col-span-1 text-[28px] leading-[32px] lg:mb-0 lg:text-7xl'}>
+				<h2 className={'col-span-1 mb-6 text-[28px] leading-[32px] lg:mb-0 lg:text-7xl'}>
 					{`What is ${data.name}`}
 				</h2>
 				<div className={'col-span-1 flex max-w-[560px] flex-col gap-4'}>
