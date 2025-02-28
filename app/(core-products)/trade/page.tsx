@@ -2,9 +2,9 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
+import {FooterBanner} from '@/components/FooterBanner';
 import {Card} from '@/components/strapi-sections/cards-row/Card';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
-import Footer from '@/components/strapi-sections/products/Footer';
 import GridDisplaced from '@/components/strapi-sections/products/GridDisplaced';
 
 import type {
@@ -35,7 +35,7 @@ type TPage = {
  ********************************************************************************************/
 async function getPageData(): Promise<TPage | null> {
 	const pages = await fetch(
-		`${process.env.STRAPI_URL}/api/trade?fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&populate[23]=footer&populate[24]=footer.buttonCta&populate[25]=footer.buttonDownload&populate[26]=footer.imageBg&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
+		`${process.env.STRAPI_URL}/api/trade?fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -121,7 +121,12 @@ export default async function Page(): Promise<ReactNode> {
 				children={(card: TCard) => <Card data={card} />}
 			/>
 			<GridDisplaced data={page.gridDisplaced} />
-			<Footer data={page.footer} />
+			<FooterBanner
+				tag={'Trade with ShapeShift'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com/'}
+				buttonText={'Start Trading'}
+			/>
 		</main>
 	);
 }

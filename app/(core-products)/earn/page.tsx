@@ -2,7 +2,7 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
-import Footer from '@/components/strapi-sections/products/Footer';
+import {FooterBanner} from '@/components/FooterBanner';
 import Grid from '@/components/strapi-sections/products/Grid';
 
 import type {TButton, TFooterSection, TGridSection, TStrapiImage} from '@/types/strapi';
@@ -24,7 +24,7 @@ type TPage = {
  ********************************************************************************************/
 async function getPageData(): Promise<TPage | null> {
 	const pages = await fetch(
-		`${process.env.STRAPI_URL}/api/earn?fields[0]=title&populate[1]=buttonCta&populate[3]=featuredImg&fields[4]=description&populate[10]=grid&populate[11]=grid.cardCta&populate[12]=grid.cardCta.buttonCta&populate[13]=grid.cardCta.imageBg&populate[14]=grid.card&populate[15]=grid.card.image&populate[23]=footer&populate[24]=footer.buttonCta&populate[25]=footer.buttonDownload&populate[26]=footer.imageBg&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
+		`${process.env.STRAPI_URL}/api/earn?fields[0]=title&populate[1]=buttonCta&populate[3]=featuredImg&fields[4]=description&populate[10]=grid&populate[11]=grid.cardCta&populate[12]=grid.cardCta.buttonCta&populate[13]=grid.cardCta.imageBg&populate[14]=grid.card&populate[15]=grid.card.image&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -90,7 +90,12 @@ export default async function Page(): Promise<ReactNode> {
 
 			<Hero {...page} />
 			<Grid data={page.grid} />
-			<Footer data={page.footer} />
+			<FooterBanner
+				tag={'Earn with ShapeShift'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com/#/earn'}
+				buttonText={'Start Earning'}
+			/>
 		</main>
 	);
 }

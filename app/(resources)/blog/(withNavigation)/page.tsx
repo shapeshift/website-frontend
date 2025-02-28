@@ -78,7 +78,9 @@ export default function BlogList(): ReactNode {
 				previousLabel={<IconChevron />}
 				nextLabel={<IconChevron className={'rotate-180'} />}
 			/>
-			<Banner />
+			<div className={'my-16'}>
+				<Banner />
+			</div>
 		</Fragment>
 	);
 }

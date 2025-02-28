@@ -2,9 +2,9 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
+import {FooterBanner} from '@/components/FooterBanner';
 import {Card} from '@/components/strapi-sections/cards-row/Card';
 import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
-import Footer from '@/components/strapi-sections/products/Footer';
 
 import type {TButton, TCard, TCardsRowSection, TFooterSection, TStrapiImage} from '@/types/strapi';
 import type {ReactNode} from 'react';
@@ -25,7 +25,7 @@ type TPage = {
  ********************************************************************************************/
 async function getPageData(): Promise<TPage | null> {
 	const pages = await fetch(
-		`${process.env.STRAPI_URL}/api/defi-wallet?fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=cardsRow&populate[5]=cardsRow.cards&populate[6]=cardsRow.cards.image&populate[7]=cardsRow.ctaBlock&populate[8]=cardsRow.ctaBlock.icon&populate[9]=footer&populate[10]=footer.buttonCta&populate[11]=footer.imageBg&pagination[pageSize]=1&pagination[page]=1&status=published`,
+		`${process.env.STRAPI_URL}/api/defi-wallet?fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=cardsRow&populate[5]=cardsRow.cards&populate[6]=cardsRow.cards.image&populate[7]=cardsRow.ctaBlock&populate[8]=cardsRow.ctaBlock.icon&pagination[pageSize]=1&pagination[page]=1&status=published`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -93,7 +93,12 @@ export default async function Page(): Promise<ReactNode> {
 				data={page.cardsRow}
 				children={(card: TCard) => <Card data={card} />}
 			/>
-			<Footer data={page.footer} />
+			<FooterBanner
+				tag={'ShapeShift DeFi wallet'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com'}
+				buttonText={'Get started'}
+			/>
 		</main>
 	);
 }

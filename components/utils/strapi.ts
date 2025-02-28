@@ -4,7 +4,7 @@
  ********************************************************************************************/
 
 import CardsRow from '../strapi-sections/cards-row/CardsRow';
-import Footer from '../strapi-sections/products/Footer';
+import Footer from '../FooterBanner';
 import Grid from '../strapi-sections/products/Grid';
 import GridDisplaced from '../strapi-sections/products/GridDisplaced';
 import GridLadder from '../strapi-sections/products/GridLadder';

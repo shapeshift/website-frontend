@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {notFound} from 'next/navigation';
 
-import Footer from '@/components/strapi-sections/products/Footer';
+import {FooterBannerMobileApp} from '@/components/FooterBanner';
 import GridLadder from '@/components/strapi-sections/products/GridLadder';
 
 import type {TButton, TDownloadButton, TFooterSection, TGridLadderSection, TStrapiImage} from '@/types/strapi';
@@ -24,7 +24,7 @@ type TPage = {
  ********************************************************************************************/
 async function getPageData(): Promise<TPage | null> {
 	const pages = await fetch(
-		`${process.env.STRAPI_URL}/api/mobile-app?fields[0]=title&populate[1]=buttonDownload&fields[2]=description&populate[3]=featuredImg&populate[4]=gridLadder&populate[5]=gridLadder.steps&populate[6]=gridLadder.steps.buttonCta&populate[7]=gridLadder.steps.image&populate[8]=footer&populate[9]=footer.buttonDownload&populate[10]=footer.imageBg&pagination[pageSize]=1&pagination[page]=1&status=published`,
+		`${process.env.STRAPI_URL}/api/mobile-app?fields[0]=title&populate[1]=buttonDownload&fields[2]=description&populate[3]=featuredImg&populate[4]=gridLadder&populate[5]=gridLadder.steps&populate[6]=gridLadder.steps.buttonCta&populate[7]=gridLadder.steps.image&pagination[pageSize]=1&pagination[page]=1&status=published`,
 		{
 			headers: {
 				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
@@ -99,7 +99,12 @@ export default async function Page(): Promise<ReactNode> {
 
 			<Hero {...page} />
 			<GridLadder data={page.gridLadder} />
-			<Footer data={page.footer} />
+			<FooterBannerMobileApp
+				tag={'ShapeShift mobile app'}
+				title={'Everything you need in one place.'}
+				href={'https://app.shapeshift.com/#/earn'}
+				buttonText={'Start Earning'}
+			/>
 		</main>
 	);
 }
