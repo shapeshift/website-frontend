@@ -1,43 +1,67 @@
+/************************************************************************************************
+** Discover Detail Page:
+**
+** Displays detailed information about a specific discovery item
+** Shows header with key features, hero banner, and feature details
+**
+** Features:
+** - Dynamic metadata generation for SEO
+** - Responsive layout with feature grid
+** - Proper error handling with notFound()
+** - Uses shared components for consistent layout
+** 
+** Data Flow:
+** - Fetches data based on slug parameter
+** - Populates page with discover details from Strapi CMS
+** - Generates metadata for SEO and social sharing
+************************************************************************************************/
+
 import {notFound} from 'next/navigation';
 
-import {DiscoverFeatures} from '@/app/(resources)/discover/DiscoverFeatures';
-import {DiscoverHeader} from '@/app/(resources)/discover/DiscoverHeader';
 import {Banner} from '@/components/common/Banner';
-import {getDiscover} from '@/components/utils/query';
+
+import {DEFAULT_FEATURES} from '@/app/(resources)/_components/constants';
+import {fetchDiscoverBySlug} from '@/app/(resources)/_components/fetchUtils';
+import {FeatureSection} from '@/app/(resources)/_components/features/FeatureSection';
+import {ResourceHeader} from '@/app/(resources)/_components/ResourceHeader';
+import {ResourceHero} from '@/app/(resources)/_components/ResourceHero';
 
 import type {TDiscoverData} from '@/components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
+/**
+ * Generates metadata for the discover page
+ * Provides SEO-optimized title, description, and social sharing tags
+ */
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
 	const {slug} = await params;
 	if (!slug) {
 		return notFound();
 	}
 
-	const response = await fetch(`${process.env.STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate=*`, {
-		headers: {
-			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
-		}
-	});
-	const data = await response.json();
-	const discover = data.data[0] as TDiscoverData;
+	// Fetch discover data
+	const discover = await fetchDiscoverBySlug(slug);
 	if (!discover) {
 		return notFound();
 	}
 
+	// Get image URL for metadata
 	const imageUrl = discover.featuredImg.formats.thumbnail.url;
+	
+	// Metadata with SEO optimization
 	return {
-		title: `${discover.title} | Shapeshift`,
+		title: `${discover.title} | Discover with ShapeShift`,
 		description: `Discover ${discover.title} with ShapeShift!`,
-		keywords: `${discover.title}, Shapeshift`,
+		keywords: `${discover.title}, ShapeShift, discover, cryptocurrency`,
 		openGraph: {
 			title: discover.title,
 			description: `Discover ${discover.title} with ShapeShift!`,
 			type: 'website',
 			images: [
 				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
+					url: `${process.env.STRAPI_URL}${imageUrl}`,
+					alt: discover.title
 				}
 			]
 		},
@@ -47,39 +71,75 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 			description: `Discover ${discover.title} with ShapeShift!`,
 			images: [
 				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
+					url: `${process.env.STRAPI_URL}${imageUrl}`,
+					alt: discover.title
 				}
 			]
 		}
 	};
 }
 
-export default async function ProtocolPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
+export default async function DiscoverDetailPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
+	// Extract slug from params
 	const {slug} = await params;
-	const discover = await getDiscover(slug);
+	
+	// Fetch discover data using utility function
+	const discover = await fetchDiscoverBySlug(slug);
 
+	// Handle case when discover data is not found
 	if (!discover) {
+		console.error(`Discover page not found for slug: ${slug}`);
 		return notFound();
 	}
+
+	// Map discover features to feature section format
+	const features = discover.features.map(feature => ({
+		id: feature.id,
+		title: feature.title,
+		description: feature.description,
+		image: feature.image ? {
+			url: `${process.env.STRAPI_URL}${feature.image.url}`,
+			width: feature.image.width,
+			height: feature.image.height,
+			alt: feature.title
+		} : undefined
+	}));
 
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'container mt-[60px] flex flex-col justify-center'}>
-				<DiscoverHeader
-					name={discover?.title}
-					description={discover?.description}
-					tag={discover?.tag}
-					items={['Self-custodial', 'Private', 'Multichain trading']}
-					url={`${process.env.STRAPI_URL}${discover?.featuredImg?.url}`}
-					width={discover?.featuredImg?.width}
-					height={discover?.featuredImg?.height}
+				{/* Header section with feature badges */}
+				<ResourceHeader
+					title={discover.title}
+					description={discover.description}
+					items={DEFAULT_FEATURES}
+					ctaButton={{
+						text: 'Get Started',
+						url: 'https://app.shapeshift.com/'
+					}}
 				/>
-				<DiscoverFeatures
-					name={discover.title}
-					data={discover.features}
+				
+				{/* Hero banner with discover image */}
+				<ResourceHero
+					imageSrc="/supported-wallets/hero.jpg"
+					imageAlt={`${discover.title} banner image`}
+					logoSrc={`${process.env.STRAPI_URL}${discover.featuredImg.url}`}
+					logoAlt={discover.title}
+					logoWidth={discover.featuredImg.width}
+					logoHeight={discover.featuredImg.height}
+					priority
+				/>
+				
+				{/* Features section */}
+				<FeatureSection
+					features={features}
+					title={`Discover ${discover.title}`}
+					description="Explore the features and benefits of this technology."
+					columns={3}
 				/>
 
-				<div className={'mb-16 mt-60'}>
+				{/* Footer banner */}
+				<div className={'mb-16'}>
 					<Banner />
 				</div>
 			</div>
