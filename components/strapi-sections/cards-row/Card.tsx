@@ -15,7 +15,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 					'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl group',
 					'w-full flex-col'
 				)}>
-				<div className={'min-h-[50%] p-10'}>
+				<div className={'h-3/5 p-10'}>
 					<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 					<p className={cl('text-gray-500 whitespace-break-spaces break-keep', smaller ? 'text-sm' : '')}>
 						{data?.description}
@@ -24,7 +24,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 				<div
 					className={cl(
 						'overflow-hidden aspect-video bg-secondBg group-hover:bg-secondHoverBg',
-						'flex items-center justify-center mt-auto'
+						'flex items-center justify-center mt-auto h-[40%]'
 					)}
 					style={{
 						backgroundImage: "url('/supported-chains/grid-bg.png')",
@@ -54,7 +54,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 			<div
 				className={cl(
 					'overflow-hidden aspect-video bg-secondBg group-hover:bg-secondHoverBg',
-					'flex items-center justify-center'
+					'flex items-center justify-center h-[40%]'
 				)}
 				style={{
 					backgroundImage: "url('/supported-chains/grid-bg.png')",
@@ -68,11 +68,11 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 					height={219}
 					className={cl(
 						'size-full object-contain transition-all duration-300 group-hover:scale-105',
-						smaller ? 'h-[156px] w-[156px]' : ''
+						'py-6 px-4 size-full'
 					)}
 				/>
 			</div>
-			<div className={'flex min-h-[50%] flex-col p-10'}>
+			<div className={'flex h-3/5 flex-col p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{data?.title}</div>
 				<div className={cl('text-gray-500 whitespace-break-spaces break-keep', smaller ? 'text-sm' : '')}>
 					{data?.description}
