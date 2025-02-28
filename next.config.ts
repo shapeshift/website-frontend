@@ -131,6 +131,7 @@ const nextConfig = {
 			{source: '/thorchain/streaming-swaps', destination: '/discover/streaming-swaps', permanent: true},
 			{source: '/thorchain/lend-borrow', destination: '/discover/lend-borrow', permanent: true},
 			{source: '/thorchain/trade', destination: '/discover/trade', permanent: true},
+			{source: '/thorchain/saver-vaults', destination: '/discover/saver-vaults', permanent: true},
 
 			// App store
 			{
