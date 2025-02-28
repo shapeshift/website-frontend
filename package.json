@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"deadcode": "ts-prune -s '(page|loading|layout)\\.tsx$'"
+		"deadcode": "ts-prune | grep -v 'page\\.tsx\\|loading\\.tsx\\|layout\\.tsx'"
 	},
 	"dependencies": {
 		"@eslint/compat": "^1.2.4",

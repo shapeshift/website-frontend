@@ -4,7 +4,7 @@ import {AnimatePresence, motion} from 'framer-motion';
 import 'highlight.js/styles/github-dark.css';
 import {useState} from 'react';
 
-import {TermMarkdown} from '@/app/(terms)/terms-of-service/TermMarkdown';
+import {PrivacyMarkdown} from '@/app/(terms)/privacy-policy/PrivacyMarkdown';
 import {AnimatedPlusMinusIcon} from '@/components/QuestionSection';
 
 import type {TPrivacyPolicyData} from '@/types/strapi';
@@ -41,7 +41,7 @@ export function PrivacyAccordion({policy}: {policy: TPrivacyPolicyData['policy']
 						}}
 						className={'overflow-hidden'}>
 						<div className={'rounded-2xl px-10 pb-6 text-gray-500'}>
-							<TermMarkdown term={policy.policy} />
+							<PrivacyMarkdown policy={policy.policy} />
 						</div>
 					</motion.div>
 				)}

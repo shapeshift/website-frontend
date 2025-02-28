@@ -638,9 +638,6 @@ export const blogTags = [
 	}
 ];
 
-export function blogTagsSlugToCategory(slug: string): string {
-	return blogTags.find(tab => tab.slug === slug)?.title ?? slug;
-}
 
 export const newsroomTags = [
 	{
@@ -729,9 +726,6 @@ export const newsroomTags = [
 	}
 ];
 
-export function newsroomTagsSlugToCategory(slug: string): string {
-	return newsroomTags.find(tab => tab.slug === slug)?.title ?? slug;
-}
 
 export const CarouselLogos = {
 	cowSwap: {

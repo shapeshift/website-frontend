@@ -210,16 +210,3 @@ export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
 	return data.data;
 }
 
-export async function getNotification(): Promise<TStrapiNotification | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/notification?populate=*`, {
-		headers: {
-			Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
-		}
-	});
-
-	if (!res.ok) {
-		return null;
-	}
-	const data = await res.json();
-	return data.data;
-}
