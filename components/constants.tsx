@@ -36,6 +36,8 @@ export const dAppUrl =
 
 export const docsUrl = 'https://docs.shapeshift.com/';
 
+export const githubUrl = 'https://github.com/shapeshift';
+
 export const appResources = [
 	{name: 'Blog', href: '/blog', description: 'Latest news and updates', icon: <IconBlog />},
 	{name: 'FAQ', href: '/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
@@ -337,7 +339,7 @@ export const foxTokenCommunityItems = [
 export const foxTokenContributeItems = [
 	{
 		title: 'Contribute',
-		href: '#'
+		href: githubUrl
 	},
 	{
 		title: 'Govern',
@@ -349,7 +351,7 @@ export const foxTokenContributeItems = [
 	},
 	{
 		title: 'Discuss',
-		href: '#'
+		href: 'https://forum.shapeshift.com/'
 	}
 ];
 
@@ -638,7 +640,6 @@ export const blogTags = [
 	}
 ];
 
-
 export const newsroomTags = [
 	{
 		title: 'All tags',
@@ -725,7 +726,6 @@ export const newsroomTags = [
 		slug: 'mobile'
 	}
 ];
-
 
 export const CarouselLogos = {
 	cowSwap: {
