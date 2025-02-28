@@ -11,7 +11,7 @@ import type {ReactNode} from 'react';
 
 function Feature({title, description, icon}: {title: string; description: string; icon: ReactNode}): ReactNode {
 	return (
-		<div className={'flex gap-6 rounded-2xl bg-secondBg px-6 py-[26px] lg:px-10 lg:py-[30px]'}>
+		<div className={'flex items-center gap-6 rounded-2xl bg-secondBg px-6 py-[26px] lg:px-10 lg:py-[30px]'}>
 			<div className={'size-12 rounded-[12px] bg-white/5 p-[12px] lg:size-16 lg:rounded-2xl lg:p-5'}>{icon}</div>
 
 			<div className={'flex flex-col gap-1'}>
