@@ -61,7 +61,7 @@ export function ChainSelect({
 			)}
 
 			{isOpen && (
-				<div className={'absolute z-20 mt-2 w-max rounded-lg bg-[#22272B] p-2 shadow-lg'}>
+				<div className={'absolute z-20 mt-2 flex w-max flex-col gap-1 rounded-lg bg-[#22272B] p-2 shadow-lg'}>
 					{chains.map(chain => (
 						<button
 							key={chain.id}
