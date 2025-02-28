@@ -5,7 +5,7 @@ import {DiscoverHeader} from '@/app/(resources)/discover/DiscoverHeader';
 import {Banner} from '@/components/common/Banner';
 import {getDiscover} from '@/components/utils/query';
 
-import type {TDiscoverData} from '@/types/strapi';
+import type {TDiscoverData} from '@/components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

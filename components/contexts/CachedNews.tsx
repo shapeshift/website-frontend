@@ -12,7 +12,7 @@
 
 import {createContext, useContext, useState} from 'react';
 
-import type {TNewsroomListResponse} from '@/types/strapi';
+import type {TNewsroomListResponse} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 /********************************************************************************************

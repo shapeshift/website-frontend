@@ -3,11 +3,11 @@
  * Makes it easy to add new section types and maintain the codebase
  ********************************************************************************************/
 
-import CardsRow from '../strapi-sections/cards-row/CardsRow';
-import Grid from '../strapi-sections/products/Grid';
-import GridDisplaced from '../strapi-sections/products/GridDisplaced';
-import GridLadder from '../strapi-sections/products/GridLadder';
-import Hero from '../strapi-sections/products/Hero';
+import CardsRow from '../strapi/cards-row/CardsRow';
+import Grid from '../strapi/products/Grid';
+import GridDisplaced from '../strapi/products/GridDisplaced';
+import GridLadder from '../strapi/products/GridLadder';
+import Hero from '../strapi/products/Hero';
 
 export const sections = {
 	hero: Hero,

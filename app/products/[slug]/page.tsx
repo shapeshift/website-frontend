@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
-import {Card} from '@/components/strapi-sections/cards-row/Card';
+import {Card} from '@/components/strapi/cards-row/Card';
 import {sections} from '@/components/utils/strapi';
 
+import type {TCard, TPageData, TSections} from '@/components/strapi/types';
 import type {TSectionType} from '@/components/utils/strapi';
-import type {TCard, TPageData, TSections} from '@/types/strapi';
 import type {ReactNode} from 'react';
 
 /**************************************************************************************************

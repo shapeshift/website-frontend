@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import {Button} from '@/components/common/Button';
 
-import type {THeroSection} from '@/types/strapi';
+import type {THeroSection} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function Hero({data}: {data: THeroSection}): ReactNode | null {

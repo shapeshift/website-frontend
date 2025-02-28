@@ -6,7 +6,7 @@ import {Button} from './common/Button';
 import {RoundButton} from './common/RoundButton';
 import {cl} from './utils/cl';
 
-import type {TStrapiNotification} from '@/types/strapi';
+import type {TStrapiNotification} from '@/components/strapi/types';
 import type {ReactElement} from 'react';
 
 type TModalProps = {

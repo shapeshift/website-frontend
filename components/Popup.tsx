@@ -5,7 +5,7 @@ import {RoundButton} from './common/RoundButton';
 import {popupAnimation} from './constants';
 import {cl} from './utils/cl';
 
-import type {TStrapiNotification} from '@/types/strapi';
+import type {TStrapiNotification} from '@/components/strapi/types';
 import type {ReactElement} from 'react';
 
 /************************************************************************************************

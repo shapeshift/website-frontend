@@ -1,6 +1,6 @@
 import {ElementCard} from '@/components/ElementCard';
 
-import type {TSupportedProtocolData} from '@/types/strapi';
+import type {TSupportedProtocolData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function StrapiProtocols(props: {protocols?: TSupportedProtocolData[] | null; isLoading?: boolean}): ReactNode {

@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 
 import {useCachedNews} from '@/components/contexts/CachedNews';
 
-import type {TNewsroomListResponse, TNewsroomPost, TPagination} from '@/types/strapi';
+import type {TNewsroomListResponse, TNewsroomPost, TPagination} from '@/components/strapi/types';
 
 /********************************************************************************************
  * Custom hook for fetching blog posts from Strapi

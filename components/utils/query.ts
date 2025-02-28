@@ -6,7 +6,7 @@ import type {
 	TSupportedProtocolData,
 	TSupportedWalletData,
 	TTermsOfServiceData
-} from '@/types/strapi';
+} from '@/components/strapi/types';
 
 /**
  * API utility functions to fetch data from Strapi CMS

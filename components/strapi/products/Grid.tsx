@@ -4,7 +4,7 @@ import {cl} from '@/components/utils/cl';
 
 import {Button} from '../../common/Button';
 
-import type {TCard, TGridSection} from '@/types/strapi';
+import type {TCard, TGridSection} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function Grid({data}: {data: TGridSection}): ReactNode | null {

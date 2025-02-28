@@ -3,7 +3,7 @@ import {Fragment} from 'react';
 
 import {RoundButton} from '../../common/RoundButton';
 
-import type {TCard, TCardsRowSection} from '@/types/strapi';
+import type {TCard, TCardsRowSection} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function CardsRow(props: {

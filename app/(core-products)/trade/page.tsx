@@ -3,9 +3,9 @@ import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
 import {FooterBanner} from '@/components/FooterBanner';
-import {Card} from '@/components/strapi-sections/cards-row/Card';
-import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
-import GridDisplaced from '@/components/strapi-sections/products/GridDisplaced';
+import {Card} from '@/components/strapi/cards-row/Card';
+import CardsRow from '@/components/strapi/cards-row/CardsRow';
+import GridDisplaced from '@/components/strapi/products/GridDisplaced';
 
 import type {
 	TButton,
@@ -15,7 +15,7 @@ import type {
 	TGridDisplacedSection,
 	TStat,
 	TStrapiImage
-} from '@/types/strapi';
+} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TPage = {

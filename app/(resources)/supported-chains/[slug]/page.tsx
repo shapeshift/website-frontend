@@ -2,14 +2,14 @@ import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
 import {Banner} from '@/components/common/Banner';
-import {ChainActions} from '@/components/strapi-sections/templates/ChainActions';
-import {ChainDescription} from '@/components/strapi-sections/templates/ChainDescription';
-import {ChainFeatures} from '@/components/strapi-sections/templates/ChainFeatures';
-import {ChainHeader} from '@/components/strapi-sections/templates/ChainHeader';
-import {ChainHero} from '@/components/strapi-sections/templates/ChainHero';
+import {ChainActions} from '@/components/strapi/templates/ChainActions';
+import {ChainDescription} from '@/components/strapi/templates/ChainDescription';
+import {ChainFeatures} from '@/components/strapi/templates/ChainFeatures';
+import {ChainHeader} from '@/components/strapi/templates/ChainHeader';
+import {ChainHero} from '@/components/strapi/templates/ChainHero';
 import {getSupportedChain} from '@/components/utils/query';
 
-import type {TSupportedChainData} from '@/types/strapi';
+import type {TSupportedChainData} from '@/components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

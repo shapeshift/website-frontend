@@ -4,7 +4,7 @@ import Image from 'next/image';
 import {Button} from '@/components/common/Button';
 import {cl} from '@/components/utils/cl';
 
-import type {TCard} from '@/types/strapi';
+import type {TCard} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNode {

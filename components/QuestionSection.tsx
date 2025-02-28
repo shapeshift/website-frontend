@@ -3,7 +3,7 @@
 import {AnimatePresence, motion} from 'framer-motion';
 import {useState} from 'react';
 
-import type {TFaqSectionItem} from '@/types/strapi';
+import type {TFaqSectionItem} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 /**

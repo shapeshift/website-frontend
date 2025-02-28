@@ -4,7 +4,7 @@ import React from 'react';
 import {Button} from '../../common/Button';
 import {cl} from '../../utils/cl';
 
-import type {TGridLadderSection, TGridLadderStep} from '@/types/strapi';
+import type {TGridLadderSection, TGridLadderStep} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function GridLadder({data}: {data: TGridLadderSection}): ReactNode | null {

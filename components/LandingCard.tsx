@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {RoundButton} from './common/RoundButton';
 import {cl} from './utils/cl';
 
-import type {TCard} from '@/types/strapi';
+import type {TCard} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 function Card({data}: {data: TCard}): ReactNode {

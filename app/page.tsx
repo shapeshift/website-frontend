@@ -10,12 +10,12 @@ import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
 import {CarouselLogos, landingCards} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
-import CardsRow from '@/components/strapi-sections/cards-row/CardsRow';
+import CardsRow from '@/components/strapi/cards-row/CardsRow';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {TradingWidget} from '@/components/trading/TradingWidget';
 import {cl} from '@/components/utils/cl';
 
-import type {TCard} from '@/types/strapi';
+import type {TCard} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {

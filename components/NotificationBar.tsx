@@ -2,7 +2,7 @@ import {Button} from '@/components/common/Button';
 
 import {IconClose} from './common/icons/IconClose';
 
-import type {TStrapiNotification} from '@/types/strapi';
+import type {TStrapiNotification} from '@/components/strapi/types';
 import type {ReactElement} from 'react';
 
 export function NotificationBar({

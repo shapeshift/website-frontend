@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import {cl} from '@/components/utils/cl';
 
-import type {TCard, TGridDisplacedSection} from '@/types/strapi';
+import type {TCard, TGridDisplacedSection} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function GridDisplaced({data}: {data: TGridDisplacedSection}): ReactNode | null {

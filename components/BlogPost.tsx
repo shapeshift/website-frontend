@@ -4,7 +4,7 @@ import {useMemo} from 'react';
 
 import {cl} from './utils/cl';
 
-import type {TBlogPost} from '@/types/strapi';
+import type {TBlogPost} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 /********************************************************************************************

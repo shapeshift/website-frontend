@@ -20,7 +20,7 @@ import {useMemo} from 'react';
 
 import {cl} from './utils/cl';
 
-import type {TNewsroomPost} from '@/types/strapi';
+import type {TNewsroomPost} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function NewsPost({post, className}: {post: TNewsroomPost; className?: string}): ReactNode {
