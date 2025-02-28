@@ -27,9 +27,9 @@ export function Notification(): ReactNode {
 	}, []);
 
 	useEffect(() => {
-		setIsBannerOpen(notification?.type === 'bar');
-		setIsModalOpen(notification?.type === 'modal');
-		setIsPopupOpen(notification?.type === 'popup');
+		setIsBannerOpen(notification?.type === 'bar' && notification?.enabled);
+		setIsModalOpen(notification?.type === 'modal' && notification?.enabled);
+		setIsPopupOpen(notification?.type === 'popup' && notification?.enabled);
 	}, [notification]);
 
 	return (
