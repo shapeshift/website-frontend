@@ -8,7 +8,7 @@ import {ProtocolHeader} from '@/app/(resources)/supported-protocols/ProtocolHead
 import {Banner} from '@/components/common/Banner';
 import {getSupportedProtocol} from '@/components/utils/query';
 
-import type {TSupportedProtocolData} from '@/types/strapi';
+import type {TSupportedProtocolData} from '@/components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

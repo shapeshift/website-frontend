@@ -10,7 +10,7 @@ import {blogTypesSlugToCategory} from '@/components/constants';
 import {cl} from '@/components/utils/cl';
 import {useFetchPosts} from '@/hooks/useFetchPosts';
 
-import type {TBlogPost} from '@/types/strapi';
+import type {TBlogPost} from '@/components/strapi/types';
 import type {ReactElement} from 'react';
 
 const PAGE_SIZE = 12;

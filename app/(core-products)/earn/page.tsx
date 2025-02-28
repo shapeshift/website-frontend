@@ -3,9 +3,9 @@ import {notFound} from 'next/navigation';
 
 import {Button} from '@/components/common/Button';
 import {FooterBanner} from '@/components/FooterBanner';
-import Grid from '@/components/strapi-sections/products/Grid';
+import Grid from '@/components/strapi/products/Grid';
 
-import type {TButton, TFooterSection, TGridSection, TStrapiImage} from '@/types/strapi';
+import type {TButton, TFooterSection, TGridSection, TStrapiImage} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TPage = {

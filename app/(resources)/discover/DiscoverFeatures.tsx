@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 import {RoundButton} from '@/components/common/RoundButton';
-import {Card} from '@/components/strapi-sections/cards-row/Card';
+import {Card} from '@/components/strapi/cards-row/Card';
 
-import type {TCard} from '@/types/strapi';
+import type {TCard} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function DiscoverFeatures({data, name}: {data: TCard[]; name: string}): ReactNode {

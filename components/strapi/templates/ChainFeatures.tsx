@@ -5,7 +5,7 @@ import {useMemo} from 'react';
 import {Button} from '@/components/common/Button';
 import {cl} from '@/components/utils/cl';
 
-import type {TStrapiImage} from '@/types/strapi';
+import type {TStrapiImage} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 function WalletFeature({chainName}: {chainName: string}): ReactNode {

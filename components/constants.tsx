@@ -29,7 +29,7 @@ import {IconTwitter} from './common/icons/IconTwitter';
 import {IconWallet} from './common/icons/IconWallet';
 import {IconWarpcast} from './common/icons/IconWarpcast';
 
-import type {TCardsRowSection} from '@/types/strapi';
+import type {TCardsRowSection} from '@/components/strapi/types';
 
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
@@ -638,7 +638,6 @@ export const blogTags = [
 	}
 ];
 
-
 export const newsroomTags = [
 	{
 		title: 'All tags',
@@ -725,7 +724,6 @@ export const newsroomTags = [
 		slug: 'mobile'
 	}
 ];
-
 
 export const CarouselLogos = {
 	cowSwap: {

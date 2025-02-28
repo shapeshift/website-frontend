@@ -7,7 +7,7 @@ import {useState} from 'react';
 import {TermMarkdown} from '@/app/(terms)/terms-of-service/TermMarkdown';
 import {AnimatedPlusMinusIcon} from '@/components/QuestionSection';
 
-import type {TTermsOfServiceData} from '@/types/strapi';
+import type {TTermsOfServiceData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function TermAccordion({term}: {term: TTermsOfServiceData['terms'][number]}): ReactNode {

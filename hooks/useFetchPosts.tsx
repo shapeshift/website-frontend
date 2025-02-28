@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 
 import {useCachedPosts} from '@/components/contexts/CachedPosts';
 
-import type {TBlogListResponse, TBlogPost, TPagination} from '@/types/strapi';
+import type {TBlogListResponse, TBlogPost, TPagination} from '@/components/strapi/types';
 
 /********************************************************************************************
  * Custom hook for fetching blog posts from Strapi

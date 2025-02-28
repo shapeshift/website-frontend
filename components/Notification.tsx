@@ -4,7 +4,7 @@ import {Modal} from './Modal';
 import {NotificationBar} from './NotificationBar';
 import {Popup} from './Popup';
 
-import type {TStrapiNotification} from '@/types/strapi';
+import type {TStrapiNotification} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function Notification(): ReactNode {

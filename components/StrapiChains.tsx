@@ -1,6 +1,6 @@
 import {ElementCard} from '@/components/ElementCard';
 
-import type {TSupportedChainData} from '@/types/strapi';
+import type {TSupportedChainData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function StrapiChains(props: {chains?: TSupportedChainData[] | null; isLoading?: boolean}): ReactNode {

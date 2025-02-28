@@ -1,6 +1,6 @@
 import {ElementCard} from '@/components/ElementCard';
 
-import type {TSupportedWalletData} from '@/types/strapi';
+import type {TSupportedWalletData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function StrapiWallets(props: {wallets?: TSupportedWalletData[] | null; isLoading?: boolean}): ReactNode {

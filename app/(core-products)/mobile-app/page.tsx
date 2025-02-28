@@ -3,9 +3,15 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 
 import {FooterBannerMobileApp} from '@/components/FooterBanner';
-import GridLadder from '@/components/strapi-sections/products/GridLadder';
+import GridLadder from '@/components/strapi/products/GridLadder';
 
-import type {TButton, TDownloadButton, TFooterSection, TGridLadderSection, TStrapiImage} from '@/types/strapi';
+import type {
+	TButton,
+	TDownloadButton,
+	TFooterSection,
+	TGridLadderSection,
+	TStrapiImage
+} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TPage = {

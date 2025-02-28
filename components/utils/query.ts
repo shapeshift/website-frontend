@@ -2,12 +2,11 @@ import type {
 	TDiscoverData,
 	TFaqData,
 	TPrivacyPolicyData,
-	TStrapiNotification,
 	TSupportedChainData,
 	TSupportedProtocolData,
 	TSupportedWalletData,
 	TTermsOfServiceData
-} from '@/types/strapi';
+} from '@/components/strapi/types';
 
 /**
  * API utility functions to fetch data from Strapi CMS
@@ -209,4 +208,3 @@ export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
 	const data = await res.json();
 	return data.data;
 }
-

@@ -2,7 +2,7 @@
 
 import {createContext, useContext, useState} from 'react';
 
-import type {TBlogListResponse} from '@/types/strapi';
+import type {TBlogListResponse} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TCachedParams = {

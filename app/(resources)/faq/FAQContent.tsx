@@ -6,7 +6,7 @@ import {Banner} from '@/components/common/Banner';
 import {QuestionSection} from '@/components/QuestionSection';
 import {cl} from '@/components/utils/cl';
 
-import type {TFaqData} from '@/types/strapi';
+import type {TFaqData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 /********************************************************************************************

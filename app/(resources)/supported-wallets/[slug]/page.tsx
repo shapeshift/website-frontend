@@ -7,7 +7,7 @@ import {Banner} from '@/components/common/Banner';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {getSupportedWallet} from '@/components/utils/query';
 
-import type {TSupportedWalletData} from '@/types/strapi';
+import type {TSupportedWalletData} from '@/components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

@@ -1,6 +1,6 @@
 import {ElementCard} from '@/components/ElementCard';
 
-import type {TDiscoverData} from '@/types/strapi';
+import type {TDiscoverData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function StrapiDiscover(props: {discover?: TDiscoverData[] | null; isLoading?: boolean}): ReactNode {

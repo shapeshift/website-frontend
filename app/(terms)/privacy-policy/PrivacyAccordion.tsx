@@ -7,7 +7,7 @@ import {useState} from 'react';
 import {PrivacyMarkdown} from '@/app/(terms)/privacy-policy/PrivacyMarkdown';
 import {AnimatedPlusMinusIcon} from '@/components/QuestionSection';
 
-import type {TPrivacyPolicyData} from '@/types/strapi';
+import type {TPrivacyPolicyData} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function PrivacyAccordion({policy}: {policy: TPrivacyPolicyData['policy'][number]}): ReactNode {

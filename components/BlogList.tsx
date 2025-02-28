@@ -7,7 +7,7 @@ import {useFetchPosts} from '@/hooks/useFetchPosts';
 import {BlogPost} from './BlogPost';
 import {Button} from './common/Button';
 
-import type {TBlogPost} from '@/types/strapi';
+import type {TBlogPost} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isWithTitle?: boolean}): ReactNode {
