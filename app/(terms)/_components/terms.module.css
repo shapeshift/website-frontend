@@ -1,0 +1,71 @@
+/**************************************************************************************************
+** CSS Module for Terms Pages
+** Provides consistent styling for blog-like content across privacy policy and terms of service
+** Replaces global styles with module-scoped CSS
+** Contains styles for common elements like code blocks, footnotes, and definition lists
+**************************************************************************************************/
+
+.blogContent {
+	/* Base styles */
+	font-size: 1.125rem;
+	line-height: 1.75;
+	color: #e5e7eb;
+}
+
+/* Code blocks */
+.blogContent pre {
+	background-color: #1f2937;
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+	margin: 1.5rem 0;
+	position: relative;
+}
+
+/* Footnotes */
+.blogContent .footnotes {
+	border-top: 1px solid #374151;
+	margin-top: 2rem;
+	padding-top: 1rem;
+}
+
+.blogContent .footnotes ol {
+	font-size: 0.875rem;
+}
+
+/* Definition lists */
+.blogContent dl {
+	margin: 1.5rem 0;
+}
+
+.blogContent dt {
+	font-weight: bold;
+	margin-top: 1rem;
+}
+
+.blogContent dd {
+	margin-left: 1.5rem;
+}
+
+/* Custom containers */
+.blogContent .warning {
+	background-color: #fef3c7;
+	border-left: 4px solid #f59e0b;
+	padding: 1rem;
+	margin: 1.5rem 0;
+	color: #92400e;
+}
+
+.blogContent p {
+	margin-bottom: 16px;
+}
+
+.blogContent strong {
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.blogContent img {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

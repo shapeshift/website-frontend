@@ -1,43 +1,32 @@
-import 'highlight.js/styles/github-dark.css';
+/**********************************************\*\*\*\**********************************************
+ ** Terms of Service Page Component
+ ** Server-side rendered page for displaying terms of service content
+ ** Uses shared components for consistent UI across terms pages
+ ** Implements proper SEO metadata for search engine optimization
+ ** Handles loading states and error cases gracefully
+ **********************************************\*\*\*\***********************************************/
+
 import {notFound} from 'next/navigation';
 
-import {TermsOfServiceStyle} from '@/app/(terms)/terms-of-service/style';
-import {TermAccordion} from '@/app/(terms)/terms-of-service/TermsAccordion';
-import {Banner} from '@/components/common/Banner';
-import {Button} from '@/components/common/Button';
-import {getTermsOfService} from '@/components/utils/query';
+import {TermsPage, generateMetadata} from '@/app/(terms)/_components/TermsPage';
+import {getTermsOfServiceItems} from '@/app/(terms)/_components/utils';
 
+import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
+export const metadata: Metadata = generateMetadata({title: 'Terms of Service'});
+
 export default async function TermsOfServicePage(): Promise<ReactNode> {
-	const termsOfService = await getTermsOfService();
-	if (!termsOfService) {
+	const items = await getTermsOfServiceItems();
+
+	if (!items.length) {
 		return notFound();
 	}
+
 	return (
-		<main className={'terms-of-service container mx-auto mt-40 px-4 py-8'}>
-			<div className={'mb-20 flex w-full'}>
-				<section className={'flex flex-col'}>
-					<h1 className={'mb-6 text-7xl'}>{'Terms of Service'}</h1>
-					<Button
-						variant={'blue'}
-						href={'https://app.shapeshift.com/'}
-						title={'Get Started'}
-					/>
-				</section>
-			</div>
-			<div className={'flex flex-col gap-2'}>
-				{termsOfService.terms.map(term => (
-					<TermAccordion
-						key={term.id}
-						term={term}
-					/>
-				))}
-			</div>
-			<TermsOfServiceStyle />
-			<div className={'mt-20'}>
-				<Banner />
-			</div>
-		</main>
+		<TermsPage
+			title={'Terms of Service'}
+			items={items}
+		/>
 	);
 }
