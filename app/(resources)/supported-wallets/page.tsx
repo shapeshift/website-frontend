@@ -1,30 +1,75 @@
+/************************************************************************************************
+ ** Supported Wallets Page:
+ **
+ ** Main landing page for all compatible wallets that work with ShapeShift
+ ** Displays a visual grid of supported wallet options
+ **
+ ** Features:
+ ** - Reusable ResourceHeader component for consistent UI
+ ** - Server-side data fetching with error handling
+ ** - Visual wallet grid with logos and descriptions
+ ** - Responsive layout for all screen sizes
+ **
+ ** Technical Implementation:
+ ** - Uses Next.js server components for data fetching
+ ** - Leverages WalletList component for wallet display
+ ** - Implements descriptive section headings for better accessibility
+ ************************************************************************************************/
+
 import {Banner} from '@/components/common/Banner';
-import {Button} from '@/components/common/Button';
-import {StrapiWallets} from '@/components/StrapiWallets';
-import {getSupportedWallets} from '@/components/utils/query';
+
+import {ResourceHeader} from '../_components/ResourceHeader';
+import {WalletList} from '../_components/WalletList';
+import {fetchAllWallets} from '../_utils/fetchUtils';
 
 import type {ReactNode} from 'react';
 
+// Static content for the page
+const pageContent = {
+	title: 'Bring your own wallet',
+	description:
+		'Connect your favorite self-custody wallet to access the full ShapeShift platform and all supported chains.',
+	features: ['Non-Custodial', 'Multi-Provider Support', 'Enhanced Privacy'],
+	ctaButton: {
+		text: 'Get Started',
+		url: 'https://app.shapeshift.com/'
+	}
+};
+
 export default async function WalletPage(): Promise<ReactNode> {
-	const wallets = await getSupportedWallets();
+	// Fetch wallets data
+	const wallets = await fetchAllWallets();
+
+	// Handle loading and error states
+	if (!wallets) {
+		return (
+			<div className={'mt-[120px] flex w-full justify-center text-center lg:mt-60'}>
+				<p className={'text-red-400'}>{'Unable to load wallet data. Please try again later.'}</p>
+			</div>
+		);
+	}
 
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'container mt-[120px] flex flex-col justify-center lg:mt-60'}>
-				<section className={'flex flex-col items-start'}>
-					<div className={'mb-6 flex flex-col items-center gap-2'}>
-						<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Bring your own wallet'}</h1>
-					</div>
-					<Button
-						variant={'blue'}
-						href={'https://app.shapeshift.com/'}
-						title={'Get Started'}
-					/>
+				{/* Reusable header component */}
+				<ResourceHeader
+					title={pageContent.title}
+					description={pageContent.description}
+					items={pageContent.features}
+					ctaButton={pageContent.ctaButton}
+					className={'mb-12'}
+				/>
+
+				{/* Wallets grid section */}
+				<section
+					className={'mt-8'}
+					aria-label={'Supported Wallets'}>
+					<h2 className={'mb-6 text-2xl font-medium'}>{'Choose your preferred wallet'}</h2>
+					<WalletList wallets={wallets} />
 				</section>
 
-				<section className={'mt-8'}>
-					<StrapiWallets wallets={wallets} />
-				</section>
+				{/* Footer banner */}
 				<div className={'my-16'}>
 					<Banner />
 				</div>

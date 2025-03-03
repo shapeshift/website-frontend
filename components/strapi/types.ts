@@ -50,17 +50,6 @@ export type TGridLadderStep = {
 	buttonCta: TButton;
 };
 
-// Component types
-export type THeroSection = {
-	id: number;
-	title: string;
-	description: string;
-	stats: TStat[];
-	featuredImg: TStrapiImage;
-	buttonDownload: TDownloadButton[];
-	buttonCta: TButton;
-};
-
 export type TCardsRowSection = {
 	id: number;
 	title: string;
@@ -106,29 +95,6 @@ export type TFooterSection = {
 	buttonDownload: TButton[];
 	buttonCta: TButton;
 };
-
-export type TSections = THeroSection &
-	TCardsRowSection &
-	TGridLadderSection &
-	TGridSection &
-	TGridDisplacedSection &
-	TFooterSection;
-
-export type TPageData = {
-	id: number;
-	documentId: string;
-	slug: string;
-	hero?: THeroSection;
-	cardsRow?: TCardsRowSection;
-	grid?: TGridSection;
-	gridLadder?: TGridLadderSection;
-	gridDisplaced?: TGridDisplacedSection;
-	footer?: TFooterSection;
-	createdAt: string;
-	updatedAt: string;
-	publishedAt: string;
-};
-
 
 /********************************************************************************************
  * Types for Strapi Blog API responses

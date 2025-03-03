@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import type {ReactNode} from 'react';
 
-export function Hero(props: {url: string; width: number; height: number; name: string}): ReactNode {
+export function SupportedWalletHero(props: {url: string; width: number; height: number; name: string}): ReactNode {
 	return (
 		<section className={'relative flex w-full overflow-hidden rounded-2xl'}>
 			<Image

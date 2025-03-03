@@ -5,7 +5,7 @@ import {useParams, usePathname} from 'next/navigation';
 import {TabItem} from '@/components/common/TabItem';
 import {newsroomCategories, newsroomTags} from '@/components/constants';
 
-export function BlogNav(): React.ReactNode {
+export function NewsroomNav(): React.ReactNode {
 	const pathname = usePathname();
 	const params = useParams();
 	const category = (params.category as string) || '';

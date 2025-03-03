@@ -24,7 +24,7 @@ import {Button} from '@/components/common/Button';
 import type {TButton, TStrapiImage} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
-export type TProductHeroProps = {
+type TProductHeroProps = {
 	title: string;
 	description: string;
 	buttonCta?: TButton; // Optional because mobile-app doesn't use it

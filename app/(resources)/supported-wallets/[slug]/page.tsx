@@ -1,8 +1,8 @@
 import {notFound} from 'next/navigation';
 
-import {AccelerateData} from '@/app/(resources)/supported-wallets/AccelerateData';
-import {Header} from '@/app/(resources)/supported-wallets/Header';
-import {Hero} from '@/app/(resources)/supported-wallets/Hero';
+import {SupportedWalletAccelerate} from '@/app/(resources)/_components/SupportedWalletAccelerate';
+import {SupportedWalletHeader} from '@/app/(resources)/_components/SupportedWalletHeader';
+import {SupportedWalletHero} from '@/app/(resources)/_components/SupportedWalletHero';
 import {Banner} from '@/components/common/Banner';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {getSupportedWallet} from '@/components/utils/query';
@@ -71,20 +71,20 @@ export default async function WalletPage({params}: {params: Promise<{slug: strin
 		<div className={'flex w-full justify-center'}>
 			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<div className={'mb-12'}>
-					<Hero
+					<SupportedWalletHero
 						url={`${process.env.STRAPI_URL}${wallet?.featuredImg?.url}`}
 						name={wallet?.name}
 						width={wallet?.featuredImg?.width}
 						height={wallet?.featuredImg?.height}
 					/>
 				</div>
-				<Header
+				<SupportedWalletHeader
 					title={wallet?.name}
 					description={wallet?.description}
 					items={['Self-custodial', 'Private', 'Multichain trading']}
 				/>
 
-				<AccelerateData />
+				<SupportedWalletAccelerate />
 
 				<StrapiFAQ />
 

@@ -8,7 +8,7 @@ type THeaderData = {
 	description: string;
 	items: string[];
 };
-export function Header(data: THeaderData): ReactNode {
+export function SupportedWalletHeader(data: THeaderData): ReactNode {
 	return (
 		<section className={'flex flex-col items-center'}>
 			<div className={'mb-10 hidden gap-2 lg:flex'}>

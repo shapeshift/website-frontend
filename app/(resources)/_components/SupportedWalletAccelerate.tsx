@@ -42,7 +42,7 @@ const ACCELERATE_WITH_SHAPESHIFT_DATA = [
 	}
 ];
 
-export function AccelerateData(): ReactNode {
+export function SupportedWalletAccelerate(): ReactNode {
 	return (
 		<div className={'mb-24 mt-[120px] lg:mb-48 lg:mt-60'}>
 			<section className={'container flex flex-col gap-14'}>

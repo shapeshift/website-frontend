@@ -34,12 +34,18 @@ import type {TCardsRowSection} from '@/components/strapi/types';
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
 
-export const docsUrl = 'https://docs.shapeshift.com/';
+const docsUrl = 'https://docs.shapeshift.com/';
 
-export const githubUrl = 'https://github.com/shapeshift';
+const githubUrl = 'https://github.com/shapeshift';
 
 export const appResources = [
 	{name: 'Blog', href: '/blog', description: 'Latest news and updates', icon: <IconBlog />},
+	{
+		name: 'Discover',
+		description: 'Learn more about the ShapeShift ecosystem',
+		href: '/discover',
+		icon: <IconDiscover />
+	},
 	{name: 'FAQ', href: '/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
 	{
 		name: 'Supported chains',
@@ -58,12 +64,6 @@ export const appResources = [
 		href: '/supported-protocols',
 		description: 'Protocols we support',
 		icon: <IconScanDevice />
-	},
-	{
-		name: 'Discover',
-		description: 'Learn more about the ShapeShift ecosystem',
-		href: '/discover',
-		icon: <IconDiscover />
 	},
 	{
 		name: 'Support',

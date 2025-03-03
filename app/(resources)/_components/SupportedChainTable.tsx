@@ -5,7 +5,7 @@ import {allWallets, supportedChains} from '@/components/constants';
 
 import type {ReactNode} from 'react';
 
-export default function SupportedTable(): ReactNode {
+export default function SupportedChainTable(): ReactNode {
 	return (
 		<div>
 			<table className={'w-full border-collapse rounded-2xl border border-stroke'}>

@@ -5,7 +5,7 @@ import {IconNext} from './icons/IconNext';
 
 import type {ReactNode} from 'react';
 
-export type TButtonVariant = 'blue' | 'white';
+type TButtonVariant = 'blue' | 'white';
 
 type TButtonProps = {
 	title?: string;
