@@ -1,6 +1,7 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
 
+import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
 import {WithFonts} from '@/components/common/WithFonts';
 import {CachedNewsProvider} from '@/components/contexts/CachedNews';
 import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
@@ -39,8 +40,12 @@ export async function getSubdomain(): Promise<string | null> {
 export const metadata: Metadata = defaultMetadata;
 
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
+	const websiteSchema = generateWebsiteSchema(baseUrl);
+	const organizationSchema = generateOrganizationSchema();
+
 	return (
-		<html>
+		<html lang={'en'}>
 			<head>
 				<Script
 					strategy={'beforeInteractive'}
@@ -54,6 +59,18 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					crossOrigin={'anonymous'}>
 					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
 				</Script>
+				<Script
+					id={'website-schema'}
+					type={'application/ld+json'}
+					// eslint-disable-next-line @typescript-eslint/naming-convention
+					dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
+				/>
+				<Script
+					id={'organization-schema'}
+					type={'application/ld+json'}
+					// eslint-disable-next-line @typescript-eslint/naming-convention
+					dangerouslySetInnerHTML={{__html: JSON.stringify(organizationSchema)}}
+				/>
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 text-white'}>
 				<WithFonts>
