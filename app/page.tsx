@@ -30,7 +30,7 @@ export default function HomePage(): ReactNode {
 					height={'1628'}
 					priority
 					loading={'eager'}
-					className={'absolute left-0 top-0 -z-10 size-full rounded-2xl object-cover'}
+					className={'absolute left-0 top-0 z-10 size-full rounded-2xl object-cover'}
 				/>
 
 				<div className={'container flex w-full flex-col items-center justify-between pb-20 pt-6 lg:flex-row'}>
