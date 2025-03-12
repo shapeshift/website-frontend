@@ -38,6 +38,134 @@ const docsUrl = 'https://docs.shapeshift.com/';
 
 const githubUrl = 'https://github.com/shapeshift';
 
+export const footerButtonTitle = 'Donate';
+
+/************************************************************************************************
+ ** Homepage constants
+ ************************************************************************************************/
+
+export const heroTitle = 'Your multichain crypto home base.';
+export const heroDescription =
+	'Your gateway to trading, tracking, earning, and exploring crypto effortlessly. A community-owned, private, non-custodial, multichain platform putting you in full control of your digital assets.';
+
+export const homepageWhiteTitle = 'Your Wallet. One App.';
+export const homepageBlueTitle = 'Endless Opportunity.';
+
+export const featuresTitle = 'Explore our features.';
+export const featureTabTitle = 'Multichain crypto home base';
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Earn'];
+export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
+export const featureCard1BlueTitle = 'multiple chains';
+export const featureCard3WhiteTitle = 'All-In-One';
+export const featureCard3BlueTitle = 'ShapeShift wallet';
+export const featureCard4WhiteTitle = 'Earn more';
+export const featureCard4BlueTitle = 'with DeFi';
+
+/************************************************************************************************
+ ** DAO fox-token constants
+ ************************************************************************************************/
+
+export const foxTokenTitleWhite = 'Fox';
+export const foxTokenTitleBlue = 'Power';
+export const foxTokenDescription = 'Fox Tokens wield mighty powers for those who hodl them.';
+export const foxTokenDescriptionNote =
+	'NOTE: FOX Token benefits are subject to change, as determined by FOX Token holders.';
+export const section1Title = 'How do I Participate?';
+export const section1Description =
+	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.';
+
+export const section2Title = 'How is a DAO different than a centralized company?';
+export const section2Article1 =
+	'FOX token holders govern the ShapeShift DAO—a treasury endowed with 567,000,000 FOX Tokens (56.7% of all FOX) and actively generating revenue.';
+export const section2Article2 =
+	'DAOs (Decentralized Autonomous Organizations) are a collective organization owned and managed by its members with all of them having a voice. We are actively building a powerful community around the open-source, self-custody, multi-chain crypto platform for the world.';
+export const benefitsTitle = 'Benefits of working with the DAO.';
+export const resourcesTitle = 'Resources';
+export const communityTitle = 'Join our community';
+
+export const foxTokenBenefits = [
+	{
+		title: 'Work from anywhere in the World.',
+		icon: <IconGlobe />
+	},
+	{
+		title: 'Get healthcare coverage (for US based workers)*',
+		icon: <IconHeart />
+	},
+	{
+		title: 'Work anonymously',
+		icon: <IconShield />
+	},
+	{
+		title: 'Optional W2s for US contributors*',
+		icon: <IconActivityRings />
+	},
+	{
+		title: 'Get paid in USDC, FOX, or Fiat*',
+		icon: <IconDollar />
+	},
+	{
+		title: 'Work with a fully distributed team of top talent',
+		icon: <IconTriLink />
+	}
+];
+
+export const foxTokenCommunityItems = [
+	{
+		href: 'https://twitter.com/fox_token',
+		icon: <IconTwitter className={'transition-all duration-200 group-hover:text-blue'} />
+	},
+	{
+		href: 'https://medium.com/@fox_token',
+		icon: <IconMedium className={'transition-all duration-200 group-hover:text-blue'} />
+	},
+	{
+		href: 'https://discord.gg/fox_token',
+		icon: <IconDiscord className={'transition-all duration-200 group-hover:text-blue'} />
+	},
+	{
+		href: 'https://t.me/fox_token',
+		icon: <IconTelegram className={'transition-all duration-200 group-hover:text-blue'} />
+	},
+	{
+		href: 'https://w.social/fox_token',
+		icon: <IconWarpcast className={'transition-all duration-200 group-hover:text-blue'} />
+	}
+];
+
+export const foxTokenContributeItems = [
+	{
+		title: 'Contribute',
+		href: githubUrl
+	},
+	{
+		title: 'Govern',
+		href: 'https://snapshot.box/#/s:shapeshiftdao.eth'
+	},
+	{
+		title: 'Read Docs',
+		href: docsUrl
+	},
+	{
+		title: 'Discuss',
+		href: 'https://forum.shapeshift.com/'
+	}
+];
+
+/************************************************************************************************
+ ** Banner constants
+ ************************************************************************************************/
+
+export const bannerLeftTitle = 'Your multichain crypto home base.';
+export const bannerRightTitle = 'Defi everywhere, anytime with ShapeShift mobile.';
+export const bannerLeftButtonTitle = 'Launch dApp';
+export const bannerRightButtonTitle = 'Try the demo';
+export const bannerMobileSubtitle = 'Or download the app';
+
+/************************************************************************************************
+ ** App constants
+ ************************************************************************************************/
+
 export const appResources = [
 	{name: 'Blog', href: '/blog', description: 'Latest news and updates', icon: <IconBlog />},
 	{
@@ -285,75 +413,6 @@ export const landingCards: TCardsRowSection = {
 		}
 	]
 };
-
-export const foxTokenBenefits = [
-	{
-		title: 'Work from anywhere in the World.',
-		icon: <IconGlobe />
-	},
-	{
-		title: 'Get healthcare coverage (for US based workers)*',
-		icon: <IconHeart />
-	},
-	{
-		title: 'Work anonymously',
-		icon: <IconShield />
-	},
-	{
-		title: 'Optional W2s for US contributors*',
-		icon: <IconActivityRings />
-	},
-	{
-		title: 'Get paid in USDC, FOX, or Fiat*',
-		icon: <IconDollar />
-	},
-	{
-		title: 'Work with a fully distributed team of top talent',
-		icon: <IconTriLink />
-	}
-];
-
-export const foxTokenCommunityItems = [
-	{
-		href: 'https://twitter.com/fox_token',
-		icon: <IconTwitter className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://medium.com/@fox_token',
-		icon: <IconMedium className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://discord.gg/fox_token',
-		icon: <IconDiscord className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://t.me/fox_token',
-		icon: <IconTelegram className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://w.social/fox_token',
-		icon: <IconWarpcast className={'transition-all duration-200 group-hover:text-blue'} />
-	}
-];
-
-export const foxTokenContributeItems = [
-	{
-		title: 'Contribute',
-		href: githubUrl
-	},
-	{
-		title: 'Govern',
-		href: 'https://snapshot.box/#/s:shapeshiftdao.eth'
-	},
-	{
-		title: 'Read Docs',
-		href: docsUrl
-	},
-	{
-		title: 'Discuss',
-		href: 'https://forum.shapeshift.com/'
-	}
-];
 
 export const blogTypes = [
 	{
@@ -727,7 +786,7 @@ export const newsroomTags = [
 	}
 ];
 
-export const CarouselLogos = {
+export const carouselLogos = {
 	cowSwap: {
 		href: 'https://cow.fi/',
 		src: '/landing/cow-swap.png',

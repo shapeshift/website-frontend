@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import {Button} from './common/Button';
 import {ShapeshiftLogo} from './common/icons/ShapeshiftLogo';
-import {footerLinks} from './constants';
+import {footerButtonTitle, footerLinks} from './constants';
 
 import type {ReactNode} from 'react';
 
@@ -76,7 +76,7 @@ export function Footer(): ReactNode {
 								<Button
 									href={'https://giveth.io/project/shapeshift-dao'}
 									variant={'blue'}
-									title={'Donate'}
+									title={footerButtonTitle}
 									hasArrow
 								/>
 							</div>

@@ -2,7 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import {Button} from './Button';
-import {dAppUrl} from '../constants';
+import {
+	bannerLeftButtonTitle,
+	bannerLeftTitle,
+	bannerMobileSubtitle,
+	bannerRightButtonTitle,
+	bannerRightTitle,
+	dAppUrl
+} from '../constants';
 
 import type {ReactNode} from 'react';
 
@@ -20,31 +27,27 @@ export function Banner(): ReactNode {
 				className={'absolute inset-0 -z-10 size-full object-cover'}
 			/>
 			<div className={'flex flex-col lg:max-w-[511px]'}>
-				<h2 className={'mb-24 text-center text-[40px] leading-[40px] lg:text-left'}>
-					{'Your multichain crypto home base.'}
-				</h2>
+				<h2 className={'mb-24 text-center text-[40px] leading-[40px] lg:text-left'}>{bannerLeftTitle}</h2>
 
 				<div className={'flex gap-4'}>
 					<Button
 						variant={'blue'}
-						title={'Launch dApp'}
+						title={bannerLeftButtonTitle}
 						href={dAppUrl}
 						className={'mb-[44px] !w-full lg:mb-0 lg:!w-auto'}
 					/>
 					<Button
 						variant={'white'}
-						title={'Try the demo'}
+						title={bannerRightButtonTitle}
 						className={'hidden lg:flex'}
 						href={'https://app.shapeshift.com/dashboard'}
 					/>
 				</div>
 			</div>
-			<p className={'mb-4 text-center lg:mb-0 lg:hidden'}>{'Or download the app'}</p>
+			<p className={'mb-4 text-center lg:mb-0 lg:hidden'}>{bannerMobileSubtitle}</p>
 
 			<div className={'flex flex-col lg:max-w-[511px]'}>
-				<h2 className={'mb-10 hidden text-left text-[40px] leading-[40px] lg:block'}>
-					{'Defi everywhere, anytime with ShapeShift mobile.'}
-				</h2>
+				<h2 className={'mb-10 hidden text-left text-[40px] leading-[40px] lg:block'}>{bannerRightTitle}</h2>
 				<div className={'flex justify-center gap-6 lg:justify-start'}>
 					<div className={'hidden size-[121px] lg:block'}>
 						<Image
