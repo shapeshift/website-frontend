@@ -37,3 +37,36 @@ The DAO section integrates with:
 - Ensure token information is accurate and regularly updated
 - Maintain proper accessibility for governance tools
 - Design mobile-responsive interfaces for all DAO pages
+
+## Customizing the FOX Token Page
+
+To modify the content on the DAO **FOX Token** page, you can update the following constants in the `components/constants.tsx` file:
+
+### Page Titles and Descriptions
+
+- `foxTokenTitleWhite` - White portion of the main title
+- `foxTokenTitleBlue` - Blue portion of the main title
+- `foxTokenDescription` - Main description text
+- `foxTokenDescriptionNote` - Note displayed below the description
+
+### Section Content
+
+- `section1Title` - "How do I Participate?" section heading
+- `section1Description` - Participation description text
+- `section2Title` - "How is a DAO different..." section heading
+- `section2Article1` - First paragraph of section 2
+- `section2Article2` - Second paragraph of section 2
+- `benefitsTitle` - Title for the benefits section
+
+### Lists and Collections
+
+- `foxTokenBenefits` - Array of benefit items with titles and icons
+- `foxTokenCommunityItems` - Social media and community links
+- `foxTokenContributeItems` - Contribution and governance links
+
+### Additional Section Titles
+
+- `resourcesTitle` - Title for the resources section
+- `communityTitle` - Title for the community section
+
+After updating these constants, the changes will automatically reflect on the FOX Token page.

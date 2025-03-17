@@ -8,7 +8,23 @@ import {LatestBlogPosts} from '@/components/BlogList';
 import {Carousel} from '@/components/Carousel';
 import {Banner} from '@/components/common/Banner';
 import {TabItem} from '@/components/common/TabItem';
-import {CarouselLogos, landingCards} from '@/components/constants';
+import {
+	carouselLogos,
+	featureCard1BlueTitle,
+	featureCard1WhiteTitle,
+	featureCard3BlueTitle,
+	featureCard3WhiteTitle,
+	featureCard4BlueTitle,
+	featureCard4WhiteTitle,
+	featureTabTitle,
+	featuresTitle,
+	heroDescription,
+	heroTitle,
+	homepageBlueTitle,
+	homepageFeatureTabs,
+	homepageWhiteTitle,
+	landingCards
+} from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import CardsRow from '@/components/strapi/cards-row/CardsRow';
 import {StrapiFAQ} from '@/components/StrapiFAQ';
@@ -19,7 +35,7 @@ import type {TCard} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {
-	const [tab, setTab] = useState('Buy');
+	const [tab, setTab] = useState(homepageFeatureTabs[0]);
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
@@ -41,16 +57,13 @@ export default function HomePage(): ReactNode {
 						<div className={'flex flex-col gap-6'}>
 							<h1
 								className={
-									'mb-6 text-center text-[40px] leading-10 text-white lg:text-left lg:text-7xl'
+									'mb-6 max-w-screen-sm text-center text-[40px] leading-10 text-white lg:text-left lg:text-7xl'
 								}>
-								{'Your multichain '}
-								{'crypto home base.'}
+								{heroTitle}
 							</h1>
 
 							<p className={'mb-[60px] text-center text-sm text-white lg:text-left lg:text-xl'}>
-								{
-									'Your gateway to trading, tracking, earning, and exploring crypto effortlessly. A community-owned, private, non-custodial, multichain platform putting you in full control of your digital assets.'
-								}
+								{heroDescription}
 							</p>
 						</div>
 					</div>
@@ -70,20 +83,16 @@ export default function HomePage(): ReactNode {
 			</div>
 			<div className={'container mt-[120px]'}>
 				<div className={' mb-14 mt-40 inline'}>
-					<span className={'mb-6 text-[40px] leading-10 text-white lg:text-7xl'}>
-						{'Your Wallet. One App.'}
-					</span>
+					<span className={'mb-6 text-[40px] leading-10 text-white lg:text-7xl'}>{homepageWhiteTitle}</span>
 					<br className={'hidden lg:block'} />
 					&nbsp;
-					<span className={'text-[40px] leading-10 text-blue lg:text-7xl'}>{'Endless Opportunity.'}</span>
+					<span className={'text-[40px] leading-10 text-blue lg:text-7xl'}>{homepageBlueTitle}</span>
 				</div>
 
 				<CardsRow data={landingCards}>{(card: TCard) => <LandingCard data={card} />}</CardsRow>
 
 				<div className={'mb-[120px] lg:mb-60'}>
-					<h1 className={'mb-8 text-[40px] leading-10 text-white lg:mb-14 lg:text-7xl'}>
-						{'Explore our features.'}
-					</h1>
+					<h1 className={'mb-8 text-[40px] leading-10 text-white lg:mb-14 lg:text-7xl'}>{featuresTitle}</h1>
 					<div className={'group relative h-[674px] overflow-hidden rounded-2xl'}>
 						<Image
 							src={'/landing/landingTabsBg.png'}
@@ -130,10 +139,10 @@ export default function HomePage(): ReactNode {
 
 						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
 							<h1 className={'mb-7 text-center text-[40px] leading-[40px] text-white'}>
-								{'Multichain crypto home base'}
+								{featureTabTitle}
 							</h1>
 							<div className={'flex w-min gap-4 rounded-full border border-white/10 p-2'}>
-								{['Buy', 'Trade', 'Earn'].map(item => (
+								{homepageFeatureTabs.map((item: string) => (
 									<button
 										key={item}
 										onClick={() => setTab(item)}>
@@ -164,8 +173,8 @@ export default function HomePage(): ReactNode {
 									'absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
 								}>
 								<span className={'max-w-[560px] text-center text-white'}>
-									{'Easily send and receive your favorite crypto assets across '}
-									<span className={'text-blue'}>{'multiple chains'}</span>
+									{featureCard1WhiteTitle}
+									<span className={'text-blue'}>{featureCard1BlueTitle}</span>
 								</span>
 							</div>
 						</Card>
@@ -195,9 +204,11 @@ export default function HomePage(): ReactNode {
 									'absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
 								}>
 								<span className={'text-center text-[64px] italic leading-[64px] text-blue'}>
-									{'All-In-One'}
+									{featureCard3WhiteTitle}
 								</span>
-								<span className={'text-center text-[40px] leading-[48px]'}>{'ShapeShift wallet'}</span>
+								<span className={'text-center text-[40px] leading-[48px]'}>
+									{featureCard3BlueTitle}
+								</span>
 							</div>
 						</Card>
 						<Card
@@ -215,14 +226,16 @@ export default function HomePage(): ReactNode {
 									'absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
 								}>
 								<span className={'text-center text-[64px] italic leading-[64px] text-blue'}>
-									{'Earn more'}
+									{featureCard4WhiteTitle}
 								</span>
-								<span className={'text-center text-[40px] leading-[48px]'}>{'with DeFi'}</span>
+								<span className={'text-center text-[40px] leading-[48px]'}>
+									{featureCard4BlueTitle}
+								</span>
 							</div>
 						</Card>
 						<Card className={'col-span-1 row-span-1 flex items-center bg-secondBg lg:col-span-3'}>
 							<Carousel pauseOnHover>
-								{Object.values(CarouselLogos).map(({Logo, href}, index) => (
+								{Object.values(carouselLogos).map(({Logo, href}, index) => (
 									<div
 										key={index}
 										className={'mx-10'}>

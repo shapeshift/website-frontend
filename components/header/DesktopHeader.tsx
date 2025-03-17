@@ -54,8 +54,6 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 		[switchLanguage, currentLanguage]
 	);
 
-	console.log(currentTab);
-
 	/**
 	 * Determine background style based on variant and active tab
 	 */
