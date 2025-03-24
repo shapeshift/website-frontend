@@ -186,7 +186,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
-							href={'https://shapeshift.builtby.dad/defi-wallet'}>
+							href={'/defi-wallet'}>
 							<Image
 								src={'/landing/landingCard3.png'}
 								alt={'tab_bg'}
