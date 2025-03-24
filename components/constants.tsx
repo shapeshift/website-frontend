@@ -14,7 +14,6 @@ import {IconFox} from './common/icons/IconFox';
 import {IconGlobe} from './common/icons/IconGlobe';
 import {IconGovern} from './common/icons/IconGovern';
 import {IconHeart} from './common/icons/IconHeart';
-import {IconKey} from './common/icons/IconKey';
 import {IconMedium} from './common/icons/IconMedium';
 import {IconMobile} from './common/icons/IconMobile';
 import {IconPercent} from './common/icons/IconPercent';
@@ -53,7 +52,7 @@ export const homepageBlueTitle = 'Endless Opportunity.';
 
 export const featuresTitle = 'Explore our features.';
 export const featureTabTitle = 'Multichain crypto home base';
-export const homepageFeatureTabs = ['Buy', 'Trade', 'Earn'];
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Shift'];
 export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
 export const featureCard1BlueTitle = 'multiple chains';
 export const featureCard3WhiteTitle = 'All-In-One';
@@ -200,7 +199,12 @@ export const appResources = [
 		icon: <IconCheckCircle />
 	},
 	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions', icon: <IconDocs />},
-	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data', icon: <IconDocs />}
+	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data', icon: <IconDocs />},
+	{
+		name: 'Brand guidelines',
+		href: 'https://www.figma.com/design/Pvo3sJx2n5TGf1tUgmZR4z/ShapeShift-Brand-Guidelines',
+		description: 'Our brand guidelines'
+	}
 ];
 
 export const appDao = [
@@ -212,6 +216,12 @@ export const appDao = [
 		icon: <IconGovern />
 	},
 	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
+	{
+		name: 'Buy/Sell crypto',
+		href: '/supported-chains/bitcoin',
+		description: 'Exchange Fiat for cryptocurrency',
+		icon: <IconDollar />
+	},
 	{name: 'Join us', href: 'https://forum.shapeshift.com/', description: 'Join the community', icon: <IconStar />},
 	{
 		name: 'Share your ideas',
@@ -241,13 +251,13 @@ export const appProducts = [
 		href: '/mobile-app',
 		description: 'The only crypto app you need.',
 		icon: <IconMobile />
-	},
-	{
-		name: 'KeepKey',
-		href: 'https://www.keepkey.com/',
-		description: 'The Next Frontier of Crypto Security.',
-		icon: <IconKey />
 	}
+	// {
+	// 	name: 'KeepKey',
+	// 	href: 'https://www.keepkey.com/',
+	// 	description: 'The Next Frontier of Crypto Security.',
+	// 	icon: <IconKey />
+	// }
 ];
 
 export const headerTabs = [
@@ -262,9 +272,7 @@ export const footerLinks = {
 	DAO: appDao,
 	Connect: [
 		{name: 'Twitter', href: 'https://twitter.com/shapeshift'},
-		{name: 'Medium', href: 'https://medium.com/shapeshift'},
 		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
-		{name: 'Telegram', href: 'https://t.me/shapeshift'},
 		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
 	]
 };
@@ -349,8 +357,8 @@ export const landingCards: TCardsRowSection = {
 	title: '',
 	ctaBlock: {
 		id: 1,
-		title: 'Get the app',
-		url: '/apple-app-store'
+		title: 'Try Classic',
+		url: 'https://og.shapeshift.com/'
 	},
 	cards: [
 		{
@@ -393,13 +401,13 @@ export const landingCards: TCardsRowSection = {
 		},
 		{
 			id: 51,
-			title: 'Earn',
+			title: 'Shift',
 			description:
-				'Earn up to 12% on your Bitcoin, Ethereum, Dogecoin, Cosmos and more. Always non-custodial. Always real yield.',
+				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
 			href: 'https://app.shapeshift.com/pools#/earn',
 			image: {
-				url: '/landing/cardShapeshiftDAO.png',
+				url: '/landing/cardShift.png',
 				width: 922,
 				height: 512,
 				formats: {
