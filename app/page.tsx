@@ -105,6 +105,11 @@ export default function HomePage(): ReactNode {
 							className={
 								'absolute -bottom-6 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
 							}>
+							<div
+								className={
+									'to-transparents absolute bottom-6 h-10 w-full bg-gradient-to-t from-[#111214] lg:h-20'
+								}
+							/>
 							{tab === 'Buy' ? (
 								<Image
 									src={'/landing/tabBuy.png'}
@@ -123,7 +128,7 @@ export default function HomePage(): ReactNode {
 								/>
 							) : (
 								<Image
-									src={'/landing/tabMarkets.png'}
+									src={'/landing/tabEarn.png'}
 									alt={'img'}
 									width={'2160'}
 									height={'868'}
@@ -186,7 +191,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
-							href={'https://shapeshift.builtby.dad/defi-wallet'}>
+							href={'/supported-chains'}>
 							<Image
 								src={'/landing/landingCard3.png'}
 								alt={'tab_bg'}
@@ -208,8 +213,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
-							href={'https://app.shapeshift.com/markets/recommended#/markets/recommended'}
-							target={'_blank'}>
+							href={'/earn'}>
 							<Image
 								src={'/landing/landingCard4.png'}
 								alt={'tab_bg'}
@@ -259,23 +263,13 @@ export default function HomePage(): ReactNode {
 	);
 }
 
-const Card = ({
-	children,
-	className,
-	href,
-	target
-}: {
-	children: ReactNode;
-	className: string;
-	href?: string;
-	target?: string;
-}): ReactNode => {
+const Card = ({children, className, href}: {children: ReactNode; className: string; href?: string}): ReactNode => {
 	return (
 		<>
 			{href ? (
 				<Link
 					href={href}
-					target={target}
+					target={'_blank'}
 					className={cl('cursor-pointer overflow-hidden rounded-2xl', className)}>
 					{children}
 				</Link>
