@@ -30,7 +30,7 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 			</div>
 			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>
-					{appDao.slice(0, 3).map(dao => (
+					{appDao.slice(0, 4).map(dao => (
 						<HeaderItem
 							onClick={() => setCurrentTab('empty')}
 							key={dao.name}
