@@ -19,7 +19,7 @@
 import {Banner} from '@/components/common/Banner';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
-import {WalletList} from '../_components/WalletList';
+import {WalletSearchWrapper} from './_components/WalletSearchWrapper';
 import {fetchAllWallets} from '../_utils/fetchUtils';
 
 import type {ReactNode} from 'react';
@@ -39,8 +39,6 @@ const pageContent = {
 export default async function WalletPage(): Promise<ReactNode> {
 	// Fetch wallets data
 	const wallets = await fetchAllWallets();
-
-	const featuredWallets = wallets?.filter(wallet => wallet.isFeatured);
 
 	// Handle loading and error states
 	if (!wallets) {
@@ -63,21 +61,7 @@ export default async function WalletPage(): Promise<ReactNode> {
 					className={'mb-12'}
 				/>
 
-				{/* Featured Wallets */}
-				{featuredWallets && featuredWallets.length > 0 && (
-					<div className={'mb-12'}>
-						<h2 className={'mb-6 text-2xl font-medium'}>{'Featured Wallets'}</h2>
-						<WalletList wallets={featuredWallets} />
-					</div>
-				)}
-
-				{/* Wallets grid section */}
-				<section
-					className={'mt-8'}
-					aria-label={'Supported Wallets'}>
-					<h2 className={'mb-6 text-2xl font-medium'}>{'Choose your preferred wallet'}</h2>
-					<WalletList wallets={wallets.filter(wallet => !wallet.isFeatured)} />
-				</section>
+				<WalletSearchWrapper wallets={wallets} />
 
 				{/* Footer banner */}
 				<div className={'my-16'}>

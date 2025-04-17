@@ -1,3 +1,5 @@
+'use client';
+
 /************************************************************************************************
  ** WalletList Component:
  **
@@ -14,19 +16,22 @@
  ** - Pass wallets data and optional loading state
  ************************************************************************************************/
 
-import {ResourceCard} from '@/app/(resources)/_components/ResourceCard';
-import {ResourceGrid} from '@/app/(resources)/_components/ResourceGrid';
+import {ResourceCard} from './ResourceCard';
+import {ResourceGrid} from './ResourceGrid';
 
 import type {TSupportedWalletData} from '@/components/strapi/types';
-import type {ReactNode} from 'react';
 
 type TWalletListProps = {
-	wallets: TSupportedWalletData[] | null;
+	wallets: TSupportedWalletData[];
 	isLoading?: boolean;
 	className?: string;
 };
 
-export function WalletList({wallets, isLoading, className}: TWalletListProps): ReactNode {
+export function WalletList({wallets, isLoading, className}: TWalletListProps): JSX.Element {
+	if (!wallets?.length) {
+		return <div className={'text-center text-gray-500'}>{'We couldn’t find anything matching your search.'}</div>;
+	}
+
 	return (
 		<ResourceGrid
 			items={wallets}
