@@ -1,8 +1,8 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
-import {Search} from '@/components/common/SearchBar';
+import {SearchBar} from '@/components/common/SearchBar';
 
 import {WalletList} from '../../_components/WalletList';
 
@@ -14,23 +14,22 @@ type TWalletSearchWrapperProps = {
 
 export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): JSX.Element {
 	const [filteredWallets, setFilteredWallets] = useState(wallets);
-
 	const [searchQuery, setSearchQuery] = useState('');
+
+	const handleSearch = (query: string): void => {
+		setSearchQuery(query);
+		const filtered = wallets.filter(wallet => wallet.name.toLowerCase().includes(query.toLowerCase()));
+		setFilteredWallets(filtered);
+	};
 
 	const featuredWallets = filteredWallets?.filter(wallet => wallet.isFeatured);
 	const nonFeaturedWallets = filteredWallets?.filter(wallet => !wallet.isFeatured);
 
-	useEffect(() => {
-		const filtered = wallets.filter(wallet => wallet.name.toLowerCase().includes(searchQuery.toLowerCase()));
-
-		setFilteredWallets(filtered);
-	}, [searchQuery, wallets]);
-
 	return (
 		<>
-			<Search
+			<SearchBar
 				searchQuery={searchQuery}
-				setSearchQueryAction={setSearchQuery}
+				setSearchQueryAction={handleSearch}
 			/>
 
 			{/* Featured Wallets */}

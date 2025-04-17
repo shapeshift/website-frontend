@@ -5,7 +5,7 @@ type TSearchProps = {
 	setSearchQueryAction: (query: string) => void;
 };
 
-export function Search({searchQuery, setSearchQueryAction}: TSearchProps): JSX.Element {
+export function SearchBar({searchQuery, setSearchQueryAction}: TSearchProps): JSX.Element {
 	return (
 		<div className={'relative mb-8'}>
 			<div className={'flex w-full justify-center'}>

@@ -27,6 +27,10 @@ type TChainListProps = {
 };
 
 export function ChainList({chains, isLoading, className}: TChainListProps): ReactNode {
+	if (!chains?.length) {
+		return <div className={'text-center text-gray-500'}>{'No chains found'}</div>;
+	}
+
 	return (
 		<ResourceGrid
 			items={chains}

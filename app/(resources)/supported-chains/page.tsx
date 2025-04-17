@@ -18,8 +18,8 @@
 
 import {Banner} from '@/components/common/Banner';
 
-import {ChainList} from '../_components/ChainList';
 import {ResourceHeader} from '../_components/ResourceHeader';
+import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
 import {fetchAllChains} from '../_utils/fetchUtils';
 
 import type {ReactNode} from 'react';
@@ -61,12 +61,7 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 					className={'mb-12'}
 				/>
 
-				{/* Chains grid section */}
-				<section
-					className={'mt-8'}
-					aria-label={'Supported Blockchain Networks'}>
-					<ChainList chains={chains} />
-				</section>
+				<ChainSearchWrapper chains={chains} />
 
 				{/* Footer banner */}
 				<div className={'my-16'}>
