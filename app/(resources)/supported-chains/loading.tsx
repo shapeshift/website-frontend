@@ -16,7 +16,6 @@
  ** - Implements SupportedChainTable for detailed compatibility information
  ************************************************************************************************/
 
-import SupportedChainTable from '@/app/(resources)/_components/SupportedChainTable';
 import {Banner} from '@/components/common/Banner';
 
 import {ChainList} from '../_components/ChainList';
@@ -57,13 +56,6 @@ export default async function Loading(): Promise<ReactNode> {
 						isLoading
 						chains={null}
 					/>
-				</section>
-
-				{/* Detailed compatibility table */}
-				<section
-					className={'mt-16'}
-					aria-label={'Chain Compatibility Details'}>
-					<SupportedChainTable />
 				</section>
 
 				{/* Footer banner */}
