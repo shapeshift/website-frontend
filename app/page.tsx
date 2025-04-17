@@ -26,8 +26,8 @@ import {
 	landingCards
 } from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
+import {LandingInfoCard} from '@/components/LandingInfoCard';
 import CardsRow from '@/components/strapi/cards-row/CardsRow';
-import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {TradingWidget} from '@/components/trading/TradingWidget';
 import {cl} from '@/components/utils/cl';
 
@@ -251,7 +251,35 @@ export default function HomePage(): ReactNode {
 						<LatestBlogPosts limit={2} />
 					</div>
 
-					<StrapiFAQ />
+					{/* <StrapiFAQ /> */}
+
+					<div className={'mb-[120px] lg:mb-60'}>
+						<div className={'grid grid-cols-1 gap-4 lg:grid-cols-3'}>
+							<div className={'col-span-1 mb-6 lg:mb-0'}>
+								<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Trusted by millions'}</h1>
+							</div>
+							<div className={'col-span-1 flex flex-col gap-4'}>
+								<LandingInfoCard
+									title={'Active wallets'}
+									stat={'170+'}
+								/>
+								<LandingInfoCard
+									title={'Available chains'}
+									stat={'13+'}
+								/>
+							</div>
+							<div className={'col-span-1 flex flex-col gap-4'}>
+								<LandingInfoCard
+									title={'Assets'}
+									stat={'10K+'}
+								/>
+								<LandingInfoCard
+									title={'Traded on ShapeShift'}
+									stat={'$380M'}
+								/>
+							</div>
+						</div>
+					</div>
 				</div>
 				<Banner />
 			</div>

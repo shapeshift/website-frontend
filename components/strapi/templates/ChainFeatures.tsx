@@ -582,7 +582,7 @@ function LiquidityPoolFeature(): ReactNode {
 						{'earning passive income'}
 					</Link>
 					{
-						' directly from your DeFi wallet with ShapeShift dApp. It’s simple, secure, and effective. Dive in and start maximizing your returns today!'
+						' directly from your DeFi wallet with ShapeShift App. It’s simple, secure, and effective. Dive in and start maximizing your returns today!'
 					}
 				</p>
 			</div>

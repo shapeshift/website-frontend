@@ -161,6 +161,7 @@ export type TSupportedWalletData = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
+	featured: boolean;
 };
 
 export type TSupportedChainData = {

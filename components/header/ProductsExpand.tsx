@@ -22,11 +22,11 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 					{'Endless Opportunity'}
 				</p>
 				<p className={'mb-10 max-w-[327px] text-sm text-gray-500'}>
-					{'Trade Bipin, Ethereum, and more with top rates across leading DEXs and aggregators.'}
+					{'Trade Bitcoin, Ethereum and more with the best rates across leading DEXs and aggregators.'}
 				</p>
 				<Button
 					variant={'blue'}
-					title={'Get Started'}
+					title={'Trade Smarter'}
 					href={dAppUrl}
 				/>
 			</div>
@@ -40,7 +40,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 							key={product.name}
 							name={product.name}
 							href={product.href}
-							description={product.description}
+							description={product.description ?? ''}
 							icon={product.icon}
 						/>
 					))}

@@ -112,7 +112,7 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 							</button>
 							<Button
 								variant={'blue'}
-								title={'Launch dApp'}
+								title={'Launch App'}
 								href={dAppUrl}
 							/>
 						</div>

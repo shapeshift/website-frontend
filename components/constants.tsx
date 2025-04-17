@@ -5,6 +5,7 @@ import {IconBlog} from './common/icons/IconBlog';
 import {IconBulb} from './common/icons/IconBulb';
 import {IconChains} from './common/icons/IconChains';
 import {IconCheckCircle} from './common/icons/IconCheckCircle';
+import {IconClassic} from './common/icons/IconClassic';
 import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
 import {IconDiscover} from './common/icons/IconDiscover';
@@ -16,7 +17,6 @@ import {IconGovern} from './common/icons/IconGovern';
 import {IconHeart} from './common/icons/IconHeart';
 import {IconMedium} from './common/icons/IconMedium';
 import {IconMobile} from './common/icons/IconMobile';
-import {IconPercent} from './common/icons/IconPercent';
 import {IconQuestion} from './common/icons/IconQuestion';
 import {IconResource} from './common/icons/IconResource';
 import {IconScanDevice} from './common/icons/IconScanDevice';
@@ -208,7 +208,7 @@ export const appResources = [
 ];
 
 export const appDao = [
-	{name: 'Fox token', href: '/dao/fox-token', description: 'Our governance token', icon: <IconFox />},
+	{name: 'FOX token', href: '/dao/fox-token', description: 'Our governance token', icon: <IconFox />},
 	{
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
@@ -233,10 +233,16 @@ export const appDao = [
 
 export const appProducts = [
 	{
-		name: 'dApp',
+		name: 'App',
 		href: dAppUrl,
 		description: 'Trade, track, buy, and earn with your favorite crypto.',
 		icon: <IconDapp />
+	},
+	{
+		name: 'Classic',
+		href: 'https://og.shapeshift.com/',
+		description: 'Original ShapeShift platform with classic interface.',
+		icon: <IconClassic />
 	},
 	{name: 'Trade', href: '/trade', description: 'Trade 10,000+ assets with one click.', icon: <IconDollar />},
 	{
@@ -245,7 +251,6 @@ export const appProducts = [
 		description: 'All-In-One ShapeShift DeFi wallet.',
 		icon: <IconResource />
 	},
-	{name: 'Earn', href: '/earn', description: 'Easiest and fastest way to earn crypto.', icon: <IconPercent />},
 	{
 		name: 'Mobile app',
 		href: '/mobile-app',
@@ -405,7 +410,7 @@ export const landingCards: TCardsRowSection = {
 			description:
 				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/pools#/earn',
+			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssetshttps://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
 			image: {
 				url: '/landing/cardShift.png',
 				width: 922,

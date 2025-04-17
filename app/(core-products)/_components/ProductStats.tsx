@@ -36,10 +36,7 @@ export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 					key={stat.id}
 					className={'flex w-min flex-col items-center lg:min-w-[245px]'}
 					aria-label={`${stat.title}: ${stat.value}`}>
-					<div
-						className={
-							'w-min text-2xl font-normal leading-tight md:text-3xl lg:text-[40px] lg:leading-[48px]'
-						}>
+					<div className={'text-2xl font-normal leading-tight md:text-3xl lg:text-[40px] lg:leading-[48px]'}>
 						{stat.value}
 					</div>
 					<div className={'text-lg text-gray-500 lg:text-xl'}>{stat.title}</div>

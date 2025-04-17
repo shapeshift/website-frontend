@@ -25,7 +25,7 @@ import type {ReactNode} from 'react';
 // Static content for the page
 const pageContent = {
 	title: 'Shift into DeFi with ShapeShift',
-	description: 'Explore all the DeFi protocols integrated into the ShapeShift platform.',
+	description: 'Enter and exit top DeFi protocols in one-click with ShapeShift',
 	features: ['Multi-Chain Support', 'Non-Custodial', 'User-Friendly Interface'],
 	ctaButton: {
 		text: 'Get Started',

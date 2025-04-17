@@ -17,7 +17,9 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 					<br />
 					{'ShapeShift.'}
 				</p>
-				<p className={'text-sm text-gray-500'}>{'Frequently asked questions about ShapeShift.'}</p>
+				<p className={'text-sm text-gray-500'}>
+					{"Your guide to ShapeShift's features, support, and ecosystem."}
+				</p>
 			</div>
 
 			<div className={'col-span-8 p-16'}>
