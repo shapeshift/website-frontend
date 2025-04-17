@@ -7,12 +7,13 @@ import {SearchBar} from '@/components/common/SearchBar';
 import {WalletList} from '../../_components/WalletList';
 
 import type {TSupportedWalletData} from '@/components/strapi/types';
+import type {ReactNode} from 'react';
 
 type TWalletSearchWrapperProps = {
 	wallets: TSupportedWalletData[];
 };
 
-export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): JSX.Element {
+export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): ReactNode {
 	const [filteredWallets, setFilteredWallets] = useState(wallets);
 	const [searchQuery, setSearchQuery] = useState('');
 
@@ -36,7 +37,10 @@ export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): JSX.E
 			{featuredWallets && featuredWallets.length > 0 && (
 				<div className={'mb-12'}>
 					<h2 className={'mb-6 text-2xl font-medium'}>{'Featured Wallets'}</h2>
-					<WalletList wallets={featuredWallets} />
+					<WalletList
+						wallets={featuredWallets}
+						isSearchQuery={Boolean(searchQuery)}
+					/>
 				</div>
 			)}
 

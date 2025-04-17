@@ -7,12 +7,13 @@ import {SearchBar} from '@/components/common/SearchBar';
 import {ChainList} from '../../_components/ChainList';
 
 import type {TSupportedChainData} from '@/components/strapi/types';
+import type {ReactNode} from 'react';
 
 type TChainSearchWrapperProps = {
 	chains: TSupportedChainData[];
 };
 
-export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): JSX.Element {
+export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNode {
 	const [filteredChains, setFilteredChains] = useState(chains);
 	const [searchQuery, setSearchQuery] = useState('');
 
@@ -34,7 +35,10 @@ export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): JSX.Elem
 				className={'mt-8'}
 				aria-label={'Supported Chains'}>
 				<h2 className={'mb-6 text-2xl font-medium'}>{'Choose your preferred chain'}</h2>
-				<ChainList chains={filteredChains} />
+				<ChainList
+					chains={filteredChains}
+					isSearchQuery={Boolean(searchQuery)}
+				/>
 			</section>
 		</>
 	);

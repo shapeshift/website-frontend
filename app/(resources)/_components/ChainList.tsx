@@ -24,18 +24,19 @@ type TChainListProps = {
 	chains: TSupportedChainData[] | null;
 	isLoading?: boolean;
 	className?: string;
+	isSearchQuery?: boolean;
 };
 
-export function ChainList({chains, isLoading, className}: TChainListProps): ReactNode {
-	if (!chains?.length) {
-		return <div className={'text-center text-gray-500'}>{'No chains found'}</div>;
-	}
-
+export function ChainList({chains, isLoading, className, isSearchQuery}: TChainListProps): ReactNode {
 	return (
 		<ResourceGrid
 			items={chains}
 			isLoading={isLoading}
-			emptyMessage={'No blockchain networks available yet.'}
+			emptyMessage={
+				isSearchQuery
+					? "We couldn't find anything matching your search."
+					: 'No blockchain networks available yet.'
+			}
 			className={className}
 			renderItem={chain => (
 				<ResourceCard

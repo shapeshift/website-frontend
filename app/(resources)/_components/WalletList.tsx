@@ -25,18 +25,17 @@ type TWalletListProps = {
 	wallets: TSupportedWalletData[] | null;
 	isLoading?: boolean;
 	className?: string;
+	isSearchQuery?: boolean;
 };
 
-export function WalletList({wallets, isLoading, className}: TWalletListProps): JSX.Element {
-	if (!wallets?.length) {
-		return <div className={'text-center text-gray-500'}>{'We couldn’t find anything matching your search.'}</div>;
-	}
-
+export function WalletList({wallets, isLoading, className, isSearchQuery}: TWalletListProps): JSX.Element {
 	return (
 		<ResourceGrid
 			items={wallets}
 			isLoading={isLoading}
-			emptyMessage={'No wallets available yet.'}
+			emptyMessage={
+				isSearchQuery ? "We couldn't find anything matching your search." : 'No wallets available yet.'
+			}
 			className={className}
 			renderItem={wallet => (
 				<ResourceCard
