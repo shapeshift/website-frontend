@@ -15,6 +15,74 @@ import type {ReactNode} from 'react';
  ********************************************************************************************/
 
 export function BlogPost({post, className}: {post: TBlogPost; className?: string}): ReactNode {
+	return (
+		<>
+			{post.isFeatured ? (
+				<>
+					<FeaturedPost
+						post={post}
+						className={'hidden lg:grid'}
+					/>
+					<PostCard
+						post={post}
+						className={'!bg-slate-800 lg:hidden'}
+					/>
+				</>
+			) : (
+				<PostCard
+					post={post}
+					className={className}
+				/>
+			)}
+		</>
+	);
+}
+
+function FeaturedPost({post, className}: {post: TBlogPost; className?: string}): ReactNode {
+	const formatDate = useMemo(
+		() =>
+			(date: string): string => {
+				return new Date(date).toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric'
+				});
+			},
+		[]
+	);
+
+	return (
+		<Link
+			href={`/blog/${post.slug}`}
+			className={cl('col-span-3 h-[364px] grid grid-cols-2 rounded-2xl bg-secondBg p-6', className)}>
+			<div className={'col-span-1 size-full max-h-[316px] max-w-[632px] overflow-hidden rounded-2xl'}>
+				{post?.featuredImg?.url ? (
+					<Image
+						src={`${process.env.STRAPI_URL}${post?.featuredImg?.url}`}
+						alt={post.slug}
+						width={post?.featuredImg?.width ?? 0}
+						height={post?.featuredImg?.height ?? 0}
+						className={'size-full object-cover'}
+					/>
+				) : (
+					<div className={'h-full max-h-[316px] w-auto rounded-2xl bg-gray-500'} />
+				)}
+			</div>
+
+			<div className={'col-span-1 ml-6 flex size-full flex-col justify-end gap-2'}>
+				<div className={'flex items-center'}>
+					{post.type?.length > 1 && <p className={'mr-2 text-xs text-blue'}>{post?.type.join(', ')}</p>}
+					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
+				</div>
+				<div>
+					<p className={'text-[32px] leading-[40px]'}>{post.title}</p>
+				</div>
+			</div>
+		</Link>
+	);
+}
+
+function PostCard({post, className}: {post: TBlogPost; className?: string}): ReactNode {
 	/********************************************************************************************
 	 * Memo: Creates a date formatting function
 	 * No dependencies as it's a static function
@@ -58,7 +126,7 @@ export function BlogPost({post, className}: {post: TBlogPost; className?: string
 					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
 				</div>
 				<div>
-					<p className={'text-2xl text-white'}>{post.title}</p>
+					<p className={'text-2xl'}>{post.title}</p>
 				</div>
 			</div>
 		</Link>

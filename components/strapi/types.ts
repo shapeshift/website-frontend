@@ -113,6 +113,7 @@ export type TBlogPost = {
 	tags: string[];
 	type: string[];
 	summary: string;
+	isFeatured: boolean;
 };
 
 export type TPagination = {
@@ -161,7 +162,7 @@ export type TSupportedWalletData = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
-	featured: boolean;
+	isFeatured: boolean;
 };
 
 export type TSupportedChainData = {

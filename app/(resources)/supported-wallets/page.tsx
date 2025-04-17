@@ -40,7 +40,7 @@ export default async function WalletPage(): Promise<ReactNode> {
 	// Fetch wallets data
 	const wallets = await fetchAllWallets();
 
-	const featuredWallets = wallets?.filter(wallet => wallet.featured);
+	const featuredWallets = wallets?.filter(wallet => wallet.isFeatured);
 
 	// Handle loading and error states
 	if (!wallets) {
@@ -76,7 +76,7 @@ export default async function WalletPage(): Promise<ReactNode> {
 					className={'mt-8'}
 					aria-label={'Supported Wallets'}>
 					<h2 className={'mb-6 text-2xl font-medium'}>{'Choose your preferred wallet'}</h2>
-					<WalletList wallets={wallets.filter(wallet => !wallet.featured)} />
+					<WalletList wallets={wallets.filter(wallet => !wallet.isFeatured)} />
 				</section>
 
 				{/* Footer banner */}
