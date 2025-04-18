@@ -18,7 +18,7 @@
 
 import Image from 'next/image';
 
-import {Banner} from '@/components/common/Banner';
+import {ChainsBanner} from '@/components/ChainsBanner';
 import {Button} from '@/components/common/Button';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
@@ -100,7 +100,12 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 
 				{/* Footer banner */}
 				<div className={'my-16'}>
-					<Banner />
+					<ChainsBanner
+						tag={'ShapeShift DeFi wallet'}
+						title={'Your favorite chains. One wallet to rule them all.'}
+						href={'/defi-wallet'}
+						buttonText={'Get Started'}
+					/>
 				</div>
 			</div>
 		</div>
