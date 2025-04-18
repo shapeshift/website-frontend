@@ -192,6 +192,7 @@ export type TSupportedProtocolData = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
+	isFeatured: boolean;
 };
 
 export type TDiscoverData = {
