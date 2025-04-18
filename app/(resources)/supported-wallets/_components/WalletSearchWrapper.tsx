@@ -39,7 +39,7 @@ export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): React
 					<h2 className={'mb-6 text-2xl font-medium'}>{'Featured Wallets'}</h2>
 					<WalletList
 						wallets={featuredWallets}
-						isSearchQuery={Boolean(searchQuery)}
+						isSearchQuery={!!searchQuery}
 					/>
 				</div>
 			)}
@@ -49,7 +49,10 @@ export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): React
 				className={'mt-8'}
 				aria-label={'Supported Wallets'}>
 				<h2 className={'mb-6 text-2xl font-medium'}>{'Choose your preferred wallet'}</h2>
-				<WalletList wallets={nonFeaturedWallets} />
+				<WalletList
+					wallets={nonFeaturedWallets}
+					isSearchQuery={!!searchQuery}
+				/>
 			</section>
 		</>
 	);

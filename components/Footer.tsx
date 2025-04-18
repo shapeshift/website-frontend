@@ -42,7 +42,7 @@ export function Footer(): ReactNode {
 			</div>
 			<div className={'relative hidden lg:block'}>
 				<div className={'rounded-lg border border-stroke bg-secondBg'}>
-					<div className={'h-[480px]'}>
+					<div className={'h-[500px]'}>
 						<div className={'flex h-full flex-col p-12'}>
 							<div className={'flex justify-between'}>
 								<div className={'flex flex-col justify-between'}>

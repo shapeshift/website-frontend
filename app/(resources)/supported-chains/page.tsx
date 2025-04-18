@@ -16,7 +16,10 @@
  ** - Implements SupportedChainTable for detailed compatibility information
  ************************************************************************************************/
 
+import Image from 'next/image';
+
 import {Banner} from '@/components/common/Banner';
+import {Button} from '@/components/common/Button';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
@@ -62,6 +65,38 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 				/>
 
 				<ChainSearchWrapper chains={chains} />
+				<div className={'flex w-full justify-center'}>
+					<div
+						className={
+							'relative my-16 grid h-[320px] w-full grid-cols-1 overflow-hidden rounded-2xl bg-secondBg px-10 py-12 lg:w-1/2 lg:grid-cols-2'
+						}>
+						<div className={'absolute left-0 top-0 max-h-[320px] w-full'}>
+							<Image
+								src={'/request-chain-bg.png'}
+								width={1600}
+								height={640}
+								alt={'Request chain'}
+								className={'h-[320px] w-full object-cover'}
+							/>
+						</div>
+						<div
+							className={
+								'z-10 flex max-w-[312px] items-start justify-start text-[32px] leading-10 	lg:text-[40px] lg:leading-10'
+							}>
+							{"Don't see your chain? Request it here"}
+						</div>
+						<div className={'flex items-end justify-end'}>
+							<Button
+								hasArrow
+								title={'Request chain'}
+								variant={'white'}
+								href={
+									'https://docs.google.com/forms/d/e/1FAIpQLSdA2WROUDkp5uRnoUZruRWqoSrDCbtgBTMu1kPtHkjlPIjgpA/viewform?usp=header'
+								}
+							/>
+						</div>
+					</div>
+				</div>
 
 				{/* Footer banner */}
 				<div className={'my-16'}>

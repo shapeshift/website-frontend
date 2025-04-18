@@ -17,6 +17,7 @@
  ************************************************************************************************/
 
 import {Banner} from '@/components/common/Banner';
+import {WalletRequestCard} from '@/components/WalletRequestCard';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {WalletSearchWrapper} from './_components/WalletSearchWrapper';
@@ -62,6 +63,27 @@ export default async function WalletPage(): Promise<ReactNode> {
 				/>
 
 				<WalletSearchWrapper wallets={wallets} />
+
+				<div className={'flex w-full justify-center'}>
+					<div className={'my-16 grid h-[1000px] grid-cols-1 gap-4 lg:h-[480px] lg:grid-cols-2'}>
+						<WalletRequestCard
+							title={"Don't see your wallet? Request it here"}
+							buttonTitle={'Request chain'}
+							buttonHref={
+								'https://docs.google.com/forms/d/e/1FAIpQLSfaq7G8CDhvKfuOZHi6NIyunsh0q05t_XUBgYRoH9Ftr479uQ/viewform?usp=header'
+							}
+							bgImage={'/request-card-bg.png'}
+						/>
+
+						<WalletRequestCard
+							title={'Or create a new ShapeShift wallet'}
+							buttonTitle={'Create wallet'}
+							buttonHref={'/defi-wallet'}
+							bgImage={'/create-wallet-bg.png'}
+							buttonVariant={'blue'}
+						/>
+					</div>
+				</div>
 
 				{/* Footer banner */}
 				<div className={'my-16'}>
