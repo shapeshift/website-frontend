@@ -23,14 +23,14 @@ import type {ReactNode} from 'react';
 
 type TDesktopHeaderProps = {
 	className?: string;
-	switchLanguage: (symbol: string) => void;
+	switchLanguageAction: (symbol: string) => void;
 	currentLanguage: string;
 };
 
 /**
  * Desktop header component with hover menu expansions
  */
-export function DesktopHeader({className, switchLanguage, currentLanguage}: TDesktopHeaderProps): ReactNode {
+export function DesktopHeader({className, switchLanguageAction, currentLanguage}: TDesktopHeaderProps): ReactNode {
 	const pathname = usePathname();
 	const variant = pathname === '/' ? 'transparent' : 'default';
 	const [currentTab, setCurrentTab] = useState<string>('');
@@ -45,13 +45,13 @@ export function DesktopHeader({className, switchLanguage, currentLanguage}: TDes
 			dao: <DAOExpand setCurrentTab={setCurrentTab} />,
 			language: (
 				<LanguageExpand
-					switchLanguage={switchLanguage}
+					switchLanguageAction={switchLanguageAction}
 					currentLanguage={currentLanguage}
 				/>
 			),
 			empty: null
 		}),
-		[switchLanguage, currentLanguage]
+		[switchLanguageAction, currentLanguage]
 	);
 
 	/**

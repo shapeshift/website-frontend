@@ -120,8 +120,9 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 										pauseOnHover
 										speed={20}
 										className={''}>
-										{data?.cards[1]?.items?.map(({image}, index) => (
-											<div
+										{data?.cards[1].items?.map(({image, url}, index) => (
+											<Link
+												href={url ?? 'https://app.shapeshift.com'}
 												key={index}
 												className={'mx-6'}>
 												<div
@@ -137,7 +138,7 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 														unoptimized
 													/>
 												</div>
-											</div>
+											</Link>
 										))}
 									</Carousel>
 								</div>

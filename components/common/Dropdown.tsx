@@ -1,11 +1,11 @@
 'use client';
 
-import {ChevronDown} from 'lucide-react';
 import {useState} from 'react';
 
 import {cl} from '@/components/utils/cl';
 
 import {IconCheck} from './icons/IconCheck';
+import {IconChevron} from './icons/IconChevron';
 
 import type {ReactNode} from 'react';
 
@@ -47,7 +47,7 @@ export function Dropdown({
 					className
 				)}>
 				<span>{value}</span>
-				<ChevronDown className={cl('ml-2 transition-transform size-6', isOpen ? 'rotate-180' : '')} />
+				<IconChevron className={cl('ml-2 transition-transform size-3', isOpen ? 'rotate-90' : '-rotate-90')} />
 			</button>
 
 			{isOpen && (

@@ -12,10 +12,10 @@ export const LANGUAGES = [
 ];
 
 export function LanguageExpand({
-	switchLanguage,
+	switchLanguageAction,
 	currentLanguage
 }: {
-	switchLanguage: (symbol: string) => void;
+	switchLanguageAction: (symbol: string) => void;
 	currentLanguage: string;
 }): ReactNode {
 	return (
@@ -32,7 +32,7 @@ export function LanguageExpand({
 								currentLanguage === language.symbol ? 'bg-white/10' : ''
 							)}
 							key={language.symbol}
-							onClick={() => switchLanguage(language.symbol)}>
+							onClick={() => switchLanguageAction(language.symbol)}>
 							<div className={'flex w-[184px] items-center justify-between'}>
 								{language.name}
 								{currentLanguage === language.symbol && <IconCheck />}

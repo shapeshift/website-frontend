@@ -218,7 +218,7 @@ export const appDao = [
 	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
 	{
 		name: 'Buy/Sell crypto',
-		href: '/supported-chains/bitcoin',
+		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
 		icon: <IconDollar />
 	},

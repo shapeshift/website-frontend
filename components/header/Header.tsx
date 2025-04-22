@@ -25,7 +25,7 @@ export function Header({className}: THeaderProps): ReactNode {
 			/>
 			<DesktopHeader
 				className={className}
-				switchLanguage={switchLanguage}
+				switchLanguageAction={switchLanguage}
 				currentLanguage={currentLanguage}
 			/>
 		</>
