@@ -30,11 +30,14 @@ export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 	}
 
 	return (
-		<div className={'mb-16 mt-20 flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:gap-4'}>
+		<div
+			className={
+				'container mb-[120px] mt-2 grid w-full grid-cols-1 gap-6 rounded-2xl bg-secondBg p-6 lg:mb-60 lg:grid-cols-3'
+			}>
 			{stats.map(stat => (
 				<div
 					key={stat.id}
-					className={'flex w-min flex-col items-center lg:min-w-[245px]'}
+					className={'flex min-w-[400px] flex-col items-center lg:min-w-[245px] lg:px-[50px]'}
 					aria-label={`${stat.title}: ${stat.value}`}>
 					<div className={'text-2xl font-normal leading-tight md:text-3xl lg:text-[40px] lg:leading-[48px]'}>
 						{stat.value}

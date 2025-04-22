@@ -19,9 +19,7 @@ import {Button} from '@/components/common/Button';
  ** - Requires 'use client' directive for client-side interactivity
  ************************************************************************************************/
 
-import {ProductStats} from './ProductStats';
-
-import type {TButton, TStat} from '@/components/strapi/types';
+import type {TButton} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TTradeHeroProps = {
@@ -29,10 +27,9 @@ type TTradeHeroProps = {
 	description: string;
 	buttonCta: TButton;
 	imageUrl: string;
-	stats: TStat[];
 };
 
-export function TradeHero({title, description, buttonCta, imageUrl, stats}: TTradeHeroProps): ReactNode {
+export function TradeHero({title, description, buttonCta, imageUrl}: TTradeHeroProps): ReactNode {
 	// Handle button click to open URL in new tab with security precautions
 	const handleButtonClick = (): void => {
 		if (buttonCta?.url) {
@@ -83,9 +80,6 @@ export function TradeHero({title, description, buttonCta, imageUrl, stats}: TTra
 						/>
 					</picture>
 				</div>
-
-				{/* Stats section */}
-				<ProductStats stats={stats} />
 			</div>
 		</section>
 	);

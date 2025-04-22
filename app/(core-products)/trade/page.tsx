@@ -28,6 +28,7 @@ import GridDisplaced from '@/components/strapi/products/GridDisplaced';
 import {BackgroundImage} from '../_components/BackgroundImage';
 import {fetchTradePage} from '../_components/ProductFetcher';
 import {ProductFooterBanner} from '../_components/ProductFooterBanner';
+import {ProductStats} from '../_components/ProductStats';
 import {TradeHero} from '../_components/TradeHero';
 
 import type {TCard} from '@/components/strapi/types';
@@ -115,7 +116,6 @@ export default async function TradePage(): Promise<ReactNode> {
 				description={page.description}
 				buttonCta={page.buttonCta}
 				imageUrl={`${process.env.STRAPI_URL}${page.featuredImg.url}`}
-				stats={page.stats}
 			/>
 
 			{/* Feature cards section */}
@@ -126,6 +126,9 @@ export default async function TradePage(): Promise<ReactNode> {
 
 			{/* Displaced grid layout highlighting additional features */}
 			<GridDisplaced data={page.gridDisplaced} />
+
+			{/* Stats section */}
+			<ProductStats stats={page.stats} />
 
 			{/* Footer banner with CTA */}
 			<ProductFooterBanner productName={'trade'} />

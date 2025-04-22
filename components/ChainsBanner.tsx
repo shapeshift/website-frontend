@@ -12,7 +12,7 @@ type TChainsBanner = {
 	buttonText: string;
 };
 
-export function ChainsBanner(data: TChainsBanner): ReactNode | null {
+export function ChainsBanner(data: TChainsBanner): ReactNode {
 	return (
 		<section className={'relative mb-40 h-[424px] w-full max-w-[1400px] overflow-hidden rounded-2xl lg:h-[504px]'}>
 			<div className={'mx-auto'}>

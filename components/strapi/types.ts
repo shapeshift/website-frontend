@@ -40,6 +40,10 @@ export type TCard = {
 	image: TStrapiImage;
 	href?: string;
 	buttonCta?: TButton;
+	items?: {
+		url?: string;
+		image?: TStrapiImage;
+	}[];
 };
 
 export type TGridLadderStep = {
