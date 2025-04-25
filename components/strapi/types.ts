@@ -179,7 +179,7 @@ export type TSupportedChainData = {
 	foxImg: TStrapiImage;
 	actions: string[];
 	features: string[];
-	typeOfChain: 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos';
+	typeOfChain: TSupportedChainTypes;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
@@ -277,4 +277,4 @@ export type TStrapiNotification = {
 	enabled: boolean;
 };
 
-export type TSupportedChainsType = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos';
+export type TSupportedChainTypes = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos' | string;

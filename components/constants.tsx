@@ -28,7 +28,7 @@ import {IconTwitter} from './common/icons/IconTwitter';
 import {IconWallet} from './common/icons/IconWallet';
 import {IconWarpcast} from './common/icons/IconWarpcast';
 
-import type {TCardsRowSection, TSupportedChainsType} from '@/components/strapi/types';
+import type {TCardsRowSection, TSupportedChainTypes} from '@/components/strapi/types';
 
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
@@ -937,4 +937,45 @@ export const popupAnimation = {
 	}
 };
 
-export const CHAIN_TYPES: TSupportedChainsType[] = ['EVM', 'Solana', 'Bitcoin', 'Cosmos'];
+export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 'Cosmos'];
+
+/************************************************************************************************
+ * Landing Page Information Cards
+ * Contains data for the "Trusted by millions" section on the landing page
+ * Each card displays a title and a statistic
+ * Used in the landing page to showcase key metrics about ShapeShift
+ ************************************************************************************************/
+export const landingInfoCards = [
+	{
+		title: 'Active wallets',
+		stat: '170+'
+	},
+	{
+		title: 'Available chains',
+		stat: '13+'
+	},
+	{
+		title: 'Assets',
+		stat: '10K+'
+	},
+	{
+		title: 'Traded on ShapeShift',
+		stat: '$380M'
+	}
+];
+
+/************************************************************************************************
+ * Landing Page Request Wallet URL
+ * Contains the URL for the request wallet form on the landing page
+ * Used in the landing page to allow users to request a new wallet
+ ************************************************************************************************/
+export const requestWalletUrl =
+	'https://docs.google.com/forms/d/e/1FAIpQLSfaq7G8CDhvKfuOZHi6NIyunsh0q05t_XUBgYRoH9Ftr479uQ/viewform?usp=header';
+
+/************************************************************************************************
+ * Landing Page Request Chain URL
+ * Contains the URL for the request chain form on the landing page
+ * Used in the landing page to allow users to request a new chain
+ ************************************************************************************************/
+export const requestChainUrl =
+	'https://docs.google.com/forms/d/e/1FAIpQLSdA2WROUDkp5uRnoUZruRWqoSrDCbtgBTMu1kPtHkjlPIjgpA/viewform?usp=header';

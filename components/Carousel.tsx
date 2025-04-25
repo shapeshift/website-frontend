@@ -64,7 +64,6 @@ export function Carousel({
 					)}
 					// eslint-disable-next-line @typescript-eslint/naming-convention
 					style={{'--duration': `${speed}s`} as React.CSSProperties}>
-					{/* Duplicate children to create seamless loop */}
 					{children}
 					{children}
 				</div>

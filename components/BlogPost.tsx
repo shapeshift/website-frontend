@@ -14,27 +14,35 @@ import type {ReactNode} from 'react';
  * Handles both internal and external blog links.
  ********************************************************************************************/
 
-export function BlogPost({post, className}: {post: TBlogPost; className?: string}): ReactNode {
-	return (
-		<>
-			{post.isFeatured ? (
-				<>
-					<FeaturedPost
-						post={post}
-						className={'hidden lg:grid'}
-					/>
-					<PostCard
-						post={post}
-						className={'!bg-slate-800 lg:hidden'}
-					/>
-				</>
-			) : (
+export function BlogPost({
+	post,
+	className,
+	isClassic = false
+}: {
+	post: TBlogPost;
+	className?: string;
+	isClassic?: boolean;
+}): ReactNode {
+	if (post.isFeatured && !isClassic) {
+		return (
+			<>
+				<FeaturedPost
+					post={post}
+					className={'hidden lg:grid'}
+				/>
 				<PostCard
 					post={post}
-					className={className}
+					className={'!bg-slate-800 lg:hidden'}
 				/>
-			)}
-		</>
+			</>
+		);
+	}
+
+	return (
+		<PostCard
+			post={post}
+			className={className}
+		/>
 	);
 }
 
@@ -58,10 +66,10 @@ function FeaturedPost({post, className}: {post: TBlogPost; className?: string}):
 			<div className={'col-span-1 size-full max-h-[316px] max-w-[632px] overflow-hidden rounded-2xl'}>
 				{post?.featuredImg?.url ? (
 					<Image
-						src={`${process.env.STRAPI_URL}${post?.featuredImg?.url}`}
+						src={`${process.env.STRAPI_URL}${post?.featuredImg.url}`}
 						alt={post.slug}
-						width={post?.featuredImg?.width ?? 0}
-						height={post?.featuredImg?.height ?? 0}
+						width={post?.featuredImg.width ?? 0}
+						height={post?.featuredImg.height ?? 0}
 						className={'size-full object-cover'}
 					/>
 				) : (

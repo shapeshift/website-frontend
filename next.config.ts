@@ -18,6 +18,10 @@ const nextConfig = {
 			{
 				protocol: 'http',
 				hostname: '172.233.242.224'
+			},
+			{
+				protocol: 'https',
+				hostname: process.env.STRAPI_URL
 			}
 		]
 	},

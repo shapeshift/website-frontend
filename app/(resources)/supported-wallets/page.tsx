@@ -17,6 +17,7 @@
  ************************************************************************************************/
 
 import {Banner} from '@/components/common/Banner';
+import {requestWalletUrl} from '@/components/constants';
 import {WalletRequestCard} from '@/components/WalletRequestCard';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
@@ -69,9 +70,7 @@ export default async function WalletPage(): Promise<ReactNode> {
 						<WalletRequestCard
 							title={"Don't see your wallet? Request it here"}
 							buttonTitle={'Request chain'}
-							buttonHref={
-								'https://docs.google.com/forms/d/e/1FAIpQLSfaq7G8CDhvKfuOZHi6NIyunsh0q05t_XUBgYRoH9Ftr479uQ/viewform?usp=header'
-							}
+							buttonHref={requestWalletUrl}
 							bgImage={'/request-card-bg.png'}
 						/>
 

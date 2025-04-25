@@ -23,7 +23,8 @@ import {
 	homepageBlueTitle,
 	homepageFeatureTabs,
 	homepageWhiteTitle,
-	landingCards
+	landingCards,
+	landingInfoCards
 } from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import {LandingInfoCard} from '@/components/LandingInfoCard';
@@ -250,9 +251,6 @@ export default function HomePage(): ReactNode {
 					<div className={'mb-[120px] lg:mb-60'}>
 						<LatestBlogPosts limit={2} />
 					</div>
-
-					{/* <StrapiFAQ /> */}
-
 					<div className={'mb-[120px] lg:mb-60'}>
 						<div className={'grid grid-cols-1 gap-4 lg:grid-cols-3'}>
 							<div className={'col-span-1 mb-6 lg:mb-0'}>
@@ -260,22 +258,22 @@ export default function HomePage(): ReactNode {
 							</div>
 							<div className={'col-span-1 flex flex-col gap-4'}>
 								<LandingInfoCard
-									title={'Active wallets'}
-									stat={'170+'}
+									title={landingInfoCards[0].title}
+									stat={landingInfoCards[0].stat}
 								/>
 								<LandingInfoCard
-									title={'Available chains'}
-									stat={'13+'}
+									title={landingInfoCards[1].title}
+									stat={landingInfoCards[1].stat}
 								/>
 							</div>
 							<div className={'col-span-1 flex flex-col gap-4'}>
 								<LandingInfoCard
-									title={'Assets'}
-									stat={'10K+'}
+									title={landingInfoCards[2].title}
+									stat={landingInfoCards[2].stat}
 								/>
 								<LandingInfoCard
-									title={'Traded on ShapeShift'}
-									stat={'$380M'}
+									title={landingInfoCards[3].title}
+									stat={landingInfoCards[3].stat}
 								/>
 							</div>
 						</div>

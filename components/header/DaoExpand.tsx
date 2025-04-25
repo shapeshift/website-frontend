@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import {DAO_DICT} from '@/components/dictionary/dao';
+
 import HeaderItem from '../common/HeaderItem';
 import {appDao} from '../constants';
 import {expandAnimation} from './animations';
@@ -16,17 +18,17 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 					<div className={'mr-4 size-10'}>
 						<Image
 							src={'/fox-token/foxLogo.png'}
-							alt={'Fox Token'}
+							alt={DAO_DICT.expand.imageAlt}
 							width={80}
 							height={80}
 						/>
 					</div>
 					<div className={'text-[32px] leading-[32px]'}>
-						<span>{'FOX '}</span>
-						<span className={'font-bold italic text-blue'}>{'Power'}</span>
+						<span>{DAO_DICT.expand.title.prefix}</span>
+						<span className={'font-bold italic text-blue'}>{DAO_DICT.expand.title.suffix}</span>
 					</div>
 				</div>
-				<p className={'text-sm text-gray-500'}>{'FOX Tokens wield mighty powers for those who hodl them.'}</p>
+				<p className={'text-sm text-gray-500'}>{DAO_DICT.expand.description}</p>
 			</div>
 			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>

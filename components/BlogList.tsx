@@ -26,6 +26,7 @@ export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isW
 				<BlogPost
 					key={post.id}
 					post={post}
+					isClassic={true}
 				/>
 			))}
 		</div>

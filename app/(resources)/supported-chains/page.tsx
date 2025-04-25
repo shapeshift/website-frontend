@@ -20,6 +20,7 @@ import Image from 'next/image';
 
 import {ChainsBanner} from '@/components/ChainsBanner';
 import {Button} from '@/components/common/Button';
+import {requestChainUrl} from '@/components/constants';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
@@ -90,9 +91,7 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 								hasArrow
 								title={'Request chain'}
 								variant={'white'}
-								href={
-									'https://docs.google.com/forms/d/e/1FAIpQLSdA2WROUDkp5uRnoUZruRWqoSrDCbtgBTMu1kPtHkjlPIjgpA/viewform?usp=header'
-								}
+								href={requestChainUrl}
 							/>
 						</div>
 					</div>
