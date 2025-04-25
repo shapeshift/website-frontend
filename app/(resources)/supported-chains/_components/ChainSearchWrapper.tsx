@@ -8,7 +8,7 @@ import {CHAIN_TYPES} from '@/components/constants';
 
 import {ChainList} from '../../_components/ChainList';
 
-import type {TSupportedChainData, TSupportedChainsType} from '@/components/strapi/types';
+import type {TSupportedChainData, TSupportedChainTypes} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TChainSearchWrapperProps = {
@@ -27,7 +27,7 @@ type TChainSearchWrapperProps = {
 export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNode {
 	/** State for search query and selected chain type filter **/
 	const [searchQuery, setSearchQuery] = useState('');
-	const [selectedType, setSelectedType] = useState<'All chains' | TSupportedChainsType>('All chains');
+	const [selectedType, setSelectedType] = useState<'All chains' | TSupportedChainTypes>('All chains');
 
 	/**********************************************************************************************
 	 ** Filter chains based on selected chain type
@@ -54,14 +54,6 @@ export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNod
 		setSearchQuery(query);
 	};
 
-	/**********************************************************************************************
-	 ** Handle chain type selection changes
-	 ** Updates selected chain type when user selects from dropdown
-	 *********************************************************************************************/
-	const handleTypeChange = (value: string): void => {
-		setSelectedType(value as 'All chains' | TSupportedChainsType);
-	};
-
 	return (
 		<>
 			<SearchBar
@@ -78,7 +70,7 @@ export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNod
 					<Dropdown
 						options={CHAIN_TYPES}
 						value={selectedType}
-						onChangeAction={handleTypeChange}
+						onChangeAction={setSelectedType}
 						allItemsLabel={'All chains'}
 					/>
 				</div>
