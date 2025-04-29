@@ -13,15 +13,11 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'www.ghosticmom.site'
+				hostname: 'staging.shapeshift.strapi.builtby.dad'
 			},
 			{
 				protocol: 'http',
 				hostname: '172.233.242.224'
-			},
-			{
-				protocol: 'https',
-				hostname: process.env.STRAPI_URL
 			}
 		]
 	},
