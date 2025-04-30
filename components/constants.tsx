@@ -410,7 +410,7 @@ export const landingCards: TCardsRowSection = {
 			description:
 				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssetshttps://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
+			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
 			image: {
 				url: '/landing/cardShift.png',
 				width: 922,
