@@ -69,7 +69,7 @@ export default async function WalletPage(): Promise<ReactNode> {
 					<div className={'my-16 grid h-[1000px] grid-cols-1 gap-4 lg:h-[480px] lg:grid-cols-2'}>
 						<WalletRequestCard
 							title={"Don't see your wallet? Request it here"}
-							buttonTitle={'Request chain'}
+							buttonTitle={'Request wallet'}
 							buttonHref={requestWalletUrl}
 							bgImage={'/request-card-bg.png'}
 						/>
