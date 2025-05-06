@@ -169,7 +169,7 @@ export async function fetchMobileAppPage(): Promise<TMobileAppPage | null> {
  ************************************************************************************************/
 export async function fetchTradePage(): Promise<TTradePage | null> {
 	const queryParams =
-		'fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en';
+		'fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&pagination[pageSize]=10&populate[23]=gridDisplaced.cards.items&populate[24]=gridDisplaced.cards.items.image&pagination[page]=1&status=published&locale=en';
 
 	return fetchWithErrorHandling<TTradePage>('trade', queryParams, 'Trade page');
 }

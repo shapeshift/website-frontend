@@ -22,6 +22,7 @@
 import {useEffect, useRef, useState} from 'react';
 
 import {Banner} from '@/components/common/Banner';
+import {RESOURCES_DICT} from '@/components/dictionary/resources';
 import {QuestionSection} from '@/components/QuestionSection';
 
 import {FAQNavigation} from './FAQNavigation';
@@ -132,9 +133,7 @@ export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 
 	// Early return if data is missing
 	if (!faqData?.faqSection) {
-		return (
-			<div className={'mt-16 text-center text-gray-400'}>{'No FAQ data available. Please check back later.'}</div>
-		);
+		return <div className={'mt-16 text-center text-gray-400'}>{RESOURCES_DICT.faq.noDataMessage}</div>;
 	}
 
 	return (

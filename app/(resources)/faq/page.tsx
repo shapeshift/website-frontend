@@ -20,14 +20,15 @@ import {notFound} from 'next/navigation';
 
 import {FAQContent} from '@/app/(resources)/_components/FAQContent';
 import {fetchFaqData} from '@/app/(resources)/_utils/fetchUtils';
+import {RESOURCES_DICT} from '@/components/dictionary/resources';
 
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 export const metadata: Metadata = {
-	title: 'Frequently Asked Questions | ShapeShift',
-	description: 'Find answers to common questions about ShapeShift, cryptocurrency, and decentralized finance.',
-	keywords: 'ShapeShift, FAQ, cryptocurrency, questions, help, support, DeFi'
+	title: RESOURCES_DICT.faq.metadata.title,
+	description: RESOURCES_DICT.faq.metadata.description,
+	keywords: RESOURCES_DICT.faq.metadata.keywords
 };
 
 export default async function FAQPage(): Promise<ReactNode> {

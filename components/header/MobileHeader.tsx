@@ -20,17 +20,17 @@ const mobileTabs = [
 	{
 		name: 'Products',
 		value: 'products',
-		items: appProducts
+		items: appProducts.slice(0, 5)
 	},
 	{
 		name: 'Resources',
 		value: 'resources',
-		items: appResources
+		items: appResources.slice(0, 6)
 	},
 	{
 		name: 'DAO',
 		value: 'dao',
-		items: appDao
+		items: appDao.slice(0, 4)
 	}
 ];
 

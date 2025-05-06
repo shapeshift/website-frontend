@@ -72,7 +72,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					dangerouslySetInnerHTML={{__html: JSON.stringify(organizationSchema)}}
 				/>
 			</head>
-			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 text-white'}>
+			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>
 				<WithFonts>
 					<CachedNewsProvider>
 						<CachedPostsProvider>

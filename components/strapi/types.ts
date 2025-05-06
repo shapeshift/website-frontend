@@ -40,6 +40,10 @@ export type TCard = {
 	image: TStrapiImage;
 	href?: string;
 	buttonCta?: TButton;
+	items?: {
+		url?: string;
+		image?: TStrapiImage;
+	}[];
 };
 
 export type TGridLadderStep = {
@@ -113,6 +117,7 @@ export type TBlogPost = {
 	tags: string[];
 	type: string[];
 	summary: string;
+	isFeatured: boolean;
 };
 
 export type TPagination = {
@@ -161,6 +166,7 @@ export type TSupportedWalletData = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
+	isFeatured: boolean;
 };
 
 export type TSupportedChainData = {
@@ -173,6 +179,7 @@ export type TSupportedChainData = {
 	foxImg: TStrapiImage;
 	actions: string[];
 	features: string[];
+	typeOfChain: TSupportedChainTypes;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
@@ -189,6 +196,7 @@ export type TSupportedProtocolData = {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;
+	isFeatured: boolean;
 };
 
 export type TDiscoverData = {
@@ -198,6 +206,7 @@ export type TDiscoverData = {
 	description: string;
 	slug: string;
 	tag: string;
+	type: string;
 	featuredImg: TStrapiImage;
 	features: TCard[];
 	createdAt: string;
@@ -267,3 +276,5 @@ export type TStrapiNotification = {
 	type: 'popup' | 'modal' | 'bar';
 	enabled: boolean;
 };
+
+export type TSupportedChainTypes = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos' | string;

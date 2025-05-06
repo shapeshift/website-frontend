@@ -1,3 +1,5 @@
+'use client';
+
 /************************************************************************************************
  ** ProtocolList Component:
  **
@@ -24,14 +26,17 @@ type TProtocolListProps = {
 	protocols: TSupportedProtocolData[] | null;
 	isLoading?: boolean;
 	className?: string;
+	isSearchQuery?: boolean;
 };
 
-export function ProtocolList({protocols, isLoading, className}: TProtocolListProps): ReactNode {
+export function ProtocolList({protocols, isLoading, className, isSearchQuery}: TProtocolListProps): ReactNode {
 	return (
 		<ResourceGrid
 			items={protocols}
 			isLoading={isLoading}
-			emptyMessage={'No protocols available yet.'}
+			emptyMessage={
+				isSearchQuery ? "We couldn't find anything matching your search." : 'No protocols available yet.'
+			}
 			className={className}
 			renderItem={protocol => (
 				<ResourceCard

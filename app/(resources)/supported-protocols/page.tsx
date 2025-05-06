@@ -17,8 +17,8 @@
 
 import {Banner} from '@/components/common/Banner';
 
-import {ProtocolList} from '../_components/ProtocolList';
 import {ResourceHeader} from '../_components/ResourceHeader';
+import {ProtocolSearchWrapper} from './_components/ProtocolSearchWrapper';
 import {fetchAllProtocols} from '../_utils/fetchUtils';
 
 import type {ReactNode} from 'react';
@@ -26,7 +26,7 @@ import type {ReactNode} from 'react';
 // Static content for the page
 const pageContent = {
 	title: 'Shift into DeFi with ShapeShift',
-	description: 'Explore all the DeFi protocols integrated into the ShapeShift platform.',
+	description: 'Enter and exit top DeFi protocols in one-click with ShapeShift',
 	features: ['Multi-Chain Support', 'Non-Custodial', 'User-Friendly Interface'],
 	ctaButton: {
 		text: 'Get Started',
@@ -59,12 +59,7 @@ export default async function ProtocolsPage(): Promise<ReactNode> {
 					className={'mb-12'}
 				/>
 
-				{/* Protocols list section */}
-				<section
-					className={'mt-8'}
-					aria-label={'Supported Protocols'}>
-					<ProtocolList protocols={protocols} />
-				</section>
+				<ProtocolSearchWrapper protocols={protocols} />
 
 				{/* Footer banner */}
 				<div className={'my-16'}>

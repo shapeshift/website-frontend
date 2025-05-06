@@ -16,11 +16,14 @@
  ** - Implements SupportedChainTable for detailed compatibility information
  ************************************************************************************************/
 
-import SupportedChainTable from '@/app/(resources)/_components/SupportedChainTable';
-import {Banner} from '@/components/common/Banner';
+import Image from 'next/image';
 
-import {ChainList} from '../_components/ChainList';
+import {ChainsBanner} from '@/components/ChainsBanner';
+import {Button} from '@/components/common/Button';
+import {requestChainUrl} from '@/components/constants';
+
 import {ResourceHeader} from '../_components/ResourceHeader';
+import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
 import {fetchAllChains} from '../_utils/fetchUtils';
 
 import type {ReactNode} from 'react';
@@ -62,23 +65,46 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 					className={'mb-12'}
 				/>
 
-				{/* Chains grid section */}
-				<section
-					className={'mt-8'}
-					aria-label={'Supported Blockchain Networks'}>
-					<ChainList chains={chains} />
-				</section>
-
-				{/* Detailed compatibility table */}
-				<section
-					className={'mt-16'}
-					aria-label={'Chain Compatibility Details'}>
-					<SupportedChainTable />
-				</section>
+				<ChainSearchWrapper chains={chains} />
+				<div className={'flex w-full justify-center'}>
+					<div
+						className={
+							'relative my-16 grid h-[320px] w-full grid-cols-1 overflow-hidden rounded-2xl bg-secondBg px-10 py-12 lg:w-1/2 lg:grid-cols-2'
+						}>
+						<div className={'absolute left-0 top-0 max-h-[320px] w-full'}>
+							<Image
+								src={'/request-chain-bg.png'}
+								width={1600}
+								height={640}
+								alt={'Request chain'}
+								className={'h-[320px] w-full object-cover'}
+							/>
+						</div>
+						<div
+							className={
+								'z-10 flex max-w-[312px] items-start justify-start text-[32px] leading-10 	lg:text-[40px] lg:leading-10'
+							}>
+							{"Don't see your chain? Request it here"}
+						</div>
+						<div className={'flex items-end justify-end'}>
+							<Button
+								hasArrow
+								title={'Request chain'}
+								variant={'white'}
+								href={requestChainUrl}
+							/>
+						</div>
+					</div>
+				</div>
 
 				{/* Footer banner */}
 				<div className={'my-16'}>
-					<Banner />
+					<ChainsBanner
+						tag={'ShapeShift DeFi wallet'}
+						title={'Your favorite chains. One wallet to rule them all.'}
+						href={'/defi-wallet'}
+						buttonText={'Get Started'}
+					/>
 				</div>
 			</div>
 		</div>

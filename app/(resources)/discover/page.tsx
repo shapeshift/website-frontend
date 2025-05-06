@@ -1,7 +1,9 @@
 import {Banner} from '@/components/common/Banner';
 import {Button} from '@/components/common/Button';
-import {StrapiDiscover} from '@/components/StrapiDiscover';
+import {RESOURCES_DICT} from '@/components/dictionary/resources';
 import {getDiscovers} from '@/components/utils/query';
+
+import {DiscoverSearchWrapper} from './_components/DiscoverSearchWrapper';
 
 import type {ReactNode} from 'react';
 
@@ -11,20 +13,19 @@ export default async function DiscoverPage(): Promise<ReactNode> {
 	return (
 		<div className={'flex w-full justify-center'}>
 			<div className={'container mt-[120px] flex flex-col justify-center lg:mt-48'}>
-				<section className={'flex flex-col items-start'}>
+				<section className={'mb-16 flex flex-col items-center'}>
 					<div className={'mb-6 flex flex-col items-center gap-2'}>
-						<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Explore Web3 with ShapeShift'}</h1>
+						<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{RESOURCES_DICT.discover.title}</h1>
 					</div>
 					<Button
 						variant={'blue'}
 						href={'https://app.shapeshift.com/'}
-						title={'Get Started'}
+						title={RESOURCES_DICT.discover.ctaButton}
 					/>
 				</section>
 
-				<section className={'mt-8'}>
-					<StrapiDiscover discover={discover} />
-				</section>
+				<DiscoverSearchWrapper discover={discover} />
+
 				<div className={'my-16'}>
 					<Banner />
 				</div>

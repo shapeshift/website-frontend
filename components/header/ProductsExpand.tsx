@@ -1,3 +1,4 @@
+import {PRODUCTS_DICT} from '@/components/dictionary/products';
 import {cl} from '@/components/utils/cl';
 
 import {Button} from '../common/Button';
@@ -17,16 +18,12 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 			{/* Left section with main CTA */}
 			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
-					{'Your Wallet. One App.'}
-					<br />
-					{'Endless Opportunity'}
+					{PRODUCTS_DICT.header.titleLine1} <br /> {PRODUCTS_DICT.header.titleLine2}
 				</p>
-				<p className={'mb-10 max-w-[327px] text-sm text-gray-500'}>
-					{'Trade Bipin, Ethereum, and more with top rates across leading DEXs and aggregators.'}
-				</p>
+				<p className={'mb-10 max-w-[327px] text-sm text-gray-500'}>{PRODUCTS_DICT.header.description}</p>
 				<Button
 					variant={'blue'}
-					title={'Get Started'}
+					title={PRODUCTS_DICT.header.ctaButton}
 					href={dAppUrl}
 				/>
 			</div>
@@ -36,11 +33,11 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 				<div className={'flex flex-row flex-wrap gap-4'}>
 					{appProducts.map(product => (
 						<HeaderItem
-							onClick={() => setCurrentTab('empty')}
+							onClick={() => setCurrentTab(product.name)}
 							key={product.name}
 							name={product.name}
 							href={product.href}
-							description={product.description}
+							description={product.description ?? ''}
 							icon={product.icon}
 						/>
 					))}

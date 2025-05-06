@@ -17,9 +17,11 @@
  ************************************************************************************************/
 
 import {Banner} from '@/components/common/Banner';
+import {requestWalletUrl} from '@/components/constants';
+import {WalletRequestCard} from '@/components/WalletRequestCard';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
-import {WalletList} from '../_components/WalletList';
+import {WalletSearchWrapper} from './_components/WalletSearchWrapper';
 import {fetchAllWallets} from '../_utils/fetchUtils';
 
 import type {ReactNode} from 'react';
@@ -61,13 +63,26 @@ export default async function WalletPage(): Promise<ReactNode> {
 					className={'mb-12'}
 				/>
 
-				{/* Wallets grid section */}
-				<section
-					className={'mt-8'}
-					aria-label={'Supported Wallets'}>
-					<h2 className={'mb-6 text-2xl font-medium'}>{'Choose your preferred wallet'}</h2>
-					<WalletList wallets={wallets} />
-				</section>
+				<WalletSearchWrapper wallets={wallets} />
+
+				<div className={'flex w-full justify-center'}>
+					<div className={'my-16 grid h-[1000px] grid-cols-1 gap-4 lg:h-[480px] lg:grid-cols-2'}>
+						<WalletRequestCard
+							title={"Don't see your wallet? Request it here"}
+							buttonTitle={'Request wallet'}
+							buttonHref={requestWalletUrl}
+							bgImage={'/request-card-bg.png'}
+						/>
+
+						<WalletRequestCard
+							title={'Or create a new ShapeShift wallet'}
+							buttonTitle={'Create wallet'}
+							buttonHref={'/defi-wallet'}
+							bgImage={'/create-wallet-bg.png'}
+							buttonVariant={'blue'}
+						/>
+					</div>
+				</div>
 
 				{/* Footer banner */}
 				<div className={'my-16'}>

@@ -5,6 +5,7 @@ import {IconBlog} from './common/icons/IconBlog';
 import {IconBulb} from './common/icons/IconBulb';
 import {IconChains} from './common/icons/IconChains';
 import {IconCheckCircle} from './common/icons/IconCheckCircle';
+import {IconClassic} from './common/icons/IconClassic';
 import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
 import {IconDiscover} from './common/icons/IconDiscover';
@@ -16,7 +17,6 @@ import {IconGovern} from './common/icons/IconGovern';
 import {IconHeart} from './common/icons/IconHeart';
 import {IconMedium} from './common/icons/IconMedium';
 import {IconMobile} from './common/icons/IconMobile';
-import {IconPercent} from './common/icons/IconPercent';
 import {IconQuestion} from './common/icons/IconQuestion';
 import {IconResource} from './common/icons/IconResource';
 import {IconScanDevice} from './common/icons/IconScanDevice';
@@ -28,7 +28,7 @@ import {IconTwitter} from './common/icons/IconTwitter';
 import {IconWallet} from './common/icons/IconWallet';
 import {IconWarpcast} from './common/icons/IconWarpcast';
 
-import type {TCardsRowSection} from '@/components/strapi/types';
+import type {TCardsRowSection, TSupportedChainTypes} from '@/components/strapi/types';
 
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
@@ -208,7 +208,7 @@ export const appResources = [
 ];
 
 export const appDao = [
-	{name: 'Fox token', href: '/dao/fox-token', description: 'Our governance token', icon: <IconFox />},
+	{name: 'FOX token', href: '/dao/fox-token', description: 'Our governance token', icon: <IconFox />},
 	{
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
@@ -218,7 +218,7 @@ export const appDao = [
 	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
 	{
 		name: 'Buy/Sell crypto',
-		href: '/supported-chains/bitcoin',
+		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
 		icon: <IconDollar />
 	},
@@ -233,10 +233,16 @@ export const appDao = [
 
 export const appProducts = [
 	{
-		name: 'dApp',
+		name: 'App',
 		href: dAppUrl,
 		description: 'Trade, track, buy, and earn with your favorite crypto.',
 		icon: <IconDapp />
+	},
+	{
+		name: 'Classic',
+		href: 'https://og.shapeshift.com/',
+		description: 'Original ShapeShift platform with classic interface.',
+		icon: <IconClassic />
 	},
 	{name: 'Trade', href: '/trade', description: 'Trade 10,000+ assets with one click.', icon: <IconDollar />},
 	{
@@ -245,7 +251,6 @@ export const appProducts = [
 		description: 'All-In-One ShapeShift DeFi wallet.',
 		icon: <IconResource />
 	},
-	{name: 'Earn', href: '/earn', description: 'Easiest and fastest way to earn crypto.', icon: <IconPercent />},
 	{
 		name: 'Mobile app',
 		href: '/mobile-app',
@@ -405,7 +410,7 @@ export const landingCards: TCardsRowSection = {
 			description:
 				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/pools#/earn',
+			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
 			image: {
 				url: '/landing/cardShift.png',
 				width: 922,
@@ -931,3 +936,46 @@ export const popupAnimation = {
 		}
 	}
 };
+
+export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 'Cosmos'];
+
+/************************************************************************************************
+ * Landing Page Information Cards
+ * Contains data for the "Trusted by millions" section on the landing page
+ * Each card displays a title and a statistic
+ * Used in the landing page to showcase key metrics about ShapeShift
+ ************************************************************************************************/
+export const landingInfoCards = [
+	{
+		title: 'Active wallets',
+		stat: '170+'
+	},
+	{
+		title: 'Available chains',
+		stat: '13+'
+	},
+	{
+		title: 'Assets',
+		stat: '10K+'
+	},
+	{
+		title: 'Traded on ShapeShift',
+		stat: '$380M'
+	}
+];
+
+/************************************************************************************************
+ * Landing Page Request Wallet URL
+ * Contains the URL for the request wallet form on the landing page
+ * Used in the landing page to allow users to request a new wallet
+ ************************************************************************************************/
+export const requestWalletUrl =
+	'https://docs.google.com/forms/d/e/1FAIpQLSfaq7G8CDhvKfuOZHi6NIyunsh0q05t_XUBgYRoH9Ftr479uQ/viewform?usp=header';
+
+/************************************************************************************************
+ * Landing Page Request Chain URL
+ * Contains the URL for the request chain form on the landing page
+ * Used in the landing page to allow users to request a new chain
+ ************************************************************************************************/
+export const requestChainUrl =
+	'https://docs.google.com/forms/d/e/1FAIpQLSdA2WROUDkp5uRnoUZruRWqoSrDCbtgBTMu1kPtHkjlPIjgpA/viewform?usp=header';

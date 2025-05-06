@@ -1,5 +1,7 @@
 import {motion} from 'framer-motion';
 
+import {RESOURCES_DICT} from '@/components/dictionary/resources';
+
 import HeaderItem from '../common/HeaderItem';
 import {appResources} from '../constants';
 import {expandAnimation} from './animations';
@@ -13,11 +15,10 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 			{...expandAnimation}>
 			<div className={'col-span-4 flex flex-col border-r border-white/5 p-16'}>
 				<p className={'mb-4 text-2xl font-medium'}>
-					{'Learn more about'}
-					<br />
-					{'ShapeShift.'}
+					{RESOURCES_DICT.expand.titleLine1} <br />
+					{RESOURCES_DICT.expand.titleLine2}
 				</p>
-				<p className={'text-sm text-gray-500'}>{'Frequently asked questions about ShapeShift.'}</p>
+				<p className={'text-sm text-gray-500'}>{RESOURCES_DICT.expand.description}</p>
 			</div>
 
 			<div className={'col-span-8 p-16'}>

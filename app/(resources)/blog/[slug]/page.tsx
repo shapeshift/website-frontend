@@ -1,4 +1,5 @@
 'use client';
+
 import 'highlight.js/styles/github-dark.css';
 import Link from 'next/link';
 import {notFound, useParams, useRouter} from 'next/navigation';

@@ -23,11 +23,12 @@ import {
 	homepageBlueTitle,
 	homepageFeatureTabs,
 	homepageWhiteTitle,
-	landingCards
+	landingCards,
+	landingInfoCards
 } from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
+import {LandingInfoCard} from '@/components/LandingInfoCard';
 import CardsRow from '@/components/strapi/cards-row/CardsRow';
-import {StrapiFAQ} from '@/components/StrapiFAQ';
 import {TradingWidget} from '@/components/trading/TradingWidget';
 import {cl} from '@/components/utils/cl';
 
@@ -250,8 +251,33 @@ export default function HomePage(): ReactNode {
 					<div className={'mb-[120px] lg:mb-60'}>
 						<LatestBlogPosts limit={2} />
 					</div>
-
-					<StrapiFAQ />
+					<div className={'mb-[120px] lg:mb-60'}>
+						<div className={'grid grid-cols-1 gap-4 lg:grid-cols-3'}>
+							<div className={'col-span-1 mb-6 lg:mb-0'}>
+								<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Trusted by millions'}</h1>
+							</div>
+							<div className={'col-span-1 flex flex-col gap-4'}>
+								<LandingInfoCard
+									title={landingInfoCards[0].title}
+									stat={landingInfoCards[0].stat}
+								/>
+								<LandingInfoCard
+									title={landingInfoCards[1].title}
+									stat={landingInfoCards[1].stat}
+								/>
+							</div>
+							<div className={'col-span-1 flex flex-col gap-4'}>
+								<LandingInfoCard
+									title={landingInfoCards[2].title}
+									stat={landingInfoCards[2].stat}
+								/>
+								<LandingInfoCard
+									title={landingInfoCards[3].title}
+									stat={landingInfoCards[3].stat}
+								/>
+							</div>
+						</div>
+					</div>
 				</div>
 				<Banner />
 			</div>

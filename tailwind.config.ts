@@ -13,7 +13,7 @@ export default {
 			colors: {
 				white: '#FFFFFF',
 				bg: '#0C0D0F',
-				headerBg: '#0C0D0FF2',
+				headerBg: '#0C0D0F',
 				secondBg: '#101114',
 				secondHoverBg: '#16181C',
 				stroke: '#12141A',
