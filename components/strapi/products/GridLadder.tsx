@@ -20,7 +20,7 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 						key={step.id}
 						className={'container relative overflow-hidden rounded-2xl bg-secondBg'}
 						style={{
-							backgroundImage: "url('/supported-chains/grid-bg.png')",
+							backgroundImage: "url('/chains/grid-bg.png')",
 							backgroundSize: 'cover',
 							backgroundPosition: 'center'
 						}}>

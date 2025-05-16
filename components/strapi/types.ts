@@ -156,6 +156,15 @@ export type TFaqSectionItem = {
 	answer: string;
 };
 
+export type TSupportData = {
+	id: number;
+	supportItems: {
+		id: number;
+		title: string;
+		description?: string;
+		href: string;
+	}[];
+};
 export type TSupportedWalletData = {
 	id: number;
 	documentId: string;
@@ -278,3 +287,27 @@ export type TStrapiNotification = {
 };
 
 export type TSupportedChainTypes = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos' | string;
+
+/********************************************************************************************
+ * Types for Strapi Article API responses
+ * Includes both list and single article interfaces
+ ********************************************************************************************/
+export type TArticle = {
+	id: number;
+	documentId: string;
+	slug: string;
+	title: string;
+	content: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	featuredImg: TStrapiImage;
+	summary: string;
+};
+
+export type TArticleListResponse = {
+	data: TArticle[];
+	meta: {
+		pagination: TPagination;
+	};
+};

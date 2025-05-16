@@ -27,7 +27,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 						'flex items-center justify-center mt-auto h-[40%]'
 					)}
 					style={{
-						backgroundImage: "url('/supported-chains/grid-bg.png')",
+						backgroundImage: "url('/chains/grid-bg.png')",
 						backgroundSize: 'cover',
 						backgroundPosition: 'center'
 					}}>
@@ -57,7 +57,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 					'flex items-center justify-center h-[40%]'
 				)}
 				style={{
-					backgroundImage: "url('/supported-chains/grid-bg.png')",
+					backgroundImage: "url('/chains/grid-bg.png')",
 					backgroundSize: 'cover',
 					backgroundPosition: 'center'
 				}}>

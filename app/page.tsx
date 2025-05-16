@@ -24,7 +24,8 @@ import {
 	homepageFeatureTabs,
 	homepageWhiteTitle,
 	landingCards,
-	landingInfoCards
+	landingInfoCards,
+	statCardsTitle
 } from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import {LandingInfoCard} from '@/components/LandingInfoCard';
@@ -254,7 +255,7 @@ export default function HomePage(): ReactNode {
 					<div className={'mb-[120px] lg:mb-60'}>
 						<div className={'grid grid-cols-1 gap-4 lg:grid-cols-3'}>
 							<div className={'col-span-1 mb-6 lg:mb-0'}>
-								<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Trusted by millions'}</h1>
+								<h1 className={'max-w-[400px] text-[40px] leading-10 lg:text-7xl'}>{statCardsTitle}</h1>
 							</div>
 							<div className={'col-span-1 flex flex-col gap-4'}>
 								<LandingInfoCard

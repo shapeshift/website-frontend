@@ -12,11 +12,11 @@ export const PRODUCTS_DICT = {
 	},
 	chainBubbles: {
 		defaultChains: [
-			{url: '/supported-chains/ethereum', image: {url: '/eth.png'}},
-			{url: '/supported-chains/bitcoin', image: {url: '/bitcoin.png'}},
-			{url: '/supported-chains/solana', image: {url: '/sol.png'}},
-			{url: '/supported-chains/ethereum', image: {url: '/eth.png'}},
-			{url: '/supported-chains/bitcoin', image: {url: '/bitcoin.png'}}
+			{url: '/chains/ethereum', image: {url: '/eth.png'}},
+			{url: '/chains/bitcoin', image: {url: '/bitcoin.png'}},
+			{url: '/chains/solana', image: {url: '/sol.png'}},
+			{url: '/chains/ethereum', image: {url: '/eth.png'}},
+			{url: '/chains/bitcoin', image: {url: '/bitcoin.png'}}
 		]
 	}
 } as const;
