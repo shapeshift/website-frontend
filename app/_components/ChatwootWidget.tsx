@@ -15,14 +15,14 @@ declare global {
 }
 
 export function ChatwootWidget(): JSX.Element {
-	const websiteToken = process.env.NEXT_PUBLIC_CHATWOOT_WEBSITE_TOKEN;
+	const websiteToken = process.env.NEXT_PUBLIC_CHATWOOT_WEBSITE_TOKEN ?? 'WxJ5RjWcKZriX7hRjU7s1rdS';
 
 	useEffect(() => {
 		// Initialize Chatwoot when the script loads
 		const initChatwoot = (): void => {
 			if (window.chatwootSDK && websiteToken) {
 				window.chatwootSDK.run({
-					websiteToken: websiteToken ?? 'WxJ5RjWcKZriX7hRjU7s1rdS',
+					websiteToken,
 					baseUrl: 'https://app.chatwoot.com/'
 				});
 			}
