@@ -292,7 +292,7 @@ export type TSupportedChainTypes = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos' | str
  * Types for Strapi Article API responses
  * Includes both list and single article interfaces
  ********************************************************************************************/
-export type TArticle = {
+export type TSupportArticle = {
 	id: number;
 	documentId: string;
 	slug: string;
@@ -306,7 +306,7 @@ export type TArticle = {
 };
 
 export type TArticleListResponse = {
-	data: TArticle[];
+	data: TSupportArticle[];
 	meta: {
 		pagination: TPagination;
 	};

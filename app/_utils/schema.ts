@@ -5,7 +5,7 @@
  ** Supports blog posts, product pages, and organization schema
  ************************************************************************************************/
 
-import type {TBlogPost} from '@/components/strapi/types';
+import type {TBlogPost, TSupportArticle} from '@/components/strapi/types';
 
 // Base organization data
 const organizationSchema = {
@@ -103,6 +103,37 @@ export function generateProductSchema({
 				}))
 			}
 		})
+	};
+}
+
+/**
+ * Generate Article schema for support articles
+ */
+export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: string): Record<string, any> {
+	if (!article?.title || !article.slug) {
+		return {};
+	}
+
+	const articleUrl = `${baseUrl}/support/${article.slug}`;
+	const imageUrl = article.featuredImg?.url
+		? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'https://cms.shapeshift.com'}${article.featuredImg.url}`
+		: `${baseUrl}/opengraph-image.png`;
+
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: article.title,
+		description: article.summary || '',
+		image: imageUrl,
+		url: articleUrl,
+		datePublished: article.publishedAt,
+		dateModified: article.updatedAt || article.publishedAt,
+		author: organizationSchema,
+		publisher: organizationSchema,
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': articleUrl
+		}
 	};
 }
 
