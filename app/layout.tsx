@@ -1,6 +1,7 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
 
+import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
 import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
 import {WithFonts} from '@/components/common/WithFonts';
 import {CachedArticlesProvider} from '@/components/contexts/CachedArticles';
@@ -82,6 +83,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 									<Header />
 									{children}
 									<Footer />
+									<ChatwootWidget />
 								</div>
 							</CachedArticlesProvider>
 						</CachedPostsProvider>
