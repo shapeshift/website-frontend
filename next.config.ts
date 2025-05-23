@@ -49,7 +49,7 @@ const nextConfig = {
 			{source: '/newsletter-spanish', destination: '/newsroom', permanent: true},
 
 			// Chains
-			{source: '/supported-assets', destination: '/chains', permanent: true},
+			{source: '/assets', destination: '/chains', permanent: true},
 			{source: '/solana', destination: '/chains/solana', permanent: true},
 			{source: '/optimism', destination: '/chains/optimism', permanent: true},
 			{source: '/polygon', destination: '/chains/polygon', permanent: true},
@@ -91,18 +91,18 @@ const nextConfig = {
 			{source: '/feature-requests', destination: 'https://shapeshift.canny.io', permanent: true},
 
 			// Wallet redirects
-			{source: '/wallet-connect', destination: 'resources/supported-wallets/wallet-connect', permanent: true},
-			{source: '/ledger', destination: 'resources/supported-wallets/ledger', permanent: true},
-			{source: '/coinbase-wallet', destination: 'resources/supported-wallets/coinbase-wallet', permanent: true},
-			{source: '/phantom-wallet', destination: 'resources/supported-wallets/phantom', permanent: true},
-			{source: '/keplr', destination: 'resources/supported-wallets/keplr', permanent: true},
-			{source: '/trust-wallet', destination: 'resources/supported-wallets/trust-wallet', permanent: true},
-			{source: '/rabby-wallet', destination: 'resources/supported-wallets/rabby', permanent: true},
-			{source: '/1inch-wallet', destination: 'resources/supported-wallets/1inch-wallet', permanent: true},
-			{source: '/frame-wallet', destination: 'resources/supported-wallets/frame', permanent: true},
-			{source: '/zerion-wallet', destination: 'resources/supported-wallets/zerion', permanent: true},
-			{source: '/rainbow-wallet', destination: 'resources/supported-wallets/rainbow', permanent: true},
-			{source: '/safe-wallet', destination: 'resources/supported-wallets/safe-wallet', permanent: true},
+			{source: '/wallet-connect', destination: 'resources/wallets/wallet-connect', permanent: true},
+			{source: '/ledger', destination: 'resources/wallets/ledger', permanent: true},
+			{source: '/coinbase-wallet', destination: 'resources/wallets/coinbase-wallet', permanent: true},
+			{source: '/phantom-wallet', destination: 'resources/wallets/phantom', permanent: true},
+			{source: '/keplr', destination: 'resources/wallets/keplr', permanent: true},
+			{source: '/trust-wallet', destination: 'resources/wallets/trust-wallet', permanent: true},
+			{source: '/rabby-wallet', destination: 'resources/wallets/rabby', permanent: true},
+			{source: '/1inch-wallet', destination: 'resources/wallets/1inch-wallet', permanent: true},
+			{source: '/frame-wallet', destination: 'resources/wallets/frame', permanent: true},
+			{source: '/zerion-wallet', destination: 'resources/wallets/zerion', permanent: true},
+			{source: '/rainbow-wallet', destination: 'resources/wallets/rainbow', permanent: true},
+			{source: '/safe-wallet', destination: 'resources/wallets/safe-wallet', permanent: true},
 
 			// Privacy policy
 			{source: '/dao-privacy-policy', destination: '/privacy-policy', permanent: true},

@@ -47,7 +47,7 @@ export function ProtocolList({protocols, isLoading, className, isSearchQuery}: T
 					imageUrl={protocol.featuredImg?.url}
 					imageWidth={protocol.featuredImg?.width}
 					imageHeight={protocol.featuredImg?.height}
-					baseURL={'/supported-protocols'}
+					baseURL={'/protocols'}
 					imagePosition={'center'}
 					altText={`${protocol.name} logo`}
 				/>

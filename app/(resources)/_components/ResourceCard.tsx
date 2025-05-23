@@ -69,7 +69,7 @@ export function ResourceCard({
 				)}>
 				{/* Background Image */}
 				<Image
-					src={'/supported-wallets/cover.png'}
+					src={'/wallets/cover.png'}
 					alt={'background'}
 					width={408}
 					height={204}

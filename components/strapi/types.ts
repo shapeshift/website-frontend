@@ -40,6 +40,7 @@ export type TCard = {
 	image: TStrapiImage;
 	href?: string;
 	buttonCta?: TButton;
+	target?: string;
 	items?: {
 		url?: string;
 		image?: TStrapiImage;

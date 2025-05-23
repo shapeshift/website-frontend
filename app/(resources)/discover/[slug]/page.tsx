@@ -121,7 +121,7 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 
 				{/* Hero banner with discover image */}
 				<ResourceHero
-					imageSrc={'/supported-wallets/hero.jpg'}
+					imageSrc={'/wallets/hero.jpg'}
 					imageAlt={`${discover.title} banner image`}
 					logoSrc={`${process.env.STRAPI_URL}${discover.featuredImg.url}`}
 					logoAlt={discover.title}

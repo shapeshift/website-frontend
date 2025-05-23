@@ -46,7 +46,7 @@ export function WalletList({wallets, isLoading, className, isSearchQuery}: TWall
 					imageUrl={wallet.featuredImg?.url}
 					imageWidth={wallet.featuredImg?.width}
 					imageHeight={wallet.featuredImg?.height}
-					baseURL={'/supported-wallets'}
+					baseURL={'/wallets'}
 					imagePosition={'center'}
 					altText={`${wallet.name} logo`}
 				/>

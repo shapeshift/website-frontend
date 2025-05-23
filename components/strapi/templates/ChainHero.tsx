@@ -6,7 +6,7 @@ export function ChainHero(props: {url: string; width: number; height: number; na
 	return (
 		<section className={'relative flex w-full overflow-hidden rounded-2xl'}>
 			<Image
-				src={'/supported-wallets/hero.jpg'}
+				src={'/wallets/hero.jpg'}
 				alt={'hero'}
 				width={2800}
 				height={720}

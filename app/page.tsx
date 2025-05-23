@@ -69,7 +69,7 @@ export default function HomePage(): ReactNode {
 							</p>
 						</div>
 					</div>
-					<div className={''}>
+					<div>
 						<TradingWidget />
 					</div>
 				</div>
@@ -107,31 +107,30 @@ export default function HomePage(): ReactNode {
 							className={
 								'absolute -bottom-6 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
 							}>
-							{tab === 'Buy' ? (
-								<Image
-									src={'/landing/tabBuy.png'}
-									alt={'img'}
-									width={'2160'}
-									height={'868'}
-									className={'object-cover'}
-								/>
-							) : tab === 'Trade' ? (
-								<Image
-									src={'/landing/tabTrade.png'}
-									alt={'img'}
-									width={'2160'}
-									height={'868'}
-									className={'object-cover'}
-								/>
-							) : (
-								<Image
-									src={'/landing/tabMarkets.png'}
-									alt={'img'}
-									width={'2160'}
-									height={'868'}
-									className={'object-cover'}
-								/>
-							)}
+							<Image
+								src={'/landing/tabBuy.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'868'}
+								className={`object-cover ${tab === 'Buy' ? 'block' : 'hidden'}`}
+								priority
+							/>
+							<Image
+								src={'/landing/tabTrade.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'868'}
+								className={`object-cover ${tab === 'Trade' ? 'block' : 'hidden'}`}
+								priority
+							/>
+							<Image
+								src={'/landing/tabMarkets.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'868'}
+								className={`object-cover ${tab === 'Markets' ? 'block' : 'hidden'}`}
+								priority
+							/>
 						</div>
 
 						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>

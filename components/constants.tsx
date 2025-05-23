@@ -52,7 +52,7 @@ export const homepageBlueTitle = 'Endless Opportunity.';
 
 export const featuresTitle = 'Explore our features.';
 export const featureTabTitle = 'Multichain crypto home base';
-export const homepageFeatureTabs = ['Buy', 'Trade', 'Shift'];
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets'];
 export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
 export const featureCard1BlueTitle = 'multiple chains';
 export const featureCard3WhiteTitle = 'All-In-One';
@@ -198,12 +198,6 @@ export const appResources = [
 		description: 'We are here to help',
 		icon: <IconSupport />
 	},
-	// {
-	// 	name: 'Support',
-	// 	href: 'https://shapeshift.zendesk.com/',
-	// 	description: 'Support portal',
-	// 	icon: <IconCheckCircle />
-	// },
 	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions', icon: <IconDocs />},
 	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data', icon: <IconDocs />},
 	{
@@ -372,6 +366,7 @@ export const landingCards: TCardsRowSection = {
 			description: "Buy crypto with fiat. Sell it back when you're ready. All in one place.",
 			isTextFirst: false,
 			href: 'https://app.shapeshift.com//#/buy-crypto',
+			target: '_blank',
 			image: {
 				url: '/landing/cardBuyAndSell.png',
 				width: 922,
@@ -391,6 +386,7 @@ export const landingCards: TCardsRowSection = {
 			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
 			isTextFirst: false,
 			href: 'https://app.shapeshift.com/#/trade',
+			target: '_blank',
 			image: {
 				url: '/landing/cardethbtc.png',
 				width: 922,
@@ -411,6 +407,7 @@ export const landingCards: TCardsRowSection = {
 				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
 			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
+			target: '_blank',
 			image: {
 				url: '/landing/cardShift.png',
 				width: 922,
