@@ -1,10 +1,10 @@
-/**********************************************\*\*\*\**********************************************
+/**************************************************************************************************
  ** Terms of Service Page Component
  ** Server-side rendered page for displaying terms of service content
  ** Uses shared components for consistent UI across terms pages
  ** Implements proper SEO metadata for search engine optimization
  ** Handles loading states and error cases gracefully
- **********************************************\*\*\*\***********************************************/
+ *************************************************************************************************/
 
 import {notFound} from 'next/navigation';
 
