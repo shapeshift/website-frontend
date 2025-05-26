@@ -6,24 +6,28 @@ export function useLanguage(): {
 } {
 	const [dynamicCurrentLang, setDynamicCurrentLang] = useState('en');
 	useEffect(() => {
-		// eslint-disable-next-line
-		//@ts-ignore
-		if (window.Weglot.initialized) {
+		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
 			//@ts-ignore
-			const staticCurrentLanguage = window.Weglot.getCurrentLang();
-			setDynamicCurrentLang(staticCurrentLanguage);
+			if (window?.Weglot?.initialized) {
+				// eslint-disable-next-line
+				//@ts-ignore
+				const staticCurrentLanguage = window.Weglot.getCurrentLang();
+				setDynamicCurrentLang(staticCurrentLanguage);
+			}
 		}
 	}, []);
 
 	const switchLanguage = (symbol: string): void => {
-		// eslint-disable-next-line
-		//@ts-ignore
-		if (window.Weglot.initialized) {
+		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
 			//@ts-ignore
-			window.Weglot.switchTo(symbol);
-			setDynamicCurrentLang(symbol);
+			if (window?.Weglot?.initialized) {
+				// eslint-disable-next-line
+				//@ts-ignore
+				window.Weglot.switchTo(symbol);
+				setDynamicCurrentLang(symbol);
+			}
 		}
 	};
 

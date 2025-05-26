@@ -59,7 +59,13 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					strategy={'afterInteractive'}
 					id={'weglot'}
 					crossOrigin={'anonymous'}>
-					{"Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});"}
+					{`
+						if (typeof Weglot !== 'undefined') {
+							Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});
+						} else {
+							console.warn('Weglot is not defined. Translation service may not be available.');
+						}
+					`}
 				</Script>
 				<Script
 					id={'website-schema'}
