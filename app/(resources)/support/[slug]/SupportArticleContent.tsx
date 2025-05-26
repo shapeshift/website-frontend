@@ -2,18 +2,18 @@ import 'highlight.js/styles/github-dark.css';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
-import rehypeKatex from 'rehype-katex'; // For math rendering
-import remarkEmoji from 'remark-emoji'; // For emoji support
+import rehypeKatex from 'rehype-katex';
+import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math'; // For math equations
+import remarkMath from 'remark-math';
 
 import {isHtml} from '@/components/utils/isHtml';
 
 import type {ReactNode} from 'react';
 
-export function BlogContent({content}: {content: string}): ReactNode {
+export function SupportArticleContent({content}: {content: string}): ReactNode {
 	return (
-		<div className={'blog-content prose prose-invert max-w-none'}>
+		<div className={'support-content prose prose-invert max-w-none'}>
 			{isHtml(content) ? (
 				// eslint-disable-next-line @typescript-eslint/naming-convention
 				<div dangerouslySetInnerHTML={{__html: content}} />
@@ -148,7 +148,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 				jsx
 				global>
 				{`
-					.blog-content {
+					.support-content {
 						/* Base styles */
 						font-size: 1.125rem;
 						line-height: 1.75;
@@ -156,7 +156,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 					}
 
 					/* Code blocks */
-					.blog-content pre {
+					.support-content pre {
 						background-color: #1f2937;
 						padding: 1.5rem;
 						border-radius: 0.5rem;
@@ -166,32 +166,32 @@ export function BlogContent({content}: {content: string}): ReactNode {
 					}
 
 					/* Footnotes */
-					.blog-content .footnotes {
+					.support-content .footnotes {
 						border-top: 1px solid #374151;
 						margin-top: 2rem;
 						padding-top: 1rem;
 					}
 
-					.blog-content .footnotes ol {
+					.support-content .footnotes ol {
 						font-size: 0.875rem;
 					}
 
 					/* Definition lists */
-					.blog-content dl {
+					.support-content dl {
 						margin: 1.5rem 0;
 					}
 
-					.blog-content dt {
+					.support-content dt {
 						font-weight: bold;
 						margin-top: 1rem;
 					}
 
-					.blog-content dd {
+					.support-content dd {
 						margin-left: 1.5rem;
 					}
 
 					/* Custom containers */
-					.blog-content .warning {
+					.support-content .warning {
 						background-color: #fef3c7;
 						border-left: 4px solid #f59e0b;
 						padding: 1rem;
@@ -199,15 +199,15 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						color: #92400e;
 					}
 
-					.blog-content p {
+					.support-content p {
 						margin-bottom: 16px;
 					}
 
-					.blog-content strong {
+					.support-content strong {
 						margin-top: 20px;
 						display: inline-block;
 					}
-					.blog-content img {
+					.support-content img {
 						margin-top: 20px;
 						margin-bottom: 20px;
 					}

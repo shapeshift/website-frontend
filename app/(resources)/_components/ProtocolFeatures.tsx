@@ -11,7 +11,7 @@ function OgPlatformFeature({description, index}: {description: string; index: nu
 		<div
 			className={'container relative w-full overflow-hidden rounded-2xl bg-secondBg'}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -33,7 +33,7 @@ function OgPlatformFeature({description, index}: {description: string; index: nu
 				</div>
 				<div className={'aspect-square h-[400px] overflow-hidden rounded-2xl bg-secondHoverBg'}>
 					<Image
-						src={'/supported-protocols/collab.gif'}
+						src={'/protocols/collab.gif'}
 						alt={''}
 						className={'object-contain p-10'}
 						width={400}
@@ -49,7 +49,7 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 		<div
 			className={'container relative w-full overflow-hidden rounded-2xl bg-secondBg'}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -64,31 +64,31 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 						{'Permissionlessly track, trade, shift, and earn with your favorite chains such as '}
 						<Link
 							className={'text-white underline'}
-							href={'/supported-chains/bitcoin'}>
+							href={'/chains/bitcoin'}>
 							{'Bitcoin'}
 						</Link>
 						{', '}
 						<Link
 							className={'text-white underline'}
-							href={'/supported-chains/dogecoin'}>
+							href={'/chains/dogecoin'}>
 							{'Dogecoin'}
 						</Link>
 						{', '}
 						<Link
 							className={'text-white underline'}
-							href={'/supported-chains/ethereum'}>
+							href={'/chains/ethereum'}>
 							{'Ethereum'}
 						</Link>
 						{', '}
 						<Link
 							className={'text-white underline'}
-							href={'/supported-chains/arbitrum'}>
+							href={'/chains/arbitrum'}>
 							{'Arbitrum'}
 						</Link>
 						{', '}
 						<Link
 							className={'text-white underline'}
-							href={'/supported-chains/avalanche'}>
+							href={'/chains/avalanche'}>
 							{'AVAX'}
 						</Link>
 						{' and more.'}
@@ -124,7 +124,7 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 				</div>
 				<div className={'aspect-square h-[400px] overflow-hidden rounded-2xl bg-secondHoverBg'}>
 					<Image
-						src={'/supported-protocols/mobile-app.png'}
+						src={'/protocols/mobile-app.png'}
 						alt={''}
 						className={'object-contain p-10'}
 						width={400}
@@ -140,7 +140,7 @@ function GetPaidToTradeFeature({index}: {index: number}): ReactNode {
 		<div
 			className={'container relative w-full overflow-hidden rounded-2xl bg-secondBg'}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -165,7 +165,7 @@ function GetPaidToTradeFeature({index}: {index: number}): ReactNode {
 				</div>
 				<div className={'aspect-square h-[400px] overflow-hidden rounded-2xl bg-secondHoverBg'}>
 					<Image
-						src={'/supported-protocols/rFox.png'}
+						src={'/protocols/rFox.png'}
 						alt={''}
 						className={' object-contain p-10'}
 						width={603}
@@ -181,7 +181,7 @@ function PortalsFeature({index}: {index: number}): ReactNode {
 		<div
 			className={'container relative w-full overflow-hidden rounded-2xl bg-secondBg'}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -208,7 +208,7 @@ function PortalsFeature({index}: {index: number}): ReactNode {
 				</div>
 				<div className={'aspect-square h-[400px] overflow-hidden rounded-2xl bg-secondHoverBg'}>
 					<Image
-						src={'/supported-protocols/portals.gif'}
+						src={'/protocols/portals.gif'}
 						alt={''}
 						className={'object-contain p-10'}
 						width={603}

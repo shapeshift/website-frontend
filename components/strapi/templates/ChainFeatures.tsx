@@ -15,7 +15,7 @@ function WalletFeature({chainName}: {chainName: string}): ReactNode {
 				'container col-span-6 grid w-full grid-cols-2 overflow-hidden rounded-2xl lg:aspect-[760/540] lg:h-[540px]'
 			}
 			style={{
-				backgroundImage: "url('/supported-wallets/cover.png')",
+				backgroundImage: "url('/wallets/cover.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -47,7 +47,7 @@ function WalletFeature({chainName}: {chainName: string}): ReactNode {
 			</div>
 			<div className={'flex w-full items-end justify-end'}>
 				<Image
-					src={'/supported-chains/wallet-mockup.png'}
+					src={'/chains/wallet-mockup.png'}
 					alt={'ShapeShift wallet'}
 					width={680}
 					height={540}
@@ -64,7 +64,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 				'container col-span-1 grid grid-cols-3 gap-4 overflow-hidden rounded-2xl bg-secondBg p-6 lg:col-span-6 lg:aspect-[1400/476] lg:h-[476px] lg:p-10'
 			}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -73,7 +73,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 			</div>
 			<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
 				<Image
-					src={'/supported-chains/keepkey.png'}
+					src={'/chains/keepkey.png'}
 					alt={'KeepKey'}
 					width={349}
 					height={204}
@@ -94,7 +94,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 			</div>
 			<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
 				<Image
-					src={'/supported-chains/ledger.png'}
+					src={'/chains/ledger.png'}
 					alt={'Ledger'}
 					width={349}
 					height={204}
@@ -105,7 +105,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 						{'Privately connect your '}
 						<Link
 							className={'text-white underline'}
-							href={'/supported-wallets/ledger'}>
+							href={'/wallets/ledger'}>
 							{'Ledger'}
 						</Link>
 						{` directly to ShapeShift without the need for Ledger Live and enjoy permissionless ${chainName}.`}
@@ -156,7 +156,7 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
 				<Image
-					src={'/supported-chains/buy-mockup.png'}
+					src={'/chains/buy-mockup.png'}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={515}
@@ -228,7 +228,7 @@ function SolanaJupiterExchangeFeature(): ReactNode {
 			</div>
 			<div className={'aspect-video overflow-hidden rounded-2xl'}>
 				<Image
-					src={'/supported-chains/feature-jupiter.png'}
+					src={'/chains/feature-jupiter.png'}
 					alt={'Jupiter Exchange'}
 					width={461}
 					height={219}
@@ -259,37 +259,37 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 					{' wallet. Trade '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/bitcoin'}>
+						href={'/chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/ethereum'}>
+						href={'/chains/ethereum'}>
 						{'Ethereum'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/base'}>
+						href={'/chains/base'}>
 						{'Base'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/cosmos'}>
+						href={'/chains/cosmos'}>
 						{'Cosmos'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/thorchain'}>
+						href={'/chains/thorchain'}>
 						{'THORChain'}
 					</Link>
 					{' and more with your '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-wallets/metamask'}>
+						href={'/wallets/metamask'}>
 						{'MetaMask'}
 					</Link>
 					{'.'}
@@ -297,7 +297,7 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 			</div>
 			<div className={'aspect-video overflow-hidden rounded-2xl pt-[5%]'}>
 				<Image
-					src={'/supported-chains/feature-multichainSnap.png'}
+					src={'/chains/feature-multichainSnap.png'}
 					alt={'Jupiter Exchange'}
 					width={461}
 					height={219}
@@ -323,7 +323,7 @@ function YourKeyFeature(): ReactNode {
 			</div>
 			<div className={'aspect-video overflow-hidden rounded-2xl'}>
 				<Image
-					src={'/supported-chains/feature-yourKey.png'}
+					src={'/chains/feature-yourKey.png'}
 					alt={'Your Key'}
 					width={461}
 					height={219}
@@ -372,7 +372,7 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'}>
 				<Image
-					src={'/supported-chains/feature-streamingswaps.png'}
+					src={'/chains/feature-streamingswaps.png'}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={409}
@@ -416,7 +416,7 @@ function ThorChainTradeFeature(): ReactNode {
 					{' across multiple blockchains directly from your '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-wallets/'}>
+						href={'/wallets/'}>
 						{'DeFi wallet'}
 					</Link>
 					{'.'}
@@ -427,7 +427,7 @@ function ThorChainTradeFeature(): ReactNode {
 					}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/bitcoin'}>
+						href={'/chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{' or Memecoins, trade like the professionals with ShapeShift and THORChain.'}
@@ -435,7 +435,7 @@ function ThorChainTradeFeature(): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
 				<Image
-					src={'/supported-chains/feature-thorChainTrade.png'}
+					src={'/chains/feature-thorChainTrade.png'}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={409}
@@ -475,7 +475,7 @@ function RFoxFeature(): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'}>
 				<Image
-					src={'/supported-chains/feature-rFox.png'}
+					src={'/chains/feature-rFox.png'}
 					alt={''}
 					className={'h-auto max-h-[200px] w-full object-contain object-bottom'}
 					width={409}
@@ -515,13 +515,13 @@ function ThorChainLendingFeature(): ReactNode {
 					{'Borrow over 10,000 assets against your '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/bitcoin'}>
+						href={'/chains/bitcoin'}>
 						{'BTC'}
 					</Link>
 					{' and '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/ethereum'}>
+						href={'/chains/ethereum'}>
 						{'ETH'}
 					</Link>
 					{' with 0% APR and no liquidations! Do more with your crypto portfolio with THORChain '}
@@ -535,7 +535,7 @@ function ThorChainLendingFeature(): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'}>
 				<Image
-					src={'/supported-chains/feature-thorChainLending.png'}
+					src={'/chains/feature-thorChainLending.png'}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={409}
@@ -588,7 +588,7 @@ function LiquidityPoolFeature(): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
 				<Image
-					src={'/supported-chains/feature-liquidityPool.png'}
+					src={'/chains/feature-liquidityPool.png'}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={409}
@@ -627,37 +627,37 @@ function ThorChainRunePoolFeature(): ReactNode {
 					}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/bitcoin'}>
+						href={'/chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/ethereum'}>
+						href={'/chains/ethereum'}>
 						{'Ethereum'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/binance-chain'}>
+						href={'/chains/binance-chain'}>
 						{'BNB'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/dogecoin'}>
+						href={'/chains/dogecoin'}>
 						{'Dogecoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/avalanche'}>
+						href={'/chains/avalanche'}>
 						{'AVAX'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/cosmos'}>
+						href={'/chains/cosmos'}>
 						{'ATOM'}
 					</Link>
 					{', USDC, USDT and any other major gas asset added to THORChain.'}
@@ -665,7 +665,7 @@ function ThorChainRunePoolFeature(): ReactNode {
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
 				<Image
-					src={'/supported-chains/feature-thorChainRunePool.png'}
+					src={'/chains/feature-thorChainRunePool.png'}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={409}
@@ -683,7 +683,7 @@ function SaverVaultFeature(): ReactNode {
 				'container relative col-span-6 grid grid-cols-2 overflow-hidden rounded-2xl bg-secondBg px-10 pt-10'
 			}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
@@ -695,13 +695,13 @@ function SaverVaultFeature(): ReactNode {
 					}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/bitcoin'}>
+						href={'/chains/bitcoin'}>
 						{'Bitcoin'}
 					</Link>
 					{', '}
 					<Link
 						className={'text-white underline'}
-						href={'/supported-chains/dogecoin'}>
+						href={'/chains/dogecoin'}>
 						{'Dogecoin'}
 					</Link>
 					{', Bitcoin Cash, Litecoin, and more.'}
@@ -710,7 +710,7 @@ function SaverVaultFeature(): ReactNode {
 
 			<div className={'flex flex-row justify-between'}>
 				<Image
-					src={'/supported-chains/feature-vaults.png'}
+					src={'/chains/feature-vaults.png'}
 					alt={'feature-vaults'}
 					width={349}
 					height={204}

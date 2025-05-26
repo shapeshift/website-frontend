@@ -24,7 +24,8 @@ import {
 	homepageFeatureTabs,
 	homepageWhiteTitle,
 	landingCards,
-	landingInfoCards
+	landingInfoCards,
+	statCardsTitle
 } from '@/components/constants';
 import {LandingCard} from '@/components/LandingCard';
 import {LandingInfoCard} from '@/components/LandingInfoCard';
@@ -68,7 +69,7 @@ export default function HomePage(): ReactNode {
 							</p>
 						</div>
 					</div>
-					<div className={''}>
+					<div>
 						<TradingWidget />
 					</div>
 				</div>
@@ -106,31 +107,30 @@ export default function HomePage(): ReactNode {
 							className={
 								'absolute -bottom-6 left-1/2 w-3/4 -translate-x-1/2 overflow-hidden rounded-t-2xl'
 							}>
-							{tab === 'Buy' ? (
-								<Image
-									src={'/landing/tabBuy.png'}
-									alt={'img'}
-									width={'2160'}
-									height={'868'}
-									className={'object-cover'}
-								/>
-							) : tab === 'Trade' ? (
-								<Image
-									src={'/landing/tabTrade.png'}
-									alt={'img'}
-									width={'2160'}
-									height={'868'}
-									className={'object-cover'}
-								/>
-							) : (
-								<Image
-									src={'/landing/tabMarkets.png'}
-									alt={'img'}
-									width={'2160'}
-									height={'868'}
-									className={'object-cover'}
-								/>
-							)}
+							<Image
+								src={'/landing/tabBuy.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'868'}
+								className={`object-cover ${tab === 'Buy' ? 'block' : 'hidden'}`}
+								priority
+							/>
+							<Image
+								src={'/landing/tabTrade.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'868'}
+								className={`object-cover ${tab === 'Trade' ? 'block' : 'hidden'}`}
+								priority
+							/>
+							<Image
+								src={'/landing/tabMarkets.png'}
+								alt={'img'}
+								width={'2160'}
+								height={'868'}
+								className={`object-cover ${tab === 'Markets' ? 'block' : 'hidden'}`}
+								priority
+							/>
 						</div>
 
 						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
@@ -143,7 +143,7 @@ export default function HomePage(): ReactNode {
 										key={item}
 										onClick={() => setTab(item)}>
 										<TabItem
-											className={'!px-10'}
+											className={'!px-8'}
 											title={item}
 											selected={tab === item}
 										/>
@@ -254,7 +254,7 @@ export default function HomePage(): ReactNode {
 					<div className={'mb-[120px] lg:mb-60'}>
 						<div className={'grid grid-cols-1 gap-4 lg:grid-cols-3'}>
 							<div className={'col-span-1 mb-6 lg:mb-0'}>
-								<h1 className={'text-[40px] leading-10 lg:text-7xl'}>{'Trusted by millions'}</h1>
+								<h1 className={'max-w-[400px] text-[40px] leading-10 lg:text-7xl'}>{statCardsTitle}</h1>
 							</div>
 							<div className={'col-span-1 flex flex-col gap-4'}>
 								<LandingInfoCard

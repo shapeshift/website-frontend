@@ -61,6 +61,7 @@ export function ResourceHero({
 				width={2800}
 				height={720}
 				priority={priority}
+				loading={'eager'}
 				quality={90}
 			/>
 

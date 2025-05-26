@@ -25,11 +25,11 @@ export function BackgroundImage(): ReactNode {
 		<div className={'absolute inset-0 hidden lg:block'}>
 			<Image
 				src={'/heroBg.png'}
-				alt={''} // Empty alt for decorative images
-				aria-hidden={'true'} // Hide from screen readers
+				alt={''}
+				aria-hidden={'true'}
 				height={2256}
 				width={3840}
-				priority // Load with priority as it's above the fold
+				priority
 			/>
 		</div>
 	);

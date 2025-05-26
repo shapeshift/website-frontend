@@ -4,25 +4,26 @@ This directory contains all resource-related pages and components including blog
 
 ## Directory Structure
 
-- **_components/**: Shared components used across all resource pages
-  - Resource cards, grids, headers, heroes, navigation components
-  - Chain and wallet list displays, protocol information components
-- **_utils/**: Utility functions and constants specific to resources
+- **\_components/**: Shared components used across all resource pages
+    - Resource cards, grids, headers, heroes, navigation components
+    - Chain and wallet list displays, protocol information components
+- **\_utils/**: Utility functions and constants specific to resources
 - **blog/**: Blog posts and category/tag navigation
-  - **(withNavigation)/**: Blog pages with navigation elements
-  - **[slug]/**: Individual blog post pages
+    - **(withNavigation)/**: Blog pages with navigation elements
+    - **[slug]/**: Individual blog post pages
 - **discover/**: Discovery pages for features and products
 - **faq/**: Frequently asked questions page
 - **newsroom/**: News and announcements
-  - **(withNavigation)/**: Newsroom with navigation elements
-  - **[slug]/**: Individual news post pages
-- **supported-chains/**: Pages documenting supported blockchain networks
-- **supported-protocols/**: Pages documenting supported protocols
-- **supported-wallets/**: Pages documenting supported wallet integrations
+    - **(withNavigation)/**: Newsroom with navigation elements
+    - **[slug]/**: Individual news post pages
+- **chains/**: Pages documenting supported blockchain networks
+- **protocols/**: Pages documenting supported protocols
+- **wallets/**: Pages documenting supported wallet integrations
 
 ## Route Convention
 
 The parentheses in the directory name `(resources)` indicate a route group in Next.js. This means:
+
 - The folder name itself doesn't affect URL paths
 - All pages inside share UI layouts and features
 - It keeps related content organized without affecting the URL structure
@@ -30,6 +31,7 @@ The parentheses in the directory name `(resources)` indicate a route group in Ne
 ## Component Integration
 
 The components in this directory are designed to:
+
 - Present content in a consistent, well-structured format
 - Support a content-first approach with clean typography
 - Enable easy navigation between related resources
@@ -45,6 +47,6 @@ The components in this directory are designed to:
 
 - Follow established patterns for new resource pages
 - Maintain consistent styling across all content types
-- Leverage shared components from _components directory
+- Leverage shared components from \_components directory
 - Ensure proper SEO metadata for all resource pages
 - Implement proper loading states for dynamic content

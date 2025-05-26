@@ -7,7 +7,7 @@ export function ProtocolEasier({protocolName}: {protocolName: string}): ReactNod
 				'container col-span-1 mt-2 grid grid-cols-1 gap-4 overflow-hidden rounded-2xl bg-secondBg p-6 lg:col-span-6 lg:aspect-[1400/476] lg:h-[476px] lg:grid-cols-3 lg:p-10'
 			}
 			style={{
-				backgroundImage: "url('/supported-chains/grid-bg.png')",
+				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>

@@ -4,7 +4,6 @@ import {IconActivityRings} from './common/icons/IconActivityRings';
 import {IconBlog} from './common/icons/IconBlog';
 import {IconBulb} from './common/icons/IconBulb';
 import {IconChains} from './common/icons/IconChains';
-import {IconCheckCircle} from './common/icons/IconCheckCircle';
 import {IconClassic} from './common/icons/IconClassic';
 import {IconDapp} from './common/icons/IconDapp';
 import {IconDiscord} from './common/icons/IconDiscord';
@@ -22,6 +21,7 @@ import {IconResource} from './common/icons/IconResource';
 import {IconScanDevice} from './common/icons/IconScanDevice';
 import {IconShield} from './common/icons/IconShield';
 import {IconStar} from './common/icons/IconStar';
+import {IconSupport} from './common/icons/IconSupport';
 import {IconTelegram} from './common/icons/IconTelegram';
 import {IconTriLink} from './common/icons/IconTriLink';
 import {IconTwitter} from './common/icons/IconTwitter';
@@ -33,7 +33,7 @@ import type {TCardsRowSection, TSupportedChainTypes} from '@/components/strapi/t
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
 
-const docsUrl = 'https://docs.shapeshift.com/';
+const docsUrl = 'https://github.com/shapeshift/web';
 
 const githubUrl = 'https://github.com/shapeshift';
 
@@ -52,7 +52,7 @@ export const homepageBlueTitle = 'Endless Opportunity.';
 
 export const featuresTitle = 'Explore our features.';
 export const featureTabTitle = 'Multichain crypto home base';
-export const homepageFeatureTabs = ['Buy', 'Trade', 'Shift'];
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets'];
 export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
 export const featureCard1BlueTitle = 'multiple chains';
 export const featureCard3WhiteTitle = 'All-In-One';
@@ -175,28 +175,28 @@ export const appResources = [
 	},
 	{name: 'FAQ', href: '/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
 	{
-		name: 'Supported chains',
-		href: '/supported-chains',
+		name: 'Chains',
+		href: '/chains',
 		description: 'Blockchain networks we support',
 		icon: <IconChains />
 	},
 	{
-		name: 'Supported wallets',
-		href: '/supported-wallets',
+		name: 'Wallets',
+		href: '/wallets',
 		description: 'Wallets we support',
 		icon: <IconWallet />
 	},
 	{
-		name: 'Supported protocols',
-		href: '/supported-protocols',
+		name: 'Protocols',
+		href: '/protocols',
 		description: 'Protocols we support',
 		icon: <IconScanDevice />
 	},
 	{
 		name: 'Support',
-		href: 'https://shapeshift.zendesk.com/',
-		description: 'Support portal',
-		icon: <IconCheckCircle />
+		href: '/support',
+		description: 'We are here to help',
+		icon: <IconSupport />
 	},
 	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions', icon: <IconDocs />},
 	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data', icon: <IconDocs />},
@@ -216,12 +216,6 @@ export const appDao = [
 		icon: <IconGovern />
 	},
 	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
-	{
-		name: 'Buy/Sell crypto',
-		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
-		description: 'Exchange Fiat for cryptocurrency',
-		icon: <IconDollar />
-	},
 	{name: 'Join us', href: 'https://forum.shapeshift.com/', description: 'Join the community', icon: <IconStar />},
 	{
 		name: 'Share your ideas',
@@ -256,13 +250,13 @@ export const appProducts = [
 		href: '/mobile-app',
 		description: 'The only crypto app you need.',
 		icon: <IconMobile />
+	},
+	{
+		name: 'Buy/Sell crypto',
+		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
+		description: 'Exchange Fiat for cryptocurrency',
+		icon: <IconDollar />
 	}
-	// {
-	// 	name: 'KeepKey',
-	// 	href: 'https://www.keepkey.com/',
-	// 	description: 'The Next Frontier of Crypto Security.',
-	// 	icon: <IconKey />
-	// }
 ];
 
 export const headerTabs = [
@@ -368,10 +362,11 @@ export const landingCards: TCardsRowSection = {
 	cards: [
 		{
 			id: 49,
-			title: 'Trade',
-			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
+			title: 'Buy and Sell',
+			description: "Buy crypto with fiat. Sell it back when you're ready. All in one place.",
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/',
+			href: 'https://app.shapeshift.com//#/buy-crypto',
+			target: '_blank',
 			image: {
 				url: '/landing/cardBuyAndSell.png',
 				width: 922,
@@ -387,10 +382,11 @@ export const landingCards: TCardsRowSection = {
 		},
 		{
 			id: 50,
-			title: 'Save',
-			description: 'FOX token has power on ShapeShift! Get discounts on fees when you hold FOX.',
+			title: 'Trade',
+			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/pools#/fox',
+			href: 'https://app.shapeshift.com/#/trade',
+			target: '_blank',
 			image: {
 				url: '/landing/cardethbtc.png',
 				width: 922,
@@ -411,6 +407,7 @@ export const landingCards: TCardsRowSection = {
 				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
 			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
+			target: '_blank',
 			image: {
 				url: '/landing/cardShift.png',
 				width: 922,
@@ -533,44 +530,14 @@ export const SUPPORTED_TOKENS = [
 		requestKey: 'USDT-0XDAC17F958D2EE523A2206206994597C13D831EC7',
 		tokenAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7'
 	},
-	{
-		symbol: 'BNB',
-		name: 'BNB',
-		icon: '/widget/bnb_icon.png',
-		slug: 'bnb',
-		decimals: {
-			eth: 18,
-			btc: 8,
-			sol: 8,
-			usdt: 8,
-			bnbeth: 18
-		},
-		requestKey: 'BNB',
-		tokenAddress: ''
-	},
-	{
-		symbol: 'BNBETH',
-		name: 'BNB on Ethereum',
-		icon: '/widget/bnb_icon.png',
-		sublogo: '/widget/eth_icon.png',
-		slug: 'bnb-on-ethereum',
-		decimals: {
-			btc: 8,
-			eth: 18,
-			sol: 8,
-			usdt: 8,
-			bnbeth: 18
-		},
-		tokenAddress: '0xb8c77482e45f1f44de1745f52c74426c631bdd52',
-		requestKey: 'BNB'
-	},
+
 	{
 		symbol: 'SOL',
 		name: 'Solana',
 		icon: '/widget/sol_icon.png',
 		slug: 'solana',
 		decimals: {
-			btc: 8,
+			btc: 9,
 			eth: 18,
 			sol: 8,
 			usdt: 8,
@@ -584,8 +551,7 @@ export const SUPPORTED_CHAINS = [
 	{id: 'bitcoin', name: 'Bitcoin', icon: '/widget/btc_icon.png', requestKey: 'BTC'},
 	{id: 'base', name: 'Base', icon: '/widget/base_icon.png', requestKey: 'BASE'},
 	{id: 'ethereum', name: 'Ethereum', icon: '/widget/eth_icon.png', requestKey: 'ETH', chainId: '1'},
-	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png', requestKey: 'SOL'},
-	{id: 'bnb', name: 'BNB Smart Chain', icon: '/widget/bnb_icon.png', requestKey: 'BSC'}
+	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png', requestKey: 'SOL'}
 ];
 
 export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
@@ -963,6 +929,8 @@ export const landingInfoCards = [
 		stat: '$380M'
 	}
 ];
+
+export const statCardsTitle = 'Trusted by \n the Best';
 
 /************************************************************************************************
  * Landing Page Request Wallet URL

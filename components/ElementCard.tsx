@@ -40,7 +40,7 @@ export function ElementCard(props: TElementCardProps): ReactNode {
 					position === 'center' ? 'p-10' : 'px-10 pt-10'
 				)}>
 				<Image
-					src={'/supported-wallets/cover.png'}
+					src={'/wallets/cover.png'}
 					alt={'cover'}
 					width={408}
 					height={204}

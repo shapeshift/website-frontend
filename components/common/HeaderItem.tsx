@@ -15,7 +15,7 @@ export default function HeaderItem({name, href, target, description, onClick, ic
 	return (
 		<Link
 			href={href}
-			target={target || href.includes('http') ? '_blank' : undefined}
+			target={target}
 			className={
 				'flex w-1/3 max-w-[232px] grow gap-2 rounded-lg px-6 py-4 transition-colors duration-300 hover:bg-white/10'
 			}

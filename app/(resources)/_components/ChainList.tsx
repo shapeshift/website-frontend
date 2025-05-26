@@ -47,7 +47,7 @@ export function ChainList({chains, isLoading, className, isSearchQuery}: TChainL
 					imageUrl={chain.featuredImg?.url}
 					imageWidth={chain.featuredImg?.width}
 					imageHeight={chain.featuredImg?.height}
-					baseURL={'/supported-chains'}
+					baseURL={'/chains'}
 					imagePosition={'bottom'}
 					altText={`${chain.name} logo`}
 				/>

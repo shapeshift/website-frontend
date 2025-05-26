@@ -6,8 +6,10 @@ export function SupportedWalletHero(props: {url: string; width: number; height: 
 	return (
 		<section className={'relative flex w-full overflow-hidden rounded-2xl'}>
 			<Image
-				src={'/supported-wallets/hero.jpg'}
+				src={'/wallets/hero.jpg'}
 				alt={''}
+				loading={'eager'}
+				priority
 				width={2800}
 				height={720}
 			/>

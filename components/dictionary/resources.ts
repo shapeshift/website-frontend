@@ -19,5 +19,10 @@ export const RESOURCES_DICT = {
 		titleLine1: 'Learn more',
 		titleLine2: 'about ShapeShift.',
 		description: "Your guide to ShapeShift's features, support, and ecosystem."
+	},
+	support: {
+		title: 'Support',
+		description: 'Find answers to your questions and learn more about ShapeShift.',
+		emptyMessage: "We couldn't find any support articles matching your criteria."
 	}
 } as const;

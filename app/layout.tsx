@@ -1,8 +1,10 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
 
+import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
 import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
 import {WithFonts} from '@/components/common/WithFonts';
+import {CachedArticlesProvider} from '@/components/contexts/CachedArticles';
 import {CachedNewsProvider} from '@/components/contexts/CachedNews';
 import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
 import {Footer} from '@/components/Footer';
@@ -76,11 +78,14 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 				<WithFonts>
 					<CachedNewsProvider>
 						<CachedPostsProvider>
-							<div className={'flex flex-col'}>
-								<Header />
-								{children}
-								<Footer />
-							</div>
+							<CachedArticlesProvider>
+								<div className={'flex flex-col'}>
+									<Header />
+									{children}
+									<Footer />
+									<ChatwootWidget />
+								</div>
+							</CachedArticlesProvider>
 						</CachedPostsProvider>
 					</CachedNewsProvider>
 				</WithFonts>
