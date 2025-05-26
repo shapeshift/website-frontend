@@ -82,10 +82,6 @@ export function Footer(): ReactNode {
 							</div>
 
 							<div className={'flex items-center justify-between gap-2'}>
-								<div className={'text-sm text-gray-500'}>
-									{`© ${new Date().getFullYear()} ShapeShift. All Rights Reserved`}
-								</div>
-
 								<div
 									className={
 										'flex items-center gap-6 rounded-2xl border border-stroke bg-black/95 p-2'
@@ -99,6 +95,9 @@ export function Footer(): ReactNode {
 											height={64}
 										/>
 									</div>
+								</div>
+								<div className={'text-sm text-gray-500'}>
+									{`© ${new Date().getFullYear()} ShapeShift. All Rights Reserved`}
 								</div>
 							</div>
 						</div>

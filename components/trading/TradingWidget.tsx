@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {useCallback, useEffect, useState} from 'react';
 
 import {useDebounce} from '@/hooks/useDebounce';
@@ -21,13 +22,13 @@ export function TradingWidget(): ReactNode {
 	const [toToken, setToToken] = useState<TToken>(SUPPORTED_TOKENS[1]);
 	const [fromChain, setFromChain] = useState<TChain>(SUPPORTED_CHAINS[2]);
 	const [toChain, setToChain] = useState<TChain>(SUPPORTED_CHAINS[0]);
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState<string>('0');
 	const [outputAmount, setOutputAmount] = useState({amount: 0, isNative: true});
 	const [openSelect, setOpenSelect] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
 
-	const debouncedAmount = useDebounce(amount, 500);
+	const debouncedAmount = useDebounce(amount);
 
 	useEffect(() => {
 		if (error) {
@@ -35,39 +36,13 @@ export function TradingWidget(): ReactNode {
 		}
 	}, [error, fromChain.id, fromToken.symbol, toChain.id, toToken.symbol]);
 
-	const fetchFromProxy = useCallback((): void => {
-		setError('');
-		try {
-			setIsLoading(true);
-			fetch(
-				`https://api.proxy.shapeshift.com/api/v1/zrx/swap/permit2/price?chainId=${fromChain.chainId}&buyToken=${toToken.tokenAddress}&sellToken=${fromToken.tokenAddress}&sellAmount=${amount * 10 ** (fromToken.decimals[fromChain.requestKey.toLowerCase()] || 6)}&swapFeeBps=68&swapFeeToken=${fromToken.tokenAddress}&slippageBps=20&swapFeeRecipient=0x90a48d5cf7343b08da12e067680b4c6dbfe551be&feeRecipientTradeSurplus=0x90a48d5cf7343b08da12e067680b4c6dbfe551be`
-			)
-				.then(async res => res.json())
-				.then(data => {
-					setOutputAmount({amount: data.buyAmount, isNative: true});
-				})
-				.finally(() => {
-					setIsLoading(false);
-				});
-		} catch (error) {
-			setError('No rate available');
-			setIsLoading(false);
-		}
-	}, [
-		amount,
-		fromChain.chainId,
-		fromChain.requestKey,
-		fromToken.decimals,
-		fromToken.tokenAddress,
-		toToken.tokenAddress
-	]);
-
 	const fetchFromDaemon = useCallback((): void => {
 		setError('');
 		try {
 			setIsLoading(true);
+			const numericAmount = Number(debouncedAmount);
 			fetch(
-				`https://daemon.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${amount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
+				`https://daemon.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
 			)
 				.then(async res => res.json())
 				.then(data => {
@@ -84,7 +59,7 @@ export function TradingWidget(): ReactNode {
 			setIsLoading(false);
 		}
 	}, [
-		amount,
+		debouncedAmount,
 		fromChain.requestKey,
 		fromToken.decimals,
 		fromToken.requestKey,
@@ -97,8 +72,9 @@ export function TradingWidget(): ReactNode {
 		setError('');
 		setIsLoading(true);
 		try {
+			const numericAmount = Number(debouncedAmount);
 			fetch(
-				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${fromToken.symbol}.${fromChain.requestKey}&destinationAsset=${toToken.symbol}.${toChain.requestKey}&amount=${Number(debouncedAmount) * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
+				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${fromToken.symbol}.${fromChain.requestKey}&destinationAsset=${toToken.symbol}.${toChain.requestKey}&amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
 			)
 				.then(async res => res.json())
 				.then(data => {
@@ -115,16 +91,16 @@ export function TradingWidget(): ReactNode {
 			setIsLoading(false);
 		}
 	}, [
+		debouncedAmount,
 		fromToken.symbol,
 		fromToken.decimals,
 		fromChain.requestKey,
 		toToken.symbol,
-		toChain.requestKey,
-		debouncedAmount
+		toChain.requestKey
 	]);
 
 	useEffect(() => {
-		if (debouncedAmount === 0) {
+		if (debouncedAmount === '0' || debouncedAmount === '') {
 			return;
 		}
 
@@ -133,15 +109,8 @@ export function TradingWidget(): ReactNode {
 		}
 		if (
 			(fromChain.id === 'solana' && toChain.id === 'bitcoin') ||
-			(fromToken.symbol === 'BNBETH' && toToken.symbol === 'BTC') ||
-			(fromToken.symbol === 'BTC' && toToken.symbol === 'BNBETH') ||
-			(fromToken.symbol === 'BNBETH' && toToken.symbol === 'SOL') ||
-			(fromToken.symbol === 'SOL' && toToken.symbol === 'BNBETH') ||
-			(fromToken.symbol === 'SOL' && toToken.symbol === 'BNB') ||
-			(fromToken.symbol === 'BNB' && toToken.symbol === 'SOL') ||
 			(fromToken.symbol === 'SOL' && toToken.symbol === 'ETH') ||
-			(fromToken.symbol === 'ETH' && toToken.symbol === 'SOL') ||
-			(fromToken.symbol === 'BNBETH' && toToken.symbol === 'BNB')
+			(fromToken.symbol === 'ETH' && toToken.symbol === 'SOL')
 		) {
 			return setError('No rate available');
 		}
@@ -150,19 +119,11 @@ export function TradingWidget(): ReactNode {
 			return fetchFromChainFlip();
 		}
 
-		if (
-			(fromChain.name === 'Ethereum' && fromToken.symbol === 'BNBETH') ||
-			(toChain.name === 'Ethereum' && toToken.symbol === 'BNBETH')
-		) {
-			return fetchFromProxy();
-		}
-
 		return fetchFromDaemon();
 	}, [
 		debouncedAmount,
 		fetchFromChainFlip,
 		fetchFromDaemon,
-		fetchFromProxy,
 		fromChain.id,
 		fromChain.name,
 		fromToken.symbol,
@@ -197,16 +158,19 @@ export function TradingWidget(): ReactNode {
 	};
 
 	const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		setOutputAmount({amount: 0, isNative: true});
 		const value = e.target.value;
-		if (/^\d*\.?\d*$/.test(value)) {
-			if (value === '0' && amount === 0) {
+		// Allow decimal numbers with up to 18 decimal places
+		if (/^\d*\.?\d{0,18}$/.test(value)) {
+			if (value === '') {
+				setAmount('0');
 				return;
 			}
 			if (value.length > 1 && value[0] === '0' && value[1] !== '.') {
-				setAmount(Number(value.slice(1)));
+				setAmount(value.slice(1));
 				return;
 			}
-			setAmount(Number(value));
+			setAmount(value);
 		}
 	};
 
@@ -219,6 +183,53 @@ export function TradingWidget(): ReactNode {
 		setToToken(tempToken);
 		setToChain(tempChain);
 	};
+
+	const generateTradeUrl = useCallback((): string => {
+		const baseUrl = 'https://app.shapeshift.com/#/trade';
+
+		// Map chain IDs to their respective parameters
+		const chainParams: Record<string, string> = {
+			bitcoin: 'bip122:000000000019d6689c085ae165831e93/slip44:0',
+			ethereum: 'eip155:1/slip44:60',
+			base: 'eip155:8453/slip44:60',
+			solana: 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp/slip44:501'
+		};
+
+		// Map token decimals
+		const tokenDecimals: Record<string, number> = {
+			USDT: 6,
+			BTC: 8,
+			ETH: 18,
+			SOL: 9
+		};
+
+		// Get chain parameters
+		const fromChainParam = chainParams[fromChain.id] || '';
+		const toChainParam = chainParams[toChain.id] || '';
+
+		// Format amount in smallest unit using the correct decimals for the source token
+		const decimals = tokenDecimals[fromToken.symbol] || 18;
+		const amountInSmallestUnit =
+			Number(amount) > 0 ? Math.floor(Number(amount) * Math.pow(10, decimals)).toString() : '0';
+
+		// For SOL to USDT
+		if (fromToken.symbol === 'SOL' && toToken.symbol === 'USDT') {
+			return `${baseUrl}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${fromChainParam}/${amountInSmallestUnit}`;
+		}
+
+		// For USDT to BTC
+		if (fromToken.symbol === 'USDT' && toToken.symbol === 'BTC') {
+			return `${baseUrl}/${toChainParam}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${amountInSmallestUnit}`;
+		}
+
+		// For BTC to USDT
+		if (fromToken.symbol === 'BTC' && toToken.symbol === 'USDT') {
+			return `${baseUrl}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${fromChainParam}/${amountInSmallestUnit}`;
+		}
+
+		// For all other tokens, use the standard format
+		return `${baseUrl}/${toChainParam}/${fromChainParam}/${amountInSmallestUnit}`;
+	}, [fromChain.id, toChain.id, amount, fromToken.symbol, toToken.symbol]);
 
 	return (
 		<div className={'flex max-w-[400px] flex-col rounded-2xl bg-[#17191c] lg:w-[400px]'}>
@@ -321,9 +332,13 @@ export function TradingWidget(): ReactNode {
 			)}
 
 			<div className={'w-full rounded-b-2xl border-t border-t-white/5 bg-[#1e2024] px-4 py-3 lg:px-5 lg:py-4'}>
-				<button className={'w-full rounded-2xl bg-blue py-4 font-medium hover:bg-blueHover'}>
-					{'Get Started'}
-				</button>
+				<Link
+					href={generateTradeUrl()}
+					rel={'noopener noreferrer'}>
+					<button className={'w-full rounded-2xl bg-blue py-4 font-medium hover:bg-blueHover'}>
+						{'Get Started'}
+					</button>
+				</Link>
 			</div>
 		</div>
 	);

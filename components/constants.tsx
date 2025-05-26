@@ -52,7 +52,7 @@ export const homepageBlueTitle = 'Endless Opportunity.';
 
 export const featuresTitle = 'Explore our features.';
 export const featureTabTitle = 'Multichain crypto home base';
-export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets'];
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Shift'];
 export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
 export const featureCard1BlueTitle = 'multiple chains';
 export const featureCard3WhiteTitle = 'All-In-One';
@@ -530,44 +530,14 @@ export const SUPPORTED_TOKENS = [
 		requestKey: 'USDT-0XDAC17F958D2EE523A2206206994597C13D831EC7',
 		tokenAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7'
 	},
-	{
-		symbol: 'BNB',
-		name: 'BNB',
-		icon: '/widget/bnb_icon.png',
-		slug: 'bnb',
-		decimals: {
-			eth: 18,
-			btc: 8,
-			sol: 8,
-			usdt: 8,
-			bnbeth: 18
-		},
-		requestKey: 'BNB',
-		tokenAddress: ''
-	},
-	{
-		symbol: 'BNBETH',
-		name: 'BNB on Ethereum',
-		icon: '/widget/bnb_icon.png',
-		sublogo: '/widget/eth_icon.png',
-		slug: 'bnb-on-ethereum',
-		decimals: {
-			btc: 8,
-			eth: 18,
-			sol: 8,
-			usdt: 8,
-			bnbeth: 18
-		},
-		tokenAddress: '0xb8c77482e45f1f44de1745f52c74426c631bdd52',
-		requestKey: 'BNB'
-	},
+
 	{
 		symbol: 'SOL',
 		name: 'Solana',
 		icon: '/widget/sol_icon.png',
 		slug: 'solana',
 		decimals: {
-			btc: 8,
+			btc: 9,
 			eth: 18,
 			sol: 8,
 			usdt: 8,
@@ -581,8 +551,7 @@ export const SUPPORTED_CHAINS = [
 	{id: 'bitcoin', name: 'Bitcoin', icon: '/widget/btc_icon.png', requestKey: 'BTC'},
 	{id: 'base', name: 'Base', icon: '/widget/base_icon.png', requestKey: 'BASE'},
 	{id: 'ethereum', name: 'Ethereum', icon: '/widget/eth_icon.png', requestKey: 'ETH', chainId: '1'},
-	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png', requestKey: 'SOL'},
-	{id: 'bnb', name: 'BNB Smart Chain', icon: '/widget/bnb_icon.png', requestKey: 'BSC'}
+	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png', requestKey: 'SOL'}
 ];
 
 export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
