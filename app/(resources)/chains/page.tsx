@@ -47,7 +47,7 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 	// Handle loading and error states
 	if (!chains) {
 		return (
-			<div className={'mt-[120px] flex w-full justify-center text-center lg:mt-60'}>
+			<div className={'my-[120px] flex w-full justify-center text-center lg:my-60'}>
 				<p className={'text-red-400'}>{'Unable to load chain data. Please try again later.'}</p>
 			</div>
 		);

@@ -8,6 +8,8 @@ export function SupportedWalletHero(props: {url: string; width: number; height: 
 			<Image
 				src={'/wallets/hero.jpg'}
 				alt={''}
+				loading={'eager'}
+				priority
 				width={2800}
 				height={720}
 			/>
