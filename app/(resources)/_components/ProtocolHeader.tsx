@@ -50,6 +50,8 @@ export function ProtocolHeader(data: THeaderData): ReactNode {
 					alt={''}
 					width={2800}
 					height={720}
+					loading={'eager'}
+					priority
 				/>
 				<div className={'absolute inset-0 flex items-center justify-end py-6 pr-16'}>
 					<Image
@@ -57,6 +59,8 @@ export function ProtocolHeader(data: THeaderData): ReactNode {
 						alt={data.name}
 						width={data.width}
 						height={data.height}
+						loading={'eager'}
+						priority
 						className={'my-auto h-full max-h-[256px] w-auto max-w-[256px]'}
 					/>
 				</div>
