@@ -7,15 +7,14 @@ import remarkEmoji from 'remark-emoji'; // For emoji support
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math'; // For math equations
 
+import {isHtml} from '@/components/utils/isHtml';
+
 import type {ReactNode} from 'react';
 
 export function BlogContent({content}: {content: string}): ReactNode {
-	// Check if content looks like HTML (contains HTML tags)
-	const isHtml = /<\/?(?:div|span|p|a|img|h[1-6]|ul|ol|li|table|tr|td|th|br|hr|em|strong)[^>]*>/i.test(content);
-
 	return (
 		<div className={'blog-content prose prose-invert max-w-none'}>
-			{isHtml ? (
+			{isHtml(content) ? (
 				// eslint-disable-next-line @typescript-eslint/naming-convention
 				<div dangerouslySetInnerHTML={{__html: content}} />
 			) : (

@@ -11,99 +11,66 @@ import type {ReactNode} from 'react';
 
 export function Footer(): ReactNode {
 	return (
-		<>
-			<div className={'relative -m-4 block border-stroke bg-secondBg p-6 lg:hidden'}>
-				<div className={'grid grid-cols-2 gap-10'}>
-					{Object.entries(footerLinks).map(([category, links]) => (
-						<div
-							key={category}
-							className={'flex flex-col gap-2'}>
-							<h3 className={'cursor-default text-sm font-medium text-gray-500'}>{category}</h3>
-							<div className={'flex flex-col gap-3'}>
-								{links.map(link => (
-									<Link
-										key={link.name}
-										href={link.href}
-										target={category === 'Connect' ? '_blank' : '_self'}
-										className={'text-sm text-white transition-all hover:text-blue'}>
-										{link.name}
-									</Link>
-								))}
-							</div>
-						</div>
-					))}
+		<div className={'relative border-t border-stroke bg-secondBg'}>
+			<div className={'mx-auto max-w-[1440px] px-4 py-8 lg:px-8'}>
+				{/* Top row: Logo and Donate */}
+				<div className={'flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0'}>
+					<Link href={'/'}>
+						<ShapeshiftLogo />
+					</Link>
+					<Button
+						href={'https://giveth.io/project/shapeshift-dao'}
+						variant={'blue'}
+						title={footerButtonTitle}
+						hasArrow
+					/>
 				</div>
-				<div className={'mb-10 mt-16'}>
-					<ShapeshiftLogo />
+
+				{/* Middle row: Menu items */}
+				<div className={'mx-auto mt-12 w-full max-w-[720px]'}>
+					<div className={'grid grid-cols-2 gap-8 lg:grid-cols-4'}>
+						{Object.entries(footerLinks).map(([category, links]) => (
+							<div
+								key={category}
+								className={'flex flex-col gap-4'}>
+								<h3 className={'cursor-default text-sm font-medium text-gray-500'}>{category}</h3>
+								<div className={'flex flex-col gap-3'}>
+									{links.map(link => (
+										<Link
+											key={link.name}
+											href={link.href}
+											target={category === 'Connect' ? '_blank' : '_self'}
+											className={'text-sm text-white transition-all hover:text-blue'}>
+											{link.name}
+										</Link>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				{/* Bottom row: App QR and Copyright */}
+				<div
+					className={
+						'mt-12 flex flex-col items-center justify-between gap-6 border-t border-stroke pt-8 sm:flex-row'
+					}>
+					<div className={'flex items-center gap-6 rounded-2xl border border-stroke bg-black/95 p-2'}>
+						<span className={'p-4 text-2xl text-white'}>{'Get the app'}</span>
+						<div>
+							<Image
+								src={'/qrcode.png'}
+								alt={'qrcode'}
+								width={64}
+								height={64}
+							/>
+						</div>
+					</div>
 					<div className={'text-sm text-gray-500'}>
 						{`© ${new Date().getFullYear()} ShapeShift. All Rights Reserved`}
 					</div>
 				</div>
 			</div>
-			<div className={'relative hidden lg:block'}>
-				<div className={'rounded-lg border border-stroke bg-secondBg'}>
-					<div className={'h-[500px]'}>
-						<div className={'flex h-full flex-col p-12'}>
-							<div className={'flex justify-between'}>
-								<div className={'flex flex-col justify-between'}>
-									<Link href={'/'}>
-										<ShapeshiftLogo />
-									</Link>
-								</div>
-
-								<div className={'flex gap-20'}>
-									{Object.entries(footerLinks).map(([category, links]) => (
-										<div
-											key={category}
-											className={'flex flex-col gap-8'}>
-											<h3 className={'cursor-default text-sm font-medium text-gray-500'}>
-												{category}
-											</h3>
-											<div className={'flex flex-col gap-3'}>
-												{links.map(link => (
-													<Link
-														key={link.name}
-														href={link.href}
-														target={category === 'Connect' ? '_blank' : '_self'}
-														className={'text-sm text-white transition-all hover:text-blue'}>
-														{link.name}
-													</Link>
-												))}
-											</div>
-										</div>
-									))}
-								</div>
-								<Button
-									href={'https://giveth.io/project/shapeshift-dao'}
-									variant={'blue'}
-									title={footerButtonTitle}
-									hasArrow
-								/>
-							</div>
-
-							<div className={'flex items-center justify-between gap-2'}>
-								<div
-									className={
-										'flex items-center gap-6 rounded-2xl border border-stroke bg-black/95 p-2'
-									}>
-									<span className={'p-4 text-2xl text-white'}>{'Get the app'}</span>
-									<div>
-										<Image
-											src={'/qrcode.png'}
-											alt={'qrcode'}
-											width={64}
-											height={64}
-										/>
-									</div>
-								</div>
-								<div className={'text-sm text-gray-500'}>
-									{`© ${new Date().getFullYear()} ShapeShift. All Rights Reserved`}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
+		</div>
 	);
 }

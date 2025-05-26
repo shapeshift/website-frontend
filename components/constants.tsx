@@ -52,7 +52,7 @@ export const homepageBlueTitle = 'Endless Opportunity.';
 
 export const featuresTitle = 'Explore our features.';
 export const featureTabTitle = 'Multichain crypto home base';
-export const homepageFeatureTabs = ['Buy', 'Trade', 'Shift'];
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets'];
 export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
 export const featureCard1BlueTitle = 'multiple chains';
 export const featureCard3WhiteTitle = 'All-In-One';

@@ -21,7 +21,8 @@ export const RESOURCES_DICT = {
 		description: "Your guide to ShapeShift's features, support, and ecosystem."
 	},
 	support: {
-		title: 'We are here to help',
-		description: 'Find answers, resources, and assistance to resolve your issues quickly.'
+		title: 'Support',
+		description: 'Find answers to your questions and learn more about ShapeShift.',
+		emptyMessage: "We couldn't find any support articles matching your criteria."
 	}
 } as const;

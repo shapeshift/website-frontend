@@ -51,7 +51,7 @@ export function SupportArticleList({
 	initialPage = DEFAULT_PAGINATION.INITIAL_PAGE,
 	populateContent = true,
 	cacheArticles = true,
-	emptyMessage = "We couldn't find any support articles matching your criteria.",
+	emptyMessage = RESOURCES_DICT.support.emptyMessage,
 	gridClassName
 }: TSupportArticleListProps): ReactNode {
 	const [page, setPage] = useState(initialPage);

@@ -143,7 +143,7 @@ export default function HomePage(): ReactNode {
 										key={item}
 										onClick={() => setTab(item)}>
 										<TabItem
-											className={'!px-10'}
+											className={'!px-8'}
 											title={item}
 											selected={tab === item}
 										/>
