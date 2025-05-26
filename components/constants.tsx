@@ -33,7 +33,7 @@ import type {TCardsRowSection, TSupportedChainTypes} from '@/components/strapi/t
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
 
-const docsUrl = 'https://docs.shapeshift.com/';
+const docsUrl = 'https://github.com/shapeshift/web';
 
 const githubUrl = 'https://github.com/shapeshift';
 
