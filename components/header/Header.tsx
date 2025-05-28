@@ -1,6 +1,6 @@
 'use client';
 
-import {useLanguage} from '@/hooks/useLanguage';
+import {useLanguage} from '@/app/contexts/LanguageContext';
 
 import {DesktopHeader} from './DesktopHeader';
 import {MobileHeader} from './MobileHeader';

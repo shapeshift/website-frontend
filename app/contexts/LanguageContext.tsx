@@ -3,7 +3,7 @@
 import {usePathname, useRouter} from 'next/navigation';
 import {createContext, useContext, useEffect, useState} from 'react';
 
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from '@/app/i18n/config';
+import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath, getPathWithoutLanguage} from '@/app/i18n/config';
 import {useLanguage as useWeglotLanguage} from '@/hooks/useLanguage';
 
 import type {TLanguage} from '@/app/i18n/config';
@@ -22,21 +22,63 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	const {currentLanguage: weglotLanguage, switchLanguage: switchWeglotLanguage} = useWeglotLanguage();
 	const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
 
+	// Sync Weglot language with URL on mount and when pathname changes
 	useEffect(() => {
-		if (weglotLanguage) {
+		const pathLanguage = getLanguageFromPath(pathname);
+		
+		// If URL has a language prefix, sync it with Weglot
+		if (pathLanguage && pathLanguage !== DEFAULT_LANGUAGE) {
+			switchWeglotLanguage(pathLanguage);
+			setCurrentLanguage(pathLanguage);
+		} else if (weglotLanguage) {
+			// If no language in URL but Weglot has one, use Weglot's
 			setCurrentLanguage(weglotLanguage);
+			
+			// Update URL to match Weglot's language if not default
+			if (weglotLanguage !== DEFAULT_LANGUAGE) {
+				const cleanPath = getPathWithoutLanguage(pathname);
+				const targetPath = `/${weglotLanguage}${cleanPath}`;
+				if (pathname !== targetPath) {
+					router.replace(targetPath);
+				}
+			}
 		}
-	}, [weglotLanguage]);
+	}, [pathname, router, switchWeglotLanguage, weglotLanguage]);
+
+	// Update URL when Weglot language changes
+	useEffect(() => {
+		if (weglotLanguage && weglotLanguage !== currentLanguage) {
+			setCurrentLanguage(weglotLanguage);
+			
+			// Update URL to reflect the new language
+			const cleanPath = getPathWithoutLanguage(pathname);
+			const targetPath = weglotLanguage === DEFAULT_LANGUAGE 
+				? cleanPath || '/'
+				: `/${weglotLanguage}${cleanPath}`;
+			
+			if (pathname !== targetPath) {
+				router.push(targetPath);
+			}
+		}
+	}, [weglotLanguage, pathname, router, currentLanguage]);
 
 	const switchLanguage = (languageCode: string): void => {
 		if (languageCode === currentLanguage) {
 			return;
 		}
 
-		const newPath = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '');
-		const targetPath = languageCode === DEFAULT_LANGUAGE ? newPath : `/${languageCode}${newPath}`;
+		// Get clean path without language prefix
+		const cleanPath = getPathWithoutLanguage(pathname);
+		
+		// Build target path with new language
+		const targetPath = languageCode === DEFAULT_LANGUAGE 
+			? cleanPath || '/'
+			: `/${languageCode}${cleanPath}`;
 
+		// Switch Weglot language
 		switchWeglotLanguage(languageCode);
+		
+		// Update URL
 		router.push(targetPath);
 	};
 
