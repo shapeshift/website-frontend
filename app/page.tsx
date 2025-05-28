@@ -137,13 +137,13 @@ export default function HomePage(): ReactNode {
 							<h1 className={'mb-7 text-center text-[40px] leading-[40px] text-white'}>
 								{featureTabTitle}
 							</h1>
-							<div className={'flex w-min gap-4 rounded-full border border-white/10 p-2'}>
+							<div className={'flex w-min gap-2 rounded-full border border-white/10 p-2 lg:gap-4'}>
 								{homepageFeatureTabs.map((item: string) => (
 									<button
 										key={item}
 										onClick={() => setTab(item)}>
 										<TabItem
-											className={'!px-8'}
+											className={'!px-6 lg:!px-8'}
 											title={item}
 											selected={tab === item}
 										/>

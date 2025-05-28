@@ -994,17 +994,8 @@ export const landingInfoCards = [
 export const statCardsTitle = 'Trusted by \n the Best';
 
 /************************************************************************************************
- * Landing Page Request Wallet URL
- * Contains the URL for the request wallet form on the landing page
- * Used in the landing page to allow users to request a new wallet
+ * Landing Page Request URL
+ * Contains the URL for the request form on the landing page
+ * Used in the landing page to allow users to request a new wallet or chain
  ************************************************************************************************/
-export const requestWalletUrl =
-	'https://docs.google.com/forms/d/e/1FAIpQLSfaq7G8CDhvKfuOZHi6NIyunsh0q05t_XUBgYRoH9Ftr479uQ/viewform?usp=header';
-
-/************************************************************************************************
- * Landing Page Request Chain URL
- * Contains the URL for the request chain form on the landing page
- * Used in the landing page to allow users to request a new chain
- ************************************************************************************************/
-export const requestChainUrl =
-	'https://docs.google.com/forms/d/e/1FAIpQLSdA2WROUDkp5uRnoUZruRWqoSrDCbtgBTMu1kPtHkjlPIjgpA/viewform?usp=header';
+export const requestUrl = 'https://shapeshift.canny.io/';
