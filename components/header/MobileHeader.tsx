@@ -5,6 +5,8 @@ import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useEffect, useState} from 'react';
 
+import {SUPPORTED_LANGUAGES} from '@/app/i18n/config';
+
 import {IconCheck} from '../common/icons/IconCheck';
 import {IconClose} from '../common/icons/IconClose';
 import {IconMenu} from '../common/icons/IconMenu';
@@ -12,7 +14,6 @@ import {IconPlanet} from '../common/icons/IconPlanet';
 import {IconShapeshift} from '../common/icons/IconShapeshift';
 import {appDao, appProducts, appResources, headerTabs} from '../constants';
 import {AnimatedPlusMinusIcon} from '../QuestionSection';
-import {LANGUAGES} from './LanguageExpand';
 
 import type {ReactNode} from 'react';
 
@@ -158,7 +159,7 @@ export function MobileHeader({
 									className={
 										'mb-10 mt-6 flex w-full items-center justify-between gap-2 rounded-2xl border border-white/50 bg-white/10 p-4'
 									}>
-									<span>{LANGUAGES.find(l => l.symbol === currentLanguage)?.name}</span>
+									<span>{SUPPORTED_LANGUAGES.find(l => l.code === currentLanguage)?.name}</span>
 									<IconPlanet className={'text-white/50'} />
 								</button>
 								<AnimatePresence>
@@ -167,18 +168,24 @@ export function MobileHeader({
 											className={'space-y-4 p-6 pt-0'}
 											{...expandAnimation}>
 											<div className={'flex flex-col gap-4'}>
-												{LANGUAGES.map(language => (
+												{SUPPORTED_LANGUAGES.map(language => (
 													<button
-														key={language.symbol}
+														key={language.code}
 														onClick={() => {
-															switchLanguage(language.symbol);
+															console.log('[MobileHeader] Language selected:', language.code);
+															switchLanguage(language.code);
 															setExpandedSection('');
 														}}
 														className={
 															'flex items-center justify-between rounded-lg px-6 py-4 hover:bg-white/10'
 														}>
-														<span>{language.name}</span>
-														{currentLanguage === language.symbol && <IconCheck />}
+														<div className={'flex flex-col items-start'}>
+															<span className={'text-sm font-medium'}>{language.name}</span>
+															{language.name !== language.nativeName && (
+																<span className={'text-xs opacity-70'}>{language.nativeName}</span>
+															)}
+														</div>
+														{currentLanguage === language.code && <IconCheck />}
 													</button>
 												))}
 											</div>

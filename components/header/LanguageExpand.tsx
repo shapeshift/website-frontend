@@ -1,15 +1,12 @@
 'use client';
 
+import {SUPPORTED_LANGUAGES} from '@/app/i18n/config';
+
 import {expandAnimation} from './animations';
 import {IconCheck} from '../common/icons/IconCheck';
 import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
-
-export const LANGUAGES = [
-	{symbol: 'en', name: 'English'},
-	{symbol: 'fr', name: 'French'}
-];
 
 export function LanguageExpand({
 	switchLanguageAction,
@@ -25,17 +22,25 @@ export function LanguageExpand({
 			{/* Left section with main CTA */}
 			<div className={'col-span-1 p-16'}>
 				<div className={'flex flex-wrap justify-center gap-1'}>
-					{LANGUAGES.map(language => (
+					{SUPPORTED_LANGUAGES.map(language => (
 						<button
 							className={cl(
 								'rounded-lg px-6 py-4 hover:bg-white/10',
-								currentLanguage === language.symbol ? 'bg-white/10' : ''
+								currentLanguage === language.code ? 'bg-white/10' : ''
 							)}
-							key={language.symbol}
-							onClick={() => switchLanguageAction(language.symbol)}>
+							key={language.code}
+							onClick={() => {
+								console.log('[LanguageExpand] Language selected:', language.code);
+								switchLanguageAction(language.code);
+							}}>
 							<div className={'flex w-[184px] items-center justify-between'}>
-								{language.name}
-								{currentLanguage === language.symbol && <IconCheck />}
+								<div className={'flex flex-col items-start'}>
+									<span className={'text-sm font-medium'}>{language.name}</span>
+									{language.name !== language.nativeName && (
+										<span className={'text-xs opacity-70'}>{language.nativeName}</span>
+									)}
+								</div>
+								{currentLanguage === language.code && <IconCheck />}
 							</div>
 						</button>
 					))}
