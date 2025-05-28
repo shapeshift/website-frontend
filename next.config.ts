@@ -28,7 +28,15 @@ const nextConfig = {
 				headers: [
 					{
 						key: 'cross-origin-embedder-policy',
-						value: 'require-corp'
+						value: 'credentialless'
+					},
+					{
+						key: 'cross-origin-resource-policy',
+						value: 'cross-origin'
+					},
+					{
+						key: 'cross-origin-opener-policy',
+						value: 'same-origin'
 					}
 				]
 			}
