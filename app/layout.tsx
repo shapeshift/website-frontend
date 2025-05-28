@@ -74,7 +74,18 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 									api_key: '${process.env.WEGLOT_API_KEY}',
 									original_language: 'en', 
 									languages: [${weglotLanguages.split(',').map(lang => `'${lang}'`).join(', ')}],
-									exclude_blocks: ['.no-translate']
+									exclude_blocks: ['.no-translate'],
+									wait_transition: true
+								});
+								
+								// For SPA support - listen to Weglot initialization
+								Weglot.on('initialized', function() {
+									console.log('[Weglot] Weglot has been initialized');
+								});
+								
+								// Listen for language changes
+								Weglot.on('languageChanged', function(newLang, prevLang) {
+									console.log('[Weglot] Language changed from', prevLang, 'to', newLang);
 								});
 								console.log('[Weglot] Initialization successful');
 							} catch (error) {

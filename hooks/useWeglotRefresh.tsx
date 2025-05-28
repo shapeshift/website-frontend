@@ -11,7 +11,9 @@ export function useWeglotRefresh(): void {
 
 	useEffect(() => {
 		// Skip the initial mount
-		if (!pathname) return;
+		if (!pathname) {
+			return;
+		}
 
 		// Give the DOM time to update with new content
 		const timer = setTimeout(() => {
@@ -26,19 +28,27 @@ export function useWeglotRefresh(): void {
 				if (currentLang && currentLang !== 'en') {
 					console.log('[useWeglotRefresh] Triggering retranslation for:', currentLang);
 					
-					// Create a small DOM mutation to trigger Weglot's MutationObserver
-					const tempDiv = document.createElement('div');
-					tempDiv.style.display = 'none';
-					tempDiv.className = 'weglot-trigger';
-					document.body.appendChild(tempDiv);
+					// Method 1: Use Weglot's page view tracking for SPAs
+					if ((window as any).Weglot.page) {
+						console.log('[useWeglotRefresh] Using Weglot.page() for SPA navigation');
+						(window as any).Weglot.page();
+					}
 					
-					// Remove it immediately - this mutation will trigger Weglot
-					setTimeout(() => {
-						document.body.removeChild(tempDiv);
-					}, 10);
+					// Method 2: Try manual DOM scanning
+					if ((window as any).Weglot.translatePage) {
+						console.log('[useWeglotRefresh] Using Weglot.translatePage()');
+						(window as any).Weglot.translatePage();
+					}
+					
+					// Method 3: Force refresh by updating Weglot
+					// This tells Weglot the page has changed
+					console.log('[useWeglotRefresh] Notifying Weglot of page change');
+					if ((window as any).Weglot.refresh) {
+						(window as any).Weglot.refresh();
+					}
 				}
 			}
-		}, 300); // Wait 300ms for DOM to stabilize
+		}, 500); // Wait 500ms for DOM to stabilize
 
 		return () => clearTimeout(timer);
 	}, [pathname]);
