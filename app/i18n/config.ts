@@ -36,12 +36,6 @@ export const SUPPORTED_LANGUAGES: TLanguage[] = [
 		weglotCode: 'fr'
 	},
 	{
-		code: 'pt',
-		name: 'Portuguese',
-		nativeName: 'Português',
-		weglotCode: 'pt'
-	},
-	{
 		code: 'zh',
 		name: 'Chinese',
 		nativeName: '中文',
