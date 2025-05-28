@@ -59,8 +59,8 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					src={'https://cdn.weglot.com/weglot.min.js'}
 					crossOrigin={'anonymous'}
 				/>
-				<script
-					// strategy={'afterInteractive'}
+				<Script
+					strategy={'afterInteractive'}
 					id={'weglot'}
 					crossOrigin={'anonymous'}>
 					{`
@@ -100,7 +100,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 							console.warn('Weglot is not defined. Translation service may not be available.');
 						}
 					`}
-				</script>
+				</Script>
 				<Script
 					id={'website-schema'}
 					type={'application/ld+json'}
