@@ -10,29 +10,27 @@ export function middleware(request: NextRequest): NextResponse {
 		lang => pathname.startsWith(`/${lang.code}/`) || pathname === `/${lang.code}`
 	);
 
-	// Add a new header x-current-path which passes the path to downstream components
+	// Add headers
 	const headers = new Headers(request.headers);
 	headers.set('x-current-path', pathname);
 
-	// If pathname doesn't have a locale, redirect to default locale
-	if (!pathnameHasLocale) {
-		// Don't redirect if it's the root path - let it be handled naturally
-		if (pathname === '/') {
-			return NextResponse.next({headers});
-		}
-
-		// For other paths, check if we should add a locale prefix
-		// We'll let the LanguageContext handle this based on Weglot's current language
-		return NextResponse.next({headers});
-	}
-
-	// Extract locale from pathname
-	const locale = getLanguageFromPath(pathname);
+	// Extract locale from pathname if present
+	const locale = pathnameHasLocale ? getLanguageFromPath(pathname) : DEFAULT_LANGUAGE;
 	
-	// If locale is the default language, we could optionally redirect to remove it
-	// But for now, we'll keep it for consistency
-	
-	return NextResponse.next({headers});
+	// Add locale to headers so components can access it
+	headers.set('x-locale', locale || DEFAULT_LANGUAGE);
+
+	// Create response with headers
+	const response = NextResponse.next({headers});
+
+	// Set locale cookie for client-side access
+	response.cookies.set('locale', locale || DEFAULT_LANGUAGE, {
+		httpOnly: false,
+		sameSite: 'lax',
+		path: '/'
+	});
+
+	return response;
 }
 
 export const config = {
