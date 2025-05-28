@@ -69,7 +69,7 @@ export function getPathWithoutLanguage(pathname: string): string {
 	const firstSegment = segments[0];
 
 	if (SUPPORTED_LANGUAGES.some(lang => lang.code === firstSegment)) {
-		return '/' + segments.slice(1).join('/');
+		return `/${segments.slice(1).join('/')}`;
 	}
 
 	return pathname;

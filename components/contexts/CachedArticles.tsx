@@ -84,7 +84,13 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
 	});
 
 	return (
-		<ArticlesContext.Provider value={{cachedResponse, setCachedResponse, cachedParams, setCachedParams}}>
+		<ArticlesContext.Provider
+			value={{
+				cachedResponse,
+				setCachedResponse,
+				cachedParams,
+				setCachedParams
+			}}>
 			{children}
 		</ArticlesContext.Provider>
 	);

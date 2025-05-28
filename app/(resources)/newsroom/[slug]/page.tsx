@@ -2,7 +2,6 @@
 
 import 'highlight.js/styles/github-dark.css';
 import Image from 'next/image';
-import Link from 'next/link';
 import {notFound, useParams, useRouter} from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -13,6 +12,7 @@ import remarkMath from 'remark-math'; // For math equations
 
 import {Banner} from '@/components/common/Banner';
 import {IconBack} from '@/components/common/icons/IconBack';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {useCachedNews} from '@/components/contexts/CachedNews';
 import {useFetchNewsroom} from '@/hooks/useFetchNewsroom';
 
@@ -294,12 +294,12 @@ export default function BlogPost(): ReactNode {
 
 				<div className={'mb-8 flex flex-wrap gap-2'}>
 					{post.tags.map((tag: string, index: number) => (
-						<Link
+						<LocalizedLink
 							href={`/newsroom/tags/${tag}`}
 							className={'text-blue'}
 							key={index}>
 							{`#${tag}`}
-						</Link>
+						</LocalizedLink>
 					))}
 				</div>
 				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>

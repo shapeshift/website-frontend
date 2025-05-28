@@ -22,7 +22,7 @@ export function StrapiFAQ(): ReactNode {
 	 */
 	const handleFAQItems = useCallback(async () => {
 		const data = await getFaq();
-		const allQuestions = data?.faqSection.map(section => section.faqSectionItem).flat() ?? [];
+		const allQuestions = data?.faqSection.flatMap(section => section.faqSectionItem) ?? [];
 		setFaqItems(allQuestions);
 	}, []);
 

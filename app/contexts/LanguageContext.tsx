@@ -25,47 +25,45 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	// Sync Weglot language with URL on mount and when pathname changes
 	useEffect(() => {
 		const pathLanguage = getLanguageFromPath(pathname);
-		
+
 		console.log('[LanguageContext] Path language:', pathLanguage);
 		console.log('[LanguageContext] Weglot language:', weglotLanguage);
 		console.log('[LanguageContext] Current language:', currentLanguage);
 		console.log('[LanguageContext] Pathname:', pathname);
-		
+
 		// Always update current language from path first
 		if (pathLanguage !== currentLanguage) {
 			console.log('[LanguageContext] Updating current language from path:', pathLanguage);
 			setCurrentLanguage(pathLanguage);
 		}
-		
+
 		// Sync Weglot with the path language
 		if (pathLanguage !== weglotLanguage) {
 			console.log('[LanguageContext] Syncing Weglot to path language:', pathLanguage);
 			switchWeglotLanguage(pathLanguage);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]); // Intentionally limited deps to prevent loops
 
 	// Update state when Weglot language changes (but not URL - that's handled by switchLanguage)
 	useEffect(() => {
 		console.log('[LanguageContext - Weglot Change] Weglot:', weglotLanguage, 'Current:', currentLanguage);
-		
+
 		if (weglotLanguage && weglotLanguage !== currentLanguage) {
 			console.log('[LanguageContext] Weglot language changed from', currentLanguage, 'to', weglotLanguage);
 			setCurrentLanguage(weglotLanguage);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [weglotLanguage]);
 
 	const switchLanguage = (languageCode: string): void => {
 		console.log('[LanguageContext] switchLanguage called with:', languageCode, 'Current:', currentLanguage);
-		
+
 		// Get clean path without language prefix
 		const cleanPath = getPathWithoutLanguage(pathname);
-		
+
 		// Build target path with new language
-		const targetPath = languageCode === DEFAULT_LANGUAGE 
-			? cleanPath || '/'
-			: `/${languageCode}${cleanPath}`;
+		const targetPath = languageCode === DEFAULT_LANGUAGE ? cleanPath || '/' : `/${languageCode}${cleanPath}`;
 
 		console.log('[LanguageContext] Switching language to:', languageCode);
 		console.log('[LanguageContext] Clean path:', cleanPath);
@@ -76,7 +74,7 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		// This ensures sync when URL and state are out of sync
 		setCurrentLanguage(languageCode);
 		switchWeglotLanguage(languageCode);
-		
+
 		// Only update URL if it's actually different
 		if (pathname !== targetPath) {
 			router.push(targetPath);

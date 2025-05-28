@@ -1,9 +1,9 @@
 /**************************************************************************************************
-** CSS Module for Terms Pages
-** Provides consistent styling for blog-like content across privacy policy and terms of service
-** Replaces global styles with module-scoped CSS
-** Contains styles for common elements like code blocks, footnotes, and definition lists
-**************************************************************************************************/
+ ** CSS Module for Terms Pages
+ ** Provides consistent styling for blog-like content across privacy policy and terms of service
+ ** Replaces global styles with module-scoped CSS
+ ** Contains styles for common elements like code blocks, footnotes, and definition lists
+ **************************************************************************************************/
 
 .blogContent {
 	/* Base styles */

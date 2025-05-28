@@ -90,7 +90,13 @@ export function CachedPostsProvider({children}: {children: ReactNode}): ReactNod
 	});
 
 	return (
-		<PostsContext.Provider value={{cachedResponse, setCachedResponse, cachedParams, setCachedParams}}>
+		<PostsContext.Provider
+			value={{
+				cachedResponse,
+				setCachedResponse,
+				cachedParams,
+				setCachedParams
+			}}>
 			{children}
 		</PostsContext.Provider>
 	);

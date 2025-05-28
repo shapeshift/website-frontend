@@ -8,9 +8,9 @@
  * formatNumber(1234567, false) // '1,234,567'
  * formatNumber(1234567, true, 6) // '1.234567'
  */
-export function formatNumber(num: number, isNative: boolean, decimals: number = 6): string {
+export function formatNumber(num: number, isNative: boolean, decimals = 6): string {
 	const fixed = isNative ? num / 10 ** decimals : num;
-	if (isNaN(fixed)) {
+	if (Number.isNaN(fixed)) {
 		return '0';
 	}
 

@@ -1,7 +1,6 @@
 'use client';
 
 import {AnimatePresence, motion} from 'framer-motion';
-import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useEffect, useState} from 'react';
 
@@ -12,6 +11,7 @@ import {IconClose} from '../common/icons/IconClose';
 import {IconMenu} from '../common/icons/IconMenu';
 import {IconPlanet} from '../common/icons/IconPlanet';
 import {IconShapeshift} from '../common/icons/IconShapeshift';
+import {LocalizedLink} from '../common/LocalizedLink';
 import {appDao, appProducts, appResources, headerTabs} from '../constants';
 import {AnimatedPlusMinusIcon} from '../QuestionSection';
 
@@ -71,9 +71,9 @@ export function MobileHeader({
 	return (
 		<div className={'sticky top-0 z-50 lg:hidden'}>
 			<div className={'z-50 mt-6 flex w-full items-center justify-between rounded-2xl bg-headerBg p-4'}>
-				<Link href={'/'}>
+				<LocalizedLink href={'/'}>
 					<IconShapeshift />
-				</Link>
+				</LocalizedLink>
 				<button
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
 					className={'min-h-[56px] min-w-[56px] rounded-[20px] border border-white/5 p-4'}>
@@ -96,12 +96,12 @@ export function MobileHeader({
 
 						<div className={'flex min-h-[calc(100vh-100px)] flex-col justify-between'}>
 							<div className={'mt-10'}>
-								<Link
+								<LocalizedLink
 									href={'/'}
 									onClick={() => setIsMenuOpen(false)}
 									className={'mb-2 block rounded-2xl bg-secondBg p-8 text-2xl'}>
 									{'Home'}
-								</Link>
+								</LocalizedLink>
 
 								<div className={'space-y-2'}>
 									{headerTabs.map(tab => (
@@ -132,7 +132,7 @@ export function MobileHeader({
 																	animate={{opacity: 1, x: 0}}
 																	transition={{delay: 0.1}}
 																	key={item.name}>
-																	<Link
+																	<LocalizedLink
 																		onClick={() => setIsMenuOpen(false)}
 																		href={item.href}
 																		className={'flex gap-4 pt-6 text-lg'}>
@@ -143,7 +143,7 @@ export function MobileHeader({
 																			{item.icon}
 																		</div>
 																		<div>{item.name}</div>
-																	</Link>
+																	</LocalizedLink>
 																</motion.div>
 															))}
 													</motion.div>
@@ -172,7 +172,10 @@ export function MobileHeader({
 													<button
 														key={language.code}
 														onClick={() => {
-															console.log('[MobileHeader] Language selected:', language.code);
+															console.log(
+																'[MobileHeader] Language selected:',
+																language.code
+															);
 															switchLanguage(language.code);
 															setExpandedSection('');
 														}}
@@ -180,9 +183,13 @@ export function MobileHeader({
 															'flex items-center justify-between rounded-lg px-6 py-4 hover:bg-white/10'
 														}>
 														<div className={'flex flex-col items-start'}>
-															<span className={'text-sm font-medium'}>{language.name}</span>
+															<span className={'text-sm font-medium'}>
+																{language.name}
+															</span>
 															{language.name !== language.nativeName && (
-																<span className={'text-xs opacity-70'}>{language.nativeName}</span>
+																<span className={'text-xs opacity-70'}>
+																	{language.nativeName}
+																</span>
 															)}
 														</div>
 														{currentLanguage === language.code && <IconCheck />}

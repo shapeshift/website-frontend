@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import {Carousel} from '@/components/Carousel';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 
 import type {TStrapiImage} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
@@ -28,7 +28,7 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 							speed={20}
 							className={''}>
 							{items?.map(({image, url}, index) => (
-								<Link
+								<LocalizedLink
 									href={url ?? 'https://app.shapeshift.com'}
 									key={index}
 									className={'mx-6'}>
@@ -41,7 +41,7 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 											className={'h-10 w-auto'}
 										/>
 									</div>
-								</Link>
+								</LocalizedLink>
 							))}
 						</Carousel>
 					) : (

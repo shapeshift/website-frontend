@@ -93,7 +93,15 @@ export function useFetchNewsroom({
 				setPagination(data.meta.pagination);
 				if (cachePosts) {
 					setCachedResponse(data);
-					setCachedParams({page, pageSize, sort, slug, populateContent, category, tag});
+					setCachedParams({
+						page,
+						pageSize,
+						sort,
+						slug,
+						populateContent,
+						category,
+						tag
+					});
 				}
 			} catch (err) {
 				setError(err as Error);

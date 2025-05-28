@@ -1,14 +1,14 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {useMemo} from 'react';
 
 import {Button} from '@/components/common/Button';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {cl} from '@/components/utils/cl';
 
 import type {TStrapiImage} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
 
-function WalletFeature({chainName}: {chainName: string}): ReactNode {
+function WalletFeature({chainName}: { chainName: string }): ReactNode {
 	return (
 		<div
 			className={
@@ -18,21 +18,26 @@ function WalletFeature({chainName}: {chainName: string}): ReactNode {
 				backgroundImage: "url('/wallets/cover.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
-			}}>
+			}}
+		>
 			<div className={'w-full p-20'}>
-				<p className={'text-[40px] leading-[48px] text-white'}>{`ShapeShift ${chainName} wallet`}</p>
+				<p
+					className={'text-[40px] leading-[48px] text-white'}
+				>{`ShapeShift ${chainName} wallet`}
+    </p>
 				<div className={'flex flex-col gap-4 pt-8'}>
 					<p className={'text-xl text-secondary/50'}>
 						{`Easily connect your favorite ${chainName} Wallet to ShapeShift. Need a ${chainName} Wallet? Get started with the ShapeShift wallet today.`}
 					</p>
 					<p className={'text-xl text-secondary/50'}>
 						{`Easily view your ${chainName} wallet address, ${chainName} balance, ${chainName} transaction history, and ${chainName} price in one simple `}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							target={'_blank'}
-							href={'https://app.shapeshift.com/#/wallet'}>
+							href={'https://app.shapeshift.com/#/wallet'}
+						>
 							{'interactive dashboard'}
-						</Link>
+						</LocalizedLink>
 						{'.'}
 					</p>
 				</div>
@@ -57,7 +62,9 @@ function WalletFeature({chainName}: {chainName: string}): ReactNode {
 	);
 }
 
-function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
+function HardwareWalletFeature({
+	chainName
+}: { chainName: string }): ReactNode {
 	return (
 		<div
 			className={
@@ -67,11 +74,18 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
-			}}>
+			}}
+		>
 			<div className={'flex w-full items-center justify-start px-20'}>
-				<p className={'text-[40px] leading-[48px] text-white'}>{'Hardware wallet support'}</p>
+				<p className={'text-[40px] leading-[48px] text-white'}>
+					{'Hardware wallet support'}
+				</p>
 			</div>
-			<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
+			<div
+				className={
+					'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'
+				}
+			>
 				<Image
 					src={'/chains/keepkey.png'}
 					alt={'KeepKey'}
@@ -82,17 +96,22 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 					<p className={'pb-2 text-2xl text-white'}>{'KeepKey'}</p>
 					<p className={'text-base text-secondary/50'}>
 						{'Connect your '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							target={'_blank'}
-							href={'https://www.keepkey.com/'}>
+							href={'https://www.keepkey.com/'}
+						>
 							{'KeepKey'}
-						</Link>
+						</LocalizedLink>
 						{` hardware wallet to ShapeShift and enjoy permissionless, private ${chainName} DeFi.`}
 					</p>
 				</div>
 			</div>
-			<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
+			<div
+				className={
+					'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'
+				}
+			>
 				<Image
 					src={'/chains/ledger.png'}
 					alt={'Ledger'}
@@ -103,11 +122,12 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 					<p className={'pb-2 text-2xl text-white'}>{'Ledger'}</p>
 					<p className={'text-base text-secondary/50'}>
 						{'Privately connect your '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
-							href={'/wallets/ledger'}>
+							href={'/wallets/ledger'}
+						>
 							{'Ledger'}
-						</Link>
+						</LocalizedLink>
 						{` directly to ShapeShift without the need for Ledger Live and enjoy permissionless ${chainName}.`}
 					</p>
 				</div>
@@ -116,7 +136,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 	);
 }
 
-function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
+function BuyInSecondsFeature({chainName}: { chainName: string }): ReactNode {
 	return (
 		<div
 			style={{
@@ -125,9 +145,14 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
 					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
 						{`Easily buy ${chainName} in seconds`}
 					</p>
@@ -142,19 +167,24 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 				</div>
 				<p className={'pb-4 text-base text-secondary/50'}>
 					{`Experience the multichain simplicity of buying ${chainName} with ShapeShift's easy-to-use `}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
 						target={'_blank'}
-						href={'https://app.shapeshift.com/pools#/buy-crypto'}>
+						href={'https://app.shapeshift.com/pools#/buy-crypto'}
+					>
 						{'fiat ramp'}
-					</Link>
+					</LocalizedLink>
 					{`. No matter where you are, ShapeShift makes it effortless buy ${chainName}.`}
 				</p>
 				<p className={'text-base text-secondary/50'}>
 					{`Say goodbye to complex procedures and failed transactions, and say hello to a new way to ShapeShift your ${chainName}.`}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'
+				}
+			>
 				<Image
 					src={'/chains/buy-mockup.png'}
 					alt={''}
@@ -167,7 +197,10 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 	);
 }
 
-function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStrapiImage}): ReactNode {
+function CustodialFeature({
+	chainName,
+	foxImg
+}: { chainName: string; foxImg: TStrapiImage }): ReactNode {
 	return (
 		<div
 			style={{
@@ -176,9 +209,14 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
 					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
 						{`Self-custodial ${chainName}: Redefined`}
 					</p>
@@ -198,7 +236,11 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 					{`Welcome to the most private multichain interface for ${chainName}.`}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'
+				}
+			>
 				<Image
 					src={`${process.env.STRAPI_URL}${foxImg.url}`}
 					alt={''}
@@ -217,7 +259,8 @@ function SolanaJupiterExchangeFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col-reverse rounded-b-2xl col-span-1 lg:col-span-2'
-			)}>
+			)}
+		>
 			<div className={'p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{'Jupiter Exchange'}</div>
 				<div className={'text-gray-500'}>
@@ -232,7 +275,9 @@ function SolanaJupiterExchangeFeature(): ReactNode {
 					alt={'Jupiter Exchange'}
 					width={461}
 					height={219}
-					className={'size-full object-contain p-6 transition-all duration-300 hover:scale-105'}
+					className={
+						'size-full object-contain p-6 transition-all duration-300 hover:scale-105'
+					}
 				/>
 			</div>
 		</div>
@@ -245,53 +290,61 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col-reverse rounded-b-2xl col-span-1 lg:col-span-2'
-			)}>
+			)}
+		>
 			<div className={'p-10'}>
 				<div className={'mb-2 text-2xl text-white'}>{'Multichain Snap'}</div>
 				<div className={'text-gray-500'}>
 					{'ShapeShift’s MetaMask Snap empowers you to do more with your '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
 						target={'_blank'}
-						href={'https://metamask.io/'}>
+						href={'https://metamask.io/'}
+					>
 						{'MetaMask'}
-					</Link>
+					</LocalizedLink>
 					{' wallet. Trade '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/bitcoin'}>
+						href={'/chains/bitcoin'}
+					>
 						{'Bitcoin'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/ethereum'}>
+						href={'/chains/ethereum'}
+					>
 						{'Ethereum'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/base'}>
+						href={'/chains/base'}
+					>
 						{'Base'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/cosmos'}>
+						href={'/chains/cosmos'}
+					>
 						{'Cosmos'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/thorchain'}>
+						href={'/chains/thorchain'}
+					>
 						{'THORChain'}
-					</Link>
+					</LocalizedLink>
 					{' and more with your '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/wallets/metamask'}>
+						href={'/wallets/metamask'}
+					>
 						{'MetaMask'}
-					</Link>
+					</LocalizedLink>
 					{'.'}
 				</div>
 			</div>
@@ -301,7 +354,9 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 					alt={'Jupiter Exchange'}
 					width={461}
 					height={219}
-					className={'size-full object-cover object-top px-6 transition-all duration-300 hover:scale-105'}
+					className={
+						'size-full object-cover object-top px-6 transition-all duration-300 hover:scale-105'
+					}
 				/>
 			</div>
 		</div>
@@ -314,11 +369,16 @@ function YourKeyFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col-reverse rounded-b-2xl col-span-1 lg:col-span-2'
-			)}>
+			)}
+		>
 			<div className={'p-10'}>
-				<div className={'mb-2 text-2xl text-white'}>{'You control your keys'}</div>
+				<div className={'mb-2 text-2xl text-white'}>
+					{'You control your keys'}
+				</div>
 				<div className={'text-gray-500'}>
-					{'Always retain custody of your assets when you earn with ShapeShift. Your keys. Your crypto.'}
+					{
+						'Always retain custody of your assets when you earn with ShapeShift. Your keys. Your crypto.'
+					}
 				</div>
 			</div>
 			<div className={'aspect-video overflow-hidden rounded-2xl'}>
@@ -327,14 +387,18 @@ function YourKeyFeature(): ReactNode {
 					alt={'Your Key'}
 					width={461}
 					height={219}
-					className={'size-full object-contain transition-all duration-300 hover:scale-105'}
+					className={
+						'size-full object-contain transition-all duration-300 hover:scale-105'
+					}
 				/>
 			</div>
 		</div>
 	);
 }
 
-function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
+function StreamingSwapsFeature({
+	chainName
+}: { chainName: string }): ReactNode {
 	return (
 		<div
 			style={{
@@ -343,10 +407,17 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
-					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>{'Streaming swaps'}</p>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
+					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
+						{'Streaming swaps'}
+					</p>
 					<div>
 						<Button
 							variant={'white'}
@@ -358,19 +429,24 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 				</div>
 				<p className={'pb-4 text-base text-secondary/50'}>
 					{`Experience the multichain simplicity of buying ${chainName} with ShapeShift's easy-to-use `}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
 						target={'_blank'}
-						href={'https://app.shapeshift.com/pools#/buy-crypto'}>
+						href={'https://app.shapeshift.com/pools#/buy-crypto'}
+					>
 						{'fiat ramp'}
-					</Link>
+					</LocalizedLink>
 					{`. No matter where you are, ShapeShift makes it effortless buy ${chainName}.`}
 				</p>
 				<p className={'text-base text-secondary/50'}>
 					{`Say goodbye to complex procedures and failed transactions, and say hello to a new way to ShapeShift your ${chainName}.`}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'
+				}
+			>
 				<Image
 					src={'/chains/feature-streamingswaps.png'}
 					alt={''}
@@ -392,10 +468,17 @@ function ThorChainTradeFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
-					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>{'Trade'}</p>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
+					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
+						{'Trade'}
+					</p>
 					<div>
 						<Button
 							variant={'white'}
@@ -407,33 +490,39 @@ function ThorChainTradeFeature(): ReactNode {
 				</div>
 				<p className={'pb-4 text-base text-secondary/50'}>
 					{'Enjoy the most seamless, fast, and secure '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
 						target={'_blank'}
-						href={'https://app.shapeshift.com/'}>
+						href={'https://app.shapeshift.com/'}
+					>
 						{'trading experience'}
-					</Link>
+					</LocalizedLink>
 					{' across multiple blockchains directly from your '}
-					<Link
-						className={'text-white underline'}
-						href={'/wallets/'}>
+					<LocalizedLink className={'text-white underline'} href={'/wallets/'}>
 						{'DeFi wallet'}
-					</Link>
+					</LocalizedLink>
 					{'.'}
 				</p>
 				<p className={'text-base text-secondary/50'}>
 					{
 						"ShapeShift harnesses the power of THORChain's technology, enhancing the way you trade--ensuring you get the best rate every time. Whether you are trading "
 					}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/bitcoin'}>
+						href={'/chains/bitcoin'}
+					>
 						{'Bitcoin'}
-					</Link>
-					{' or Memecoins, trade like the professionals with ShapeShift and THORChain.'}
+					</LocalizedLink>
+					{
+						' or Memecoins, trade like the professionals with ShapeShift and THORChain.'
+					}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'
+				}
+			>
 				<Image
 					src={'/chains/feature-thorChainTrade.png'}
 					alt={''}
@@ -455,9 +544,14 @@ function RFoxFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
 					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
 						{'Get paid to trade: Introducing rFOX'}
 					</p>
@@ -470,10 +564,18 @@ function RFoxFeature(): ReactNode {
 						/>
 					</div>
 				</div>
-				<p className={'pb-4 text-base text-secondary/50'}>{'Stake into rFOX, get rewarded in RUNE.'}</p>
-				<p className={'text-base text-secondary/50'}>{'The more you trade, the more you earn.'}</p>
+				<p className={'pb-4 text-base text-secondary/50'}>
+					{'Stake into rFOX, get rewarded in RUNE.'}
+				</p>
+				<p className={'text-base text-secondary/50'}>
+					{'The more you trade, the more you earn.'}
+				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'
+				}
+			>
 				<Image
 					src={'/chains/feature-rFox.png'}
 					alt={''}
@@ -495,10 +597,17 @@ function ThorChainLendingFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
-					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>{'Lend & borrow'}</p>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
+					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
+						{'Lend & borrow'}
+					</p>
 					<div>
 						<Button
 							variant={'white'}
@@ -509,31 +618,42 @@ function ThorChainLendingFeature(): ReactNode {
 					</div>
 				</div>
 				<p className={'pb-4 text-base text-secondary/50'}>
-					{'Until the launch of THORChain’s app layer, THORChain Lending is halted'}
+					{
+						'Until the launch of THORChain’s app layer, THORChain Lending is halted'
+					}
 				</p>
 				<p className={'text-base text-secondary/50'}>
 					{'Borrow over 10,000 assets against your '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/bitcoin'}>
+						href={'/chains/bitcoin'}
+					>
 						{'BTC'}
-					</Link>
+					</LocalizedLink>
 					{' and '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/ethereum'}>
+						href={'/chains/ethereum'}
+					>
 						{'ETH'}
-					</Link>
-					{' with 0% APR and no liquidations! Do more with your crypto portfolio with THORChain '}
-					<Link
+					</LocalizedLink>
+					{
+						' with 0% APR and no liquidations! Do more with your crypto portfolio with THORChain '
+					}
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'https://app.shapeshift.com/pools#/lending'}>
+						href={'https://app.shapeshift.com/pools#/lending'}
+					>
 						{'Lending'}
-					</Link>
+					</LocalizedLink>
 					{' on ShapeShift.'}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end pb-10'
+				}
+			>
 				<Image
 					src={'/chains/feature-thorChainLending.png'}
 					alt={''}
@@ -555,10 +675,17 @@ function LiquidityPoolFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
-					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>{'Liquidity pools'}</p>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
+					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
+						{'Liquidity pools'}
+					</p>
 					<div>
 						<Button
 							variant={'white'}
@@ -570,23 +697,29 @@ function LiquidityPoolFeature(): ReactNode {
 				</div>
 				<p className={'text-base text-secondary/50'}>
 					{'Enhance your crypto portfolio by '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'https://app.shapeshift.com/pools#/pools'}>
+						href={'https://app.shapeshift.com/pools#/pools'}
+					>
 						{'providing liquidity'}
-					</Link>
+					</LocalizedLink>
 					{' and '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'https://app.shapeshift.com/pools#/earn'}>
+						href={'https://app.shapeshift.com/pools#/earn'}
+					>
 						{'earning passive income'}
-					</Link>
+					</LocalizedLink>
 					{
 						' directly from your DeFi wallet with ShapeShift App. It’s simple, secure, and effective. Dive in and start maximizing your returns today!'
 					}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'
+				}
+			>
 				<Image
 					src={'/chains/feature-liquidityPool.png'}
 					alt={''}
@@ -608,10 +741,17 @@ function ThorChainRunePoolFeature(): ReactNode {
 			className={cl(
 				'flex overflow-hidden h-full bg-secondBg hover:bg-secondHoverBg rounded-2xl',
 				'flex-col col-span-1 lg:col-span-3'
-			)}>
+			)}
+		>
 			<div className={'aspect-video p-10 text-left'}>
-				<div className={'flex w-full flex-row items-baseline justify-between gap-x-4'}>
-					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>{'RUNE pool'}</p>
+				<div
+					className={
+						'flex w-full flex-row items-baseline justify-between gap-x-4'
+					}
+				>
+					<p className={'max-w-80 pb-8 text-[40px] leading-[48px] text-white'}>
+						{'RUNE pool'}
+					</p>
 					<div>
 						<Button
 							variant={'white'}
@@ -625,45 +765,55 @@ function ThorChainRunePoolFeature(): ReactNode {
 					{
 						'Earn RUNE yield by providing liquidity onchain with a diverse group of bluechip asset pools such as '
 					}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/bitcoin'}>
+						href={'/chains/bitcoin'}
+					>
 						{'Bitcoin'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/ethereum'}>
+						href={'/chains/ethereum'}
+					>
 						{'Ethereum'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/binance-chain'}>
+						href={'/chains/binance-chain'}
+					>
 						{'BNB'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/dogecoin'}>
+						href={'/chains/dogecoin'}
+					>
 						{'Dogecoin'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/avalanche'}>
+						href={'/chains/avalanche'}
+					>
 						{'AVAX'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/cosmos'}>
+						href={'/chains/cosmos'}
+					>
 						{'ATOM'}
-					</Link>
+					</LocalizedLink>
 					{', USDC, USDT and any other major gas asset added to THORChain.'}
 				</p>
 			</div>
-			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
+			<div
+				className={
+					'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'
+				}
+			>
 				<Image
 					src={'/chains/feature-thorChainRunePool.png'}
 					alt={''}
@@ -686,24 +836,29 @@ function SaverVaultFeature(): ReactNode {
 				backgroundImage: "url('/chains/grid-bg.png')",
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
-			}}>
+			}}
+		>
 			<div className={'flex w-full flex-col justify-start gap-8 px-10'}>
-				<p className={'text-left text-[40px] leading-[48px] text-white'}>{'Saver vaults'}</p>
+				<p className={'text-left text-[40px] leading-[48px] text-white'}>
+					{'Saver vaults'}
+				</p>
 				<p className={'text-left text-base text-secondary/50'}>
 					{
 						'Welcome to a new, permissionless, self-custodial solution that empowers you to provide single asset liquidity on  THORChain. Earn single sided yield on native assets such as '
 					}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/bitcoin'}>
+						href={'/chains/bitcoin'}
+					>
 						{'Bitcoin'}
-					</Link>
+					</LocalizedLink>
 					{', '}
-					<Link
+					<LocalizedLink
 						className={'text-white underline'}
-						href={'/chains/dogecoin'}>
+						href={'/chains/dogecoin'}
+					>
 						{'Dogecoin'}
-					</Link>
+					</LocalizedLink>
 					{', Bitcoin Cash, Litecoin, and more.'}
 				</p>
 			</div>
@@ -726,21 +881,27 @@ function SaverVaultFeature(): ReactNode {
 	);
 }
 
-export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; features: string[]}): ReactNode {
+export function ChainFeatures(props: {
+	chainName: string;
+	foxImg: TStrapiImage;
+	features: string[];
+}): ReactNode {
 	const {
 		chainName,
 		foxImg,
-		features = ['ShapeShift wallet', 'Hardware wallet support', 'Easily buy in seconds', 'Self-custodial Redefined']
+		features = [
+			'ShapeShift wallet',
+			'Hardware wallet support',
+			'Easily buy in seconds',
+			'Self-custodial Redefined'
+		]
 	} = props;
 
 	const featuresComponents = useMemo(() => {
 		const allFeatures = [];
 		if (features.includes('ShapeShift wallet')) {
 			allFeatures.push(
-				<WalletFeature
-					key={'WalletFeature'}
-					chainName={chainName}
-				/>
+				<WalletFeature key={'WalletFeature'} chainName={chainName} />
 			);
 		}
 		if (features.includes('Hardware wallet support')) {
@@ -769,10 +930,16 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 			);
 		}
 		if (features.includes('Jupiter Exchange')) {
-			allFeatures.push(<SolanaJupiterExchangeFeature key={'SolanaJupiterExchangeFeature'} />);
+			allFeatures.push(
+				<SolanaJupiterExchangeFeature key={'SolanaJupiterExchangeFeature'} />
+			);
 		}
 		if (features.includes('Multichain Snap')) {
-			allFeatures.push(<ShapeshiftMultichainSnapFeature key={'ShapeshiftMultichainSnapFeature'} />);
+			allFeatures.push(
+				<ShapeshiftMultichainSnapFeature
+					key={'ShapeshiftMultichainSnapFeature'}
+				/>
+			);
 		}
 		if (features.includes('Your keys')) {
 			allFeatures.push(<YourKeyFeature key={'YourKeyFeature'} />);
@@ -792,13 +959,17 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 			allFeatures.push(<RFoxFeature key={'RFoxFeature'} />);
 		}
 		if (features.includes('Thor Lending')) {
-			allFeatures.push(<ThorChainLendingFeature key={'ThorChainLendingFeature'} />);
+			allFeatures.push(
+				<ThorChainLendingFeature key={'ThorChainLendingFeature'} />
+			);
 		}
 		if (features.includes('Thor Liquidity Pool')) {
 			allFeatures.push(<LiquidityPoolFeature key={'LiquidityPoolFeature'} />);
 		}
 		if (features.includes('Thor RUNE Pool')) {
-			allFeatures.push(<ThorChainRunePoolFeature key={'ThorChainRunePoolFeature'} />);
+			allFeatures.push(
+				<ThorChainRunePoolFeature key={'ThorChainRunePoolFeature'} />
+			);
 		}
 		if (features.includes('Saver vaults')) {
 			allFeatures.push(<SaverVaultFeature key={'SaverVaultFeature'} />);
@@ -808,12 +979,18 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 
 	return (
 		<section className={'container flex flex-col'}>
-			<h1 className={'mb-6 max-w-[700px] text-[28px] leading-[32px] lg:mb-16 lg:text-7xl'}>
+			<h1
+				className={
+					'mb-6 max-w-[700px] text-[28px] leading-[32px] lg:mb-16 lg:text-7xl'
+				}
+			>
 				{'Explore our features.'}
 			</h1>
 
 			<div className={'grid gap-2'}>
-				<div className={'container grid grid-cols-1 gap-2 lg:grid-cols-6'}>{featuresComponents}</div>
+				<div className={'container grid grid-cols-1 gap-2 lg:grid-cols-6'}>
+					{featuresComponents}
+				</div>
 			</div>
 		</section>
 	);

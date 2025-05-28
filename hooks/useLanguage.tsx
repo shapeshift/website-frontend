@@ -5,7 +5,7 @@ export function useLanguage(): {
 	switchLanguage: (symbol: string) => void;
 } {
 	const [dynamicCurrentLang, setDynamicCurrentLang] = useState('en');
-	
+
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
@@ -18,7 +18,7 @@ export function useLanguage(): {
 				setDynamicCurrentLang(staticCurrentLanguage);
 			} else {
 				console.log('[useLanguage] Weglot not initialized yet');
-				
+
 				// Listen for Weglot initialization
 				const checkWeglot = setInterval(() => {
 					// eslint-disable-next-line
@@ -32,7 +32,7 @@ export function useLanguage(): {
 						clearInterval(checkWeglot);
 					}
 				}, 100);
-				
+
 				// Clean up after 5 seconds
 				setTimeout(() => clearInterval(checkWeglot), 5000);
 			}
@@ -41,7 +41,7 @@ export function useLanguage(): {
 
 	const switchLanguage = (symbol: string): void => {
 		console.log('[useLanguage] switchLanguage called with:', symbol);
-		
+
 		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
 			//@ts-ignore

@@ -31,13 +31,13 @@ type TProductFooterBannerProps = {
 export function ProductFooterBanner({productName}: TProductFooterBannerProps): ReactNode {
 	// Get configuration for the specified product
 	const config = PRODUCT_FOOTER_CONFIGS[productName];
-	
+
 	// Verify config exists to prevent runtime errors
 	if (!config) {
 		console.error(`No footer configuration found for product: ${productName}`);
 		return null;
 	}
-	
+
 	// Use mobile-app specific banner for the mobile app product
 	if (productName === 'mobile-app') {
 		return (
@@ -49,7 +49,7 @@ export function ProductFooterBanner({productName}: TProductFooterBannerProps): R
 			/>
 		);
 	}
-	
+
 	// Standard footer banner for other products
 	return (
 		<FooterBanner

@@ -90,7 +90,13 @@ export function CachedNewsProvider({children}: {children: ReactNode}): ReactNode
 	});
 
 	return (
-		<NewsContext.Provider value={{cachedResponse, setCachedResponse, cachedParams, setCachedParams}}>
+		<NewsContext.Provider
+			value={{
+				cachedResponse,
+				setCachedResponse,
+				cachedParams,
+				setCachedParams
+			}}>
 			{children}
 		</NewsContext.Provider>
 	);

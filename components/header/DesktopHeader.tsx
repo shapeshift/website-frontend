@@ -1,22 +1,22 @@
 'use client';
 
 import {motion} from 'framer-motion';
-import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useMemo, useState} from 'react';
 
 import {AnimateChangeInHeight} from '@/components/AnimatedHeight';
 import {Notification} from '@/components/Notification';
 
-import {IconPlanet} from '../common/icons/IconPlanet';
-import {dAppUrl, headerTabs} from '../constants';
 import {containerAnimation} from './animations';
 import {DAOExpand} from './DaoExpand';
 import {LanguageExpand} from './LanguageExpand';
 import {ProductsExpand} from './ProductsExpand';
 import {ResourcesExpand} from './ResourcesExpand';
 import {Button} from '../common/Button';
+import {IconPlanet} from '../common/icons/IconPlanet';
 import {ShapeshiftLogo} from '../common/icons/ShapeshiftLogo';
+import {LocalizedLink} from '../common/LocalizedLink';
+import {dAppUrl, headerTabs} from '../constants';
 import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
@@ -81,12 +81,12 @@ export function DesktopHeader({className, switchLanguageAction, currentLanguage}
 						className
 					)}>
 					<div className={'flex w-full items-center justify-between'}>
-						<Link
+						<LocalizedLink
 							href={'/'}
 							className={'flex items-center'}
 							onMouseEnter={() => setCurrentTab('')}>
 							<ShapeshiftLogo />
-						</Link>
+						</LocalizedLink>
 
 						<nav className={'flex'}>
 							{headerTabs.map(tab => (

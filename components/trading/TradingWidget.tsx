@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import {useCallback, useEffect, useState} from 'react';
 
 import {useDebounce} from '@/hooks/useDebounce';
@@ -9,6 +8,7 @@ import {ChainSelect} from './ChainSelect';
 import {TokenSelect} from './TokenSelect';
 import {IconArrow} from '../common/icons/IconArrow';
 import {IconQuestion} from '../common/icons/IconQuestion';
+import {LocalizedLink} from '../common/LocalizedLink';
 import {SUPPORTED_CHAINS, SUPPORTED_TOKENS, TOKEN_CHAIN_SUPPORT} from '../constants';
 import {cl} from '../utils/cl';
 import {formatNumber} from '../utils/formatNumber';
@@ -23,7 +23,10 @@ export function TradingWidget(): ReactNode {
 	const [fromChain, setFromChain] = useState<TChain>(SUPPORTED_CHAINS[2]);
 	const [toChain, setToChain] = useState<TChain>(SUPPORTED_CHAINS[0]);
 	const [amount, setAmount] = useState<string>('0');
-	const [outputAmount, setOutputAmount] = useState({amount: 0, isNative: true});
+	const [outputAmount, setOutputAmount] = useState({
+		amount: 0,
+		isNative: true
+	});
 	const [openSelect, setOpenSelect] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
@@ -78,7 +81,10 @@ export function TradingWidget(): ReactNode {
 			)
 				.then(async res => res.json())
 				.then(data => {
-					setOutputAmount({amount: data[0]?.egressAmountNative, isNative: true});
+					setOutputAmount({
+						amount: data[0]?.egressAmountNative,
+						isNative: true
+					});
 					if (!data?.[0]?.egressAmountNative) {
 						setError('No rate available');
 					}
@@ -209,8 +215,7 @@ export function TradingWidget(): ReactNode {
 
 		// Format amount in smallest unit using the correct decimals for the source token
 		const decimals = tokenDecimals[fromToken.symbol] || 18;
-		const amountInSmallestUnit =
-			Number(amount) > 0 ? Math.floor(Number(amount) * Math.pow(10, decimals)).toString() : '0';
+		const amountInSmallestUnit = Number(amount) > 0 ? Math.floor(Number(amount) * 10 ** decimals).toString() : '0';
 
 		// For SOL to USDT
 		if (fromToken.symbol === 'SOL' && toToken.symbol === 'USDT') {
@@ -278,7 +283,7 @@ export function TradingWidget(): ReactNode {
 						<IconArrow className={'size-3 rotate-[135deg] text-white/50 group-hover:text-white'} />
 					</div>
 				</div>
-				<div className={'absolute top-1/2 h-px w-full -translate-y-1/2 border-t border-white/5'}></div>
+				<div className={'absolute top-1/2 h-px w-full -translate-y-1/2 border-t border-white/5'} />
 			</div>
 
 			<div className={'mb-4 px-6'}>
@@ -332,13 +337,13 @@ export function TradingWidget(): ReactNode {
 			)}
 
 			<div className={'w-full rounded-b-2xl border-t border-t-white/5 bg-[#1e2024] px-4 py-3 lg:px-5 lg:py-4'}>
-				<Link
+				<LocalizedLink
 					href={generateTradeUrl()}
 					rel={'noopener noreferrer'}>
 					<button className={'w-full rounded-2xl bg-blue py-4 font-medium hover:bg-blueHover'}>
 						{'Get Started'}
 					</button>
-				</Link>
+				</LocalizedLink>
 			</div>
 		</div>
 	);

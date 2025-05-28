@@ -1,7 +1,9 @@
 import {motion} from 'framer-motion';
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 import {cl} from '@/components/utils/cl';
+
+import type React from 'react';
 
 type TAnimateChangeInHeightProps = {
 	children: React.ReactNode;

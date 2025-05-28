@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {useMemo} from 'react';
 
+import {LocalizedLink} from './common/LocalizedLink';
 import {cl} from './utils/cl';
 
 import type {TBlogPost} from '@/components/strapi/types';
@@ -60,7 +60,7 @@ function FeaturedPost({post, className}: {post: TBlogPost; className?: string}):
 	);
 
 	return (
-		<Link
+		<LocalizedLink
 			href={`/blog/${post.slug}`}
 			className={cl('col-span-3 h-[364px] grid grid-cols-2 rounded-2xl bg-secondBg p-6', className)}>
 			<div className={'col-span-1 size-full max-h-[316px] max-w-[632px] overflow-hidden rounded-2xl'}>
@@ -86,7 +86,7 @@ function FeaturedPost({post, className}: {post: TBlogPost; className?: string}):
 					<p className={'text-[32px] leading-[40px]'}>{post.title}</p>
 				</div>
 			</div>
-		</Link>
+		</LocalizedLink>
 	);
 }
 
@@ -108,7 +108,7 @@ function PostCard({post, className}: {post: TBlogPost; className?: string}): Rea
 	);
 
 	return (
-		<Link
+		<LocalizedLink
 			href={`/blog/${post.slug}`}
 			className={cl(
 				'rounded-2xl p-6 transition-all bg-secondBg duration-300 hover:scale-[1.02] hover:bg-secondHoverBg',
@@ -137,6 +137,6 @@ function PostCard({post, className}: {post: TBlogPost; className?: string}): Rea
 					<p className={'text-2xl'}>{post.title}</p>
 				</div>
 			</div>
-		</Link>
+		</LocalizedLink>
 	);
 }

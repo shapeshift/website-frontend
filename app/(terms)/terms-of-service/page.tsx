@@ -14,7 +14,9 @@ import {getTermsOfServiceItems} from '@/app/(terms)/_components/utils';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
-export const metadata: Metadata = generateMetadata({title: 'Terms of Service'});
+export const metadata: Metadata = generateMetadata({
+	title: 'Terms of Service'
+});
 
 export default async function TermsOfServicePage(): Promise<ReactNode> {
 	const items = await getTermsOfServiceItems();

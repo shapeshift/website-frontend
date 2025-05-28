@@ -21,8 +21,8 @@ import {requestWalletUrl} from '@/components/constants';
 import {WalletRequestCard} from '@/components/WalletRequestCard';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
-import {WalletSearchWrapper} from './_components/WalletSearchWrapper';
 import {fetchAllWallets} from '../_utils/fetchUtils';
+import {WalletSearchWrapper} from './_components/WalletSearchWrapper';
 
 import type {ReactNode} from 'react';
 

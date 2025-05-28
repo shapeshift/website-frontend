@@ -1,11 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-
 import {useFetchPosts} from '@/hooks/useFetchPosts';
 
 import {BlogPost} from './BlogPost';
 import {Button} from './common/Button';
+import {LocalizedLink} from './common/LocalizedLink';
 
 import type {TBlogPost} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
@@ -17,9 +16,9 @@ export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isW
 			{isWithTitle && (
 				<div className={'col-span-1 flex flex-col gap-16'}>
 					<h1 className={'text-[40px] leading-10 text-white lg:text-7xl'}>{'Read more about ShapeShift.'}</h1>
-					<Link href={'/blog'}>
+					<LocalizedLink href={'/blog'}>
 						<Button title={'See all articles'} />
-					</Link>
+					</LocalizedLink>
 				</div>
 			)}
 			{posts.map((post: TBlogPost) => (

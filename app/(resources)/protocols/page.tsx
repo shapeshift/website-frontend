@@ -18,8 +18,8 @@
 import {Banner} from '@/components/common/Banner';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
-import {ProtocolSearchWrapper} from './_components/ProtocolSearchWrapper';
 import {fetchAllProtocols} from '../_utils/fetchUtils';
+import {ProtocolSearchWrapper} from './_components/ProtocolSearchWrapper';
 
 import type {ReactNode} from 'react';
 

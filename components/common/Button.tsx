@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import {LocalizedLink} from './LocalizedLink';
 import {cl} from '../utils/cl';
 import {IconNext} from './icons/IconNext';
 
@@ -21,7 +20,7 @@ export function Button(props: TButtonProps): ReactNode {
 	return (
 		<>
 			{props.href ? (
-				<Link
+				<LocalizedLink
 					className={cl(
 						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300 gap-2',
 						hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
@@ -34,7 +33,7 @@ export function Button(props: TButtonProps): ReactNode {
 					target={props.href?.startsWith('http') ? '_blank' : undefined}>
 					<span>{props.title}</span>
 					{hasArrow ? <IconNext /> : null}
-				</Link>
+				</LocalizedLink>
 			) : (
 				<button
 					{...rest}

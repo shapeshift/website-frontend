@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import {LocalizedLink} from './LocalizedLink';
 import {cl} from '../utils/cl';
 
 import type {ReactNode} from 'react';
@@ -14,7 +13,7 @@ export function TabItem(props: {
 	const {title, className, selected: isSelected, onClick, href} = props;
 	if (href) {
 		return (
-			<Link
+			<LocalizedLink
 				href={href}
 				className={className}>
 				<button
@@ -35,7 +34,7 @@ export function TabItem(props: {
 						{title}
 					</p>
 				</button>
-			</Link>
+			</LocalizedLink>
 		);
 	}
 

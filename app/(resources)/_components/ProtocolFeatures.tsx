@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import {Button} from '@/components/common/Button';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {cl} from '@/components/utils/cl';
 
 import type {ReactNode} from 'react';
@@ -62,42 +62,42 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 					<h2 className={'mb-4 text-[40px] leading-[48px]'}>{'Shift to DeFi on the go'}</h2>
 					<p className={'whitespace-pre-line pb-4 text-base text-gray-500'}>
 						{'Permissionlessly track, trade, shift, and earn with your favorite chains such as '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							href={'/chains/bitcoin'}>
 							{'Bitcoin'}
-						</Link>
+						</LocalizedLink>
 						{', '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							href={'/chains/dogecoin'}>
 							{'Dogecoin'}
-						</Link>
+						</LocalizedLink>
 						{', '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							href={'/chains/ethereum'}>
 							{'Ethereum'}
-						</Link>
+						</LocalizedLink>
 						{', '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							href={'/chains/arbitrum'}>
 							{'Arbitrum'}
-						</Link>
+						</LocalizedLink>
 						{', '}
-						<Link
+						<LocalizedLink
 							className={'text-white underline'}
 							href={'/chains/avalanche'}>
 							{'AVAX'}
-						</Link>
+						</LocalizedLink>
 						{' and more.'}
 					</p>
 					<p className={'mb-10 whitespace-pre-line text-base text-secondary/50'}>
 						{'Do more with your crypto when you ShapeShift.'}
 					</p>
 					<div className={'flex gap-3'}>
-						<Link
+						<LocalizedLink
 							href={'/apple-app-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
@@ -107,9 +107,9 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 								width={390}
 								height={120}
 							/>
-						</Link>
+						</LocalizedLink>
 
-						<Link
+						<LocalizedLink
 							href={'/google-play-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
@@ -119,7 +119,7 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 								width={390}
 								height={120}
 							/>
-						</Link>
+						</LocalizedLink>
 					</div>
 				</div>
 				<div className={'aspect-square h-[400px] overflow-hidden rounded-2xl bg-secondHoverBg'}>

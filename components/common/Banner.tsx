@@ -1,7 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
-import {Button} from './Button';
 import {
 	bannerLeftButtonTitle,
 	bannerLeftTitle,
@@ -10,6 +8,8 @@ import {
 	bannerRightTitle,
 	dAppUrl
 } from '../constants';
+import {Button} from './Button';
+import {LocalizedLink} from './LocalizedLink';
 
 import type {ReactNode} from 'react';
 
@@ -59,7 +59,7 @@ export function Banner(): ReactNode {
 					</div>
 
 					<div className={'mb-[180px] flex items-center justify-center gap-3 lg:mb-0 lg:flex-col'}>
-						<Link
+						<LocalizedLink
 							href={'/apple-app-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
@@ -69,9 +69,9 @@ export function Banner(): ReactNode {
 								width={390}
 								height={120}
 							/>
-						</Link>
+						</LocalizedLink>
 
-						<Link
+						<LocalizedLink
 							href={'/google-play-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
@@ -81,7 +81,7 @@ export function Banner(): ReactNode {
 								width={390}
 								height={120}
 							/>
-						</Link>
+						</LocalizedLink>
 					</div>
 				</div>
 			</div>

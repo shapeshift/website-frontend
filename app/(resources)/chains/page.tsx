@@ -23,8 +23,8 @@ import {Button} from '@/components/common/Button';
 import {requestChainUrl} from '@/components/constants';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
-import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
 import {fetchAllChains} from '../_utils/fetchUtils';
+import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
 
 import type {ReactNode} from 'react';
 

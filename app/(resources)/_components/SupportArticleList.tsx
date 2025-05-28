@@ -18,13 +18,13 @@
  ** - Add custom empty state message if needed
  ************************************************************************************************/
 
-import Link from 'next/link';
 import {Fragment, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 
 import {Banner} from '@/components/common/Banner';
 import {IconChevron} from '@/components/common/icons/IconChevron';
 import {IconDocs} from '@/components/common/icons/IconDocs';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {RESOURCES_DICT} from '@/components/dictionary/resources';
 import {cl} from '@/components/utils/cl';
 import {useFetchSupportArticles} from '@/hooks/useFetchSupportArticles';
@@ -89,7 +89,7 @@ export function SupportArticleList({
 					/* Articles grid */
 					<div className={cl('mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3', gridClassName)}>
 						{articles.map((article: TSupportArticle) => (
-							<Link
+							<LocalizedLink
 								className={'flex items-center gap-4 rounded-2xl bg-secondBg p-6 hover:bg-secondHoverBg'}
 								href={`/support/${article.slug}`}
 								key={article.slug}>
@@ -97,7 +97,7 @@ export function SupportArticleList({
 									<IconDocs className={'size-6'} />
 								</div>
 								<h3 className={'text-2xl'}>{article.title}</h3>
-							</Link>
+							</LocalizedLink>
 						))}
 					</div>
 				)}

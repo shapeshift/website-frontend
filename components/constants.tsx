@@ -166,14 +166,24 @@ export const bannerMobileSubtitle = 'Or download the app';
  ************************************************************************************************/
 
 export const appResources = [
-	{name: 'Blog', href: '/blog', description: 'Latest news and updates', icon: <IconBlog />},
+	{
+		name: 'Blog',
+		href: '/blog',
+		description: 'Latest news and updates',
+		icon: <IconBlog />
+	},
 	{
 		name: 'Discover',
 		description: 'Learn more about the ShapeShift ecosystem',
 		href: '/discover',
 		icon: <IconDiscover />
 	},
-	{name: 'FAQ', href: '/faq', description: 'Frequently asked questions', icon: <IconQuestion />},
+	{
+		name: 'FAQ',
+		href: '/faq',
+		description: 'Frequently asked questions',
+		icon: <IconQuestion />
+	},
 	{
 		name: 'Chains',
 		href: '/chains',
@@ -198,8 +208,18 @@ export const appResources = [
 		description: 'We are here to help',
 		icon: <IconSupport />
 	},
-	{name: 'Terms of Service', href: '/terms-of-service', description: 'Our terms and conditions', icon: <IconDocs />},
-	{name: 'Privacy Policy', href: '/privacy-policy', description: 'How we handle your data', icon: <IconDocs />},
+	{
+		name: 'Terms of Service',
+		href: '/terms-of-service',
+		description: 'Our terms and conditions',
+		icon: <IconDocs />
+	},
+	{
+		name: 'Privacy Policy',
+		href: '/privacy-policy',
+		description: 'How we handle your data',
+		icon: <IconDocs />
+	},
 	{
 		name: 'Brand guidelines',
 		href: 'https://www.figma.com/design/Pvo3sJx2n5TGf1tUgmZR4z/ShapeShift-Brand-Guidelines',
@@ -208,15 +228,30 @@ export const appResources = [
 ];
 
 export const appDao = [
-	{name: 'FOX token', href: '/dao/fox-token', description: 'Our governance token', icon: <IconFox />},
+	{
+		name: 'FOX token',
+		href: '/dao/fox-token',
+		description: 'Our governance token',
+		icon: <IconFox />
+	},
 	{
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
 		description: 'Participate in decision making',
 		icon: <IconGovern />
 	},
-	{name: 'Docs', href: docsUrl, description: 'Technical documentation', icon: <IconDocs />},
-	{name: 'Join us', href: 'https://forum.shapeshift.com/', description: 'Join the community', icon: <IconStar />},
+	{
+		name: 'Docs',
+		href: docsUrl,
+		description: 'Technical documentation',
+		icon: <IconDocs />
+	},
+	{
+		name: 'Join us',
+		href: 'https://forum.shapeshift.com/',
+		description: 'Join the community',
+		icon: <IconStar />
+	},
 	{
 		name: 'Share your ideas',
 		href: 'https://shapeshift.canny.io/',
@@ -238,7 +273,12 @@ export const appProducts = [
 		description: 'Original ShapeShift platform with classic interface.',
 		icon: <IconClassic />
 	},
-	{name: 'Trade', href: '/trade', description: 'Trade 10,000+ assets with one click.', icon: <IconDollar />},
+	{
+		name: 'Trade',
+		href: '/trade',
+		description: 'Trade 10,000+ assets with one click.',
+		icon: <IconDollar />
+	},
 	{
 		name: 'DeFi Wallet',
 		href: '/defi-wallet',
@@ -548,10 +588,31 @@ export const SUPPORTED_TOKENS = [
 ];
 
 export const SUPPORTED_CHAINS = [
-	{id: 'bitcoin', name: 'Bitcoin', icon: '/widget/btc_icon.png', requestKey: 'BTC'},
-	{id: 'base', name: 'Base', icon: '/widget/base_icon.png', requestKey: 'BASE'},
-	{id: 'ethereum', name: 'Ethereum', icon: '/widget/eth_icon.png', requestKey: 'ETH', chainId: '1'},
-	{id: 'solana', name: 'Solana', icon: '/widget/sol_icon.png', requestKey: 'SOL'}
+	{
+		id: 'bitcoin',
+		name: 'Bitcoin',
+		icon: '/widget/btc_icon.png',
+		requestKey: 'BTC'
+	},
+	{
+		id: 'base',
+		name: 'Base',
+		icon: '/widget/base_icon.png',
+		requestKey: 'BASE'
+	},
+	{
+		id: 'ethereum',
+		name: 'Ethereum',
+		icon: '/widget/eth_icon.png',
+		requestKey: 'ETH',
+		chainId: '1'
+	},
+	{
+		id: 'solana',
+		name: 'Solana',
+		icon: '/widget/sol_icon.png',
+		requestKey: 'SOL'
+	}
 ];
 
 export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {

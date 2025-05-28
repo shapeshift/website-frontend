@@ -1,12 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import {useState} from 'react';
 
 import {LatestBlogPosts} from '@/components/BlogList';
 import {Carousel} from '@/components/Carousel';
 import {Banner} from '@/components/common/Banner';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {TabItem} from '@/components/common/TabItem';
 import {
 	carouselLogos,
@@ -236,13 +236,13 @@ export default function HomePage(): ReactNode {
 									<div
 										key={index}
 										className={'mx-10'}>
-										<Link
+										<LocalizedLink
 											href={href}
 											target={'_blank'}
 											rel={'noopener noreferrer'}
 											className={'relative flex max-h-10 w-max items-center justify-start'}>
 											<Logo />
-										</Link>
+										</LocalizedLink>
 									</div>
 								))}
 							</Carousel>
@@ -299,12 +299,12 @@ const Card = ({
 	return (
 		<>
 			{href ? (
-				<Link
+				<LocalizedLink
 					href={href}
 					target={target}
 					className={cl('cursor-pointer overflow-hidden rounded-2xl', className)}>
 					{children}
-				</Link>
+				</LocalizedLink>
 			) : (
 				<div className={cl('overflow-hidden rounded-2xl', className)}>{children}</div>
 			)}

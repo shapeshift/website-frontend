@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import {Button} from './common/Button';
+import {LocalizedLink} from './common/LocalizedLink';
 import {cl} from './utils/cl';
 
 import type {ReactNode} from 'react';
@@ -69,7 +69,7 @@ export function FooterBannerMobileApp(data: TFooterBanner): ReactNode | null {
 						{data.title}
 					</div>
 					<div className={'flex items-center justify-center gap-6'}>
-						<Link
+						<LocalizedLink
 							href={'/apple-app-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
@@ -79,9 +79,9 @@ export function FooterBannerMobileApp(data: TFooterBanner): ReactNode | null {
 								width={390}
 								height={120}
 							/>
-						</Link>
+						</LocalizedLink>
 
-						<Link
+						<LocalizedLink
 							href={'/google-play-store'}
 							target={'_blank'}
 							className={'h-[40px] w-[130px]'}>
@@ -91,7 +91,7 @@ export function FooterBannerMobileApp(data: TFooterBanner): ReactNode | null {
 								width={390}
 								height={120}
 							/>
-						</Link>
+						</LocalizedLink>
 					</div>
 				</div>
 			</div>

@@ -5,22 +5,28 @@
  ** Supports blog posts, product pages, and organization schema
  ************************************************************************************************/
 
-import type {TBlogPost, TSupportArticle} from '@/components/strapi/types';
+import type { TBlogPost, TSupportArticle } from "@/components/strapi/types";
 
 // Base organization data
 const organizationSchema = {
-	'@context': 'https://schema.org',
-	'@type': 'Organization',
-	name: 'ShapeShift',
-	url: 'https://shapeshift.com',
-	logo: 'https://shapeshift.com/icon.png',
-	sameAs: ['https://twitter.com/ShapeShift', 'https://discord.com/invite/shapeshift']
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	name: "ShapeShift",
+	url: "https://shapeshift.com",
+	logo: "https://shapeshift.com/icon.png",
+	sameAs: [
+		"https://twitter.com/ShapeShift",
+		"https://discord.com/invite/shapeshift",
+	],
 };
 
 /**
  * Generate Article schema for blog posts
  */
-export function generateBlogPostSchema(post: TBlogPost, baseUrl: string): Record<string, any> {
+export function generateBlogPostSchema(
+	post: TBlogPost,
+	baseUrl: string,
+): Record<string, any> {
 	// Ensure we have required fields
 	if (!post?.title || !post.slug) {
 		return {};
@@ -28,30 +34,30 @@ export function generateBlogPostSchema(post: TBlogPost, baseUrl: string): Record
 
 	const postUrl = `${baseUrl}/blog/${post.slug}`;
 	const imageUrl = post.featuredImg?.url
-		? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'https://cms.shapeshift.com'}${post.featuredImg.url}`
+		? `${process.env.NEXT_PUBLIC_STRAPI_URL || "https://cms.shapeshift.com"}${post.featuredImg.url}`
 		: `${baseUrl}/opengraph-image.png`;
 
 	return {
-		'@context': 'https://schema.org',
-		'@type': 'BlogPosting',
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
 		headline: post.title,
-		description: post.summary || '',
+		description: post.summary || "",
 		image: imageUrl,
 		url: postUrl,
 		datePublished: post.publishedAt,
 		dateModified: post.updatedAt || post.publishedAt,
 		author: {
-			'@type': 'Organization',
-			name: 'ShapeShift',
-			url: baseUrl
+			"@type": "Organization",
+			name: "ShapeShift",
+			url: baseUrl,
 		},
 		publisher: organizationSchema,
 		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': postUrl
+			"@type": "WebPage",
+			"@id": postUrl,
 		},
-		keywords: post.tags?.join(', ') || '',
-		articleSection: post.type?.[0] || 'General'
+		keywords: post.tags?.join(", ") || "",
+		articleSection: post.type?.[0] || "General",
 	};
 }
 
@@ -63,67 +69,71 @@ export function generateProductSchema({
 	description,
 	featuredImage,
 	pageURL,
-	features = []
+	features = [],
 }: {
 	title: string;
 	description: string;
 	featuredImage?: string;
 	pageURL: string;
-	features?: {title: string; description: string}[];
+	features?: { title: string; description: string }[];
 }): Record<string, any> {
 	// Ensure we have required fields
 	if (!title || !pageURL) {
 		return {};
 	}
 
-	const productID = pageURL.split('/').pop() || 'shapeshift-product';
+	const productID = pageURL.split("/").pop() || "shapeshift-product";
 	const image =
-		featuredImage || `${process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'}/opengraph-image.png`;
+		featuredImage ||
+		`${process.env.NEXT_PUBLIC_SITE_URL || "https://shapeshift.com"}/opengraph-image.png`;
 
 	return {
-		'@context': 'https://schema.org',
-		'@type': 'SoftwareApplication',
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
 		id: productID,
 		name: title,
-		description: description || '',
+		description: description || "",
 		image: image,
 		url: pageURL,
-		applicationCategory: 'FinanceApplication',
-		operatingSystem: 'Web, Android, iOS',
+		applicationCategory: "FinanceApplication",
+		operatingSystem: "Web, Android, iOS",
 		author: organizationSchema,
 		publisher: organizationSchema,
 		...(features.length > 0 && {
 			featureList: {
-				'@type': 'ItemList',
+				"@type": "ItemList",
 				itemListElement: features.map((feature, index) => ({
-					'@type': 'ListItem',
+					"@type": "ListItem",
 					position: index + 1,
 					name: feature.title,
-					description: feature.description
-				}))
-			}
-		})
+					description: feature.description,
+				})),
+			},
+		}),
 	};
 }
 
 /**
  * Generate Article schema for support articles
  */
-export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: string): Record<string, any> {
+export function generateSupportArticleSchema(
+	article: TSupportArticle,
+	baseUrl: string,
+): Record<string, any> {
 	if (!article?.title || !article.slug) {
 		return {};
 	}
 
 	const articleUrl = `${baseUrl}/support/${article.slug}`;
 	const imageUrl = article.featuredImg?.url
-		? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'https://cms.shapeshift.com'}${article.featuredImg.url}`
+		? `${process.env.NEXT_PUBLIC_STRAPI_URL || "https://cms.shapeshift.com"}${article.featuredImg.url}`
 		: `${baseUrl}/opengraph-image.png`;
 
 	return {
-		'@context': 'https://schema.org',
-		'@type': 'Article',
+		"@context": "https://schema.org",
+		"@type": "Article",
 		headline: article.title,
-		description: article.summary || '',
+		description: article.summary || "",
 		image: imageUrl,
 		url: articleUrl,
 		datePublished: article.publishedAt,
@@ -131,9 +141,9 @@ export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: 
 		author: organizationSchema,
 		publisher: organizationSchema,
 		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': articleUrl
-		}
+			"@type": "WebPage",
+			"@id": articleUrl,
+		},
 	};
 }
 
@@ -142,10 +152,10 @@ export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: 
  */
 export function generateWebsiteSchema(baseUrl: string): Record<string, any> {
 	return {
-		'@context': 'https://schema.org',
-		'@type': 'WebSite',
-		name: 'ShapeShift',
-		url: baseUrl
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: "ShapeShift",
+		url: baseUrl,
 	};
 }
 

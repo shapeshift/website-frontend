@@ -95,7 +95,9 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					id={'organization-schema'}
 					type={'application/ld+json'}
 					// eslint-disable-next-line @typescript-eslint/naming-convention
-					dangerouslySetInnerHTML={{__html: JSON.stringify(organizationSchema)}}
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(organizationSchema)
+					}}
 				/>
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>

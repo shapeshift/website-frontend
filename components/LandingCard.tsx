@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
+import {LocalizedLink} from './common/LocalizedLink';
 import {RoundButton} from './common/RoundButton';
 import {cl} from './utils/cl';
 
@@ -47,12 +47,12 @@ function Card({data}: {data: TCard}): ReactNode {
 export function LandingCard({data}: {data: TCard}): ReactNode {
 	if (data?.href) {
 		return (
-			<Link
+			<LocalizedLink
 				href={data?.href}
 				target={data?.target}
 				className={'size-full'}>
 				<Card data={data} />
-			</Link>
+			</LocalizedLink>
 		);
 	}
 	return <Card data={data} />;

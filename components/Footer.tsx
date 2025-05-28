@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import {Button} from './common/Button';
 import {ShapeshiftLogo} from './common/icons/ShapeshiftLogo';
+import {LocalizedLink} from './common/LocalizedLink';
 import {footerButtonTitle, footerLinks} from './constants';
 
 import type {ReactNode} from 'react';
@@ -15,9 +15,9 @@ export function Footer(): ReactNode {
 			<div className={'mx-auto max-w-[1440px] px-4 py-8 lg:px-8'}>
 				{/* Top row: Logo and Donate */}
 				<div className={'flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0'}>
-					<Link href={'/'}>
+					<LocalizedLink href={'/'}>
 						<ShapeshiftLogo />
-					</Link>
+					</LocalizedLink>
 					<Button
 						href={'https://giveth.io/project/shapeshift-dao'}
 						variant={'blue'}
@@ -36,13 +36,13 @@ export function Footer(): ReactNode {
 								<h3 className={'cursor-default text-sm font-medium text-gray-500'}>{category}</h3>
 								<div className={'flex flex-col gap-3'}>
 									{links.map(link => (
-										<Link
+										<LocalizedLink
 											key={link.name}
 											href={link.href}
 											target={category === 'Connect' ? '_blank' : '_self'}
 											className={'text-sm text-white transition-all hover:text-blue'}>
 											{link.name}
-										</Link>
+										</LocalizedLink>
 									))}
 								</div>
 							</div>

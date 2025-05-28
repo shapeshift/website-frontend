@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import {LocalizedLink} from './LocalizedLink';
 
 import type {ReactNode} from 'react';
 
@@ -13,7 +13,7 @@ type THeaderItemProps = {
 
 export default function HeaderItem({name, href, target, description, onClick, icon}: THeaderItemProps): ReactNode {
 	return (
-		<Link
+		<LocalizedLink
 			href={href}
 			target={target}
 			className={
@@ -25,6 +25,6 @@ export default function HeaderItem({name, href, target, description, onClick, ic
 				<span className={'whitespace-nowrap font-medium'}>{name}</span>
 				<span className={'text-sm text-gray-500'}>{description}</span>
 			</div>
-		</Link>
+		</LocalizedLink>
 	);
 }

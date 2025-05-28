@@ -15,9 +15,9 @@
  ********************************************************************************************/
 
 import Image from 'next/image';
-import Link from 'next/link';
 import {useMemo} from 'react';
 
+import {LocalizedLink} from './common/LocalizedLink';
 import {cl} from './utils/cl';
 
 import type {TNewsroomPost} from '@/components/strapi/types';
@@ -42,7 +42,7 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 	);
 
 	return (
-		<Link
+		<LocalizedLink
 			rel={'noopener noreferrer'}
 			target={post.externalURL ? '_blank' : '_self'}
 			href={post.externalURL ? post.externalURL : `/newsroom/${post.slug}`}
@@ -75,6 +75,6 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 					<p className={'text-2xl text-white'}>{post.title}</p>
 				</div>
 			</div>
-		</Link>
+		</LocalizedLink>
 	);
 }

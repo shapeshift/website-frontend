@@ -16,7 +16,8 @@
  ************************************************************************************************/
 
 import Image from 'next/image';
-import Link from 'next/link';
+
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 
 import type {TDownloadButton} from '@/components/strapi/types';
 import type {ReactNode} from 'react';
@@ -33,7 +34,7 @@ export function DownloadButtons({buttons}: TDownloadButtonsProps): ReactNode {
 	return (
 		<div className={'flex gap-4'}>
 			{buttons.map(button => (
-				<Link
+				<LocalizedLink
 					href={button.url ?? ''}
 					target={'_blank'}
 					className={'h-[40px] w-[130px]'}
@@ -44,7 +45,7 @@ export function DownloadButtons({buttons}: TDownloadButtonsProps): ReactNode {
 						width={390}
 						height={120}
 					/>
-				</Link>
+				</LocalizedLink>
 			))}
 		</div>
 	);

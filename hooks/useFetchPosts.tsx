@@ -114,7 +114,15 @@ export function useFetchPosts({
 				setPagination(data.meta.pagination);
 				if (cachePosts) {
 					setCachedResponse(data);
-					setCachedParams({page, pageSize, sort, slug, populateContent, type, tag});
+					setCachedParams({
+						page,
+						pageSize,
+						sort,
+						slug,
+						populateContent,
+						type,
+						tag
+					});
 				}
 			} catch (err) {
 				setError(err as Error);

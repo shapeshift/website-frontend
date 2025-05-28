@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import {LatestBlogPosts} from '@/components/BlogList';
 import {Banner} from '@/components/common/Banner';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {RoundButton} from '@/components/common/RoundButton';
 import {
 	benefitsTitle,
@@ -69,7 +69,7 @@ export default function FoxTokenPage(): ReactNode {
 				</div>
 				<div className={'flex flex-col gap-2'}>
 					{foxTokenContributeItems.map(item => (
-						<Link
+						<LocalizedLink
 							href={item.href}
 							className={
 								'group flex w-full items-center justify-between rounded-2xl bg-secondBg px-10 py-7'
@@ -82,7 +82,7 @@ export default function FoxTokenPage(): ReactNode {
 								}
 								iconName={'arrow'}
 							/>
-						</Link>
+						</LocalizedLink>
 					))}
 				</div>
 			</div>
@@ -131,18 +131,16 @@ export default function FoxTokenPage(): ReactNode {
 							className={
 								'flex items-center justify-start gap-6 rounded-2xl bg-secondBg px-6 py-[36px] lg:px-10 lg:py-[62px]'
 							}>
-							<>
-								{benefit.icon ? (
-									<div
-										className={
-											'flex size-14 min-w-14 items-center justify-center rounded-2xl bg-white/5'
-										}>
-										{benefit.icon}
-									</div>
-								) : (
-									<div className={'size-14 min-w-14 rounded-2xl bg-white/5'} />
-								)}
-							</>
+							{benefit.icon ? (
+								<div
+									className={
+										'flex size-14 min-w-14 items-center justify-center rounded-2xl bg-white/5'
+									}>
+									{benefit.icon}
+								</div>
+							) : (
+								<div className={'size-14 min-w-14 rounded-2xl bg-white/5'} />
+							)}
 							<h2 className={'text-base lg:text-2xl'}>{benefit.title}</h2>
 						</div>
 					))}
@@ -158,7 +156,7 @@ export default function FoxTokenPage(): ReactNode {
 
 				<div className={'mb-[120px] grid grid-cols-2 gap-2 lg:mb-60 lg:grid-cols-5'}>
 					{foxTokenCommunityItems.map(item => (
-						<Link
+						<LocalizedLink
 							href={item.href}
 							target={'_blank'}
 							className={
@@ -166,7 +164,7 @@ export default function FoxTokenPage(): ReactNode {
 							}
 							key={item.href}>
 							{item.icon}
-						</Link>
+						</LocalizedLink>
 					))}
 				</div>
 				<Banner />

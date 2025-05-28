@@ -1,7 +1,6 @@
 'use client';
 
 import 'highlight.js/styles/github-dark.css';
-import Link from 'next/link';
 import {notFound, useParams, useRouter} from 'next/navigation';
 import Script from 'next/script';
 
@@ -10,6 +9,7 @@ import {BlogSkeleton} from '@/app/(resources)/blog/[slug]/BlogSkeleton';
 import {generateBlogPostSchema} from '@/app/_utils/schema';
 import {Banner} from '@/components/common/Banner';
 import {IconBack} from '@/components/common/icons/IconBack';
+import {LocalizedLink} from '@/components/common/LocalizedLink';
 import {useCachedPosts} from '@/components/contexts/CachedPosts';
 import {useFetchPosts} from '@/hooks/useFetchPosts';
 
@@ -67,12 +67,12 @@ export default function BlogPost(): ReactNode {
 
 				<div className={'mb-8 flex flex-wrap gap-2'}>
 					{post.tags.map((tag: string, index: number) => (
-						<Link
+						<LocalizedLink
 							href={`/blog/tags/${tag}`}
 							className={'text-blue'}
 							key={index}>
 							{`#${tag}`}
-						</Link>
+						</LocalizedLink>
 					))}
 				</div>
 				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>

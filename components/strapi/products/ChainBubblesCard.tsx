@@ -47,7 +47,7 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 								}}
 								transition={{
 									duration: 4,
-									repeat: Infinity,
+									repeat: Number.POSITIVE_INFINITY,
 									repeatType: 'reverse',
 									ease: 'easeInOut',
 									delay: randomDelays[index]
@@ -86,7 +86,7 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 								}}
 								transition={{
 									duration: 4,
-									repeat: Infinity,
+									repeat: Number.POSITIVE_INFINITY,
 									repeatType: 'reverse',
 									ease: 'easeInOut',
 									delay: randomDelays[index]
