@@ -10,31 +10,35 @@ export function useWeglotRefresh(): void {
 	const pathname = usePathname();
 
 	useEffect(() => {
+		// Skip the initial mount
+		if (!pathname) return;
+
 		// Give the DOM time to update with new content
 		const timer = setTimeout(() => {
 			if (typeof window !== 'undefined' && (window as any).Weglot?.initialized) {
-				console.log('[useWeglotRefresh] Refreshing Weglot translations for:', pathname);
-
+				console.log('[useWeglotRefresh] Page changed to:', pathname);
+				
 				// Get current language
 				const currentLang = (window as any).Weglot.getCurrentLang();
-
-				// If not default language, force a re-translation
+				console.log('[useWeglotRefresh] Current Weglot language:', currentLang);
+				
+				// If not in English, we need to retranslate the new content
 				if (currentLang && currentLang !== 'en') {
-					// Option 1: Force switch to same language to trigger retranslation
-					(window as any).Weglot.switchTo(currentLang);
-
-					// Option 2: If Weglot has a refresh method (check their docs)
-					if ((window as any).Weglot.refresh) {
-						(window as any).Weglot.refresh();
-					}
-
-					// Option 3: Manually trigger mutation observer
-					// This simulates DOM changes which Weglot listens for
-					const event = new Event('DOMContentLoaded');
-					window.dispatchEvent(event);
+					console.log('[useWeglotRefresh] Triggering retranslation for:', currentLang);
+					
+					// Create a small DOM mutation to trigger Weglot's MutationObserver
+					const tempDiv = document.createElement('div');
+					tempDiv.style.display = 'none';
+					tempDiv.className = 'weglot-trigger';
+					document.body.appendChild(tempDiv);
+					
+					// Remove it immediately - this mutation will trigger Weglot
+					setTimeout(() => {
+						document.body.removeChild(tempDiv);
+					}, 10);
 				}
 			}
-		}, 200); // Wait 200ms for DOM to stabilize
+		}, 300); // Wait 300ms for DOM to stabilize
 
 		return () => clearTimeout(timer);
 	}, [pathname]);

@@ -43,21 +43,6 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 			switchWeglotLanguage(pathLanguage);
 		}
 
-		// Trigger Weglot to retranslate the page when pathname changes
-		if (typeof window !== 'undefined' && (window as any).Weglot?.initialized) {
-			console.log('[LanguageContext] Triggering Weglot page retranslation');
-			// Tell Weglot the page has changed
-			(window as any).Weglot.on('languageChanged', () => {
-				console.log('[LanguageContext] Weglot language changed event fired');
-			});
-			// Force Weglot to re-scan the page for new content
-			setTimeout(() => {
-				if ((window as any).Weglot?.switchTo) {
-					console.log('[LanguageContext] Re-applying Weglot language:', pathLanguage);
-					(window as any).Weglot.switchTo(pathLanguage);
-				}
-			}, 100);
-		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]); // Intentionally limited deps to prevent loops
 

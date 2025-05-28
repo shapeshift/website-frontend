@@ -66,37 +66,19 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					crossOrigin={'anonymous'}>
 					{`
 						if (typeof Weglot !== 'undefined') {
-							Weglot.initialize({
-								api_key: '${process.env.WEGLOT_API_KEY}',
-								destination_language: ['${weglotLanguages}'],
-								exclude_blocks: ['.no-translate'],
-								dynamic: true, // Enable dynamic content translation
-								auto_switch: false, // Disable auto-switching based on browser language
-								wait_transition: true, // Wait for page transitions
-								switchers: [
-									{
-										button_style: {
-											full_name: true,
-											with_name: true,
-											is_dropdown: true,
-											with_flags: true
-										}
-									}
-								]
-							});
+							console.log('[Weglot] Initializing with API key:', '${process.env.WEGLOT_API_KEY}'.substring(0, 10) + '...');
+							console.log('[Weglot] Languages:', [${weglotLanguages.split(',').map(lang => `'${lang}'`).join(', ')}]);
 							
-							// Listen for route changes in SPA
-							if (window.history && window.history.pushState) {
-								const originalPushState = window.history.pushState;
-								window.history.pushState = function() {
-									originalPushState.apply(window.history, arguments);
-									setTimeout(() => {
-										if (Weglot && Weglot.initialized && Weglot.getCurrentLang() !== 'en') {
-											console.log('[Weglot] Route changed, refreshing translations');
-											Weglot.switchTo(Weglot.getCurrentLang());
-										}
-									}, 100);
-								};
+							try {
+								Weglot.initialize({
+									api_key: '${process.env.WEGLOT_API_KEY}',
+									original_language: 'en', 
+									languages: [${weglotLanguages.split(',').map(lang => `'${lang}'`).join(', ')}],
+									exclude_blocks: ['.no-translate']
+								});
+								console.log('[Weglot] Initialization successful');
+							} catch (error) {
+								console.error('[Weglot] Initialization error:', error);
 							}
 						} else {
 							console.warn('Weglot is not defined. Translation service may not be available.');
