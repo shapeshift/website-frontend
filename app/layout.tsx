@@ -61,7 +61,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					crossOrigin={'anonymous'}>
 					{`
 						if (typeof Weglot !== 'undefined') {
-							Weglot.initialize({api_key: 'wg_b6fdc2a2e16175fd09ce44998516155b3'});
+							Weglot.initialize({api_key: '${process.env.WEGLOT_API_KEY}'});
 						} else {
 							console.warn('Weglot is not defined. Translation service may not be available.');
 						}
