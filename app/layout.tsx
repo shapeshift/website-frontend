@@ -2,7 +2,6 @@ import {headers} from 'next/headers';
 import Script from 'next/script';
 
 import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
-import {WeglotManager} from '@/app/_components/WeglotManager';
 import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
 import {LanguageProvider} from '@/app/contexts/LanguageContext';
 import {SUPPORTED_LANGUAGES} from '@/app/i18n/config';
@@ -60,29 +59,35 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					src={'https://cdn.weglot.com/weglot.min.js'}
 					crossOrigin={'anonymous'}
 				/>
-				<Script
-					strategy={'afterInteractive'}
+				<script
+					// strategy={'afterInteractive'}
 					id={'weglot'}
 					crossOrigin={'anonymous'}>
 					{`
 						if (typeof Weglot !== 'undefined') {
-							console.log('[Weglot] Initializing with API key:', '${process.env.WEGLOT_API_KEY}'.substring(0, 10) + '...');
-							console.log('[Weglot] Languages:', [${weglotLanguages.split(',').map(lang => `'${lang}'`).join(', ')}]);
-							
+							console.log('[Weglot] Initializing Weglot');
+							console.log('[Weglot] Languages:', [${weglotLanguages
+								.split(',')
+								.map(lang => `'${lang}'`)
+								.join(', ')}]);
+
 							try {
 								Weglot.initialize({
 									api_key: '${process.env.WEGLOT_API_KEY}',
-									original_language: 'en', 
-									languages: [${weglotLanguages.split(',').map(lang => `'${lang}'`).join(', ')}],
+									original_language: 'en',
+									languages: [${weglotLanguages
+										.split(',')
+										.map(lang => `'${lang}'`)
+										.join(', ')}],
 									exclude_blocks: ['.no-translate'],
 									wait_transition: true
 								});
-								
+
 								// For SPA support - listen to Weglot initialization
 								Weglot.on('initialized', function() {
 									console.log('[Weglot] Weglot has been initialized');
 								});
-								
+
 								// Listen for language changes
 								Weglot.on('languageChanged', function(newLang, prevLang) {
 									console.log('[Weglot] Language changed from', prevLang, 'to', newLang);
@@ -95,7 +100,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 							console.warn('Weglot is not defined. Translation service may not be available.');
 						}
 					`}
-				</Script>
+				</script>
 				<Script
 					id={'website-schema'}
 					type={'application/ld+json'}
@@ -114,20 +119,18 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>
 				<WithFonts>
 					<LanguageProvider>
-						<WeglotManager>
-							<CachedNewsProvider>
-								<CachedPostsProvider>
-									<CachedArticlesProvider>
-										<div className={'flex flex-col'}>
-											<Header />
-											{children}
-											<Footer />
-											<ChatwootWidget />
-										</div>
-									</CachedArticlesProvider>
-								</CachedPostsProvider>
-							</CachedNewsProvider>
-						</WeglotManager>
+						<CachedNewsProvider>
+							<CachedPostsProvider>
+								<CachedArticlesProvider>
+									<div className={'flex flex-col'}>
+										<Header />
+										{children}
+										<Footer />
+										<ChatwootWidget />
+									</div>
+								</CachedArticlesProvider>
+							</CachedPostsProvider>
+						</CachedNewsProvider>
 					</LanguageProvider>
 				</WithFonts>
 			</body>
