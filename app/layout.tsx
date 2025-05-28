@@ -2,6 +2,7 @@ import {headers} from 'next/headers';
 import Script from 'next/script';
 
 import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
+import {WeglotManager} from '@/app/_components/WeglotManager';
 import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
 import {LanguageProvider} from '@/app/contexts/LanguageContext';
 import {SUPPORTED_LANGUAGES} from '@/app/i18n/config';
@@ -69,6 +70,9 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 								api_key: '${process.env.WEGLOT_API_KEY}',
 								destination_language: ['${weglotLanguages}'],
 								exclude_blocks: ['.no-translate'],
+								dynamic: true, // Enable dynamic content translation
+								auto_switch: false, // Disable auto-switching based on browser language
+								wait_transition: true, // Wait for page transitions
 								switchers: [
 									{
 										button_style: {
@@ -80,6 +84,20 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 									}
 								]
 							});
+							
+							// Listen for route changes in SPA
+							if (window.history && window.history.pushState) {
+								const originalPushState = window.history.pushState;
+								window.history.pushState = function() {
+									originalPushState.apply(window.history, arguments);
+									setTimeout(() => {
+										if (Weglot && Weglot.initialized && Weglot.getCurrentLang() !== 'en') {
+											console.log('[Weglot] Route changed, refreshing translations');
+											Weglot.switchTo(Weglot.getCurrentLang());
+										}
+									}, 100);
+								};
+							}
 						} else {
 							console.warn('Weglot is not defined. Translation service may not be available.');
 						}
@@ -103,18 +121,20 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>
 				<WithFonts>
 					<LanguageProvider>
-						<CachedNewsProvider>
-							<CachedPostsProvider>
-								<CachedArticlesProvider>
-									<div className={'flex flex-col'}>
-										<Header />
-										{children}
-										<Footer />
-										<ChatwootWidget />
-									</div>
-								</CachedArticlesProvider>
-							</CachedPostsProvider>
-						</CachedNewsProvider>
+						<WeglotManager>
+							<CachedNewsProvider>
+								<CachedPostsProvider>
+									<CachedArticlesProvider>
+										<div className={'flex flex-col'}>
+											<Header />
+											{children}
+											<Footer />
+											<ChatwootWidget />
+										</div>
+									</CachedArticlesProvider>
+								</CachedPostsProvider>
+							</CachedNewsProvider>
+						</WeglotManager>
 					</LanguageProvider>
 				</WithFonts>
 			</body>
