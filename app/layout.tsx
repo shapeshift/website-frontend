@@ -3,6 +3,8 @@ import Script from 'next/script';
 
 import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
 import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
+import {LanguageProvider} from '@/app/contexts/LanguageContext';
+import {SUPPORTED_LANGUAGES} from '@/app/i18n/config';
 import {WithFonts} from '@/components/common/WithFonts';
 import {CachedArticlesProvider} from '@/components/contexts/CachedArticles';
 import {CachedNewsProvider} from '@/components/contexts/CachedNews';
@@ -46,6 +48,8 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const websiteSchema = generateWebsiteSchema(baseUrl);
 	const organizationSchema = generateOrganizationSchema();
 
+	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
+
 	return (
 		<html lang={'en'}>
 			<head>
@@ -61,7 +65,21 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					crossOrigin={'anonymous'}>
 					{`
 						if (typeof Weglot !== 'undefined') {
-							Weglot.initialize({api_key: '${process.env.WEGLOT_API_KEY}'});
+							Weglot.initialize({
+								api_key: '${process.env.WEGLOT_API_KEY}',
+								destination_language: ['${weglotLanguages}'],
+								exclude_blocks: ['.no-translate'],
+								switchers: [
+									{
+										button_style: {
+											full_name: true,
+											with_name: true,
+											is_dropdown: true,
+											with_flags: true
+										}
+									}
+								]
+							});
 						} else {
 							console.warn('Weglot is not defined. Translation service may not be available.');
 						}
@@ -82,18 +100,20 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>
 				<WithFonts>
-					<CachedNewsProvider>
-						<CachedPostsProvider>
-							<CachedArticlesProvider>
-								<div className={'flex flex-col'}>
-									<Header />
-									{children}
-									<Footer />
-									<ChatwootWidget />
-								</div>
-							</CachedArticlesProvider>
-						</CachedPostsProvider>
-					</CachedNewsProvider>
+					<LanguageProvider>
+						<CachedNewsProvider>
+							<CachedPostsProvider>
+								<CachedArticlesProvider>
+									<div className={'flex flex-col'}>
+										<Header />
+										{children}
+										<Footer />
+										<ChatwootWidget />
+									</div>
+								</CachedArticlesProvider>
+							</CachedPostsProvider>
+						</CachedNewsProvider>
+					</LanguageProvider>
 				</WithFonts>
 			</body>
 		</html>
