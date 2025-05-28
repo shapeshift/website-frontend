@@ -33,7 +33,7 @@ export function useLanguage(): {
 
 	console.log(dynamicCurrentLang);
 	if (typeof window !== 'undefined') {
-		console.dir(window.Weglot);
+		console.dir((window as any).Weglot);
 	}
 
 	return {
