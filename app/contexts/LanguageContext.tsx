@@ -31,56 +31,34 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		console.log('[LanguageContext] Current language:', currentLanguage);
 		console.log('[LanguageContext] Pathname:', pathname);
 		
-		// If URL has a language prefix, sync it with Weglot
-		if (pathLanguage && pathLanguage !== DEFAULT_LANGUAGE) {
+		// Always update current language from path first
+		if (pathLanguage !== currentLanguage) {
+			console.log('[LanguageContext] Updating current language from path:', pathLanguage);
+			setCurrentLanguage(pathLanguage);
+		}
+		
+		// Sync Weglot with the path language
+		if (pathLanguage !== weglotLanguage) {
 			console.log('[LanguageContext] Syncing Weglot to path language:', pathLanguage);
 			switchWeglotLanguage(pathLanguage);
-			setCurrentLanguage(pathLanguage);
-		} else if (weglotLanguage) {
-			// If no language in URL but Weglot has one, use Weglot's
-			setCurrentLanguage(weglotLanguage);
-			
-			// Update URL to match Weglot's language if not default
-			if (weglotLanguage !== DEFAULT_LANGUAGE) {
-				const cleanPath = getPathWithoutLanguage(pathname);
-				const targetPath = `/${weglotLanguage}${cleanPath}`;
-				if (pathname !== targetPath) {
-					console.log('[LanguageContext] Updating URL to match Weglot:', targetPath);
-					router.replace(targetPath);
-				}
-			}
 		}
-	}, [pathname, router, switchWeglotLanguage, weglotLanguage]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [pathname]); // Intentionally limited deps to prevent loops
 
-	// Update URL when Weglot language changes
+	// Update state when Weglot language changes (but not URL - that's handled by switchLanguage)
 	useEffect(() => {
 		console.log('[LanguageContext - Weglot Change] Weglot:', weglotLanguage, 'Current:', currentLanguage);
 		
 		if (weglotLanguage && weglotLanguage !== currentLanguage) {
 			console.log('[LanguageContext] Weglot language changed from', currentLanguage, 'to', weglotLanguage);
 			setCurrentLanguage(weglotLanguage);
-			
-			// Update URL to reflect the new language
-			const cleanPath = getPathWithoutLanguage(pathname);
-			const targetPath = weglotLanguage === DEFAULT_LANGUAGE 
-				? cleanPath || '/'
-				: `/${weglotLanguage}${cleanPath}`;
-			
-			if (pathname !== targetPath) {
-				console.log('[LanguageContext] Pushing new path:', targetPath);
-				router.push(targetPath);
-			}
 		}
-	}, [weglotLanguage, pathname, router, currentLanguage]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [weglotLanguage]);
 
 	const switchLanguage = (languageCode: string): void => {
 		console.log('[LanguageContext] switchLanguage called with:', languageCode, 'Current:', currentLanguage);
 		
-		if (languageCode === currentLanguage) {
-			console.log('[LanguageContext] Language already set to:', languageCode);
-			return;
-		}
-
 		// Get clean path without language prefix
 		const cleanPath = getPathWithoutLanguage(pathname);
 		
@@ -92,12 +70,17 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		console.log('[LanguageContext] Switching language to:', languageCode);
 		console.log('[LanguageContext] Clean path:', cleanPath);
 		console.log('[LanguageContext] Target path:', targetPath);
+		console.log('[LanguageContext] Current pathname:', pathname);
 
-		// Switch Weglot language
+		// Always update state and Weglot, even if it seems like the same language
+		// This ensures sync when URL and state are out of sync
+		setCurrentLanguage(languageCode);
 		switchWeglotLanguage(languageCode);
 		
-		// Update URL
-		router.push(targetPath);
+		// Only update URL if it's actually different
+		if (pathname !== targetPath) {
+			router.push(targetPath);
+		}
 	};
 
 	return (
