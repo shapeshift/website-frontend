@@ -6,7 +6,7 @@ import type {NextRequest} from 'next/server';
 
 export function middleware(request: NextRequest): NextResponse {
 	const pathname = request.nextUrl.pathname;
-	const pathnameHasLocale = SUPPORTED_LANGUAGES.some(
+	const hasLocaleInPath = SUPPORTED_LANGUAGES.some(
 		lang => pathname.startsWith(`/${lang.code}/`) || pathname === `/${lang.code}`
 	);
 
@@ -15,7 +15,12 @@ export function middleware(request: NextRequest): NextResponse {
 	headers.set('x-current-path', pathname);
 
 	// Extract locale from pathname if present
-	const locale = pathnameHasLocale ? getLanguageFromPath(pathname) : DEFAULT_LANGUAGE;
+	const locale = hasLocaleInPath ? getLanguageFromPath(pathname) : DEFAULT_LANGUAGE;
+	
+	// Log middleware detection
+	console.log('[Middleware] Path:', pathname);
+	console.log('[Middleware] Has locale in path:', hasLocaleInPath);
+	console.log('[Middleware] Detected locale:', locale);
 	
 	// Add locale to headers so components can access it
 	headers.set('x-locale', locale || DEFAULT_LANGUAGE);

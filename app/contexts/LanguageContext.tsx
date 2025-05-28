@@ -26,8 +26,14 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	useEffect(() => {
 		const pathLanguage = getLanguageFromPath(pathname);
 		
+		console.log('[LanguageContext] Path language:', pathLanguage);
+		console.log('[LanguageContext] Weglot language:', weglotLanguage);
+		console.log('[LanguageContext] Current language:', currentLanguage);
+		console.log('[LanguageContext] Pathname:', pathname);
+		
 		// If URL has a language prefix, sync it with Weglot
 		if (pathLanguage && pathLanguage !== DEFAULT_LANGUAGE) {
+			console.log('[LanguageContext] Syncing Weglot to path language:', pathLanguage);
 			switchWeglotLanguage(pathLanguage);
 			setCurrentLanguage(pathLanguage);
 		} else if (weglotLanguage) {
@@ -39,6 +45,7 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 				const cleanPath = getPathWithoutLanguage(pathname);
 				const targetPath = `/${weglotLanguage}${cleanPath}`;
 				if (pathname !== targetPath) {
+					console.log('[LanguageContext] Updating URL to match Weglot:', targetPath);
 					router.replace(targetPath);
 				}
 			}
@@ -47,7 +54,10 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 	// Update URL when Weglot language changes
 	useEffect(() => {
+		console.log('[LanguageContext - Weglot Change] Weglot:', weglotLanguage, 'Current:', currentLanguage);
+		
 		if (weglotLanguage && weglotLanguage !== currentLanguage) {
+			console.log('[LanguageContext] Weglot language changed from', currentLanguage, 'to', weglotLanguage);
 			setCurrentLanguage(weglotLanguage);
 			
 			// Update URL to reflect the new language
@@ -57,13 +67,17 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 				: `/${weglotLanguage}${cleanPath}`;
 			
 			if (pathname !== targetPath) {
+				console.log('[LanguageContext] Pushing new path:', targetPath);
 				router.push(targetPath);
 			}
 		}
 	}, [weglotLanguage, pathname, router, currentLanguage]);
 
 	const switchLanguage = (languageCode: string): void => {
+		console.log('[LanguageContext] switchLanguage called with:', languageCode, 'Current:', currentLanguage);
+		
 		if (languageCode === currentLanguage) {
+			console.log('[LanguageContext] Language already set to:', languageCode);
 			return;
 		}
 
@@ -74,6 +88,10 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		const targetPath = languageCode === DEFAULT_LANGUAGE 
 			? cleanPath || '/'
 			: `/${languageCode}${cleanPath}`;
+
+		console.log('[LanguageContext] Switching language to:', languageCode);
+		console.log('[LanguageContext] Clean path:', cleanPath);
+		console.log('[LanguageContext] Target path:', targetPath);
 
 		// Switch Weglot language
 		switchWeglotLanguage(languageCode);
