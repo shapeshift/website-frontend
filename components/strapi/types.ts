@@ -7,16 +7,16 @@ export type TStrapiImage = {
 	width: number;
 	height: number;
 	formats: {
-		thumbnail: { url: string; width: number; height: number };
-		small?: { url: string; width: number; height: number };
-		medium?: { url: string; width: number; height: number };
-		large?: { url: string; width: number; height: number };
+		thumbnail: {url: string; width: number; height: number};
+		small?: {url: string; width: number; height: number};
+		medium?: {url: string; width: number; height: number};
+		large?: {url: string; width: number; height: number};
 	};
 };
 
 export type TDownloadButton = {
 	id: number;
-	variant: "appstore" | "googleplay";
+	variant: 'appstore' | 'googleplay';
 	url: string;
 };
 
@@ -283,16 +283,11 @@ export type TStrapiNotification = {
 	description: string;
 	href?: string;
 	tag?: string;
-	type: "popup" | "modal" | "bar";
+	type: 'popup' | 'modal' | 'bar';
 	enabled: boolean;
 };
 
-export type TSupportedChainTypes =
-	| "EVM"
-	| "Solana"
-	| "Bitcoin"
-	| "Cosmos"
-	| string;
+export type TSupportedChainTypes = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos' | string;
 
 /********************************************************************************************
  * Types for Strapi Article API responses
