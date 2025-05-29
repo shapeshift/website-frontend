@@ -20,7 +20,7 @@ import Image from 'next/image';
 
 import {ChainsBanner} from '@/components/ChainsBanner';
 import {Button} from '@/components/common/Button';
-import {requestChainUrl} from '@/components/constants';
+import {requestUrl} from '@/components/constants';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {fetchAllChains} from '../_utils/fetchUtils';
@@ -91,7 +91,7 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 								hasArrow
 								title={'Request chain'}
 								variant={'white'}
-								href={requestChainUrl}
+								href={requestUrl}
 							/>
 						</div>
 					</div>

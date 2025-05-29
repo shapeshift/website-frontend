@@ -61,8 +61,8 @@ export function Footer(): ReactNode {
 							<Image
 								src={'/qrcode.png'}
 								alt={'qrcode'}
-								width={64}
-								height={64}
+								width={128}
+								height={128}
 							/>
 						</div>
 					</div>

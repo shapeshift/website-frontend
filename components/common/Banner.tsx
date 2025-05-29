@@ -1,15 +1,8 @@
 import Image from 'next/image';
 
-import {
-	bannerLeftButtonTitle,
-	bannerLeftTitle,
-	bannerMobileSubtitle,
-	bannerRightButtonTitle,
-	bannerRightTitle,
-	dAppUrl
-} from '../constants';
 import {Button} from './Button';
 import {LocalizedLink} from './LocalizedLink';
+import {bannerLeftButtonTitle, bannerLeftTitle, bannerMobileSubtitle, bannerRightTitle, dAppUrl} from '../constants';
 
 import type {ReactNode} from 'react';
 
@@ -35,12 +28,6 @@ export function Banner(): ReactNode {
 						title={bannerLeftButtonTitle}
 						href={dAppUrl}
 						className={'mb-[44px] !w-full lg:mb-0 lg:!w-auto'}
-					/>
-					<Button
-						variant={'white'}
-						title={bannerRightButtonTitle}
-						className={'hidden lg:flex'}
-						href={'https://app.shapeshift.com/dashboard'}
 					/>
 				</div>
 			</div>
