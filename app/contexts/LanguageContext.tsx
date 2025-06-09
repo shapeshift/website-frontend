@@ -4,7 +4,6 @@ import {usePathname, useRouter} from 'next/navigation';
 import {createContext, useContext, useEffect, useState} from 'react';
 
 import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath, getPathWithoutLanguage} from '@/app/i18n/config';
-import {useLanguage as useWeglotLanguage} from '@/hooks/useLanguage';
 
 import type {TLanguage} from '@/app/i18n/config';
 
@@ -19,10 +18,11 @@ const LanguageContext = createContext<TLanguageContext | undefined>(undefined);
 export function LanguageProvider({children}: {children: React.ReactNode}): JSX.Element {
 	const router = useRouter();
 	const pathname = usePathname();
-	const {currentLanguage: weglotLanguage, switchLanguage: switchWeglotLanguage} = useWeglotLanguage();
+	const [weglotLanguage, setWeglotLanguage] = useState(DEFAULT_LANGUAGE);
 	const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
 	const [isInitialized, setIsInitialized] = useState(false);
 
+	// Retrieve the language from Weglot and set weglotLanguage
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
@@ -30,19 +30,27 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 			if (window?.Weglot?.initialized) {
 				// eslint-disable-next-line
 				//@ts-ignore
+				const staticCurrentLanguage = window.Weglot.getCurrentLang();
+				console.log('[useLanguage] Weglot initialized, current language:', staticCurrentLanguage);
+				setWeglotLanguage(staticCurrentLanguage);
 				setIsInitialized(true);
 			} else {
+				console.log('[useLanguage] Weglot not initialized yet');
+
+				// Listen for Weglot initialization
 				const checkWeglot = setInterval(() => {
 					// eslint-disable-next-line
 					//@ts-ignore
 					if (window?.Weglot?.initialized) {
 						// eslint-disable-next-line
 						//@ts-ignore
+						const lang = window.Weglot.getCurrentLang();
+						console.log('[useLanguage] Weglot initialized after wait, language:', lang);
+						setWeglotLanguage(lang);
 						setIsInitialized(true);
 						clearInterval(checkWeglot);
 					}
 				}, 100);
-
 				// Clean up after 5 seconds
 				setTimeout(() => clearInterval(checkWeglot), 5000);
 			}
@@ -70,11 +78,23 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		// Sync Weglot with the path language
 		if (pathLanguage !== weglotLanguage) {
 			console.log('[LanguageContext] Syncing Weglot to path language:', pathLanguage);
-			switchWeglotLanguage(pathLanguage);
+			if (typeof window !== 'undefined') {
+				// eslint-disable-next-line
+				//@ts-ignore
+				if (window?.Weglot?.initialized) {
+					console.log('[useLanguage] Switching Weglot to:', pathLanguage);
+					// eslint-disable-next-line
+					//@ts-ignore
+					window.Weglot.switchTo(pathLanguage);
+					setCurrentLanguage(pathLanguage);
+				} else {
+					console.log('[useLanguage] Weglot not initialized, cannot switch language');
+				}
+			}
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname]); // Intentionally limited deps to prevent loops
+	}, [pathname, weglotLanguage, isInitialized]); // Intentionally limited deps to prevent loops
 
 	// Update state when Weglot language changes (but not URL - that's handled by switchLanguage)
 	useEffect(() => {
@@ -110,7 +130,19 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		// Always update state and Weglot, even if it seems like the same language
 		// This ensures sync when URL and state are out of sync
 		setCurrentLanguage(languageCode);
-		switchWeglotLanguage(languageCode);
+		if (typeof window !== 'undefined') {
+			// eslint-disable-next-line
+			//@ts-ignore
+			if (window?.Weglot?.initialized) {
+				console.log('[useLanguage] Switching Weglot to:', languageCode);
+				// eslint-disable-next-line
+				//@ts-ignore
+				window.Weglot.switchTo(languageCode);
+				setCurrentLanguage(languageCode);
+			} else {
+				console.log('[useLanguage] Weglot not initialized, cannot switch language');
+			}
+		}
 
 		// Only update URL if it's actually different
 		if (pathname !== targetPath) {
