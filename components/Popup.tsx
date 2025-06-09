@@ -92,7 +92,7 @@ export function Popup({
 								'font-medium text-base',
 								'hover:bg-gray-100',
 								'transition-colors duration-200',
-								'no-underline w-[160px]'
+								'no-underline w-max'
 							)}>
 							{'Learn more'}
 							<IconArrow

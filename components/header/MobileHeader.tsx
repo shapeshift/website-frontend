@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/enforces-negative-arbitrary-values */
 'use client';
 
 import {AnimatePresence, motion} from 'framer-motion';
@@ -149,6 +150,19 @@ export function MobileHeader({
 													</motion.div>
 												)}
 											</AnimatePresence>
+											<div className={'pointer-events-none fixed -top-[9999px] left-0 opacity-0'}>
+												{mobileTabs
+													.filter(t => t.value !== tab.value)
+													.map(hiddenTab => (
+														<div key={`hidden-${hiddenTab.value}`}>
+															{hiddenTab.items?.map(item => (
+																<div key={`hidden-${item.name}`}>
+																	<div>{item.name}</div>
+																</div>
+															))}
+														</div>
+													))}
+											</div>
 										</div>
 									))}
 								</div>
@@ -197,6 +211,19 @@ export function MobileHeader({
 										</motion.div>
 									)}
 								</AnimatePresence>
+								{/* Hidden language content for translations - always in DOM but invisible */}
+								<div className={'pointer-events-none fixed -top-[9999px] left-0 opacity-0'}>
+									{expandedSection !== 'language' && (
+										<div>
+											{SUPPORTED_LANGUAGES.map(language => (
+												<div key={`hidden-lang-${language.code}`}>
+													<span>{language.name}</span>
+													<span>{language.nativeName}</span>
+												</div>
+											))}
+										</div>
+									)}
+								</div>
 							</div>
 						</div>
 					</motion.div>

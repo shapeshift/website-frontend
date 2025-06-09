@@ -130,7 +130,15 @@ export function DesktopHeader({className, switchLanguageAction, currentLanguage}
 					exit={containerAnimation.exit}
 					transition={containerAnimation.transition}>
 					<div className={'bg-headerBg'}>
-						<AnimateChangeInHeight>{tabContent[currentTab]}</AnimateChangeInHeight>
+						<AnimateChangeInHeight>
+							{Object.entries(tabContent).map(([key, content]) => (
+								<div
+									key={key}
+									className={currentTab === key ? 'block' : 'hidden'}>
+									{content}
+								</div>
+							))}
+						</AnimateChangeInHeight>
 					</div>
 				</motion.div>
 			</div>

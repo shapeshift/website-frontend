@@ -32,32 +32,38 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 		return notFound();
 	}
 
-	const imageUrl = protocol.featuredImg.formats.thumbnail.url;
-	return {
+	const imageUrl = protocol.featuredImg?.formats?.thumbnail?.url || protocol.featuredImg?.url;
+
+	const metadata: Metadata = {
 		title: `${protocol.name} | Shapeshift`,
 		description: `Shift into ${protocol.name} with ShapeShift!`,
 		keywords: `${protocol.name}, Shapeshift`,
 		openGraph: {
 			title: protocol.name,
 			description: `Shift into ${protocol.name} with ShapeShift!`,
-			type: 'website',
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			type: 'website'
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: protocol.name,
-			description: `Shift into ${protocol.name} with ShapeShift!`,
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			description: `Shift into ${protocol.name} with ShapeShift!`
 		}
 	};
+
+	if (imageUrl) {
+		metadata.openGraph!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+		metadata.twitter!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+	}
+
+	return metadata;
 }
 
 export default async function ProtocolPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
