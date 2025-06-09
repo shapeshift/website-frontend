@@ -21,9 +21,39 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	const pathname = usePathname();
 	const {currentLanguage: weglotLanguage, switchLanguage: switchWeglotLanguage} = useWeglotLanguage();
 	const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
+	const [isInitialized, setIsInitialized] = useState(false);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			// eslint-disable-next-line
+			//@ts-ignore
+			if (window?.Weglot?.initialized) {
+				// eslint-disable-next-line
+				//@ts-ignore
+				setIsInitialized(true);
+			} else {
+				const checkWeglot = setInterval(() => {
+					// eslint-disable-next-line
+					//@ts-ignore
+					if (window?.Weglot?.initialized) {
+						// eslint-disable-next-line
+						//@ts-ignore
+						setIsInitialized(true);
+						clearInterval(checkWeglot);
+					}
+				}, 100);
+
+				// Clean up after 5 seconds
+				setTimeout(() => clearInterval(checkWeglot), 5000);
+			}
+		}
+	}, []);
 
 	// Sync Weglot language with URL on mount and when pathname changes
 	useEffect(() => {
+		if (!isInitialized) {
+			return;
+		}
 		const pathLanguage = getLanguageFromPath(pathname);
 
 		console.log('[LanguageContext] Path language:', pathLanguage);
@@ -48,6 +78,9 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 	// Update state when Weglot language changes (but not URL - that's handled by switchLanguage)
 	useEffect(() => {
+		if (!isInitialized) {
+			return;
+		}
 		console.log('[LanguageContext - Weglot Change] Weglot:', weglotLanguage, 'Current:', currentLanguage);
 
 		if (weglotLanguage && weglotLanguage !== currentLanguage) {
@@ -58,6 +91,9 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	}, [weglotLanguage]);
 
 	const switchLanguage = (languageCode: string): void => {
+		if (!isInitialized) {
+			return;
+		}
 		console.log('[LanguageContext] switchLanguage called with:', languageCode, 'Current:', currentLanguage);
 
 		// Get clean path without language prefix
