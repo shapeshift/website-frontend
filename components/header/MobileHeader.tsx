@@ -186,11 +186,9 @@ export function MobileHeader({
 															<span className={'text-sm font-medium'}>
 																{language.name}
 															</span>
-															{language.name !== language.nativeName && (
-																<span className={'no-translate text-xs opacity-70'}>
-																	{language.nativeName}
-																</span>
-															)}
+															<span className={'no-translate text-xs opacity-70'}>
+																{language.nativeName}
+															</span>
 														</div>
 														{currentLanguage === language.code && <IconCheck />}
 													</button>

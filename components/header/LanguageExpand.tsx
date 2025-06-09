@@ -36,9 +36,7 @@ export function LanguageExpand({
 							<div className={'flex w-[184px] items-center justify-between'}>
 								<div className={'flex flex-col items-start'}>
 									<span className={'text-sm font-medium'}>{language.name}</span>
-									{language.name !== language.nativeName && (
-										<span className={'no-translate text-xs opacity-70'}>{language.nativeName}</span>
-									)}
+									<span className={'no-translate text-xs opacity-70'}>{language.nativeName}</span>
 								</div>
 								{currentLanguage === language.code && <IconCheck />}
 							</div>
