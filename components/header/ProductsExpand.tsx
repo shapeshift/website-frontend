@@ -23,6 +23,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 				<p className={'mb-10 max-w-[327px] text-sm text-gray-500'}>{PRODUCTS_DICT.header.description}</p>
 				<Button
 					variant={'blue'}
+					className={'whitespace-nowrap'}
 					title={PRODUCTS_DICT.header.ctaButton}
 					href={dAppUrl}
 				/>

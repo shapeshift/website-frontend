@@ -13,7 +13,7 @@ import type {ReactNode} from 'react';
 
 export function BlogContent({content}: {content: string}): ReactNode {
 	return (
-		<div className={'blog-content prose prose-invert max-w-none'}>
+		<div className={'blog-content prose prose-invert no-translate max-w-none'}>
 			{isHtml(content) ? (
 				// eslint-disable-next-line @typescript-eslint/naming-convention
 				<div dangerouslySetInnerHTML={{__html: content}} />

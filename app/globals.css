@@ -26,3 +26,7 @@ body {
 .wg-default {
 	display: none !important;
 }
+
+.no-translate {
+	/* Used to indicate that we want Weglot not to translate this element */
+}

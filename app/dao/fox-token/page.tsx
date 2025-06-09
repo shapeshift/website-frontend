@@ -49,7 +49,7 @@ export default function FoxTokenPage(): ReactNode {
 					/>
 				</div>
 
-				<div className={'mb-10 flex items-center gap-2'}>
+				<div className={'no-translate mb-10 flex items-center gap-2'}>
 					<span className={'text-[40px] leading-10 text-white lg:text-7xl'}>{foxTokenTitleWhite}</span>
 					<span className={'text-[40px] font-bold italic leading-10 text-blue lg:text-7xl'}>
 						{foxTokenTitleBlue}
