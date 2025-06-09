@@ -17,6 +17,7 @@ type THeaderProps = {
  */
 export function Header({className}: THeaderProps): ReactNode {
 	const {currentLanguage, switchLanguage} = useLanguage();
+
 	return (
 		<>
 			<MobileHeader
