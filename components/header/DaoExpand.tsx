@@ -23,7 +23,7 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 							height={80}
 						/>
 					</div>
-					<div className={'text-[32px] leading-[32px]'}>
+					<div className={'no-translate text-[32px] leading-[32px]'}>
 						<span>{DAO_DICT.expand.title.prefix}</span>
 						<span className={'font-bold italic text-blue'}>{DAO_DICT.expand.title.suffix}</span>
 					</div>
