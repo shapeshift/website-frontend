@@ -285,6 +285,7 @@ export type TStrapiNotification = {
 	tag?: string;
 	type: 'popup' | 'modal' | 'bar';
 	enabled: boolean;
+	bgImage?: TStrapiImage;
 };
 
 export type TSupportedChainTypes = 'EVM' | 'Solana' | 'Bitcoin' | 'Cosmos' | string;

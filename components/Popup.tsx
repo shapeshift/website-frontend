@@ -1,7 +1,8 @@
 import {motion} from 'motion/react';
+import Link from 'next/link';
 
-import {Button} from './common/Button';
-import {RoundButton} from './common/RoundButton';
+import {IconArrow} from './common/icons/IconArrow';
+import {IconClose} from './common/icons/IconClose';
 import {popupAnimation} from './constants';
 import {cl} from './utils/cl';
 
@@ -9,13 +10,14 @@ import type {TStrapiNotification} from '@/components/strapi/types';
 import type {ReactElement} from 'react';
 
 /************************************************************************************************
- * Jumper Popup Component
- * Final slide popup showing user achievements
+ * Notification Popup Component
+ * Bottom-right notification popup with dark theme
  * Features:
  * - Slide-up animation
- * - Hover effects
+ * - Dark theme design
  * - Responsive design
- * - Call-to-action button
+ * - Call-to-action button with arrow
+ * - Background image from Strapi
  ************************************************************************************************/
 export function Popup({
 	notification,
@@ -34,43 +36,72 @@ export function Popup({
 						bottom: '24px',
 						right: '24px'
 					}}
-					className={'fixed bottom-6 right-6 z-[1005] rounded-2xl'}>
+					className={'fixed bottom-6 right-6 z-[1005]'}>
 					<motion.div
 						variants={popupAnimation}
 						initial={'initial'}
 						animate={'animate'}
 						exit={'exit'}
 						className={cl(
-							'group max-md:gap-2 md:left-auto',
-							'lg:h-[254px] lg:w-[480px]',
-							'md:h-60 md:w-60 max-h-[300px]',
-							'md:-translate-x-0 flex flex-col',
-							'rounded-2xl border border-white/10',
-							'pt-6 justify-between pb-4 px-4 [box-shadow:0px_0px_80px_0px_#FFFFFF33_inset]',
-							'hover:border-[#FFFFFF66]',
-							'transition-[box-shadow,border-color] duration-300'
+							'relative flex flex-col',
+							'w-[400px] min-h-[200px]',
+							'rounded-2xl',
+							'bg-[#12141A] border border-white/10',
+							'p-6 pb-8',
+							'transition-all duration-300',
+							'max-md:w-[350px] max-md:p-4'
 						)}
 						style={{
-							background: 'url(/popup-bg.png) no-repeat center center'
+							...(notification?.bgImage?.url
+								? {
+										background: `url(${`${process.env.STRAPI_URL}${notification.bgImage.url}`}) no-repeat center center`,
+										backgroundSize: 'cover'
+									}
+								: null)
 						}}>
-						<div className={'absolute right-2 top-2'}>
-							<RoundButton
-								iconName={'cross'}
-								onClick={onClose}
+						<button
+							onClick={onClose}
+							className={cl(
+								'absolute right-4 top-4',
+								'w-10 h-10 rounded-full',
+								'bg-[#2a2d35] hover:bg-[#3a3d45]',
+								'flex items-center justify-center',
+								'transition-colors duration-200',
+								'text-white/70 hover:text-white'
+							)}
+							aria-label={'Close notification'}>
+							<IconClose
+								width={16}
+								height={16}
 							/>
+						</button>
+						<div className={'flex-1 pr-8'}>
+							<h2 className={'mb-4 text-2xl font-bold leading-tight text-white'}>
+								{notification?.title ?? ''}
+							</h2>
+							<p className={'mb-6 text-base leading-relaxed text-white/80'}>
+								{notification?.description ?? ''}
+							</p>
 						</div>
-						<div>
-							<div className={'mb-2 flex items-center justify-between'}>
-								<span className={'text-2xl font-bold text-white'}>{notification?.title ?? ''}</span>
-							</div>
-							<p className={'max-w-[300px]'}>{notification?.description ?? ''}</p>
-						</div>
-						<Button
-							title={'Learn More'}
-							className={'!h-10 !w-[144px] !rounded-[24px] !bg-white !text-black'}
-							hasArrow
+						<Link
 							href={notification?.href ?? '#'}
-						/>
+							className={cl(
+								'inline-flex items-center gap-3',
+								'px-6 py-3 rounded-full',
+								'bg-white text-black',
+								'font-medium text-base',
+								'hover:bg-gray-100',
+								'transition-colors duration-200',
+								'no-underline w-[160px]'
+							)}>
+							{'Learn more'}
+							<IconArrow
+								width={20}
+								height={20}
+								strokeWidth={2}
+								className={'size-4 rotate-45'}
+							/>
+						</Link>
 					</motion.div>
 				</div>
 			)}
