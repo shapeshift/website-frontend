@@ -187,7 +187,7 @@ export function MobileHeader({
 																{language.name}
 															</span>
 															{language.name !== language.nativeName && (
-																<span className={'text-xs opacity-70'}>
+																<span className={'no-translate text-xs opacity-70'}>
 																	{language.nativeName}
 																</span>
 															)}
