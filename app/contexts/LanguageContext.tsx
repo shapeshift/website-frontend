@@ -63,11 +63,20 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 			return;
 		}
 		const pathLanguage = getLanguageFromPath(pathname);
+		const pathWithoutLanguage = getPathWithoutLanguage(pathname);
 
 		console.log('[LanguageContext] Path language:', pathLanguage);
 		console.log('[LanguageContext] Weglot language:', weglotLanguage);
 		console.log('[LanguageContext] Current language:', currentLanguage);
 		console.log('[LanguageContext] Pathname:', pathname);
+
+		// If Weglot detected a non-English language but URL doesn't have it, redirect
+		if (weglotLanguage !== DEFAULT_LANGUAGE && pathLanguage === DEFAULT_LANGUAGE && !pathname.includes(`/${weglotLanguage}`)) {
+			console.log('[LanguageContext] Redirecting to add language prefix:', weglotLanguage);
+			const targetPath = `/${weglotLanguage}${pathWithoutLanguage || '/'}`;
+			router.push(targetPath);
+			return;
+		}
 
 		// Always update current language from path first
 		if (pathLanguage !== currentLanguage) {
