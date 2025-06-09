@@ -16,7 +16,10 @@ export function BlogContent({content}: {content: string}): ReactNode {
 		<div className={'blog-content prose prose-invert no-translate max-w-none'}>
 			{isHtml(content) ? (
 				// eslint-disable-next-line @typescript-eslint/naming-convention
-				<div dangerouslySetInnerHTML={{__html: content}} />
+				<div
+					className={'no-translate'}
+					dangerouslySetInnerHTML={{__html: content}}
+				/>
 			) : (
 				<ReactMarkdown
 					remarkPlugins={[remarkGfm, remarkEmoji, remarkMath]}
@@ -25,19 +28,19 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						// Headers
 						h1: ({...props}) => (
 							<h1
-								className={'mb-4 mt-8 text-4xl font-bold'}
+								className={'no-translate mb-4 mt-8 text-4xl font-bold'}
 								{...props}
 							/>
 						),
 						h2: ({...props}) => (
 							<h2
-								className={'mb-3 mt-6 text-3xl font-bold'}
+								className={'no-translate mb-3 mt-6 text-3xl font-bold'}
 								{...props}
 							/>
 						),
 						h3: ({...props}) => (
 							<h3
-								className={'mb-2 mt-4 text-2xl font-bold'}
+								className={'no-translate mb-2 mt-4 text-2xl font-bold'}
 								{...props}
 							/>
 						),
@@ -50,7 +53,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 									<div className={'absolute right-2 top-2 text-xs text-gray-400'}>{match[1]}</div>
 									<pre className={className}>
 										<code
-											className={className}
+											className={`${className} no-translate`}
 											{...props}>
 											{children}
 										</code>
@@ -58,7 +61,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 								</div>
 							) : (
 								<code
-									className={'rounded bg-gray-800 px-1.5 py-0.5'}
+									className={'no-translate rounded bg-gray-800 px-1.5 py-0.5'}
 									{...props}>
 									{children}
 								</code>
@@ -69,20 +72,20 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						table: ({...props}) => (
 							<div className={'my-8 overflow-x-auto'}>
 								<table
-									className={'min-w-full'}
+									className={'no-translate min-w-full'}
 									{...props}
 								/>
 							</div>
 						),
 						th: ({...props}) => (
 							<th
-								className={'bg-gray-800 px-6 py-3 text-left'}
+								className={'no-translate bg-gray-800 px-6 py-3 text-left'}
 								{...props}
 							/>
 						),
 						td: ({...props}) => (
 							<td
-								className={'border-t border-gray-700 px-6 py-4'}
+								className={'no-translate border-t border-gray-700 px-6 py-4'}
 								{...props}
 							/>
 						),
@@ -105,7 +108,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						// Blockquotes
 						blockquote: ({...props}) => (
 							<blockquote
-								className={'border-blue-500 my-6 border-l-4 pl-4 italic text-gray-300'}
+								className={'no-translate border-blue-500 my-6 border-l-4 pl-4 italic text-gray-300'}
 								{...props}
 							/>
 						),
@@ -113,13 +116,13 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						// Lists
 						ul: ({...props}) => (
 							<ul
-								className={'my-4 list-inside list-disc'}
+								className={'no-translate my-4 list-inside list-disc'}
 								{...props}
 							/>
 						),
 						ol: ({...props}) => (
 							<ol
-								className={'my-4 list-inside list-decimal'}
+								className={'no-translate my-4 list-inside list-decimal'}
 								{...props}
 							/>
 						),
@@ -127,7 +130,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						// Links
 						a: ({...props}) => (
 							<a
-								className={'text-blue underline transition-colors hover:text-blueHover'}
+								className={'no-translate text-blue underline transition-colors hover:text-blueHover'}
 								target={'_blank'}
 								rel={'noopener noreferrer'}
 								{...props}
@@ -135,7 +138,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 						),
 						p: ({...props}) => (
 							<p
-								className={'mb-4'}
+								className={'no-translate mb-4'}
 								{...props}
 							/>
 						)

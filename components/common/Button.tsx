@@ -23,7 +23,7 @@ export function Button(props: TButtonProps): ReactNode {
 				<LocalizedLink
 					className={cl(
 						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300 gap-2',
-						hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
+						hasArrow ? 'justify-between min-w-[232px]' : '!min-w-[152px]',
 						variant === 'blue'
 							? 'bg-blue hover:bg-blueHover'
 							: 'bg-white/10 border border-white/50 hover:bg-white/5',
@@ -40,7 +40,7 @@ export function Button(props: TButtonProps): ReactNode {
 					className={cl(
 						'flex h-14 px-5 py-4 font-medium items-center text-white backdrop-blur-lg justify-center rounded-2xl hover:scale-105 transition-all duration-300 gap-2',
 						props.className,
-						props.href || hasArrow ? 'justify-between w-[232px]' : '!w-[152px]',
+						props.href || hasArrow ? 'justify-between min-w-[232px]' : '!min-w-[152px]',
 						variant === 'blue'
 							? 'bg-blue hover:bg-blueHover'
 							: 'bg-white/10 border border-white/50 hover:bg-white/5'
