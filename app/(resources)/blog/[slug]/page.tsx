@@ -75,7 +75,7 @@ export default function BlogPost(): ReactNode {
 						</LocalizedLink>
 					))}
 				</div>
-				<h1 className={'mb-4 text-4xl font-bold'}>{post.slug.replace(/-/g, ' ')}</h1>
+				<h1 className={'mb-4 text-4xl font-bold capitalize'}>{post.title || post.slug.replace(/-/g, ' ')}</h1>
 				<BlogContent content={post.content} />
 			</article>
 			{!isLoading && (
