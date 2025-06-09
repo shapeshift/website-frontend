@@ -15,9 +15,9 @@ export function BlogContent({content}: {content: string}): ReactNode {
 	return (
 		<div className={'blog-content prose prose-invert no-translate max-w-none'}>
 			{isHtml(content) ? (
-				// eslint-disable-next-line @typescript-eslint/naming-convention
 				<div
 					className={'no-translate'}
+					// eslint-disable-next-line @typescript-eslint/naming-convention
 					dangerouslySetInnerHTML={{__html: content}}
 				/>
 			) : (
