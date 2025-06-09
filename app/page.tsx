@@ -95,7 +95,7 @@ export default function HomePage(): ReactNode {
 
 				<div className={'mb-[120px] lg:mb-60'}>
 					<h1 className={'mb-8 text-[40px] leading-10 text-white lg:mb-14 lg:text-7xl'}>{featuresTitle}</h1>
-					<div className={'group relative h-[674px] overflow-hidden rounded-2xl'}>
+					<div className={'group relative h-[350px] overflow-hidden rounded-2xl md:h-[500px] lg:h-[674px]'}>
 						<Image
 							src={'/landing/landingTabsBg.png'}
 							alt={'tab_bg'}
@@ -134,7 +134,10 @@ export default function HomePage(): ReactNode {
 						</div>
 
 						<div className={'absolute left-0 top-0 mt-8 flex size-full flex-col items-center lg:mt-16'}>
-							<h1 className={'mb-7 text-center text-[40px] leading-[40px] text-white'}>
+							<h1
+								className={
+									'mb-7 px-4 text-center text-2xl text-white lg:px-0 lg:text-[40px] lg:leading-[40px]'
+								}>
 								{featureTabTitle}
 							</h1>
 							<div className={'flex w-min gap-2 rounded-full border border-white/10 p-2 lg:gap-4'}>
@@ -168,7 +171,7 @@ export default function HomePage(): ReactNode {
 								className={
 									'absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
 								}>
-								<span className={'max-w-[560px] text-center text-white'}>
+								<span className={'max-w-[560px] text-center text-sm text-white lg:text-base'}>
 									{featureCard1WhiteTitle}
 									<span className={'text-blue'}>{featureCard1BlueTitle}</span>
 								</span>

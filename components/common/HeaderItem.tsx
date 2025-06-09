@@ -21,9 +21,9 @@ export default function HeaderItem({name, href, target, description, onClick, ic
 			}
 			onClick={onClick}>
 			<div className={'w-6'}>{icon}</div>
-			<div className={'ml-4 flex flex-col gap-1'}>
-				<span className={'whitespace-nowrap font-medium'}>{name}</span>
-				<span className={'text-sm text-gray-500'}>{description}</span>
+			<div className={'ml-4 flex max-h-[120px] max-w-[100px] flex-col gap-1'}>
+				<span className={'truncate whitespace-nowrap text-sm font-medium '}>{name}</span>
+				<span className={'line-clamp-3 truncate whitespace-normal text-xs text-gray-500'}>{description}</span>
 			</div>
 		</LocalizedLink>
 	);
