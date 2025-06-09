@@ -52,10 +52,12 @@ export function Popup({
 							'max-md:w-[350px] max-md:p-4'
 						)}
 						style={{
-							...(notification?.bgImage?.url && {
-								background: `url(${`${process.env.STRAPI_URL}${notification.bgImage.url}`}) no-repeat center center`,
-								backgroundSize: 'cover'
-							})
+							...(notification?.bgImage?.url
+								? {
+										background: `url(${`${process.env.STRAPI_URL}${notification.bgImage.url}`}) no-repeat center center`,
+										backgroundSize: 'cover'
+									}
+								: null)
 						}}>
 						<button
 							onClick={onClose}
