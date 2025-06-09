@@ -242,7 +242,7 @@ export function TradingWidget(): ReactNode {
 
 			<div className={'mb-2 px-6'}>
 				<div className={'mb-2 text-sm'}>{'Pay With'}</div>
-				<div className={'flex items-center gap-2'}>
+				<div className={'no-translate flex items-center gap-2'}>
 					<TokenSelect
 						tokens={SUPPORTED_TOKENS}
 						selectedToken={fromToken}
@@ -288,7 +288,7 @@ export function TradingWidget(): ReactNode {
 
 			<div className={'mb-4 px-6'}>
 				<div className={'mb-2 text-sm text-gray-400'}>{'You Get'}</div>
-				<div className={'flex items-center gap-2'}>
+				<div className={'no-translate flex items-center gap-2 '}>
 					<TokenSelect
 						tokens={SUPPORTED_TOKENS}
 						selectedToken={toToken}
