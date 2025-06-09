@@ -79,11 +79,13 @@ function FeaturedPost({post, className}: {post: TBlogPost; className?: string}):
 
 			<div className={'col-span-1 ml-6 flex size-full flex-col justify-end gap-2'}>
 				<div className={'flex items-center'}>
-					{post.type?.length > 1 && <p className={'mr-2 text-xs text-blue'}>{post?.type.join(', ')}</p>}
-					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
+					{post.type?.length > 1 && (
+						<p className={'no-translate mr-2 text-xs text-blue'}>{post?.type.join(', ')}</p>
+					)}
+					<p className={'no-translate text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
 				</div>
 				<div>
-					<p className={'text-[32px] leading-[40px]'}>{post.title}</p>
+					<p className={'no-translate text-[32px] leading-[40px]'}>{post.title}</p>
 				</div>
 			</div>
 		</LocalizedLink>
@@ -130,11 +132,13 @@ function PostCard({post, className}: {post: TBlogPost; className?: string}): Rea
 
 			<div className={'mt-6 flex flex-col gap-2'}>
 				<div className={'flex items-center'}>
-					{post.type?.length > 1 && <p className={'mr-2 text-xs text-blue'}>{post?.type.join(', ')}</p>}
-					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
+					{post.type?.length > 1 && (
+						<p className={'no-translate mr-2 text-xs text-blue'}>{post?.type.join(', ')}</p>
+					)}
+					<p className={'no-translate text-xs text-gray-500'}>{formatDate(post.publishedAt)}</p>
 				</div>
 				<div>
-					<p className={'text-2xl'}>{post.title}</p>
+					<p className={'no-translate text-2xl'}>{post.title}</p>
 				</div>
 			</div>
 		</LocalizedLink>

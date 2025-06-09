@@ -71,7 +71,7 @@ export default function BlogPost(): ReactNode {
 					{post.tags.map((tag: string, index: number) => (
 						<LocalizedLink
 							href={`/blog/tags/${tag}`}
-							className={'text-blue'}
+							className={'no-translate text-blue'}
 							key={index}>
 							{`#${tag}`}
 						</LocalizedLink>
