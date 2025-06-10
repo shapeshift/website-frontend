@@ -99,7 +99,10 @@ export default async function ProtocolPage({params}: {params: Promise<{slug: str
 					name={protocol?.name}
 				/>
 				<ProtocolEasier protocolName={protocol?.name} />
-				<ProtocolFeatures description={protocol?.collabDescription} />
+				<ProtocolFeatures
+					description={protocol?.collabDescription}
+					features={protocol?.features}
+				/>
 
 				<div className={'mb-16 mt-80'}>
 					<Banner />
