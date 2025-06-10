@@ -15,21 +15,27 @@ export function ProtocolEasier({cards}: {cards: {title: string; description?: st
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}>
-			<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
-				<div className={'text-left'}>
-					<p className={'pb-2 text-2xl text-white'}>{cards[0]?.title}</p>
-					<p className={'pb-4 text-base text-secondary/50'}>{cards[0]?.description}</p>
+			{cards[0].title ? (
+				<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
+					<div className={'text-left'}>
+						<p className={'pb-2 text-2xl text-white'}>{cards[0]?.title}</p>
+						<p className={'pb-4 text-base text-secondary/50'}>{cards[0]?.description}</p>
+					</div>
 				</div>
-			</div>
-			<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
-				<div className={'text-left'}>
-					<p className={'pb-2 text-2xl text-white'}>{cards[1]?.title}</p>
-					<p className={'pb-4 text-base text-secondary/50'}>{cards[1]?.description}</p>
+			) : null}
+			{cards[1].title ? (
+				<div className={'flex w-full flex-col items-center gap-6 rounded-2xl bg-secondHoverBg p-10'}>
+					<div className={'text-left'}>
+						<p className={'pb-2 text-2xl text-white'}>{cards[1]?.title}</p>
+						<p className={'pb-4 text-base text-secondary/50'}>{cards[1]?.description}</p>
+					</div>
 				</div>
-			</div>
-			<div className={'flex w-full items-center justify-start px-20'}>
-				<p className={'text-[40px] leading-[48px] text-white'}>{cards[2]?.title}</p>
-			</div>
+			) : null}
+			{cards[2]?.title ? (
+				<div className={'flex w-full items-center justify-start px-20'}>
+					<p className={'text-[40px] leading-[48px] text-white'}>{cards[2]?.title}</p>
+				</div>
+			) : null}
 		</div>
 	);
 }
