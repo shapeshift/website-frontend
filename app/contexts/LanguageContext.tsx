@@ -59,7 +59,7 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 	// Sync Weglot language with URL on mount and when pathname changes
 	useEffect(() => {
-		if (!isInitialized) {
+		if (!isInitialized || typeof window === 'undefined') {
 			return;
 		}
 		const pathLanguage = getLanguageFromPath(pathname);
@@ -69,9 +69,14 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		console.log('[LanguageContext] Weglot language:', weglotLanguage);
 		console.log('[LanguageContext] Current language:', currentLanguage);
 		console.log('[LanguageContext] Pathname:', pathname);
+		console.log('[LanguageContext] Browser language:', navigator.language);
 
 		// If Weglot detected a non-English language but URL doesn't have it, redirect
-		if (weglotLanguage !== DEFAULT_LANGUAGE && pathLanguage === DEFAULT_LANGUAGE && !pathname.includes(`/${weglotLanguage}`)) {
+		if (
+			weglotLanguage !== DEFAULT_LANGUAGE &&
+			pathLanguage === DEFAULT_LANGUAGE &&
+			!pathname.includes(`/${weglotLanguage}`)
+		) {
 			console.log('[LanguageContext] Redirecting to add language prefix:', weglotLanguage);
 			const targetPath = `/${weglotLanguage}${pathWithoutLanguage || '/'}`;
 			router.push(targetPath);
