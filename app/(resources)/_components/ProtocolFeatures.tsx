@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import {useMemo} from 'react';
 
 import {Button} from '@/components/common/Button';
 import {LocalizedLink} from '@/components/common/LocalizedLink';
@@ -220,16 +223,27 @@ function PortalsFeature({index}: {index: number}): ReactNode {
 	);
 }
 
-export function ProtocolFeatures({description}: {description: string}): ReactNode {
-	return (
-		<div className={'mt-40 grid gap-x-[120px] gap-y-40 lg:grid-cols-1'}>
-			<OgPlatformFeature
-				description={description}
-				index={0}
-			/>
-			<MobileAppFeature index={1} />
-			<GetPaidToTradeFeature index={2} />
-			<PortalsFeature index={3} />
-		</div>
-	);
+export function ProtocolFeatures({description, features}: {description: string; features: string[]}): ReactNode {
+	const featuresComponents = useMemo(() => {
+		const allFeatures = [];
+		if (features.includes('OG DeFi Platforms')) {
+			allFeatures.push(
+				<OgPlatformFeature
+					description={description}
+					index={allFeatures.length % 2}
+				/>
+			);
+		}
+		if (features.includes('Shift to DeFi on the go')) {
+			allFeatures.push(<MobileAppFeature index={allFeatures.length % 2} />);
+		}
+		if (features.includes('Get Paid to Trade')) {
+			allFeatures.push(<GetPaidToTradeFeature index={allFeatures.length % 2} />);
+		}
+		if (features.includes('Powered by Portals')) {
+			allFeatures.push(<PortalsFeature index={allFeatures.length % 2} />);
+		}
+		return allFeatures;
+	}, [description, features]);
+	return <div className={'mt-40 grid gap-x-[120px] gap-y-40 lg:grid-cols-1'}>{featuresComponents}</div>;
 }
