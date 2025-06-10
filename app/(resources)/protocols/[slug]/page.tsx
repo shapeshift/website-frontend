@@ -98,7 +98,7 @@ export default async function ProtocolPage({params}: {params: Promise<{slug: str
 					description={protocol?.description}
 					name={protocol?.name}
 				/>
-				<ProtocolEasier protocolName={protocol?.name} />
+				<ProtocolEasier cards={protocol?.cards} />
 				<ProtocolFeatures
 					description={protocol?.collabDescription}
 					features={protocol?.features}
