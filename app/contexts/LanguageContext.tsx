@@ -21,6 +21,21 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	const [weglotLanguage, setWeglotLanguage] = useState(DEFAULT_LANGUAGE);
 	const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
 	const [isInitialized, setIsInitialized] = useState(false);
+	const [hasCheckedBrowserLang, setHasCheckedBrowserLang] = useState(false);
+
+	// Helper function to get browser language
+	const getBrowserLanguage = (): string => {
+		if (typeof window === 'undefined') {
+			return DEFAULT_LANGUAGE;
+		}
+		
+		// Get browser language and extract the language code (e.g., 'fr' from 'fr-FR')
+		const browserLang = navigator.language.toLowerCase().split('-')[0];
+		
+		// Check if browser language is supported
+		const supportedLang = SUPPORTED_LANGUAGES.find(lang => lang.code === browserLang);
+		return supportedLang ? browserLang : DEFAULT_LANGUAGE;
+	};
 
 	// Retrieve the language from Weglot and set weglotLanguage
 	useEffect(() => {
@@ -56,6 +71,37 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 			}
 		}
 	}, []);
+
+	// Check browser language on initial load (before Weglot initializes)
+	useEffect(() => {
+		if (hasCheckedBrowserLang || typeof window === 'undefined') {
+			return;
+		}
+
+		const pathLanguage = getLanguageFromPath(pathname);
+		
+		// Only check browser language if:
+		// 1. We're on the default language path
+		// 2. We haven't already checked
+		// 3. The path doesn't already have a language prefix
+		if (pathLanguage === DEFAULT_LANGUAGE) {
+			const browserLang = getBrowserLanguage();
+			
+			if (browserLang !== DEFAULT_LANGUAGE) {
+				console.log('[LanguageContext] Browser language detected:', browserLang);
+				console.log('[LanguageContext] Redirecting based on browser language');
+				
+				const pathWithoutLanguage = getPathWithoutLanguage(pathname);
+				const targetPath = `/${browserLang}${pathWithoutLanguage || '/'}`;
+				
+				// Mark as checked before redirecting to avoid loops
+				setHasCheckedBrowserLang(true);
+				router.push(targetPath);
+			}
+		}
+		
+		setHasCheckedBrowserLang(true);
+	}, [pathname, hasCheckedBrowserLang, router]);
 
 	// Sync Weglot language with URL on mount and when pathname changes
 	useEffect(() => {
