@@ -226,7 +226,7 @@ function PortalsFeature({index}: {index: number}): ReactNode {
 export function ProtocolFeatures({description, features}: {description: string; features: string[]}): ReactNode {
 	const featuresComponents = useMemo(() => {
 		const allFeatures = [];
-		if (features.includes('OG DeFi Platforms')) {
+		if (features?.includes('OG DeFi Platforms')) {
 			allFeatures.push(
 				<OgPlatformFeature
 					description={description}
@@ -234,16 +234,27 @@ export function ProtocolFeatures({description, features}: {description: string; 
 				/>
 			);
 		}
-		if (features.includes('Shift to DeFi on the go')) {
+		if (features?.includes('Shift to DeFi on the go')) {
 			allFeatures.push(<MobileAppFeature index={allFeatures.length % 2} />);
 		}
-		if (features.includes('Get Paid to Trade')) {
+		if (features?.includes('Get Paid to Trade')) {
 			allFeatures.push(<GetPaidToTradeFeature index={allFeatures.length % 2} />);
 		}
-		if (features.includes('Powered by Portals')) {
+		if (features?.includes('Powered by Portals')) {
 			allFeatures.push(<PortalsFeature index={allFeatures.length % 2} />);
+		}
+		if (allFeatures.length === 0) {
+			return null;
 		}
 		return allFeatures;
 	}, [description, features]);
-	return <div className={'mt-40 grid gap-x-[120px] gap-y-40 lg:grid-cols-1'}>{featuresComponents}</div>;
+	return (
+		<div
+			className={cl(
+				'mt-40 grid gap-x-[120px] gap-y-40 lg:grid-cols-1',
+				featuresComponents === null ? 'hidden' : ''
+			)}>
+			{featuresComponents}
+		</div>
+	);
 }

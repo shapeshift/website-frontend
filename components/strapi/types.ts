@@ -208,6 +208,10 @@ export type TSupportedProtocolData = {
 	publishedAt: string;
 	isFeatured: boolean;
 	features: string[];
+	cards: {
+		title: string;
+		description?: string;
+	}[];
 };
 
 export type TDiscoverData = {
