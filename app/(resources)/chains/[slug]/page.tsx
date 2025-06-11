@@ -33,32 +33,37 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 		return notFound();
 	}
 
-	const imageUrl = chain.featuredImg.formats.thumbnail.url;
-	return {
+	const imageUrl = chain.featuredImg?.formats?.thumbnail?.url || chain.featuredImg?.url;
+	const metadata: Metadata = {
 		title: `${chain.name} | ShapeShift Chains`,
 		description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
 		keywords: `${chain.name}, Shapeshift`,
 		openGraph: {
 			title: chain.name,
 			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
-			type: 'website',
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			type: 'website'
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: chain.name,
-			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`
 		}
 	};
+
+	if (imageUrl) {
+		metadata.openGraph!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+		metadata.twitter!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+	}
+
+	return metadata;
 }
 
 export default async function ChainPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {

@@ -31,32 +31,37 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 		return notFound();
 	}
 
-	const imageUrl = wallet.featuredImg.formats.thumbnail.url;
-	return {
+	const imageUrl = wallet.featuredImg?.formats?.thumbnail?.url || wallet.featuredImg?.url;
+	const metadata: Metadata = {
 		title: `${wallet.name} | ShapeShift Wallets`,
 		description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`,
 		keywords: `${wallet.name}, Shapeshift`,
 		openGraph: {
 			title: wallet.name,
 			description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`,
-			type: 'website',
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			type: 'website'
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: wallet.name,
-			description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`,
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			description: `Shapeshift supports ${wallet.name}! Use it now to buy, sell, and swap crypto.`
 		}
 	};
+
+	if (imageUrl) {
+		metadata.openGraph!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+		metadata.twitter!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+	}
+
+	return metadata;
 }
 
 export default async function WalletPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {

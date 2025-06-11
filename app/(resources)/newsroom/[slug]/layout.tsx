@@ -24,9 +24,8 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 		return notFound();
 	}
 
-	const imageUrl = post.featuredImg.formats.thumbnail.url;
-
-	return {
+	const imageUrl = post.featuredImg?.formats?.thumbnail?.url || post.featuredImg?.url;
+	const metadata: Metadata = {
 		title: `${post.title} | ShapeShift Newsroom`,
 		description: post.postSummary || `Read ${post.title} on ShapeShift Newsroom`,
 		keywords: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags,
@@ -35,25 +34,30 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 			description: post.postSummary,
 			type: 'article',
 			publishedTime: post.publishedAt,
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			],
 			authors: ['ShapeShift'],
 			tags: Array.isArray(post.tags) ? post.tags : [post.tags]
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: post.title,
-			description: post.postSummary || `Read ${post.title} on ShapeShift Newsroom`,
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`
-				}
-			]
+			description: post.postSummary || `Read ${post.title} on ShapeShift Newsroom`
 		}
 	};
+
+	if (imageUrl) {
+		metadata.openGraph!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+		metadata.twitter!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+	}
+
+	return metadata;
 }
 
 export default function NewsroomPostLayout({children}: {children: React.ReactNode}): React.ReactNode {

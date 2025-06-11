@@ -45,36 +45,39 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	}
 
 	// Get image URL for metadata
-	const imageUrl = discover.featuredImg.formats.thumbnail.url;
+	const imageUrl = discover.featuredImg?.formats?.thumbnail?.url || discover.featuredImg?.url;
 
 	// Metadata with SEO optimization
-	return {
+	const metadata: Metadata = {
 		title: `${discover.title} | Discover with ShapeShift`,
 		description: `Discover ${discover.title} with ShapeShift!`,
 		keywords: `${discover.title}, ShapeShift, discover, cryptocurrency`,
 		openGraph: {
 			title: discover.title,
 			description: `Discover ${discover.title} with ShapeShift!`,
-			type: 'website',
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`,
-					alt: discover.title
-				}
-			]
+			type: 'website'
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: discover.title,
-			description: `Discover ${discover.title} with ShapeShift!`,
-			images: [
-				{
-					url: `${process.env.STRAPI_URL}${imageUrl}`,
-					alt: discover.title
-				}
-			]
+			description: `Discover ${discover.title} with ShapeShift!`
 		}
 	};
+
+	if (imageUrl) {
+		metadata.openGraph!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+		metadata.twitter!.images = [
+			{
+				url: `${process.env.STRAPI_URL}${imageUrl}`
+			}
+		];
+	}
+
+	return metadata;
 }
 
 export default async function DiscoverDetailPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
