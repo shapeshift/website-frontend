@@ -19,7 +19,7 @@
 import {ResourceCard} from './ResourceCard';
 import {ResourceGrid} from './ResourceGrid';
 
-import type {TSupportedWalletData} from '@/components/strapi/types';
+import type {TSupportedWalletData} from '@/app/_components/strapi/types';
 
 type TWalletListProps = {
 	wallets: TSupportedWalletData[] | null;

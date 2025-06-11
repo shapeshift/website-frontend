@@ -39,7 +39,7 @@ import type {
 	TGridSection,
 	TStat,
 	TStrapiImage
-} from '@/components/strapi/types';
+} from '@/app/_components/strapi/types';
 
 /************************************************************************************************
  ** Product Page Type Definitions

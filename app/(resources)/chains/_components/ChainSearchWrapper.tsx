@@ -2,13 +2,13 @@
 
 import {useState} from 'react';
 
-import {Dropdown} from '@/components/common/Dropdown';
-import {SearchBar} from '@/components/common/SearchBar';
-import {CHAIN_TYPES} from '@/components/constants';
+import {Dropdown} from '@/app/_components/Dropdown';
+import {SearchBar} from '@/app/_components/SearchBar';
+import {CHAIN_TYPES} from '@/app/_utils/constants';
 
 import {ChainList} from '../../_components/ChainList';
 
-import type {TSupportedChainData, TSupportedChainTypes} from '@/components/strapi/types';
+import type {TSupportedChainData, TSupportedChainTypes} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TChainSearchWrapperProps = {

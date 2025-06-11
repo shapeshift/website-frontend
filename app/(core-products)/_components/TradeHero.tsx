@@ -1,6 +1,6 @@
 'use client';
 
-import {Button} from '@/components/common/Button';
+import {Button} from '@/app/_components/Button';
 /************************************************************************************************
  ** TradeHero Component:
  **
@@ -19,7 +19,7 @@ import {Button} from '@/components/common/Button';
  ** - Requires 'use client' directive for client-side interactivity
  ************************************************************************************************/
 
-import type {TButton} from '@/components/strapi/types';
+import type {TButton} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TTradeHeroProps = {

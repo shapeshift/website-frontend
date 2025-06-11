@@ -3,11 +3,16 @@
 import Image from 'next/image';
 import {useState} from 'react';
 
-import {LatestBlogPosts} from '@/components/BlogList';
-import {Carousel} from '@/components/Carousel';
-import {Banner} from '@/components/common/Banner';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {TabItem} from '@/components/common/TabItem';
+import {Banner} from '@/app/_components/Banner';
+import {LatestBlogPosts} from '@/app/_components/BlogList';
+import {Carousel} from '@/app/_components/Carousel';
+import {LandingCard} from '@/app/_components/LandingCard';
+import {LandingInfoCard} from '@/app/_components/LandingInfoCard';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import CardsRow from '@/app/_components/strapi/cards-row/CardsRow';
+import {TabItem} from '@/app/_components/TabItem';
+import {TradingWidget} from '@/app/_components/trading/TradingWidget';
+import {cl} from '@/app/_utils/cl';
 import {
 	carouselLogos,
 	featureCard1BlueTitle,
@@ -26,14 +31,9 @@ import {
 	landingCards,
 	landingInfoCards,
 	statCardsTitle
-} from '@/components/constants';
-import {LandingCard} from '@/components/LandingCard';
-import {LandingInfoCard} from '@/components/LandingInfoCard';
-import CardsRow from '@/components/strapi/cards-row/CardsRow';
-import {TradingWidget} from '@/components/trading/TradingWidget';
-import {cl} from '@/components/utils/cl';
+} from '@/app/_utils/constants';
 
-import type {TCard} from '@/components/strapi/types';
+import type {TCard} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {

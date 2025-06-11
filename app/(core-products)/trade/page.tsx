@@ -20,10 +20,10 @@
 import {notFound} from 'next/navigation';
 import Script from 'next/script';
 
+import {Card} from '@/app/_components/strapi/cards-row/Card';
+import CardsRow from '@/app/_components/strapi/cards-row/CardsRow';
+import GridDisplaced from '@/app/_components/strapi/products/GridDisplaced';
 import {generateProductSchema} from '@/app/_utils/schema';
-import {Card} from '@/components/strapi/cards-row/Card';
-import CardsRow from '@/components/strapi/cards-row/CardsRow';
-import GridDisplaced from '@/components/strapi/products/GridDisplaced';
 
 import {BackgroundImage} from '../_components/BackgroundImage';
 import {fetchTradePage} from '../_components/ProductFetcher';
@@ -31,7 +31,7 @@ import {ProductFooterBanner} from '../_components/ProductFooterBanner';
 import {ProductStats} from '../_components/ProductStats';
 import {TradeHero} from '../_components/TradeHero';
 
-import type {TCard} from '@/components/strapi/types';
+import type {TCard} from '@/app/_components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

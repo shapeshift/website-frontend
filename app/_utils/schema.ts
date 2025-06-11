@@ -5,7 +5,7 @@
  ** Supports blog posts, product pages, and organization schema
  ************************************************************************************************/
 
-import type {TBlogPost, TSupportArticle} from '@/components/strapi/types';
+import type {TBlogPost, TSupportArticle} from '@/app/_components/strapi/types';
 
 // Base organization data
 const organizationSchema = {

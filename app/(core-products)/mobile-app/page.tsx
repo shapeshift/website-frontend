@@ -18,8 +18,8 @@
 import {notFound} from 'next/navigation';
 import Script from 'next/script';
 
+import GridLadder from '@/app/_components/strapi/products/GridLadder';
 import {generateProductSchema} from '@/app/_utils/schema';
-import GridLadder from '@/components/strapi/products/GridLadder';
 
 import {BackgroundImage} from '../_components/BackgroundImage';
 import {DownloadButtons} from '../_components/DownloadButtons';

@@ -2,11 +2,11 @@
 
 import {useState} from 'react';
 
-import {SearchBar} from '@/components/common/SearchBar';
+import {SearchBar} from '@/app/_components/SearchBar';
 
 import {WalletList} from '../../_components/WalletList';
 
-import type {TSupportedWalletData} from '@/components/strapi/types';
+import type {TSupportedWalletData} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TWalletSearchWrapperProps = {

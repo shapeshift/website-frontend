@@ -2,10 +2,10 @@
 
 import {useState} from 'react';
 
-import {SearchBar} from '@/components/common/SearchBar';
-import {StrapiDiscover} from '@/components/StrapiDiscover';
+import {SearchBar} from '@/app/_components/SearchBar';
+import {StrapiDiscover} from '@/app/_components/StrapiDiscover';
 
-import type {TDiscoverData} from '@/components/strapi/types';
+import type {TDiscoverData} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TDiscoverSearchWrapperProps = {

@@ -2,7 +2,7 @@
 
 import {useParams, usePathname} from 'next/navigation';
 
-import {newsroomCategoriesSlugToCategory} from '@/components/constants';
+import {newsroomCategoriesSlugToCategory} from '@/app/_utils/constants';
 
 export function NewsroomTitle(): React.ReactNode {
 	const pathname = usePathname();

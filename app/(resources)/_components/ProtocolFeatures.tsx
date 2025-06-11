@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import {useMemo} from 'react';
 
-import {Button} from '@/components/common/Button';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {cl} from '@/components/utils/cl';
+import {Button} from '@/app/_components/Button';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import {cl} from '@/app/_utils/cl';
 
 import type {ReactNode} from 'react';
 

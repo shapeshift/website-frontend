@@ -7,7 +7,7 @@ import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
-import {isHtml} from '@/components/utils/isHtml';
+import {isHtml} from '@/app/_utils/isHtml';
 
 import type {ReactNode} from 'react';
 

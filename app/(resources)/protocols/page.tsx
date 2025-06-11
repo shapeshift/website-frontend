@@ -15,7 +15,7 @@
  ** - Implements responsive design with Tailwind CSS
  ************************************************************************************************/
 
-import {Banner} from '@/components/common/Banner';
+import {Banner} from '@/app/_components/Banner';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {fetchAllProtocols} from '../_utils/fetchUtils';

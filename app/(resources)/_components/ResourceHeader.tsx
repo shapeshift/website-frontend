@@ -18,9 +18,9 @@
 
 import Image from 'next/image';
 
-import {Button} from '@/components/common/Button';
-import {IconCheck} from '@/components/common/icons/IconCheck';
-import {cl} from '@/components/utils/cl';
+import {Button} from '@/app/_components/Button';
+import {IconCheck} from '@/app/_icons/IconCheck';
+import {cl} from '@/app/_utils/cl';
 
 import type {ReactNode} from 'react';
 

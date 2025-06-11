@@ -19,9 +19,9 @@
 
 import Image from 'next/image';
 
-import {Button} from '@/components/common/Button';
+import {Button} from '@/app/_components/Button';
 
-import type {TButton, TStrapiImage} from '@/components/strapi/types';
+import type {TButton, TStrapiImage} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TProductHeroProps = {

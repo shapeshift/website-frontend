@@ -21,13 +21,13 @@
 
 import {useEffect, useRef, useState} from 'react';
 
-import {Banner} from '@/components/common/Banner';
-import {RESOURCES_DICT} from '@/components/dictionary/resources';
-import {QuestionSection} from '@/components/QuestionSection';
+import {Banner} from '@/app/_components/Banner';
+import {QuestionSection} from '@/app/_components/QuestionSection';
+import {RESOURCES_DICT} from '@/app/_utils/dictionary/resources';
 
 import {FAQNavigation} from './FAQNavigation';
 
-import type {TFaqData, TFaqSection} from '@/components/strapi/types';
+import type {TFaqData, TFaqSection} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TFAQContentProps = {

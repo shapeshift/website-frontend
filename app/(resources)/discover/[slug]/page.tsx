@@ -23,7 +23,7 @@ import {ResourceHeader} from '@/app/(resources)/_components/ResourceHeader';
 import {ResourceHero} from '@/app/(resources)/_components/ResourceHero';
 import {DEFAULT_FEATURES} from '@/app/(resources)/_utils/constants';
 import {fetchDiscoverBySlug} from '@/app/(resources)/_utils/fetchUtils';
-import {Banner} from '@/components/common/Banner';
+import {Banner} from '@/app/_components/Banner';
 
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';

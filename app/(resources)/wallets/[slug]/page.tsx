@@ -3,11 +3,11 @@ import {notFound} from 'next/navigation';
 import {SupportedWalletAccelerate} from '@/app/(resources)/_components/SupportedWalletAccelerate';
 import {SupportedWalletHeader} from '@/app/(resources)/_components/SupportedWalletHeader';
 import {SupportedWalletHero} from '@/app/(resources)/_components/SupportedWalletHero';
-import {Banner} from '@/components/common/Banner';
-import {StrapiFAQ} from '@/components/StrapiFAQ';
-import {getSupportedWallet} from '@/components/utils/query';
+import {Banner} from '@/app/_components/Banner';
+import {StrapiFAQ} from '@/app/_components/StrapiFAQ';
+import {getSupportedWallet} from '@/app/_utils/query';
 
-import type {TSupportedWalletData} from '@/components/strapi/types';
+import type {TSupportedWalletData} from '@/app/_components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

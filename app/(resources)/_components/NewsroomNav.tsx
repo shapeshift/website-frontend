@@ -2,8 +2,8 @@
 
 import {useParams, usePathname} from 'next/navigation';
 
-import {TabItem} from '@/components/common/TabItem';
-import {newsroomCategories, newsroomTags} from '@/components/constants';
+import {TabItem} from '@/app/_components/TabItem';
+import {newsroomCategories, newsroomTags} from '@/app/_utils/constants';
 
 export function NewsroomNav(): React.ReactNode {
 	const pathname = usePathname();

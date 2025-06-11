@@ -21,18 +21,18 @@
 import {Fragment, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 
-import {Banner} from '@/components/common/Banner';
-import {IconChevron} from '@/components/common/icons/IconChevron';
-import {IconDocs} from '@/components/common/icons/IconDocs';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {RESOURCES_DICT} from '@/components/dictionary/resources';
-import {cl} from '@/components/utils/cl';
-import {useFetchSupportArticles} from '@/hooks/useFetchSupportArticles';
+import {Banner} from '@/app/_components/Banner';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import {useFetchSupportArticles} from '@/app/_hooks/useFetchSupportArticles';
+import {IconChevron} from '@/app/_icons/IconChevron';
+import {IconDocs} from '@/app/_icons/IconDocs';
+import {cl} from '@/app/_utils/cl';
+import {RESOURCES_DICT} from '@/app/_utils/dictionary/resources';
 
 import {SupportArticleListSkeleton} from './SupportArticleListSkeleton';
 import {DEFAULT_PAGINATION} from '../_utils/constants';
 
-import type {TSupportArticle} from '@/components/strapi/types';
+import type {TSupportArticle} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TSupportArticleListProps = {

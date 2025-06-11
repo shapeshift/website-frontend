@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import {Button} from '@/components/common/Button';
-import {dAppUrl} from '@/components/constants';
+import {Button} from '@/app/_components/Button';
+import {dAppUrl} from '@/app/_utils/constants';
 
 import type {ReactNode} from 'react';
 

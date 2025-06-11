@@ -1,7 +1,7 @@
-import {Banner} from '@/components/common/Banner';
-import {Button} from '@/components/common/Button';
-import {RESOURCES_DICT} from '@/components/dictionary/resources';
-import {getDiscovers} from '@/components/utils/query';
+import {Banner} from '@/app/_components/Banner';
+import {Button} from '@/app/_components/Button';
+import {RESOURCES_DICT} from '@/app/_utils/dictionary/resources';
+import {getDiscovers} from '@/app/_utils/query';
 
 import {DiscoverSearchWrapper} from './_components/DiscoverSearchWrapper';
 

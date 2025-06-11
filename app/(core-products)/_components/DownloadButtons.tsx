@@ -17,9 +17,9 @@
 
 import Image from 'next/image';
 
-import {LocalizedLink} from '@/components/common/LocalizedLink';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
 
-import type {TDownloadButton} from '@/components/strapi/types';
+import type {TDownloadButton} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TDownloadButtonsProps = {

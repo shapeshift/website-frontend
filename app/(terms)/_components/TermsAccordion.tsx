@@ -13,7 +13,7 @@ import 'highlight.js/styles/github-dark.css';
 import {memo, useCallback, useState} from 'react';
 
 import TermsMarkdown from '@/app/(terms)/_components/TermsMarkdown';
-import {AnimatedPlusMinusIcon} from '@/components/QuestionSection';
+import {AnimatedPlusMinusIcon} from '@/app/_components/QuestionSection';
 
 import type {KeyboardEvent, ReactNode} from 'react';
 

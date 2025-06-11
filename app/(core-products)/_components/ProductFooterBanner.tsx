@@ -18,7 +18,7 @@
  ** - Maintains consistent branding and messaging
  ************************************************************************************************/
 
-import {FooterBanner, FooterBannerMobileApp} from '@/components/FooterBanner';
+import {FooterBanner, FooterBannerMobileApp} from '@/app/_components/FooterBanner';
 
 import {PRODUCT_FOOTER_CONFIGS} from './constants';
 

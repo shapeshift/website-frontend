@@ -1,7 +1,7 @@
 import {Fragment} from 'react';
 
-import {Banner} from '@/components/common/Banner';
-import {RESOURCES_DICT} from '@/components/dictionary/resources';
+import {Banner} from '@/app/_components/Banner';
+import {RESOURCES_DICT} from '@/app/_utils/dictionary/resources';
 
 import type {ReactNode} from 'react';
 

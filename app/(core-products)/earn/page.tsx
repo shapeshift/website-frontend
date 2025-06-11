@@ -18,8 +18,8 @@
 import {notFound} from 'next/navigation';
 import Script from 'next/script';
 
+import Grid from '@/app/_components/strapi/products/Grid';
 import {generateProductSchema} from '@/app/_utils/schema';
-import Grid from '@/components/strapi/products/Grid';
 
 import {BackgroundImage} from '../_components/BackgroundImage';
 import {fetchEarnPage} from '../_components/ProductFetcher';

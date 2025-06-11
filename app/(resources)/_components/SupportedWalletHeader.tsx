@@ -1,5 +1,5 @@
-import {Button} from '@/components/common/Button';
-import {IconCheck} from '@/components/common/icons/IconCheck';
+import {Button} from '@/app/_components/Button';
+import {IconCheck} from '@/app/_icons/IconCheck';
 
 import type {ReactNode} from 'react';
 

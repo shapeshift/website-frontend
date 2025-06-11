@@ -11,7 +11,7 @@ import {Suspense} from 'react';
 
 import styles from '@/app/(terms)/_components/terms.module.css';
 import TermsAccordion from '@/app/(terms)/_components/TermsAccordion';
-import {Button} from '@/components/common/Button';
+import {Button} from '@/app/_components/Button';
 
 import type {TTermsItemData} from '@/app/(terms)/_components/TermsAccordion';
 import type {Metadata} from 'next';

@@ -1,19 +1,19 @@
 import {NextResponse} from 'next/server';
 
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath} from '@/app/i18n/config';
+import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath} from '@/app/_utils/i18nconfig';
 
 import type {NextRequest} from 'next/server';
 
 export function middleware(request: NextRequest): NextResponse {
 	const pathname = request.nextUrl.pathname;
 	const hostname = request.headers.get('host') || '';
-	
+
 	// Check if there's a language subdomain (e.g., fr.something.com)
 	const hostParts = hostname.split('.');
 	const possibleLangSubdomain = hostParts[0];
-	const isLanguageSubdomain = hostParts.length > 2 && 
-		SUPPORTED_LANGUAGES.some(lang => lang.code === possibleLangSubdomain);
-	
+	const isLanguageSubdomain =
+		hostParts.length > 2 && SUPPORTED_LANGUAGES.some(lang => lang.code === possibleLangSubdomain);
+
 	// Check if path has locale
 	const hasLocaleInPath = SUPPORTED_LANGUAGES.some(
 		lang => pathname.startsWith(`/${lang.code}/`) || pathname === `/${lang.code}`
@@ -23,14 +23,14 @@ export function middleware(request: NextRequest): NextResponse {
 	if (isLanguageSubdomain && possibleLangSubdomain !== DEFAULT_LANGUAGE) {
 		// Remove the language subdomain from the host
 		const mainDomain = hostParts.slice(1).join('.');
-		
+
 		// Build the new URL with language in path
 		const newUrl = new URL(request.url);
 		newUrl.hostname = mainDomain;
 		newUrl.pathname = `/${possibleLangSubdomain}${pathname}`;
-		
+
 		console.log('[Middleware] Redirecting from subdomain:', hostname, 'to:', newUrl.toString());
-		
+
 		// Permanent redirect from subdomain to path-based URL
 		return NextResponse.redirect(newUrl, 301);
 	}

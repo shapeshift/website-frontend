@@ -2,8 +2,8 @@
 
 import {useParams, usePathname} from 'next/navigation';
 
-import {TabItem} from '@/components/common/TabItem';
-import {blogTags, blogTypes} from '@/components/constants';
+import {TabItem} from '@/app/_components/TabItem';
+import {blogTags, blogTypes} from '@/app/_utils/constants';
 
 export function BlogNav(): React.ReactNode {
 	const pathname = usePathname();

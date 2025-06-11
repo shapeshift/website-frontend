@@ -6,7 +6,7 @@
  ** Enforces consistent data structure between different terms pages
  **************************************************************************************************/
 
-import {getPrivacyPolicy, getTermsOfService} from '@/components/utils/query';
+import {getPrivacyPolicy, getTermsOfService} from '@/app/_utils/query';
 
 import type {TTermsItemData} from '@/app/(terms)/_components/TermsAccordion';
 

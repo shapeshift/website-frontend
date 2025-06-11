@@ -3,12 +3,12 @@
 import {Fragment, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 
-import {Banner} from '@/components/common/Banner';
-import {IconChevron} from '@/components/common/icons/IconChevron';
-import {newsroomCategoriesSlugToCategory} from '@/components/constants';
-import {NewsPost} from '@/components/NewsPost';
-import {cl} from '@/components/utils/cl';
-import {useFetchNewsroom} from '@/hooks/useFetchNewsroom';
+import {Banner} from '@/app/_components/Banner';
+import {NewsPost} from '@/app/_components/NewsPost';
+import {useFetchNewsroom} from '@/app/_hooks/useFetchNewsroom';
+import {IconChevron} from '@/app/_icons/IconChevron';
+import {cl} from '@/app/_utils/cl';
+import {newsroomCategoriesSlugToCategory} from '@/app/_utils/constants';
 
 import type {ReactElement} from 'react';
 

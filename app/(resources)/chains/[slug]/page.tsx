@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import {notFound} from 'next/navigation';
 
-import {Banner} from '@/components/common/Banner';
-import {ChainActions} from '@/components/strapi/templates/ChainActions';
-import {ChainDescription} from '@/components/strapi/templates/ChainDescription';
-import {ChainFeatures} from '@/components/strapi/templates/ChainFeatures';
-import {ChainHeader} from '@/components/strapi/templates/ChainHeader';
-import {ChainHero} from '@/components/strapi/templates/ChainHero';
-import {getSupportedChain} from '@/components/utils/query';
+import {Banner} from '@/app/_components/Banner';
+import {ChainActions} from '@/app/_components/strapi/templates/ChainActions';
+import {ChainDescription} from '@/app/_components/strapi/templates/ChainDescription';
+import {ChainFeatures} from '@/app/_components/strapi/templates/ChainFeatures';
+import {ChainHeader} from '@/app/_components/strapi/templates/ChainHeader';
+import {ChainHero} from '@/app/_components/strapi/templates/ChainHero';
+import {getSupportedChain} from '@/app/_utils/query';
 
-import type {TSupportedChainData} from '@/components/strapi/types';
+import type {TSupportedChainData} from '@/app/_components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

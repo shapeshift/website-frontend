@@ -10,11 +10,11 @@ import remarkEmoji from 'remark-emoji'; // For emoji support
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math'; // For math equations
 
-import {Banner} from '@/components/common/Banner';
-import {IconBack} from '@/components/common/icons/IconBack';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {useCachedNews} from '@/components/contexts/CachedNews';
-import {useFetchNewsroom} from '@/hooks/useFetchNewsroom';
+import {Banner} from '@/app/_components/Banner';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import {useCachedNews} from '@/app/_contexts/CachedNewsContext';
+import {useFetchNewsroom} from '@/app/_hooks/useFetchNewsroom';
+import {IconBack} from '@/app/_icons/IconBack';
 
 import type {ReactNode} from 'react';
 

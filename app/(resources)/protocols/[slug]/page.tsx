@@ -5,10 +5,10 @@ import {ProtocolAbout} from '@/app/(resources)/_components/ProtocolAbout';
 import {ProtocolEasier} from '@/app/(resources)/_components/ProtocolEasier';
 import {ProtocolFeatures} from '@/app/(resources)/_components/ProtocolFeatures';
 import {ProtocolHeader} from '@/app/(resources)/_components/ProtocolHeader';
-import {Banner} from '@/components/common/Banner';
-import {getSupportedProtocol} from '@/components/utils/query';
+import {Banner} from '@/app/_components/Banner';
+import {getSupportedProtocol} from '@/app/_utils/query';
 
-import type {TSupportedProtocolData} from '@/components/strapi/types';
+import type {TSupportedProtocolData} from '@/app/_components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

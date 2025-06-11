@@ -20,7 +20,7 @@ import {notFound} from 'next/navigation';
 
 import {FAQContent} from '@/app/(resources)/_components/FAQContent';
 import {fetchFaqData} from '@/app/(resources)/_utils/fetchUtils';
-import {RESOURCES_DICT} from '@/components/dictionary/resources';
+import {RESOURCES_DICT} from '@/app/_utils/dictionary/resources';
 
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';

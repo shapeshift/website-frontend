@@ -1,9 +1,9 @@
-import {IconBorrow} from '@/components/common/icons/IconBorrow';
-import {IconEarn} from '@/components/common/icons/IconEarn';
-import {IconGlobe} from '@/components/common/icons/IconGlobe';
-import {IconKey} from '@/components/common/icons/IconKey';
-import {IconShield} from '@/components/common/icons/IconShield';
-import {IconTrade} from '@/components/common/icons/IconTrade';
+import {IconBorrow} from '@/app/_icons/IconBorrow';
+import {IconEarn} from '@/app/_icons/IconEarn';
+import {IconGlobe} from '@/app/_icons/IconGlobe';
+import {IconKey} from '@/app/_icons/IconKey';
+import {IconShield} from '@/app/_icons/IconShield';
+import {IconTrade} from '@/app/_icons/IconTrade';
 
 import type {ReactNode, SVGProps} from 'react';
 

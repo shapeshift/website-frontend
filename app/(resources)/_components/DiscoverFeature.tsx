@@ -19,7 +19,7 @@
 
 import Image from 'next/image';
 
-import {cl} from '@/components/utils/cl';
+import {cl} from '@/app/_utils/cl';
 
 import type {ReactNode} from 'react';
 

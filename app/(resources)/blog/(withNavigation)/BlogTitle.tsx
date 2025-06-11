@@ -2,7 +2,7 @@
 
 import {useParams, usePathname} from 'next/navigation';
 
-import {blogTypesSlugToCategory} from '@/components/constants';
+import {blogTypesSlugToCategory} from '@/app/_utils/constants';
 
 export function BlogTitle(): React.ReactNode {
 	const pathname = usePathname();

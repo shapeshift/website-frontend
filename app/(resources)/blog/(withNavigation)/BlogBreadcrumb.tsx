@@ -2,9 +2,9 @@
 
 import {usePathname} from 'next/navigation';
 
-import {IconBack} from '@/components/common/icons/IconBack';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {cl} from '@/components/utils/cl';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import {IconBack} from '@/app/_icons/IconBack';
+import {cl} from '@/app/_utils/cl';
 
 /********************************************************************************************
  * Blog Breadcrumb Navigation Component

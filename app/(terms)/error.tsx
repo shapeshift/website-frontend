@@ -9,7 +9,7 @@
 
 import {useEffect} from 'react';
 
-import {Button} from '@/components/common/Button';
+import {Button} from '@/app/_components/Button';
 
 import type {ReactNode} from 'react';
 

@@ -21,15 +21,15 @@
 import {Fragment, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 
-import {BlogPost} from '@/components/BlogPost';
-import {Banner} from '@/components/common/Banner';
-import {IconChevron} from '@/components/common/icons/IconChevron';
-import {cl} from '@/components/utils/cl';
-import {useFetchPosts} from '@/hooks/useFetchPosts';
+import {Banner} from '@/app/_components/Banner';
+import {BlogPost} from '@/app/_components/BlogPost';
+import {useFetchPosts} from '@/app/_hooks/useFetchPosts';
+import {IconChevron} from '@/app/_icons/IconChevron';
+import {cl} from '@/app/_utils/cl';
 
 import {DEFAULT_PAGINATION} from '../_utils/constants';
 
-import type {TBlogPost} from '@/components/strapi/types';
+import type {TBlogPost} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TPostListProps = {

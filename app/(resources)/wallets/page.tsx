@@ -16,9 +16,9 @@
  ** - Implements descriptive section headings for better accessibility
  ************************************************************************************************/
 
-import {Banner} from '@/components/common/Banner';
-import {requestUrl} from '@/components/constants';
-import {WalletRequestCard} from '@/components/WalletRequestCard';
+import {Banner} from '@/app/_components/Banner';
+import {WalletRequestCard} from '@/app/_components/WalletRequestCard';
+import {requestUrl} from '@/app/_utils/constants';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {fetchAllWallets} from '../_utils/fetchUtils';

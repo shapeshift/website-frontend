@@ -18,16 +18,16 @@
 import {notFound} from 'next/navigation';
 import Script from 'next/script';
 
+import {Card} from '@/app/_components/strapi/cards-row/Card';
+import CardsRow from '@/app/_components/strapi/cards-row/CardsRow';
 import {generateProductSchema} from '@/app/_utils/schema';
-import {Card} from '@/components/strapi/cards-row/Card';
-import CardsRow from '@/components/strapi/cards-row/CardsRow';
 
 import {BackgroundImage} from '../_components/BackgroundImage';
 import {fetchDeFiWalletPage} from '../_components/ProductFetcher';
 import {ProductFooterBanner} from '../_components/ProductFooterBanner';
 import {ProductHero} from '../_components/ProductHero';
 
-import type {TCard} from '@/components/strapi/types';
+import type {TCard} from '@/app/_components/strapi/types';
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 

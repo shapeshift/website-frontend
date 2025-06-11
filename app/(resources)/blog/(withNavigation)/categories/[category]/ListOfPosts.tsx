@@ -19,7 +19,7 @@
 'use client';
 
 import {PostList} from '@/app/(resources)/_components/PostList';
-import {blogTypesSlugToCategory} from '@/components/constants';
+import {blogTypesSlugToCategory} from '@/app/_utils/constants';
 
 import type {ReactElement} from 'react';
 

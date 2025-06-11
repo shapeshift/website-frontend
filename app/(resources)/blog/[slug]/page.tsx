@@ -6,12 +6,12 @@ import Script from 'next/script';
 
 import {BlogContent} from '@/app/(resources)/blog/[slug]/BlogContent';
 import {BlogSkeleton} from '@/app/(resources)/blog/[slug]/BlogSkeleton';
+import {Banner} from '@/app/_components/Banner';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import {useCachedPosts} from '@/app/_contexts/CachedPostsContext';
+import {useFetchPosts} from '@/app/_hooks/useFetchPosts';
+import {IconBack} from '@/app/_icons/IconBack';
 import {generateBlogPostSchema} from '@/app/_utils/schema';
-import {Banner} from '@/components/common/Banner';
-import {IconBack} from '@/components/common/icons/IconBack';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {useCachedPosts} from '@/components/contexts/CachedPosts';
-import {useFetchPosts} from '@/hooks/useFetchPosts';
 
 import type {ReactNode} from 'react';
 

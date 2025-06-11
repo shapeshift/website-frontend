@@ -18,9 +18,9 @@
 
 import Image from 'next/image';
 
-import {ChainsBanner} from '@/components/ChainsBanner';
-import {Button} from '@/components/common/Button';
-import {requestUrl} from '@/components/constants';
+import {Button} from '@/app/_components/Button';
+import {ChainsBanner} from '@/app/_components/ChainsBanner';
+import {requestUrl} from '@/app/_utils/constants';
 
 import {ResourceHeader} from '../_components/ResourceHeader';
 import {fetchAllChains} from '../_utils/fetchUtils';

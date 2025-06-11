@@ -21,7 +21,7 @@ import type {
 	TSupportedChainData,
 	TSupportedProtocolData,
 	TSupportedWalletData
-} from '@/components/strapi/types';
+} from '@/app/_components/strapi/types';
 
 // Common headers and cache configuration
 const apiConfig = {

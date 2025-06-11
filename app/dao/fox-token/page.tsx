@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import {LatestBlogPosts} from '@/components/BlogList';
-import {Banner} from '@/components/common/Banner';
-import {LocalizedLink} from '@/components/common/LocalizedLink';
-import {RoundButton} from '@/components/common/RoundButton';
+import {Banner} from '@/app/_components/Banner';
+import {LatestBlogPosts} from '@/app/_components/BlogList';
+import {LocalizedLink} from '@/app/_components/LocalizedLink';
+import {RoundButton} from '@/app/_components/RoundButton';
 import {
 	benefitsTitle,
 	communityTitle,
@@ -20,7 +20,7 @@ import {
 	section2Article1,
 	section2Article2,
 	section2Title
-} from '@/components/constants';
+} from '@/app/_utils/constants';
 
 import type {ReactNode} from 'react';
 

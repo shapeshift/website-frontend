@@ -5,11 +5,11 @@ import {notFound, useParams, useRouter} from 'next/navigation';
 import Script from 'next/script';
 
 import {SupportArticleContent} from '@/app/(resources)/support/[slug]/SupportArticleContent';
+import {Banner} from '@/app/_components/Banner';
+import {useCachedArticles} from '@/app/_contexts/CachedArticlesContext';
+import {useFetchSupportArticles} from '@/app/_hooks/useFetchSupportArticles';
+import {IconBack} from '@/app/_icons/IconBack';
 import {generateSupportArticleSchema} from '@/app/_utils/schema';
-import {Banner} from '@/components/common/Banner';
-import {IconBack} from '@/components/common/icons/IconBack';
-import {useCachedArticles} from '@/components/contexts/CachedArticles';
-import {useFetchSupportArticles} from '@/hooks/useFetchSupportArticles';
 
 import type {ReactNode} from 'react';
 

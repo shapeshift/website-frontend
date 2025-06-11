@@ -19,7 +19,7 @@
 import {ResourceCard} from '@/app/(resources)/_components/ResourceCard';
 import {ResourceGrid} from '@/app/(resources)/_components/ResourceGrid';
 
-import type {TSupportedProtocolData} from '@/components/strapi/types';
+import type {TSupportedProtocolData} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TProtocolListProps = {

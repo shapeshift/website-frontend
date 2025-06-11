@@ -6,7 +6,7 @@
  ** Sets up responsive container layout with consistent spacing
  **************************************************************************************************/
 
-import {Banner} from '@/components/common/Banner';
+import {Banner} from '@/app/_components/Banner';
 
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';

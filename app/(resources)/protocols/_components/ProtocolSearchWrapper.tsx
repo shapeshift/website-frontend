@@ -10,11 +10,11 @@
 
 import {useState} from 'react';
 
-import {SearchBar} from '@/components/common/SearchBar';
+import {SearchBar} from '@/app/_components/SearchBar';
 
 import {ProtocolList} from '../../_components/ProtocolList';
 
-import type {TSupportedProtocolData} from '@/components/strapi/types';
+import type {TSupportedProtocolData} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 /**************************************************************************************************

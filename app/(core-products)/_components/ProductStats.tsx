@@ -16,7 +16,7 @@
  ** - Stats will be arranged in a row (desktop) or column (mobile)
  ************************************************************************************************/
 
-import type {TStat} from '@/components/strapi/types';
+import type {TStat} from '@/app/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 type TProductStatsProps = {

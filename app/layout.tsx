@@ -2,15 +2,15 @@ import {headers} from 'next/headers';
 import Script from 'next/script';
 
 import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
+import {Footer} from '@/app/_components/Footer';
+import {Header} from '@/app/_components/header/Header';
+import {WithFonts} from '@/app/_components/WithFonts';
+import {CachedArticlesProvider} from '@/app/_contexts/CachedArticlesContext';
+import {CachedNewsProvider} from '@/app/_contexts/CachedNewsContext';
+import {CachedPostsProvider} from '@/app/_contexts/CachedPostsContext';
+import {LanguageProvider} from '@/app/_contexts/LanguageContext';
+import {SUPPORTED_LANGUAGES} from '@/app/_utils/i18nconfig';
 import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
-import {LanguageProvider} from '@/app/contexts/LanguageContext';
-import {SUPPORTED_LANGUAGES} from '@/app/i18n/config';
-import {WithFonts} from '@/components/common/WithFonts';
-import {CachedArticlesProvider} from '@/components/contexts/CachedArticles';
-import {CachedNewsProvider} from '@/components/contexts/CachedNews';
-import {CachedPostsProvider} from '@/components/contexts/CachedPosts';
-import {Footer} from '@/components/Footer';
-import {Header} from '@/components/header/Header';
 
 import './globals.css';
 import {defaultMetadata} from './metadata';
