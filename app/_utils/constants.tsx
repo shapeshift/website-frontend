@@ -128,7 +128,7 @@ export const foxTokenContributeItems = [
  ************************************************************************************************/
 
 export const bannerLeftTitle = 'Your multichain crypto home base.';
-export const bannerRightTitle = 'Defi everywhere, anytime with ShapeShift mobile.';
+export const bannerRightTitle = 'DeFi everywhere, anytime, with ShapeShift mobile.';
 export const bannerLeftButtonTitle = 'Launch dApp';
 export const bannerRightButtonTitle = 'Try the demo';
 export const bannerMobileSubtitle = 'Or download the app';
@@ -193,7 +193,7 @@ export const appResources = [
 		icon: <IconDocs />
 	},
 	{
-		name: 'Brand guidelines',
+		name: 'Brand Guidelines',
 		href: 'https://www.figma.com/design/Pvo3sJx2n5TGf1tUgmZR4z/ShapeShift-Brand-Guidelines',
 		description: 'Our brand guidelines'
 	}
@@ -201,7 +201,7 @@ export const appResources = [
 
 export const appDao = [
 	{
-		name: 'FOX token',
+		name: 'FOX Token',
 		href: '/dao/fox-token',
 		description: 'Our governance token',
 		icon: <IconFox />
@@ -219,15 +219,21 @@ export const appDao = [
 		icon: <IconDocs />
 	},
 	{
-		name: 'Join us',
+		name: 'Join Us',
 		href: 'https://forum.shapeshift.com/',
 		description: 'Join the community',
 		icon: <IconStar />
 	},
 	{
-		name: 'Share your ideas',
-		href: 'https://shapeshift.canny.io/',
-		description: 'Share your ideas',
+		name: 'Feature Requests',
+		href: 'https://shapeshift.canny.io/feature-requests',
+		description: 'Feature requests',
+		icon: <IconBulb />
+	},
+	{
+		name: 'Integration Requests',
+		href: 'https://shapeshift.canny.io/integration-requests',
+		description: 'Integration requests',
 		icon: <IconBulb />
 	}
 ];
@@ -258,13 +264,13 @@ export const appProducts = [
 		icon: <IconResource />
 	},
 	{
-		name: 'Mobile app',
+		name: 'Mobile App',
 		href: '/mobile-app',
 		description: 'The only crypto app you need.',
 		icon: <IconMobile />
 	},
 	{
-		name: 'Buy/Sell crypto',
+		name: 'Buy/Sell Crypto',
 		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
 		icon: <IconDollar />
