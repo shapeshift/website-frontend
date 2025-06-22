@@ -4,7 +4,7 @@ export const DAO_DICT = {
 			prefix: 'FOX ',
 			suffix: 'Power'
 		},
-		description: 'FOX Tokens wield mighty powers for those who hodl them.',
-		imageAlt: 'Fox Token'
+		description: 'FOX tokens wield mighty powers for those who hodl them.',
+		imageAlt: 'FOX Token'
 	}
 } as const;
