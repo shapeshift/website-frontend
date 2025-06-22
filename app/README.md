@@ -43,7 +43,7 @@ The homepage content can be easily customized by modifying specific constants in
 
 ### Feature Cards Text
 
-- `featureCard1WhiteTitle` / `featureCard1BlueTitle` - First feature card title (white/blue parts)
+- `featureCard1WhiteTitle` - First feature card title
 - `featureCard3WhiteTitle` / `featureCard3BlueTitle` - Third feature card title (white/blue parts)
 - `featureCard4WhiteTitle` / `featureCard4BlueTitle` - Fourth feature card title (white/blue parts)
 
