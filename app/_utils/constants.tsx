@@ -60,10 +60,10 @@ export const featureCard4BlueTitle = 'with DeFi';
 
 export const foxTokenTitleWhite = 'Fox';
 export const foxTokenTitleBlue = 'Power';
-export const foxTokenDescription = 'Fox Tokens wield mighty powers for those who hodl them.';
+export const foxTokenDescription = 'FOX tokens wield mighty power for those who hodl them.';
 export const foxTokenDescriptionNote =
-	'NOTE: FOX Token benefits are subject to change, as determined by FOX Token holders.';
-export const section1Title = 'How do I Participate?';
+	'NOTE: FOX Token benefits are subject to change, as determined by FOX token holders.';
+export const section1Title = 'How do I participate?';
 export const section1Description =
 	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.';
 
@@ -78,7 +78,7 @@ export const communityTitle = 'Join our community';
 
 export const foxTokenBenefits = [
 	{
-		title: 'Work from anywhere in the World.',
+		title: 'Work from anywhere in the world.',
 		icon: <IconGlobe />
 	},
 	{
@@ -127,7 +127,7 @@ export const foxTokenContributeItems = [
  ************************************************************************************************/
 
 export const bannerLeftTitle = 'Your multichain crypto home base.';
-export const bannerRightTitle = 'DeFi everywhere, anytime, with ShapeShift mobile.';
+export const bannerRightTitle = 'DeFi anywhere, anytime, with ShapeShift mobile.';
 export const bannerLeftButtonTitle = 'Launch dApp';
 export const bannerRightButtonTitle = 'Try the demo';
 export const bannerMobileSubtitle = 'Or download the app';
