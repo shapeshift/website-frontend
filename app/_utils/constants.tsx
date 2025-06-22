@@ -225,9 +225,15 @@ export const appDao = [
 		icon: <IconStar />
 	},
 	{
-		name: 'Share your ideas',
-		href: 'https://shapeshift.canny.io/',
-		description: 'Share your ideas',
+		name: 'Feature Requests',
+		href: 'https://shapeshift.canny.io/feature-requests',
+		description: 'Feature requests',
+		icon: <IconBulb />
+	},
+	{
+		name: 'Integration Requests',
+		href: 'https://shapeshift.canny.io/integration-requests',
+		description: 'Integration requests',
 		icon: <IconBulb />
 	}
 ];
