@@ -264,7 +264,7 @@ export const appProducts = [
 		icon: <IconResource />
 	},
 	{
-		name: 'Mobile app',
+		name: 'Mobile App',
 		href: '/mobile-app',
 		description: 'The only crypto app you need.',
 		icon: <IconMobile />
