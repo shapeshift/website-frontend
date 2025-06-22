@@ -6,7 +6,6 @@ import {IconBulb} from '../_icons/IconBulb';
 import {IconChains} from '../_icons/IconChains';
 import {IconClassic} from '../_icons/IconClassic';
 import {IconDapp} from '../_icons/IconDapp';
-import {IconDiscord} from '../_icons/IconDiscord';
 import {IconDiscover} from '../_icons/IconDiscover';
 import {IconDocs} from '../_icons/IconDocs';
 import {IconDollar} from '../_icons/IconDollar';
@@ -14,7 +13,6 @@ import {IconFox} from '../_icons/IconFox';
 import {IconGlobe} from '../_icons/IconGlobe';
 import {IconGovern} from '../_icons/IconGovern';
 import {IconHeart} from '../_icons/IconHeart';
-import {IconMedium} from '../_icons/IconMedium';
 import {IconMobile} from '../_icons/IconMobile';
 import {IconQuestion} from '../_icons/IconQuestion';
 import {IconResource} from '../_icons/IconResource';
@@ -22,11 +20,8 @@ import {IconScanDevice} from '../_icons/IconScanDevice';
 import {IconShield} from '../_icons/IconShield';
 import {IconStar} from '../_icons/IconStar';
 import {IconSupport} from '../_icons/IconSupport';
-import {IconTelegram} from '../_icons/IconTelegram';
 import {IconTriLink} from '../_icons/IconTriLink';
-import {IconTwitter} from '../_icons/IconTwitter';
 import {IconWallet} from '../_icons/IconWallet';
-import {IconWarpcast} from '../_icons/IconWarpcast';
 
 import type {TCardsRowSection, TSupportedChainTypes} from '@/app/_components/strapi/types';
 
