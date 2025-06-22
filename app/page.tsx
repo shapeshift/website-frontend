@@ -15,7 +15,6 @@ import {TradingWidget} from '@/app/_components/trading/TradingWidget';
 import {cl} from '@/app/_utils/cl';
 import {
 	carouselLogos,
-	featureCard1BlueTitle,
 	featureCard1WhiteTitle,
 	featureCard3BlueTitle,
 	featureCard3WhiteTitle,
@@ -171,9 +170,8 @@ export default function HomePage(): ReactNode {
 								className={
 									'absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-[40px] leading-[48px]'
 								}>
-								<span className={'max-w-[560px] text-center text-sm text-white lg:text-base'}>
+								<span className={'max-w-[560px] text-center text-lg text-white lg:text-xl'}>
 									{featureCard1WhiteTitle}
-									<span className={'text-blue'}>{featureCard1BlueTitle}</span>
 								</span>
 							</div>
 						</Card>
