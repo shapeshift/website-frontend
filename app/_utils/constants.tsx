@@ -109,29 +109,6 @@ export const foxTokenBenefits = [
 	}
 ];
 
-export const foxTokenCommunityItems = [
-	{
-		href: 'https://twitter.com/fox_token',
-		icon: <IconTwitter className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://medium.com/@fox_token',
-		icon: <IconMedium className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://discord.gg/fox_token',
-		icon: <IconDiscord className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://t.me/fox_token',
-		icon: <IconTelegram className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://w.social/fox_token',
-		icon: <IconWarpcast className={'transition-all duration-200 group-hover:text-blue'} />
-	}
-];
-
 export const foxTokenContributeItems = [
 	{
 		title: 'Contribute',
@@ -310,7 +287,7 @@ export const footerLinks = {
 	Resources: appResources,
 	DAO: appDao,
 	Connect: [
-		{name: 'Twitter', href: 'https://twitter.com/shapeshift'},
+		{name: '𝕏', href: 'https://x.com/shapeshift'},
 		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
 		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
 	]
