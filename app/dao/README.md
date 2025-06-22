@@ -61,7 +61,6 @@ To modify the content on the DAO **FOX Token** page, you can update the followin
 ### Lists and Collections
 
 - `foxTokenBenefits` - Array of benefit items with titles and icons
-- `foxTokenCommunityItems` - Social media and community links
 - `foxTokenContributeItems` - Contribution and governance links
 
 ### Additional Section Titles

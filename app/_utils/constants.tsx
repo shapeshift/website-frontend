@@ -6,7 +6,6 @@ import {IconBulb} from '../_icons/IconBulb';
 import {IconChains} from '../_icons/IconChains';
 import {IconClassic} from '../_icons/IconClassic';
 import {IconDapp} from '../_icons/IconDapp';
-import {IconDiscord} from '../_icons/IconDiscord';
 import {IconDiscover} from '../_icons/IconDiscover';
 import {IconDocs} from '../_icons/IconDocs';
 import {IconDollar} from '../_icons/IconDollar';
@@ -14,7 +13,6 @@ import {IconFox} from '../_icons/IconFox';
 import {IconGlobe} from '../_icons/IconGlobe';
 import {IconGovern} from '../_icons/IconGovern';
 import {IconHeart} from '../_icons/IconHeart';
-import {IconMedium} from '../_icons/IconMedium';
 import {IconMobile} from '../_icons/IconMobile';
 import {IconQuestion} from '../_icons/IconQuestion';
 import {IconResource} from '../_icons/IconResource';
@@ -22,11 +20,8 @@ import {IconScanDevice} from '../_icons/IconScanDevice';
 import {IconShield} from '../_icons/IconShield';
 import {IconStar} from '../_icons/IconStar';
 import {IconSupport} from '../_icons/IconSupport';
-import {IconTelegram} from '../_icons/IconTelegram';
 import {IconTriLink} from '../_icons/IconTriLink';
-import {IconTwitter} from '../_icons/IconTwitter';
 import {IconWallet} from '../_icons/IconWallet';
-import {IconWarpcast} from '../_icons/IconWarpcast';
 
 import type {TCardsRowSection, TSupportedChainTypes} from '@/app/_components/strapi/types';
 
@@ -106,29 +101,6 @@ export const foxTokenBenefits = [
 	{
 		title: 'Work with a fully distributed team of top talent',
 		icon: <IconTriLink />
-	}
-];
-
-export const foxTokenCommunityItems = [
-	{
-		href: 'https://twitter.com/fox_token',
-		icon: <IconTwitter className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://medium.com/@fox_token',
-		icon: <IconMedium className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://discord.gg/fox_token',
-		icon: <IconDiscord className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://t.me/fox_token',
-		icon: <IconTelegram className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://w.social/fox_token',
-		icon: <IconWarpcast className={'transition-all duration-200 group-hover:text-blue'} />
 	}
 ];
 
@@ -310,7 +282,7 @@ export const footerLinks = {
 	Resources: appResources,
 	DAO: appDao,
 	Connect: [
-		{name: 'Twitter', href: 'https://twitter.com/shapeshift'},
+		{name: '𝕏', href: 'https://x.com/shapeshift'},
 		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
 		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
 	]
