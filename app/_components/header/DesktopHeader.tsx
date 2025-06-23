@@ -8,7 +8,7 @@ import {AnimateChangeInHeight} from '@/app/_components/AnimatedHeight';
 import {Button} from '@/app/_components/Button';
 import {LocalizedLink} from '@/app/_components/LocalizedLink';
 import {Notification} from '@/app/_components/Notification';
-// import {IconPlanet} from '@/app/_icons/IconPlanet';
+import {IconPlanet} from '@/app/_icons/IconPlanet';
 import {ShapeshiftLogo} from '@/app/_icons/ShapeshiftLogo';
 import {cl} from '@/app/_utils/cl';
 import {dAppUrl, headerTabs} from '@/app/_utils/constants';
@@ -103,13 +103,13 @@ export function DesktopHeader({className, switchLanguageAction, currentLanguage}
 						</nav>
 
 						<div className={'flex gap-2'}>
-							{/* <button
+							<button
 								onMouseEnter={() => setCurrentTab('language')}
 								className={
 									'group flex aspect-square h-14 items-center justify-center rounded-[20px] border border-white/5'
 								}>
 								<IconPlanet className={'opacity-50 transition-opacity group-hover:opacity-100'} />
-							</button> */}
+							</button>
 							<Button
 								variant={'blue'}
 								title={'Launch App'}
