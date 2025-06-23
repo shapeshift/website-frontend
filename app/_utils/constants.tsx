@@ -24,6 +24,15 @@ import {IconTriLink} from '../_icons/IconTriLink';
 import {IconWallet} from '../_icons/IconWallet';
 
 import type {TCardsRowSection, TSupportedChainTypes} from '@/app/_components/strapi/types';
+import type {ReactNode} from 'react';
+
+export type TAppLink = {
+	name: string;
+	href: string;
+	description?: string;
+	icon?: ReactNode;
+	target?: string;
+};
 
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
@@ -136,7 +145,7 @@ export const bannerMobileSubtitle = 'Or download the app';
  ** App constants
  ************************************************************************************************/
 
-export const appResources = [
+export const appResources: TAppLink[] = [
 	{
 		name: 'Blog',
 		href: '/blog',
@@ -198,7 +207,7 @@ export const appResources = [
 	}
 ];
 
-export const appDao = [
+export const appDao: TAppLink[] = [
 	{
 		name: 'FOX Token',
 		href: '/dao/fox-token',
@@ -237,18 +246,20 @@ export const appDao = [
 	}
 ];
 
-export const appProducts = [
+export const appProducts: TAppLink[] = [
 	{
 		name: 'App',
 		href: dAppUrl,
 		description: 'Trade, track, buy, and earn with your favorite crypto.',
-		icon: <IconDapp />
+		icon: <IconDapp />,
+		target: '_blank'
 	},
 	{
 		name: 'Classic',
 		href: 'https://og.shapeshift.com/',
 		description: 'Original ShapeShift platform with classic interface.',
-		icon: <IconClassic />
+		icon: <IconClassic />,
+		target: '_blank'
 	},
 	{
 		name: 'Trade',
@@ -272,7 +283,8 @@ export const appProducts = [
 		name: 'Buy/Sell Crypto',
 		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
-		icon: <IconDollar />
+		icon: <IconDollar />,
+		target: '_blank'
 	}
 ];
 
@@ -282,7 +294,7 @@ export const headerTabs = [
 	{name: 'DAO', href: '/dao', value: 'dao'}
 ];
 
-export const footerLinks = {
+export const footerLinks: Record<string, TAppLink[]> = {
 	Products: appProducts,
 	Resources: appResources,
 	DAO: appDao,

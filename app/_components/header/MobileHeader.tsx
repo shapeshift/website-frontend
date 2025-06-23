@@ -15,9 +15,10 @@ import {IconShapeshift} from '@/app/_icons/IconShapeshift';
 import {appDao, appProducts, appResources, headerTabs} from '@/app/_utils/constants';
 import {SUPPORTED_LANGUAGES} from '@/app/_utils/i18nconfig';
 
+import type {TAppLink} from '@/app/_utils/constants';
 import type {ReactNode} from 'react';
 
-const mobileTabs = [
+const mobileTabs: {name: string; value: string; items: TAppLink[]}[] = [
 	{
 		name: 'Products',
 		value: 'products',
@@ -126,7 +127,7 @@ export function MobileHeader({
 														{...expandAnimation}>
 														{mobileTabs
 															.find(t => t.value === tab.value)
-															?.items?.map(item => (
+															?.items?.map((item: TAppLink) => (
 																<motion.div
 																	initial={{opacity: 0, x: -20}}
 																	animate={{opacity: 1, x: 0}}
@@ -135,6 +136,7 @@ export function MobileHeader({
 																	<LocalizedLink
 																		onClick={() => setIsMenuOpen(false)}
 																		href={item.href}
+																		target={item.target}
 																		className={'flex gap-4 pt-6 text-lg'}>
 																		<div
 																			className={

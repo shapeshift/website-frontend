@@ -8,6 +8,7 @@ import {DEFAULT_LANGUAGE, getLanguageFromPath} from '@/app/_utils/i18nconfig';
 
 import type {LinkProps} from 'next/link';
 import type {AnchorHTMLAttributes, ReactNode} from 'react';
+import type {UrlObject} from 'url';
 
 type TLocalizedLinkProps = LinkProps &
 	AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -29,17 +30,17 @@ export const LocalizedLink = forwardRef<HTMLAnchorElement, TLocalizedLinkProps>(
 			: typeof href === 'object' &&
 				  href !== null &&
 				  'pathname' in href &&
-				  typeof (href as any).pathname === 'string'
-				? (href as any).pathname
+				  typeof (href as UrlObject).pathname === 'string'
+				? (href as UrlObject).pathname
 				: '';
 
 	// Don't modify external links, anchors, or already localized paths
 	if (
-		hrefString.startsWith('http') ||
-		hrefString.startsWith('#') ||
-		hrefString.startsWith('mailto:') ||
-		hrefString.startsWith('tel:') ||
-		!hrefString.startsWith('/')
+		hrefString?.startsWith('http') ||
+		hrefString?.startsWith('#') ||
+		hrefString?.startsWith('mailto:') ||
+		hrefString?.startsWith('tel:') ||
+		!hrefString?.startsWith('/')
 	) {
 		return (
 			<Link

@@ -8,6 +8,7 @@ import {LocalizedLink} from './LocalizedLink';
 import {ShapeshiftLogo} from '../_icons/ShapeshiftLogo';
 import {footerButtonTitle, footerLinks} from '../_utils/constants';
 
+import type {TAppLink} from '../_utils/constants';
 import type {ReactNode} from 'react';
 
 export function Footer(): ReactNode {
@@ -36,11 +37,11 @@ export function Footer(): ReactNode {
 								className={'flex flex-col gap-4'}>
 								<h3 className={'cursor-default text-sm font-medium text-gray-500'}>{category}</h3>
 								<div className={'flex flex-col gap-3'}>
-									{links.map(link => (
+									{links.map((link: TAppLink) => (
 										<LocalizedLink
 											key={link.name}
 											href={link.href}
-											target={category === 'Connect' ? '_blank' : '_self'}
+											target={link.target || (category === 'Connect' ? '_blank' : '_self')}
 											className={'text-sm text-white transition-all hover:text-blue'}>
 											{link.name}
 										</LocalizedLink>
