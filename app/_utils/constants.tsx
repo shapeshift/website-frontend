@@ -115,19 +115,23 @@ export const foxTokenBenefits = [
 export const foxTokenContributeItems = [
 	{
 		title: 'Contribute',
-		href: githubUrl
+		href: githubUrl,
+		target: '_blank'
 	},
 	{
 		title: 'Govern',
-		href: 'https://snapshot.box/#/s:shapeshiftdao.eth'
+		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
+		target: '_blank'
 	},
 	{
 		title: 'Read Docs',
-		href: docsUrl
+		href: docsUrl,
+		target: '_blank'
 	},
 	{
 		title: 'Discuss',
-		href: 'https://forum.shapeshift.com/'
+		href: 'https://forum.shapeshift.com/',
+		target: '_blank'
 	}
 ];
 
@@ -203,7 +207,8 @@ export const appResources: TAppLink[] = [
 	{
 		name: 'Brand Guidelines',
 		href: 'https://www.figma.com/design/Pvo3sJx2n5TGf1tUgmZR4z/ShapeShift-Brand-Guidelines',
-		description: 'Our brand guidelines'
+		description: 'Our brand guidelines',
+		target: '_blank'
 	}
 ];
 
@@ -218,31 +223,36 @@ export const appDao: TAppLink[] = [
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
 		description: 'Participate in decision making',
-		icon: <IconGovern />
+		icon: <IconGovern />,
+		target: '_blank'
 	},
 	{
 		name: 'Docs',
 		href: docsUrl,
 		description: 'Technical documentation',
-		icon: <IconDocs />
+		icon: <IconDocs />,
+		target: '_blank'
 	},
 	{
 		name: 'Join Us',
 		href: 'https://forum.shapeshift.com/',
 		description: 'Join the community',
-		icon: <IconStar />
+		icon: <IconStar />,
+		target: '_blank'
 	},
 	{
 		name: 'Feature Requests',
 		href: 'https://shapeshift.canny.io/feature-requests',
 		description: 'Feature requests',
-		icon: <IconBulb />
+		icon: <IconBulb />,
+		target: '_blank'
 	},
 	{
 		name: 'Integration Requests',
 		href: 'https://shapeshift.canny.io/integration-requests',
 		description: 'Integration requests',
-		icon: <IconBulb />
+		icon: <IconBulb />,
+		target: '_blank'
 	}
 ];
 
