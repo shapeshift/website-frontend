@@ -10,7 +10,7 @@ import {AnimatedPlusMinusIcon} from '@/app/_components/QuestionSection';
 import {IconCheck} from '@/app/_icons/IconCheck';
 import {IconClose} from '@/app/_icons/IconClose';
 import {IconMenu} from '@/app/_icons/IconMenu';
-import {IconPlanet} from '@/app/_icons/IconPlanet';
+// import {IconPlanet} from '@/app/_icons/IconPlanet';
 import {IconShapeshift} from '@/app/_icons/IconShapeshift';
 import {appDao, appProducts, appResources, headerTabs} from '@/app/_utils/constants';
 import {SUPPORTED_LANGUAGES} from '@/app/_utils/i18nconfig';
@@ -169,14 +169,14 @@ export function MobileHeader({
 								</div>
 							</div>
 							<div>
-								<button
+								{/* <button
 									onClick={() => setExpandedSection(expandedSection === 'language' ? '' : 'language')}
 									className={
 										'mb-10 mt-6 flex w-full items-center justify-between gap-2 rounded-2xl border border-white/50 bg-white/10 p-4'
 									}>
 									<span>{SUPPORTED_LANGUAGES.find(l => l.code === currentLanguage)?.name}</span>
 									<IconPlanet className={'text-white/50'} />
-								</button>
+								</button> */}
 								<AnimatePresence>
 									{expandedSection === 'language' && (
 										<motion.div
