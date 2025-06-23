@@ -311,7 +311,7 @@ export const footerLinks: Record<string, TAppLink[]> = {
 	Connect: [
 		{name: '𝕏', href: 'https://x.com/shapeshift'},
 		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
-		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
+		{name: 'Farcaster', href: 'https://farcaster.xyz/shapeshift'}
 	]
 };
 
