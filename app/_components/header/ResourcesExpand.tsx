@@ -31,6 +31,7 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 							href={resource.href}
 							description={resource.description}
 							icon={resource.icon}
+							target={resource.target}
 						/>
 					))}
 				</div>

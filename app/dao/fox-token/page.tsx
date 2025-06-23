@@ -72,6 +72,7 @@ export default function FoxTokenPage(): ReactNode {
 					{foxTokenContributeItems.map(item => (
 						<LocalizedLink
 							href={item.href}
+							target={item.target}
 							className={
 								'group flex w-full items-center justify-between rounded-2xl bg-secondBg px-10 py-7'
 							}

@@ -40,6 +40,7 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 							href={dao.href}
 							description={dao.description}
 							icon={dao.icon}
+							target={dao.target}
 						/>
 					))}
 				</div>

@@ -24,6 +24,15 @@ import {IconTriLink} from '../_icons/IconTriLink';
 import {IconWallet} from '../_icons/IconWallet';
 
 import type {TCardsRowSection, TSupportedChainTypes} from '@/app/_components/strapi/types';
+import type {ReactNode} from 'react';
+
+export type TAppLink = {
+	name: string;
+	href: string;
+	description?: string;
+	icon?: ReactNode;
+	target?: string;
+};
 
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
@@ -106,19 +115,23 @@ export const foxTokenBenefits = [
 export const foxTokenContributeItems = [
 	{
 		title: 'Contribute',
-		href: githubUrl
+		href: githubUrl,
+		target: '_blank'
 	},
 	{
 		title: 'Govern',
-		href: 'https://snapshot.box/#/s:shapeshiftdao.eth'
+		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
+		target: '_blank'
 	},
 	{
 		title: 'Read Docs',
-		href: docsUrl
+		href: docsUrl,
+		target: '_blank'
 	},
 	{
 		title: 'Discuss',
-		href: 'https://forum.shapeshift.com/'
+		href: 'https://forum.shapeshift.com/',
+		target: '_blank'
 	}
 ];
 
@@ -136,7 +149,7 @@ export const bannerMobileSubtitle = 'Or download the app';
  ** App constants
  ************************************************************************************************/
 
-export const appResources = [
+export const appResources: TAppLink[] = [
 	{
 		name: 'Blog',
 		href: '/blog',
@@ -194,11 +207,12 @@ export const appResources = [
 	{
 		name: 'Brand Guidelines',
 		href: 'https://www.figma.com/design/Pvo3sJx2n5TGf1tUgmZR4z/ShapeShift-Brand-Guidelines',
-		description: 'Our brand guidelines'
+		description: 'Our brand guidelines',
+		target: '_blank'
 	}
 ];
 
-export const appDao = [
+export const appDao: TAppLink[] = [
 	{
 		name: 'FOX Token',
 		href: '/dao/fox-token',
@@ -209,46 +223,53 @@ export const appDao = [
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
 		description: 'Participate in decision making',
-		icon: <IconGovern />
+		icon: <IconGovern />,
+		target: '_blank'
 	},
 	{
 		name: 'Docs',
 		href: docsUrl,
 		description: 'Technical documentation',
-		icon: <IconDocs />
+		icon: <IconDocs />,
+		target: '_blank'
 	},
 	{
 		name: 'Join Us',
 		href: 'https://forum.shapeshift.com/',
 		description: 'Join the community',
-		icon: <IconStar />
+		icon: <IconStar />,
+		target: '_blank'
 	},
 	{
 		name: 'Feature Requests',
 		href: 'https://shapeshift.canny.io/feature-requests',
 		description: 'Feature requests',
-		icon: <IconBulb />
+		icon: <IconBulb />,
+		target: '_blank'
 	},
 	{
 		name: 'Integration Requests',
 		href: 'https://shapeshift.canny.io/integration-requests',
 		description: 'Integration requests',
-		icon: <IconBulb />
+		icon: <IconBulb />,
+		target: '_blank'
 	}
 ];
 
-export const appProducts = [
+export const appProducts: TAppLink[] = [
 	{
 		name: 'App',
 		href: dAppUrl,
 		description: 'Trade, track, buy, and earn with your favorite crypto.',
-		icon: <IconDapp />
+		icon: <IconDapp />,
+		target: '_blank'
 	},
 	{
 		name: 'Classic',
 		href: 'https://og.shapeshift.com/',
 		description: 'Original ShapeShift platform with classic interface.',
-		icon: <IconClassic />
+		icon: <IconClassic />,
+		target: '_blank'
 	},
 	{
 		name: 'Trade',
@@ -272,7 +293,8 @@ export const appProducts = [
 		name: 'Buy/Sell Crypto',
 		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
-		icon: <IconDollar />
+		icon: <IconDollar />,
+		target: '_blank'
 	}
 ];
 
@@ -282,7 +304,7 @@ export const headerTabs = [
 	{name: 'DAO', href: '/dao', value: 'dao'}
 ];
 
-export const footerLinks = {
+export const footerLinks: Record<string, TAppLink[]> = {
 	Products: appProducts,
 	Resources: appResources,
 	DAO: appDao,

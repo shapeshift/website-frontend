@@ -339,6 +339,7 @@ export function TradingWidget(): ReactNode {
 			<div className={'w-full rounded-b-2xl border-t border-t-white/5 bg-[#1e2024] px-4 py-3 lg:px-5 lg:py-4'}>
 				<LocalizedLink
 					href={generateTradeUrl()}
+					target={'_blank'}
 					rel={'noopener noreferrer'}>
 					<button className={'w-full rounded-2xl bg-blue py-4 font-medium hover:bg-blueHover'}>
 						{'Get Started'}
