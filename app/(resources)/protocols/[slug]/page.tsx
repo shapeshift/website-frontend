@@ -35,9 +35,9 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	const imageUrl = protocol.featuredImg?.formats?.thumbnail?.url || protocol.featuredImg?.url;
 
 	const metadata: Metadata = {
-		title: `${protocol.name} | Shapeshift`,
+		title: `${protocol.name} | ShapeShift`,
 		description: `Shift into ${protocol.name} with ShapeShift!`,
-		keywords: `${protocol.name}, Shapeshift`,
+		keywords: `${protocol.name}, ShapeShift`,
 		openGraph: {
 			title: protocol.name,
 			description: `Shift into ${protocol.name} with ShapeShift!`,
