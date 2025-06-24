@@ -862,18 +862,6 @@ export const carouselLogos = {
 			/>
 		)
 	},
-	nownodes: {
-		href: 'https://nownodes.io/',
-		src: '/landing/nownodes.png',
-		Logo: () => (
-			<Image
-				src={'/landing/nownodes.png'}
-				alt={'nownodes'}
-				width={'160'}
-				height={'40'}
-			/>
-		)
-	},
 	banxa: {
 		href: 'https://banxa.com/',
 		src: '/landing/banxa.png',
