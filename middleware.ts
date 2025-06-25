@@ -55,15 +55,18 @@ export function middleware(request: NextRequest): NextResponse {
 
 	if (currentLocale === DEFAULT_LANGUAGE) {
 		request.nextUrl.pathname = `/${DEFAULT_LANGUAGE}${pathname}`;
+		console.log('rewriting to', request.nextUrl.pathname);
 		return NextResponse.rewrite(request.nextUrl);
 	}
 
 	if (hasLocaleInPath || currentLocale === DEFAULT_LANGUAGE) {
+		console.log('returning response');
 		return response;
 	}
 
 	// Redirect if there is no locale
 	request.nextUrl.pathname = `/${currentLocale}${pathname}`;
+	console.log('redirecting to', request.nextUrl.pathname);
 	return NextResponse.redirect(request.nextUrl);
 }
 
