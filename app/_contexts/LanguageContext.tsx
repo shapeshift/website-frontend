@@ -194,7 +194,6 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 		// Always update state and Weglot, even if it seems like the same language
 		// This ensures sync when URL and state are out of sync
-		setCurrentLanguage(languageCode);
 		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
 			//@ts-ignore
@@ -203,10 +202,12 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 				// eslint-disable-next-line
 				//@ts-ignore
 				window.Weglot.switchTo(languageCode);
-				setCurrentLanguage(languageCode);
 			} else {
 				console.log('[useLanguage] Weglot not initialized, cannot switch language');
+				setCurrentLanguage(languageCode);
 			}
+		} else {
+			setCurrentLanguage(languageCode);
 		}
 
 		// Only update URL if it's actually different

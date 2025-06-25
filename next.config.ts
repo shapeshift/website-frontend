@@ -16,6 +16,10 @@ const nextConfig = {
 				hostname: 'staging.shapeshift.strapi.builtby.dad'
 			},
 			{
+				protocol: 'https',
+				hostname: 'strapi.shapeshift.com'
+			},
+			{
 				protocol: 'http',
 				hostname: '172.233.242.224'
 			}

@@ -19,6 +19,10 @@ export function ChatwootWidget(): JSX.Element {
 		// Initialize Chatwoot when the script loads
 		const initChatwoot = (): void => {
 			if (window.chatwootSDK) {
+				if (!process.env.CHATWOOT_API_KEY) {
+					console.error('CHATWOOT_API_KEY is not set');
+					return;
+				}
 				window.chatwootSDK.run({
 					websiteToken: process.env.CHATWOOT_API_KEY || '',
 					baseUrl: 'https://app.chatwoot.com/'
@@ -38,6 +42,10 @@ export function ChatwootWidget(): JSX.Element {
 			strategy={'afterInteractive'}
 			onLoad={() => {
 				if (window.chatwootSDK) {
+					if (!process.env.CHATWOOT_API_KEY) {
+						console.error('CHATWOOT_API_KEY is not set');
+						return;
+					}
 					window.chatwootSDK.run({
 						websiteToken: process.env.CHATWOOT_API_KEY || '',
 						baseUrl: 'https://app.chatwoot.com/'

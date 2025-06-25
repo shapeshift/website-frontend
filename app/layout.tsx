@@ -47,7 +47,6 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
 	const websiteSchema = generateWebsiteSchema(baseUrl);
 	const organizationSchema = generateOrganizationSchema();
-
 	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
 
 	return (
