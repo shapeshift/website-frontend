@@ -181,10 +181,7 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		}
 		console.log('[LanguageContext] switchLanguage called with:', languageCode, 'Current:', currentLanguage);
 
-		// Get clean path without language prefix
 		const cleanPath = getPathWithoutLanguage(pathname);
-
-		// Build target path with new language
 		const targetPath = languageCode === DEFAULT_LANGUAGE ? cleanPath || '/' : `/${languageCode}${cleanPath}`;
 
 		console.log('[LanguageContext] Switching language to:', languageCode);
@@ -196,23 +193,24 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		// This ensures sync when URL and state are out of sync
 		if (typeof window !== 'undefined') {
 			// eslint-disable-next-line
-			//@ts-ignore
+			// @ts-ignore
 			if (window?.Weglot?.initialized) {
 				console.log('[useLanguage] Switching Weglot to:', languageCode);
 				// eslint-disable-next-line
-				//@ts-ignore
+				// @ts-ignore
 				window.Weglot.switchTo(languageCode);
+				router.replace(`${targetPath}?lang=${languageCode}`);
 			} else {
 				console.log('[useLanguage] Weglot not initialized, cannot switch language');
-				setCurrentLanguage(languageCode);
 			}
-		} else {
-			setCurrentLanguage(languageCode);
 		}
+		setCurrentLanguage(languageCode);
 
 		// Only update URL if it's actually different
 		if (pathname !== targetPath) {
-			router.push(targetPath);
+			setTimeout(() => {
+				router.push(targetPath);
+			}, 1000);
 		}
 	};
 
