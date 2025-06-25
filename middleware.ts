@@ -1,6 +1,6 @@
 import {NextResponse} from 'next/server';
 
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath} from '@/app/_utils/i18nconfig';
+import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath} from '@/app/[lang]/_utils/i18nconfig';
 
 import type {NextRequest} from 'next/server';
 
@@ -29,8 +29,6 @@ export function middleware(request: NextRequest): NextResponse {
 		newUrl.hostname = mainDomain;
 		newUrl.pathname = `/${possibleLangSubdomain}${pathname}`;
 
-		console.log('[Middleware] Redirecting from subdomain:', hostname, 'to:', newUrl.toString());
-
 		// Permanent redirect from subdomain to path-based URL
 		return NextResponse.redirect(newUrl, 301);
 	}
@@ -40,32 +38,38 @@ export function middleware(request: NextRequest): NextResponse {
 	headers.set('x-current-path', pathname);
 
 	// Extract locale from pathname if present
-	const locale = hasLocaleInPath ? getLanguageFromPath(pathname) : DEFAULT_LANGUAGE;
+	const locale = hasLocaleInPath ? getLanguageFromPath(pathname) || DEFAULT_LANGUAGE : DEFAULT_LANGUAGE;
 
-	// Log middleware detection
-	console.log('[Middleware] Path:', pathname);
-	console.log('[Middleware] Has locale in path:', hasLocaleInPath);
-	console.log('[Middleware] Detected locale:', locale);
-
-	// Add locale to headers so components can access it
-	headers.set('x-locale', locale || DEFAULT_LANGUAGE);
+	const currentLocale = locale || DEFAULT_LANGUAGE;
+	headers.set('x-locale', currentLocale);
 
 	// Create response with headers
 	const response = NextResponse.next({headers});
 
 	// Set locale cookie for client-side access
-	response.cookies.set('locale', locale || DEFAULT_LANGUAGE, {
+	response.cookies.set('locale', currentLocale, {
 		httpOnly: false,
 		sameSite: 'lax',
 		path: '/'
 	});
 
-	return response;
+	if (currentLocale === DEFAULT_LANGUAGE) {
+		request.nextUrl.pathname = `/${DEFAULT_LANGUAGE}${pathname}`;
+		return NextResponse.rewrite(request.nextUrl);
+	}
+
+	if (hasLocaleInPath || currentLocale === DEFAULT_LANGUAGE) {
+		return response;
+	}
+
+	// Redirect if there is no locale
+	request.nextUrl.pathname = `/${currentLocale}${pathname}`;
+	return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {
 	matcher: [
-		// match all routes except static files and APIs
-		'/((?!api|_next/static|_next/image|favicon.ico).*)'
+		// Match all routes except static files, APIs, and irrelevant files
+		'/((?!api|_next/static|_next/image|favicon.ico|manifest|manifest.webmanifest|sw.js|service-worker.js|.well-known|robots.txt|sitemap.xml).*)'
 	]
 };
