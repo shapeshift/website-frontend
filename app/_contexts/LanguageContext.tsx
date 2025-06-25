@@ -199,7 +199,7 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 				// eslint-disable-next-line
 				// @ts-ignore
 				window.Weglot.switchTo(languageCode);
-				router.replace(`${targetPath}?lang=${languageCode}`);
+				router.replace(targetPath);
 			} else {
 				console.log('[useLanguage] Weglot not initialized, cannot switch language');
 			}
@@ -208,9 +208,10 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 		// Only update URL if it's actually different
 		if (pathname !== targetPath) {
-			setTimeout(() => {
-				router.push(targetPath);
-			}, 1000);
+			window.location.href = targetPath;
+			// setTimeout(() => {
+			// 	router.push(targetPath);
+			// }, 1000);
 		}
 	};
 
