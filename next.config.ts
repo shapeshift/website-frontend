@@ -13,7 +13,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'staging.shapeshift.strapi.builtby.dad'
+				hostname: 'strapi.shapeshift.com'
 			},
 			{
 				protocol: 'http',
