@@ -962,11 +962,11 @@ export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 
 export const landingInfoCards = [
 	{
 		title: 'Active wallets',
-		stat: '170+'
+		stat: '35,000'
 	},
 	{
 		title: 'Available chains',
-		stat: '13+'
+		stat: '14+'
 	},
 	{
 		title: 'Assets',
@@ -974,7 +974,7 @@ export const landingInfoCards = [
 	},
 	{
 		title: 'Traded on ShapeShift',
-		stat: '$380M'
+		stat: '$1.7 billion'
 	}
 ];
 
