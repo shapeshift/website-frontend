@@ -13,7 +13,7 @@ export function useDebounce<T>(value: T, delay = 500): T {
 
 	/********************************************************************************************
 	 * Sets up a timer that updates the debounced value after the specified delay
-	 * Clears the previous timer if the value changes before the delay completes
+	 * Clears the previous timer if the value changes before the delay completes.
 	 ********************************************************************************************/
 	useEffect(() => {
 		const timer = setTimeout(() => {
