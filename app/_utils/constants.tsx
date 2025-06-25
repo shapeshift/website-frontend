@@ -35,7 +35,7 @@ export type TAppLink = {
 };
 
 export const dAppUrl =
-	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
+	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=home#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
 
 const docsUrl = 'https://github.com/shapeshift/web';
 
