@@ -70,6 +70,6 @@ export function middleware(request: NextRequest): NextResponse {
 export const config = {
 	matcher: [
 		// Match all routes except static files, APIs, and irrelevant files
-		'/((?!api|_next/static|_next/image|favicon.ico|manifest|manifest.webmanifest|sw.js|service-worker.js|.well-known|robots.txt|sitemap.xml).*)'
+		'/((?!api|!_next|favicon.ico|manifest|manifest.webmanifest|sw.js|service-worker.js|.well-known|robots.txt|sitemap.xml).*)'
 	]
 };
