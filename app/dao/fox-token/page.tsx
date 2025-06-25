@@ -8,7 +8,6 @@ import {
 	benefitsTitle,
 	communityTitle,
 	foxTokenBenefits,
-	foxTokenCommunityItems,
 	foxTokenContributeItems,
 	foxTokenDescription,
 	foxTokenDescriptionNote,
@@ -73,6 +72,7 @@ export default function FoxTokenPage(): ReactNode {
 					{foxTokenContributeItems.map(item => (
 						<LocalizedLink
 							href={item.href}
+							target={item.target}
 							className={
 								'group flex w-full items-center justify-between rounded-2xl bg-secondBg px-10 py-7'
 							}
@@ -156,19 +156,6 @@ export default function FoxTokenPage(): ReactNode {
 				/>
 				<h1 className={'mb-14 mt-[120px] text-[40px] leading-10 lg:text-7xl'}>{communityTitle}</h1>
 
-				<div className={'mb-[120px] grid grid-cols-2 gap-2 lg:mb-60 lg:grid-cols-5'}>
-					{foxTokenCommunityItems.map(item => (
-						<LocalizedLink
-							href={item.href}
-							target={'_blank'}
-							className={
-								'group flex items-center justify-center rounded-[80px] bg-secondBg py-5 hover:bg-secondHoverBg'
-							}
-							key={item.href}>
-							{item.icon}
-						</LocalizedLink>
-					))}
-				</div>
 				<Banner />
 			</div>
 		</div>

@@ -4,11 +4,11 @@ import type {ReactNode} from 'react';
 export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Shift into DeFi with ShapeShift',
-		description: 'Discover all the protocols Shapeshift supports. Buy, sell, and swap crypto with ease.',
-		keywords: 'Shapeshift, Supported Protocols',
+		description: 'Discover all the protocols ShapeShift supports. Buy, sell, and swap crypto with ease.',
+		keywords: 'ShapeShift, Supported Protocols',
 		openGraph: {
 			title: 'Shift into DeFi with ShapeShift',
-			description: 'Discover all the wallets Shapeshift supports. Buy, sell, and swap crypto with ease.',
+			description: 'Discover all the wallets ShapeShift supports. Buy, sell, and swap crypto with ease.',
 			type: 'website',
 			images: [
 				{
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 		twitter: {
 			card: 'summary_large_image',
 			title: 'Shift into DeFi with ShapeShift',
-			description: 'Discover all the protocols Shapeshift supports. Buy, sell, and swap crypto with ease.',
+			description: 'Discover all the protocols ShapeShift supports. Buy, sell, and swap crypto with ease.',
 			images: [
 				{
 					url: `${process.env.STRAPI_URL}/og.png`

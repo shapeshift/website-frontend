@@ -20,7 +20,7 @@ const organizationSchema = {
 /**
  * Generate Article schema for blog posts
  */
-export function generateBlogPostSchema(post: TBlogPost, baseUrl: string): Record<string, any> {
+export function generateBlogPostSchema(post: TBlogPost, baseUrl: string): Record<string, unknown> {
 	// Ensure we have required fields
 	if (!post?.title || !post.slug) {
 		return {};
@@ -70,7 +70,7 @@ export function generateProductSchema({
 	featuredImage?: string;
 	pageURL: string;
 	features?: {title: string; description: string}[];
-}): Record<string, any> {
+}): Record<string, unknown> {
 	// Ensure we have required fields
 	if (!title || !pageURL) {
 		return {};
@@ -109,7 +109,7 @@ export function generateProductSchema({
 /**
  * Generate Article schema for support articles
  */
-export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: string): Record<string, any> {
+export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: string): Record<string, unknown> {
 	if (!article?.title || !article.slug) {
 		return {};
 	}
@@ -140,7 +140,7 @@ export function generateSupportArticleSchema(article: TSupportArticle, baseUrl: 
 /**
  * Generate WebSite schema for homepage
  */
-export function generateWebsiteSchema(baseUrl: string): Record<string, any> {
+export function generateWebsiteSchema(baseUrl: string): Record<string, unknown> {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
@@ -152,6 +152,6 @@ export function generateWebsiteSchema(baseUrl: string): Record<string, any> {
 /**
  * Generate Organization schema
  */
-export function generateOrganizationSchema(): Record<string, any> {
+export function generateOrganizationSchema(): Record<string, unknown> {
 	return organizationSchema;
 }

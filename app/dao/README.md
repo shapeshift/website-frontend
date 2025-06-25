@@ -51,7 +51,7 @@ To modify the content on the DAO **FOX Token** page, you can update the followin
 
 ### Section Content
 
-- `section1Title` - "How do I Participate?" section heading
+- `section1Title` - "How do I participate?" section heading
 - `section1Description` - Participation description text
 - `section2Title` - "How is a DAO different..." section heading
 - `section2Article1` - First paragraph of section 2
@@ -61,7 +61,6 @@ To modify the content on the DAO **FOX Token** page, you can update the followin
 ### Lists and Collections
 
 - `foxTokenBenefits` - Array of benefit items with titles and icons
-- `foxTokenCommunityItems` - Social media and community links
 - `foxTokenContributeItems` - Contribution and governance links
 
 ### Additional Section Titles

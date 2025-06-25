@@ -6,7 +6,6 @@ import {IconBulb} from '../_icons/IconBulb';
 import {IconChains} from '../_icons/IconChains';
 import {IconClassic} from '../_icons/IconClassic';
 import {IconDapp} from '../_icons/IconDapp';
-import {IconDiscord} from '../_icons/IconDiscord';
 import {IconDiscover} from '../_icons/IconDiscover';
 import {IconDocs} from '../_icons/IconDocs';
 import {IconDollar} from '../_icons/IconDollar';
@@ -14,7 +13,6 @@ import {IconFox} from '../_icons/IconFox';
 import {IconGlobe} from '../_icons/IconGlobe';
 import {IconGovern} from '../_icons/IconGovern';
 import {IconHeart} from '../_icons/IconHeart';
-import {IconMedium} from '../_icons/IconMedium';
 import {IconMobile} from '../_icons/IconMobile';
 import {IconQuestion} from '../_icons/IconQuestion';
 import {IconResource} from '../_icons/IconResource';
@@ -22,13 +20,19 @@ import {IconScanDevice} from '../_icons/IconScanDevice';
 import {IconShield} from '../_icons/IconShield';
 import {IconStar} from '../_icons/IconStar';
 import {IconSupport} from '../_icons/IconSupport';
-import {IconTelegram} from '../_icons/IconTelegram';
 import {IconTriLink} from '../_icons/IconTriLink';
-import {IconTwitter} from '../_icons/IconTwitter';
 import {IconWallet} from '../_icons/IconWallet';
-import {IconWarpcast} from '../_icons/IconWarpcast';
 
 import type {TCardsRowSection, TSupportedChainTypes} from '@/app/_components/strapi/types';
+import type {ReactNode} from 'react';
+
+export type TAppLink = {
+	name: string;
+	href: string;
+	description?: string;
+	icon?: ReactNode;
+	target?: string;
+};
 
 export const dAppUrl =
 	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
@@ -53,8 +57,7 @@ export const homepageBlueTitle = 'Endless Opportunity.';
 export const featuresTitle = 'Explore our features.';
 export const featureTabTitle = 'Multichain crypto home base';
 export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets'];
-export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across ';
-export const featureCard1BlueTitle = 'multiple chains';
+export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across multiple chains';
 export const featureCard3WhiteTitle = 'All-In-One';
 export const featureCard3BlueTitle = 'ShapeShift wallet';
 export const featureCard4WhiteTitle = 'Earn more';
@@ -66,10 +69,10 @@ export const featureCard4BlueTitle = 'with DeFi';
 
 export const foxTokenTitleWhite = 'Fox';
 export const foxTokenTitleBlue = 'Power';
-export const foxTokenDescription = 'Fox Tokens wield mighty powers for those who hodl them.';
+export const foxTokenDescription = 'FOX tokens wield mighty power for those who hodl them.';
 export const foxTokenDescriptionNote =
-	'NOTE: FOX Token benefits are subject to change, as determined by FOX Token holders.';
-export const section1Title = 'How do I Participate?';
+	'NOTE: FOX Token benefits are subject to change, as determined by FOX token holders.';
+export const section1Title = 'How do I participate?';
 export const section1Description =
 	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.';
 
@@ -84,7 +87,7 @@ export const communityTitle = 'Join our community';
 
 export const foxTokenBenefits = [
 	{
-		title: 'Work from anywhere in the World.',
+		title: 'Work from anywhere in the world.',
 		icon: <IconGlobe />
 	},
 	{
@@ -109,45 +112,26 @@ export const foxTokenBenefits = [
 	}
 ];
 
-export const foxTokenCommunityItems = [
-	{
-		href: 'https://twitter.com/fox_token',
-		icon: <IconTwitter className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://medium.com/@fox_token',
-		icon: <IconMedium className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://discord.gg/fox_token',
-		icon: <IconDiscord className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://t.me/fox_token',
-		icon: <IconTelegram className={'transition-all duration-200 group-hover:text-blue'} />
-	},
-	{
-		href: 'https://w.social/fox_token',
-		icon: <IconWarpcast className={'transition-all duration-200 group-hover:text-blue'} />
-	}
-];
-
 export const foxTokenContributeItems = [
 	{
 		title: 'Contribute',
-		href: githubUrl
+		href: githubUrl,
+		target: '_blank'
 	},
 	{
 		title: 'Govern',
-		href: 'https://snapshot.box/#/s:shapeshiftdao.eth'
+		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
+		target: '_blank'
 	},
 	{
 		title: 'Read Docs',
-		href: docsUrl
+		href: docsUrl,
+		target: '_blank'
 	},
 	{
 		title: 'Discuss',
-		href: 'https://forum.shapeshift.com/'
+		href: 'https://forum.shapeshift.com/',
+		target: '_blank'
 	}
 ];
 
@@ -156,7 +140,7 @@ export const foxTokenContributeItems = [
  ************************************************************************************************/
 
 export const bannerLeftTitle = 'Your multichain crypto home base.';
-export const bannerRightTitle = 'Defi everywhere, anytime with ShapeShift mobile.';
+export const bannerRightTitle = 'DeFi anywhere, anytime, with ShapeShift mobile.';
 export const bannerLeftButtonTitle = 'Launch dApp';
 export const bannerRightButtonTitle = 'Try the demo';
 export const bannerMobileSubtitle = 'Or download the app';
@@ -165,7 +149,7 @@ export const bannerMobileSubtitle = 'Or download the app';
  ** App constants
  ************************************************************************************************/
 
-export const appResources = [
+export const appResources: TAppLink[] = [
 	{
 		name: 'Blog',
 		href: '/blog',
@@ -221,15 +205,16 @@ export const appResources = [
 		icon: <IconDocs />
 	},
 	{
-		name: 'Brand guidelines',
+		name: 'Brand Guidelines',
 		href: 'https://www.figma.com/design/Pvo3sJx2n5TGf1tUgmZR4z/ShapeShift-Brand-Guidelines',
-		description: 'Our brand guidelines'
+		description: 'Our brand guidelines',
+		target: '_blank'
 	}
 ];
 
-export const appDao = [
+export const appDao: TAppLink[] = [
 	{
-		name: 'FOX token',
+		name: 'FOX Token',
 		href: '/dao/fox-token',
 		description: 'Our governance token',
 		icon: <IconFox />
@@ -238,40 +223,53 @@ export const appDao = [
 		name: 'Governance',
 		href: 'https://snapshot.box/#/s:shapeshiftdao.eth',
 		description: 'Participate in decision making',
-		icon: <IconGovern />
+		icon: <IconGovern />,
+		target: '_blank'
 	},
 	{
 		name: 'Docs',
 		href: docsUrl,
 		description: 'Technical documentation',
-		icon: <IconDocs />
+		icon: <IconDocs />,
+		target: '_blank'
 	},
 	{
-		name: 'Join us',
+		name: 'Join Us',
 		href: 'https://forum.shapeshift.com/',
 		description: 'Join the community',
-		icon: <IconStar />
+		icon: <IconStar />,
+		target: '_blank'
 	},
 	{
-		name: 'Share your ideas',
-		href: 'https://shapeshift.canny.io/',
-		description: 'Share your ideas',
-		icon: <IconBulb />
+		name: 'Feature Requests',
+		href: 'https://shapeshift.canny.io/feature-requests',
+		description: 'Feature requests',
+		icon: <IconBulb />,
+		target: '_blank'
+	},
+	{
+		name: 'Integration Requests',
+		href: 'https://shapeshift.canny.io/integration-requests',
+		description: 'Integration requests',
+		icon: <IconBulb />,
+		target: '_blank'
 	}
 ];
 
-export const appProducts = [
+export const appProducts: TAppLink[] = [
 	{
 		name: 'App',
 		href: dAppUrl,
 		description: 'Trade, track, buy, and earn with your favorite crypto.',
-		icon: <IconDapp />
+		icon: <IconDapp />,
+		target: '_blank'
 	},
 	{
 		name: 'Classic',
 		href: 'https://og.shapeshift.com/',
 		description: 'Original ShapeShift platform with classic interface.',
-		icon: <IconClassic />
+		icon: <IconClassic />,
+		target: '_blank'
 	},
 	{
 		name: 'Trade',
@@ -286,16 +284,17 @@ export const appProducts = [
 		icon: <IconResource />
 	},
 	{
-		name: 'Mobile app',
+		name: 'Mobile App',
 		href: '/mobile-app',
 		description: 'The only crypto app you need.',
 		icon: <IconMobile />
 	},
 	{
-		name: 'Buy/Sell crypto',
+		name: 'Buy/Sell Crypto',
 		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
-		icon: <IconDollar />
+		icon: <IconDollar />,
+		target: '_blank'
 	}
 ];
 
@@ -305,14 +304,14 @@ export const headerTabs = [
 	{name: 'DAO', href: '/dao', value: 'dao'}
 ];
 
-export const footerLinks = {
+export const footerLinks: Record<string, TAppLink[]> = {
 	Products: appProducts,
 	Resources: appResources,
 	DAO: appDao,
 	Connect: [
-		{name: 'Twitter', href: 'https://twitter.com/shapeshift'},
+		{name: '𝕏', href: 'https://x.com/shapeshift'},
 		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
-		{name: 'Warpcast', href: 'https://warpcast.com/shapeshift'}
+		{name: 'Farcaster', href: 'https://farcaster.xyz/shapeshift'}
 	]
 };
 
@@ -859,18 +858,6 @@ export const carouselLogos = {
 				src={'/landing/onramper.png'}
 				alt={'onramper'}
 				width={'190'}
-				height={'40'}
-			/>
-		)
-	},
-	nownodes: {
-		href: 'https://nownodes.io/',
-		src: '/landing/nownodes.png',
-		Logo: () => (
-			<Image
-				src={'/landing/nownodes.png'}
-				alt={'nownodes'}
-				width={'160'}
 				height={'40'}
 			/>
 		)

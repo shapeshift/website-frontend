@@ -5,7 +5,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Explore Web3 with ShapeShift',
 		description: 'Discover the world of Web3 with ShapeShift.',
-		keywords: 'Shapeshift, Explore Web3',
+		keywords: 'ShapeShift, Explore Web3',
 		openGraph: {
 			title: 'Explore Web3 with ShapeShift',
 			description: 'Discover the world of Web3 with ShapeShift.',

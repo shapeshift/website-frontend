@@ -4,6 +4,7 @@ import {cl} from '@/app/_utils/cl';
 import {appProducts, dAppUrl} from '@/app/_utils/constants';
 import {PRODUCTS_DICT} from '@/app/_utils/dictionary/products';
 
+import type {TAppLink} from '@/app/_utils/constants';
 import type {ReactNode} from 'react';
 
 /********************************************************************************************
@@ -31,7 +32,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 			{/* Right section with product grid */}
 			<div className={'col-span-8 p-16'}>
 				<div className={'flex flex-row flex-wrap gap-4'}>
-					{appProducts.map(product => (
+					{appProducts.map((product: TAppLink) => (
 						<HeaderItem
 							onClick={() => setCurrentTab(product.name)}
 							key={product.name}
@@ -39,6 +40,7 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 							href={product.href}
 							description={product.description ?? ''}
 							icon={product.icon}
+							target={product.target}
 						/>
 					))}
 				</div>
