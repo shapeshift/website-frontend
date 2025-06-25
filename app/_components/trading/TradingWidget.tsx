@@ -191,7 +191,7 @@ export function TradingWidget(): ReactNode {
 	};
 
 	const generateTradeUrl = useCallback((): string => {
-		const baseUrl = 'https://app.shapeshift.com/#/trade';
+		const baseUrl = 'https://app.shapeshift.com/?utm_source=widget&utm_medium=cta&utm_campaign=getstarted#/trade/';
 
 		// Map chain IDs to their respective parameters
 		const chainParams: Record<string, string> = {
