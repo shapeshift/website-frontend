@@ -5,7 +5,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'ShapeShift Supported Wallets',
 		description: 'Discover all the wallets ShapeShift supports. Buy, sell, and swap crypto with ease.',
-		keywords: 'Shapeshift, Supported Wallets',
+		keywords: 'ShapeShift, Supported Wallets',
 		openGraph: {
 			title: 'ShapeShift Supported Wallets',
 			description: 'Discover all the wallets ShapeShift supports. Buy, sell, and swap crypto with ease.',
