@@ -68,8 +68,3 @@ export function getPathWithoutLanguage(pathname: string): string {
 
 	return pathname || '/';
 }
-
-export function getLanguagePath(pathname: string, language: string): string {
-	const pathWithoutLang = getPathWithoutLanguage(pathname);
-	return language === DEFAULT_LANGUAGE ? pathWithoutLang : `/${language}${pathWithoutLang}`;
-}
