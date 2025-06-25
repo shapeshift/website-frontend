@@ -1,16 +1,16 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
 
-import {ChatwootWidget} from '@/app/_components/ChatwootWidget';
-import {Footer} from '@/app/_components/Footer';
-import {Header} from '@/app/_components/header/Header';
-import {WithFonts} from '@/app/_components/WithFonts';
-import {CachedArticlesProvider} from '@/app/_contexts/CachedArticlesContext';
-import {CachedNewsProvider} from '@/app/_contexts/CachedNewsContext';
-import {CachedPostsProvider} from '@/app/_contexts/CachedPostsContext';
-import {LanguageProvider} from '@/app/_contexts/LanguageContext';
-import {SUPPORTED_LANGUAGES} from '@/app/_utils/i18nconfig';
-import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/_utils/schema';
+import {ChatwootWidget} from '@/app/[lang]/_components/ChatwootWidget';
+import {Footer} from '@/app/[lang]/_components/Footer';
+import {Header} from '@/app/[lang]/_components/header/Header';
+import {WithFonts} from '@/app/[lang]/_components/WithFonts';
+import {CachedArticlesProvider} from '@/app/[lang]/_contexts/CachedArticlesContext';
+import {CachedNewsProvider} from '@/app/[lang]/_contexts/CachedNewsContext';
+import {CachedPostsProvider} from '@/app/[lang]/_contexts/CachedPostsContext';
+import {LanguageProvider} from '@/app/[lang]/_contexts/LanguageContext';
+import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig';
+import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/[lang]/_utils/schema';
 
 import './globals.css';
 import {defaultMetadata} from './metadata';
@@ -28,10 +28,8 @@ export async function getSubdomain(): Promise<string | null> {
 
 	// Remove port number if present
 	const hostname = host.split(':')[0];
-	console.log('host:', hostname);
 	// Split hostname into parts
 	const parts = hostname.split('.');
-	console.log('parts:', parts);
 	// Check if we have a subdomain
 	if (parts.length > 2) {
 		// Return first part as subdomain
@@ -64,12 +62,6 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					crossOrigin={'anonymous'}>
 					{`
 						if (typeof Weglot !== 'undefined') {
-							console.log('[Weglot] Initializing Weglot');
-							console.log('[Weglot] Languages:', [${weglotLanguages
-								.split(',')
-								.map(lang => `'${lang}'`)
-								.join(', ')}]);
-
 							try {
 								Weglot.initialize({
 									api_key: '${process.env.WEGLOT_API_KEY}',
@@ -81,17 +73,6 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 									exclude_blocks: ['.no-translate'],
 									wait_transition: true
 								});
-
-								// For SPA support - listen to Weglot initialization
-								Weglot.on('initialized', function() {
-									console.log('[Weglot] Weglot has been initialized');
-								});
-
-								// Listen for language changes
-								Weglot.on('languageChanged', function(newLang, prevLang) {
-									console.log('[Weglot] Language changed from', prevLang, 'to', newLang);
-								});
-								console.log('[Weglot] Initialization successful');
 							} catch (error) {
 								console.error('[Weglot] Initialization error:', error);
 							}
