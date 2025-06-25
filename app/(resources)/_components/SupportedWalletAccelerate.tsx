@@ -15,7 +15,7 @@ const ACCELERATE_WITH_SHAPESHIFT_DATA = [
 	},
 	{
 		title: 'Save',
-		description: 'FOX token has power on ShapeShift! Get discounts on fees when you hold FOX.',
+		description: 'Save FOX to unlock your voting power in ShapeShift governance.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconBorrow {...props} />
 	},
 	{

@@ -36,17 +36,17 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	const imageUrl = chain.featuredImg?.formats?.thumbnail?.url || chain.featuredImg?.url;
 	const metadata: Metadata = {
 		title: `${chain.name} | ShapeShift Chains`,
-		description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
-		keywords: `${chain.name}, Shapeshift`,
+		description: `ShapeShift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
+		keywords: `${chain.name}, ShapeShift`,
 		openGraph: {
 			title: chain.name,
-			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
+			description: `ShapeShift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`,
 			type: 'website'
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: chain.name,
-			description: `Shapeshift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`
+			description: `ShapeShift supports ${chain.name}! Use it now to buy, sell, and swap crypto.`
 		}
 	};
 
