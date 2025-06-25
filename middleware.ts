@@ -69,7 +69,14 @@ export function middleware(request: NextRequest): NextResponse {
 
 export const config = {
 	matcher: [
-		// Match all routes except static files, APIs, and irrelevant files
-		'/((?!api|_next/static|_next/image|favicon.ico).*)'
+		/*
+		 * Match all request paths except for the ones starting with:
+		 * - api (API routes)
+		 * - _next/static (static files)
+		 * - _next/image (image optimization files)
+		 * - favicon.ico, sitemap.xml, robots.txt
+		 * - public assets with extensions (images, fonts, etc.)
+		 */
+		'/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|woff|woff2|ttf|otf)).*)'
 	]
 };
