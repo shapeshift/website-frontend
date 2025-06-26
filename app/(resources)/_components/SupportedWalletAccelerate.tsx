@@ -10,34 +10,34 @@ import type {ReactNode, SVGProps} from 'react';
 const ACCELERATE_WITH_SHAPESHIFT_DATA = [
 	{
 		title: 'Trade',
-		description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
+		description: 'Trade 50,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconTrade {...props} />
 	},
 	{
 		title: 'Save',
-		description: 'Save FOX to unlock your voting power in ShapeShift governance.',
+		description: 'Compare the top trading routes in real time and always get the best rate.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconBorrow {...props} />
 	},
 	{
 		title: 'Earn',
 		description:
-			'Earn up to 12% on your Bitcoin, Ethereum, Dogecoin, Cosmos and more. Always non-custodial. Always real yield.',
+			'Earn, manage, and discover your DeFi opportunities in one click.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconEarn {...props} />
 	},
 	{
 		title: 'Control your crypto',
-		description: 'ShapeShift is a Non-custodial dApp. Your keys, your crypto 🤝',
+		description: 'ShapeShift is a noncustodial App. Your keys, your crypto.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconKey {...props} />
 	},
 	{
 		title: 'Multichain',
 		description:
-			'Dive into ShapeShift, connect your wallet, and explore the endless possibilities of the multichain universe.',
+			'Connect your self custodial wallet, and navigate 14+ chains seamlessly.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconGlobe {...props} />
 	},
 	{
 		title: 'Privacy',
-		description: "We don't track any personal information, including your IP address or wallet balances.",
+			description: "Use ShapeShift with no KYC. Always.",
 		icon: (props: SVGProps<SVGSVGElement>) => <IconShield {...props} />
 	}
 ];
