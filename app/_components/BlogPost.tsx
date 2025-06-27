@@ -63,14 +63,15 @@ function FeaturedPost({post, className}: {post: TBlogPost; className?: string}):
 		<LocalizedLink
 			href={`/blog/${post.slug}`}
 			className={cl('col-span-3 h-[364px] grid grid-cols-2 rounded-2xl bg-secondBg p-6', className)}>
-			<div className={'col-span-1 size-full max-h-[316px] max-w-[632px] overflow-hidden rounded-2xl'}>
+			<div
+				className={'no-translate col-span-1 size-full max-h-[316px] max-w-[632px] overflow-hidden rounded-2xl'}>
 				{post?.featuredImg?.url ? (
 					<Image
 						src={`${process.env.STRAPI_URL}${post?.featuredImg.url}`}
 						alt={post.slug}
 						width={post?.featuredImg.width ?? 0}
 						height={post?.featuredImg.height ?? 0}
-						className={'size-full object-cover'}
+						className={'no-translate size-full object-cover'}
 					/>
 				) : (
 					<div className={'h-full max-h-[316px] w-auto rounded-2xl bg-gray-500'} />
