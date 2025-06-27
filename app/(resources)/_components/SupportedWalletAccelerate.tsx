@@ -37,7 +37,7 @@ const ACCELERATE_WITH_SHAPESHIFT_DATA = [
 	},
 	{
 		title: 'Privacy',
-			description: "Use ShapeShift with no KYC. Always.",
+		description: 'Use ShapeShift with no KYC. Always.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconShield {...props} />
 	}
 ];

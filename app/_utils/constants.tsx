@@ -397,7 +397,7 @@ export const landingCards: TCardsRowSection = {
 		id: 1,
 		title: 'Try Classic',
 		url: 'https://og.shapeshift.com/?utm_source=mainpage&utm_medium=card&utm_campaign=classic',
-		target: '_blank',
+		target: '_blank'
 	},
 	cards: [
 		{
