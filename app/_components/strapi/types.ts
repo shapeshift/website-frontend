@@ -24,6 +24,7 @@ export type TButton = {
 	id: number;
 	title: string;
 	url: string;
+	target?: string;
 };
 
 export type TStat = {
