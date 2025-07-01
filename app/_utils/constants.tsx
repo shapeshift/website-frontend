@@ -141,8 +141,8 @@ export const foxTokenContributeItems = [
 
 export const bannerLeftTitle = 'Your multichain crypto home base.';
 export const bannerRightTitle = 'DeFi anywhere, anytime, with ShapeShift mobile.';
-export const bannerLeftButtonTitle = 'Launch dApp';
-export const bannerRightButtonTitle = 'Try the demo';
+export const bannerLeftButtonTitle = 'Launch App';
+export const bannerRightButtonTitle = 'Try ShapeShift';
 export const bannerMobileSubtitle = 'Or download the app';
 
 /************************************************************************************************
