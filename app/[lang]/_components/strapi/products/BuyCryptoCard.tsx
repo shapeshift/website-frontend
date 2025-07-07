@@ -25,7 +25,7 @@ export function BuyCryptoCard(): ReactNode {
 				</div>
 				<div className={'my-10 size-min overflow-hidden rounded-2xl'}>
 					<iframe
-						src={process.env.ONRAMPER_URL}
+						src={process.env.NEXT_PUBLIC_ONRAMPER_URL}
 						title={PRODUCTS_DICT.buyCrypto.widgetTitle}
 						height={'630px'}
 						width={'420px'}

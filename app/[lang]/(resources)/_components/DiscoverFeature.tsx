@@ -90,7 +90,7 @@ export function DiscoverFeature({
 									src={
 										feature.image.url.startsWith('http')
 											? feature.image.url
-											: `${process.env.STRAPI_URL}${feature.image.url}`
+											: `${process.env.NEXT_PUBLIC_STRAPI_URL}${feature.image.url}`
 									}
 									alt={feature.image.alt || feature.title}
 									width={feature.image.width || 64}

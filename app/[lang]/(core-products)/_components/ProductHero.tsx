@@ -63,7 +63,7 @@ export function ProductHero({
 
 				<div className={'mt-20 aspect-[1400/400] overflow-hidden rounded-2xl'}>
 					<Image
-						src={`${process.env.STRAPI_URL}${featuredImg.url}`}
+						src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${featuredImg.url}`}
 						className={'aspect-[1400/400] w-full'}
 						alt={title || 'Product feature image'}
 						quality={100}

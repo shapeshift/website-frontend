@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			type: 'website',
 			images: [
 				{
-					url: `${process.env.STRAPI_URL}${page.featuredImg.url}`,
+					url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`,
 					width: 1200,
 					height: 630,
 					alt: page.title
@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			card: 'summary_large_image',
 			title: page.title,
 			description: page.description,
-			images: [`${process.env.STRAPI_URL}${page.featuredImg.url}`]
+			images: [`${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`]
 		}
 	};
 }
@@ -88,7 +88,7 @@ export default async function DeFiWalletPage(): Promise<ReactNode> {
 	const productSchema = generateProductSchema({
 		title: page.title,
 		description: page.description,
-		featuredImage: `${process.env.STRAPI_URL}${page.featuredImg.url}`,
+		featuredImage: `${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`,
 		pageURL,
 		features
 	});

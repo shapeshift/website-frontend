@@ -26,7 +26,7 @@ import type {
 // Common headers and cache configuration
 const apiConfig = {
 	headers: {
-		Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 	},
 	next: {
 		revalidate: 3600 // Cache for 1 hour
@@ -40,7 +40,7 @@ const apiConfig = {
  ************************************************************************************************/
 export async function fetchAllProtocols(): Promise<TSupportedProtocolData[] | null> {
 	try {
-		const response = await fetch(`${process.env.STRAPI_URL}/api/supported-protocols?populate=*`, apiConfig);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-protocols?populate=*`, apiConfig);
 
 		if (!response.ok) {
 			console.error(`Failed to fetch protocols: ${response.status}`);
@@ -62,7 +62,7 @@ export async function fetchAllProtocols(): Promise<TSupportedProtocolData[] | nu
  ************************************************************************************************/
 export async function fetchAllChains(): Promise<TSupportedChainData[] | null> {
 	try {
-		const response = await fetch(`${process.env.STRAPI_URL}/api/supported-chains?populate=*`, apiConfig);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-chains?populate=*`, apiConfig);
 
 		if (!response.ok) {
 			console.error(`Failed to fetch chains: ${response.status}`);
@@ -84,7 +84,7 @@ export async function fetchAllChains(): Promise<TSupportedChainData[] | null> {
  ************************************************************************************************/
 export async function fetchAllWallets(): Promise<TSupportedWalletData[] | null> {
 	try {
-		const response = await fetch(`${process.env.STRAPI_URL}/api/supported-wallets?populate=*`, apiConfig);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-wallets?populate=*`, apiConfig);
 
 		if (!response.ok) {
 			console.error(`Failed to fetch wallets: ${response.status}`);
@@ -108,7 +108,7 @@ export async function fetchAllWallets(): Promise<TSupportedWalletData[] | null> 
 export async function fetchDiscoverBySlug(slug: string): Promise<TDiscoverData | null> {
 	try {
 		const response = await fetch(
-			`${process.env.STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag&populate[6]=features.buttonCta`,
+			`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag&populate[6]=features.buttonCta`,
 			apiConfig
 		);
 
@@ -136,7 +136,7 @@ export async function fetchDiscoverBySlug(slug: string): Promise<TDiscoverData |
 export async function fetchFaqData(): Promise<TFaqData | null> {
 	try {
 		const response = await fetch(
-			`${process.env.STRAPI_URL}/api/faq?populate[faqSection][populate][faqSectionItem][populate]=*`,
+			`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/faq?populate[faqSection][populate][faqSectionItem][populate]=*`,
 			apiConfig
 		);
 

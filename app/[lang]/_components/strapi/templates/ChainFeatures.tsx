@@ -200,7 +200,7 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
 				<Image
-					src={`${process.env.STRAPI_URL}${foxImg.url}`}
+					src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${foxImg.url}`}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={foxImg.width}

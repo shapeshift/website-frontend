@@ -54,7 +54,7 @@ export function ElementCard(props: TElementCardProps): ReactNode {
 						transition={{duration: 0.5}}
 						className={'relative z-10 size-full object-contain'}>
 						<Image
-							src={`${process.env.STRAPI_URL}${featuredImg?.url}`}
+							src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${featuredImg?.url}`}
 							alt={slug}
 							width={featuredImg?.width ?? 0}
 							height={featuredImg?.height ?? 0}
