@@ -16,6 +16,10 @@ const nextConfig = {
 				hostname: 'strapi.shapeshift.com'
 			},
 			{
+				protocol: 'https',
+				hostname: 'strapi.shapeshift.com'
+			},
+			{
 				protocol: 'http',
 				hostname: '172.233.242.224'
 			}
@@ -42,15 +46,15 @@ const nextConfig = {
 			}
 		];
 	},
-	async rewrites() {
-		return [
-			// Handle language prefixes - rewrite /[lang]/path to /path
-			{
-				source: '/:lang(en|ru|de|fr|pt|zh|es)/:path*',
-				destination: '/:path*'
-			}
-		];
-	},
+	// async rewrites() {
+	// 	return [
+	// 		// Handle language prefixes - rewrite /[lang]/path to /path
+	// 		{
+	// 			source: '/:lang(en|ru|de|fr|pt|zh|es)/:path*',
+	// 			destination: '/:path*'
+	// 		}
+	// 	];
+	// },
 	async redirects() {
 		return [
 			// Redirects from old blog posts to new blog posts

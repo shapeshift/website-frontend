@@ -3,16 +3,16 @@
 import Image from 'next/image';
 import {useState} from 'react';
 
-import {Banner} from '@/app/_components/Banner';
-import {LatestBlogPosts} from '@/app/_components/BlogList';
-import {Carousel} from '@/app/_components/Carousel';
-import {LandingCard} from '@/app/_components/LandingCard';
-import {LandingInfoCard} from '@/app/_components/LandingInfoCard';
-import {LocalizedLink} from '@/app/_components/LocalizedLink';
-import CardsRow from '@/app/_components/strapi/cards-row/CardsRow';
-import {TabItem} from '@/app/_components/TabItem';
-import {TradingWidget} from '@/app/_components/trading/TradingWidget';
-import {cl} from '@/app/_utils/cl';
+import {Banner} from '@/app/[lang]/_components/Banner';
+import {LatestBlogPosts} from '@/app/[lang]/_components/BlogList';
+import {Carousel} from '@/app/[lang]/_components/Carousel';
+import {LandingCard} from '@/app/[lang]/_components/LandingCard';
+import {LandingInfoCard} from '@/app/[lang]/_components/LandingInfoCard';
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
+import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow';
+import {TabItem} from '@/app/[lang]/_components/TabItem';
+import {TradingWidget} from '@/app/[lang]/_components/trading/TradingWidget';
+import {cl} from '@/app/[lang]/_utils/cl';
 import {
 	carouselLogos,
 	featureCard1WhiteTitle,
@@ -30,13 +30,14 @@ import {
 	landingCards,
 	landingInfoCards,
 	statCardsTitle
-} from '@/app/_utils/constants';
+} from '@/app/[lang]/_utils/constants';
 
-import type {TCard} from '@/app/_components/strapi/types';
+import type {TCard} from '@/app/[lang]/_components/strapi/types';
 import type {ReactNode} from 'react';
 
 export default function HomePage(): ReactNode {
 	const [tab, setTab] = useState(homepageFeatureTabs[0]);
+
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
@@ -288,17 +289,9 @@ export default function HomePage(): ReactNode {
 	);
 }
 
-const Card = ({
-	children,
-	className,
-	href,
-	target
-}: {
-	children: ReactNode;
-	className: string;
-	href?: string;
-	target?: string;
-}): ReactNode => {
+const Card = (props: {children: ReactNode; className: string; href?: string; target?: string}): ReactNode => {
+	const {children, className, href, target} = props;
+
 	return (
 		<>
 			{href ? (
