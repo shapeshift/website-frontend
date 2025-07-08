@@ -28,7 +28,8 @@ export default function CardsRow(props: {
 					className={
 						'group mt-2 flex w-full items-center justify-between rounded-2xl bg-secondBg p-6 lg:p-10'
 					}
-					href={data?.ctaBlock?.url ?? '/'}>
+					href={data?.ctaBlock?.url ?? '/'}
+					target={data?.ctaBlock?.target}>
 					<div className={'text-2xl text-white'}>{data?.ctaBlock?.title}</div>
 					<RoundButton
 						iconName={'arrow'}

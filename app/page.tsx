@@ -159,7 +159,9 @@ export default function HomePage(): ReactNode {
 						<Card
 							className={
 								'relative col-span-1 rounded-2xl bg-gradient-to-b from-[#101114] to-[#16181C] transition-all duration-300 hover:scale-[1.02] lg:col-span-2 lg:row-span-1'
-							}>
+							}
+							href={'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=cta&utm_campaign=gridcard'}
+							target={'_blank'}>
 							<Image
 								src={'/landing/landingCard1.png'}
 								alt={'tab_bg'}
@@ -211,7 +213,7 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
-							href={'https://app.shapeshift.com/markets/recommended#/markets/recommended'}
+							href={'https://app.shapeshift.com/markets/recommended?utm_source=mainpage&utm_medium=cta&utm_campaign=earnmore#/markets/recommended'}
 							target={'_blank'}>
 							<Image
 								src={'/landing/landingCard4.png'}

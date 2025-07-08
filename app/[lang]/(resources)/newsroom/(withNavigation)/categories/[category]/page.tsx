@@ -7,10 +7,10 @@ export default async function BlogCategoriesPage(props: {
 }): Promise<React.ReactNode> {
 	const {category} = await props.params;
 	const data = await fetch(
-		`${process.env.STRAPI_URL}/api/newsrooms?filters[category][$contains]=${category}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=featuredImg&sort[0]=publishedAt:desc&pagination[pageSize]=1`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/newsrooms?filters[category][$contains]=${category}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=featuredImg&sort[0]=publishedAt:desc&pagination[pageSize]=1`,
 		{
 			headers: {
-				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 			}
 		}
 	);

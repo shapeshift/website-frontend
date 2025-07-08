@@ -54,7 +54,7 @@ export function Popup({
 						style={{
 							...(notification?.bgImage?.url
 								? {
-										background: `url(${`${process.env.STRAPI_URL}${notification.bgImage.url}`}) no-repeat center center`,
+										background: `url(${`${process.env.NEXT_PUBLIC_STRAPI_URL}${notification.bgImage.url}`}) no-repeat center center`,
 										backgroundSize: 'cover'
 									}
 								: null)

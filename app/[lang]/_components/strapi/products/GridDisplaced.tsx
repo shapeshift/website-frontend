@@ -51,7 +51,7 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 							</div>
 							<div className={'mt-auto overflow-hidden'}>
 								<Image
-									src={`${process.env.STRAPI_URL}${data?.cards[2]?.image?.url}`}
+									src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${data?.cards[2]?.image?.url}`}
 									alt={data?.cards[2]?.title}
 									width={696}
 									height={168}

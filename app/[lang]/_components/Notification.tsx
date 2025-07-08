@@ -26,9 +26,9 @@ export function Notification(): ReactNode {
 	useEffect(() => {
 		const fetchData = async (): Promise<void> => {
 			try {
-				const res = await fetch(`${process.env.STRAPI_URL}/api/notification?populate=*`, {
+				const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/notification?populate=*`, {
 					headers: {
-						Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+						Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 					}
 				});
 				const data = await res.json();

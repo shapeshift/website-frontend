@@ -20,7 +20,7 @@ import type {
  */
 const apiHeaders = {
 	headers: {
-		Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+		Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 	}
 };
 
@@ -31,7 +31,7 @@ const apiHeaders = {
  */
 export async function getFaq(): Promise<TFaqData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/faq?populate[0]=faqSection&populate[1]=faqSection.faqSectionItem&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/faq?populate[0]=faqSection&populate[1]=faqSection.faqSectionItem&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
 		apiHeaders
 	);
 
@@ -50,7 +50,7 @@ export async function getFaq(): Promise<TFaqData | null> {
  */
 export async function getSupportedWallet(slug: string): Promise<TSupportedWalletData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
 	);
 
@@ -69,7 +69,7 @@ export async function getSupportedWallet(slug: string): Promise<TSupportedWallet
  */
 export async function getSupportedChain(slug: string): Promise<TSupportedChainData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
 	);
 
@@ -88,7 +88,7 @@ export async function getSupportedChain(slug: string): Promise<TSupportedChainDa
  */
 export async function getSupportedProtocol(slug: string): Promise<TSupportedProtocolData | null> {
 	const res = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-protocols?filters[slug][$eq]=${slug}&populate=*`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-protocols?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
 	);
 
@@ -105,7 +105,7 @@ export async function getSupportedProtocol(slug: string): Promise<TSupportedProt
  * @returns Promise with array of discover data or null if request fails
  */
 export async function getDiscovers(): Promise<TDiscoverData[] | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/discovers?populate=*`, apiHeaders);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/discovers?populate=*`, apiHeaders);
 
 	if (!res.ok) {
 		return null;
@@ -120,7 +120,7 @@ export async function getDiscovers(): Promise<TDiscoverData[] | null> {
  * @returns Promise with privacy policy data or null if request fails
  */
 export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/privacy-policy?populate=*`, apiHeaders);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/privacy-policy?populate=*`, apiHeaders);
 
 	if (!res.ok) {
 		return null;
@@ -135,7 +135,7 @@ export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
  * @returns Promise with terms of service data or null if request fails
  */
 export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
-	const res = await fetch(`${process.env.STRAPI_URL}/api/terms-of-service?populate=*`, apiHeaders);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/terms-of-service?populate=*`, apiHeaders);
 
 	if (!res.ok) {
 		return null;

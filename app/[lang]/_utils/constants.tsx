@@ -35,7 +35,7 @@ export type TAppLink = {
 };
 
 export const dAppUrl =
-	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
+	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=cta#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
 
 const docsUrl = 'https://github.com/shapeshift/web';
 
@@ -141,8 +141,8 @@ export const foxTokenContributeItems = [
 
 export const bannerLeftTitle = 'Your multichain crypto home base.';
 export const bannerRightTitle = 'DeFi anywhere, anytime, with ShapeShift mobile.';
-export const bannerLeftButtonTitle = 'Launch dApp';
-export const bannerRightButtonTitle = 'Try the demo';
+export const bannerLeftButtonTitle = 'Launch App';
+export const bannerRightButtonTitle = 'Try ShapeShift';
 export const bannerMobileSubtitle = 'Or download the app';
 
 /************************************************************************************************
@@ -266,7 +266,7 @@ export const appProducts: TAppLink[] = [
 	},
 	{
 		name: 'Classic',
-		href: 'https://og.shapeshift.com/',
+		href: 'https://og.shapeshift.com/?utm_source=mainpage&utm_medium=menu&utm_campaign=classic',
 		description: 'Original ShapeShift platform with classic interface.',
 		icon: <IconClassic />,
 		target: '_blank'
@@ -291,7 +291,7 @@ export const appProducts: TAppLink[] = [
 	},
 	{
 		name: 'Buy/Sell Crypto',
-		href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=top#/buy-crypto',
+		href: 'https://app.shapeshift.com/?utm_source=menu&utm_medium=cta&utm_campaign=buy#/buy-crypto',
 		description: 'Exchange Fiat for cryptocurrency',
 		icon: <IconDollar />,
 		target: '_blank'
@@ -396,7 +396,8 @@ export const landingCards: TCardsRowSection = {
 	ctaBlock: {
 		id: 1,
 		title: 'Try Classic',
-		url: 'https://og.shapeshift.com/'
+		url: 'https://og.shapeshift.com/?utm_source=mainpage&utm_medium=card&utm_campaign=classic',
+		target: '_blank'
 	},
 	cards: [
 		{
@@ -404,7 +405,7 @@ export const landingCards: TCardsRowSection = {
 			title: 'Buy and Sell',
 			description: "Buy crypto with fiat. Sell it back when you're ready. All in one place.",
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com//#/buy-crypto',
+			href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=cta&utm_campaign=buy#/buy-crypto',
 			target: '_blank',
 			image: {
 				url: '/landing/cardBuyAndSell.png',
@@ -424,7 +425,7 @@ export const landingCards: TCardsRowSection = {
 			title: 'Trade',
 			description: 'Trade 10,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/#/trade',
+			href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=card&utm_campaign=trade#/trade',
 			target: '_blank',
 			image: {
 				url: '/landing/cardethbtc.png',
@@ -445,7 +446,7 @@ export const landingCards: TCardsRowSection = {
 			description:
 				'Put your crypto to work instantly and start earning with the top DeFi solutions—effortless, permissionless, and non-custodial.',
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/pools#/markets/category/oneClickDefiAssets',
+			href: 'https://app.shapeshift.com/pools?utm_source=mainpage&utm_medium=card&utm_campaign=1click#/markets/category/oneClickDefiAssets',
 			target: '_blank',
 			image: {
 				url: '/landing/cardShift.png',
@@ -962,11 +963,11 @@ export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 
 export const landingInfoCards = [
 	{
 		title: 'Active wallets',
-		stat: '170+'
+		stat: '35,000'
 	},
 	{
 		title: 'Available chains',
-		stat: '13+'
+		stat: '14+'
 	},
 	{
 		title: 'Assets',
@@ -974,7 +975,7 @@ export const landingInfoCards = [
 	},
 	{
 		title: 'Traded on ShapeShift',
-		stat: '$380M'
+		stat: '$1.7 billion'
 	}
 ];
 

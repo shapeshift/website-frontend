@@ -10,10 +10,10 @@ import type {Metadata} from 'next';
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
 	const {slug} = await params;
 	const data = await fetch(
-		`${process.env.STRAPI_URL}/api/newsrooms?filters[slug][$eq]=${slug}&fields[0]=postSummary&fields[1]=tags&fields[2]=title&fields[3]=publishedAt&populate[0]=featuredImg`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/newsrooms?filters[slug][$eq]=${slug}&fields[0]=postSummary&fields[1]=tags&fields[2]=title&fields[3]=publishedAt&populate[0]=featuredImg`,
 		{
 			headers: {
-				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 			}
 		}
 	).then(async res => res.json());
@@ -47,12 +47,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.STRAPI_URL}${imageUrl}`
+				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
 		];
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.STRAPI_URL}${imageUrl}`
+				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
 		];
 	}
