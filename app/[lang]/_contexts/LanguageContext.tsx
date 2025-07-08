@@ -102,8 +102,10 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 			console.warn('[Weglot] Language changed from', prevLang, 'to', newLang);
 			setCurrentLanguage(newLang);
 
-			if (newLang !== prevLang && newLang && prevLang) {
-				router.replace(`/${newLang}${getPathWithoutLanguage(pathname)}`);
+			if (newLang !== prevLang && newLang) {
+				if (!prevLang || prevLang !== DEFAULT_LANGUAGE) {
+					router.replace(`/${newLang}${getPathWithoutLanguage(pathname)}`);
+				}
 			} else {
 				console.warn('ignoring');
 			}
