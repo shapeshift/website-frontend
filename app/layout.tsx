@@ -64,7 +64,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 						if (typeof Weglot !== 'undefined') {
 							try {
 								Weglot.initialize({
-									api_key: '${process.env.WEGLOT_API_KEY}',
+									api_key: '${process.env.NEXT_PUBLIC_WEGLOT_API_KEY}',
 									original_language: 'en',
 									languages: [${weglotLanguages
 										.split(',')

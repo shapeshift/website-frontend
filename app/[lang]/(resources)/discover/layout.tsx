@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			type: 'website',
 			images: [
 				{
-					url: `${process.env.STRAPI_URL}/og.png`
+					url: `${process.env.NEXT_PUBLIC_STRAPI_URL}/og.png`
 				}
 			]
 		},
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			description: 'Discover the world of Web3 with ShapeShift.',
 			images: [
 				{
-					url: `${process.env.STRAPI_URL}/og.png`
+					url: `${process.env.NEXT_PUBLIC_STRAPI_URL}/og.png`
 				}
 			]
 		}

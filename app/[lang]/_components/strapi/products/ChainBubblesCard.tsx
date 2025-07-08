@@ -57,7 +57,7 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 										'absolute left-1/2 top-1/2 size-[62px] -translate-x-1/2 -translate-y-1/2'
 									}>
 									<Image
-										src={`${hasChainItemsFromStrapi ? process.env.STRAPI_URL : ''}${item.image?.url ?? ''}`}
+										src={`${hasChainItemsFromStrapi ? process.env.NEXT_PUBLIC_STRAPI_URL : ''}${item.image?.url ?? ''}`}
 										alt={item.image?.url || ''}
 										width={62}
 										height={62}
@@ -96,7 +96,7 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 										'absolute left-1/2 top-1/2 size-[32px] -translate-x-1/2 -translate-y-1/2'
 									}>
 									<Image
-										src={`${hasChainItemsFromStrapi ? process.env.STRAPI_URL : ''}${item.image?.url ?? ''}`}
+										src={`${hasChainItemsFromStrapi ? process.env.NEXT_PUBLIC_STRAPI_URL : ''}${item.image?.url ?? ''}`}
 										alt={item.image?.url || ''}
 										width={62}
 										height={62}

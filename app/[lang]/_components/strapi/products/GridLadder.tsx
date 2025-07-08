@@ -33,7 +33,7 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 							<LadderItem data={step} />
 							<div className={'h-[400px] w-[640px] overflow-hidden rounded-2xl bg-secondHoverBg'}>
 								<Image
-									src={`${process.env.STRAPI_URL}${step.image?.url}`}
+									src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${step.image?.url}`}
 									alt={step.id.toString()}
 									width={step.image?.width}
 									height={step.image?.height}

@@ -3,12 +3,6 @@ const nextConfig = {
 	crossOrigin: 'anonymous',
 	/* config options here */
 	reactStrictMode: true,
-	env: {
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		STRAPI_URL: process.env.STRAPI_URL ?? '',
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN ?? ''
-	},
 	images: {
 		remotePatterns: [
 			{

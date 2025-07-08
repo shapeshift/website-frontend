@@ -62,7 +62,7 @@ function Card({data, className}: {data: TCard; className: string}): ReactNode {
 				<div className={'text-gray-500'}>{data?.description}</div>
 			</div>
 			<Image
-				src={`${process.env.STRAPI_URL}${data?.image.url}`}
+				src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${data?.image.url}`}
 				alt={data?.title}
 				width={data?.image.width}
 				height={data?.image.height}

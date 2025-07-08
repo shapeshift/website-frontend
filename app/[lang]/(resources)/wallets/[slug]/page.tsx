@@ -18,10 +18,10 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	}
 
 	const response = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
 		{
 			headers: {
-				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 			}
 		}
 	);
@@ -51,12 +51,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.STRAPI_URL}${imageUrl}`
+				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
 		];
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.STRAPI_URL}${imageUrl}`
+				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
 		];
 	}
@@ -77,7 +77,7 @@ export default async function WalletPage({params}: {params: Promise<{slug: strin
 			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<div className={'mb-12'}>
 					<SupportedWalletHero
-						url={`${process.env.STRAPI_URL}${wallet?.featuredImg?.url}`}
+						url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${wallet?.featuredImg?.url}`}
 						name={wallet?.name}
 						width={wallet?.featuredImg?.width}
 						height={wallet?.featuredImg?.height}

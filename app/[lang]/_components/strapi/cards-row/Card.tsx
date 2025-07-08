@@ -32,7 +32,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 						backgroundPosition: 'center'
 					}}>
 					<Image
-						src={`${process.env.STRAPI_URL}${data?.image.url}`}
+						src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${data?.image.url}`}
 						alt={data?.title}
 						width={461}
 						height={219}
@@ -62,7 +62,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 					backgroundPosition: 'center'
 				}}>
 				<Image
-					src={`${process.env.STRAPI_URL}${data?.image.url}`}
+					src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${data?.image.url}`}
 					alt={data?.title}
 					width={461}
 					height={219}

@@ -12,9 +12,9 @@ export async function fetchWithErrorHandling<T>(
 	error: string
 ): Promise<T | null> {
 	try {
-		const response = await fetch(`${process.env.STRAPI_URL}/api/${endpoint}?${queryParams}`, {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${endpoint}?${queryParams}`, {
 			headers: {
-				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 			},
 			next: {
 				revalidate: 3600 // Cache for 1 hour

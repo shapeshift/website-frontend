@@ -20,10 +20,10 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	}
 
 	const response = await fetch(
-		`${process.env.STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
+		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
 		{
 			headers: {
-				Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 			}
 		}
 	);
@@ -53,12 +53,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.STRAPI_URL}${imageUrl}`
+				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
 		];
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.STRAPI_URL}${imageUrl}`
+				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
 		];
 	}
@@ -90,7 +90,7 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 
 				<div className={'mb-20 mt-16 lg:mb-60'}>
 					<ChainHero
-						url={`${process.env.STRAPI_URL}${chain?.featuredImg?.url}`}
+						url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${chain?.featuredImg?.url}`}
 						name={chain?.name}
 						width={chain?.featuredImg?.width}
 						height={chain?.featuredImg?.height}

@@ -77,10 +77,10 @@ export function useFetchSupportArticles({
 		async function fetchArticles(): Promise<void> {
 			try {
 				const res = await fetch(
-					`${process.env.STRAPI_URL}/api/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&sort[0]=publishedAt:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[4]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}`,
+					`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&sort[0]=publishedAt:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[4]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}`,
 					{
 						headers: {
-							Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`
+							Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 						}
 					}
 				);

@@ -34,7 +34,7 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 									className={'mx-6'}>
 									<div className={'relative flex max-h-10 w-max items-center justify-start'}>
 										<Image
-											src={`${process.env.STRAPI_URL}${image?.url ?? ''}`}
+											src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image?.url ?? ''}`}
 											alt={image?.url || ''}
 											width={696}
 											height={168}
@@ -47,7 +47,7 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 					) : (
 						<div className={'mt-auto overflow-hidden'}>
 							<Image
-								src={`${process.env.STRAPI_URL}${image?.url ?? ''}`}
+								src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image?.url ?? ''}`}
 								alt={title}
 								width={696}
 								height={168}
