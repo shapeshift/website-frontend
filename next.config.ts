@@ -40,15 +40,14 @@ const nextConfig = {
 			}
 		];
 	},
-	// async rewrites() {
-	// 	return [
-	// 		// Handle language prefixes - rewrite /[lang]/path to /path
-	// 		{
-	// 			source: '/:lang(en|ru|de|fr|pt|zh|es)/:path*',
-	// 			destination: '/:path*'
-	// 		}
-	// 	];
-	// },
+	async rewrites() {
+		return [
+			{
+				source: '/chatwoot/:path*',
+				destination: 'https://app.chatwoot.com/:path*'
+			}
+		];
+	},
 	async redirects() {
 		return [
 			// Redirects from old blog posts to new blog posts

@@ -25,7 +25,7 @@ export function ChatwootWidget(): JSX.Element {
 				}
 				window.chatwootSDK.run({
 					websiteToken: process.env.NEXT_PUBLIC_CHATWOOT_API_KEY || '',
-					baseUrl: 'https://app.chatwoot.com/'
+					baseUrl: '/chatwoot'
 				});
 			}
 		};
@@ -39,7 +39,7 @@ export function ChatwootWidget(): JSX.Element {
 	return (
 		<Script
 			id={'chatwoot-sdk'}
-			src={'https://app.chatwoot.com/packs/js/sdk.js'}
+			src={'/chatwoot/packs/js/sdk.js'}
 			strategy={'afterInteractive'}
 			defer
 			async
