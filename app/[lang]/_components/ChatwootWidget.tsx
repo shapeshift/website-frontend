@@ -51,7 +51,7 @@ export function ChatwootWidget(): JSX.Element {
 					}
 					window.chatwootSDK.run({
 						websiteToken: process.env.NEXT_PUBLIC_CHATWOOT_API_KEY || '',
-						baseUrl: 'https://app.chatwoot.com'
+						baseUrl: '/chatwoot'
 					});
 				}
 			}}
