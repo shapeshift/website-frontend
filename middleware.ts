@@ -1,6 +1,11 @@
 import {NextResponse} from 'next/server';
 
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguageFromPath} from '@/app/[lang]/_utils/i18nconfig';
+import {
+	DEFAULT_LANGUAGE,
+	DEPRECATED_LANGUAGES,
+	SUPPORTED_LANGUAGES,
+	getLanguageFromPath
+} from '@/app/[lang]/_utils/i18nconfig';
 
 import type {NextRequest} from 'next/server';
 
@@ -16,8 +21,9 @@ function extractLanguageFromSubdomain(hostname: string): string | null {
 
 	const possibleLang = hostParts[0];
 	const isValidLanguage = SUPPORTED_LANGUAGES.some(lang => lang.code === possibleLang);
+	const isValidDeprecatedLanguage = DEPRECATED_LANGUAGES.includes(possibleLang);
 
-	return isValidLanguage ? possibleLang : null;
+	return isValidLanguage || isValidDeprecatedLanguage ? possibleLang : null;
 }
 
 /**
@@ -57,6 +63,13 @@ function handleSubdomainRedirect(request: NextRequest, hostname: string, subdoma
 
 	const newUrl = new URL(request.url);
 	newUrl.hostname = mainDomain;
+
+	// Redirect deprecated languages to default language without prefix
+	if (DEPRECATED_LANGUAGES.includes(subdomainLang)) {
+		newUrl.pathname = request.nextUrl.pathname; // Preserve path
+		return NextResponse.redirect(newUrl, 301);
+	}
+
 	newUrl.pathname = `/${subdomainLang}${request.nextUrl.pathname}`;
 
 	return NextResponse.redirect(newUrl, 301);
