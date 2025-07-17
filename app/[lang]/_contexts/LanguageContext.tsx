@@ -124,6 +124,9 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		}
 
 		const weglot = (window as any).Weglot;
+		if (!weglot) {
+			return;
+		}
 		weglot.on('languageChanged', handleWeglotLanguageChange);
 		weglot.on('initialized', handleWeglotInitialized);
 
