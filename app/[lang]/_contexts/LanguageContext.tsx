@@ -55,14 +55,6 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		const cleanPath = getPathWithoutLanguage(pathname);
 		const targetPath = languageCode === DEFAULT_LANGUAGE ? cleanPath || '/' : `/${languageCode}${cleanPath}`;
 
-		console.group('[switchLanguage]');
-		console.log('switchLanguage called with:', languageCode, 'Current:', currentLanguage);
-		console.log('Switching language to:', languageCode);
-		console.log('Clean path:', cleanPath);
-		console.log('Target path:', targetPath);
-		console.log('Current pathname:', pathname);
-		console.groupEnd();
-
 		if (!isScripted) {
 			setHasManuallyChangedLanguage(true);
 		}
