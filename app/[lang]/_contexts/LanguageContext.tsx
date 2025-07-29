@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 'use client';
 
 import {usePathname, useRouter} from 'next/navigation';
@@ -11,6 +14,20 @@ import {
 } from '@/app/[lang]/_utils/i18nconfig';
 
 import type {TLanguage} from '@/app/[lang]/_utils/i18nconfig';
+
+type WeglotInstance = {
+	initialized: boolean;
+	switchTo(languageCode: string): void;
+	on(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void;
+	on(event: 'initialized', handler: () => void): void;
+	off(event: 'languageChanged' | 'initialized', handler: Function): void;
+};
+
+declare global {
+	interface Window {
+		Weglot?: WeglotInstance;
+	}
+}
 
 type TLanguageContext = {
 	currentLanguage: string;
@@ -38,22 +55,13 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		const cleanPath = getPathWithoutLanguage(pathname);
 		const targetPath = languageCode === DEFAULT_LANGUAGE ? cleanPath || '/' : `/${languageCode}${cleanPath}`;
 
-		console.group('[switchLanguage]');
-		console.log('switchLanguage called with:', languageCode, 'Current:', currentLanguage);
-		console.log('Switching language to:', languageCode);
-		console.log('Clean path:', cleanPath);
-		console.log('Target path:', targetPath);
-		console.log('Current pathname:', pathname);
-		console.groupEnd();
-
 		if (!isScripted) {
 			setHasManuallyChangedLanguage(true);
 		}
 
-		const weglotInstance = (window as any)?.Weglot;
+		const weglotInstance = window.Weglot;
 		if (weglotInstance?.initialized) {
 			weglotInstance.switchTo(languageCode);
-			// return;
 		}
 
 		setCurrentLanguage(languageCode);
@@ -78,25 +86,28 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	const setLanguageFromBrowser = useCallback(() => {
 		const pathLanguage = getLanguageFromPath(pathname);
 		if (pathLanguage === '') {
-			// Then fallback to browser language
 			const browserLang = getBrowserLanguage();
-			const weglotInstance = (window as any)?.Weglot;
-			weglotInstance.switchTo(browserLang);
+			const weglotInstance = window.Weglot;
+			if (weglotInstance) {
+				weglotInstance.switchTo(browserLang);
+			}
 			return;
 		}
 		if (pathLanguage === DEFAULT_LANGUAGE) {
-			// Then use the default language without the language prefix
-
-			const weglotInstance = (window as any)?.Weglot;
-			weglotInstance.switchTo(DEFAULT_LANGUAGE);
+			const weglotInstance = window.Weglot;
+			if (weglotInstance) {
+				weglotInstance.switchTo(DEFAULT_LANGUAGE);
+			}
 			return;
 		}
-		// Then use path language
-		const weglotInstance = (window as any)?.Weglot;
-		weglotInstance.switchTo(pathLanguage);
+
+		const weglotInstance = window.Weglot;
+		if (weglotInstance) {
+			weglotInstance.switchTo(pathLanguage);
+		}
 	}, [pathname]);
 
-	const weglotConfigIsInitialized = typeof window !== 'undefined' && (window as any)?.Weglot?.initialized;
+	const weglotConfigIsInitialized = typeof window !== 'undefined' && window.Weglot?.initialized;
 	const handleWeglotLanguageChange = useCallback(
 		(newLang: string, prevLang: string): void => {
 			console.warn('[Weglot] Language changed from', prevLang, 'to', newLang);
@@ -113,7 +124,6 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		[pathname, router]
 	);
 	const handleWeglotInitialized = useCallback((): void => {
-		console.warn('[Weglot] Weglot has been initialized');
 		setIsInitialized(true);
 		setLanguageFromBrowser();
 	}, [setLanguageFromBrowser]);
@@ -123,14 +133,39 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 			return;
 		}
 
-		const weglot = (window as any).Weglot;
-		if (!weglot) {
-			return;
-		}
-		weglot.on('languageChanged', handleWeglotLanguageChange);
-		weglot.on('initialized', handleWeglotInitialized);
+		let retryCount = 0;
+		let retryTimeout: NodeJS.Timeout | undefined;
+		const maxRetries = 10;
+		const initialDelay = 100;
+
+		const initializeWeglot = (): void => {
+			const weglot = window.Weglot;
+			if (!weglot) {
+				if (retryCount < maxRetries) {
+					retryCount++;
+					const delay = initialDelay * Math.pow(2, retryCount - 1);
+					console.log(
+						`[LanguageContext] Weglot not found, retrying in ${delay}ms (attempt ${retryCount}/${maxRetries})`
+					);
+					retryTimeout = setTimeout(initializeWeglot, delay);
+				} else {
+					console.warn('[LanguageContext] Weglot not found after maximum retries');
+				}
+				return;
+			}
+
+			console.log('[LanguageContext] Weglot found, attaching event handlers');
+			weglot.on('languageChanged', handleWeglotLanguageChange);
+			weglot.on('initialized', handleWeglotInitialized);
+		};
+
+		initializeWeglot();
 
 		return () => {
+			if (retryTimeout) {
+				clearTimeout(retryTimeout);
+			}
+			const weglot = window.Weglot;
 			if (weglot?.initialized) {
 				weglot.off('languageChanged', handleWeglotLanguageChange);
 				weglot.off('initialized', handleWeglotInitialized);
