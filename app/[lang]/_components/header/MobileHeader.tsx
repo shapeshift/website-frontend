@@ -11,7 +11,7 @@ import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
 import {IconClose} from '@/app/[lang]/_icons/IconClose';
 import {IconMenu} from '@/app/[lang]/_icons/IconMenu';
 import {IconPlanet} from '@/app/[lang]/_icons/IconPlanet';
-import {IconShapeshift} from '@/app/[lang]/_icons/IconShapeshift';
+import {ShapeshiftLogo} from '@/app/[lang]/_icons/ShapeshiftLogo';
 import {appDao, appProducts, appResources, headerTabs} from '@/app/[lang]/_utils/constants';
 import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig';
 
@@ -73,7 +73,7 @@ export function MobileHeader({
 		<div className={'sticky top-0 z-50 lg:hidden'}>
 			<div className={'z-50 mt-6 flex w-full items-center justify-between rounded-2xl bg-headerBg p-4'}>
 				<LocalizedLink href={'/'}>
-					<IconShapeshift />
+					<ShapeshiftLogo />
 				</LocalizedLink>
 				<button
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -87,7 +87,7 @@ export function MobileHeader({
 						className={'fixed left-0 top-0 z-50 h-screen w-full overflow-y-auto bg-bg px-4 py-6'}
 						{...mobileMenuAnimation}>
 						<div className={'flex items-center justify-between'}>
-							<IconShapeshift />
+							<ShapeshiftLogo />
 							<button
 								onClick={() => setIsMenuOpen(false)}
 								className={'min-w-[56px] rounded-[20px] border border-white/5 p-4'}>
