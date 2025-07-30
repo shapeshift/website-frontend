@@ -1,7 +1,7 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
 
-import {ChatwootWidget} from '@/app/[lang]/_components/ChatwootWidget';
+import {ChatwootWidgetWrapper} from '@/app/[lang]/_components/ChatwootWidgetWrapper';
 import {Footer} from '@/app/[lang]/_components/Footer';
 import {Header} from '@/app/[lang]/_components/header/Header';
 import {WithFonts} from '@/app/[lang]/_components/WithFonts';
@@ -106,7 +106,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 										<Header />
 										{children}
 										<Footer />
-										<ChatwootWidget />
+										<ChatwootWidgetWrapper />
 									</div>
 								</CachedArticlesProvider>
 							</CachedPostsProvider>
