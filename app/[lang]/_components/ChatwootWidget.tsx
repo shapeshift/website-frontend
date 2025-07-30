@@ -30,42 +30,33 @@ declare global {
 
 const ALLOWED_CHATWOOT_ORIGINS = ['https://app.chatwoot.com', 'https://widget.chatwoot.com'];
 
-const ALLOWED_MESSAGE_TYPES = [
-	'chatwoot:ready',
-	'chatwoot:resize',
-	'chatwoot:toggle',
-	'chatwoot:unread-message-count'
-];
+const ALLOWED_MESSAGE_TYPES = ['chatwoot:ready', 'chatwoot:resize', 'chatwoot:toggle', 'chatwoot:unread-message-count'];
 
-const BLOCKED_MESSAGE_TYPES = [
-	'popoutChatWindow',
-	'chatwoot:popout'
-];
+const BLOCKED_MESSAGE_TYPES = ['popoutChatWindow', 'chatwoot:popout'];
 
-const ALLOWED_CHATWOOT_DOMAINS = [
-	'app.chatwoot.com',
-	'widget.chatwoot.com'
-];
+const ALLOWED_CHATWOOT_DOMAINS = ['app.chatwoot.com', 'widget.chatwoot.com'];
 
 function isValidUrl(urlString: string): boolean {
 	try {
 		const url = new URL(urlString);
-		
+
 		if (url.protocol !== 'https:') {
 			return false;
 		}
-		
+
 		if (!ALLOWED_CHATWOOT_DOMAINS.includes(url.hostname)) {
 			return false;
 		}
-		
-		if (url.pathname.includes('..') || 
-			url.pathname.includes('%') || 
+
+		if (
+			url.pathname.includes('..') ||
+			url.pathname.includes('%') ||
 			url.search.includes('javascript') ||
-			url.hash.includes('javascript')) {
+			url.hash.includes('javascript')
+		) {
 			return false;
 		}
-		
+
 		return true;
 	} catch {
 		return false;
@@ -77,7 +68,7 @@ function sanitizeValue(value: unknown, isUrl = false): string | number | boolean
 		if (isUrl) {
 			return isValidUrl(value) ? value : null;
 		}
-		
+
 		const sanitized = value
 			.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
 			.replace(/javascript\s*:/gi, '')
@@ -91,7 +82,7 @@ function sanitizeValue(value: unknown, isUrl = false): string | number | boolean
 			.replace(/%0[ad]/gi, '')
 			.replace(/%2[ef]/gi, '')
 			.replace(/[\r\n\t]/g, '');
-			
+
 		return sanitized === value ? sanitized : null;
 	}
 	if (typeof value === 'number' || typeof value === 'boolean') {
@@ -150,7 +141,11 @@ function createSecureMessageHandler(): (event: MessageEvent) => void {
 		const data = event.data as SecureMessageEvent['data'];
 		const messageType = data.type || data.eventName;
 
-		if (!messageType || !ALLOWED_MESSAGE_TYPES.includes(messageType) || BLOCKED_MESSAGE_TYPES.includes(messageType)) {
+		if (
+			!messageType ||
+			!ALLOWED_MESSAGE_TYPES.includes(messageType) ||
+			BLOCKED_MESSAGE_TYPES.includes(messageType)
+		) {
 			console.warn('[ChatwootWidget] Blocked unauthorized message type:', messageType);
 			return;
 		}
@@ -158,20 +153,24 @@ function createSecureMessageHandler(): (event: MessageEvent) => void {
 		const sanitizedData = {
 			...data,
 			config: data.config
-				? Object.fromEntries(Object.entries(data.config).map(([k, v]) => {
-					const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl');
-					return [k, sanitizeValue(v, isUrlField)];
-				}))
+				? Object.fromEntries(
+						Object.entries(data.config).map(([k, v]) => {
+							const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl');
+							return [k, sanitizeValue(v, isUrlField)];
+						})
+					)
 				: undefined,
 			payload: data.payload
-				? Object.fromEntries(Object.entries(data.payload).map(([k, v]) => {
-					const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl');
-					return [k, sanitizeValue(v, isUrlField)];
-				}))
+				? Object.fromEntries(
+						Object.entries(data.payload).map(([k, v]) => {
+							const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl');
+							return [k, sanitizeValue(v, isUrlField)];
+						})
+					)
 				: undefined
 		};
 
-		if (process.env.NODE_ENV !== 'production') {
+		if (process.env.NODE_ENV === 'development') {
 			console.log('[ChatwootWidget] Authorized message received:', {
 				origin: event.origin,
 				type: messageType,
@@ -181,7 +180,7 @@ function createSecureMessageHandler(): (event: MessageEvent) => void {
 	};
 }
 
-export function ChatwootWidget(): ReactElement {
+export function ChatwootWidget({nonce}: {nonce?: string}): ReactElement {
 	const [canInit, setCanInit] = useState(false);
 	const [isInitialized, setIsInitialized] = useState(false);
 	const [hasError, setHasError] = useState(false);
@@ -264,6 +263,7 @@ export function ChatwootWidget(): ReactElement {
 			strategy={'afterInteractive'}
 			defer
 			async
+			nonce={nonce}
 			onLoad={() => {
 				console.log('[ChatwootWidget] Script loaded successfully');
 				setCanInit(true);

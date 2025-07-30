@@ -109,6 +109,9 @@ export function middleware(request: NextRequest): NextResponse {
 	const pathname = request.nextUrl.pathname;
 	const hostname = request.headers.get('host') || '';
 
+	// Generate a nonce for CSP
+	const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+
 	// Check for language subdomain
 	const subdomainLang = extractLanguageFromSubdomain(hostname);
 
@@ -123,12 +126,17 @@ export function middleware(request: NextRequest): NextResponse {
 	// Extract locale
 	const locale = isPathWithLocale ? getLanguageFromPath(pathname) || DEFAULT_LANGUAGE : DEFAULT_LANGUAGE;
 
-	// Create response with locale headers
+	// Create response with locale headers and nonce
 	const headers = createLocaleHeaders(request.headers, pathname, locale);
+	headers.set('x-nonce', nonce);
 	const response = NextResponse.next({headers});
 
 	// Set locale cookie
 	setLocaleCookie(response, locale);
+
+	// Set the CSP header with the nonce
+	const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://app.chatwoot.com https://widget.chatwoot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`;
+	response.headers.set('Content-Security-Policy', cspHeader);
 
 	// Handle locale routing
 	return handleLocaleRouting(request, response, locale, isPathWithLocale);
