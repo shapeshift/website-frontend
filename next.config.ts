@@ -38,7 +38,7 @@ const nextConfig = {
 					},
 					{
 						key: 'content-security-policy',
-						value: "default-src 'self'; script-src 'self' 'nonce-${Math.random().toString(36)}' https://app.chatwoot.com https://widget.chatwoot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;"
+						value: "default-src 'self'; script-src 'self' 'nonce-${crypto.randomUUID().toString(36)}' https://app.chatwoot.com https://widget.chatwoot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;"
 					}
 				]
 			}
