@@ -171,11 +171,13 @@ function createSecureMessageHandler(): (event: MessageEvent) => void {
 				: undefined
 		};
 
-		console.log('[ChatwootWidget] Authorized message received:', {
-			origin: event.origin,
-			type: messageType,
-			data: sanitizedData
-		});
+		if (process.env.NODE_ENV !== 'production') {
+			console.log('[ChatwootWidget] Authorized message received:', {
+				origin: event.origin,
+				type: messageType,
+				data: sanitizedData
+			});
+		}
 	};
 }
 
