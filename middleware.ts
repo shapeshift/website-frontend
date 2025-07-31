@@ -135,7 +135,7 @@ export function middleware(request: NextRequest): NextResponse {
 	setLocaleCookie(response, locale);
 
 	// Set the CSP header with the nonce
-	const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://app.chatwoot.com https://widget.chatwoot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`;
+	const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`;
 	response.headers.set('Content-Security-Policy', cspHeader);
 
 	// Handle locale routing
