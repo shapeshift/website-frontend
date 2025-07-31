@@ -46,6 +46,10 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const websiteSchema = generateWebsiteSchema(baseUrl);
 	const organizationSchema = generateOrganizationSchema();
 	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
+	
+	// Get nonce from headers
+	const headersList = await headers();
+	const nonce = headersList.get('x-nonce') || undefined;
 
 	return (
 		<html lang={'en'}>
@@ -55,11 +59,13 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					type={'text/javascript'}
 					src={'https://cdn.weglot.com/weglot.min.js'}
 					crossOrigin={'anonymous'}
+					nonce={nonce}
 				/>
 				<Script
 					strategy={'afterInteractive'}
 					id={'weglot'}
-					crossOrigin={'anonymous'}>
+					crossOrigin={'anonymous'}
+					nonce={nonce}>
 					{`
 						if (typeof Weglot !== 'undefined') {
 							try {
@@ -86,6 +92,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					type={'application/ld+json'}
 					// eslint-disable-next-line @typescript-eslint/naming-convention
 					dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
+					nonce={nonce}
 				/>
 				<Script
 					id={'organization-schema'}
@@ -94,6 +101,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 						// eslint-disable-next-line @typescript-eslint/naming-convention
 						__html: JSON.stringify(organizationSchema)
 					}}
+					nonce={nonce}
 				/>
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>
