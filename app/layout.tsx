@@ -54,6 +54,21 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	return (
 		<html lang={'en'}>
 			<head>
+    <script>
+      !function(w, d){
+          w.__adrsbl = {
+              queue: [],
+              run: function(){
+                  this.queue.push(arguments);
+              }
+          };
+          var s = d.createElement('script');
+          s.async = true;
+          s.src = 'https://tag.adrsbl.io/p.js?tid=de008d61a08d42559c3c09a539728156';
+          var b = d.getElementsByTagName('script')[0];
+          b.parentNode.insertBefore(s, b);
+      }(window, document);
+    </script>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}
