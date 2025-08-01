@@ -41,12 +41,7 @@ const nextConfig = {
 		];
 	},
 	async rewrites() {
-		return [
-			{
-				source: '/chatwoot/:path*',
-				destination: 'https://app.chatwoot.com/:path*'
-			}
-		];
+		return [];
 	},
 	async redirects() {
 		return [

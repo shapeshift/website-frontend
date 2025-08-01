@@ -231,7 +231,7 @@ export function ChatwootWidget({nonce}: {nonce?: string}): ReactElement {
 				console.log('[ChatwootWidget] Chatwoot SDK found, initializing');
 				window.chatwootSDK.run({
 					websiteToken: process.env.NEXT_PUBLIC_CHATWOOT_API_KEY!,
-					baseUrl: '/chatwoot'
+					baseUrl: '/api/chatwoot'
 				});
 				window.chatwootSDK.isLoaded = true;
 				setIsInitialized(true);
@@ -259,7 +259,7 @@ export function ChatwootWidget({nonce}: {nonce?: string}): ReactElement {
 	return (
 		<Script
 			id={'chatwoot-sdk'}
-			src={'/chatwoot/packs/js/sdk.js'}
+			src={'/api/chatwoot/packs/js/sdk.js'}
 			strategy={'afterInteractive'}
 			defer
 			async
