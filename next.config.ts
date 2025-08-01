@@ -22,7 +22,7 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: '/',
+				source: '/:path((?!chatwoot).*)',
 				headers: [
 					{
 						key: 'cross-origin-embedder-policy',
