@@ -22,7 +22,8 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: '/',
+				// Apply COEP headers to all routes
+				source: '/(.*)',
 				headers: [
 					{
 						key: 'cross-origin-embedder-policy',
@@ -35,6 +36,28 @@ const nextConfig = {
 					{
 						key: 'cross-origin-opener-policy',
 						value: 'same-origin'
+					}
+				]
+			},
+			{
+				// Specific headers for Chatwoot proxy to ensure iframe compatibility
+				source: '/chatwoot/(.*)',
+				headers: [
+					{
+						key: 'cross-origin-embedder-policy',
+						value: 'credentialless'
+					},
+					{
+						key: 'cross-origin-resource-policy',
+						value: 'cross-origin'
+					},
+					{
+						key: 'cross-origin-opener-policy',
+						value: 'same-origin'
+					},
+					{
+						key: 'x-frame-options',
+						value: 'SAMEORIGIN'
 					}
 				]
 			}
