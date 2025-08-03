@@ -67,7 +67,7 @@ const nextConfig = {
 		return [
 			{
 				source: '/chatwoot/:path*',
-				destination: 'https://app.chatwoot.com/:path*'
+				destination: '/api/chatwoot/:path*'
 			}
 		];
 	},

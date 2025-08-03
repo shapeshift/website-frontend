@@ -155,9 +155,9 @@ export const config = {
 		 * - _next/static (static files)
 		 * - _next/image (image optimization files)
 		 * - favicon.ico, sitemap.xml, robots.txt
+		 * - chatwoot (now handled by API route)
 		 * - public assets with extensions (images, fonts, etc.)
-		 * Note: Removed chatwoot exclusion to ensure COEP headers are applied
 		 */
-		'/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|webmanifest|ico|css|js|woff|woff2|ttf|otf)).*)'
+		'/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|chatwoot|.*\\.(?:svg|png|jpg|jpeg|gif|webp|webmanifest|ico|css|js|woff|woff2|ttf|otf)).*)'
 	]
 };
