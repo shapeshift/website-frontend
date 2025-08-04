@@ -899,7 +899,7 @@ export const carouselLogos = {
 			/>
 		)
 	},
-	// eslint-disable-next-line @typescript-eslint/naming-convention
+
 	Ox: {
 		href: 'https://0x.org/',
 		src: '/landing/0x.png',
