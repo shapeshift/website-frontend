@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import nextPlugin from '@next/eslint-plugin-next';
+
 import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
@@ -28,6 +28,7 @@ export default tseslint.config(
 	},
 	js.configs.recommended,
 	...tseslint.configs.recommended,
+
 	{
 		files: ['**/*.{js,jsx,ts,tsx}'],
 		plugins: {
@@ -37,7 +38,7 @@ export default tseslint.config(
 			tailwindcss: tailwindcssPlugin,
 			'unused-imports': unusedImportsPlugin,
 			import: importPlugin,
-			'@next/next': nextPlugin,
+
 		},
 		languageOptions: {
 			parser: tseslint.parser,
@@ -143,6 +144,8 @@ export default tseslint.config(
 			'@typescript-eslint/no-var-requires': 0,
 			'@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
 			'@typescript-eslint/no-explicit-any': [1],
+
+			'@typescript-eslint/no-unsafe-function-type': 'error',
 			'@typescript-eslint/array-type': ['error', { default: 'array' }],
 			'@typescript-eslint/consistent-type-assertions': 0,
 			'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
@@ -228,13 +231,7 @@ export default tseslint.config(
 			// Tailwind rules
 			'tailwindcss/no-custom-classname': 0,
 
-			// Next.js rules
-			'@next/next/no-html-link-for-pages': 'error',
-			'@next/next/no-img-element': 'error',
-			'@next/next/no-unwanted-polyfillio': 'error',
-			'@next/next/no-page-custom-font': 'error',
-			'@next/next/no-sync-scripts': 'error',
-			'@next/next/inline-script-id': 'error',
+			// Next.js rules - using Next.js built-in ESLint config instead
 		},
 	},
 );

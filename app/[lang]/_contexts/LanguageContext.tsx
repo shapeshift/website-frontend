@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 'use client';
 
@@ -20,7 +19,7 @@ type WeglotInstance = {
 	switchTo(languageCode: string): void;
 	on(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void;
 	on(event: 'initialized', handler: () => void): void;
-	off(event: 'languageChanged' | 'initialized', handler: Function): void;
+	off(event: 'languageChanged' | 'initialized', handler: (...args: unknown[]) => void): void;
 };
 
 declare global {

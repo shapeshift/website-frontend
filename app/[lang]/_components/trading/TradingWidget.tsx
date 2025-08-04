@@ -57,7 +57,7 @@ export function TradingWidget(): ReactNode {
 				.finally(() => {
 					setIsLoading(false);
 				});
-		} catch (error) {
+		} catch {
 			setError('No rate available');
 			setIsLoading(false);
 		}
@@ -92,7 +92,7 @@ export function TradingWidget(): ReactNode {
 				.finally(() => {
 					setIsLoading(false);
 				});
-		} catch (error) {
+		} catch {
 			setError('No rate available');
 			setIsLoading(false);
 		}
