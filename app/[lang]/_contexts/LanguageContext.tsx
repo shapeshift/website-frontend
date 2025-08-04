@@ -19,7 +19,8 @@ type WeglotInstance = {
 	switchTo(languageCode: string): void;
 	on(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void;
 	on(event: 'initialized', handler: () => void): void;
-	off(event: 'languageChanged' | 'initialized', handler: (...args: unknown[]) => void): void;
+	off(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void;
+	off(event: 'initialized', handler: () => void): void;
 };
 
 declare global {
