@@ -1,3 +1,10 @@
+/*
+ * ESLint disable for naming-convention rule:
+ * HTTP headers must use kebab-case format (e.g., 'content-type', 'user-agent')
+ * but the project's naming convention rule requires camelCase/PascalCase.
+ * This is a legitimate case where the web standard takes precedence.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
 import {NextResponse} from 'next/server';
 
 import type {NextRequest} from 'next/server';
@@ -6,7 +13,7 @@ export async function GET(
 	request: NextRequest,
 	{params}: {params: {path: string[]}}
 ): Promise<NextResponse> {
-  	try {
+	try {
 		const {path} = params;
 		const searchParams = request.nextUrl.searchParams;
 
@@ -25,7 +32,7 @@ export async function GET(
 			}
 		});
 
-    		if (!response.ok) {
+		if (!response.ok) {
 			return new NextResponse(null, {status: response.status});
 		}
 
@@ -34,6 +41,7 @@ export async function GET(
 		// Create response with proper COEP headers
 		const nextResponse = new NextResponse(content, {
 			status: response.status,
+
 			headers: {
 				'content-type': response.headers.get('content-type') || 'text/html',
 				'cross-origin-embedder-policy': 'credentialless',
@@ -76,6 +84,7 @@ export async function POST(
 		// Forward the request to Chatwoot
 		const response = await fetch(chatwootUrl, {
 			method: 'POST',
+
 			headers: {
 				'content-type': request.headers.get('content-type') || 'application/json',
 				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
@@ -86,11 +95,12 @@ export async function POST(
 			body: body || undefined
 		});
 
-    		const content = await response.text();
+		const content = await response.text();
 
 		// Create response with proper COEP headers
 		const nextResponse = new NextResponse(content, {
 			status: response.status,
+
 			headers: {
 				'content-type': response.headers.get('content-type') || 'application/json',
 				'cross-origin-embedder-policy': 'credentialless',
