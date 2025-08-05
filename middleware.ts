@@ -127,12 +127,20 @@ export function middleware(request: NextRequest): NextResponse {
 	// Get saved locale from cookie
 	const savedLocale = request.cookies.get('locale')?.value;
 
-	// Determine locale priority: URL path > saved cookie > default
+	// Get browser language
+	const acceptLanguage = request.headers.get('accept-language') || '';
+	const browserLang = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase();
+	const isBrowserLangSupported = SUPPORTED_LANGUAGES.some(lang => lang.code === browserLang);
+
+	// Determine locale priority: URL path > saved cookie > browser language > default
 	let locale: string;
 	if (isPathWithLocale) {
 		locale = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE;
 	} else if (savedLocale && SUPPORTED_LANGUAGES.some(lang => lang.code === savedLocale)) {
 		locale = savedLocale;
+	} else if (!savedLocale && isBrowserLangSupported && browserLang) {
+		// Only use browser language if no cookie is set
+		locale = browserLang;
 	} else {
 		locale = DEFAULT_LANGUAGE;
 	}
@@ -142,8 +150,11 @@ export function middleware(request: NextRequest): NextResponse {
 	headers.set('x-nonce', nonce);
 	const response = NextResponse.next({headers});
 
-	// Set locale cookie
-	setLocaleCookie(response, locale);
+	// Only set locale cookie if user explicitly changed language (cookie already exists)
+	// This prevents auto-setting cookie based on browser language
+	if (savedLocale) {
+		setLocaleCookie(response, locale);
+	}
 
 	// Set security headers including COEP
 	response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
