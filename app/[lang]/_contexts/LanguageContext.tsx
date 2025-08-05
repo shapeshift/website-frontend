@@ -40,7 +40,8 @@ const LanguageContext = createContext<TLanguageContext | undefined>(undefined);
 export function LanguageProvider({children}: {children: React.ReactNode}): JSX.Element {
 	const router = useRouter();
 	const pathname = usePathname();
-	const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
+	const initialLanguage = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE;
+	const [currentLanguage, setCurrentLanguage] = useState(initialLanguage);
 	const [isInitialized, setIsInitialized] = useState(false);
 	const [, setHasManuallyChangedLanguage] = useState(false);
 
@@ -85,27 +86,23 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		return supportedLang ? browserLang : DEFAULT_LANGUAGE;
 	};
 
-	const setLanguageFromBrowser = useCallback(() => {
+	const setLanguageFromPath = useCallback(() => {
 		const pathLanguage = getLanguageFromPath(pathname);
-		if (pathLanguage === '') {
-			const browserLang = getBrowserLanguage();
-			const weglotInstance = window.Weglot;
-			if (weglotInstance) {
-				weglotInstance.switchTo(browserLang);
-			}
-			return;
-		}
-		if (pathLanguage === DEFAULT_LANGUAGE) {
-			const weglotInstance = window.Weglot;
-			if (weglotInstance) {
-				weglotInstance.switchTo(DEFAULT_LANGUAGE);
-			}
+		const weglotInstance = window.Weglot;
+		
+		if (!weglotInstance) {
 			return;
 		}
 
-		const weglotInstance = window.Weglot;
-		if (weglotInstance) {
+		// If path has a language, use it
+		if (pathLanguage) {
 			weglotInstance.switchTo(pathLanguage);
+			setCurrentLanguage(pathLanguage);
+		} else {
+			// If no language in path, the middleware should have handled it
+			// Just sync with the default language
+			weglotInstance.switchTo(DEFAULT_LANGUAGE);
+			setCurrentLanguage(DEFAULT_LANGUAGE);
 		}
 	}, [pathname]);
 
@@ -127,8 +124,8 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	);
 	const handleWeglotInitialized = useCallback((): void => {
 		setIsInitialized(true);
-		setLanguageFromBrowser();
-	}, [setLanguageFromBrowser]);
+		setLanguageFromPath();
+	}, [setLanguageFromPath]);
 
 	useEffect(() => {
 		if (typeof window === 'undefined') {
