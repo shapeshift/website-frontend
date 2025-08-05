@@ -57,6 +57,8 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 		if (!isScripted) {
 			setHasManuallyChangedLanguage(true);
+			// Set cookie when user manually changes language
+			document.cookie = `locale=${languageCode}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
 		}
 
 		const weglotInstance = window.Weglot;
