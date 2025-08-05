@@ -73,23 +73,23 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		}
 	};
 
-	const getBrowserLanguage = (): string => {
-		if (typeof window === 'undefined') {
-			return DEFAULT_LANGUAGE;
-		}
+	// const getBrowserLanguage = (): string => {
+	// 	if (typeof window === 'undefined') {
+	// 		return DEFAULT_LANGUAGE;
+	// 	}
 
-		// Get browser language and extract the language code (e.g., 'fr' from 'fr-FR')
-		const browserLang = navigator.language.toLowerCase().split('-')[0];
+	// 	// Get browser language and extract the language code (e.g., 'fr' from 'fr-FR')
+	// 	const browserLang = navigator.language.toLowerCase().split('-')[0];
 
-		// Check if browser language is supported
-		const supportedLang = SUPPORTED_LANGUAGES.find(lang => lang.code === browserLang);
-		return supportedLang ? browserLang : DEFAULT_LANGUAGE;
-	};
+	// 	// Check if browser language is supported
+	// 	const supportedLang = SUPPORTED_LANGUAGES.find(lang => lang.code === browserLang);
+	// 	return supportedLang ? browserLang : DEFAULT_LANGUAGE;
+	// };
 
 	const setLanguageFromPath = useCallback(() => {
 		const pathLanguage = getLanguageFromPath(pathname);
 		const weglotInstance = window.Weglot;
-		
+
 		if (!weglotInstance) {
 			return;
 		}
