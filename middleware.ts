@@ -50,7 +50,8 @@ function setLocaleCookie(response: NextResponse, locale: string): void {
 	response.cookies.set('locale', locale, {
 		httpOnly: false,
 		sameSite: 'lax',
-		path: '/'
+		path: '/',
+		maxAge: 60 * 60 * 24 * 365 // 1 year
 	});
 }
 
@@ -123,8 +124,18 @@ export function middleware(request: NextRequest): NextResponse {
 	// Check if path has locale
 	const isPathWithLocale = hasLocaleInPath(pathname);
 
-	// Extract locale
-	const locale = isPathWithLocale ? getLanguageFromPath(pathname) || DEFAULT_LANGUAGE : DEFAULT_LANGUAGE;
+	// Get saved locale from cookie
+	const savedLocale = request.cookies.get('locale')?.value;
+
+	// Determine locale priority: URL path > saved cookie > default
+	let locale: string;
+	if (isPathWithLocale) {
+		locale = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE;
+	} else if (savedLocale && SUPPORTED_LANGUAGES.some(lang => lang.code === savedLocale)) {
+		locale = savedLocale;
+	} else {
+		locale = DEFAULT_LANGUAGE;
+	}
 
 	// Create response with locale headers and nonce
 	const headers = createLocaleHeaders(request.headers, pathname, locale);
