@@ -1,114 +1,119 @@
+/*
+ * ESLint disable for naming-convention rule:
+ * HTTP headers must use kebab-case format (e.g., 'content-type', 'user-agent')
+ * but the project's naming convention rule requires camelCase/PascalCase.
+ * This is a legitimate case where the web standard takes precedence.
+ */
 /* eslint-disable @typescript-eslint/naming-convention */
 import {NextResponse} from 'next/server';
 
 import type {NextRequest} from 'next/server';
 
-const CHATWOOT_BASE_URL = 'https://app.chatwoot.com';
-const ALLOWED_PATHS = ['/packs/js/sdk.js', '/widget', '/widget/bubble'];
-
 export async function GET(request: NextRequest, {params}: {params: {path: string[]}}): Promise<NextResponse> {
-	const path = params.path.join('/');
-	const fullPath = `/${path}`;
-
-	// Security: Only allow specific paths
-	const isAllowed = ALLOWED_PATHS.some(
-		allowedPath => fullPath === allowedPath || fullPath.startsWith(`${allowedPath}?`)
-	);
-
-	if (!isAllowed) {
-		return NextResponse.json({error: 'Forbidden'}, {status: 403});
-	}
-
-	// Forward the request to Chatwoot
-	const url = new URL(fullPath, CHATWOOT_BASE_URL);
-	const searchParams = request.nextUrl.searchParams;
-	searchParams.forEach((value, key) => {
-		url.searchParams.append(key, value);
-	});
-
 	try {
-		const response = await fetch(url.toString(), {
+		const {path} = params;
+		const searchParams = request.nextUrl.searchParams;
+
+		// Construct the Chatwoot URL
+		const chatwootPath = path.join('/');
+		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`;
+
+		// Forward the request to Chatwoot
+		const response = await fetch(chatwootUrl, {
+			method: 'GET',
 			headers: {
-				'User-Agent': request.headers.get('User-Agent') || '',
-				Accept: request.headers.get('Accept') || '*/*',
-				'Accept-Language': request.headers.get('Accept-Language') || 'en-US,en;q=0.9',
-				Referer: request.headers.get('Referer') || ''
+				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
+				accept: request.headers.get('accept') || '*/*',
+				'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9',
+				referer: request.headers.get('referer') || request.nextUrl.origin
 			}
 		});
 
-		const contentType = response.headers.get('Content-Type') || 'text/plain';
-		const body = await response.arrayBuffer();
-
-		// Create response with proper headers
-		const proxyResponse = new NextResponse(body, {
-			status: response.status,
-			statusText: response.statusText,
-			headers: {
-				'Content-Type': contentType,
-				'Cross-Origin-Embedder-Policy': 'credentialless',
-				'Cross-Origin-Resource-Policy': 'cross-origin',
-				'Cross-Origin-Opener-Policy': 'same-origin'
-			}
-		});
-
-		// Copy cache control headers if present
-		const cacheControl = response.headers.get('Cache-Control');
-		if (cacheControl) {
-			proxyResponse.headers.set('Cache-Control', cacheControl);
+		if (!response.ok) {
+			return new NextResponse(null, {status: response.status});
 		}
 
-		return proxyResponse;
+		const content = await response.text();
+
+		// Create response with proper COEP headers
+		const nextResponse = new NextResponse(content, {
+			status: response.status,
+
+			headers: {
+				'content-type': response.headers.get('content-type') || 'text/html',
+				'cross-origin-embedder-policy': 'credentialless',
+				'cross-origin-resource-policy': 'cross-origin',
+				'cross-origin-opener-policy': 'same-origin',
+				'x-frame-options': 'SAMEORIGIN',
+				// Preserve some original headers
+				'cache-control': response.headers.get('cache-control') || 'no-cache',
+				etag: response.headers.get('etag') || '',
+				vary: response.headers.get('vary') || ''
+			}
+		});
+
+		// Copy Set-Cookie headers if present (for Chatwoot session)
+		const setCookieHeaders = response.headers.get('set-cookie');
+		if (setCookieHeaders) {
+			nextResponse.headers.set('Set-Cookie', setCookieHeaders);
+		}
+
+		return nextResponse;
 	} catch (error) {
-		console.error('[Chatwoot Proxy] Error:', error);
-		return NextResponse.json({error: 'Internal Server Error'}, {status: 500});
+		console.error('Chatwoot proxy error:', error);
+		return new NextResponse('Proxy Error', {status: 500});
 	}
 }
 
 export async function POST(request: NextRequest, {params}: {params: {path: string[]}}): Promise<NextResponse> {
-	const path = params.path.join('/');
-	const fullPath = `/${path}`;
-
-	// Security: Only allow widget path for POST
-	if (!fullPath.startsWith('/widget')) {
-		return NextResponse.json({error: 'Forbidden'}, {status: 403});
-	}
-
-	const url = new URL(fullPath, CHATWOOT_BASE_URL);
-	const searchParams = request.nextUrl.searchParams;
-	searchParams.forEach((value, key) => {
-		url.searchParams.append(key, value);
-	});
-
 	try {
+		const {path} = params;
+		const searchParams = request.nextUrl.searchParams;
 		const body = await request.text();
-		const response = await fetch(url.toString(), {
+
+		// Construct the Chatwoot URL
+		const chatwootPath = path.join('/');
+		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`;
+
+		// Forward the request to Chatwoot
+		const response = await fetch(chatwootUrl, {
 			method: 'POST',
+
 			headers: {
-				'Content-Type': request.headers.get('Content-Type') || 'application/json',
-				'User-Agent': request.headers.get('User-Agent') || '',
-				Accept: request.headers.get('Accept') || '*/*',
-				Referer: request.headers.get('Referer') || ''
+				'content-type': request.headers.get('content-type') || 'application/json',
+				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
+				accept: request.headers.get('accept') || '*/*',
+				'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9',
+				referer: request.headers.get('referer') || request.nextUrl.origin
 			},
-			body
+			body: body || undefined
 		});
 
-		const responseBody = await response.arrayBuffer();
-		const contentType = response.headers.get('Content-Type') || 'text/plain';
+		const content = await response.text();
 
-		const proxyResponse = new NextResponse(responseBody, {
+		// Create response with proper COEP headers
+		const nextResponse = new NextResponse(content, {
 			status: response.status,
-			statusText: response.statusText,
+
 			headers: {
-				'Content-Type': contentType,
-				'Cross-Origin-Embedder-Policy': 'credentialless',
-				'Cross-Origin-Resource-Policy': 'cross-origin',
-				'Cross-Origin-Opener-Policy': 'same-origin'
+				'content-type': response.headers.get('content-type') || 'application/json',
+				'cross-origin-embedder-policy': 'credentialless',
+				'cross-origin-resource-policy': 'cross-origin',
+				'cross-origin-opener-policy': 'same-origin',
+				'x-frame-options': 'SAMEORIGIN',
+				'cache-control': response.headers.get('cache-control') || 'no-cache'
 			}
 		});
 
-		return proxyResponse;
+		// Copy Set-Cookie headers if present
+		const setCookieHeaders = response.headers.get('set-cookie');
+		if (setCookieHeaders) {
+			nextResponse.headers.set('Set-Cookie', setCookieHeaders);
+		}
+
+		return nextResponse;
 	} catch (error) {
-		console.error('[Chatwoot Proxy] POST Error:', error);
-		return NextResponse.json({error: 'Internal Server Error'}, {status: 500});
+		console.error('Chatwoot proxy error:', error);
+		return new NextResponse('Proxy Error', {status: 500});
 	}
 }
