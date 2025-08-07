@@ -1,4 +1,4 @@
-/* eslint-disable tailwindcss/enforces-negative-arbitrary-values */
+ 
 'use client';
 
 import {AnimatePresence, motion} from 'framer-motion';
@@ -61,6 +61,7 @@ export function MobileHeader({
 	currentLanguage: string;
 }): ReactNode {
 	const pathname = usePathname();
+
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 	const [expandedSection, setExpandedSection] = useState<string>('');
 
