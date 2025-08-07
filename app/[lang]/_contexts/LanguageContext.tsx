@@ -40,7 +40,8 @@ const LanguageContext = createContext<TLanguageContext | undefined>(undefined);
 export function LanguageProvider({children}: {children: React.ReactNode}): JSX.Element {
 	const router = useRouter();
 	const pathname = usePathname();
-	const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
+	const initialLanguage = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE;
+	const [currentLanguage, setCurrentLanguage] = useState(initialLanguage);
 	const [isInitialized, setIsInitialized] = useState(false);
 	const [, setHasManuallyChangedLanguage] = useState(false);
 
@@ -57,6 +58,8 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 
 		if (!isScripted) {
 			setHasManuallyChangedLanguage(true);
+			// Set cookie when user manually changes language
+			document.cookie = `locale=${languageCode}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
 		}
 
 		const weglotInstance = window.Weglot;
@@ -70,40 +73,36 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 		}
 	};
 
-	const getBrowserLanguage = (): string => {
-		if (typeof window === 'undefined') {
-			return DEFAULT_LANGUAGE;
-		}
+	// const getBrowserLanguage = (): string => {
+	// 	if (typeof window === 'undefined') {
+	// 		return DEFAULT_LANGUAGE;
+	// 	}
 
-		// Get browser language and extract the language code (e.g., 'fr' from 'fr-FR')
-		const browserLang = navigator.language.toLowerCase().split('-')[0];
+	// 	// Get browser language and extract the language code (e.g., 'fr' from 'fr-FR')
+	// 	const browserLang = navigator.language.toLowerCase().split('-')[0];
 
-		// Check if browser language is supported
-		const supportedLang = SUPPORTED_LANGUAGES.find(lang => lang.code === browserLang);
-		return supportedLang ? browserLang : DEFAULT_LANGUAGE;
-	};
+	// 	// Check if browser language is supported
+	// 	const supportedLang = SUPPORTED_LANGUAGES.find(lang => lang.code === browserLang);
+	// 	return supportedLang ? browserLang : DEFAULT_LANGUAGE;
+	// };
 
-	const setLanguageFromBrowser = useCallback(() => {
+	const setLanguageFromPath = useCallback(() => {
 		const pathLanguage = getLanguageFromPath(pathname);
-		if (pathLanguage === '') {
-			const browserLang = getBrowserLanguage();
-			const weglotInstance = window.Weglot;
-			if (weglotInstance) {
-				weglotInstance.switchTo(browserLang);
-			}
-			return;
-		}
-		if (pathLanguage === DEFAULT_LANGUAGE) {
-			const weglotInstance = window.Weglot;
-			if (weglotInstance) {
-				weglotInstance.switchTo(DEFAULT_LANGUAGE);
-			}
+		const weglotInstance = window.Weglot;
+
+		if (!weglotInstance) {
 			return;
 		}
 
-		const weglotInstance = window.Weglot;
-		if (weglotInstance) {
+		// If path has a language, use it
+		if (pathLanguage) {
 			weglotInstance.switchTo(pathLanguage);
+			setCurrentLanguage(pathLanguage);
+		} else {
+			// If no language in path, the middleware should have handled it
+			// Just sync with the default language
+			weglotInstance.switchTo(DEFAULT_LANGUAGE);
+			setCurrentLanguage(DEFAULT_LANGUAGE);
 		}
 	}, [pathname]);
 
@@ -125,8 +124,8 @@ export function LanguageProvider({children}: {children: React.ReactNode}): JSX.E
 	);
 	const handleWeglotInitialized = useCallback((): void => {
 		setIsInitialized(true);
-		setLanguageFromBrowser();
-	}, [setLanguageFromBrowser]);
+		setLanguageFromPath();
+	}, [setLanguageFromPath]);
 
 	useEffect(() => {
 		if (typeof window === 'undefined') {

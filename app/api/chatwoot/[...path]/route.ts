@@ -9,10 +9,7 @@ import {NextResponse} from 'next/server';
 
 import type {NextRequest} from 'next/server';
 
-export async function GET(
-	request: NextRequest,
-	{params}: {params: {path: string[]}}
-): Promise<NextResponse> {
+export async function GET(request: NextRequest, {params}: {params: {path: string[]}}): Promise<NextResponse> {
 	try {
 		const {path} = params;
 		const searchParams = request.nextUrl.searchParams;
@@ -68,10 +65,7 @@ export async function GET(
 	}
 }
 
-export async function POST(
-	request: NextRequest,
-	{params}: {params: {path: string[]}}
-): Promise<NextResponse> {
+export async function POST(request: NextRequest, {params}: {params: {path: string[]}}): Promise<NextResponse> {
 	try {
 		const {path} = params;
 		const searchParams = request.nextUrl.searchParams;
