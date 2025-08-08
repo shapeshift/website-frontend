@@ -46,7 +46,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const websiteSchema = generateWebsiteSchema(baseUrl);
 	const organizationSchema = generateOrganizationSchema();
 	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
-	
+
 	// Get nonce from headers
 	const headersList = await headers();
 	const nonce = headersList.get('x-nonce') || undefined;
@@ -54,6 +54,24 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	return (
 		<html lang={'en'}>
 			<head>
+				<Script
+					id={'adrsbl'}
+					strategy={'beforeInteractive'}
+					nonce={nonce}>
+					{`!function(w, d) {
+		w.__adrsbl = {
+			queue: [],
+			run: function() {
+				this.queue.push(arguments);
+			}
+		};
+		var s = d.createElement('script');
+		s.async = true;
+		s.src = 'https://tag.adrsbl.io/p.js?tid=de008d61a08d42559c3c09a539728156';
+		var b = d.getElementsByTagName('script')[0];
+		b.parentNode.insertBefore(s, b);
+	}(window, document);`}
+				</Script>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}
