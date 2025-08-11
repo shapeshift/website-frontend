@@ -46,7 +46,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const websiteSchema = generateWebsiteSchema(baseUrl);
 	const organizationSchema = generateOrganizationSchema();
 	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
-	
+
 	// Get nonce from headers
 	const headersList = await headers();
 	const nonce = headersList.get('x-nonce') || undefined;
@@ -54,6 +54,38 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	return (
 		<html lang={'en'}>
 			<head>
+				<link
+					rel={'preconnect'}
+					href={'https://tag.adrsbl.io'}
+					crossOrigin={'anonymous'}
+				/>
+
+				<Script
+					id={'adrsbl'}
+					strategy={'beforeInteractive'}
+					nonce={nonce}
+					data-tid={'de008d61a08d42559c3c09a539728156'}>
+					{`!function(w,d){
+    w.__adrsbl=w.__adrsbl||{queue:[],run:function(){this.queue.push(arguments)}};
+    var s=d.createElement('script');
+    s.async=true;
+    s.crossOrigin='anonymous';
+    s.referrerPolicy='no-referrer';
+
+    var cs=d.currentScript;
+    var tid=(cs && cs.getAttribute && cs.getAttribute('data-tid'))||'';
+    try { if (cs && 'nonce' in cs) { s.nonce = cs.nonce || ''; } } catch(e) {}
+
+    s.src='https://tag.adrsbl.io/p.js?tid='+tid;
+
+    var first=d.getElementsByTagName('script')[0];
+    if(first && first.parentNode){
+      first.parentNode.insertBefore(s, first);
+    } else {
+      (d.head||d.body||d.documentElement).appendChild(s);
+    }
+  }(window,document);`}
+				</Script>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}
