@@ -70,8 +70,8 @@ const nextConfig = {
 				destination: '/api/chatwoot/:path*'
 			},
 			{
-				source: '/api/v1/widget/:path*',
-				destination: 'https://app.chatwoot.com/api/v1/widget/:path*'
+				source: '/api/v1/:path*',
+        destination: 'https://app.chatwoot.com/api/v1/:path*'
 			}
 		];
 	},

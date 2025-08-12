@@ -17,6 +17,7 @@ export async function GET(request: NextRequest, {params}: {params: {path: string
 		// Construct the Chatwoot URL
 		const chatwootPath = path.join('/');
 		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`;
+		console.log({chatwootUrl});
 
 		// Forward the request to Chatwoot
 		const response = await fetch(chatwootUrl, {
@@ -25,9 +26,13 @@ export async function GET(request: NextRequest, {params}: {params: {path: string
 				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
 				accept: request.headers.get('accept') || '*/*',
 				'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9',
-				referer: request.headers.get('referer') || request.nextUrl.origin
+				referer: request.headers.get('referer') || request.nextUrl.origin,
+				'x-requested-with': 'XMLHttpRequest',
+				origin: 'https://app.chatwoot.com'
 			}
 		});
+
+    console.log(response.status)
 
 		if (!response.ok) {
 			return new NextResponse(null, {status: response.status});
@@ -84,7 +89,9 @@ export async function POST(request: NextRequest, {params}: {params: {path: strin
 				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
 				accept: request.headers.get('accept') || '*/*',
 				'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9',
-				referer: request.headers.get('referer') || request.nextUrl.origin
+				referer: request.headers.get('referer') || request.nextUrl.origin,
+				'x-requested-with': 'XMLHttpRequest',
+				origin: 'https://app.chatwoot.com'
 			},
 			body: body || undefined
 		});
