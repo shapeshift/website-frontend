@@ -9,10 +9,11 @@ import {NextResponse} from 'next/server';
 
 import type {NextRequest} from 'next/server';
 
-export async function GET(request: NextRequest, {params}: {params: {path: string[]}}): Promise<NextResponse> {
+export async function GET(request: NextRequest, {params}: {params: Promise<{path: string[]}>}): Promise<NextResponse> {
 	try {
-		const {path} = params;
+		const {path} = await params;
 		const searchParams = request.nextUrl.searchParams;
+		searchParams.set('website_token', process.env.NEXT_PUBLIC_CHATWOOT_API_KEY ?? '');
 
 		// Construct the Chatwoot URL
 		const chatwootPath = path.join('/');
@@ -25,7 +26,11 @@ export async function GET(request: NextRequest, {params}: {params: {path: string
 				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
 				accept: request.headers.get('accept') || '*/*',
 				'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9',
-				referer: request.headers.get('referer') || request.nextUrl.origin
+				referer: request.headers.get('referer') || request.nextUrl.origin,
+
+				cookie: request.headers.get('cookie') || '',
+				'x-auth-token': request.headers.get('x-auth-token') || '',
+				'if-none-match': request.headers.get('if-none-match') || ''
 			}
 		});
 
@@ -65,11 +70,13 @@ export async function GET(request: NextRequest, {params}: {params: {path: string
 	}
 }
 
-export async function POST(request: NextRequest, {params}: {params: {path: string[]}}): Promise<NextResponse> {
+export async function POST(request: NextRequest, {params}: {params: Promise<{path: string[]}>}): Promise<NextResponse> {
 	try {
-		const {path} = params;
+		const {path} = await params;
 		const searchParams = request.nextUrl.searchParams;
 		const body = await request.text();
+
+		searchParams.set('website_token', process.env.NEXT_PUBLIC_CHATWOOT_API_KEY ?? '');
 
 		// Construct the Chatwoot URL
 		const chatwootPath = path.join('/');
@@ -84,7 +91,10 @@ export async function POST(request: NextRequest, {params}: {params: {path: strin
 				'user-agent': request.headers.get('user-agent') || 'ShapeShift-Proxy',
 				accept: request.headers.get('accept') || '*/*',
 				'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9',
-				referer: request.headers.get('referer') || request.nextUrl.origin
+				referer: request.headers.get('referer') || request.nextUrl.origin,
+				cookie: request.headers.get('cookie') || '',
+				'x-auth-token': request.headers.get('x-auth-token') || '',
+				'if-none-match': request.headers.get('if-none-match') || ''
 			},
 			body: body || undefined
 		});

@@ -71,7 +71,7 @@ const nextConfig = {
 			},
 			{
 				source: '/api/v1/:path*',
-				destination: 'https://app.chatwoot.com/api/v1/:path*'
+				destination: '/api/chatwoot/api/v1/:path*'
 			}
 		];
 	},
