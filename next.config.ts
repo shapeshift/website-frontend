@@ -22,7 +22,8 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: '/',
+				// Apply COEP headers to all routes
+				source: '/(.*)',
 				headers: [
 					{
 						key: 'cross-origin-embedder-policy',
@@ -37,18 +38,43 @@ const nextConfig = {
 						value: 'same-origin'
 					}
 				]
+			},
+			{
+				// Specific headers for Chatwoot proxy to ensure iframe compatibility
+				source: '/chatwoot/(.*)',
+				headers: [
+					{
+						key: 'cross-origin-embedder-policy',
+						value: 'credentialless'
+					},
+					{
+						key: 'cross-origin-resource-policy',
+						value: 'cross-origin'
+					},
+					{
+						key: 'cross-origin-opener-policy',
+						value: 'same-origin'
+					},
+					{
+						key: 'x-frame-options',
+						value: 'SAMEORIGIN'
+					}
+				]
 			}
 		];
 	},
-	// async rewrites() {
-	// 	return [
-	// 		// Handle language prefixes - rewrite /[lang]/path to /path
-	// 		{
-	// 			source: '/:lang(en|ru|de|fr|pt|zh|es)/:path*',
-	// 			destination: '/:path*'
-	// 		}
-	// 	];
-	// },
+	async rewrites() {
+		return [
+			{
+				source: '/chatwoot/:path*',
+				destination: '/api/chatwoot/:path*'
+			},
+			{
+				source: '/api/v1/:path*',
+				destination: 'https://app.chatwoot.com/api/v1/:path*'
+			}
+		];
+	},
 	async redirects() {
 		return [
 			// Redirects from old blog posts to new blog posts

@@ -88,7 +88,7 @@ function TermsAccordion({item}: TTermsAccordionProps): ReactNode {
 							ease: 'easeInOut'
 						}}
 						className={'overflow-hidden'}>
-						<div className={'rounded-2xl px-10 pb-6 text-gray-500'}>
+						<div className={'no-translate rounded-2xl px-10 pb-6 text-gray-500'}>
 							<TermsMarkdown content={item.content} />
 						</div>
 					</motion.div>

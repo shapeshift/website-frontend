@@ -51,6 +51,11 @@ export const SUPPORTED_LANGUAGES: TLanguage[] = [
 
 export const DEFAULT_LANGUAGE = 'en';
 
+/**
+ * Languages that were supported in the past but need special handling noe (e.g. subdomain redirections)
+ */
+export const DEPRECATED_LANGUAGES = ['br'];
+
 export function getLanguageFromPath(pathname: string): string {
 	const segments = pathname.split('/').filter(Boolean);
 	const firstSegment = segments[0];

@@ -1,7 +1,7 @@
 import {headers} from 'next/headers';
 import Script from 'next/script';
 
-import {ChatwootWidget} from '@/app/[lang]/_components/ChatwootWidget';
+import {ChatwootWidgetWrapper} from '@/app/[lang]/_components/ChatwootWidgetWrapper';
 import {Footer} from '@/app/[lang]/_components/Footer';
 import {Header} from '@/app/[lang]/_components/header/Header';
 import {WithFonts} from '@/app/[lang]/_components/WithFonts';
@@ -47,19 +47,57 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const organizationSchema = generateOrganizationSchema();
 	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
 
+	// Get nonce from headers
+	const headersList = await headers();
+	const nonce = headersList.get('x-nonce') || undefined;
+
 	return (
 		<html lang={'en'}>
 			<head>
+				<link
+					rel={'preconnect'}
+					href={'https://tag.adrsbl.io'}
+					crossOrigin={'anonymous'}
+				/>
+
+				<Script
+					id={'adrsbl'}
+					strategy={'beforeInteractive'}
+					nonce={nonce}
+					data-tid={'de008d61a08d42559c3c09a539728156'}>
+					{`!function(w,d){
+    w.__adrsbl=w.__adrsbl||{queue:[],run:function(){this.queue.push(arguments)}};
+    var s=d.createElement('script');
+    s.async=true;
+    s.crossOrigin='anonymous';
+    s.referrerPolicy='no-referrer';
+
+    var cs=d.currentScript;
+    var tid=(cs && cs.getAttribute && cs.getAttribute('data-tid'))||'';
+    try { if (cs && 'nonce' in cs) { s.nonce = cs.nonce || ''; } } catch(e) {}
+
+    s.src='https://tag.adrsbl.io/p.js?tid='+tid;
+
+    var first=d.getElementsByTagName('script')[0];
+    if(first && first.parentNode){
+      first.parentNode.insertBefore(s, first);
+    } else {
+      (d.head||d.body||d.documentElement).appendChild(s);
+    }
+  }(window,document);`}
+				</Script>
 				<Script
 					strategy={'beforeInteractive'}
 					type={'text/javascript'}
 					src={'https://cdn.weglot.com/weglot.min.js'}
 					crossOrigin={'anonymous'}
+					nonce={nonce}
 				/>
 				<Script
 					strategy={'afterInteractive'}
 					id={'weglot'}
-					crossOrigin={'anonymous'}>
+					crossOrigin={'anonymous'}
+					nonce={nonce}>
 					{`
 						if (typeof Weglot !== 'undefined') {
 							try {
@@ -86,6 +124,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 					type={'application/ld+json'}
 					// eslint-disable-next-line @typescript-eslint/naming-convention
 					dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
+					nonce={nonce}
 				/>
 				<Script
 					id={'organization-schema'}
@@ -94,6 +133,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 						// eslint-disable-next-line @typescript-eslint/naming-convention
 						__html: JSON.stringify(organizationSchema)
 					}}
+					nonce={nonce}
 				/>
 			</head>
 			<body className={'relative min-h-screen overflow-x-hidden bg-bg px-4 pb-4 text-white'}>
@@ -106,7 +146,7 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 										<Header />
 										{children}
 										<Footer />
-										<ChatwootWidget />
+										<ChatwootWidgetWrapper />
 									</div>
 								</CachedArticlesProvider>
 							</CachedPostsProvider>

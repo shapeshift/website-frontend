@@ -1,9 +1,22 @@
 {
 	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"eslint.workingDirectories": ["."],
+	"eslint.useFlatConfig": true,
+	"eslint.ignoreUntitled": true,
+	"eslint.run": "onType",
+	"eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"eslint.options": {
+		"cache": false
+	},
 	"files.trimTrailingWhitespace": true,
 	"search.exclude": {
 		"**/node_modules": true
 	},
+	"files.exclude": {
+		"**/node_modules": true
+	},
+	"eslint.nodePath": null,
+	"eslint.packageManager": "npm",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"editor.wordWrap": "off",
