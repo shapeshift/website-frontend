@@ -1,4 +1,3 @@
- 
 'use client';
 
 import {AnimatePresence, motion} from 'framer-motion';
@@ -73,7 +72,9 @@ export function MobileHeader({
 	return (
 		<div className={'sticky top-0 z-50 lg:hidden'}>
 			<div className={'z-50 mt-6 flex w-full items-center justify-between rounded-2xl bg-headerBg p-4'}>
-				<LocalizedLink href={'/'}>
+				<LocalizedLink
+					href={'/'}
+					aria-label={'ShapeShift'}>
 					<ShapeshiftLogo />
 				</LocalizedLink>
 				<button
