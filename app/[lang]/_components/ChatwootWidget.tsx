@@ -230,7 +230,7 @@ export function ChatwootWidget({nonce}: {nonce?: string}): ReactElement {
 
 				console.log('[ChatwootWidget] Chatwoot SDK found, initializing');
 				window.chatwootSDK.run({
-					websiteToken: process.env.NEXT_PUBLIC_CHATWOOT_API_KEY!,
+					websiteToken: '', // Gets set by the backend proxy
 					baseUrl: '/api/chatwoot'
 				});
 				window.chatwootSDK.isLoaded = true;
