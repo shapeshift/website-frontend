@@ -46,7 +46,6 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	const websiteSchema = generateWebsiteSchema(baseUrl);
 	const organizationSchema = generateOrganizationSchema();
 	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
-
 	// Get nonce from headers
 	const headersList = await headers();
 	const nonce = headersList.get('x-nonce') || undefined;
@@ -69,8 +68,6 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
     w.__adrsbl=w.__adrsbl||{queue:[],run:function(){this.queue.push(arguments)}};
     var s=d.createElement('script');
     s.async=true;
-    s.crossOrigin='anonymous';
-    s.referrerPolicy='no-referrer';
 
     var cs=d.currentScript;
     var tid=(cs && cs.getAttribute && cs.getAttribute('data-tid'))||'';
