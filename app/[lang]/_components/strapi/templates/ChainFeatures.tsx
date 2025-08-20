@@ -136,7 +136,7 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 							variant={'white'}
 							className={'!w-[120px]'}
 							title={'Buy'}
-							href={'https://app.shapeshift.com/pools#/buy-crypto'}
+							href={'https://app.shapeshift.com/#/buy-crypto'}
 						/>
 					</div>
 				</div>
@@ -145,7 +145,7 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 					<LocalizedLink
 						className={'text-white underline'}
 						target={'_blank'}
-						href={'https://app.shapeshift.com/pools#/buy-crypto'}>
+						href={'https://app.shapeshift.com/#/buy-crypto'}>
 						{'fiat ramp'}
 					</LocalizedLink>
 					{`. No matter where you are, ShapeShift makes it effortless buy ${chainName}.`}
@@ -352,7 +352,7 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 							variant={'white'}
 							className={'!w-[120px] whitespace-nowrap'}
 							title={'Swap'}
-							href={'https://app.shapeshift.com/pools#/buy-crypto'}
+							href={'https://app.shapeshift.com/#/trade'}
 						/>
 					</div>
 				</div>
@@ -361,7 +361,7 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 					<LocalizedLink
 						className={'text-white underline'}
 						target={'_blank'}
-						href={'https://app.shapeshift.com/pools#/buy-crypto'}>
+						href={'https://app.shapeshift.com/#/buy-crypto'}>
 						{'fiat ramp'}
 					</LocalizedLink>
 					{`. No matter where you are, ShapeShift makes it effortless buy ${chainName}.`}
@@ -466,7 +466,7 @@ function RFoxFeature(): ReactNode {
 							variant={'white'}
 							className={'!w-[120px] whitespace-nowrap'}
 							title={'Learn more'}
-							href={'https://app.shapeshift.com/pools#/rfox'}
+							href={'https://app.shapeshift.com/#/rfox/stake'}
 						/>
 					</div>
 				</div>
@@ -504,7 +504,7 @@ function ThorChainLendingFeature(): ReactNode {
 							variant={'white'}
 							className={'!w-[120px] whitespace-nowrap'}
 							title={'Learn more'}
-							href={'https://app.shapeshift.com/pools#/lending'}
+							href={'https://app.shapeshift.com/#/lending'}
 						/>
 					</div>
 				</div>
@@ -527,7 +527,7 @@ function ThorChainLendingFeature(): ReactNode {
 					{' with 0% APR and no liquidations! Do more with your crypto portfolio with THORChain '}
 					<LocalizedLink
 						className={'text-white underline'}
-						href={'https://app.shapeshift.com/pools#/lending'}>
+						href={'https://app.shapeshift.com/#/lending'}>
 						{'Lending'}
 					</LocalizedLink>
 					{' on ShapeShift.'}
@@ -578,7 +578,7 @@ function LiquidityPoolFeature(): ReactNode {
 					{' and '}
 					<LocalizedLink
 						className={'text-white underline'}
-						href={'https://app.shapeshift.com/pools#/earn'}>
+						href={'https://app.shapeshift.com/#/pools'}>
 						{'earning passive income'}
 					</LocalizedLink>
 					{
@@ -719,7 +719,7 @@ function SaverVaultFeature(): ReactNode {
 					variant={'white'}
 					className={'!w-[120px] whitespace-nowrap'}
 					title={'Start Saving'}
-					href={'https://app.shapeshift.com/pools#/earn'}
+					href={'https://app.shapeshift.com/#/pools'}
 				/>
 			</div>
 		</div>
