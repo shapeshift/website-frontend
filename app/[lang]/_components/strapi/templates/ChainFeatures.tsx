@@ -192,7 +192,7 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 					</div>
 				</div>
 				<p className={'pb-4 text-base text-secondary/50'}>
-					{`Your keys. Your assets. Your chain. ShapeShift Wallet gives you direct, private access to ${chainName} — no middlemen, no compromises. Hold, trade, and interact with DeFi your way, across all supported networks.`}
+					{`Your keys. Your assets. Your chain. ShapeShift Wallet gives you direct, private access to ${chainName}. No middlemen, no compromises. Hold, trade, and interact with DeFi your way, across all supported networks.`}
 				</p>
 				<p className={'text-base text-secondary/50'}>
 					{`Welcome to the most private multichain interface for ${chainName}.`}
