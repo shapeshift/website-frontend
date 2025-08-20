@@ -34,14 +34,14 @@ export function ProtocolHeader(data: THeaderData): ReactNode {
 					</h1>
 					<p className={'mx-auto max-w-screen-md text-center text-base text-gray-500 lg:text-xl'}>
 						{
-							'Say goodbye to having to do multiple complex transactions, going to multiple interfaces, and hello to Shifts with ShapeShift.'
+							'Say goodbye to multiple interfaces and hello to ShapeShift.'
 						}
 					</p>
 				</div>
 				<Button
 					variant={'blue'}
 					href={'https://app.shapeshift.com/'}
-					title={'Get Started'}
+					title={'Trade with the Best Rates'}
 				/>
 			</section>
 			<section className={'relative mt-12 flex w-full overflow-hidden rounded-2xl'}>
