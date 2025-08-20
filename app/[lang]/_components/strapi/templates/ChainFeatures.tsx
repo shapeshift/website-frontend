@@ -85,10 +85,10 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 						<LocalizedLink
 							className={'text-white underline'}
 							target={'_blank'}
-							href={'https://www.keepkey.com/'}>
+							href={'https://shapeshift.com/wallets/keepkey'}>
 							{'KeepKey'}
 						</LocalizedLink>
-						{` hardware wallet to ShapeShift and enjoy permissionless, private ${chainName} DeFi.`}
+						{` hardware wallet to ShapeShift and enjoy permissionless, private ${chainName} swaps and DeFi.`}
 					</p>
 				</div>
 			</div>
@@ -192,7 +192,7 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 					</div>
 				</div>
 				<p className={'pb-4 text-base text-secondary/50'}>
-					{`When you ShapeShift your ${chainName}, your keys and your crypto are always just that--yours!`}
+					{`Your keys. Your assets. Your chain. ShapeShift Wallet gives you direct, private access to ${chainName} — no middlemen, no compromises. Hold, trade, and interact with DeFi your way, across all supported networks.`}
 				</p>
 				<p className={'text-base text-secondary/50'}>
 					{`Welcome to the most private multichain interface for ${chainName}.`}
