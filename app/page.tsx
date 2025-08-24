@@ -38,6 +38,8 @@ import type {ReactNode} from 'react';
 export default function HomePage(): ReactNode {
 	const [tab, setTab] = useState(homepageFeatureTabs[0]);
 
+	console.log('beans', tab);
+
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
@@ -160,7 +162,9 @@ export default function HomePage(): ReactNode {
 							className={
 								'relative col-span-1 rounded-2xl bg-gradient-to-b from-[#101114] to-[#16181C] transition-all duration-300 hover:scale-[1.02] lg:col-span-2 lg:row-span-1'
 							}
-							href={'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=cta&utm_campaign=gridcard'}
+							href={
+								'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=cta&utm_campaign=gridcard'
+							}
 							target={'_blank'}>
 							<Image
 								src={'/landing/landingCard1.png'}
@@ -213,7 +217,9 @@ export default function HomePage(): ReactNode {
 						</Card>
 						<Card
 							className={'relative col-span-1 row-span-1 transition-all duration-300 hover:scale-[1.02]'}
-							href={'https://app.shapeshift.com/markets/recommended?utm_source=mainpage&utm_medium=cta&utm_campaign=earnmore#/markets/recommended'}
+							href={
+								'https://app.shapeshift.com/markets/recommended?utm_source=mainpage&utm_medium=cta&utm_campaign=earnmore#/markets/recommended'
+							}
 							target={'_blank'}>
 							<Image
 								src={'/landing/landingCard4.png'}
