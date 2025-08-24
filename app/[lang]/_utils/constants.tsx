@@ -292,7 +292,7 @@ export const appProducts: TAppLink[] = [
 	{
 		name: 'Buy/Sell Crypto',
 		href: 'https://app.shapeshift.com/?utm_source=menu&utm_medium=cta&utm_campaign=buy#/buy-crypto',
-		description: 'Exchange Fiat for cryptocurrency',
+		description: 'Exchange Fiat for cryptocurrency.',
 		icon: <IconDollar />,
 		target: '_blank'
 	}

@@ -38,8 +38,6 @@ import type {ReactNode} from 'react';
 export default function HomePage(): ReactNode {
 	const [tab, setTab] = useState(homepageFeatureTabs[0]);
 
-	console.log('beans', tab);
-
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
