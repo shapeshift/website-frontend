@@ -86,7 +86,7 @@ export function generateProductSchema({
 		id: productID,
 		name: title,
 		description: description || '',
-		image: image,
+		image,
 		url: pageURL,
 		applicationCategory: 'FinanceApplication',
 		operatingSystem: 'Web, Android, iOS',

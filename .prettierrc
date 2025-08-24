@@ -1,6 +1,6 @@
 {
 	"singleQuote": true,
-	"semi": true,
+	"semi": false,
 	"useTabs": true,
 	"tabWidth": 4,
 	"trailingComma": "none",

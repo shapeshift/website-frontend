@@ -118,14 +118,16 @@ export function Notification(): ReactNode {
 
 		switch (type) {
 			case 'bar':
-				setIsBannerOpen(false);
-				break;
+				setIsBannerOpen(false)
+				break
 			case 'modal':
-				setIsModalOpen(false);
-				break;
+				setIsModalOpen(false)
+				break
 			case 'popup':
-				setIsPopupOpen(false);
-				break;
+				setIsPopupOpen(false)
+				break
+			default:
+				break
 		}
 	};
 
