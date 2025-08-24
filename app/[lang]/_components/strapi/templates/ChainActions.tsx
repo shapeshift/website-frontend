@@ -30,7 +30,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 				<Feature
 					key={'Trade'}
 					title={'Trade'}
-					description={`Trade ${chainName} with 10,000+ assets across 14 chains.`}
+					description={`Trade 10,000+ assets on ${chainName} across 15 chains.`}
 					icon={<IconTrade />}
 				/>
 			);
@@ -41,7 +41,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 				<Feature
 					key={'Hodl'}
 					title={'Hodl'}
-					description={`Stack ${chainName} and never let it go.`}
+					description={`Stack crypto on ${chainName} and never let it go.`}
 					icon={<IconHold />}
 				/>
 			);
@@ -52,7 +52,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 				<Feature
 					key={'Earn'}
 					title={'Earn'}
-					description={`Earn ${chainName} passively and permissionlessly.`}
+					description={`Put your assets to work with one-click ${chainName} DeFi yield.`}
 					icon={<IconEarn />}
 				/>
 			);
@@ -62,8 +62,8 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 			featuresToDisplay.push(
 				<Feature
 					key={'Borrow'}
-					title={'Borrow'}
-					description={`Borrow against ${chainName} and with 0% APY.`}
+					title={'Discover'}
+					description={`Explore new tokens and rising DeFi projects on ${chainName}.`}
 					icon={<IconBorrow />}
 				/>
 			);
@@ -74,7 +74,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 				<Feature
 					key={'Buy & Sell'}
 					title={'Buy & Sell'}
-					description={`Buy and sell ${chainName} instantly.`}
+					description={`Buy and sell assets on ${chainName} instantly.`}
 					icon={<IconBuySell />}
 				/>
 			);
@@ -85,7 +85,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 				<Feature
 					key={'Send & Receive'}
 					title={'Send & Receive'}
-					description={`Send and receive ${chainName} instantly.`}
+					description={`Send and receive crypto on ${chainName} with ease.`}
 					icon={<IconSendReceive />}
 				/>
 			);
@@ -97,7 +97,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 	return (
 		<section className={'container flex flex-col gap-6 lg:gap-16'}>
 			<h1 className={'max-w-[700px] text-[28px] leading-[32px] lg:text-7xl'}>
-				{`What can I do with ${chainName}?`}
+				{`What can I do on ${chainName}?`}
 			</h1>
 			<div className={'grid grid-cols-1 gap-6 md:grid-cols-3'}>{featuresComponents}</div>
 		</section>

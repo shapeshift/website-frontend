@@ -21,7 +21,7 @@ export function ChainHeader({chainName}: {chainName: string}): ReactNode {
 					{`ShapeShift supports ${chainName}`}
 				</h1>
 				<p className={'mx-auto max-w-screen-lg text-center text-sm text-gray-500 lg:text-xl'}>
-					{`Unlock the best way to use and manage your ${chainName}`}
+					{`Unlock the best way to use and manage your crypto on ${chainName}`}
 				</p>
 			</div>
 			<Button
