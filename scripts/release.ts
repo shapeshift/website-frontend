@@ -39,7 +39,14 @@ const getCommits = async (from: string, to: string): Promise<{messages: string[]
 	const latestTag = from === 'origin/release' ? await getLatestSemverTag() : null;
 
 	// Use tag-based range if available, otherwise fall back to branch comparison
-	const range = latestTag && from === 'origin/release' ? `${latestTag}..${to}` : `${from}..${to}`;
+	let range: string;
+	if (latestTag && from === 'origin/release' && latestTag !== 'v1.0.0') {
+		// Use tag-based range if we have real tags (not the default fallback)
+		range = `${latestTag}..${to}`;
+	} else {
+		// Fall back to branch comparison when no tags exist or using non-release branches
+		range = `${from}..${to}`;
+	}
 
 	const {all, total} = await git().log(['--oneline', '--first-parent', '--pretty=format:%s', range]);
 	const messages = all.map(({hash}) => hash);
