@@ -129,7 +129,7 @@ const createRelease = async (): Promise<void> => {
 		console.log(chalk.green('Checking out develop...'));
 		await git().checkout(['develop']);
 		console.log(chalk.green('Pulling develop...'));
-		await git().pull();
+		await git().pull('origin', 'develop');
 		console.log(chalk.green('Resetting release to develop...'));
 		await git().checkout(['-B', 'release']);
 		console.log(chalk.green('Force pushing release branch...'));
@@ -216,11 +216,11 @@ const mergeRelease = async (): Promise<void> => {
 	console.log(chalk.green('Checking out release...'));
 	await git().checkout(['release']);
 	console.log(chalk.green('Pulling release...'));
-	await git().pull();
+	await git().pull('origin', 'release');
 	console.log(chalk.green('Checking out main...'));
 	await git().checkout(['main']);
 	console.log(chalk.green('Pulling main...'));
-	await git().pull();
+	await git().pull('origin', 'main');
 	console.log(chalk.green('Merging release into main...'));
 	await git().merge(['release']);
 
@@ -241,7 +241,7 @@ const mergeRelease = async (): Promise<void> => {
 	console.log(chalk.green('Checking out develop...'));
 	await git().checkout(['develop']);
 	console.log(chalk.green('Pulling develop...'));
-	await git().pull();
+	await git().pull('origin', 'develop');
 	console.log(chalk.green('Merging main back into develop...'));
 	await git().merge(['main']);
 	console.log(chalk.green('Pushing develop...'));
@@ -251,7 +251,7 @@ const mergeRelease = async (): Promise<void> => {
 };
 
 const isReleaseInProgress = async (): Promise<boolean> => {
-	const {total} = await getCommits('origin/release', 'origin/main');
+	const {total} = await getCommits('origin/main', 'origin/release');
 	return Boolean(total);
 };
 
