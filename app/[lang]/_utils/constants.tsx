@@ -874,30 +874,7 @@ export const carouselLogos = {
 				height={'40'}
 			/>
 		)
-	},
-	zerion: {
-		href: 'https://zerion.io/',
-		src: '/landing/zerion.png',
-		Logo: () => (
-			<Image
-				src={'/landing/zerion.png'}
-				alt={'zerion'}
-				width={'170'}
-				height={'40'}
-			/>
-		)
-	},
-	lifi: {
-		href: 'https://li.fi/',
-		src: '/landing/lifi.png',
-		Logo: () => (
-			<Image
-				src={'/landing/lifi.png'}
-				alt={'lifi'}
-				width={'100'}
-				height={'40'}
-			/>
-		)
+
 	},
 
 	Ox: {
