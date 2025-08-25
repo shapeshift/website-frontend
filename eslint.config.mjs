@@ -103,7 +103,6 @@ export default tseslint.config(
 			quotes: [2, 'single', { avoidEscape: true }],
 			'object-curly-spacing': [2, 'never'],
 			'array-bracket-spacing': [2, 'never'],
-			semi: 'error',
 			'no-else-return': ['error', { allowElseIf: false }],
 			'eol-last': ['error', 'always'],
 			'array-bracket-newline': ['error', { multiline: true }],
@@ -132,6 +131,10 @@ export default tseslint.config(
 				},
 			],
 
+			'object-shorthand': 'error',
+			'eqeqeq': 'error',
+			'default-case': 'error',
+
 			// TypeScript rules
 			'@typescript-eslint/consistent-type-imports': [
 				2,
@@ -150,17 +153,6 @@ export default tseslint.config(
 			'@typescript-eslint/consistent-type-assertions': 0,
 			'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 			'@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
-			'@typescript-eslint/explicit-function-return-type': [
-				'error',
-				{
-					allowExpressions: true,
-					allowTypedFunctionExpressions: true,
-					allowHigherOrderFunctions: false,
-					allowDirectConstAssertionInArrowFunctions: false,
-					allowConciseArrowFunctionExpressionsStartingWithVoid: false,
-					allowedNames: [],
-				},
-			],
 			'@typescript-eslint/naming-convention': [
 				'error',
 				{

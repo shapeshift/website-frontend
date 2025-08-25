@@ -20,7 +20,7 @@ export function ListOfPosts(props: {tag: string}): ReactElement {
 		page,
 		pageSize: PAGE_SIZE,
 		sort: SORT,
-		tag: tag,
+		tag,
 		populateContent: true,
 		cachePosts: true
 	});
