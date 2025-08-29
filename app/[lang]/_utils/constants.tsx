@@ -84,8 +84,7 @@ export const FOX_CONTRACTS: readonly TFoxContract[] = [
 export const foxTokenTitleWhite = 'Fox'
 export const foxTokenTitleBlue = 'Power'
 export const foxTokenDescription = 'FOX tokens wield mighty power for those who hodl them.'
-export const foxTokenDescriptionNote =
-  	"Want to list FOX token on your App or Exchange? Let's get in touch: listings@shapeshiftdao.org";
+export const foxTokenDescriptionNote = "Want to list FOX token on your App or Exchange? Let's get in touch: listings@shapeshiftdao.org";
 export const section1Title = 'How do I participate?'
 export const section1Description =
 	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.'
