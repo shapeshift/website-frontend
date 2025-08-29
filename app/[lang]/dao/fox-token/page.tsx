@@ -5,6 +5,7 @@ import {LatestBlogPosts} from '@/app/[lang]/_components/BlogList';
 import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
 import {RoundButton} from '@/app/[lang]/_components/RoundButton';
 import {
+	FOX_CONTRACTS,
 	benefitsTitle,
 	communityTitle,
 	foxTokenBenefits,
@@ -104,13 +105,21 @@ export default function FoxTokenPage(): ReactNode {
 				<div className={'container relative flex items-center justify-between'}>
 					<div className={'max-w-[800px]'}>
 						<h1 className={'mb-8 text-2xl leading-[24px] lg:text-7xl'}>{section2Title}</h1>
-						<p className={'text-sm'}>
-							{section2Article1}
+						<div className={'text-sm'}>
+							<p>{section2Article1}</p>
 							<br />
-							<br />
-							{section2Article2}
-						</p>
+							<p>{section2Article2}</p>
+							<p className={'mt-4'}>{'You can find FOX token contracts at:'}</p>
+							<ul className={'list-disc pl-6 break-all'}>
+								{FOX_CONTRACTS.map(({chain, address}) => (
+									<li key={chain} className={'font-mono'}>
+										{chain}{': '}{address}
+									</li>
+								))}
+							</ul>
+						</div>
 					</div>
+
 					<div className={'absolute bottom-0 right-[5%] hidden h-[398px] w-[423px] lg:block '}>
 						<Image
 							src={'/fox-token/foxBannerImage.png'}
@@ -150,10 +159,7 @@ export default function FoxTokenPage(): ReactNode {
 
 				<h1 className={'mb-14 text-[40px] leading-10 lg:text-7xl'}>{resourcesTitle}</h1>
 
-				<LatestBlogPosts
-					limit={3}
-					isWithTitle={false}
-				/>
+				<LatestBlogPosts limit={3} isWithTitle={false} />
 				<h1 className={'mb-14 mt-[120px] text-[40px] leading-10 lg:text-7xl'}>{communityTitle}</h1>
 
 				<Banner />

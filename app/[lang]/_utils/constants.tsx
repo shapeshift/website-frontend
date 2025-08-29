@@ -1,89 +1,103 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {IconActivityRings} from '../_icons/IconActivityRings';
-import {IconBlog} from '../_icons/IconBlog';
-import {IconBulb} from '../_icons/IconBulb';
-import {IconChains} from '../_icons/IconChains';
-import {IconClassic} from '../_icons/IconClassic';
-import {IconDapp} from '../_icons/IconDapp';
-import {IconDiscover} from '../_icons/IconDiscover';
-import {IconDocs} from '../_icons/IconDocs';
-import {IconDollar} from '../_icons/IconDollar';
-import {IconFox} from '../_icons/IconFox';
-import {IconGlobe} from '../_icons/IconGlobe';
-import {IconGovern} from '../_icons/IconGovern';
-import {IconHeart} from '../_icons/IconHeart';
-import {IconMobile} from '../_icons/IconMobile';
-import {IconQuestion} from '../_icons/IconQuestion';
-import {IconResource} from '../_icons/IconResource';
-import {IconScanDevice} from '../_icons/IconScanDevice';
-import {IconShield} from '../_icons/IconShield';
-import {IconStar} from '../_icons/IconStar';
-import {IconSupport} from '../_icons/IconSupport';
-import {IconTriLink} from '../_icons/IconTriLink';
-import {IconWallet} from '../_icons/IconWallet';
+import {IconActivityRings} from '../_icons/IconActivityRings'
+import {IconBlog} from '../_icons/IconBlog'
+import {IconBulb} from '../_icons/IconBulb'
+import {IconChains} from '../_icons/IconChains'
+import {IconClassic} from '../_icons/IconClassic'
+import {IconDapp} from '../_icons/IconDapp'
+import {IconDiscover} from '../_icons/IconDiscover'
+import {IconDocs} from '../_icons/IconDocs'
+import {IconDollar} from '../_icons/IconDollar'
+import {IconFox} from '../_icons/IconFox'
+import {IconGlobe} from '../_icons/IconGlobe'
+import {IconGovern} from '../_icons/IconGovern'
+import {IconHeart} from '../_icons/IconHeart'
+import {IconMobile} from '../_icons/IconMobile'
+import {IconQuestion} from '../_icons/IconQuestion'
+import {IconResource} from '../_icons/IconResource'
+import {IconScanDevice} from '../_icons/IconScanDevice'
+import {IconShield} from '../_icons/IconShield'
+import {IconStar} from '../_icons/IconStar'
+import {IconSupport} from '../_icons/IconSupport'
+import {IconTriLink} from '../_icons/IconTriLink'
+import {IconWallet} from '../_icons/IconWallet'
 
-import type {TCardsRowSection, TSupportedChainTypes} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TCardsRowSection, TSupportedChainTypes} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export type TAppLink = {
-	name: string;
-	href: string;
-	description?: string;
-	icon?: ReactNode;
-	target?: string;
-};
+	name: string
+	href: string
+	description?: string
+	icon?: ReactNode
+	target?: string
+}
 
 export const dAppUrl =
-	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=cta#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0';
+	'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=launchdapp&utm_campaign=cta#/trade/eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d/eip155:1/slip44:60/0'
 
-const docsUrl = 'https://github.com/shapeshift/web';
+const docsUrl = 'https://github.com/shapeshift/web'
 
-const githubUrl = 'https://github.com/shapeshift';
+const githubUrl = 'https://github.com/shapeshift'
 
-export const footerButtonTitle = 'Donate';
+export const footerButtonTitle = 'Donate'
 
 /************************************************************************************************
  ** Homepage constants
  ************************************************************************************************/
 
-export const heroTitle = 'Your multichain crypto home base.';
+export const heroTitle = 'Your multichain crypto home base.'
 export const heroDescription =
-	'Your gateway to trading, tracking, earning, and exploring crypto effortlessly. A community-owned, private, non-custodial, multichain platform putting you in full control of your digital assets.';
+	'Your gateway to trading, tracking, earning, and exploring crypto effortlessly. A community-owned, private, non-custodial, multichain platform putting you in full control of your digital assets.'
 
-export const homepageWhiteTitle = 'Your Wallet. One App.';
-export const homepageBlueTitle = 'Endless Opportunity.';
+export const homepageWhiteTitle = 'Your Wallet. One App.'
+export const homepageBlueTitle = 'Endless Opportunity.'
 
-export const featuresTitle = 'Explore our features.';
-export const featureTabTitle = 'Multichain crypto home base';
-export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets'];
-export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across multiple chains';
-export const featureCard3WhiteTitle = 'All-In-One';
-export const featureCard3BlueTitle = 'ShapeShift wallet';
-export const featureCard4WhiteTitle = 'Earn more';
-export const featureCard4BlueTitle = 'with DeFi';
+export const featuresTitle = 'Explore our features.'
+export const featureTabTitle = 'Multichain crypto home base'
+export const homepageFeatureTabs = ['Buy', 'Trade', 'Markets']
+export const featureCard1WhiteTitle = 'Easily send and receive your favorite crypto assets across multiple chains'
+export const featureCard3WhiteTitle = 'All-In-One'
+export const featureCard3BlueTitle = 'ShapeShift wallet'
+export const featureCard4WhiteTitle = 'Earn more'
+export const featureCard4BlueTitle = 'with DeFi'
 
 /************************************************************************************************
  ** DAO fox-token constants
  ************************************************************************************************/
 
-export const foxTokenTitleWhite = 'Fox';
-export const foxTokenTitleBlue = 'Power';
-export const foxTokenDescription = 'FOX tokens wield mighty power for those who hodl them.';
-export const foxTokenDescriptionNote =
-	'NOTE: FOX Token benefits are subject to change, as determined by FOX token holders.';
-export const section1Title = 'How do I participate?';
-export const section1Description =
-	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.';
+export type TFoxContract = {
+	chain: 'Ethereum' | 'Arbitrum' | 'Base' | 'Gnosis' | 'Optimism' | 'Polygon'
+	address: string
+}
 
-export const section2Title = 'How is a DAO different than a centralized company?';
+export const FOX_CONTRACTS: readonly TFoxContract[] = [
+	{chain: 'Ethereum', address: '0xc770eefad204b5180df6a14ee197d99d808ee52d'},
+	{chain: 'Arbitrum', address: '0xf929de51D91C77E42f5090069E0AD7A09e513c73'},
+	{chain: 'Base', address: '0x2dbe0d779c7A04F7a5de83326973effE23356930'},
+	{chain: 'Gnosis', address: '0x21a42669643f45bc0e086b8fc2ed70c23d67509d'},
+	{chain: 'Optimism', address: '0xf1a0da3367bc7aa04f8d94ba57b862ff37ced174'},
+	{chain: 'Polygon', address: '0x65a05db8322701724c197af82c9cae41195b0aa8'}
+] as const
+
+export const foxTokenTitleWhite = 'Fox'
+export const foxTokenTitleBlue = 'Power'
+export const foxTokenDescription = 'FOX tokens wield mighty power for those who hodl them.'
+export const foxTokenDescriptionNote =
+  	"Want to list FOX token on your App or Exchange? Let's get in touch: listings@shapeshiftdao.org";
+export const section1Title = 'How do I participate?'
+export const section1Description =
+	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.'
+
+export const section2Title = 'How is a DAO different than a centralized company?'
 export const section2Article1 =
-	'FOX token holders govern the ShapeShift DAO—a treasury endowed with 567,000,000 FOX Tokens (56.7% of all FOX) and actively generating revenue.';
+	'FOX token holders govern the ShapeShift DAO—a treasury endowed with 567,000,000 FOX Tokens (56.7% of all FOX) and actively generating revenue.'
 export const section2Article2 =
-	'DAOs (Decentralized Autonomous Organizations) are a collective organization owned and managed by its members with all of them having a voice. We are actively building a powerful community around the open-source, self-custody, multi-chain crypto platform for the world.';
-export const benefitsTitle = 'Benefits of working with the DAO.';
-export const resourcesTitle = 'Resources';
-export const communityTitle = 'Join our community';
+	'DAOs (Decentralized Autonomous Organizations) are a collective organization owned and managed by its members with all of them having a voice. We are actively building a powerful community around the open-source, self-custody, multi-chain crypto platform for the world.'
+export const benefitsTitle = 'Benefits of working with the DAO.'
+export const resourcesTitle = 'Resources'
+export const communityTitle = 'Join our community'
 
 export const foxTokenBenefits = [
 	{
@@ -91,7 +105,7 @@ export const foxTokenBenefits = [
 		icon: <IconGlobe />
 	},
 	{
-		title: 'Get healthcare coverage (for US based workers)*',
+		title: 'Get healthcare coverage (for US based workers)',
 		icon: <IconHeart />
 	},
 	{
@@ -99,18 +113,18 @@ export const foxTokenBenefits = [
 		icon: <IconShield />
 	},
 	{
-		title: 'Optional W2s for US contributors*',
+		title: 'Optional W2s for US contributors',
 		icon: <IconActivityRings />
 	},
 	{
-		title: 'Get paid in USDC, FOX, or Fiat*',
+		title: 'Get paid in USDC, FOX, or Fiat',
 		icon: <IconDollar />
 	},
 	{
 		title: 'Work with a fully distributed team of top talent',
 		icon: <IconTriLink />
 	}
-];
+]
 
 export const foxTokenContributeItems = [
 	{
@@ -133,17 +147,17 @@ export const foxTokenContributeItems = [
 		href: 'https://forum.shapeshift.com/',
 		target: '_blank'
 	}
-];
+]
 
 /************************************************************************************************
  ** Banner constants
  ************************************************************************************************/
 
-export const bannerLeftTitle = 'Your multichain crypto home base.';
-export const bannerRightTitle = 'DeFi anywhere, anytime, with ShapeShift mobile.';
-export const bannerLeftButtonTitle = 'Launch App';
-export const bannerRightButtonTitle = 'Try ShapeShift';
-export const bannerMobileSubtitle = 'Or download the app';
+export const bannerLeftTitle = 'Your multichain crypto home base.'
+export const bannerRightTitle = 'DeFi anywhere, anytime, with ShapeShift mobile.'
+export const bannerLeftButtonTitle = 'Launch App'
+export const bannerRightButtonTitle = 'Try ShapeShift'
+export const bannerMobileSubtitle = 'Or download the app'
 
 /************************************************************************************************
  ** App constants
@@ -210,7 +224,7 @@ export const appResources: TAppLink[] = [
 		description: 'Our brand guidelines',
 		target: '_blank'
 	}
-];
+]
 
 export const appDao: TAppLink[] = [
 	{
@@ -254,7 +268,7 @@ export const appDao: TAppLink[] = [
 		icon: <IconBulb />,
 		target: '_blank'
 	}
-];
+]
 
 export const appProducts: TAppLink[] = [
 	{
@@ -296,13 +310,13 @@ export const appProducts: TAppLink[] = [
 		icon: <IconDollar />,
 		target: '_blank'
 	}
-];
+]
 
 export const headerTabs = [
 	{name: 'Products', href: '/products', value: 'products'},
 	{name: 'Resources', href: '/resources', value: 'resources'},
 	{name: 'DAO', href: '/dao', value: 'dao'}
-];
+]
 
 export const footerLinks: Record<string, TAppLink[]> = {
 	Products: appProducts,
@@ -313,7 +327,7 @@ export const footerLinks: Record<string, TAppLink[]> = {
 		{name: 'Discord', href: 'https://discord.gg/shapeshift'},
 		{name: 'Farcaster', href: 'https://farcaster.xyz/shapeshift'}
 	]
-};
+}
 
 export const allWallets = [
 	'KeepKey',
@@ -325,7 +339,7 @@ export const allWallets = [
 	'Coinbase Wallet',
 	'Phantom Wallet',
 	'Keplr'
-];
+]
 
 export const supportedChains = {
 	btc: {
@@ -388,7 +402,7 @@ export const supportedChains = {
 		name: 'SOL',
 		supported: ['Phantom Wallet']
 	}
-};
+}
 
 export const landingCards: TCardsRowSection = {
 	id: 11,
@@ -462,7 +476,7 @@ export const landingCards: TCardsRowSection = {
 			}
 		}
 	]
-};
+}
 
 export const blogTypes = [
 	{
@@ -501,9 +515,9 @@ export const blogTypes = [
 		title: 'Newsletter',
 		slug: 'newsletter'
 	}
-];
+]
 export function blogTypesSlugToCategory(slug: string): string {
-	return blogTypes.find(tab => tab.slug === slug)?.title ?? slug;
+	return blogTypes.find(tab => tab.slug === slug)?.title ?? slug
 }
 
 export const newsroomCategories = [
@@ -519,9 +533,9 @@ export const newsroomCategories = [
 		title: 'Press Releases',
 		slug: 'press-releases'
 	}
-];
+]
 export function newsroomCategoriesSlugToCategory(slug: string): string {
-	return newsroomCategories.find(tab => tab.slug === slug)?.title ?? slug;
+	return newsroomCategories.find(tab => tab.slug === slug)?.title ?? slug
 }
 
 export const SUPPORTED_TOKENS = [
@@ -585,7 +599,7 @@ export const SUPPORTED_TOKENS = [
 		},
 		requestKey: 'SOL'
 	}
-];
+]
 
 export const SUPPORTED_CHAINS = [
 	{
@@ -613,7 +627,7 @@ export const SUPPORTED_CHAINS = [
 		icon: '/widget/sol_icon.png',
 		requestKey: 'SOL'
 	}
-];
+]
 
 export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
 	USDT: ['arbitrum', 'ethereum', 'optimism'],
@@ -622,7 +636,7 @@ export const TOKEN_CHAIN_SUPPORT: Record<string, string[]> = {
 	BNB: ['bnb'],
 	SOL: ['solana'],
 	ETH: ['arbitrum', 'base', 'optimism', 'ethereum']
-};
+}
 
 export const blogTags = [
 	{
@@ -737,7 +751,7 @@ export const blogTags = [
 		title: 'Wallet',
 		slug: 'wallet'
 	}
-];
+]
 
 export const newsroomTags = [
 	{
@@ -824,7 +838,7 @@ export const newsroomTags = [
 		title: 'Mobile',
 		slug: 'mobile'
 	}
-];
+]
 
 export const carouselLogos = {
 	cowSwap: {
@@ -874,7 +888,6 @@ export const carouselLogos = {
 				height={'40'}
 			/>
 		)
-
 	},
 
 	Ox: {
@@ -889,7 +902,7 @@ export const carouselLogos = {
 			/>
 		)
 	}
-};
+}
 
 /************************************************************************************************
  * Popup Animation Configuration
@@ -927,9 +940,9 @@ export const popupAnimation = {
 			duration: 0.15
 		}
 	}
-};
+}
 
-export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 'Cosmos'];
+export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 'Cosmos']
 
 /************************************************************************************************
  * Landing Page Information Cards
@@ -954,13 +967,13 @@ export const landingInfoCards = [
 		title: 'Traded on ShapeShift',
 		stat: '$1.7 billion'
 	}
-];
+]
 
-export const statCardsTitle = 'Trusted by \n the Best';
+export const statCardsTitle = 'Trusted by \n the Best'
 
 /************************************************************************************************
  * Landing Page Request URL
  * Contains the URL for the request form on the landing page
  * Used in the landing page to allow users to request a new wallet or chain
  ************************************************************************************************/
-export const requestUrl = 'https://shapeshift.canny.io/';
+export const requestUrl = 'https://shapeshift.canny.io/'
