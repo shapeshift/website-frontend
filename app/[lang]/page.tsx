@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import {useState} from 'react';
+import Image from 'next/image'
+import {useState} from 'react'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {LatestBlogPosts} from '@/app/[lang]/_components/BlogList';
-import {Carousel} from '@/app/[lang]/_components/Carousel';
-import {LandingCard} from '@/app/[lang]/_components/LandingCard';
-import {LandingInfoCard} from '@/app/[lang]/_components/LandingInfoCard';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow';
-import {TabItem} from '@/app/[lang]/_components/TabItem';
-import {TradingWidget} from '@/app/[lang]/_components/trading/TradingWidget';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {LatestBlogPosts} from '@/app/[lang]/_components/BlogList'
+import {Carousel} from '@/app/[lang]/_components/Carousel'
+import {LandingCard} from '@/app/[lang]/_components/LandingCard'
+import {LandingInfoCard} from '@/app/[lang]/_components/LandingInfoCard'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow'
+import {TabItem} from '@/app/[lang]/_components/TabItem'
+import {TradingWidget} from '@/app/[lang]/_components/trading/TradingWidget'
+import {cl} from '@/app/[lang]/_utils/cl'
 import {
 	carouselLogos,
 	featureCard1WhiteTitle,
@@ -30,13 +30,13 @@ import {
 	landingCards,
 	landingInfoCards,
 	statCardsTitle
-} from '@/app/[lang]/_utils/constants';
+} from '@/app/[lang]/_utils/constants'
 
-import type {TCard} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TCard} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export default function HomePage(): ReactNode {
-	const [tab, setTab] = useState(homepageFeatureTabs[0]);
+	const [tab, setTab] = useState(homepageFeatureTabs[0])
 
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
@@ -259,24 +259,40 @@ export default function HomePage(): ReactNode {
 								<h1 className={'max-w-[400px] text-[40px] leading-10 lg:text-7xl'}>{statCardsTitle}</h1>
 							</div>
 							<div className={'col-span-1 flex flex-col gap-4'}>
-								<LandingInfoCard
-									title={landingInfoCards[0].title}
-									stat={landingInfoCards[0].stat}
-								/>
-								<LandingInfoCard
-									title={landingInfoCards[1].title}
-									stat={landingInfoCards[1].stat}
-								/>
+								<a
+									href={landingInfoCards[0].href}
+									target={landingInfoCards[0].external ? '_blank' : ''}>
+									<LandingInfoCard
+										title={landingInfoCards[0].title}
+										stat={landingInfoCards[0].stat}
+									/>
+								</a>
+								<a
+									href={landingInfoCards[1].href}
+									target={landingInfoCards[1].external ? '_blank' : ''}>
+									<LandingInfoCard
+										title={landingInfoCards[1].title}
+										stat={landingInfoCards[1].stat}
+									/>
+								</a>
 							</div>
 							<div className={'col-span-1 flex flex-col gap-4'}>
-								<LandingInfoCard
-									title={landingInfoCards[2].title}
-									stat={landingInfoCards[2].stat}
-								/>
-								<LandingInfoCard
-									title={landingInfoCards[3].title}
-									stat={landingInfoCards[3].stat}
-								/>
+								<a
+									href={landingInfoCards[2].href}
+									target={landingInfoCards[2].external ? '_blank' : ''}>
+									<LandingInfoCard
+										title={landingInfoCards[2].title}
+										stat={landingInfoCards[2].stat}
+									/>
+								</a>
+								<a
+									href={landingInfoCards[3].href}
+									target={landingInfoCards[3].external ? '_blank' : ''}>
+									<LandingInfoCard
+										title={landingInfoCards[3].title}
+										stat={landingInfoCards[3].stat}
+									/>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -284,11 +300,11 @@ export default function HomePage(): ReactNode {
 				<Banner />
 			</div>
 		</div>
-	);
+	)
 }
 
 const Card = (props: {children: ReactNode; className: string; href?: string; target?: string}): ReactNode => {
-	const {children, className, href, target} = props;
+	const {children, className, href, target} = props
 
 	return (
 		<>
@@ -303,5 +319,5 @@ const Card = (props: {children: ReactNode; className: string; href?: string; tar
 				<div className={cl('overflow-hidden rounded-2xl', className)}>{children}</div>
 			)}
 		</>
-	);
-};
+	)
+}
