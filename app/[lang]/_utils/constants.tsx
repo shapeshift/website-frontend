@@ -84,7 +84,8 @@ export const FOX_CONTRACTS: readonly TFoxContract[] = [
 export const foxTokenTitleWhite = 'Fox'
 export const foxTokenTitleBlue = 'Power'
 export const foxTokenDescription = 'FOX tokens wield mighty power for those who hodl them.'
-export const foxTokenDescriptionNote = "Want to list FOX token on your App or Exchange? Let's get in touch: listings@shapeshiftdao.org";
+export const foxTokenDescriptionNote =
+	"Want to list FOX token on your App or Exchange? Let's get in touch: listings@shapeshiftdao.org"
 export const section1Title = 'How do I participate?'
 export const section1Description =
 	'You can contribute as little or as much as you want to. Contribute more to get rewarded more. Keep up on everything going on in the DAO. Follow on Twitter for updates, join the Discord to learn about contributing, and discuss governance proposals on the FOX Forum.'
@@ -287,7 +288,7 @@ export const appProducts: TAppLink[] = [
 	{
 		name: 'Trade',
 		href: '/trade',
-		description: 'Trade 10,000+ assets with one click.',
+		description: 'Trade 10,000+ assets instantly.',
 		icon: <IconDollar />
 	},
 	{
@@ -871,7 +872,7 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/onramper.png'}
 				alt={'onramper'}
-				width={'190'}
+				width={'160'}
 				height={'40'}
 			/>
 		)
@@ -883,12 +884,11 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/banxa.png'}
 				alt={'banxa'}
-				width={'170'}
+				width={'160'}
 				height={'40'}
 			/>
 		)
 	},
-
 	Ox: {
 		href: 'https://0x.org/',
 		src: '/landing/0x.png',
@@ -896,7 +896,67 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/0x.png'}
 				alt={'0x'}
-				width={'55'}
+				width={'50'}
+				height={'40'}
+			/>
+		)
+	},
+	mayaProtocol: {
+		href: 'https://mayaprotocol.com/',
+		src: '/landing/maya-protocol.png',
+		Logo: () => (
+			<Image
+				src={'/landing/maya-protocol.png'}
+				alt={'maya protocol'}
+				width={'180'}
+				height={'40'}
+			/>
+		)
+	},
+	jupiter: {
+		href: 'https://jup.ag/',
+		src: '/landing/jupiter.png',
+		Logo: () => (
+			<Image
+				src={'/landing/jupiter.png'}
+				alt={'jupiter'}
+				width={'150'}
+				height={'40'}
+			/>
+		)
+	},
+	butterNetwork: {
+		href: 'https://butter.network/',
+		src: '/landing/butter-network.png',
+		Logo: () => (
+			<Image
+				src={'/landing/butter-network.png'}
+				alt={'butter network'}
+				width={'180'}
+				height={'40'}
+			/>
+		)
+	},
+	chainflip: {
+		href: 'https://chainflip.io/',
+		src: '/landing/chainflip.png',
+		Logo: () => (
+			<Image
+				src={'/landing/chainflip.png'}
+				alt={'chainflip'}
+				width={'180'}
+				height={'40'}
+			/>
+		)
+	},
+	relay: {
+		href: 'https://relay.com/',
+		src: '/landing/relay.png',
+		Logo: () => (
+			<Image
+				src={'/landing/relay.png'}
+				alt={'relay'}
+				width={'145'}
 				height={'40'}
 			/>
 		)
@@ -952,11 +1012,11 @@ export const CHAIN_TYPES: TSupportedChainTypes[] = ['EVM', 'Solana', 'Bitcoin', 
 export const landingInfoCards = [
 	{
 		title: 'Active wallets',
-		stat: '35,000'
+		stat: '35k+'
 	},
 	{
 		title: 'Available chains',
-		stat: '14+'
+		stat: '15+'
 	},
 	{
 		title: 'Assets',
