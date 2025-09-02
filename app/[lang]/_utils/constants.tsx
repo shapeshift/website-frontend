@@ -848,8 +848,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/cow-swap.png'}
 				alt={'cow swap'}
-				width={'200'}
-				height={'40'}
+				width={200}
+				height={40}
 			/>
 		)
 	},
@@ -860,8 +860,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/thorchain.png'}
 				alt={'thorchain'}
-				width={'180'}
-				height={'40'}
+				width={180}
+				height={40}
 			/>
 		)
 	},
@@ -872,8 +872,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/onramper.png'}
 				alt={'onramper'}
-				width={'160'}
-				height={'40'}
+				width={160}
+				height={40}
 			/>
 		)
 	},
@@ -884,8 +884,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/banxa.png'}
 				alt={'banxa'}
-				width={'160'}
-				height={'40'}
+				width={160}
+				height={40}
 			/>
 		)
 	},
@@ -896,8 +896,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/0x.png'}
 				alt={'0x'}
-				width={'50'}
-				height={'40'}
+				width={50}
+				height={40}
 			/>
 		)
 	},
@@ -908,8 +908,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/maya-protocol.png'}
 				alt={'maya protocol'}
-				width={'180'}
-				height={'40'}
+				width={180}
+				height={40}
 			/>
 		)
 	},
@@ -920,8 +920,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/jupiter.png'}
 				alt={'jupiter'}
-				width={'150'}
-				height={'40'}
+				width={150}
+				height={40}
 			/>
 		)
 	},
@@ -932,8 +932,8 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/butter-network.png'}
 				alt={'butter network'}
-				width={'180'}
-				height={'40'}
+				width={180}
+				height={40}
 			/>
 		)
 	},
@@ -944,20 +944,20 @@ export const carouselLogos = {
 			<Image
 				src={'/landing/chainflip.png'}
 				alt={'chainflip'}
-				width={'180'}
-				height={'40'}
+				width={180}
+				height={40}
 			/>
 		)
 	},
 	relay: {
-		href: 'https://relay.com/',
+		href: 'https://relay.link/',
 		src: '/landing/relay.png',
 		Logo: () => (
 			<Image
 				src={'/landing/relay.png'}
 				alt={'relay'}
-				width={'145'}
-				height={'40'}
+				width={145}
+				height={40}
 			/>
 		)
 	}
