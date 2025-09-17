@@ -105,7 +105,13 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 					height: feature.image.height,
 					alt: feature.title
 				}
-			: undefined
+			: undefined,
+		buttonCta:
+			feature.buttonCta &&
+			typeof feature.buttonCta.url === 'string' &&
+			/^(\/|https?:\/\/)/i.test(feature.buttonCta.url)
+				? {title: feature.buttonCta.title, url: feature.buttonCta.url}
+				: undefined
 	}))
 
 	return (

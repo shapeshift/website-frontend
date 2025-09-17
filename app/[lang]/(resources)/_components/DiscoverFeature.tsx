@@ -17,31 +17,36 @@
  ** - Customize number of columns and spacing as needed
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TFeatureItem = {
-	id?: number;
-	title: string;
-	description: string;
+	id?: number
+	title: string
+	description: string
 	image?: {
-		url: string;
-		width: number;
-		height: number;
-		alt?: string;
-	};
-};
+		url: string
+		width: number
+		height: number
+		alt?: string
+	}
+	buttonCta?: {
+		title: string
+		url: string
+	}
+}
 
 type TDiscoverFeatureProps = {
-	features: TFeatureItem[];
-	title?: string;
-	description?: string;
-	columns?: 2 | 3 | 4;
-	className?: string;
-};
+	features: TFeatureItem[]
+	title?: string
+	description?: string
+	columns?: 2 | 3 | 4
+	className?: string
+}
 
 export function DiscoverFeature({
 	features,
@@ -51,7 +56,7 @@ export function DiscoverFeature({
 	className
 }: TDiscoverFeatureProps): ReactNode {
 	if (!features || features.length === 0) {
-		return null;
+		return null
 	}
 
 	// Get the grid columns class based on the columns prop
@@ -59,7 +64,7 @@ export function DiscoverFeature({
 		2: 'md:grid-cols-2',
 		3: 'md:grid-cols-2 lg:grid-cols-3',
 		4: 'md:grid-cols-2 lg:grid-cols-4'
-	}[columns];
+	}[columns]
 
 	return (
 		<section
@@ -103,9 +108,33 @@ export function DiscoverFeature({
 						{/* Feature title and description */}
 						<h3 className={'mb-2 text-xl font-medium'}>{feature.title}</h3>
 						<p className={'whitespace-break-spaces break-keep text-gray-500'}>{feature.description}</p>
+						{/* CTA under description (only if provided) */}
+						{feature.buttonCta?.url && feature.buttonCta?.title ? (
+							<div className={'mt-4'}>
+								{feature.buttonCta.url.startsWith('/') ? (
+									<LocalizedLink
+										href={feature.buttonCta.url}
+										className={
+											'inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium bg-primary text-white hover:opacity-90'
+										}>
+										{feature.buttonCta.title}
+									</LocalizedLink>
+								) : /^(https?:)\/\//i.test(feature.buttonCta.url) ? (
+									<a
+										href={feature.buttonCta.url}
+										target={'_blank'}
+										rel={'noopener noreferrer'}
+										className={
+											'inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium bg-primary text-white hover:opacity-90'
+										}>
+										{feature.buttonCta.title}
+									</a>
+								) : null}
+							</div>
+						) : null}
 					</div>
 				))}
 			</div>
 		</section>
-	);
+	)
 }
