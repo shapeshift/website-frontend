@@ -1,46 +1,48 @@
-import {IconBorrow} from '@/app/[lang]/_icons/IconBorrow';
-import {IconEarn} from '@/app/[lang]/_icons/IconEarn';
-import {IconGlobe} from '@/app/[lang]/_icons/IconGlobe';
-import {IconKey} from '@/app/[lang]/_icons/IconKey';
-import {IconShield} from '@/app/[lang]/_icons/IconShield';
-import {IconTrade} from '@/app/[lang]/_icons/IconTrade';
+import {IconBorrow} from '@/app/[lang]/_icons/IconBorrow'
+import {IconEarn} from '@/app/[lang]/_icons/IconEarn'
+import {IconGlobe} from '@/app/[lang]/_icons/IconGlobe'
+import {IconKey} from '@/app/[lang]/_icons/IconKey'
+import {IconShield} from '@/app/[lang]/_icons/IconShield'
+import {IconTrade} from '@/app/[lang]/_icons/IconTrade'
 
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 const ACCELERATE_WITH_SHAPESHIFT_DATA = [
 	{
 		title: 'Trade',
-		description: 'Trade 50,000+ assets for Bitcoin, Ethereum, DOGE, & more with one click.',
+		description:
+			'Swap 10,000+ EVM assets like ETH, stablecoins, and tokens on Arbitrum, Base, Polygon, and BNB Chain with the best rates through ShapeShift’s aggregator.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconTrade {...props} />
 	},
 	{
 		title: 'Save',
-		description: 'Compare the top trading routes in real time and always get the best rate.',
+		description: 'Compare top liquidity sources in real time and capture the most competitive swap routes.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconBorrow {...props} />
 	},
 	{
 		title: 'Earn',
 		description:
-			'Earn, manage, and discover your DeFi opportunities in one click.',
+			'Access DeFi in one click: stake, farm, or provide liquidity across supported EVM chains without leaving ShapeShift.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconEarn {...props} />
 	},
 	{
 		title: 'Control your crypto',
-		description: 'ShapeShift is a noncustodial App. Your keys, your crypto.',
+		description:
+			'Stay non-custodial. Whether you connect Base App (Coinbase Wallet) or ShapeShift Wallet, you always hold your keys and stay in charge of your funds.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconKey {...props} />
 	},
 	{
 		title: 'Multichain',
 		description:
-			'Connect your self custodial wallet, and navigate 14+ chains seamlessly.',
+			'Unlock seamless EVM trading with Base App, or import your seed into ShapeShift Wallet to access full multichain support including Bitcoin, Dogecoin, and more',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconGlobe {...props} />
 	},
 	{
 		title: 'Privacy',
-		description: 'Use ShapeShift with no KYC. Always.',
+		description: 'No KYC. No sign-ups. ShapeShift protects your privacy while you trade and explore DeFi.',
 		icon: (props: SVGProps<SVGSVGElement>) => <IconShield {...props} />
 	}
-];
+]
 
 export function SupportedWalletAccelerate(): ReactNode {
 	return (
@@ -68,5 +70,5 @@ export function SupportedWalletAccelerate(): ReactNode {
 				</div>
 			</section>
 		</div>
-	);
+	)
 }
