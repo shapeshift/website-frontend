@@ -20,19 +20,13 @@ const nextConfig = {
 					{key: 'cross-origin-embedder-policy', value: 'credentialless'},
 					{key: 'cross-origin-resource-policy', value: 'cross-origin'},
 					{key: 'cross-origin-opener-policy', value: 'same-origin'},
-					{key: 'Content-Security-Policy', value: "frame-ancestors 'self'"},
-					{key: 'referrer-policy', value: 'strict-origin-when-cross-origin'},
-					{key: 'x-content-type-options', value: 'nosniff'},
-					{key: 'permissions-policy', value: 'geolocation=(), microphone=(), camera=(), payment=(self), usb=()'}
+					{key: 'Content-Security-Policy', value: "frame-ancestors 'self'"}
 				]
 			},
 			{
 				// Specific headers for Chatwoot proxy to ensure iframe compatibility
 				source: '/chatwoot/(.*)',
 				headers: [
-					{key: 'referrer-policy', value: 'strict-origin-when-cross-origin'},
-					{key: 'x-content-type-options', value: 'nosniff'},
-					{key: 'permissions-policy', value: 'geolocation=(), microphone=(), camera=(), payment=(self), usb=()'},
 					{key: 'cross-origin-embedder-policy', value: 'credentialless'},
 					{key: 'cross-origin-resource-policy', value: 'cross-origin'},
 					{key: 'cross-origin-opener-policy', value: 'same-origin'},
@@ -43,9 +37,6 @@ const nextConfig = {
 				// Allow Onramper iframe on /trade
 				source: '/trade',
 				headers: [
-					{key: 'referrer-policy', value: 'strict-origin-when-cross-origin'},
-					{key: 'x-content-type-options', value: 'nosniff'},
-					{key: 'permissions-policy', value: 'geolocation=(), microphone=(), camera=(), payment=(self), usb=()'},
 					{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'},
 					{
 						key: 'Content-Security-Policy',
@@ -57,9 +48,6 @@ const nextConfig = {
 				// Also allow Onramper on localized routes like /en/trade
 				source: '/:lang/trade',
 				headers: [
-					{key: 'referrer-policy', value: 'strict-origin-when-cross-origin'},
-					{key: 'x-content-type-options', value: 'nosniff'},
-					{key: 'permissions-policy', value: 'geolocation=(), microphone=(), camera=(), payment=(self), usb=()'},
 					{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'},
 					{
 						key: 'Content-Security-Policy',
