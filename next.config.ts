@@ -13,15 +13,9 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				// Apply COEP/COOP globally, EXCEPT for /trade and /:locale/trade
-				// Excludes paths that are exactly `/trade` or `/<anything>/trade`
-				source: '/((?!(?:[^/]+/)?trade/?$).*)',
-				headers: [
-					{key: 'cross-origin-embedder-policy', value: 'credentialless'},
-					{key: 'cross-origin-resource-policy', value: 'cross-origin'},
-					{key: 'cross-origin-opener-policy', value: 'same-origin'},
-					{key: 'Content-Security-Policy', value: "frame-ancestors 'self'"}
-				]
+				// Global headers (NO COEP/COOP) to avoid breaking third-party iframes on SPA nav
+				source: '/(.*)',
+				headers: [{key: 'cross-origin-resource-policy', value: 'cross-origin'}]
 			},
 			{
 				// Specific headers for Chatwoot proxy to ensure iframe compatibility
