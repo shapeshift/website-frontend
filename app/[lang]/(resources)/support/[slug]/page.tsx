@@ -1,64 +1,56 @@
-'use client';
+import 'highlight.js/styles/github-dark.css'
+import {notFound} from 'next/navigation'
+import Script from 'next/script'
+import {Suspense} from 'react'
 
-import 'highlight.js/styles/github-dark.css';
-import {notFound, useParams, useRouter} from 'next/navigation';
-import Script from 'next/script';
+import {SupportArticleContent} from '@/app/[lang]/(resources)/support/[slug]/SupportArticleContent'
+import SupportArticleClient from '@/app/[lang]/(resources)/support/_components/SupportArticleClient'
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {generateSupportArticleSchema} from '@/app/[lang]/_utils/schema'
 
-import {SupportArticleContent} from '@/app/[lang]/(resources)/support/[slug]/SupportArticleContent';
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {useCachedArticles} from '@/app/[lang]/_contexts/CachedArticlesContext';
-import {useFetchSupportArticles} from '@/app/[lang]/_hooks/useFetchSupportArticles';
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
-import {generateSupportArticleSchema} from '@/app/[lang]/_utils/schema';
+import type {ReactNode} from 'react'
 
-import type {ReactNode} from 'react';
+type TParams = {params: {lang?: string; slug?: string}}
 
-function LoadingSkeleton(): ReactNode {
-	return (
-		<div className={'animate-pulse'}>
-			<div className={'mb-4 h-8 w-3/4 rounded bg-gray-800'} />
-			<div className={'mb-8 h-64 rounded bg-gray-800'} />
-			<div className={'space-y-4'}>
-				<div className={'h-4 w-full rounded bg-gray-800'} />
-				<div className={'h-4 w-5/6 rounded bg-gray-800'} />
-				<div className={'h-4 w-4/6 rounded bg-gray-800'} />
-			</div>
-		</div>
-	);
-}
-
-export default function SupportArticle(): ReactNode {
-	const {slug} = useParams();
-	const {
-		cachedResponse: {data: cachedArticles}
-	} = useCachedArticles();
-	const {articles, isLoading} = useFetchSupportArticles({
-		page: 1,
-		pageSize: 1,
-		sort: 'desc',
-		populateContent: true,
-		cacheArticles: true,
-		slug: slug as string
-	});
-
-	const article = [...cachedArticles, ...articles].find(a => a.slug === slug);
-	const router = useRouter();
-
-	if (isLoading) {
-		return <LoadingSkeleton />;
+export default async function SupportArticle({params}: TParams): Promise<ReactNode> {
+	const {slug} = await params
+	if (!slug) {
+		return notFound()
 	}
 
+	const SLUG_REGEX = /^[A-Za-z0-9-]+$/
+	if (!SLUG_REGEX.test(slug)) {
+		return notFound()
+	}
+	const STRAPI_URL = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL
+	const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN ?? process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
+
+	if (!STRAPI_URL) {
+		throw new Error('Server configuration error: Missing STRAPI_URL or NEXT_PUBLIC_STRAPI_URL')
+	}
+
+	const encodedSlug = encodeURIComponent(slug)
+	const url = `${STRAPI_URL}/api/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&fields[4]=tags&fields[5]=content&sort[0]=publishedAt:desc&pagination[page]=1&pagination[pageSize]=1&pagination[withCount]=true&filters[slug][$eq]=${encodedSlug}`
+
+	const res = await fetch(url, {
+		headers: STRAPI_TOKEN ? {Authorization: `Bearer ${STRAPI_TOKEN}`} : undefined
+	})
+
+	if (!res.ok) {
+		return notFound()
+	}
+
+	const data = await res.json()
+	const article = data?.data?.[0] ?? null
 	if (!article) {
-		notFound();
+		return notFound()
 	}
 
-	// Generate structured data for the support article
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
-	const articleSchema = generateSupportArticleSchema(article, baseUrl);
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+	const articleSchema = generateSupportArticleSchema(article, baseUrl)
 
 	return (
 		<>
-			{/* Add structured data */}
 			<Script
 				id={'support-article-schema'}
 				type={'application/ld+json'}
@@ -67,22 +59,24 @@ export default function SupportArticle(): ReactNode {
 			/>
 
 			<article className={'prose prose-invert container relative mx-auto mb-20 mt-40 max-w-4xl px-4'}>
-				<button
-					className={'absolute -left-32 top-0 flex items-center gap-1 p-3 pt-0 text-gray-500'}
-					onClick={() => router.back()}>
-					<IconBack />
-					<span>{'Back'}</span>
-				</button>
+				<Suspense
+					fallback={
+						<div className={'absolute -left-32 top-0 flex items-center gap-2'}>
+							<div className={'h-8 w-8 rounded bg-gray-700 animate-pulse'} />
+							<div className={'h-4 w-20 rounded bg-gray-700 animate-pulse'} />
+						</div>
+					}>
+					<SupportArticleClient />
+				</Suspense>
+
 				<div className={'mb-8 text-gray-400'}>{new Date(article.publishedAt).toLocaleDateString()}</div>
 
 				<h1 className={'mb-4 text-4xl font-bold'}>{article.title}</h1>
 				<SupportArticleContent content={article.content} />
 			</article>
-			{!isLoading && (
-				<div className={'container mx-auto'}>
-					<Banner />
-				</div>
-			)}
+			<div className={'container mx-auto'}>
+				<Banner />
+			</div>
 		</>
-	);
+	)
 }

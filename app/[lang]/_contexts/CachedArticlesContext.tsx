@@ -8,33 +8,37 @@
  * - Pagination state
  ********************************************************************************************/
 
-'use client';
+'use client'
 
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useState} from 'react'
 
-import type {TArticleListResponse} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TArticleListResponse} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /********************************************************************************************
  * Type definition for cached query parameters
  ********************************************************************************************/
 type TCachedParams = {
-	page: number | undefined;
-	pageSize: number | undefined;
-	sort: 'asc' | 'desc' | undefined;
-	slug: string | undefined;
-	populateContent: boolean | undefined;
-};
+	page: number | undefined
+	pageSize: number | undefined
+	sort: 'asc' | 'desc' | undefined
+	slug: string | undefined
+	populateContent: boolean | undefined
+	// optional filters
+	type?: string | undefined
+	tag?: string | undefined
+	search?: string | undefined
+}
 
 /********************************************************************************************
  * Context for storing cached support articles data and parameters
  * Provides default values for initial state
  ********************************************************************************************/
 const ArticlesContext = createContext<{
-	cachedResponse: TArticleListResponse;
-	setCachedResponse: (responses: TArticleListResponse) => void;
-	cachedParams: TCachedParams;
-	setCachedParams: (params: TCachedParams) => void;
+	cachedResponse: TArticleListResponse
+	setCachedResponse: (responses: TArticleListResponse) => void
+	cachedParams: TCachedParams
+	setCachedParams: (params: TCachedParams) => void
 }>({
 	cachedResponse: {
 		data: [],
@@ -53,10 +57,13 @@ const ArticlesContext = createContext<{
 		pageSize: undefined,
 		sort: undefined,
 		slug: undefined,
-		populateContent: undefined
+		populateContent: undefined,
+		type: undefined,
+		tag: undefined,
+		search: undefined
 	},
 	setCachedParams: () => {}
-});
+})
 
 /**
  * Provider component for support articles caching functionality
@@ -74,14 +81,17 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
 				total: 0
 			}
 		}
-	});
+	})
 	const [cachedParams, setCachedParams] = useState<TCachedParams>({
 		page: undefined,
 		pageSize: undefined,
 		sort: undefined,
 		slug: undefined,
-		populateContent: undefined
-	});
+		populateContent: undefined,
+		type: undefined,
+		tag: undefined,
+		search: undefined
+	})
 
 	return (
 		<ArticlesContext.Provider
@@ -93,7 +103,7 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
 			}}>
 			{children}
 		</ArticlesContext.Provider>
-	);
+	)
 }
 
 /**
@@ -102,10 +112,10 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
  * @throws Error if used outside of CachedArticlesProvider
  */
 export function useCachedArticles(): {
-	cachedResponse: TArticleListResponse;
-	setCachedResponse: (responses: TArticleListResponse) => void;
-	cachedParams: TCachedParams;
-	setCachedParams: (params: TCachedParams) => void;
+	cachedResponse: TArticleListResponse
+	setCachedResponse: (responses: TArticleListResponse) => void
+	cachedParams: TCachedParams
+	setCachedParams: (params: TCachedParams) => void
 } {
-	return useContext(ArticlesContext);
+	return useContext(ArticlesContext)
 }

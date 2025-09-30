@@ -33,5 +33,5 @@
 		"eslint.config.mjs",
 		"postcss.config.mjs"
 	],
-	"exclude": ["node_modules", ".next"]
+	"exclude": ["node_modules", ".next", "scripts"]
 }
