@@ -16,12 +16,13 @@ export function SupportTags({
 	}
 	return (
 		<div className={`${className ?? ''} mb-10`}>
-			<div className={'flex flex-wrap gap-3 justify-center'}>
+			{/* Horizontal scroll on small screens, normal wrapped layout on sm+ */}
+			<div className={'flex flex-wrap gap-3 justify-center -mx-4 px-4 py-2'}>
 				<button
 					type={'button'}
 					onClick={() => onClick(null)}
-					className={`rounded-full border px-4 py-2 text-sm ${
-						active === null || active === undefined ? 'bg-white/10' : 'bg-transparent'
+					className={`rounded-full border text-sm whitespace-nowrap px-3 py-1.5 sm:px-4 sm:py-2 ${
+						active === null || active === undefined ? 'bg-blue' : 'bg-transparent'
 					}`}>
 					{'All'}
 				</button>
@@ -30,7 +31,9 @@ export function SupportTags({
 						type={'button'}
 						key={t}
 						onClick={() => onClick(t)}
-						className={`rounded-full border px-4 py-2 text-sm ${active === t ? 'bg-white/10' : 'bg-transparent'}`}>
+						className={`rounded-full border text-sm whitespace-nowrap px-3 py-1.5 sm:px-4 sm:py-2 ${
+							active === t ? 'bg-blue' : 'bg-transparent'
+						}`}>
 						{t}
 					</button>
 				))}

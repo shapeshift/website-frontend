@@ -1,4 +1,21 @@
 'use client'
+/************************************************************************************************
+ ** SupportArticleList Component:
+ **
+ ** Client component for displaying paginated lists of support articles
+ ** Features interactive pagination and loading states
+ **
+ ** Features:
+ ** - Pagination with next/previous controls
+ ** - Loading skeleton for better UX
+ ** - Empty state handling
+ ** - Responsive grid layout for different viewports
+ **
+ ** Usage:
+ ** - Import in support list pages
+ ** - Configure with useFetchSupportArticles hook
+ ** - Add custom empty state message if needed
+ ************************************************************************************************/
 import {useParams, useRouter, useSearchParams} from 'next/navigation'
 import {Fragment, useEffect, useMemo, useState} from 'react'
 import ReactPaginate from 'react-paginate'
@@ -53,8 +70,9 @@ export function SupportArticleList({
 	// determine the active tag (from URL or prop)
 	const activeTag = urlTag ?? tag
 
-	// server-side filtering: always use the configured pageSize; grouped view will show previews and
-	// provide "View all" links to the paginated tag view instead of fetching the entire dataset.
+	// server-side filtering: always fetch the configured pageSize from the server so
+	// tag discovery and counts are accurate. For grouped preview mode we still limit
+	// the visual preview to 9 items per tag in the UI (see .slice below).
 	const fetchPage = activeTag ? page : 1
 	const fetchPageSize = pageSize
 
@@ -82,6 +100,46 @@ export function SupportArticleList({
 		}
 		return Array.from(new Set(filteredArticles.flatMap(a => a.tags ?? []))).sort()
 	}, [filteredArticles])
+
+	// Preserve a master list of tags so that when a single tag is active we
+	// still can display all available tags (like radio buttons) instead of
+	// hiding the other options. We populate `allTags` from the groupedTags
+	// when available, and as a fallback we prefetch an unfiltered page to
+	// discover tags when the page is loaded already filtered by tag.
+	const [allTags, setAllTags] = useState<string[] | null>(null)
+
+	// Prefetch unfiltered articles only when we don't yet have `allTags`.
+	const {articles: discoveryArticles} = useFetchSupportArticles({
+		page: 1,
+		pageSize,
+		sort,
+		populateContent: false,
+		cacheArticles: false,
+		tag: undefined,
+		search: undefined,
+		skip: allTags !== null
+	})
+
+	useEffect(() => {
+		if (!activeTag && groupedTags.length > 0 && allTags === null) {
+			setAllTags(groupedTags)
+		}
+	}, [activeTag, groupedTags, allTags])
+
+	useEffect(() => {
+		if (discoveryArticles && discoveryArticles.length > 0) {
+			const discovered = Array.from(new Set(discoveryArticles.flatMap(a => a.tags ?? []))).sort()
+			// Merge existing allTags (if any), discovered tags, and the activeTag so
+			// we don't accidentally drop the currently active tag if it's not
+			// present on the discovery page.
+			const merged = Array.from(
+				new Set([...(allTags ?? []), ...(discovered ?? []), ...(activeTag ? [activeTag] : [])])
+			).sort()
+			if (allTags === null || merged.join('|') !== (allTags || []).join('|')) {
+				setAllTags(merged)
+			}
+		}
+	}, [allTags, discoveryArticles, activeTag])
 
 	const groupedArticles = useMemo(() => {
 		const map: Record<string, TSupportArticle[]> = {}
@@ -117,6 +175,8 @@ export function SupportArticleList({
 		return <SupportArticleListSkeleton pageSize={pageSize} />
 	}
 
+	const displayTags = allTags ?? groupedTags
+
 	return (
 		<Fragment>
 			<div className={'container mx-auto'}>
@@ -130,16 +190,7 @@ export function SupportArticleList({
 				<div className={'flex w-full justify-center'}>
 					<div className={'w-1/2'}>
 						<SupportTags
-							tags={
-								activeTag
-									? (() => {
-											const derived = Array.from(
-												new Set((articles || []).flatMap(a => a.tags ?? []))
-											)
-											return derived.length > 0 ? derived : [activeTag]
-										})()
-									: groupedTags
-							}
+							tags={displayTags}
 							active={activeTag}
 							onClick={(t: string | null) => {
 								const params = new URLSearchParams(Array.from(searchParams || []))
@@ -168,47 +219,83 @@ export function SupportArticleList({
 						role={'status'}>
 						{emptyMessage}
 					</p>
-				) : // If a tag is active, show the existing paginated grid. Otherwise show grouped-by-tag sections.
-				activeTag ? (
-					<div className={'mb-20'}>
-						<div className={'mb-4'}>
-							<h2 className={'text-2xl'}>{activeTag}</h2>
-						</div>
-						<div className={cl('grid gap-6 md:grid-cols-2 lg:grid-cols-3', gridClassName)}>
-							{filteredArticles.map((article: TSupportArticle) => (
-								<ArticleCard
-									key={article.slug}
-									article={article}
-									tagName={activeTag}
-									lang={lang}
-								/>
-							))}
-						</div>
-					</div>
 				) : (
 					<div className={'space-y-12 mb-20'}>
-						{groupedTags.map(tagName => (
-							<div key={tagName}>
-								<div className={'mb-4 flex items-center justify-between'}>
-									<h2 className={'text-2xl'}>{tagName}</h2>
-									<LocalizedLink
-										className={'text-sm text-blue-400'}
-										href={`/${lang}/support?tag=${encodeURIComponent(tagName)}`}>
-										{'View all'}
-									</LocalizedLink>
+						{activeTag ? (
+							// When a tag is active show a single flat grid of that tag's articles
+							<div>
+								<div className={'mb-4'}>
+									<div className={'flex items-center justify-between'}>
+										<div className={'flex items-center gap-4'}>
+											<h2 className={'text-2xl'}>{activeTag}</h2>
+										</div>
+									</div>
 								</div>
-								<div className={cl('grid gap-6 md:grid-cols-2 lg:grid-cols-3', gridClassName)}>
-									{(groupedArticles[tagName] ?? []).slice(0, 3).map((article: TSupportArticle) => (
-										<ArticleCard
-											key={article.slug}
-											article={article}
-											tagName={tagName}
-											lang={lang}
-										/>
-									))}
+								<div
+									className={cl(
+										'grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+										gridClassName
+									)}>
+									{(groupedArticles[activeTag] ?? filteredArticles ?? []).map(
+										(article: TSupportArticle) => (
+											<ArticleCard
+												key={article.slug}
+												article={article}
+												tagName={activeTag}
+												lang={lang}
+											/>
+										)
+									)}
 								</div>
 							</div>
-						))}
+						) : (
+							// Grouped preview mode: render each tag section as before
+							groupedTags.map(tagName => (
+								<div key={tagName}>
+									<div className={'mb-4'}>
+										<div className={'flex items-center justify-between'}>
+											<div className={'flex items-center gap-4'}>
+												<h2 className={'text-2xl'}>{tagName}</h2>
+												{/* Desktop inline View all — hide when a tag/search is active */}
+												{!searchQuery && (
+													<LocalizedLink
+														className={'hidden lg:inline-block text-sm text-gray-400'}
+														href={`/${lang}/support?tag=${encodeURIComponent(tagName)}`}>
+														{'View all'}
+													</LocalizedLink>
+												)}
+											</div>
+											{/* Mobile: small 'View all' under title (visible on sm and down) */}
+											{!searchQuery && (
+												<div className={'block lg:hidden'}>
+													<LocalizedLink
+														className={'text-sm text-gray-400'}
+														href={`/${lang}/support?tag=${encodeURIComponent(tagName)}`}>
+														{'View all'}
+													</LocalizedLink>
+												</div>
+											)}
+										</div>
+									</div>
+									<div
+										className={cl(
+											'grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+											gridClassName
+										)}>
+										{(groupedArticles[tagName] ?? [])
+											.slice(0, 6)
+											.map((article: TSupportArticle) => (
+												<ArticleCard
+													key={article.slug}
+													article={article}
+													tagName={tagName}
+													lang={lang}
+												/>
+											))}
+									</div>
+								</div>
+							))
+						)}
 					</div>
 				)}
 

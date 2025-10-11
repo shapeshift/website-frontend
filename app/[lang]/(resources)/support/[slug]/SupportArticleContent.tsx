@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import 'highlight.js/styles/github-dark.css'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
@@ -10,33 +9,70 @@ import remarkMath from 'remark-math'
 
 import {isHtml} from '@/app/[lang]/_utils/isHtml'
 
-import type {ReactNode} from 'react'
+import type {HTMLAttributes, ReactNode} from 'react'
 import type {Components} from 'react-markdown'
+
+// Copy only safe props from the react-markdown params object.
+// This avoids forwarding internal 'node/inline/index/children' fields to DOM elements
+// and keeps TypeScript happy (no-explicit-any / no-unused-vars).
+function sanitizeParams(params: unknown): Record<string, unknown> {
+	const p = (params as Record<string, unknown>) ?? {}
+	const out: Record<string, unknown> = {}
+	for (const [k, v] of Object.entries(p)) {
+		if (k === 'node' || k === 'inline' || k === 'index' || k === 'children') {
+			continue
+		}
+		out[k] = v
+	}
+	return out
+}
 
 export function SupportArticleContent({content}: {content: string}): ReactNode {
 	const components: Partial<Components> = {
 		// Headers
-		h1: ({...props}: any) => (
-			<h1
-				className={'mb-4 mt-8 text-4xl font-bold'}
-				{...props}
-			/>
-		),
-		h2: ({...props}: any) => (
-			<h2
-				className={'mb-3 mt-6 text-3xl font-bold'}
-				{...props}
-			/>
-		),
-		h3: ({...props}: any) => (
-			<h3
-				className={'mb-2 mt-4 text-2xl font-bold'}
-				{...props}
-			/>
-		),
+		h1: props => {
+			const propsRecord = props as unknown as Record<string, unknown>
+			const children = propsRecord.children as ReactNode
+			const rest = sanitizeParams(propsRecord)
+			return (
+				<h1
+					className={'mb-4 mt-8 text-4xl font-bold'}
+					{...(rest as HTMLAttributes<HTMLHeadingElement>)}>
+					{children}
+				</h1>
+			)
+		},
+		h2: props => {
+			const propsRecord = props as unknown as Record<string, unknown>
+			const children = propsRecord.children as ReactNode
+			const rest = sanitizeParams(propsRecord)
+			return (
+				<h2
+					className={'mb-3 mt-6 text-3xl font-bold'}
+					{...(rest as HTMLAttributes<HTMLHeadingElement>)}>
+					{children}
+				</h2>
+			)
+		},
+		h3: props => {
+			const propsRecord = props as unknown as Record<string, unknown>
+			const children = propsRecord.children as ReactNode
+			const rest = sanitizeParams(propsRecord)
+			return (
+				<h3
+					className={'mb-2 mt-4 text-2xl font-bold'}
+					{...(rest as HTMLAttributes<HTMLHeadingElement>)}>
+					{children}
+				</h3>
+			)
+		},
 
 		// Code blocks
-		code: ({className, children, ...props}: any) => {
+		code: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const className = paramsRecord.className as string | undefined
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
 			const match = /language-(\w+)/.exec(className || '')
 			return match ? (
 				<div className={'relative'}>
@@ -44,7 +80,7 @@ export function SupportArticleContent({content}: {content: string}): ReactNode {
 					<pre className={className}>
 						<code
 							className={className}
-							{...props}>
+							{...(rest as HTMLAttributes<HTMLElement>)}>
 							{children}
 						</code>
 					</pre>
@@ -52,40 +88,65 @@ export function SupportArticleContent({content}: {content: string}): ReactNode {
 			) : (
 				<code
 					className={'rounded bg-gray-800 px-1.5 py-0.5'}
-					{...props}>
+					{...(rest as HTMLAttributes<HTMLElement>)}>
 					{children}
 				</code>
 			)
 		},
 
 		// Tables
-		table: ({...props}: any) => (
-			<div className={'my-8 overflow-x-auto'}>
-				<table
-					className={'min-w-full'}
-					{...props}
-				/>
-			</div>
-		),
-		th: ({...props}: any) => (
-			<th
-				className={'bg-gray-800 px-6 py-3 text-left'}
-				{...props}
-			/>
-		),
-		td: ({...props}: any) => (
-			<td
-				className={'border-t border-gray-700 px-6 py-4'}
-				{...props}
-			/>
-		),
+		table: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<div className={'my-8 overflow-x-auto'}>
+					<table
+						className={'min-w-full'}
+						{...(rest as HTMLAttributes<HTMLTableElement>)}>
+						{children}
+					</table>
+				</div>
+			)
+		},
+		th: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<th
+					className={'bg-gray-800 px-6 py-3 text-left'}
+					{...(rest as HTMLAttributes<HTMLTableCellElement>)}>
+					{children}
+				</th>
+			)
+		},
+		td: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<td
+					className={'border-t border-gray-700 px-6 py-4'}
+					{...(rest as HTMLAttributes<HTMLTableCellElement>)}>
+					{children}
+				</td>
+			)
+		},
 
 		// Images
-		img: (props: any) => {
-			const {src, alt, ...rest} = props || {}
+		img: params => {
+			const p = params || ({} as unknown as Record<string, unknown>)
+			const src = p.src as unknown
+			const alt = p.alt as string | undefined
+			const rest = sanitizeParams(p)
 			// Coerce src to string safely (react-markdown may pass string or object)
 			const srcString =
-				src === null || src === undefined ? '' : typeof src === 'string' ? src : String((src as any).src ?? src)
+				src === null || src === undefined
+					? ''
+					: typeof src === 'string'
+						? src
+						: String(((src as Record<string, unknown>).src as string) ?? src)
 			const altText = alt ?? ''
 
 			if (!srcString) {
@@ -103,49 +164,79 @@ export function SupportArticleContent({content}: {content: string}): ReactNode {
 						style={{objectFit: 'contain'}}
 						loading={'lazy'}
 						sizes={'(max-width: 768px) 100vw, 800px'}
-						{...(rest as any)}
+						{...(rest as unknown as Record<string, unknown>)}
 					/>
 				</div>
 			)
 		},
 
 		// Blockquotes
-		blockquote: ({...props}: any) => (
-			<blockquote
-				className={'border-blue-500 my-6 border-l-4 pl-4 italic text-gray-300'}
-				{...props}
-			/>
-		),
+		blockquote: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<blockquote
+					className={'border-blue-500 my-6 border-l-4 pl-4 italic text-gray-300'}
+					{...(rest as HTMLAttributes<HTMLElement>)}>
+					{children}
+				</blockquote>
+			)
+		},
 
 		// Lists
-		ul: ({...props}: any) => (
-			<ul
-				className={'my-4 list-inside list-disc'}
-				{...props}
-			/>
-		),
-		ol: ({...props}: any) => (
-			<ol
-				className={'my-4 list-inside list-decimal'}
-				{...props}
-			/>
-		),
+		ul: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<ul
+					className={'my-4 list-inside list-disc'}
+					{...(rest as HTMLAttributes<HTMLUListElement>)}>
+					{children}
+				</ul>
+			)
+		},
+		ol: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<ol
+					className={'my-4 list-inside list-decimal'}
+					{...(rest as HTMLAttributes<HTMLOListElement>)}>
+					{children}
+				</ol>
+			)
+		},
 
 		// Links
-		a: ({...props}: any) => (
-			<a
-				className={'text-blue underline transition-colors hover:text-blueHover'}
-				target={'_blank'}
-				rel={'noopener noreferrer'}
-				{...props}
-			/>
-		),
-		p: ({...props}: any) => (
-			<p
-				className={'mb-4'}
-				{...props}
-			/>
-		)
+		a: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<a
+					className={'text-blue underline transition-colors hover:text-blueHover'}
+					target={'_blank'}
+					rel={'noopener noreferrer'}
+					{...(rest as HTMLAttributes<HTMLAnchorElement>)}>
+					{children}
+				</a>
+			)
+		},
+		p: params => {
+			const paramsRecord = params as unknown as Record<string, unknown>
+			const children = paramsRecord.children as ReactNode
+			const rest = sanitizeParams(paramsRecord)
+			return (
+				<p
+					className={'mb-4'}
+					{...(rest as HTMLAttributes<HTMLParagraphElement>)}>
+					{children}
+				</p>
+			)
+		}
 	}
 
 	return (
@@ -157,7 +248,7 @@ export function SupportArticleContent({content}: {content: string}): ReactNode {
 				<ReactMarkdown
 					remarkPlugins={[remarkGfm, remarkEmoji, remarkMath]}
 					rehypePlugins={[rehypeHighlight, rehypeKatex]}
-					components={components as any}>
+					components={components as Components}>
 					{content}
 				</ReactMarkdown>
 			)}

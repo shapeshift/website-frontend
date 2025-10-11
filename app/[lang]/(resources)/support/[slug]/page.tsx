@@ -33,6 +33,8 @@ export default async function SupportArticle({params}: TParams): Promise<ReactNo
 	const url = `${STRAPI_URL}/api/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&fields[4]=tags&fields[5]=content&sort[0]=publishedAt:desc&pagination[page]=1&pagination[pageSize]=1&pagination[withCount]=true&filters[slug][$eq]=${encodedSlug}`
 
 	const res = await fetch(url, {
+		// ensure we don't serve stale content from cache; use no-store for always fresh
+		cache: 'no-store',
 		headers: STRAPI_TOKEN ? {Authorization: `Bearer ${STRAPI_TOKEN}`} : undefined
 	})
 
