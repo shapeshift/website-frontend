@@ -2,10 +2,8 @@ import 'highlight.js/styles/github-dark.css'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
-// For math rendering
 import remarkEmoji from 'remark-emoji' // For emoji support
 import remarkGfm from 'remark-gfm'
-// For math equations
 
 import {isHtml} from '@/app/[lang]/_utils/isHtml'
 
