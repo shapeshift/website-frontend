@@ -6,47 +6,47 @@
  ** Optimized with React.memo to prevent unnecessary re-renders
  ** Takes generic terms data to work with both privacy policy and terms of service content
  **************************************************************************************************/
-'use client';
+'use client'
 
-import {AnimatePresence, motion} from 'framer-motion';
-import 'highlight.js/styles/github-dark.css';
-import {memo, useCallback, useState} from 'react';
+import {AnimatePresence, motion} from 'framer-motion'
+import 'highlight.js/styles/github-dark.css'
+import {memo, useCallback, useState} from 'react'
 
-import TermsMarkdown from '@/app/[lang]/(terms)/_components/TermsMarkdown';
-import {AnimatedPlusMinusIcon} from '@/app/[lang]/_components/QuestionSection';
+import TermsMarkdown from '@/app/[lang]/(terms)/_components/TermsMarkdown'
+import {AnimatedPlusMinusIcon} from '@/app/[lang]/_components/QuestionSection'
 
-import type {KeyboardEvent, ReactNode} from 'react';
+import type {KeyboardEvent, ReactNode} from 'react'
 
 export type TTermsItemData = {
-	id: number;
-	title: string;
-	date: string;
-	content: string;
-};
+	id: number
+	title: string
+	date: string
+	content: string
+}
 
 type TTermsAccordionProps = {
-	item: TTermsItemData;
-};
+	item: TTermsItemData
+}
 
 /**************************************************************************************************
  * TermsAccordion component
  **************************************************************************************************/
 function TermsAccordion({item}: TTermsAccordionProps): ReactNode {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
 
 	const handleToggle = useCallback(() => {
-		setIsOpen(prevState => !prevState);
-	}, []);
+		setIsOpen(prevState => !prevState)
+	}, [])
 
 	const handleKeyDown = useCallback(
 		(event: KeyboardEvent<HTMLDivElement>) => {
 			if (event.key === 'Enter' || event.key === ' ') {
-				event.preventDefault();
-				handleToggle();
+				event.preventDefault()
+				handleToggle()
 			}
 		},
 		[handleToggle]
-	);
+	)
 
 	return (
 		<div className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}>
@@ -60,7 +60,7 @@ function TermsAccordion({item}: TTermsAccordionProps): ReactNode {
 				aria-controls={`content-${item.id}`}>
 				<div className={'flex flex-col gap-2 text-2xl'}>
 					<span className={'font-bold'}>{item.title}</span>
-					<span className={'text-sm text-gray-500'}>
+					<span className={'no-translate text-sm text-gray-500'}>
 						{new Date(item.date).toLocaleDateString(undefined, {
 							year: 'numeric',
 							month: 'long',
@@ -95,7 +95,7 @@ function TermsAccordion({item}: TTermsAccordionProps): ReactNode {
 				)}
 			</AnimatePresence>
 		</div>
-	);
+	)
 }
 
-export default memo(TermsAccordion);
+export default memo(TermsAccordion)

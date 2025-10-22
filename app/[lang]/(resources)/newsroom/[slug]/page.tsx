@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import 'highlight.js/styles/github-dark.css';
-import Image from 'next/image';
-import {notFound, useParams, useRouter} from 'next/navigation';
-import ReactMarkdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeKatex from 'rehype-katex'; // For math rendering
-import remarkEmoji from 'remark-emoji'; // For emoji support
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math'; // For math equations
+import 'highlight.js/styles/github-dark.css'
+import Image from 'next/image'
+import {notFound, useParams, useRouter} from 'next/navigation'
+import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeKatex from 'rehype-katex' // For math rendering
+import remarkEmoji from 'remark-emoji' // For emoji support
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math' // For math equations
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {useCachedNews} from '@/app/[lang]/_contexts/CachedNewsContext';
-import {useFetchNewsroom} from '@/app/[lang]/_hooks/useFetchNewsroom';
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {useCachedNews} from '@/app/[lang]/_contexts/CachedNewsContext'
+import {useFetchNewsroom} from '@/app/[lang]/_hooks/useFetchNewsroom'
+import {IconBack} from '@/app/[lang]/_icons/IconBack'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 function LoadingSkeleton(): ReactNode {
 	return (
@@ -48,12 +48,12 @@ function LoadingSkeleton(): ReactNode {
 				<div className={'h-4 w-2/3 animate-pulse rounded-lg bg-gray-800'} />
 			</div>
 		</div>
-	);
+	)
 }
 
 function BlogContent({content}: {content: string}): ReactNode {
 	// Check if content looks like HTML (contains HTML tags)
-	const isHtml = /<\/?(?:div|span|p|a|img|h[1-6]|ul|ol|li|table|tr|td|th|br|hr|em|strong)[^>]*>/i.test(content);
+	const isHtml = /<\/?(?:div|span|p|a|img|h[1-6]|ul|ol|li|table|tr|td|th|br|hr|em|strong)[^>]*>/i.test(content)
 
 	return (
 		<div className={'blog-content prose prose-invert max-w-none'}>
@@ -87,7 +87,7 @@ function BlogContent({content}: {content: string}): ReactNode {
 
 						// Code blocks
 						code: ({className, children, ...props}) => {
-							const match = /language-(\w+)/.exec(className || '');
+							const match = /language-(\w+)/.exec(className || '')
 							return match ? (
 								<div className={'relative'}>
 									<div className={'absolute right-2 top-2 text-xs text-gray-400'}>{match[1]}</div>
@@ -105,7 +105,7 @@ function BlogContent({content}: {content: string}): ReactNode {
 									{...props}>
 									{children}
 								</code>
-							);
+							)
 						},
 
 						// Tables
@@ -251,15 +251,15 @@ function BlogContent({content}: {content: string}): ReactNode {
 				`}
 			</style>
 		</div>
-	);
+	)
 }
 
 export default function BlogPost(): ReactNode {
-	const {slug} = useParams();
+	const {slug} = useParams()
 
 	const {
 		cachedResponse: {data: cachedPosts}
-	} = useCachedNews();
+	} = useCachedNews()
 	const {posts, isLoading} = useFetchNewsroom({
 		page: 1,
 		pageSize: 1,
@@ -268,17 +268,17 @@ export default function BlogPost(): ReactNode {
 		cachePosts: true,
 		slug: slug as string,
 		skip: !!cachedPosts.find(p => p.slug === slug)
-	});
+	})
 
-	const post = [...cachedPosts, ...posts].find(p => p.slug === slug);
-	const router = useRouter();
+	const post = [...cachedPosts, ...posts].find(p => p.slug === slug)
+	const router = useRouter()
 
 	if (isLoading) {
-		return <LoadingSkeleton />;
+		return <LoadingSkeleton />
 	}
 
 	if (!post) {
-		notFound();
+		notFound()
 	}
 
 	return (
@@ -290,7 +290,9 @@ export default function BlogPost(): ReactNode {
 					<IconBack />
 					<span>{'Back'}</span>
 				</button>
-				<div className={'mb-8 text-gray-400'}>{new Date(post.publishedAt).toLocaleDateString()}</div>
+				<div className={'no-translate mb-8 text-gray-400'}>
+					{new Date(post.publishedAt).toLocaleDateString()}
+				</div>
 
 				<div className={'mb-8 flex flex-wrap gap-2'}>
 					{post.tags.map((tag: string, index: number) => (
@@ -311,5 +313,5 @@ export default function BlogPost(): ReactNode {
 				</div>
 			)}
 		</>
-	);
+	)
 }

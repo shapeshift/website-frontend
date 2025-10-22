@@ -14,14 +14,14 @@
  * - Date formatting
  ********************************************************************************************/
 
-import Image from 'next/image';
-import {useMemo} from 'react';
+import Image from 'next/image'
+import {useMemo} from 'react'
 
-import {LocalizedLink} from './LocalizedLink';
-import {cl} from '../_utils/cl';
+import {LocalizedLink} from './LocalizedLink'
+import {cl} from '../_utils/cl'
 
-import type {TNewsroomPost} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TNewsroomPost} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export function NewsPost({post, className}: {post: TNewsroomPost; className?: string}): ReactNode {
 	/********************************************************************************************
@@ -32,14 +32,14 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 	const formatDate = useMemo(
 		() =>
 			(date: string): string => {
-				return new Date(date).toLocaleDateString('en-US', {
+				return new Date(date).toLocaleDateString(undefined, {
 					year: 'numeric',
 					month: 'long',
 					day: 'numeric'
-				});
+				})
 			},
 		[]
-	);
+	)
 
 	return (
 		<LocalizedLink
@@ -69,12 +69,14 @@ export function NewsPost({post, className}: {post: TNewsroomPost; className?: st
 			<div className={'mt-6 flex flex-col gap-2'}>
 				<div className={'flex items-center'}>
 					<p className={'mr-2 text-xs text-blue'}>{post.author || post.category}</p>
-					<p className={'text-xs text-gray-500'}>{formatDate(post.publishedOn || post.publishedAt)}</p>
+					<p className={'no-translate text-xs text-gray-500'}>
+						{formatDate(post.publishedOn || post.publishedAt)}
+					</p>
 				</div>
 				<div>
 					<p className={'text-2xl text-white'}>{post.title}</p>
 				</div>
 			</div>
 		</LocalizedLink>
-	);
+	)
 }

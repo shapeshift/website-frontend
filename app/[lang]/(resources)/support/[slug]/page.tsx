@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import 'highlight.js/styles/github-dark.css';
-import {notFound, useParams, useRouter} from 'next/navigation';
-import Script from 'next/script';
+import 'highlight.js/styles/github-dark.css'
+import {notFound, useParams, useRouter} from 'next/navigation'
+import Script from 'next/script'
 
-import {SupportArticleContent} from '@/app/[lang]/(resources)/support/[slug]/SupportArticleContent';
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {useCachedArticles} from '@/app/[lang]/_contexts/CachedArticlesContext';
-import {useFetchSupportArticles} from '@/app/[lang]/_hooks/useFetchSupportArticles';
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
-import {generateSupportArticleSchema} from '@/app/[lang]/_utils/schema';
+import {SupportArticleContent} from '@/app/[lang]/(resources)/support/[slug]/SupportArticleContent'
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {useCachedArticles} from '@/app/[lang]/_contexts/CachedArticlesContext'
+import {useFetchSupportArticles} from '@/app/[lang]/_hooks/useFetchSupportArticles'
+import {IconBack} from '@/app/[lang]/_icons/IconBack'
+import {generateSupportArticleSchema} from '@/app/[lang]/_utils/schema'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 function LoadingSkeleton(): ReactNode {
 	return (
@@ -24,14 +24,14 @@ function LoadingSkeleton(): ReactNode {
 				<div className={'h-4 w-4/6 rounded bg-gray-800'} />
 			</div>
 		</div>
-	);
+	)
 }
 
 export default function SupportArticle(): ReactNode {
-	const {slug} = useParams();
+	const {slug} = useParams()
 	const {
 		cachedResponse: {data: cachedArticles}
-	} = useCachedArticles();
+	} = useCachedArticles()
 	const {articles, isLoading} = useFetchSupportArticles({
 		page: 1,
 		pageSize: 1,
@@ -39,22 +39,22 @@ export default function SupportArticle(): ReactNode {
 		populateContent: true,
 		cacheArticles: true,
 		slug: slug as string
-	});
+	})
 
-	const article = [...cachedArticles, ...articles].find(a => a.slug === slug);
-	const router = useRouter();
+	const article = [...cachedArticles, ...articles].find(a => a.slug === slug)
+	const router = useRouter()
 
 	if (isLoading) {
-		return <LoadingSkeleton />;
+		return <LoadingSkeleton />
 	}
 
 	if (!article) {
-		notFound();
+		notFound()
 	}
 
 	// Generate structured data for the support article
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
-	const articleSchema = generateSupportArticleSchema(article, baseUrl);
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+	const articleSchema = generateSupportArticleSchema(article, baseUrl)
 
 	return (
 		<>
@@ -73,7 +73,9 @@ export default function SupportArticle(): ReactNode {
 					<IconBack />
 					<span>{'Back'}</span>
 				</button>
-				<div className={'mb-8 text-gray-400'}>{new Date(article.publishedAt).toLocaleDateString()}</div>
+				<div className={'no-translate mb-8 text-gray-400'}>
+					{new Date(article.publishedAt).toLocaleDateString()}
+				</div>
 
 				<h1 className={'mb-4 text-4xl font-bold'}>{article.title}</h1>
 				<SupportArticleContent content={article.content} />
@@ -84,5 +86,5 @@ export default function SupportArticle(): ReactNode {
 				</div>
 			)}
 		</>
-	);
+	)
 }

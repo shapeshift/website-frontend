@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import {useMemo} from 'react';
+import Image from 'next/image'
+import {useMemo} from 'react'
 
-import {LocalizedLink} from './LocalizedLink';
-import {cl} from '../_utils/cl';
+import {LocalizedLink} from './LocalizedLink'
+import {cl} from '../_utils/cl'
 
-import type {TBlogPost} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TBlogPost} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /********************************************************************************************
  * Blog Post Card Component
@@ -19,9 +19,9 @@ export function BlogPost({
 	className,
 	isClassic = false
 }: {
-	post: TBlogPost;
-	className?: string;
-	isClassic?: boolean;
+	post: TBlogPost
+	className?: string
+	isClassic?: boolean
 }): ReactNode {
 	if (post.isFeatured && !isClassic) {
 		return (
@@ -35,7 +35,7 @@ export function BlogPost({
 					className={'!bg-slate-800 lg:hidden'}
 				/>
 			</>
-		);
+		)
 	}
 
 	return (
@@ -43,21 +43,21 @@ export function BlogPost({
 			post={post}
 			className={className}
 		/>
-	);
+	)
 }
 
 function FeaturedPost({post, className}: {post: TBlogPost; className?: string}): ReactNode {
 	const formatDate = useMemo(
 		() =>
 			(date: string): string => {
-				return new Date(date).toLocaleDateString('en-US', {
+				return new Date(date).toLocaleDateString(undefined, {
 					year: 'numeric',
 					month: 'long',
 					day: 'numeric'
-				});
+				})
 			},
 		[]
-	);
+	)
 
 	return (
 		<LocalizedLink
@@ -90,7 +90,7 @@ function FeaturedPost({post, className}: {post: TBlogPost; className?: string}):
 				</div>
 			</div>
 		</LocalizedLink>
-	);
+	)
 }
 
 function PostCard({post, className}: {post: TBlogPost; className?: string}): ReactNode {
@@ -101,14 +101,14 @@ function PostCard({post, className}: {post: TBlogPost; className?: string}): Rea
 	const formatDate = useMemo(
 		() =>
 			(date: string): string => {
-				return new Date(date).toLocaleDateString('en-US', {
+				return new Date(date).toLocaleDateString(undefined, {
 					year: 'numeric',
 					month: 'long',
 					day: 'numeric'
-				});
+				})
 			},
 		[]
-	);
+	)
 
 	return (
 		<LocalizedLink
@@ -143,5 +143,5 @@ function PostCard({post, className}: {post: TBlogPost; className?: string}): Rea
 				</div>
 			</div>
 		</LocalizedLink>
-	);
+	)
 }
