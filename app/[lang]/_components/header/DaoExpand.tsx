@@ -1,12 +1,12 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import HeaderItem from '@/app/[lang]/_components/HeaderItem';
-import {appDao} from '@/app/[lang]/_utils/constants';
-import {DAO_DICT} from '@/app/[lang]/_utils/dictionary/dao';
+import HeaderItem from '@/app/[lang]/_components/HeaderItem'
+import {appDao} from '@/app/[lang]/_utils/constants'
+import {DAO_DICT} from '@/app/[lang]/_utils/dictionary/dao'
 
-import {expandAnimation} from './animations';
+import {expandAnimation} from './animations'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
@@ -46,5 +46,5 @@ export function DAOExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

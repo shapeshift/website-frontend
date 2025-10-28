@@ -1,12 +1,12 @@
-import {ElementCard} from '@/app/[lang]/_components/ElementCard';
+import {ElementCard} from '@/app/[lang]/_components/ElementCard'
 
-import type {TDiscoverData} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TDiscoverData} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export function StrapiDiscover(props: {discover?: TDiscoverData[] | null; isLoading?: boolean}): ReactNode {
-	const {discover, isLoading} = props;
+	const {discover, isLoading} = props
 	if (isLoading) {
-		return <div className={'h-[50vh]'} />;
+		return <div className={'h-[50vh]'} />
 	}
 
 	if (!discover || discover.length === 0) {
@@ -16,7 +16,7 @@ export function StrapiDiscover(props: {discover?: TDiscoverData[] | null; isLoad
 					<p className={'text-xl text-gray-400'}>{'No discover items available yet.'}</p>
 				</div>
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -37,5 +37,5 @@ export function StrapiDiscover(props: {discover?: TDiscoverData[] | null; isLoad
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

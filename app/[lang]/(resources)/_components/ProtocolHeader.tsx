@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import {Fragment} from 'react';
+import Image from 'next/image'
+import {Fragment} from 'react'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
+import {Button} from '@/app/[lang]/_components/Button'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type THeaderData = {
 	description: string;
@@ -66,5 +66,5 @@ export function ProtocolHeader(data: THeaderData): ReactNode {
 				</div>
 			</section>
 		</Fragment>
-	);
+	)
 }

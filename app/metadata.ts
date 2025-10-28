@@ -3,14 +3,14 @@
  * Defines default metadata, OpenGraph, and Twitter card settings
  * Used across the entire application with the ability to override per-page
  ************************************************************************************************/
-import type {Metadata} from 'next';
+import type {Metadata} from 'next'
 
 const siteConfig = {
 	name: 'ShapeShift',
 	description: 'Your multichain crypto home base.',
 	url: process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.builtby.dad',
 	ogImage: '/og.png'
-};
+}
 
 export const defaultMetadata: Metadata = {
 	metadataBase: new URL(siteConfig.url),
@@ -56,4 +56,4 @@ export const defaultMetadata: Metadata = {
 		images: [siteConfig.ogImage],
 		creator: '@ShapeShift'
 	}
-};
+}

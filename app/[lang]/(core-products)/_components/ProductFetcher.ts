@@ -27,7 +27,7 @@
  **   // Use typed page data safely in your component
  ************************************************************************************************/
 
-import {fetchWithErrorHandling} from './fetchUtils';
+import {fetchWithErrorHandling} from './fetchUtils'
 
 import type {
 	TButton,
@@ -39,7 +39,7 @@ import type {
 	TGridSection,
 	TStat,
 	TStrapiImage
-} from '@/app/[lang]/_components/strapi/types';
+} from '@/app/[lang]/_components/strapi/types'
 
 /************************************************************************************************
  ** Product Page Type Definitions
@@ -113,9 +113,9 @@ type TTradePage = TBaseProductPage & {
  ************************************************************************************************/
 export async function fetchDeFiWalletPage(): Promise<TDeFiWalletPage | null> {
 	const queryParams =
-		'fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=cardsRow&populate[5]=cardsRow.cards&populate[6]=cardsRow.cards.image&populate[7]=cardsRow.ctaBlock&populate[8]=cardsRow.ctaBlock.icon&pagination[pageSize]=1&pagination[page]=1&status=published';
+		'fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=cardsRow&populate[5]=cardsRow.cards&populate[6]=cardsRow.cards.image&populate[7]=cardsRow.ctaBlock&populate[8]=cardsRow.ctaBlock.icon&pagination[pageSize]=1&pagination[page]=1&status=published'
 
-	return fetchWithErrorHandling<TDeFiWalletPage>('defi-wallet', queryParams, 'DeFi Wallet page');
+	return fetchWithErrorHandling<TDeFiWalletPage>('defi-wallet', queryParams, 'DeFi Wallet page')
 }
 
 /************************************************************************************************
@@ -131,9 +131,9 @@ export async function fetchDeFiWalletPage(): Promise<TDeFiWalletPage | null> {
  ************************************************************************************************/
 export async function fetchEarnPage(): Promise<TEarnPage | null> {
 	const queryParams =
-		'fields[0]=title&populate[1]=buttonCta&populate[3]=featuredImg&fields[4]=description&populate[10]=grid&populate[11]=grid.cardCta&populate[12]=grid.cardCta.buttonCta&populate[13]=grid.cardCta.imageBg&populate[14]=grid.card&populate[15]=grid.card.image&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en';
+		'fields[0]=title&populate[1]=buttonCta&populate[3]=featuredImg&fields[4]=description&populate[10]=grid&populate[11]=grid.cardCta&populate[12]=grid.cardCta.buttonCta&populate[13]=grid.cardCta.imageBg&populate[14]=grid.card&populate[15]=grid.card.image&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en'
 
-	return fetchWithErrorHandling<TEarnPage>('earn', queryParams, 'Earn page');
+	return fetchWithErrorHandling<TEarnPage>('earn', queryParams, 'Earn page')
 }
 
 /************************************************************************************************
@@ -149,9 +149,9 @@ export async function fetchEarnPage(): Promise<TEarnPage | null> {
  ************************************************************************************************/
 export async function fetchMobileAppPage(): Promise<TMobileAppPage | null> {
 	const queryParams =
-		'fields[0]=title&populate[1]=buttonDownload&fields[2]=description&populate[3]=featuredImg&populate[4]=gridLadder&populate[5]=gridLadder.steps&populate[6]=gridLadder.steps.buttonCta&populate[7]=gridLadder.steps.image&pagination[pageSize]=1&pagination[page]=1&status=published';
+		'fields[0]=title&populate[1]=buttonDownload&fields[2]=description&populate[3]=featuredImg&populate[4]=gridLadder&populate[5]=gridLadder.steps&populate[6]=gridLadder.steps.buttonCta&populate[7]=gridLadder.steps.image&pagination[pageSize]=1&pagination[page]=1&status=published'
 
-	return fetchWithErrorHandling<TMobileAppPage>('mobile-app', queryParams, 'Mobile App page');
+	return fetchWithErrorHandling<TMobileAppPage>('mobile-app', queryParams, 'Mobile App page')
 }
 
 /************************************************************************************************
@@ -169,7 +169,7 @@ export async function fetchMobileAppPage(): Promise<TMobileAppPage | null> {
  ************************************************************************************************/
 export async function fetchTradePage(): Promise<TTradePage | null> {
 	const queryParams =
-		'fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&pagination[pageSize]=10&populate[23]=gridDisplaced.cards.items&populate[24]=gridDisplaced.cards.items.image&pagination[page]=1&status=published&locale=en';
+		'fields[0]=title&populate[1]=buttonCta&fields[2]=description&populate[3]=featuredImg&populate[4]=stats&populate[5]=cardsRow&populate[6]=cardsRow.cards&populate[7]=cardsRow.cards.image&populate[8]=cardsRow.ctaBlock&populate[9]=cardsRow.ctaBlock.icon&populate[20]=gridDisplaced&populate[21]=gridDisplaced.cards&populate[22]=gridDisplaced.cards.image&pagination[pageSize]=10&populate[23]=gridDisplaced.cards.items&populate[24]=gridDisplaced.cards.items.image&pagination[page]=1&status=published&locale=en'
 
-	return fetchWithErrorHandling<TTradePage>('trade', queryParams, 'Trade page');
+	return fetchWithErrorHandling<TTradePage>('trade', queryParams, 'Trade page')
 }

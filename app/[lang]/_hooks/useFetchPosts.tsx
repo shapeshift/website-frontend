@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react'
 
-import {useCachedPosts} from '@/app/[lang]/_contexts/CachedPostsContext';
+import {useCachedPosts} from '@/app/[lang]/_contexts/CachedPostsContext'
 
-import type {TBlogListResponse, TBlogPost, TPagination} from '@/app/[lang]/_components/strapi/types';
+import type {TBlogListResponse, TBlogPost, TPagination} from '@/app/[lang]/_components/strapi/types'
 
 /********************************************************************************************
  * Custom hook for fetching blog posts from Strapi
@@ -54,16 +54,16 @@ export function useFetchPosts({
 	isLoading: boolean;
 	error: Error | null;
 } {
-	const [posts, setPosts] = useState<TBlogPost[]>([]);
-	const [pagination, setPagination] = useState<TPagination | undefined>(undefined);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const [error, setError] = useState<Error | null>(null);
-	const {setCachedResponse, setCachedParams, cachedResponse, cachedParams} = useCachedPosts();
+	const [posts, setPosts] = useState<TBlogPost[]>([])
+	const [pagination, setPagination] = useState<TPagination | undefined>(undefined)
+	const [isLoading, setIsLoading] = useState<boolean>(true)
+	const [error, setError] = useState<Error | null>(null)
+	const {setCachedResponse, setCachedParams, cachedResponse, cachedParams} = useCachedPosts()
 
 	useEffect(() => {
 		if (skip) {
-			setIsLoading(false);
-			return;
+			setIsLoading(false)
+			return
 		}
 
 		/********************************************************************************************
@@ -80,10 +80,10 @@ export function useFetchPosts({
 			cachedParams.type === type &&
 			cachedParams.tag === tag
 		) {
-			setPosts(cachedResponse.data);
-			setPagination(cachedResponse.meta.pagination);
-			setIsLoading(false);
-			return;
+			setPosts(cachedResponse.data)
+			setPagination(cachedResponse.meta.pagination)
+			setIsLoading(false)
+			return
 		}
 
 		/********************************************************************************************
@@ -102,18 +102,18 @@ export function useFetchPosts({
 							Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 						}
 					}
-				);
+				)
 
 				if (!res.ok) {
-					throw new Error(`Failed to fetch posts: ${res.status}`);
+					throw new Error(`Failed to fetch posts: ${res.status}`)
 				}
 
-				const data: TBlogListResponse = await res.json();
+				const data: TBlogListResponse = await res.json()
 
-				setPosts(data.data);
-				setPagination(data.meta.pagination);
+				setPosts(data.data)
+				setPagination(data.meta.pagination)
 				if (cachePosts) {
-					setCachedResponse(data);
+					setCachedResponse(data)
 					setCachedParams({
 						page,
 						pageSize,
@@ -122,17 +122,17 @@ export function useFetchPosts({
 						populateContent,
 						type,
 						tag
-					});
+					})
 				}
 			} catch (err) {
-				setError(err as Error);
-				console.error('Error fetching blog posts:', err);
+				setError(err as Error)
+				console.error('Error fetching blog posts:', err)
 			} finally {
-				setIsLoading(false);
+				setIsLoading(false)
 			}
 		}
 
-		fetchPosts();
+		fetchPosts()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		cachePosts,
@@ -160,7 +160,7 @@ export function useFetchPosts({
 		sort,
 		type,
 		tag
-	]);
+	])
 
-	return {posts, isLoading, pagination, error};
+	return {posts, isLoading, pagination, error}
 }

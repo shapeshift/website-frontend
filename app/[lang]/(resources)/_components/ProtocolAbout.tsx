@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type THeaderData = {
 	name: string;
@@ -19,5 +19,5 @@ export function ProtocolAbout(data: THeaderData): ReactNode {
 				</div>
 			</section>
 		</div>
-	);
+	)
 }

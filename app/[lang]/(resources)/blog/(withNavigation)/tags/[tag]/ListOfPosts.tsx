@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import {Fragment, useState} from 'react';
-import ReactPaginate from 'react-paginate';
+import {Fragment, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {BlogPost} from '@/app/[lang]/_components/BlogPost';
-import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts';
-import {IconChevron} from '@/app/[lang]/_icons/IconChevron';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {BlogPost} from '@/app/[lang]/_components/BlogPost'
+import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts'
+import {IconChevron} from '@/app/[lang]/_icons/IconChevron'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {TBlogPost} from '@/app/[lang]/_components/strapi/types';
-import type {ReactElement} from 'react';
+import type {TBlogPost} from '@/app/[lang]/_components/strapi/types'
+import type {ReactElement} from 'react'
 
-const PAGE_SIZE = 12;
-const SORT = 'desc';
+const PAGE_SIZE = 12
+const SORT = 'desc'
 export function ListOfPosts(props: {tag: string}): ReactElement {
-	const {tag} = props;
-	const [page, setPage] = useState(1);
+	const {tag} = props
+	const [page, setPage] = useState(1)
 	const {posts, pagination, isLoading} = useFetchPosts({
 		page,
 		pageSize: PAGE_SIZE,
@@ -24,7 +24,7 @@ export function ListOfPosts(props: {tag: string}): ReactElement {
 		tag,
 		populateContent: true,
 		cachePosts: true
-	});
+	})
 
 	if (isLoading) {
 		return (
@@ -36,7 +36,7 @@ export function ListOfPosts(props: {tag: string}): ReactElement {
 					/>
 				))}
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -84,5 +84,5 @@ export function ListOfPosts(props: {tag: string}): ReactElement {
 
 			<Banner />
 		</Fragment>
-	);
+	)
 }

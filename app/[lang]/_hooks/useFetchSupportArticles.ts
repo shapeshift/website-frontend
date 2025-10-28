@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react'
 
-import {useCachedArticles} from '@/app/[lang]/_contexts/CachedArticlesContext';
+import {useCachedArticles} from '@/app/[lang]/_contexts/CachedArticlesContext'
 
-import type {TArticleListResponse, TPagination, TSupportArticle} from '@/app/[lang]/_components/strapi/types';
+import type {TArticleListResponse, TPagination, TSupportArticle} from '@/app/[lang]/_components/strapi/types'
 
 /********************************************************************************************
  * Custom hook for fetching support articles from Strapi
@@ -48,16 +48,16 @@ export function useFetchSupportArticles({
 	isLoading: boolean;
 	error: Error | null;
 } {
-	const [articles, setArticles] = useState<TSupportArticle[]>([]);
-	const [pagination, setPagination] = useState<TPagination | undefined>(undefined);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const [error, setError] = useState<Error | null>(null);
-	const {setCachedResponse, setCachedParams, cachedResponse, cachedParams} = useCachedArticles();
+	const [articles, setArticles] = useState<TSupportArticle[]>([])
+	const [pagination, setPagination] = useState<TPagination | undefined>(undefined)
+	const [isLoading, setIsLoading] = useState<boolean>(true)
+	const [error, setError] = useState<Error | null>(null)
+	const {setCachedResponse, setCachedParams, cachedResponse, cachedParams} = useCachedArticles()
 
 	useEffect(() => {
 		if (skip) {
-			setIsLoading(false);
-			return;
+			setIsLoading(false)
+			return
 		}
 
 		if (
@@ -68,10 +68,10 @@ export function useFetchSupportArticles({
 			cachedParams.slug === slug &&
 			cachedParams.populateContent === populateContent
 		) {
-			setArticles(cachedResponse.data);
-			setPagination(cachedResponse.meta.pagination);
-			setIsLoading(false);
-			return;
+			setArticles(cachedResponse.data)
+			setPagination(cachedResponse.meta.pagination)
+			setIsLoading(false)
+			return
 		}
 
 		async function fetchArticles(): Promise<void> {
@@ -83,28 +83,28 @@ export function useFetchSupportArticles({
 							Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 						}
 					}
-				);
+				)
 
 				if (!res.ok) {
-					throw new Error(`Failed to fetch support articles: ${res.status}`);
+					throw new Error(`Failed to fetch support articles: ${res.status}`)
 				}
 
-				const data: TArticleListResponse = await res.json();
-				setArticles(data.data);
-				setPagination(data.meta.pagination);
+				const data: TArticleListResponse = await res.json()
+				setArticles(data.data)
+				setPagination(data.meta.pagination)
 				if (cacheArticles) {
-					setCachedResponse(data);
-					setCachedParams({page, pageSize, sort, slug, populateContent});
+					setCachedResponse(data)
+					setCachedParams({page, pageSize, sort, slug, populateContent})
 				}
 			} catch (err) {
-				setError(err as Error);
-				console.error('Error fetching support articles:', err);
+				setError(err as Error)
+				console.error('Error fetching support articles:', err)
 			} finally {
-				setIsLoading(false);
+				setIsLoading(false)
 			}
 		}
 
-		fetchArticles();
+		fetchArticles()
 	}, [
 		cacheArticles,
 		cachedParams.page,
@@ -126,7 +126,7 @@ export function useFetchSupportArticles({
 		skip,
 		slug,
 		sort
-	]);
+	])
 
-	return {articles, isLoading, pagination, error};
+	return {articles, isLoading, pagination, error}
 }

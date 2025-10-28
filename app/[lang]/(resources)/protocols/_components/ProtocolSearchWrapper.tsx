@@ -6,16 +6,16 @@
  * The search functionality filters protocols based on their names.
  */
 
-'use client';
+'use client'
 
-import {useState} from 'react';
+import {useState} from 'react'
 
-import {SearchBar} from '@/app/[lang]/_components/SearchBar';
+import {SearchBar} from '@/app/[lang]/_components/SearchBar'
 
-import {ProtocolList} from '../../_components/ProtocolList';
+import {ProtocolList} from '../../_components/ProtocolList'
 
-import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /**************************************************************************************************
  ** ProtocolSearchWrapper Component provides search functionality for protocols
@@ -42,25 +42,25 @@ export function ProtocolSearchWrapper({protocols}: TProtocolSearchWrapperProps):
 	 ** - filteredProtocols: protocols filtered by search query
 	 ** - searchQuery: current search input value
 	 *********************************************************************************************/
-	const [filteredProtocols, setFilteredProtocols] = useState(protocols);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [filteredProtocols, setFilteredProtocols] = useState(protocols)
+	const [searchQuery, setSearchQuery] = useState('')
 
 	/**********************************************************************************************
 	 ** Search Handler
 	 ** Filters protocols based on name matches (case-insensitive)
 	 *********************************************************************************************/
 	const handleSearch = (query: string): void => {
-		setSearchQuery(query);
-		const filtered = protocols.filter(protocol => protocol.name.toLowerCase().includes(query.toLowerCase()));
-		setFilteredProtocols(filtered);
-	};
+		setSearchQuery(query)
+		const filtered = protocols.filter(protocol => protocol.name.toLowerCase().includes(query.toLowerCase()))
+		setFilteredProtocols(filtered)
+	}
 
 	/**********************************************************************************************
 	 ** Protocol Filtering
 	 ** Split protocols into featured and non-featured categories
 	 *********************************************************************************************/
-	const featuredProtocols = filteredProtocols?.filter(protocol => protocol.isFeatured);
-	const nonFeaturedProtocols = filteredProtocols?.filter(protocol => !protocol.isFeatured);
+	const featuredProtocols = filteredProtocols?.filter(protocol => protocol.isFeatured)
+	const nonFeaturedProtocols = filteredProtocols?.filter(protocol => !protocol.isFeatured)
 
 	return (
 		<>
@@ -91,5 +91,5 @@ export function ProtocolSearchWrapper({protocols}: TProtocolSearchWrapperProps):
 				/>
 			</section>
 		</>
-	);
+	)
 }

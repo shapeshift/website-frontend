@@ -8,12 +8,12 @@
  * - Pagination state
  ********************************************************************************************/
 
-'use client';
+'use client'
 
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useState} from 'react'
 
-import type {TArticleListResponse} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TArticleListResponse} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /********************************************************************************************
  * Type definition for cached query parameters
@@ -56,7 +56,7 @@ const ArticlesContext = createContext<{
 		populateContent: undefined
 	},
 	setCachedParams: () => {}
-});
+})
 
 /**
  * Provider component for support articles caching functionality
@@ -74,14 +74,14 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
 				total: 0
 			}
 		}
-	});
+	})
 	const [cachedParams, setCachedParams] = useState<TCachedParams>({
 		page: undefined,
 		pageSize: undefined,
 		sort: undefined,
 		slug: undefined,
 		populateContent: undefined
-	});
+	})
 
 	return (
 		<ArticlesContext.Provider
@@ -93,7 +93,7 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
 			}}>
 			{children}
 		</ArticlesContext.Provider>
-	);
+	)
 }
 
 /**
@@ -107,5 +107,5 @@ export function useCachedArticles(): {
 	cachedParams: TCachedParams;
 	setCachedParams: (params: TCachedParams) => void;
 } {
-	return useContext(ArticlesContext);
+	return useContext(ArticlesContext)
 }

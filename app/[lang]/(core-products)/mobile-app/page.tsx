@@ -15,27 +15,27 @@
  ** - Includes text content, download buttons, and images
  ************************************************************************************************/
 
-import {notFound} from 'next/navigation';
-import Script from 'next/script';
+import {notFound} from 'next/navigation'
+import Script from 'next/script'
 
-import GridLadder from '@/app/[lang]/_components/strapi/products/GridLadder';
-import {generateProductSchema} from '@/app/[lang]/_utils/schema';
+import GridLadder from '@/app/[lang]/_components/strapi/products/GridLadder'
+import {generateProductSchema} from '@/app/[lang]/_utils/schema'
 
-import {BackgroundImage} from '../_components/BackgroundImage';
-import {DownloadButtons} from '../_components/DownloadButtons';
-import {fetchMobileAppPage} from '../_components/ProductFetcher';
-import {ProductFooterBanner} from '../_components/ProductFooterBanner';
-import {ProductHero} from '../_components/ProductHero';
+import {BackgroundImage} from '../_components/BackgroundImage'
+import {DownloadButtons} from '../_components/DownloadButtons'
+import {fetchMobileAppPage} from '../_components/ProductFetcher'
+import {ProductFooterBanner} from '../_components/ProductFooterBanner'
+import {ProductHero} from '../_components/ProductHero'
 
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
+import type {Metadata} from 'next'
+import type {ReactNode} from 'react'
 
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {
-	const page = await fetchMobileAppPage();
+	const page = await fetchMobileAppPage()
 
 	if (!page) {
-		return {};
+		return {}
 	}
 
 	return {
@@ -60,28 +60,28 @@ export async function generateMetadata(): Promise<Metadata> {
 			description: page.description,
 			images: [`${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`]
 		}
-	};
+	}
 }
 
 export default async function MobileAppPage(): Promise<ReactNode> {
 	// Fetch page data from Strapi CMS
-	const page = await fetchMobileAppPage();
+	const page = await fetchMobileAppPage()
 
 	// Handle case where page data is not found
 	if (!page) {
-		console.error('Mobile App page data not found');
-		return notFound();
+		console.error('Mobile App page data not found')
+		return notFound()
 	}
 
 	// Generate structured data for product
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
-	const pageURL = `${baseUrl}/mobile-app`;
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+	const pageURL = `${baseUrl}/mobile-app`
 
 	// Map ladder step data to features format for schema
 	const features = page.gridLadder.steps.map(step => ({
 		title: step.title,
 		description: step.description
-	}));
+	}))
 
 	// Generate product schema with app-specific properties
 	const productSchema = generateProductSchema({
@@ -90,7 +90,7 @@ export default async function MobileAppPage(): Promise<ReactNode> {
 		featuredImage: `${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`,
 		pageURL,
 		features
-	});
+	})
 
 	return (
 		<main className={'flex w-full flex-col items-center justify-center'}>
@@ -119,5 +119,5 @@ export default async function MobileAppPage(): Promise<ReactNode> {
 			{/* Footer banner with app store links */}
 			<ProductFooterBanner productName={'mobile-app'} />
 		</main>
-	);
+	)
 }

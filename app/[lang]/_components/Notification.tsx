@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react'
 
-import {Modal} from './Modal';
-import {NotificationBar} from './NotificationBar';
-import {Popup} from './Popup';
+import {Modal} from './Modal'
+import {NotificationBar} from './NotificationBar'
+import {Popup} from './Popup'
 
-import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /****************************************************************************************************
  * Notification system component that manages different types of notifications (modal, banner,
@@ -21,67 +21,67 @@ import type {ReactNode} from 'react';
 const safeLocalStorage = {
 	getItem: (key: string): string | null => {
 		try {
-			return localStorage.getItem(key);
+			return localStorage.getItem(key)
 		} catch {
-			return null;
+			return null
 		}
 	},
 	setItem: (key: string, value: string): void => {
 		try {
-			localStorage.setItem(key, value);
+			localStorage.setItem(key, value)
 		} catch (error) {
-			console.warn('Failed to save to localStorage:', error);
+			console.warn('Failed to save to localStorage:', error)
 		}
 	}
-};
+}
 
 export function Notification(): ReactNode {
-	const [notification, setNotification] = useState<TStrapiNotification | null>(null);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [isPopupOpen, setIsPopupOpen] = useState(false);
-	const [isBannerOpen, setIsBannerOpen] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
+	const [notification, setNotification] = useState<TStrapiNotification | null>(null)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isPopupOpen, setIsPopupOpen] = useState(false)
+	const [isBannerOpen, setIsBannerOpen] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 
 	/****************************************************************************************************
 	 * Fetches notification data from Strapi CMS on component mount. Makes an authenticated API call
 	 * to retrieve the current notification configuration.
 	 ****************************************************************************************************/
 	useEffect(() => {
-		const abortController = new AbortController();
+		const abortController = new AbortController()
 
 		const fetchData = async (): Promise<void> => {
 			try {
-				setIsLoading(true);
+				setIsLoading(true)
 				const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/notification?populate=*`, {
 					headers: {
 						Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 					},
 					signal: abortController.signal
-				});
+				})
 
 				if (!res.ok) {
-					throw new Error(`HTTP error! status: ${res.status}`);
+					throw new Error(`HTTP error! status: ${res.status}`)
 				}
 
-				const data = await res.json();
+				const data = await res.json()
 				if (data?.data) {
-					setNotification(data.data);
+					setNotification(data.data)
 				}
 			} catch (error) {
 				if (error instanceof Error && error.name !== 'AbortError') {
-					console.error('Error fetching notification:', error);
+					console.error('Error fetching notification:', error)
 				}
 			} finally {
-				setIsLoading(false);
+				setIsLoading(false)
 			}
-		};
+		}
 
-		fetchData();
+		fetchData()
 
 		return () => {
-			abortController.abort();
-		};
-	}, []);
+			abortController.abort()
+		}
+	}, [])
 
 	/****************************************************************************************************
 	 * Updates notification visibility based on type and enabled status. Checks localStorage for
@@ -89,21 +89,21 @@ export function Notification(): ReactNode {
 	 ****************************************************************************************************/
 	useEffect(() => {
 		if (!notification || isLoading) {
-			return;
+			return
 		}
 
-		const isDismissed = safeLocalStorage.getItem(`notification-dismissed-${notification.title}`) === 'true';
+		const isDismissed = safeLocalStorage.getItem(`notification-dismissed-${notification.title}`) === 'true'
 
 		if (!isDismissed && notification.enabled) {
-			setIsBannerOpen(notification.type === 'bar');
-			setIsModalOpen(notification.type === 'modal');
-			setIsPopupOpen(notification.type === 'popup');
+			setIsBannerOpen(notification.type === 'bar')
+			setIsModalOpen(notification.type === 'modal')
+			setIsPopupOpen(notification.type === 'popup')
 		} else {
-			setIsBannerOpen(false);
-			setIsModalOpen(false);
-			setIsPopupOpen(false);
+			setIsBannerOpen(false)
+			setIsModalOpen(false)
+			setIsPopupOpen(false)
 		}
-	}, [notification, isLoading]);
+	}, [notification, isLoading])
 
 	/****************************************************************************************************
 	 * Handles closing of notifications by storing dismissal state in localStorage and updating the
@@ -113,7 +113,7 @@ export function Notification(): ReactNode {
 	 ****************************************************************************************************/
 	const handleClose = (type: 'bar' | 'modal' | 'popup'): void => {
 		if (notification?.title) {
-			safeLocalStorage.setItem(`notification-dismissed-${notification.title}`, 'true');
+			safeLocalStorage.setItem(`notification-dismissed-${notification.title}`, 'true')
 		}
 
 		switch (type) {
@@ -129,10 +129,10 @@ export function Notification(): ReactNode {
 			default:
 				break
 		}
-	};
+	}
 
 	if (isLoading) {
-		return null;
+		return null
 	}
 
 	return (
@@ -153,5 +153,5 @@ export function Notification(): ReactNode {
 				onClose={() => handleClose('popup')}
 			/>
 		</>
-	);
+	)
 }

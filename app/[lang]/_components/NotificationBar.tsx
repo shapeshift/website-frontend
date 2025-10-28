@@ -1,9 +1,9 @@
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import {IconClose} from '../_icons/IconClose';
+import {IconClose} from '../_icons/IconClose'
 
-import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types';
-import type {ReactElement} from 'react';
+import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types'
+import type {ReactElement} from 'react'
 
 export function NotificationBar({
 	notification,
@@ -15,7 +15,7 @@ export function NotificationBar({
 	isOpen: boolean;
 }): ReactElement | null {
 	if (!notification) {
-		return null;
+		return null
 	}
 	return (
 		<>
@@ -45,5 +45,5 @@ export function NotificationBar({
 				</div>
 			)}
 		</>
-	);
+	)
 }

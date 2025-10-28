@@ -1,26 +1,26 @@
-'use client';
+'use client'
 
-import 'highlight.js/styles/github-dark.css';
-import {notFound, useParams, useRouter} from 'next/navigation';
-import Script from 'next/script';
+import 'highlight.js/styles/github-dark.css'
+import {notFound, useParams, useRouter} from 'next/navigation'
+import Script from 'next/script'
 
-import {BlogContent} from '@/app/[lang]/(resources)/blog/[slug]/BlogContent';
-import {BlogSkeleton} from '@/app/[lang]/(resources)/blog/[slug]/BlogSkeleton';
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {useCachedPosts} from '@/app/[lang]/_contexts/CachedPostsContext';
-import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts';
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
-import {generateBlogPostSchema} from '@/app/[lang]/_utils/schema';
+import {BlogContent} from '@/app/[lang]/(resources)/blog/[slug]/BlogContent'
+import {BlogSkeleton} from '@/app/[lang]/(resources)/blog/[slug]/BlogSkeleton'
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {useCachedPosts} from '@/app/[lang]/_contexts/CachedPostsContext'
+import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts'
+import {IconBack} from '@/app/[lang]/_icons/IconBack'
+import {generateBlogPostSchema} from '@/app/[lang]/_utils/schema'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export default function BlogPost(): ReactNode {
-	const {slug} = useParams();
+	const {slug} = useParams()
 
 	const {
 		cachedResponse: {data: cachedPosts}
-	} = useCachedPosts();
+	} = useCachedPosts()
 	const {posts, isLoading} = useFetchPosts({
 		page: 1,
 		pageSize: 1,
@@ -29,22 +29,22 @@ export default function BlogPost(): ReactNode {
 		cachePosts: true,
 		slug: slug as string,
 		skip: !!cachedPosts.find(p => p.slug === slug)
-	});
+	})
 
-	const post = [...cachedPosts, ...posts].find(p => p.slug === slug);
-	const router = useRouter();
+	const post = [...cachedPosts, ...posts].find(p => p.slug === slug)
+	const router = useRouter()
 
 	if (isLoading) {
-		return <BlogSkeleton />;
+		return <BlogSkeleton />
 	}
 
 	if (!post) {
-		notFound();
+		notFound()
 	}
 
 	// Generate structured data for the blog post
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
-	const blogPostSchema = generateBlogPostSchema(post, baseUrl);
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+	const blogPostSchema = generateBlogPostSchema(post, baseUrl)
 
 	return (
 		<>
@@ -88,5 +88,5 @@ export default function BlogPost(): ReactNode {
 				</div>
 			)}
 		</>
-	);
+	)
 }

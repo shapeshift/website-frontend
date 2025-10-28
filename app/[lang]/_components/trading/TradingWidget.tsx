@@ -1,65 +1,65 @@
-'use client';
+'use client'
 
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react'
 
-import {useDebounce} from '@/app/[lang]/_hooks/useDebounce';
-import {IconArrow} from '@/app/[lang]/_icons/IconArrow';
-import {IconQuestion} from '@/app/[lang]/_icons/IconQuestion';
-import {cl} from '@/app/[lang]/_utils/cl';
-import {SUPPORTED_CHAINS, SUPPORTED_TOKENS, TOKEN_CHAIN_SUPPORT} from '@/app/[lang]/_utils/constants';
-import {formatNumber} from '@/app/[lang]/_utils/formatNumber';
+import {useDebounce} from '@/app/[lang]/_hooks/useDebounce'
+import {IconArrow} from '@/app/[lang]/_icons/IconArrow'
+import {IconQuestion} from '@/app/[lang]/_icons/IconQuestion'
+import {cl} from '@/app/[lang]/_utils/cl'
+import {SUPPORTED_CHAINS, SUPPORTED_TOKENS, TOKEN_CHAIN_SUPPORT} from '@/app/[lang]/_utils/constants'
+import {formatNumber} from '@/app/[lang]/_utils/formatNumber'
 
-import {ChainSelect} from './ChainSelect';
-import {TokenSelect} from './TokenSelect';
-import {LocalizedLink} from '../LocalizedLink';
+import {ChainSelect} from './ChainSelect'
+import {TokenSelect} from './TokenSelect'
+import {LocalizedLink} from '../LocalizedLink'
 
-import type {TChain} from './ChainSelect';
-import type {TToken} from './TokenSelect';
-import type {ReactNode} from 'react';
+import type {TChain} from './ChainSelect'
+import type {TToken} from './TokenSelect'
+import type {ReactNode} from 'react'
 
 export function TradingWidget(): ReactNode {
-	const [fromToken, setFromToken] = useState<TToken>(SUPPORTED_TOKENS[0]);
-	const [toToken, setToToken] = useState<TToken>(SUPPORTED_TOKENS[1]);
-	const [fromChain, setFromChain] = useState<TChain>(SUPPORTED_CHAINS[2]);
-	const [toChain, setToChain] = useState<TChain>(SUPPORTED_CHAINS[0]);
-	const [amount, setAmount] = useState<string>('0');
+	const [fromToken, setFromToken] = useState<TToken>(SUPPORTED_TOKENS[0])
+	const [toToken, setToToken] = useState<TToken>(SUPPORTED_TOKENS[1])
+	const [fromChain, setFromChain] = useState<TChain>(SUPPORTED_CHAINS[2])
+	const [toChain, setToChain] = useState<TChain>(SUPPORTED_CHAINS[0])
+	const [amount, setAmount] = useState<string>('0')
 	const [outputAmount, setOutputAmount] = useState({
 		amount: 0,
 		isNative: true
-	});
-	const [openSelect, setOpenSelect] = useState<string | null>(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState('');
+	})
+	const [openSelect, setOpenSelect] = useState<string | null>(null)
+	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState('')
 
-	const debouncedAmount = useDebounce(amount);
+	const debouncedAmount = useDebounce(amount)
 
 	useEffect(() => {
 		if (error) {
-			setOutputAmount({amount: 0, isNative: true});
+			setOutputAmount({amount: 0, isNative: true})
 		}
-	}, [error, fromChain.id, fromToken.symbol, toChain.id, toToken.symbol]);
+	}, [error, fromChain.id, fromToken.symbol, toChain.id, toToken.symbol])
 
 	const fetchFromDaemon = useCallback((): void => {
-		setError('');
+		setError('')
 		try {
-			setIsLoading(true);
-			const numericAmount = Number(debouncedAmount);
+			setIsLoading(true)
+			const numericAmount = Number(debouncedAmount)
 			fetch(
 				`https://daemon.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
 			)
 				.then(async res => res.json())
 				.then(data => {
-					setOutputAmount({amount: data.expected_amount_out, isNative: true});
+					setOutputAmount({amount: data.expected_amount_out, isNative: true})
 					if (!data.expected_amount_out) {
-						setError('No rate available');
+						setError('No rate available')
 					}
 				})
 				.finally(() => {
-					setIsLoading(false);
-				});
+					setIsLoading(false)
+				})
 		} catch {
-			setError('No rate available');
-			setIsLoading(false);
+			setError('No rate available')
+			setIsLoading(false)
 		}
 	}, [
 		debouncedAmount,
@@ -69,13 +69,13 @@ export function TradingWidget(): ReactNode {
 		toChain.requestKey,
 		toToken.requestKey,
 		toToken.symbol
-	]);
+	])
 
 	const fetchFromChainFlip = useCallback((): void => {
-		setError('');
-		setIsLoading(true);
+		setError('')
+		setIsLoading(true)
 		try {
-			const numericAmount = Number(debouncedAmount);
+			const numericAmount = Number(debouncedAmount)
 			fetch(
 				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${fromToken.symbol}.${fromChain.requestKey}&destinationAsset=${toToken.symbol}.${toChain.requestKey}&amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
 			)
@@ -84,17 +84,17 @@ export function TradingWidget(): ReactNode {
 					setOutputAmount({
 						amount: data[0]?.egressAmountNative,
 						isNative: true
-					});
+					})
 					if (!data?.[0]?.egressAmountNative) {
-						setError('No rate available');
+						setError('No rate available')
 					}
 				})
 				.finally(() => {
-					setIsLoading(false);
-				});
+					setIsLoading(false)
+				})
 		} catch {
-			setError('No rate available');
-			setIsLoading(false);
+			setError('No rate available')
+			setIsLoading(false)
 		}
 	}, [
 		debouncedAmount,
@@ -103,29 +103,29 @@ export function TradingWidget(): ReactNode {
 		fromChain.requestKey,
 		toToken.symbol,
 		toChain.requestKey
-	]);
+	])
 
 	useEffect(() => {
 		if (debouncedAmount === '0' || debouncedAmount === '') {
-			return;
+			return
 		}
 
 		if (toToken.symbol === fromToken.symbol && toChain.id === fromChain.id) {
-			return setError('Please select different tokens');
+			return setError('Please select different tokens')
 		}
 		if (
 			(fromChain.id === 'solana' && toChain.id === 'bitcoin') ||
 			(fromToken.symbol === 'SOL' && toToken.symbol === 'ETH') ||
 			(fromToken.symbol === 'ETH' && toToken.symbol === 'SOL')
 		) {
-			return setError('No rate available');
+			return setError('No rate available')
 		}
 
 		if (fromChain.id === 'solana' || toChain.id === 'solana') {
-			return fetchFromChainFlip();
+			return fetchFromChainFlip()
 		}
 
-		return fetchFromDaemon();
+		return fetchFromDaemon()
 	}, [
 		debouncedAmount,
 		fetchFromChainFlip,
@@ -136,62 +136,62 @@ export function TradingWidget(): ReactNode {
 		toChain.id,
 		toChain.name,
 		toToken.symbol
-	]);
+	])
 
 	// Get supported chains for a token
 	const getSupportedChains = (token: TToken): TChain[] => {
-		const supportedChainIds = TOKEN_CHAIN_SUPPORT[token.symbol];
-		return SUPPORTED_CHAINS.filter(chain => supportedChainIds?.includes(chain.id));
-	};
+		const supportedChainIds = TOKEN_CHAIN_SUPPORT[token.symbol]
+		return SUPPORTED_CHAINS.filter(chain => supportedChainIds?.includes(chain.id))
+	}
 
 	const handleTokenSelect = (token: TToken, isFrom: boolean): void => {
-		const supportedChains = getSupportedChains(token);
+		const supportedChains = getSupportedChains(token)
 		if (isFrom) {
-			setFromToken(token);
+			setFromToken(token)
 			if (supportedChains.length === 1) {
-				setFromChain(supportedChains[0]);
+				setFromChain(supportedChains[0])
 			} else if (!supportedChains.find(chain => chain.id === fromChain.id)) {
-				setFromChain(supportedChains[0]);
+				setFromChain(supportedChains[0])
 			}
 		} else {
-			setToToken(token);
+			setToToken(token)
 			if (supportedChains.length === 1) {
-				setToChain(supportedChains[0]);
+				setToChain(supportedChains[0])
 			} else if (!supportedChains.find(chain => chain.id === toChain.id)) {
-				setToChain(supportedChains[0]);
+				setToChain(supportedChains[0])
 			}
 		}
-	};
+	}
 
 	const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		setOutputAmount({amount: 0, isNative: true});
-		const value = e.target.value;
+		setOutputAmount({amount: 0, isNative: true})
+		const value = e.target.value
 		// Allow decimal numbers with up to 18 decimal places
 		if (/^\d*\.?\d{0,18}$/.test(value)) {
 			if (value === '') {
-				setAmount('0');
-				return;
+				setAmount('0')
+				return
 			}
 			if (value.length > 1 && value[0] === '0' && value[1] !== '.') {
-				setAmount(value.slice(1));
-				return;
+				setAmount(value.slice(1))
+				return
 			}
-			setAmount(value);
+			setAmount(value)
 		}
-	};
+	}
 
 	const handleSwap = (): void => {
-		const tempToken = fromToken;
-		const tempChain = fromChain;
+		const tempToken = fromToken
+		const tempChain = fromChain
 
-		setFromToken(toToken);
-		setFromChain(toChain);
-		setToToken(tempToken);
-		setToChain(tempChain);
-	};
+		setFromToken(toToken)
+		setFromChain(toChain)
+		setToToken(tempToken)
+		setToChain(tempChain)
+	}
 
 	const generateTradeUrl = useCallback((): string => {
-		const baseUrl = 'https://app.shapeshift.com/?utm_source=widget&utm_medium=cta&utm_campaign=getstarted#/trade/';
+		const baseUrl = 'https://app.shapeshift.com/?utm_source=widget&utm_medium=cta&utm_campaign=getstarted#/trade/'
 
 		// Map chain IDs to their respective parameters
 		const chainParams: Record<string, string> = {
@@ -199,7 +199,7 @@ export function TradingWidget(): ReactNode {
 			ethereum: 'eip155:1/slip44:60',
 			base: 'eip155:8453/slip44:60',
 			solana: 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp/slip44:501'
-		};
+		}
 
 		// Map token decimals
 		const tokenDecimals: Record<string, number> = {
@@ -207,34 +207,34 @@ export function TradingWidget(): ReactNode {
 			BTC: 8,
 			ETH: 18,
 			SOL: 9
-		};
+		}
 
 		// Get chain parameters
-		const fromChainParam = chainParams[fromChain.id] || '';
-		const toChainParam = chainParams[toChain.id] || '';
+		const fromChainParam = chainParams[fromChain.id] || ''
+		const toChainParam = chainParams[toChain.id] || ''
 
 		// Format amount in smallest unit using the correct decimals for the source token
-		const decimals = tokenDecimals[fromToken.symbol] || 18;
-		const amountInSmallestUnit = Number(amount) > 0 ? Math.floor(Number(amount) * 10 ** decimals).toString() : '0';
+		const decimals = tokenDecimals[fromToken.symbol] || 18
+		const amountInSmallestUnit = Number(amount) > 0 ? Math.floor(Number(amount) * 10 ** decimals).toString() : '0'
 
 		// For SOL to USDT
 		if (fromToken.symbol === 'SOL' && toToken.symbol === 'USDT') {
-			return `${baseUrl}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${fromChainParam}/${amountInSmallestUnit}`;
+			return `${baseUrl}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${fromChainParam}/${amountInSmallestUnit}`
 		}
 
 		// For USDT to BTC
 		if (fromToken.symbol === 'USDT' && toToken.symbol === 'BTC') {
-			return `${baseUrl}/${toChainParam}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${amountInSmallestUnit}`;
+			return `${baseUrl}/${toChainParam}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${amountInSmallestUnit}`
 		}
 
 		// For BTC to USDT
 		if (fromToken.symbol === 'BTC' && toToken.symbol === 'USDT') {
-			return `${baseUrl}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${fromChainParam}/${amountInSmallestUnit}`;
+			return `${baseUrl}/eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7/${fromChainParam}/${amountInSmallestUnit}`
 		}
 
 		// For all other tokens, use the standard format
-		return `${baseUrl}/${toChainParam}/${fromChainParam}/${amountInSmallestUnit}`;
-	}, [fromChain.id, toChain.id, amount, fromToken.symbol, toToken.symbol]);
+		return `${baseUrl}/${toChainParam}/${fromChainParam}/${amountInSmallestUnit}`
+	}, [fromChain.id, toChain.id, amount, fromToken.symbol, toToken.symbol])
 
 	return (
 		<div className={'flex max-w-[400px] flex-col rounded-2xl bg-[#17191c] lg:w-[400px]'}>
@@ -347,5 +347,5 @@ export function TradingWidget(): ReactNode {
 				</LocalizedLink>
 			</div>
 		</div>
-	);
+	)
 }

@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function ShapeshiftLogo(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -83,5 +83,5 @@ export function ShapeshiftLogo(props: SVGProps<SVGSVGElement>): ReactNode {
 				</clipPath>
 			</defs>
 		</svg>
-	);
+	)
 }

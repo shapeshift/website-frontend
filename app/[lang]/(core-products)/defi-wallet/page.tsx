@@ -15,28 +15,28 @@
  ** - Includes text content, button configurations, and images
  ************************************************************************************************/
 
-import {notFound} from 'next/navigation';
-import Script from 'next/script';
+import {notFound} from 'next/navigation'
+import Script from 'next/script'
 
-import {Card} from '@/app/[lang]/_components/strapi/cards-row/Card';
-import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow';
-import {generateProductSchema} from '@/app/[lang]/_utils/schema';
+import {Card} from '@/app/[lang]/_components/strapi/cards-row/Card'
+import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow'
+import {generateProductSchema} from '@/app/[lang]/_utils/schema'
 
-import {BackgroundImage} from '../_components/BackgroundImage';
-import {fetchDeFiWalletPage} from '../_components/ProductFetcher';
-import {ProductFooterBanner} from '../_components/ProductFooterBanner';
-import {ProductHero} from '../_components/ProductHero';
+import {BackgroundImage} from '../_components/BackgroundImage'
+import {fetchDeFiWalletPage} from '../_components/ProductFetcher'
+import {ProductFooterBanner} from '../_components/ProductFooterBanner'
+import {ProductHero} from '../_components/ProductHero'
 
-import type {TCard} from '@/app/[lang]/_components/strapi/types';
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
+import type {TCard} from '@/app/[lang]/_components/strapi/types'
+import type {Metadata} from 'next'
+import type {ReactNode} from 'react'
 
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {
-	const page = await fetchDeFiWalletPage();
+	const page = await fetchDeFiWalletPage()
 
 	if (!page) {
-		return {};
+		return {}
 	}
 
 	return {
@@ -61,28 +61,28 @@ export async function generateMetadata(): Promise<Metadata> {
 			description: page.description,
 			images: [`${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`]
 		}
-	};
+	}
 }
 
 export default async function DeFiWalletPage(): Promise<ReactNode> {
 	// Fetch page data from Strapi CMS
-	const page = await fetchDeFiWalletPage();
+	const page = await fetchDeFiWalletPage()
 
 	// Handle case where page data is not found
 	if (!page) {
-		console.error('DeFi Wallet page data not found');
-		return notFound();
+		console.error('DeFi Wallet page data not found')
+		return notFound()
 	}
 
 	// Generate structured data for product
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
-	const pageURL = `${baseUrl}/defi-wallet`;
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+	const pageURL = `${baseUrl}/defi-wallet`
 
 	// Map card data to features format for schema
 	const features = page.cardsRow.cards.map(card => ({
 		title: card.title,
 		description: card.description
-	}));
+	}))
 
 	// Generate product schema
 	const productSchema = generateProductSchema({
@@ -91,7 +91,7 @@ export default async function DeFiWalletPage(): Promise<ReactNode> {
 		featuredImage: `${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`,
 		pageURL,
 		features
-	});
+	})
 
 	return (
 		<main className={'flex w-full flex-col items-center justify-center'}>
@@ -123,5 +123,5 @@ export default async function DeFiWalletPage(): Promise<ReactNode> {
 			{/* Footer banner with CTA */}
 			<ProductFooterBanner productName={'defi-wallet'} />
 		</main>
-	);
+	)
 }

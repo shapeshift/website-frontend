@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts';
+import {Button} from '@/app/[lang]/_components/Button'
+import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts'
 
-import {BlogPost} from './BlogPost';
-import {LocalizedLink} from './LocalizedLink';
+import {BlogPost} from './BlogPost'
+import {LocalizedLink} from './LocalizedLink'
 
-import type {TBlogPost} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TBlogPost} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isWithTitle?: boolean}): ReactNode {
-	const {posts} = useFetchPosts({page: 1, pageSize: limit, sort: 'desc'});
+	const {posts} = useFetchPosts({page: 1, pageSize: limit, sort: 'desc'})
 	return (
 		<div className={'grid w-full grid-cols-1 gap-4 lg:grid-cols-3'}>
 			{isWithTitle && (
@@ -29,5 +29,5 @@ export function LatestBlogPosts({limit, isWithTitle = true}: {limit: number; isW
 				/>
 			))}
 		</div>
-	);
+	)
 }

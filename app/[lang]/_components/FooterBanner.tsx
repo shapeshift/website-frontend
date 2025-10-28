@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import {LocalizedLink} from './LocalizedLink';
-import {cl} from '../_utils/cl';
+import {LocalizedLink} from './LocalizedLink'
+import {cl} from '../_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TFooterBanner = {
 	tag: string;
@@ -45,7 +45,7 @@ export function FooterBanner(data: TFooterBanner): ReactNode | null {
 				</div>
 			</div>
 		</section>
-	);
+	)
 }
 
 export function FooterBannerMobileApp(data: TFooterBanner): ReactNode | null {
@@ -97,5 +97,5 @@ export function FooterBannerMobileApp(data: TFooterBanner): ReactNode | null {
 				</div>
 			</div>
 		</section>
-	);
+	)
 }

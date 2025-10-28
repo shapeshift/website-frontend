@@ -1,11 +1,11 @@
-import {Button} from '@/app/[lang]/_components/Button';
-import HeaderItem from '@/app/[lang]/_components/HeaderItem';
-import {cl} from '@/app/[lang]/_utils/cl';
-import {appProducts, dAppUrl} from '@/app/[lang]/_utils/constants';
-import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products';
+import {Button} from '@/app/[lang]/_components/Button'
+import HeaderItem from '@/app/[lang]/_components/HeaderItem'
+import {cl} from '@/app/[lang]/_utils/cl'
+import {appProducts, dAppUrl} from '@/app/[lang]/_utils/constants'
+import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products'
 
-import type {TAppLink} from '@/app/[lang]/_utils/constants';
-import type {ReactNode} from 'react';
+import type {TAppLink} from '@/app/[lang]/_utils/constants'
+import type {ReactNode} from 'react'
 
 /********************************************************************************************
  * Products expand section in the header
@@ -46,5 +46,5 @@ export function ProductsExpand({setCurrentTab}: {setCurrentTab: (tab: string) =>
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

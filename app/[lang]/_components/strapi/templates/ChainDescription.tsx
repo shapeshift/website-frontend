@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function ChainDescription({chainName, description}: {chainName: string; description: string}): ReactNode {
 	return (
@@ -13,5 +13,5 @@ export function ChainDescription({chainName, description}: {chainName: string; d
 				<p className={'whitespace-break-spaces break-keep text-gray-500'}>{description}</p>
 			</div>
 		</section>
-	);
+	)
 }

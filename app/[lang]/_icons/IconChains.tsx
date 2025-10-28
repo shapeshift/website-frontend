@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconChains(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -40,5 +40,5 @@ export function IconChains(props: SVGProps<SVGSVGElement>): ReactNode {
 				/>
 			</g>
 		</svg>
-	);
+	)
 }

@@ -1,9 +1,9 @@
-import {motion} from 'framer-motion';
-import {useEffect, useRef, useState} from 'react';
+import {motion} from 'framer-motion'
+import {useEffect, useRef, useState} from 'react'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type React from 'react';
+import type React from 'react'
 
 type TAnimateChangeInHeightProps = {
 	children: React.ReactNode;
@@ -18,8 +18,8 @@ type TAnimateChangeInHeightProps = {
  ********************************************************************************************/
 
 export const AnimateChangeInHeight: React.FC<TAnimateChangeInHeightProps> = ({children, className}) => {
-	const containerRef = useRef<HTMLDivElement | null>(null);
-	const [height, setHeight] = useState<number | 'auto'>('auto');
+	const containerRef = useRef<HTMLDivElement | null>(null)
+	const [height, setHeight] = useState<number | 'auto'>('auto')
 
 	/********************************************************************************************
 	 * Effect: Sets up ResizeObserver to track content height changes
@@ -29,18 +29,18 @@ export const AnimateChangeInHeight: React.FC<TAnimateChangeInHeightProps> = ({ch
 		if (containerRef.current) {
 			const resizeObserver = new ResizeObserver(entries => {
 				// We only have one entry, so we can use entries[0].
-				const observedHeight = entries[0].contentRect.height;
-				setHeight(observedHeight);
-			});
+				const observedHeight = entries[0].contentRect.height
+				setHeight(observedHeight)
+			})
 
-			resizeObserver.observe(containerRef.current);
+			resizeObserver.observe(containerRef.current)
 
 			return () => {
 				// Cleanup the observer when the component is unmounted
-				resizeObserver.disconnect();
-			};
+				resizeObserver.disconnect()
+			}
 		}
-	}, []);
+	}, [])
 
 	return (
 		<motion.div
@@ -50,5 +50,5 @@ export const AnimateChangeInHeight: React.FC<TAnimateChangeInHeightProps> = ({ch
 			transition={{duration: 0.1}}>
 			<div ref={containerRef}>{children}</div>
 		</motion.div>
-	);
-};
+	)
+}

@@ -1,14 +1,14 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Button} from '@/app/[lang]/_components/Button'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {TCard, TGridSection} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TCard, TGridSection} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 	if (!data) {
-		return null;
+		return null
 	}
 
 	return (
@@ -51,7 +51,7 @@ export default function Grid({data}: {data: TGridSection}): ReactNode | null {
 				className={'col-span-1 h-[356px]'}
 			/>
 		</section>
-	);
+	)
 }
 
 function Card({data, className}: {data: TCard; className: string}): ReactNode {
@@ -69,5 +69,5 @@ function Card({data, className}: {data: TCard; className: string}): ReactNode {
 				className={'absolute inset-x-0 bottom-0 z-10 mt-auto w-full object-contain'}
 			/>
 		</div>
-	);
+	)
 }

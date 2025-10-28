@@ -4,34 +4,34 @@
  * Renders a list of FAQ items fetched from Strapi CMS with expandable questions and answers.
  ********************************************************************************************/
 
-'use client';
+'use client'
 
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react'
 
-import {QuestionSection} from '@/app/[lang]/_components/QuestionSection';
-import {getFaq} from '@/app/[lang]/_utils/query';
+import {QuestionSection} from '@/app/[lang]/_components/QuestionSection'
+import {getFaq} from '@/app/[lang]/_utils/query'
 
-import type {TFaqSectionItem} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TFaqSectionItem} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export function StrapiFAQ(): ReactNode {
-	const [faqItems, setFaqItems] = useState<TFaqSectionItem[]>([]);
+	const [faqItems, setFaqItems] = useState<TFaqSectionItem[]>([])
 
 	/* Callback: Fetches FAQ items from Strapi CMS
 	 * No dependencies as it's a static fetch
 	 */
 	const handleFAQItems = useCallback(async () => {
-		const data = await getFaq();
-		const allQuestions = data?.faqSection.flatMap(section => section.faqSectionItem) ?? [];
-		setFaqItems(allQuestions);
-	}, []);
+		const data = await getFaq()
+		const allQuestions = data?.faqSection.flatMap(section => section.faqSectionItem) ?? []
+		setFaqItems(allQuestions)
+	}, [])
 
 	/* Effect: Loads FAQ items on component mount
 	 * Deps: handleFAQItems - Reruns if the callback changes
 	 */
 	useEffect(() => {
-		handleFAQItems();
-	}, [handleFAQItems]);
+		handleFAQItems()
+	}, [handleFAQItems])
 
 	return (
 		<div>
@@ -44,5 +44,5 @@ export function StrapiFAQ(): ReactNode {
 				))}
 			</div>
 		</div>
-	);
+	)
 }

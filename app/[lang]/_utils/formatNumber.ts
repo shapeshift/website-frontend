@@ -9,15 +9,15 @@
  * formatNumber(1234567, true, 6) // '1.234567'
  */
 export function formatNumber(num: number, isNative: boolean, decimals = 6): string {
-	const fixed = isNative ? num / 10 ** decimals : num;
+	const fixed = isNative ? num / 10 ** decimals : num
 	if (Number.isNaN(fixed)) {
-		return '0';
+		return '0'
 	}
 
-	const numStr = fixed.toString();
-	const [whole, decimal] = numStr.split('.');
+	const numStr = fixed.toString()
+	const [whole, decimal] = numStr.split('.')
 
-	const formattedWhole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	const formattedWhole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
-	return decimal ? `${formattedWhole}.${decimal}` : formattedWhole;
+	return decimal ? `${formattedWhole}.${decimal}` : formattedWhole
 }

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-'use client';
+'use client'
 
-import Script from 'next/script';
-import {useEffect, useState} from 'react';
+import Script from 'next/script'
+import {useEffect, useState} from 'react'
 
-import type {ReactElement} from 'react';
+import type {ReactElement} from 'react'
 
 type SecureMessageEvent = {
 	data: {
@@ -28,24 +28,24 @@ declare global {
 	}
 }
 
-const ALLOWED_CHATWOOT_ORIGINS = ['https://app.chatwoot.com', 'https://widget.chatwoot.com'];
+const ALLOWED_CHATWOOT_ORIGINS = ['https://app.chatwoot.com', 'https://widget.chatwoot.com']
 
-const ALLOWED_MESSAGE_TYPES = ['chatwoot:ready', 'chatwoot:resize', 'chatwoot:toggle', 'chatwoot:unread-message-count'];
+const ALLOWED_MESSAGE_TYPES = ['chatwoot:ready', 'chatwoot:resize', 'chatwoot:toggle', 'chatwoot:unread-message-count']
 
-const BLOCKED_MESSAGE_TYPES = ['popoutChatWindow', 'chatwoot:popout'];
+const BLOCKED_MESSAGE_TYPES = ['popoutChatWindow', 'chatwoot:popout']
 
-const ALLOWED_CHATWOOT_DOMAINS = ['app.chatwoot.com', 'widget.chatwoot.com'];
+const ALLOWED_CHATWOOT_DOMAINS = ['app.chatwoot.com', 'widget.chatwoot.com']
 
 function isValidUrl(urlString: string): boolean {
 	try {
-		const url = new URL(urlString);
+		const url = new URL(urlString)
 
 		if (url.protocol !== 'https:') {
-			return false;
+			return false
 		}
 
 		if (!ALLOWED_CHATWOOT_DOMAINS.includes(url.hostname)) {
-			return false;
+			return false
 		}
 
 		if (
@@ -54,19 +54,19 @@ function isValidUrl(urlString: string): boolean {
 			url.search.includes('javascript') ||
 			url.hash.includes('javascript')
 		) {
-			return false;
+			return false
 		}
 
-		return true;
+		return true
 	} catch {
-		return false;
+		return false
 	}
 }
 
 function sanitizeValue(value: unknown, isUrl = false): string | number | boolean | null {
 	if (typeof value === 'string') {
 		if (isUrl) {
-			return isValidUrl(value) ? value : null;
+			return isValidUrl(value) ? value : null
 		}
 
 		const sanitized = value
@@ -81,73 +81,73 @@ function sanitizeValue(value: unknown, isUrl = false): string | number | boolean
 			.replace(/setInterval\s*\(/gi, '')
 			.replace(/%0[ad]/gi, '')
 			.replace(/%2[ef]/gi, '')
-			.replace(/[\r\n\t]/g, '');
+			.replace(/[\r\n\t]/g, '')
 
-		return sanitized === value ? sanitized : null;
+		return sanitized === value ? sanitized : null
 	}
 	if (typeof value === 'number' || typeof value === 'boolean') {
-		return value;
+		return value
 	}
-	return null;
+	return null
 }
 
 function validateMessageData(data: unknown): data is SecureMessageEvent['data'] {
 	if (typeof data !== 'object' || data === null) {
-		return false;
+		return false
 	}
 
-	const obj = data as Record<string, unknown>;
+	const obj = data as Record<string, unknown>
 
 	if (obj.type && typeof obj.type !== 'string') {
-		return false;
+		return false
 	}
 	if (obj.eventName && typeof obj.eventName !== 'string') {
-		return false;
+		return false
 	}
 
 	if (obj.config && typeof obj.config === 'object' && obj.config !== null) {
 		for (const [key, value] of Object.entries(obj.config)) {
-			const isUrlField = key.toLowerCase().includes('url') || key.toLowerCase().includes('baseurl');
+			const isUrlField = key.toLowerCase().includes('url') || key.toLowerCase().includes('baseurl')
 			if (typeof key !== 'string' || sanitizeValue(value, isUrlField) === null) {
-				return false;
+				return false
 			}
 		}
 	}
 
 	if (obj.payload && typeof obj.payload === 'object' && obj.payload !== null) {
 		for (const [key, value] of Object.entries(obj.payload)) {
-			const isUrlField = key.toLowerCase().includes('url') || key.toLowerCase().includes('baseurl');
+			const isUrlField = key.toLowerCase().includes('url') || key.toLowerCase().includes('baseurl')
 			if (typeof key !== 'string' || sanitizeValue(value, isUrlField) === null) {
-				return false;
+				return false
 			}
 		}
 	}
 
-	return true;
+	return true
 }
 
 function createSecureMessageHandler(): (event: MessageEvent) => void {
 	return (event: MessageEvent) => {
 		if (!event.origin || !ALLOWED_CHATWOOT_ORIGINS.includes(event.origin)) {
-			console.warn('[ChatwootWidget] Blocked message from unauthorized origin:', event.origin);
-			return;
+			console.warn('[ChatwootWidget] Blocked message from unauthorized origin:', event.origin)
+			return
 		}
 
 		if (!validateMessageData(event.data)) {
-			console.warn('[ChatwootWidget] Blocked message with invalid or potentially malicious data');
-			return;
+			console.warn('[ChatwootWidget] Blocked message with invalid or potentially malicious data')
+			return
 		}
 
-		const data = event.data as SecureMessageEvent['data'];
-		const messageType = data.type || data.eventName;
+		const data = event.data as SecureMessageEvent['data']
+		const messageType = data.type || data.eventName
 
 		if (
 			!messageType ||
 			!ALLOWED_MESSAGE_TYPES.includes(messageType) ||
 			BLOCKED_MESSAGE_TYPES.includes(messageType)
 		) {
-			console.warn('[ChatwootWidget] Blocked unauthorized message type:', messageType);
-			return;
+			console.warn('[ChatwootWidget] Blocked unauthorized message type:', messageType)
+			return
 		}
 
 		const sanitizedData = {
@@ -155,106 +155,106 @@ function createSecureMessageHandler(): (event: MessageEvent) => void {
 			config: data.config
 				? Object.fromEntries(
 						Object.entries(data.config).map(([k, v]) => {
-							const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl');
-							return [k, sanitizeValue(v, isUrlField)];
+							const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl')
+							return [k, sanitizeValue(v, isUrlField)]
 						})
 					)
 				: undefined,
 			payload: data.payload
 				? Object.fromEntries(
 						Object.entries(data.payload).map(([k, v]) => {
-							const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl');
-							return [k, sanitizeValue(v, isUrlField)];
+							const isUrlField = k.toLowerCase().includes('url') || k.toLowerCase().includes('baseurl')
+							return [k, sanitizeValue(v, isUrlField)]
 						})
 					)
 				: undefined
-		};
+		}
 
 		if (process.env.NODE_ENV === 'development') {
 			console.log('[ChatwootWidget] Authorized message received:', {
 				origin: event.origin,
 				type: messageType,
 				data: sanitizedData
-			});
+			})
 		}
-	};
+	}
 }
 
 export function ChatwootWidget({nonce}: {nonce?: string}): ReactElement {
-	const [canInit, setCanInit] = useState(false);
-	const [isInitialized, setIsInitialized] = useState(false);
-	const [hasError, setHasError] = useState(false);
+	const [canInit, setCanInit] = useState(false)
+	const [isInitialized, setIsInitialized] = useState(false)
+	const [hasError, setHasError] = useState(false)
 
 	useEffect(() => {
 		if (!canInit || isInitialized || hasError) {
-			return;
+			return
 		}
 
 		if (!process.env.NEXT_PUBLIC_CHATWOOT_API_KEY) {
-			console.error('[ChatwootWidget] NEXT_PUBLIC_CHATWOOT_API_KEY is not set');
-			setHasError(true);
-			return;
+			console.error('[ChatwootWidget] NEXT_PUBLIC_CHATWOOT_API_KEY is not set')
+			setHasError(true)
+			return
 		}
 
-		const secureMessageHandler = createSecureMessageHandler();
-		window.addEventListener('message', secureMessageHandler);
-		console.log('[ChatwootWidget] Secure message handler registered');
+		const secureMessageHandler = createSecureMessageHandler()
+		window.addEventListener('message', secureMessageHandler)
+		console.log('[ChatwootWidget] Secure message handler registered')
 
-		let retryCount = 0;
-		let retryTimeout: NodeJS.Timeout | undefined;
-		const maxRetries = 10;
-		const initialDelay = 100;
+		let retryCount = 0
+		let retryTimeout: NodeJS.Timeout | undefined
+		const maxRetries = 10
+		const initialDelay = 100
 
 		const initChatwoot = (): void => {
 			try {
 				if (!window.chatwootSDK) {
 					if (retryCount < maxRetries) {
-						retryCount++;
-						const delay = initialDelay * Math.pow(2, retryCount - 1);
+						retryCount++
+						const delay = initialDelay * Math.pow(2, retryCount - 1)
 						console.log(
 							`[ChatwootWidget] Chatwoot SDK not found, retrying in ${delay}ms (attempt ${retryCount}/${maxRetries})`
-						);
-						retryTimeout = setTimeout(initChatwoot, delay);
+						)
+						retryTimeout = setTimeout(initChatwoot, delay)
 					} else {
-						console.warn('[ChatwootWidget] Chatwoot SDK not found after maximum retries');
-						setHasError(true);
+						console.warn('[ChatwootWidget] Chatwoot SDK not found after maximum retries')
+						setHasError(true)
 					}
-					return;
+					return
 				}
 
 				if (window.chatwootSDK.isLoaded) {
-					console.log('[ChatwootWidget] Chatwoot SDK already initialized');
-					setIsInitialized(true);
-					return;
+					console.log('[ChatwootWidget] Chatwoot SDK already initialized')
+					setIsInitialized(true)
+					return
 				}
 
-				console.log('[ChatwootWidget] Chatwoot SDK found, initializing');
+				console.log('[ChatwootWidget] Chatwoot SDK found, initializing')
 				window.chatwootSDK.run({
 					websiteToken: '', // Gets set by the backend proxy
 					baseUrl: '/api/chatwoot'
-				});
-				window.chatwootSDK.isLoaded = true;
-				setIsInitialized(true);
+				})
+				window.chatwootSDK.isLoaded = true
+				setIsInitialized(true)
 			} catch (error) {
-				console.error('[ChatwootWidget] Error initializing Chatwoot:', error);
-				setHasError(true);
+				console.error('[ChatwootWidget] Error initializing Chatwoot:', error)
+				setHasError(true)
 			}
-		};
+		}
 
 		if (window.chatwootSDK) {
-			initChatwoot();
+			initChatwoot()
 		} else {
-			initChatwoot();
+			initChatwoot()
 		}
 
 		return () => {
 			if (retryTimeout) {
-				clearTimeout(retryTimeout);
+				clearTimeout(retryTimeout)
 			}
-			window.removeEventListener('message', secureMessageHandler);
-			console.log('[ChatwootWidget] Secure message handler removed');
-		};
-	}, [canInit, isInitialized, hasError]);
+			window.removeEventListener('message', secureMessageHandler)
+			console.log('[ChatwootWidget] Secure message handler removed')
+		}
+	}, [canInit, isInitialized, hasError])
 
 	return (
 		<Script
@@ -265,13 +265,13 @@ export function ChatwootWidget({nonce}: {nonce?: string}): ReactElement {
 			async
 			nonce={nonce}
 			onLoad={() => {
-				console.log('[ChatwootWidget] Script loaded successfully');
-				setCanInit(true);
+				console.log('[ChatwootWidget] Script loaded successfully')
+				setCanInit(true)
 			}}
 			onError={error => {
-				console.error('[ChatwootWidget] Failed to load Chatwoot script:', error);
-				setHasError(true);
+				console.error('[ChatwootWidget] Failed to load Chatwoot script:', error)
+				setHasError(true)
 			}}
 		/>
-	);
+	)
 }

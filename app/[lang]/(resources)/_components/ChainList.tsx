@@ -14,11 +14,11 @@
  ** - Pass chains data and optional loading state
  ************************************************************************************************/
 
-import {ResourceCard} from '@/app/[lang]/(resources)/_components/ResourceCard';
-import {ResourceGrid} from '@/app/[lang]/(resources)/_components/ResourceGrid';
+import {ResourceCard} from '@/app/[lang]/(resources)/_components/ResourceCard'
+import {ResourceGrid} from '@/app/[lang]/(resources)/_components/ResourceGrid'
 
-import type {TSupportedChainData} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TSupportedChainData} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TChainListProps = {
 	chains: TSupportedChainData[] | null;
@@ -53,5 +53,5 @@ export function ChainList({chains, isLoading, className, isSearchQuery}: TChainL
 				/>
 			)}
 		/>
-	);
+	)
 }

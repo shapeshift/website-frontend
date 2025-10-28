@@ -9,7 +9,7 @@ export const expandAnimation = {
 		y: {duration: 0.4, ease: [0.23, 1, 0.32, 1]},
 		opacity: {duration: 0.3}
 	}
-};
+}
 
 export const containerAnimation = {
 	initial: {opacity: 0},
@@ -22,4 +22,4 @@ export const containerAnimation = {
 	},
 
 	transition: {duration: 0.4, ease: 'easeInOut'}
-};
+}

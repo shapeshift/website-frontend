@@ -15,12 +15,12 @@
  ** - Buttons will open app store links in a new tab
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
 
-import type {TDownloadButton} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TDownloadButton} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TDownloadButtonsProps = {
 	buttons: TDownloadButton[];
@@ -28,7 +28,7 @@ type TDownloadButtonsProps = {
 
 export function DownloadButtons({buttons}: TDownloadButtonsProps): ReactNode {
 	if (!buttons || buttons.length === 0) {
-		return null;
+		return null
 	}
 
 	return (
@@ -48,5 +48,5 @@ export function DownloadButtons({buttons}: TDownloadButtonsProps): ReactNode {
 				</LocalizedLink>
 			))}
 		</div>
-	);
+	)
 }

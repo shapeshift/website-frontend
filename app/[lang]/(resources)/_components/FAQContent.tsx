@@ -17,28 +17,28 @@
  ** - Properly implements accessibility for better user experience
  ************************************************************************************************/
 
-'use client';
+'use client'
 
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {QuestionSection} from '@/app/[lang]/_components/QuestionSection';
-import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {QuestionSection} from '@/app/[lang]/_components/QuestionSection'
+import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources'
 
-import {FAQNavigation} from './FAQNavigation';
+import {FAQNavigation} from './FAQNavigation'
 
-import type {TFaqData, TFaqSection} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TFaqData, TFaqSection} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TFAQContentProps = {
 	faqData: TFaqData;
 };
 
 export function FAQContent({faqData}: TFAQContentProps): ReactNode {
-	const [activeSection, setActiveSection] = useState<string>('');
-	const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-	const isManualScrolling = useRef(false);
-	const rafId = useRef<number>();
+	const [activeSection, setActiveSection] = useState<string>('')
+	const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
+	const isManualScrolling = useRef(false)
+	const rafId = useRef<number>()
 
 	/************************************************************************************************
 	 ** Scroll Handling
@@ -50,12 +50,12 @@ export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 		const handleScroll = (): void => {
 			// Skip scroll handling when user has manually clicked a section
 			if (isManualScrolling.current) {
-				return;
+				return
 			}
 
 			// Cancel any pending animation frame to avoid rapid updates
 			if (rafId.current) {
-				cancelAnimationFrame(rafId.current);
+				cancelAnimationFrame(rafId.current)
 			}
 
 			// Use requestAnimationFrame for better performance
@@ -64,38 +64,38 @@ export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 				const sectionPositions = Object.entries(sectionRefs.current).map(([title, element]) => ({
 					title,
 					top: element?.getBoundingClientRect().top ?? 0
-				}));
+				}))
 
 				// Find which section is closest to our target position (160px from top)
 				// This accounts for the header height and provides a good UX
 				const closestSection = sectionPositions.reduce(
 					(closest, current) => {
-						const currentDistance = Math.abs(current.top - 160);
-						const closestDistance = Math.abs(closest.top - 160);
-						return currentDistance < closestDistance ? current : closest;
+						const currentDistance = Math.abs(current.top - 160)
+						const closestDistance = Math.abs(closest.top - 160)
+						return currentDistance < closestDistance ? current : closest
 					},
 					sectionPositions[0] || {title: '', top: 0}
-				);
+				)
 
 				// Update the active section
-				setActiveSection(closestSection.title);
-			});
-		};
+				setActiveSection(closestSection.title)
+			})
+		}
 
 		// Add scroll event listener
-		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('scroll', handleScroll)
 
 		// Initialize by triggering the scroll handler
-		handleScroll();
+		handleScroll()
 
 		// Clean up event listener and any pending animation frames
 		return () => {
-			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener('scroll', handleScroll)
 			if (rafId.current) {
-				cancelAnimationFrame(rafId.current);
+				cancelAnimationFrame(rafId.current)
 			}
-		};
-	}, []);
+		}
+	}, [])
 
 	/************************************************************************************************
 	 ** Section Navigation
@@ -104,36 +104,36 @@ export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 	 ** Implements smooth scrolling and temporary disables scroll tracking
 	 ************************************************************************************************/
 	const scrollToSection = (sectionTitle: string): void => {
-		const element = sectionRefs.current[sectionTitle];
+		const element = sectionRefs.current[sectionTitle]
 		if (!element) {
-			return;
+			return
 		}
 
 		// Flag that we're manually scrolling to prevent interference
-		isManualScrolling.current = true;
+		isManualScrolling.current = true
 
 		// Update active section immediately for better UX
-		setActiveSection(sectionTitle);
+		setActiveSection(sectionTitle)
 
 		// Calculate scroll position with offset for header height
-		const elementPosition = element.getBoundingClientRect().top;
-		const offsetPosition = elementPosition + window.scrollY - 160;
+		const elementPosition = element.getBoundingClientRect().top
+		const offsetPosition = elementPosition + window.scrollY - 160
 
 		// Smooth scroll to the target position
 		window.scrollTo({
 			top: offsetPosition,
 			behavior: 'smooth'
-		});
+		})
 
 		// Reset the manual scrolling flag after animation completes
 		setTimeout(() => {
-			isManualScrolling.current = false;
-		}, 500);
-	};
+			isManualScrolling.current = false
+		}, 500)
+	}
 
 	// Early return if data is missing
 	if (!faqData?.faqSection) {
-		return <div className={'mt-16 text-center text-gray-400'}>{RESOURCES_DICT.faq.noDataMessage}</div>;
+		return <div className={'mt-16 text-center text-gray-400'}>{RESOURCES_DICT.faq.noDataMessage}</div>
 	}
 
 	return (
@@ -151,7 +151,7 @@ export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 							<section
 								key={section.id}
 								ref={el => {
-									sectionRefs.current[section.sectionTitle] = el;
+									sectionRefs.current[section.sectionTitle] = el
 								}}
 								aria-labelledby={`section-${section.id}`}>
 								<h2
@@ -184,5 +184,5 @@ export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 				<Banner />
 			</div>
 		</div>
-	);
+	)
 }

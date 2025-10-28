@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import {motion} from 'framer-motion';
-import {usePathname} from 'next/navigation';
-import {useMemo, useState} from 'react';
+import {motion} from 'framer-motion'
+import {usePathname} from 'next/navigation'
+import {useMemo, useState} from 'react'
 
-import {AnimateChangeInHeight} from '@/app/[lang]/_components/AnimatedHeight';
-import {Button} from '@/app/[lang]/_components/Button';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {Notification} from '@/app/[lang]/_components/Notification';
-import {IconPlanet} from '@/app/[lang]/_icons/IconPlanet';
-import {ShapeshiftLogo} from '@/app/[lang]/_icons/ShapeshiftLogo';
-import {cl} from '@/app/[lang]/_utils/cl';
-import {dAppUrl, headerTabs} from '@/app/[lang]/_utils/constants';
+import {AnimateChangeInHeight} from '@/app/[lang]/_components/AnimatedHeight'
+import {Button} from '@/app/[lang]/_components/Button'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {Notification} from '@/app/[lang]/_components/Notification'
+import {IconPlanet} from '@/app/[lang]/_icons/IconPlanet'
+import {ShapeshiftLogo} from '@/app/[lang]/_icons/ShapeshiftLogo'
+import {cl} from '@/app/[lang]/_utils/cl'
+import {dAppUrl, headerTabs} from '@/app/[lang]/_utils/constants'
 
-import {containerAnimation} from './animations';
-import {DAOExpand} from './DaoExpand';
-import {LanguageExpand} from './LanguageExpand';
-import {ProductsExpand} from './ProductsExpand';
-import {ResourcesExpand} from './ResourcesExpand';
+import {containerAnimation} from './animations'
+import {DAOExpand} from './DaoExpand'
+import {LanguageExpand} from './LanguageExpand'
+import {ProductsExpand} from './ProductsExpand'
+import {ResourcesExpand} from './ResourcesExpand'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TDesktopHeaderProps = {
 	className?: string;
@@ -31,9 +31,9 @@ type TDesktopHeaderProps = {
  * Desktop header component with hover menu expansions
  */
 export function DesktopHeader({className, switchLanguageAction, currentLanguage}: TDesktopHeaderProps): ReactNode {
-	const pathname = usePathname();
-	const variant = pathname === '/' ? 'transparent' : 'default';
-	const [currentTab, setCurrentTab] = useState<string>('');
+	const pathname = usePathname()
+	const variant = pathname === '/' ? 'transparent' : 'default'
+	const [currentTab, setCurrentTab] = useState<string>('')
 
 	/**
 	 * Map of tab content components keyed by tab value
@@ -52,7 +52,7 @@ export function DesktopHeader({className, switchLanguageAction, currentLanguage}
 			empty: null
 		}),
 		[switchLanguageAction, currentLanguage]
-	);
+	)
 
 	/**
 	 * Determine background style based on variant and active tab
@@ -60,12 +60,12 @@ export function DesktopHeader({className, switchLanguageAction, currentLanguage}
 	const getVariant = (): string => {
 		if (variant === 'transparent') {
 			if (currentTab) {
-				return 'bg-headerBg';
+				return 'bg-headerBg'
 			}
-			return 'bg-transparent';
+			return 'bg-transparent'
 		}
-		return 'bg-headerBg';
-	};
+		return 'bg-headerBg'
+	}
 
 	return (
 		<div className={'sticky top-0 z-50 hidden rounded-2xl lg:block'}>
@@ -143,5 +143,5 @@ export function DesktopHeader({className, switchLanguageAction, currentLanguage}
 				</motion.div>
 			</div>
 		</div>
-	);
+	)
 }

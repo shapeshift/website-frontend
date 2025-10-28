@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 /************************************************************************************************
  ** TradeHero Component:
  **
@@ -19,8 +19,8 @@ import {Button} from '@/app/[lang]/_components/Button';
  ** - Requires 'use client' directive for client-side interactivity
  ************************************************************************************************/
 
-import type {TButton} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TButton} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TTradeHeroProps = {
 	title: string;
@@ -33,9 +33,9 @@ export function TradeHero({title, description, buttonCta, imageUrl}: TTradeHeroP
 	// Handle button click to open URL in new tab with security precautions
 	const handleButtonClick = (): void => {
 		if (buttonCta?.url) {
-			window.open(buttonCta.url, '_blank', 'noopener,noreferrer');
+			window.open(buttonCta.url, '_blank', 'noopener,noreferrer')
 		}
-	};
+	}
 
 	return (
 		<section
@@ -82,5 +82,5 @@ export function TradeHero({title, description, buttonCta, imageUrl}: TTradeHeroP
 				</div>
 			</div>
 		</section>
-	);
+	)
 }

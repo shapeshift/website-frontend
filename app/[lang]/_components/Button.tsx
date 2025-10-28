@@ -1,8 +1,8 @@
-import {LocalizedLink} from './LocalizedLink';
-import {IconNext} from '../_icons/IconNext';
-import {cl} from '../_utils/cl';
+import {LocalizedLink} from './LocalizedLink'
+import {IconNext} from '../_icons/IconNext'
+import {cl} from '../_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TButtonVariant = 'blue' | 'white';
 
@@ -16,7 +16,7 @@ type TButtonProps = {
 };
 
 export function Button(props: TButtonProps): ReactNode {
-	const {variant = 'blue', hasArrow = false, ...rest} = props;
+	const {variant = 'blue', hasArrow = false, ...rest} = props
 	return (
 		<>
 			{props.href ? (
@@ -51,5 +51,5 @@ export function Button(props: TButtonProps): ReactNode {
 				</button>
 			)}
 		</>
-	);
+	)
 }

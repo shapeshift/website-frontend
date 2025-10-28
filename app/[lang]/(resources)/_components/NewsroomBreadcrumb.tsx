@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import {usePathname} from 'next/navigation';
+import {usePathname} from 'next/navigation'
 
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {IconBack} from '@/app/[lang]/_icons/IconBack'
+import {cl} from '@/app/[lang]/_utils/cl'
 
 export function NewsroomBreadcrumb(): React.ReactNode {
-	const pathname = usePathname();
+	const pathname = usePathname()
 
 	return (
 		<LocalizedLink
@@ -19,5 +19,5 @@ export function NewsroomBreadcrumb(): React.ReactNode {
 			<IconBack />
 			<span>{'Back to Newsroom'}</span>
 		</LocalizedLink>
-	);
+	)
 }

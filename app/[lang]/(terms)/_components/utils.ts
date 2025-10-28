@@ -6,18 +6,18 @@
  ** Enforces consistent data structure between different terms pages
  **************************************************************************************************/
 
-import {getPrivacyPolicy, getTermsOfService} from '@/app/[lang]/_utils/query';
+import {getPrivacyPolicy, getTermsOfService} from '@/app/[lang]/_utils/query'
 
-import type {TTermsItemData} from '@/app/[lang]/(terms)/_components/TermsAccordion';
+import type {TTermsItemData} from '@/app/[lang]/(terms)/_components/TermsAccordion'
 
 /**************************************************************************************************
  * Transforms privacy policy data from API format to component format
  **************************************************************************************************/
 export async function getPrivacyPolicyItems(): Promise<TTermsItemData[]> {
-	const data = await getPrivacyPolicy();
+	const data = await getPrivacyPolicy()
 
 	if (!data) {
-		return [];
+		return []
 	}
 
 	return data.policy.map(policy => ({
@@ -25,17 +25,17 @@ export async function getPrivacyPolicyItems(): Promise<TTermsItemData[]> {
 		title: policy.title,
 		date: policy.date,
 		content: policy.policy
-	}));
+	}))
 }
 
 /**************************************************************************************************
  * Transforms terms of service data from API format to component format
  **************************************************************************************************/
 export async function getTermsOfServiceItems(): Promise<TTermsItemData[]> {
-	const data = await getTermsOfService();
+	const data = await getTermsOfService()
 
 	if (!data) {
-		return [];
+		return []
 	}
 
 	return data.terms.map(term => ({
@@ -43,5 +43,5 @@ export async function getTermsOfServiceItems(): Promise<TTermsItemData[]> {
 		title: term.title,
 		date: term.date,
 		content: term.policy
-	}));
+	}))
 }

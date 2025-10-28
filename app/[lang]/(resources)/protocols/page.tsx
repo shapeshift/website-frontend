@@ -15,13 +15,13 @@
  ** - Implements responsive design with Tailwind CSS
  ************************************************************************************************/
 
-import {Banner} from '@/app/[lang]/_components/Banner';
+import {Banner} from '@/app/[lang]/_components/Banner'
 
-import {ResourceHeader} from '../_components/ResourceHeader';
-import {fetchAllProtocols} from '../_utils/fetchUtils';
-import {ProtocolSearchWrapper} from './_components/ProtocolSearchWrapper';
+import {ResourceHeader} from '../_components/ResourceHeader'
+import {fetchAllProtocols} from '../_utils/fetchUtils'
+import {ProtocolSearchWrapper} from './_components/ProtocolSearchWrapper'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 // Static content for the page
 const pageContent = {
@@ -32,11 +32,11 @@ const pageContent = {
 		text: 'Get Started',
 		url: 'https://app.shapeshift.com/'
 	}
-};
+}
 
 export default async function ProtocolsPage(): Promise<ReactNode> {
 	// Fetch protocols data
-	const protocols = await fetchAllProtocols();
+	const protocols = await fetchAllProtocols()
 
 	// Handle loading and error states
 	if (!protocols) {
@@ -44,7 +44,7 @@ export default async function ProtocolsPage(): Promise<ReactNode> {
 			<div className={'mt-[120px] flex w-full justify-center text-center lg:mt-60'}>
 				<p className={'text-red-400'}>{'Unable to load protocols. Please try again later.'}</p>
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -67,5 +67,5 @@ export default async function ProtocolsPage(): Promise<ReactNode> {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

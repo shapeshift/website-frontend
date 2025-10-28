@@ -16,16 +16,16 @@
  ** - Manages loading and empty states appropriately
  ************************************************************************************************/
 
-'use client';
+'use client'
 
-import {SupportArticleList} from '../../_components/SupportArticleList';
+import {SupportArticleList} from '../../_components/SupportArticleList'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export default function SupportListPage(): ReactNode {
 	return (
 		<>
 			<SupportArticleList emptyMessage={"We couldn't find any support articles matching your criteria."} />
 		</>
-	);
+	)
 }

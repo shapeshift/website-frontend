@@ -6,10 +6,10 @@
  ** Sets up responsive container layout with consistent spacing
  **************************************************************************************************/
 
-import {Banner} from '@/app/[lang]/_components/Banner';
+import {Banner} from '@/app/[lang]/_components/Banner'
 
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
+import type {Metadata} from 'next'
+import type {ReactNode} from 'react'
 
 export const metadata: Metadata = {
 	title: 'Legal Documents | ShapeShift',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 		url: 'https://shapeshift.com/terms',
 		siteName: 'ShapeShift'
 	}
-};
+}
 
 type TTermsLayoutProps = {
 	children: ReactNode;
@@ -36,5 +36,5 @@ export default function TermsLayout({children}: TTermsLayoutProps): ReactNode {
 				<Banner />
 			</div>
 		</>
-	);
+	)
 }

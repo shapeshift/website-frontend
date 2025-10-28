@@ -1,28 +1,28 @@
-'use client';
+'use client'
 
-import {Fragment, useState} from 'react';
-import ReactPaginate from 'react-paginate';
+import {Fragment, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {BlogPost} from '@/app/[lang]/_components/BlogPost';
-import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts';
-import {IconChevron} from '@/app/[lang]/_icons/IconChevron';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {BlogPost} from '@/app/[lang]/_components/BlogPost'
+import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts'
+import {IconChevron} from '@/app/[lang]/_icons/IconChevron'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
-const PAGE_SIZE = 12;
-const SORT = 'desc';
+const PAGE_SIZE = 12
+const SORT = 'desc'
 
 export default function BlogList(): ReactNode {
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(1)
 	const {posts, pagination, isLoading} = useFetchPosts({
 		page,
 		pageSize: PAGE_SIZE,
 		sort: SORT,
 		populateContent: true,
 		cachePosts: true
-	});
+	})
 
 	if (isLoading) {
 		return (
@@ -34,7 +34,7 @@ export default function BlogList(): ReactNode {
 					/>
 				))}
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -80,5 +80,5 @@ export default function BlogList(): ReactNode {
 			/>
 			<Banner />
 		</Fragment>
-	);
+	)
 }

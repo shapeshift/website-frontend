@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {IconBack} from '@/app/[lang]/_icons/IconBack'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export type TToken = {
 	symbol: string;
@@ -64,8 +64,8 @@ export function TokenSelect({
 						<button
 							key={token.slug}
 							onClick={() => {
-								onSelectAction(token);
-								setIsOpenAction(false);
+								onSelectAction(token)
+								setIsOpenAction(false)
 							}}
 							className={cl(
 								'flex w-full items-center gap-4 rounded-lg px-3 py-2 hover:bg-white/5',
@@ -100,5 +100,5 @@ export function TokenSelect({
 				</div>
 			)}
 		</div>
-	);
+	)
 }

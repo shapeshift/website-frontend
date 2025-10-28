@@ -1,18 +1,18 @@
-import {Fragment} from 'react';
+import {Fragment} from 'react'
 
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {RoundButton} from '@/app/[lang]/_components/RoundButton';
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {RoundButton} from '@/app/[lang]/_components/RoundButton'
 
-import type {TCard, TCardsRowSection} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TCard, TCardsRowSection} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export default function CardsRow(props: {
 	data: TCardsRowSection;
 	children: (card: TCard) => ReactNode;
 }): ReactNode | null {
-	const {data, children} = props;
+	const {data, children} = props
 	if (!data) {
-		return null;
+		return null
 	}
 
 	return (
@@ -40,5 +40,5 @@ export default function CardsRow(props: {
 				</LocalizedLink>
 			)}
 		</section>
-	);
+	)
 }

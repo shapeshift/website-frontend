@@ -16,17 +16,17 @@
  ** - Implements SupportedChainTable for detailed compatibility information
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {ChainsBanner} from '@/app/[lang]/_components/ChainsBanner';
-import {requestUrl} from '@/app/[lang]/_utils/constants';
+import {Button} from '@/app/[lang]/_components/Button'
+import {ChainsBanner} from '@/app/[lang]/_components/ChainsBanner'
+import {requestUrl} from '@/app/[lang]/_utils/constants'
 
-import {ResourceHeader} from '../_components/ResourceHeader';
-import {fetchAllChains} from '../_utils/fetchUtils';
-import {ChainSearchWrapper} from './_components/ChainSearchWrapper';
+import {ResourceHeader} from '../_components/ResourceHeader'
+import {fetchAllChains} from '../_utils/fetchUtils'
+import {ChainSearchWrapper} from './_components/ChainSearchWrapper'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 // Static content for the page
 const pageContent = {
@@ -38,11 +38,11 @@ const pageContent = {
 		text: 'Get Started',
 		url: 'https://app.shapeshift.com/'
 	}
-};
+}
 
 export default async function SupportedChainsPage(): Promise<ReactNode> {
 	// Fetch chains data
-	const chains = await fetchAllChains();
+	const chains = await fetchAllChains()
 
 	// Handle loading and error states
 	if (!chains) {
@@ -50,7 +50,7 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 			<div className={'my-[120px] flex w-full justify-center text-center lg:my-60'}>
 				<p className={'text-red-400'}>{'Unable to load chain data. Please try again later.'}</p>
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -108,5 +108,5 @@ export default async function SupportedChainsPage(): Promise<ReactNode> {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

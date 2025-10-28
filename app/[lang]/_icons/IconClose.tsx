@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export const IconClose = (props: SVGProps<SVGSVGElement>): ReactNode => {
 	return (
@@ -24,5 +24,5 @@ export const IconClose = (props: SVGProps<SVGSVGElement>): ReactNode => {
 				strokeLinejoin={'round'}
 			/>
 		</svg>
-	);
-};
+	)
+}

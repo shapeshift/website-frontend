@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import {useMemo} from 'react';
+import Image from 'next/image'
+import {useMemo} from 'react'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Button} from '@/app/[lang]/_components/Button'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 function OgPlatformFeature({description, index}: {description: string; index: number}): ReactNode {
 	return (
@@ -45,7 +45,7 @@ function OgPlatformFeature({description, index}: {description: string; index: nu
 				</div>
 			</div>
 		</div>
-	);
+	)
 }
 function MobileAppFeature({index}: {index: number}): ReactNode {
 	return (
@@ -136,7 +136,7 @@ function MobileAppFeature({index}: {index: number}): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }
 function GetPaidToTradeFeature({index}: {index: number}): ReactNode {
 	return (
@@ -177,7 +177,7 @@ function GetPaidToTradeFeature({index}: {index: number}): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }
 function PortalsFeature({index}: {index: number}): ReactNode {
 	return (
@@ -220,34 +220,34 @@ function PortalsFeature({index}: {index: number}): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }
 
 export function ProtocolFeatures({description, features}: {description: string; features: string[]}): ReactNode {
 	const featuresComponents = useMemo(() => {
-		const allFeatures = [];
+		const allFeatures = []
 		if (features?.includes('OG DeFi Platforms')) {
 			allFeatures.push(
 				<OgPlatformFeature
 					description={description}
 					index={allFeatures.length % 2}
 				/>
-			);
+			)
 		}
 		if (features?.includes('Shift to DeFi on the go')) {
-			allFeatures.push(<MobileAppFeature index={allFeatures.length % 2} />);
+			allFeatures.push(<MobileAppFeature index={allFeatures.length % 2} />)
 		}
 		if (features?.includes('Get Paid to Trade')) {
-			allFeatures.push(<GetPaidToTradeFeature index={allFeatures.length % 2} />);
+			allFeatures.push(<GetPaidToTradeFeature index={allFeatures.length % 2} />)
 		}
 		if (features?.includes('Powered by Portals')) {
-			allFeatures.push(<PortalsFeature index={allFeatures.length % 2} />);
+			allFeatures.push(<PortalsFeature index={allFeatures.length % 2} />)
 		}
 		if (allFeatures.length === 0) {
-			return null;
+			return null
 		}
-		return allFeatures;
-	}, [description, features]);
+		return allFeatures
+	}, [description, features])
 	return (
 		<div
 			className={cl(
@@ -256,5 +256,5 @@ export function ProtocolFeatures({description, features}: {description: string; 
 			)}>
 			{featuresComponents}
 		</div>
-	);
+	)
 }

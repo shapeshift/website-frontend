@@ -16,17 +16,17 @@
  ** - Set imagePosition for different image alignments
  ************************************************************************************************/
 
-'use client';
+'use client'
 
-import {motion} from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
+import {motion} from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
-const MotionLink = motion(Link);
+const MotionLink = motion(Link)
 
 type TResourceCardProps = {
 	slug: string;
@@ -110,5 +110,5 @@ export function ResourceCard({
 				</div>
 			</div>
 		</MotionLink>
-	);
+	)
 }

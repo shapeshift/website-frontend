@@ -1,15 +1,15 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from 'next/image'
+import React from 'react'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Button} from '@/app/[lang]/_components/Button'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {TGridLadderSection, TGridLadderStep} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TGridLadderSection, TGridLadderStep} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export default function GridLadder({data}: {data: TGridLadderSection}): ReactNode | null {
 	if (!data) {
-		return null;
+		return null
 	}
 
 	return (
@@ -54,12 +54,12 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 				))}
 			</div>
 		</section>
-	);
+	)
 }
 
 const LadderItem = ({data}: {data: TGridLadderStep}): ReactNode | null => {
 	if (!data) {
-		return null;
+		return null
 	}
 
 	return (
@@ -76,5 +76,5 @@ const LadderItem = ({data}: {data: TGridLadderStep}): ReactNode | null => {
 				/>
 			)}
 		</div>
-	);
-};
+	)
+}

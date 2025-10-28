@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconNext(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -23,5 +23,5 @@ export function IconNext(props: SVGProps<SVGSVGElement>): ReactNode {
 				strokeLinejoin={'round'}
 			/>
 		</svg>
-	);
+	)
 }

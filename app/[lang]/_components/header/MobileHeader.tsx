@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import {AnimatePresence, motion} from 'framer-motion';
-import {usePathname} from 'next/navigation';
-import {useEffect, useState} from 'react';
+import {AnimatePresence, motion} from 'framer-motion'
+import {usePathname} from 'next/navigation'
+import {useEffect, useState} from 'react'
 
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {AnimatedPlusMinusIcon} from '@/app/[lang]/_components/QuestionSection';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
-import {IconClose} from '@/app/[lang]/_icons/IconClose';
-import {IconMenu} from '@/app/[lang]/_icons/IconMenu';
-import {IconPlanet} from '@/app/[lang]/_icons/IconPlanet';
-import {ShapeshiftLogo} from '@/app/[lang]/_icons/ShapeshiftLogo';
-import {appDao, appProducts, appResources, headerTabs} from '@/app/[lang]/_utils/constants';
-import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig';
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {AnimatedPlusMinusIcon} from '@/app/[lang]/_components/QuestionSection'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
+import {IconClose} from '@/app/[lang]/_icons/IconClose'
+import {IconMenu} from '@/app/[lang]/_icons/IconMenu'
+import {IconPlanet} from '@/app/[lang]/_icons/IconPlanet'
+import {ShapeshiftLogo} from '@/app/[lang]/_icons/ShapeshiftLogo'
+import {appDao, appProducts, appResources, headerTabs} from '@/app/[lang]/_utils/constants'
+import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig'
 
-import type {TAppLink} from '@/app/[lang]/_utils/constants';
-import type {ReactNode} from 'react';
+import type {TAppLink} from '@/app/[lang]/_utils/constants'
+import type {ReactNode} from 'react'
 
 const mobileTabs: {name: string; value: string; items: TAppLink[]}[] = [
 	{
@@ -33,21 +33,21 @@ const mobileTabs: {name: string; value: string; items: TAppLink[]}[] = [
 		value: 'dao',
 		items: appDao.slice(0, 4)
 	}
-];
+]
 
 const mobileMenuAnimation = {
 	initial: {opacity: 0, y: -20},
 	animate: {opacity: 1, y: 0},
 	exit: {opacity: 0, y: -20},
 	transition: {duration: 0.2}
-};
+}
 
 const expandAnimation = {
 	initial: {height: 0, opacity: 0},
 	animate: {height: 'auto', opacity: 1},
 	exit: {height: 0, opacity: 0},
 	transition: {duration: 0.2}
-};
+}
 
 /**
  * Mobile header component with hamburger menu and expandable sections
@@ -59,15 +59,15 @@ export function MobileHeader({
 	switchLanguage: (symbol: string) => void;
 	currentLanguage: string;
 }): ReactNode {
-	const pathname = usePathname();
+	const pathname = usePathname()
 
-	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-	const [expandedSection, setExpandedSection] = useState<string>('');
+	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+	const [expandedSection, setExpandedSection] = useState<string>('')
 
 	// Close menu when route changes
 	useEffect(() => {
-		setIsMenuOpen(false);
-	}, [pathname]);
+		setIsMenuOpen(false)
+	}, [pathname])
 
 	return (
 		<div className={'sticky top-0 z-50 lg:hidden'}>
@@ -113,7 +113,7 @@ export function MobileHeader({
 											className={'overflow-hidden rounded-2xl bg-secondBg'}>
 											<button
 												onClick={() => {
-													setExpandedSection(expandedSection === tab.value ? '' : tab.value);
+													setExpandedSection(expandedSection === tab.value ? '' : tab.value)
 												}}
 												className={'flex w-full items-center justify-between p-6 text-2xl'}>
 												{tab.name}
@@ -189,8 +189,8 @@ export function MobileHeader({
 													<button
 														key={language.code}
 														onClick={() => {
-															switchLanguage(language.code);
-															setExpandedSection('');
+															switchLanguage(language.code)
+															setExpandedSection('')
 														}}
 														className={
 															'flex items-center justify-between rounded-lg px-6 py-4 hover:bg-white/10'
@@ -229,5 +229,5 @@ export function MobileHeader({
 				)}
 			</AnimatePresence>
 		</div>
-	);
+	)
 }

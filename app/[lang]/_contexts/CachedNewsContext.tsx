@@ -8,12 +8,12 @@
  * - Pagination state
  ********************************************************************************************/
 
-'use client';
+'use client'
 
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useState} from 'react'
 
-import type {TNewsroomListResponse} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TNewsroomListResponse} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /********************************************************************************************
  * Type definition for cached query parameters
@@ -60,7 +60,7 @@ const NewsContext = createContext<{
 		tag: undefined
 	},
 	setCachedParams: () => {}
-});
+})
 
 /**
  * Provider component for news caching functionality
@@ -78,7 +78,7 @@ export function CachedNewsProvider({children}: {children: ReactNode}): ReactNode
 				total: 0
 			}
 		}
-	});
+	})
 	const [cachedParams, setCachedParams] = useState<TCachedParams>({
 		page: undefined,
 		pageSize: undefined,
@@ -87,7 +87,7 @@ export function CachedNewsProvider({children}: {children: ReactNode}): ReactNode
 		populateContent: undefined,
 		category: undefined,
 		tag: undefined
-	});
+	})
 
 	return (
 		<NewsContext.Provider
@@ -99,7 +99,7 @@ export function CachedNewsProvider({children}: {children: ReactNode}): ReactNode
 			}}>
 			{children}
 		</NewsContext.Provider>
-	);
+	)
 }
 
 /**
@@ -113,5 +113,5 @@ export function useCachedNews(): {
 	cachedParams: TCachedParams;
 	setCachedParams: (params: TCachedParams) => void;
 } {
-	return useContext(NewsContext);
+	return useContext(NewsContext)
 }

@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconTelegram(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -18,5 +18,5 @@ export function IconTelegram(props: SVGProps<SVGSVGElement>): ReactNode {
 				fill={'currentColor'}
 			/>
 		</svg>
-	);
+	)
 }

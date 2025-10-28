@@ -1,17 +1,17 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import {LocalizedLink} from './LocalizedLink';
+import {LocalizedLink} from './LocalizedLink'
 import {
 	bannerLeftButtonTitle,
 	bannerLeftTitle,
 	bannerMobileSubtitle,
 	bannerRightTitle,
 	dAppUrl
-} from '../_utils/constants';
+} from '../_utils/constants'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function Banner(): ReactNode {
 	return (
@@ -80,5 +80,5 @@ export function Banner(): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

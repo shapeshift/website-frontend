@@ -19,17 +19,17 @@ export async function fetchWithErrorHandling<T>(
 			next: {
 				revalidate: 3600 // Cache for 1 hour
 			}
-		});
+		})
 
 		if (!response.ok) {
-			console.error(`Failed to fetch ${error}: Status ${response.status}`);
-			return null;
+			console.error(`Failed to fetch ${error}: Status ${response.status}`)
+			return null
 		}
 
-		const data = await response.json();
-		return data.data;
+		const data = await response.json()
+		return data.data
 	} catch (error) {
-		console.error(`Error fetching ${error}:`, error instanceof Error ? error.message : String(error));
-		return null;
+		console.error(`Error fetching ${error}:`, error instanceof Error ? error.message : String(error))
+		return null
 	}
 }

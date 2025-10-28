@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function BlogSkeleton(): ReactNode {
 	return (
@@ -30,5 +30,5 @@ export function BlogSkeleton(): ReactNode {
 				<div className={'h-4 w-2/3 animate-pulse rounded-lg bg-gray-800'} />
 			</div>
 		</div>
-	);
+	)
 }

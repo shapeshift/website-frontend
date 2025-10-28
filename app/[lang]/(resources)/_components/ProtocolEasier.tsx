@@ -1,8 +1,8 @@
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function ProtocolEasier({cards}: {cards: {title: string; description?: string}[]}): ReactNode {
 	if (cards.length === 0) {
-		return null;
+		return null
 	}
 
 	return (
@@ -37,5 +37,5 @@ export function ProtocolEasier({cards}: {cards: {title: string; description?: st
 				</div>
 			) : null}
 		</div>
-	);
+	)
 }

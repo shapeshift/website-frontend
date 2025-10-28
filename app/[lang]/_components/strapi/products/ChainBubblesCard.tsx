@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import {motion} from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
+import {motion} from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products';
+import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products'
 
-import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
-const MotionLink = motion(Link);
+const MotionLink = motion(Link)
 
 type TChainBubblesCardProps = {
 	title: string;
@@ -19,9 +19,9 @@ type TChainBubblesCardProps = {
 };
 
 export function ChainBubblesCard({title, description, items, randomDelays}: TChainBubblesCardProps): ReactNode {
-	const hasChainItemsFromStrapi = items && items.length > 0;
+	const hasChainItemsFromStrapi = items && items.length > 0
 
-	const chainItems = hasChainItemsFromStrapi ? items.slice(0, 5) : PRODUCTS_DICT.chainBubbles.defaultChains;
+	const chainItems = hasChainItemsFromStrapi ? items.slice(0, 5) : PRODUCTS_DICT.chainBubbles.defaultChains
 
 	return (
 		<div className={'col-span-2 flex h-full flex-col rounded-2xl bg-secondBg'}>
@@ -109,5 +109,5 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

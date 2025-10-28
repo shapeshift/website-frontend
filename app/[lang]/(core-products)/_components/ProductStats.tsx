@@ -16,8 +16,8 @@
  ** - Stats will be arranged in a row (desktop) or column (mobile)
  ************************************************************************************************/
 
-import type {TStat} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TStat} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TProductStatsProps = {
 	stats: TStat[];
@@ -26,7 +26,7 @@ type TProductStatsProps = {
 export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 	// Handle case where stats is null, undefined, or empty
 	if (!stats || stats.length === 0) {
-		return <div className={'mb-10 mt-16 text-center text-gray-400'}>{'No statistics available'}</div>;
+		return <div className={'mb-10 mt-16 text-center text-gray-400'}>{'No statistics available'}</div>
 	}
 
 	return (
@@ -46,5 +46,5 @@ export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 				</div>
 			))}
 		</div>
-	);
+	)
 }

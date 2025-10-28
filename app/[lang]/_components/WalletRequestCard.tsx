@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
 type TRequestCardProps = {
 	title: string;
@@ -41,5 +41,5 @@ export function WalletRequestCard({
 				/>
 			</div>
 		</div>
-	);
+	)
 }

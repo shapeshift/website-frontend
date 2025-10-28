@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import {useState} from 'react';
+import {useState} from 'react'
 
-import {Dropdown} from '@/app/[lang]/_components/Dropdown';
-import {SearchBar} from '@/app/[lang]/_components/SearchBar';
-import {CHAIN_TYPES} from '@/app/[lang]/_utils/constants';
+import {Dropdown} from '@/app/[lang]/_components/Dropdown'
+import {SearchBar} from '@/app/[lang]/_components/SearchBar'
+import {CHAIN_TYPES} from '@/app/[lang]/_utils/constants'
 
-import {ChainList} from '../../_components/ChainList';
+import {ChainList} from '../../_components/ChainList'
 
-import type {TSupportedChainData, TSupportedChainTypes} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TSupportedChainData, TSupportedChainTypes} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TChainSearchWrapperProps = {
 	chains: TSupportedChainData[];
@@ -26,8 +26,8 @@ type TChainSearchWrapperProps = {
  *************************************************************************************************/
 export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNode {
 	/** State for search query and selected chain type filter **/
-	const [searchQuery, setSearchQuery] = useState('');
-	const [selectedType, setSelectedType] = useState<'All chains' | TSupportedChainTypes>('All chains');
+	const [searchQuery, setSearchQuery] = useState('')
+	const [selectedType, setSelectedType] = useState<'All chains' | TSupportedChainTypes>('All chains')
 
 	/**********************************************************************************************
 	 ** Filter chains based on selected chain type
@@ -35,24 +35,24 @@ export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNod
 	 *********************************************************************************************/
 	const chainsByType = chains.filter(chain => {
 		if (selectedType === 'All chains') {
-			return true;
+			return true
 		}
-		return chain.typeOfChain === selectedType;
-	});
+		return chain.typeOfChain === selectedType
+	})
 
 	/**********************************************************************************************
 	 ** Further filter chains by search query
 	 ** Filters the type-filtered chains by matching chain names with search query
 	 *********************************************************************************************/
-	const filteredChains = chainsByType.filter(chain => chain.name.toLowerCase().includes(searchQuery.toLowerCase()));
+	const filteredChains = chainsByType.filter(chain => chain.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
 	/**********************************************************************************************
 	 ** Handle search input changes
 	 ** Updates search query state when user types in search bar
 	 *********************************************************************************************/
 	const handleSearch = (query: string): void => {
-		setSearchQuery(query);
-	};
+		setSearchQuery(query)
+	}
 
 	return (
 		<>
@@ -80,5 +80,5 @@ export function ChainSearchWrapper({chains}: TChainSearchWrapperProps): ReactNod
 				/>
 			</section>
 		</>
-	);
+	)
 }

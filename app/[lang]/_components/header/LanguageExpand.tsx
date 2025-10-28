@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
-import {cl} from '@/app/[lang]/_utils/cl';
-import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig';
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
+import {cl} from '@/app/[lang]/_utils/cl'
+import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig'
 
-import {expandAnimation} from './animations';
+import {expandAnimation} from './animations'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function LanguageExpand({
 	switchLanguageAction,
@@ -42,5 +42,5 @@ export function LanguageExpand({
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

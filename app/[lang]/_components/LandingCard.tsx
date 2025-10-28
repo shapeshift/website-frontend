@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {LocalizedLink} from './LocalizedLink';
-import {RoundButton} from './RoundButton';
-import {cl} from '../_utils/cl';
+import {LocalizedLink} from './LocalizedLink'
+import {RoundButton} from './RoundButton'
+import {cl} from '../_utils/cl'
 
-import type {TCard} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TCard} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 function Card({data}: {data: TCard}): ReactNode {
 	return (
@@ -41,7 +41,7 @@ function Card({data}: {data: TCard}): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 export function LandingCard({data}: {data: TCard}): ReactNode {
@@ -53,7 +53,7 @@ export function LandingCard({data}: {data: TCard}): ReactNode {
 				className={'size-full'}>
 				<Card data={data} />
 			</LocalizedLink>
-		);
+		)
 	}
-	return <Card data={data} />;
+	return <Card data={data} />
 }

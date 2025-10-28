@@ -16,9 +16,9 @@
  ** - Will be automatically hidden on smaller screens
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function BackgroundImage(): ReactNode {
 	return (
@@ -32,5 +32,5 @@ export function BackgroundImage(): ReactNode {
 				priority
 			/>
 		</div>
-	);
+	)
 }

@@ -1,7 +1,7 @@
-import {Button} from '@/app/[lang]/_components/Button';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
+import {Button} from '@/app/[lang]/_components/Button'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type THeaderData = {
 	title: string;
@@ -38,5 +38,5 @@ export function SupportedWalletHeader(data: THeaderData): ReactNode {
 				title={'Get Started'}
 			/>
 		</section>
-	);
+	)
 }

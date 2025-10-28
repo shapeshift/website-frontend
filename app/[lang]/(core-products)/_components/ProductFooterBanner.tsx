@@ -18,11 +18,11 @@
  ** - Maintains consistent branding and messaging
  ************************************************************************************************/
 
-import {FooterBanner, FooterBannerMobileApp} from '@/app/[lang]/_components/FooterBanner';
+import {FooterBanner, FooterBannerMobileApp} from '@/app/[lang]/_components/FooterBanner'
 
-import {PRODUCT_FOOTER_CONFIGS} from './constants';
+import {PRODUCT_FOOTER_CONFIGS} from './constants'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TProductFooterBannerProps = {
 	productName: keyof typeof PRODUCT_FOOTER_CONFIGS;
@@ -30,12 +30,12 @@ type TProductFooterBannerProps = {
 
 export function ProductFooterBanner({productName}: TProductFooterBannerProps): ReactNode {
 	// Get configuration for the specified product
-	const config = PRODUCT_FOOTER_CONFIGS[productName];
+	const config = PRODUCT_FOOTER_CONFIGS[productName]
 
 	// Verify config exists to prevent runtime errors
 	if (!config) {
-		console.error(`No footer configuration found for product: ${productName}`);
-		return null;
+		console.error(`No footer configuration found for product: ${productName}`)
+		return null
 	}
 
 	// Use mobile-app specific banner for the mobile app product
@@ -47,7 +47,7 @@ export function ProductFooterBanner({productName}: TProductFooterBannerProps): R
 				href={config.href}
 				buttonText={config.buttonText}
 			/>
-		);
+		)
 	}
 
 	// Standard footer banner for other products
@@ -58,5 +58,5 @@ export function ProductFooterBanner({productName}: TProductFooterBannerProps): R
 			href={config.href}
 			buttonText={config.buttonText}
 		/>
-	);
+	)
 }

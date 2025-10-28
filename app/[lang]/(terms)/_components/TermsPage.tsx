@@ -7,15 +7,15 @@
  ** Implements loading state and error handling for better UX
  **************************************************************************************************/
 
-import {Suspense} from 'react';
+import {Suspense} from 'react'
 
-import styles from '@/app/[lang]/(terms)/_components/terms.module.css';
-import TermsAccordion from '@/app/[lang]/(terms)/_components/TermsAccordion';
-import {Button} from '@/app/[lang]/_components/Button';
+import styles from '@/app/[lang]/(terms)/_components/terms.module.css'
+import TermsAccordion from '@/app/[lang]/(terms)/_components/TermsAccordion'
+import {Button} from '@/app/[lang]/_components/Button'
 
-import type {TTermsItemData} from '@/app/[lang]/(terms)/_components/TermsAccordion';
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
+import type {TTermsItemData} from '@/app/[lang]/(terms)/_components/TermsAccordion'
+import type {Metadata} from 'next'
+import type {ReactNode} from 'react'
 
 type TTermsPageProps = {
 	title: string;
@@ -33,7 +33,7 @@ export function generateMetadata({title}: {title: string}): Metadata {
 			title: `ShapeShift ${title}`,
 			description: `View ShapeShift's ${title.toLowerCase()} and legal information.`
 		}
-	};
+	}
 }
 
 /**************************************************************************************************
@@ -51,7 +51,7 @@ function TermsContent({items}: TTermsPageProps): ReactNode {
 				))}
 			</div>
 		</div>
-	);
+	)
 }
 
 /**************************************************************************************************
@@ -67,7 +67,7 @@ function TermsLoadingSkeleton(): ReactNode {
 				/>
 			))}
 		</div>
-	);
+	)
 }
 
 /**************************************************************************************************
@@ -94,5 +94,5 @@ export function TermsPage({title, items}: TTermsPageProps): ReactNode {
 				/>
 			</Suspense>
 		</main>
-	);
+	)
 }

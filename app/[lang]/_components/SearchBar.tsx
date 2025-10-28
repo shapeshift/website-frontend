@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 type TSearchProps = {
 	searchQuery: string;
@@ -20,5 +20,5 @@ export function SearchBar({searchQuery, setSearchQueryAction}: TSearchProps): JS
 				/>
 			</div>
 		</div>
-	);
+	)
 }

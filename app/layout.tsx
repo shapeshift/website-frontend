@@ -1,54 +1,54 @@
-import {headers} from 'next/headers';
-import Script from 'next/script';
+import {headers} from 'next/headers'
+import Script from 'next/script'
 
-import {ChatwootWidgetWrapper} from '@/app/[lang]/_components/ChatwootWidgetWrapper';
-import {Footer} from '@/app/[lang]/_components/Footer';
-import {Header} from '@/app/[lang]/_components/header/Header';
-import {WithFonts} from '@/app/[lang]/_components/WithFonts';
-import {CachedArticlesProvider} from '@/app/[lang]/_contexts/CachedArticlesContext';
-import {CachedNewsProvider} from '@/app/[lang]/_contexts/CachedNewsContext';
-import {CachedPostsProvider} from '@/app/[lang]/_contexts/CachedPostsContext';
-import {LanguageProvider} from '@/app/[lang]/_contexts/LanguageContext';
-import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig';
-import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/[lang]/_utils/schema';
+import {ChatwootWidgetWrapper} from '@/app/[lang]/_components/ChatwootWidgetWrapper'
+import {Footer} from '@/app/[lang]/_components/Footer'
+import {Header} from '@/app/[lang]/_components/header/Header'
+import {WithFonts} from '@/app/[lang]/_components/WithFonts'
+import {CachedArticlesProvider} from '@/app/[lang]/_contexts/CachedArticlesContext'
+import {CachedNewsProvider} from '@/app/[lang]/_contexts/CachedNewsContext'
+import {CachedPostsProvider} from '@/app/[lang]/_contexts/CachedPostsContext'
+import {LanguageProvider} from '@/app/[lang]/_contexts/LanguageContext'
+import {SUPPORTED_LANGUAGES} from '@/app/[lang]/_utils/i18nconfig'
+import {generateOrganizationSchema, generateWebsiteSchema} from '@/app/[lang]/_utils/schema'
 
-import './globals.css';
-import {defaultMetadata} from './metadata';
+import './globals.css'
+import {defaultMetadata} from './metadata'
 
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
+import type {Metadata} from 'next'
+import type {ReactNode} from 'react'
 
 export async function getSubdomain(): Promise<string | null> {
-	const headersList = await headers();
-	const host = headersList.get('host');
+	const headersList = await headers()
+	const host = headersList.get('host')
 
 	if (!host) {
-		return null;
+		return null
 	}
 
 	// Remove port number if present
-	const hostname = host.split(':')[0];
+	const hostname = host.split(':')[0]
 	// Split hostname into parts
-	const parts = hostname.split('.');
+	const parts = hostname.split('.')
 	// Check if we have a subdomain
 	if (parts.length > 2) {
 		// Return first part as subdomain
-		return parts[0] === 'www' || parts[0] === 'shapeshift' ? null : parts[0];
+		return parts[0] === 'www' || parts[0] === 'shapeshift' ? null : parts[0]
 	}
 
-	return null;
+	return null
 }
 
-export const metadata: Metadata = defaultMetadata;
+export const metadata: Metadata = defaultMetadata
 
 export default async function RootLayout({children}: {children: ReactNode}): Promise<ReactNode> {
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com';
-	const websiteSchema = generateWebsiteSchema(baseUrl);
-	const organizationSchema = generateOrganizationSchema();
-	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',');
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+	const websiteSchema = generateWebsiteSchema(baseUrl)
+	const organizationSchema = generateOrganizationSchema()
+	const weglotLanguages = SUPPORTED_LANGUAGES.map(lang => lang.weglotCode).join(',')
 	// Get nonce from headers
-	const headersList = await headers();
-	const nonce = headersList.get('x-nonce') || undefined;
+	const headersList = await headers()
+	const nonce = headersList.get('x-nonce') || undefined
 
 	return (
 		<html lang={'en'}>
@@ -152,5 +152,5 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 				</WithFonts>
 			</body>
 		</html>
-	);
+	)
 }

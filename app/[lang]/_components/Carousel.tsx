@@ -1,6 +1,6 @@
-import {cl} from '../_utils/cl';
+import {cl} from '../_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 /**************************************************************************************************
  * Carousel Component
@@ -69,5 +69,5 @@ export function Carousel({
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

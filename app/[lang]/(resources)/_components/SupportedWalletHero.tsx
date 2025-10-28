@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function SupportedWalletHero(props: {url: string; width: number; height: number; name: string}): ReactNode {
 	return (
@@ -23,5 +23,5 @@ export function SupportedWalletHero(props: {url: string; width: number; height: 
 				/>
 			</div>
 		</section>
-	);
+	)
 }

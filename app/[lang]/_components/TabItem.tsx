@@ -1,7 +1,7 @@
-import {LocalizedLink} from './LocalizedLink';
-import {cl} from '../_utils/cl';
+import {LocalizedLink} from './LocalizedLink'
+import {cl} from '../_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function TabItem(props: {
 	title?: string;
@@ -10,7 +10,7 @@ export function TabItem(props: {
 	onClick?: () => void;
 	href?: string;
 }): ReactNode {
-	const {title, className, selected: isSelected, onClick, href} = props;
+	const {title, className, selected: isSelected, onClick, href} = props
 	if (href) {
 		return (
 			<LocalizedLink
@@ -35,7 +35,7 @@ export function TabItem(props: {
 					</p>
 				</button>
 			</LocalizedLink>
-		);
+		)
 	}
 
 	return (
@@ -56,5 +56,5 @@ export function TabItem(props: {
 				{title}
 			</p>
 		</div>
-	);
+	)
 }

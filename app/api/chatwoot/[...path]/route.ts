@@ -5,19 +5,19 @@
  * This is a legitimate case where the web standard takes precedence.
  */
 /* eslint-disable @typescript-eslint/naming-convention */
-import {NextResponse} from 'next/server';
+import {NextResponse} from 'next/server'
 
-import type {NextRequest} from 'next/server';
+import type {NextRequest} from 'next/server'
 
 export async function GET(request: NextRequest, {params}: {params: Promise<{path: string[]}>}): Promise<NextResponse> {
 	try {
-		const {path} = await params;
-		const searchParams = request.nextUrl.searchParams;
-		searchParams.set('website_token', process.env.NEXT_PUBLIC_CHATWOOT_API_KEY ?? '');
+		const {path} = await params
+		const searchParams = request.nextUrl.searchParams
+		searchParams.set('website_token', process.env.NEXT_PUBLIC_CHATWOOT_API_KEY ?? '')
 
 		// Construct the Chatwoot URL
-		const chatwootPath = path.join('/');
-		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`;
+		const chatwootPath = path.join('/')
+		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`
 
 		// Forward the request to Chatwoot
 		const response = await fetch(chatwootUrl, {
@@ -32,13 +32,13 @@ export async function GET(request: NextRequest, {params}: {params: Promise<{path
 				'x-auth-token': request.headers.get('x-auth-token') || '',
 				'if-none-match': request.headers.get('if-none-match') || ''
 			}
-		});
+		})
 
 		if (!response.ok) {
-			return new NextResponse(null, {status: response.status});
+			return new NextResponse(null, {status: response.status})
 		}
 
-		const content = await response.text();
+		const content = await response.text()
 
 		// Create response with proper COEP headers
 		const nextResponse = new NextResponse(content, {
@@ -55,32 +55,32 @@ export async function GET(request: NextRequest, {params}: {params: Promise<{path
 				etag: response.headers.get('etag') || '',
 				vary: response.headers.get('vary') || ''
 			}
-		});
+		})
 
 		// Copy Set-Cookie headers if present (for Chatwoot session)
-		const setCookieHeaders = response.headers.get('set-cookie');
+		const setCookieHeaders = response.headers.get('set-cookie')
 		if (setCookieHeaders) {
-			nextResponse.headers.set('Set-Cookie', setCookieHeaders);
+			nextResponse.headers.set('Set-Cookie', setCookieHeaders)
 		}
 
-		return nextResponse;
+		return nextResponse
 	} catch (error) {
-		console.error('Chatwoot proxy error:', error);
-		return new NextResponse('Proxy Error', {status: 500});
+		console.error('Chatwoot proxy error:', error)
+		return new NextResponse('Proxy Error', {status: 500})
 	}
 }
 
 export async function POST(request: NextRequest, {params}: {params: Promise<{path: string[]}>}): Promise<NextResponse> {
 	try {
-		const {path} = await params;
-		const searchParams = request.nextUrl.searchParams;
-		const body = await request.text();
+		const {path} = await params
+		const searchParams = request.nextUrl.searchParams
+		const body = await request.text()
 
-		searchParams.set('website_token', process.env.NEXT_PUBLIC_CHATWOOT_API_KEY ?? '');
+		searchParams.set('website_token', process.env.NEXT_PUBLIC_CHATWOOT_API_KEY ?? '')
 
 		// Construct the Chatwoot URL
-		const chatwootPath = path.join('/');
-		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`;
+		const chatwootPath = path.join('/')
+		const chatwootUrl = `https://app.chatwoot.com/${chatwootPath}?${searchParams.toString()}`
 
 		// Forward the request to Chatwoot
 		const response = await fetch(chatwootUrl, {
@@ -97,9 +97,9 @@ export async function POST(request: NextRequest, {params}: {params: Promise<{pat
 				'if-none-match': request.headers.get('if-none-match') || ''
 			},
 			body: body || undefined
-		});
+		})
 
-		const content = await response.text();
+		const content = await response.text()
 
 		// Create response with proper COEP headers
 		const nextResponse = new NextResponse(content, {
@@ -113,17 +113,17 @@ export async function POST(request: NextRequest, {params}: {params: Promise<{pat
 				'x-frame-options': 'SAMEORIGIN',
 				'cache-control': response.headers.get('cache-control') || 'no-cache'
 			}
-		});
+		})
 
 		// Copy Set-Cookie headers if present
-		const setCookieHeaders = response.headers.get('set-cookie');
+		const setCookieHeaders = response.headers.get('set-cookie')
 		if (setCookieHeaders) {
-			nextResponse.headers.set('Set-Cookie', setCookieHeaders);
+			nextResponse.headers.set('Set-Cookie', setCookieHeaders)
 		}
 
-		return nextResponse;
+		return nextResponse
 	} catch (error) {
-		console.error('Chatwoot proxy error:', error);
-		return new NextResponse('Proxy Error', {status: 500});
+		console.error('Chatwoot proxy error:', error)
+		return new NextResponse('Proxy Error', {status: 500})
 	}
 }

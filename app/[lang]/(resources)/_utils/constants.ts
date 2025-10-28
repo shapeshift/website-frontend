@@ -23,9 +23,9 @@ export const DEFAULT_PAGINATION = {
 	PAGE_SIZE: 12,
 	SORT: 'desc' as const,
 	INITIAL_PAGE: 1
-};
+}
 
 /************************************************************************************************
  * Common feature items displayed on protocol and wallet pages
  ************************************************************************************************/
-export const DEFAULT_FEATURES = ['Self-custodial', 'Private', 'Multichain trading'];
+export const DEFAULT_FEATURES = ['Self-custodial', 'Private', 'Multichain trading']

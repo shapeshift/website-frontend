@@ -1,11 +1,11 @@
-'use client';
-import Image from 'next/image';
+'use client'
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Button} from '@/app/[lang]/_components/Button'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {TCard} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TCard} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNode {
 	if (data.isTextFirst) {
@@ -43,7 +43,7 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 					/>
 				</div>
 			</div>
-		);
+		)
 	}
 	return (
 		<div
@@ -89,5 +89,5 @@ export function Card({data, smaller}: {data: TCard; smaller?: boolean}): ReactNo
 				)}
 			</div>
 		</div>
-	);
+	)
 }

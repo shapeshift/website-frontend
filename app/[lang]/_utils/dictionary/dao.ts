@@ -7,4 +7,4 @@ export const DAO_DICT = {
 		description: 'FOX tokens wield mighty powers for those who hodl them.',
 		imageAlt: 'FOX Token'
 	}
-} as const;
+} as const

@@ -43,4 +43,4 @@ export const PRODUCT_FOOTER_CONFIGS = {
 		buttonText: 'Start Earning',
 		href: 'https://app.shapeshift.com/#/earn'
 	}
-};
+}

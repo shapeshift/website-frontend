@@ -16,7 +16,7 @@
  ** - Pass items array and renderItem function to customize display
  ************************************************************************************************/
 
-import type {ReactElement, ReactNode} from 'react';
+import type {ReactElement, ReactNode} from 'react'
 
 type TResourceGridProps<T> = {
 	items: T[] | null | undefined;
@@ -41,7 +41,7 @@ export function ResourceGrid<T>({
 				aria-busy={true}
 				aria-label={'Loading content'}
 			/>
-		);
+		)
 	}
 
 	// Handle empty state
@@ -52,7 +52,7 @@ export function ResourceGrid<T>({
 					<p className={'text-xl text-gray-400'}>{emptyMessage}</p>
 				</div>
 			</div>
-		);
+		)
 	}
 
 	// Render grid with items
@@ -64,5 +64,5 @@ export function ResourceGrid<T>({
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import {motion} from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
+import {motion} from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
-const MotionLink = motion(Link);
+const MotionLink = motion(Link)
 
 type TElementCardProps = {
 	slug: string;
@@ -24,7 +24,7 @@ type TElementCardProps = {
 };
 
 export function ElementCard(props: TElementCardProps): ReactNode {
-	const {slug, title, description, featuredImg, baseURL, position} = props;
+	const {slug, title, description, featuredImg, baseURL, position} = props
 
 	return (
 		<MotionLink
@@ -78,5 +78,5 @@ export function ElementCard(props: TElementCardProps): ReactNode {
 				</div>
 			</div>
 		</MotionLink>
-	);
+	)
 }

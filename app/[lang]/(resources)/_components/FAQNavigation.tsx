@@ -16,11 +16,11 @@
  ** - Handle scroll behavior through provided onClick handler
  ************************************************************************************************/
 
-'use client';
+'use client'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TFAQNavigationProps = {
 	sections: {
@@ -33,7 +33,7 @@ type TFAQNavigationProps = {
 
 export function FAQNavigation({sections, activeSection, onSectionClick}: TFAQNavigationProps): ReactNode {
 	if (!sections || sections.length === 0) {
-		return null;
+		return null
 	}
 
 	return (
@@ -56,5 +56,5 @@ export function FAQNavigation({sections, activeSection, onSectionClick}: TFAQNav
 				))}
 			</ul>
 		</nav>
-	);
+	)
 }

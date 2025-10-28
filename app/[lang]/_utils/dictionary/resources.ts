@@ -25,4 +25,4 @@ export const RESOURCES_DICT = {
 		description: 'Find answers to your questions and learn more about ShapeShift.',
 		emptyMessage: "We couldn't find any support articles matching your criteria."
 	}
-} as const;
+} as const

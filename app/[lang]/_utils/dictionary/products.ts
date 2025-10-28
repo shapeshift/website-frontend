@@ -19,4 +19,4 @@ export const PRODUCTS_DICT = {
 			{url: '/chains/bitcoin', image: {url: '/bitcoin.png'}}
 		]
 	}
-} as const;
+} as const

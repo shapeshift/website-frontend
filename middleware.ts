@@ -1,46 +1,46 @@
-import {NextResponse} from 'next/server';
+import {NextResponse} from 'next/server'
 
 import {
 	DEFAULT_LANGUAGE,
 	DEPRECATED_LANGUAGES,
 	SUPPORTED_LANGUAGES,
 	getLanguageFromPath
-} from '@/app/[lang]/_utils/i18nconfig';
+} from '@/app/[lang]/_utils/i18nconfig'
 
-import type {NextRequest} from 'next/server';
+import type {NextRequest} from 'next/server'
 
 /**
  * Extract language from subdomain if present
  */
 function extractLanguageFromSubdomain(hostname: string): string | null {
-	const hostParts = hostname.split('.');
+	const hostParts = hostname.split('.')
 
 	if (hostParts.length <= 2) {
-		return null;
+		return null
 	}
 
-	const possibleLang = hostParts[0];
-	const isValidLanguage = SUPPORTED_LANGUAGES.some(lang => lang.code === possibleLang);
-	const isValidDeprecatedLanguage = DEPRECATED_LANGUAGES.includes(possibleLang);
+	const possibleLang = hostParts[0]
+	const isValidLanguage = SUPPORTED_LANGUAGES.some(lang => lang.code === possibleLang)
+	const isValidDeprecatedLanguage = DEPRECATED_LANGUAGES.includes(possibleLang)
 
-	return isValidLanguage || isValidDeprecatedLanguage ? possibleLang : null;
+	return isValidLanguage || isValidDeprecatedLanguage ? possibleLang : null
 }
 
 /**
  * Check if pathname contains a locale
  */
 function hasLocaleInPath(pathname: string): boolean {
-	return SUPPORTED_LANGUAGES.some(lang => pathname.startsWith(`/${lang.code}/`) || pathname === `/${lang.code}`);
+	return SUPPORTED_LANGUAGES.some(lang => pathname.startsWith(`/${lang.code}/`) || pathname === `/${lang.code}`)
 }
 
 /**
  * Create headers with locale information
  */
 function createLocaleHeaders(requestHeaders: Headers, pathname: string, locale: string): Headers {
-	const headers = new Headers(requestHeaders);
-	headers.set('x-current-path', pathname);
-	headers.set('x-locale', locale);
-	return headers;
+	const headers = new Headers(requestHeaders)
+	headers.set('x-current-path', pathname)
+	headers.set('x-locale', locale)
+	return headers
 }
 
 /**
@@ -52,28 +52,28 @@ function setLocaleCookie(response: NextResponse, locale: string): void {
 		sameSite: 'lax',
 		path: '/',
 		maxAge: 60 * 60 * 24 * 365 // 1 year
-	});
+	})
 }
 
 /**
  * Handle subdomain-based language redirect
  */
 function handleSubdomainRedirect(request: NextRequest, hostname: string, subdomainLang: string): NextResponse {
-	const hostParts = hostname.split('.');
-	const mainDomain = hostParts.slice(1).join('.');
+	const hostParts = hostname.split('.')
+	const mainDomain = hostParts.slice(1).join('.')
 
-	const newUrl = new URL(request.url);
-	newUrl.hostname = mainDomain;
+	const newUrl = new URL(request.url)
+	newUrl.hostname = mainDomain
 
 	// Redirect deprecated languages to default language without prefix
 	if (DEPRECATED_LANGUAGES.includes(subdomainLang)) {
-		newUrl.pathname = request.nextUrl.pathname; // Preserve path
-		return NextResponse.redirect(newUrl, 301);
+		newUrl.pathname = request.nextUrl.pathname // Preserve path
+		return NextResponse.redirect(newUrl, 301)
 	}
 
-	newUrl.pathname = `/${subdomainLang}${request.nextUrl.pathname}`;
+	newUrl.pathname = `/${subdomainLang}${request.nextUrl.pathname}`
 
-	return NextResponse.redirect(newUrl, 301);
+	return NextResponse.redirect(newUrl, 301)
 }
 
 /**
@@ -85,88 +85,88 @@ function handleLocaleRouting(
 	locale: string,
 	pathHasLocale: boolean
 ): NextResponse {
-	const pathname = request.nextUrl.pathname;
+	const pathname = request.nextUrl.pathname
 
 	// If path has locale, return as is (Next.js will handle the routing)
 	if (pathHasLocale) {
-		console.log('returning response - path has locale');
-		return response;
+		console.log('returning response - path has locale')
+		return response
 	}
 
 	// If no locale in path and it's the default language, rewrite to include it
 	if (locale === DEFAULT_LANGUAGE) {
-		request.nextUrl.pathname = `/${DEFAULT_LANGUAGE}${pathname}`;
-		console.log('rewriting to', request.nextUrl.pathname);
-		return NextResponse.rewrite(request.nextUrl);
+		request.nextUrl.pathname = `/${DEFAULT_LANGUAGE}${pathname}`
+		console.log('rewriting to', request.nextUrl.pathname)
+		return NextResponse.rewrite(request.nextUrl)
 	}
 
 	// Redirect to include locale in path for non-default languages
-	request.nextUrl.pathname = `/${locale}${pathname}`;
-	console.log('redirecting to', request.nextUrl.pathname);
-	return NextResponse.redirect(request.nextUrl);
+	request.nextUrl.pathname = `/${locale}${pathname}`
+	console.log('redirecting to', request.nextUrl.pathname)
+	return NextResponse.redirect(request.nextUrl)
 }
 
 export function middleware(request: NextRequest): NextResponse {
-	const pathname = request.nextUrl.pathname;
-	const hostname = request.headers.get('host') || '';
+	const pathname = request.nextUrl.pathname
+	const hostname = request.headers.get('host') || ''
 
 	// Generate a nonce for CSP
-	const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+	const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
 
 	// Check for language subdomain
-	const subdomainLang = extractLanguageFromSubdomain(hostname);
+	const subdomainLang = extractLanguageFromSubdomain(hostname)
 
 	// Handle subdomain-based language redirect
 	if (subdomainLang && subdomainLang !== DEFAULT_LANGUAGE) {
-		return handleSubdomainRedirect(request, hostname, subdomainLang);
+		return handleSubdomainRedirect(request, hostname, subdomainLang)
 	}
 
 	// Check if path has locale
-	const isPathWithLocale = hasLocaleInPath(pathname);
+	const isPathWithLocale = hasLocaleInPath(pathname)
 
 	// Get saved locale from cookie
-	const savedLocale = request.cookies.get('locale')?.value;
+	const savedLocale = request.cookies.get('locale')?.value
 
 	// Get browser language
-	const acceptLanguage = request.headers.get('accept-language') || '';
-	const browserLang = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase();
-	const isBrowserLangSupported = SUPPORTED_LANGUAGES.some(lang => lang.code === browserLang);
+	const acceptLanguage = request.headers.get('accept-language') || ''
+	const browserLang = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase()
+	const isBrowserLangSupported = SUPPORTED_LANGUAGES.some(lang => lang.code === browserLang)
 
 	// Determine locale priority: URL path > saved cookie > browser language > default
-	let locale: string;
+	let locale: string
 	if (isPathWithLocale) {
-		locale = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE;
+		locale = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE
 	} else if (savedLocale && SUPPORTED_LANGUAGES.some(lang => lang.code === savedLocale)) {
-		locale = savedLocale;
+		locale = savedLocale
 	} else if (!savedLocale && isBrowserLangSupported && browserLang) {
 		// Only use browser language if no cookie is set
-		locale = browserLang;
+		locale = browserLang
 	} else {
-		locale = DEFAULT_LANGUAGE;
+		locale = DEFAULT_LANGUAGE
 	}
 
 	// Create response with locale headers and nonce
-	const headers = createLocaleHeaders(request.headers, pathname, locale);
-	headers.set('x-nonce', nonce);
-	const response = NextResponse.next({headers});
+	const headers = createLocaleHeaders(request.headers, pathname, locale)
+	headers.set('x-nonce', nonce)
+	const response = NextResponse.next({headers})
 
 	// Only set locale cookie if user explicitly changed language (cookie already exists)
 	// This prevents auto-setting cookie based on browser language
 	if (savedLocale) {
-		setLocaleCookie(response, locale);
+		setLocaleCookie(response, locale)
 	}
 
 	// Set security headers including COEP
-	response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
-	response.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
-	response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+	response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless')
+	response.headers.set('Cross-Origin-Resource-Policy', 'cross-origin')
+	response.headers.set('Cross-Origin-Opener-Policy', 'same-origin')
 
 	// Set the CSP header with the nonce
-	const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://tag.adrsbl.io https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`;
-	response.headers.set('Content-Security-Policy', cspHeader);
+	const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://tag.adrsbl.io https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://app.chatwoot.com https://widget.chatwoot.com https://strapi.shapeshift.com https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
+	response.headers.set('Content-Security-Policy', cspHeader)
 
 	// Handle locale routing
-	return handleLocaleRouting(request, response, locale, isPathWithLocale);
+	return handleLocaleRouting(request, response, locale, isPathWithLocale)
 }
 
 export const config = {
@@ -182,4 +182,4 @@ export const config = {
 		 */
 		'/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|chatwoot|.*\\.(?:svg|png|jpg|jpeg|gif|webp|webmanifest|ico|css|js|woff|woff2|ttf|otf)).*)'
 	]
-};
+}

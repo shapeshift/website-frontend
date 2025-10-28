@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TLandingInfoCard = {
 	title: string;
@@ -14,5 +14,5 @@ export function LandingInfoCard({title, stat}: TLandingInfoCard): ReactNode {
 			<h1 className={'text-xl text-gray-600 lg:group-hover:text-white'}>{title}</h1>
 			<p className={'text-[40px] leading-[48px]'}>{stat}</p>
 		</div>
-	);
+	)
 }

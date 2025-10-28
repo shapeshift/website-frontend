@@ -1,21 +1,21 @@
-import Image from 'next/image';
-import {notFound} from 'next/navigation';
+import Image from 'next/image'
+import {notFound} from 'next/navigation'
 
-import {ProtocolAbout} from '@/app/[lang]/(resources)/_components/ProtocolAbout';
-import {ProtocolEasier} from '@/app/[lang]/(resources)/_components/ProtocolEasier';
-import {ProtocolFeatures} from '@/app/[lang]/(resources)/_components/ProtocolFeatures';
-import {ProtocolHeader} from '@/app/[lang]/(resources)/_components/ProtocolHeader';
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {getSupportedProtocol} from '@/app/[lang]/_utils/query';
+import {ProtocolAbout} from '@/app/[lang]/(resources)/_components/ProtocolAbout'
+import {ProtocolEasier} from '@/app/[lang]/(resources)/_components/ProtocolEasier'
+import {ProtocolFeatures} from '@/app/[lang]/(resources)/_components/ProtocolFeatures'
+import {ProtocolHeader} from '@/app/[lang]/(resources)/_components/ProtocolHeader'
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {getSupportedProtocol} from '@/app/[lang]/_utils/query'
 
-import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types';
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
+import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types'
+import type {Metadata} from 'next'
+import type {ReactNode} from 'react'
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
-	const {slug} = await params;
+	const {slug} = await params
 	if (!slug) {
-		return notFound();
+		return notFound()
 	}
 
 	const response = await fetch(
@@ -25,14 +25,14 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 				Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 			}
 		}
-	);
-	const data = await response.json();
-	const protocol = data.data[0] as TSupportedProtocolData;
+	)
+	const data = await response.json()
+	const protocol = data.data[0] as TSupportedProtocolData
 	if (!protocol) {
-		return notFound();
+		return notFound()
 	}
 
-	const imageUrl = protocol.featuredImg?.formats?.thumbnail?.url || protocol.featuredImg?.url;
+	const imageUrl = protocol.featuredImg?.formats?.thumbnail?.url || protocol.featuredImg?.url
 
 	const metadata: Metadata = {
 		title: `${protocol.name} | ShapeShift`,
@@ -48,30 +48,30 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 			title: protocol.name,
 			description: `Shift into ${protocol.name} with ShapeShift!`
 		}
-	};
+	}
 
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
 				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
-		];
+		]
 		metadata.twitter!.images = [
 			{
 				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
 			}
-		];
+		]
 	}
 
-	return metadata;
+	return metadata
 }
 
 export default async function ProtocolPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
-	const {slug} = await params;
-	const protocol = await getSupportedProtocol(slug);
+	const {slug} = await params
+	const protocol = await getSupportedProtocol(slug)
 
 	if (!protocol) {
-		return notFound();
+		return notFound()
 	}
 
 	return (
@@ -109,5 +109,5 @@ export default async function ProtocolPage({params}: {params: Promise<{slug: str
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

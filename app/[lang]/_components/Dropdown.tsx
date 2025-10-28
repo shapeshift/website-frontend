@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import {useState} from 'react';
+import {useState} from 'react'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import {IconCheck} from '../_icons/IconCheck';
-import {IconChevron} from '../_icons/IconChevron';
+import {IconCheck} from '../_icons/IconCheck'
+import {IconChevron} from '../_icons/IconChevron'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TDropdownProps = {
 	options: string[];
@@ -34,9 +34,9 @@ export function Dropdown({
 	className,
 	allItemsLabel = 'All chains'
 }: TDropdownProps): ReactNode {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
 
-	const allOptions = [allItemsLabel, ...options];
+	const allOptions = [allItemsLabel, ...options]
 
 	return (
 		<div className={'relative'}>
@@ -59,8 +59,8 @@ export function Dropdown({
 						<button
 							key={option}
 							onClick={() => {
-								onChangeAction(option);
-								setIsOpen(false);
+								onChangeAction(option)
+								setIsOpen(false)
 							}}
 							className={cl(
 								'flex w-full items-center justify-between px-6 rounded-lg py-4 text-left transition-colors hover:bg-white/10',
@@ -73,5 +73,5 @@ export function Dropdown({
 				</div>
 			)}
 		</div>
-	);
+	)
 }

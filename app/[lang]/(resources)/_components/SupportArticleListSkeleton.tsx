@@ -1,9 +1,9 @@
-import {Fragment} from 'react';
+import {Fragment} from 'react'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TSupportArticleListSkeletonProps = {
 	pageSize?: number;
@@ -47,5 +47,5 @@ export function SupportArticleListSkeleton({pageSize = 6}: TSupportArticleListSk
 				</div>
 			</div>
 		</Fragment>
-	);
+	)
 }

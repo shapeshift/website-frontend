@@ -1,7 +1,7 @@
-import {Button} from '@/app/[lang]/_components/Button';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
+import {Button} from '@/app/[lang]/_components/Button'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function ChainHeader({chainName}: {chainName: string}): ReactNode {
 	return (
@@ -30,5 +30,5 @@ export function ChainHeader({chainName}: {chainName: string}): ReactNode {
 				title={'Get Started'}
 			/>
 		</section>
-	);
+	)
 }

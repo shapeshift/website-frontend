@@ -8,12 +8,12 @@
  * - Pagination state
  ********************************************************************************************/
 
-'use client';
+'use client'
 
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useState} from 'react'
 
-import type {TBlogListResponse} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TBlogListResponse} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /********************************************************************************************
  * Type definition for cached query parameters
@@ -60,7 +60,7 @@ const PostsContext = createContext<{
 		tag: undefined
 	},
 	setCachedParams: () => {}
-});
+})
 
 /**
  * Provider component for blog posts caching functionality
@@ -78,7 +78,7 @@ export function CachedPostsProvider({children}: {children: ReactNode}): ReactNod
 				total: 0
 			}
 		}
-	});
+	})
 	const [cachedParams, setCachedParams] = useState<TCachedParams>({
 		page: undefined,
 		pageSize: undefined,
@@ -87,7 +87,7 @@ export function CachedPostsProvider({children}: {children: ReactNode}): ReactNod
 		populateContent: undefined,
 		type: undefined,
 		tag: undefined
-	});
+	})
 
 	return (
 		<PostsContext.Provider
@@ -99,7 +99,7 @@ export function CachedPostsProvider({children}: {children: ReactNode}): ReactNod
 			}}>
 			{children}
 		</PostsContext.Provider>
-	);
+	)
 }
 
 /**
@@ -113,5 +113,5 @@ export function useCachedPosts(): {
 	cachedParams: TCachedParams;
 	setCachedParams: (params: TCachedParams) => void;
 } {
-	return useContext(PostsContext);
+	return useContext(PostsContext)
 }

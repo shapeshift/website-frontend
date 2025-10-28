@@ -6,7 +6,7 @@ import type {
 	TSupportedProtocolData,
 	TSupportedWalletData,
 	TTermsOfServiceData
-} from '@/app/[lang]/_components/strapi/types';
+} from '@/app/[lang]/_components/strapi/types'
 
 /**
  * API utility functions to fetch data from Strapi CMS
@@ -22,7 +22,7 @@ const apiHeaders = {
 	headers: {
 		Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
 	}
-};
+}
 
 /**
  * Fetches FAQ sections with nested items
@@ -33,13 +33,13 @@ export async function getFaq(): Promise<TFaqData | null> {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/faq?populate[0]=faqSection&populate[1]=faqSection.faqSectionItem&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`,
 		apiHeaders
-	);
+	)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data;
+	const data = await res.json()
+	return data.data
 }
 
 /**
@@ -52,13 +52,13 @@ export async function getSupportedWallet(slug: string): Promise<TSupportedWallet
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
-	);
+	)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data[0];
+	const data = await res.json()
+	return data.data[0]
 }
 
 /**
@@ -71,13 +71,13 @@ export async function getSupportedChain(slug: string): Promise<TSupportedChainDa
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
-	);
+	)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data[0];
+	const data = await res.json()
+	return data.data[0]
 }
 
 /**
@@ -90,13 +90,13 @@ export async function getSupportedProtocol(slug: string): Promise<TSupportedProt
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-protocols?filters[slug][$eq]=${slug}&populate=*`,
 		apiHeaders
-	);
+	)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data[0];
+	const data = await res.json()
+	return data.data[0]
 }
 
 /**
@@ -105,13 +105,13 @@ export async function getSupportedProtocol(slug: string): Promise<TSupportedProt
  * @returns Promise with array of discover data or null if request fails
  */
 export async function getDiscovers(): Promise<TDiscoverData[] | null> {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/discovers?populate=*`, apiHeaders);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/discovers?populate=*`, apiHeaders)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data;
+	const data = await res.json()
+	return data.data
 }
 
 /**
@@ -120,13 +120,13 @@ export async function getDiscovers(): Promise<TDiscoverData[] | null> {
  * @returns Promise with privacy policy data or null if request fails
  */
 export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/privacy-policy?populate=*`, apiHeaders);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/privacy-policy?populate=*`, apiHeaders)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data;
+	const data = await res.json()
+	return data.data
 }
 
 /**
@@ -135,11 +135,11 @@ export async function getPrivacyPolicy(): Promise<TPrivacyPolicyData | null> {
  * @returns Promise with terms of service data or null if request fails
  */
 export async function getTermsOfService(): Promise<TTermsOfServiceData | null> {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/terms-of-service?populate=*`, apiHeaders);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/terms-of-service?populate=*`, apiHeaders)
 
 	if (!res.ok) {
-		return null;
+		return null
 	}
-	const data = await res.json();
-	return data.data;
+	const data = await res.json()
+	return data.data
 }

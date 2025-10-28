@@ -1,6 +1,6 @@
-import {LocalizedLink} from './LocalizedLink';
+import {LocalizedLink} from './LocalizedLink'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type THeaderItemProps = {
 	name: string;
@@ -28,5 +28,5 @@ export default function HeaderItem({name, href, target, description, onClick, ic
 				)}
 			</div>
 		</LocalizedLink>
-	);
+	)
 }

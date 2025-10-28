@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import {LocalizedLink} from './LocalizedLink';
-import {ShapeshiftLogo} from '../_icons/ShapeshiftLogo';
-import {footerButtonTitle, footerLinks} from '../_utils/constants';
+import {LocalizedLink} from './LocalizedLink'
+import {ShapeshiftLogo} from '../_icons/ShapeshiftLogo'
+import {footerButtonTitle, footerLinks} from '../_utils/constants'
 
-import type {TAppLink} from '../_utils/constants';
-import type {ReactNode} from 'react';
+import type {TAppLink} from '../_utils/constants'
+import type {ReactNode} from 'react'
 
 export function Footer(): ReactNode {
 	return (
@@ -74,5 +74,5 @@ export function Footer(): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

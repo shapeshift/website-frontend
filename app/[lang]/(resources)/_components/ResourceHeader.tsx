@@ -16,13 +16,13 @@
  ** - Optionally add CTA button and custom classes
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Button} from '@/app/[lang]/_components/Button'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TResourceHeaderProps = {
 	title: string;
@@ -102,5 +102,5 @@ export function ResourceHeader({
 				</div>
 			)}
 		</section>
-	);
+	)
 }

@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 /************************************************************************************************
  ** SupportArticleList Component:
@@ -18,22 +18,22 @@
  ** - Add custom empty state message if needed
  ************************************************************************************************/
 
-import {Fragment, useState} from 'react';
-import ReactPaginate from 'react-paginate';
+import {Fragment, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {useFetchSupportArticles} from '@/app/[lang]/_hooks/useFetchSupportArticles';
-import {IconChevron} from '@/app/[lang]/_icons/IconChevron';
-import {IconDocs} from '@/app/[lang]/_icons/IconDocs';
-import {cl} from '@/app/[lang]/_utils/cl';
-import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {useFetchSupportArticles} from '@/app/[lang]/_hooks/useFetchSupportArticles'
+import {IconChevron} from '@/app/[lang]/_icons/IconChevron'
+import {IconDocs} from '@/app/[lang]/_icons/IconDocs'
+import {cl} from '@/app/[lang]/_utils/cl'
+import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources'
 
-import {SupportArticleListSkeleton} from './SupportArticleListSkeleton';
-import {DEFAULT_PAGINATION} from '../_utils/constants';
+import {SupportArticleListSkeleton} from './SupportArticleListSkeleton'
+import {DEFAULT_PAGINATION} from '../_utils/constants'
 
-import type {TSupportArticle} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TSupportArticle} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TSupportArticleListProps = {
 	pageSize?: number;
@@ -54,18 +54,18 @@ export function SupportArticleList({
 	emptyMessage = RESOURCES_DICT.support.emptyMessage,
 	gridClassName
 }: TSupportArticleListProps): ReactNode {
-	const [page, setPage] = useState(initialPage);
+	const [page, setPage] = useState(initialPage)
 	const {articles, pagination, isLoading} = useFetchSupportArticles({
 		page,
 		pageSize,
 		sort,
 		populateContent,
 		cacheArticles
-	});
+	})
 
 	// Loading skeleton
 	if (isLoading) {
-		return <SupportArticleListSkeleton pageSize={pageSize} />;
+		return <SupportArticleListSkeleton pageSize={pageSize} />
 	}
 
 	return (
@@ -142,5 +142,5 @@ export function SupportArticleList({
 				</div>
 			</div>
 		</Fragment>
-	);
+	)
 }

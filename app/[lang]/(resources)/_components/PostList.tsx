@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 /************************************************************************************************
  ** PostList Component:
@@ -18,19 +18,19 @@
  ** - Add custom empty state message if needed
  ************************************************************************************************/
 
-import {Fragment, useState} from 'react';
-import ReactPaginate from 'react-paginate';
+import {Fragment, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {BlogPost} from '@/app/[lang]/_components/BlogPost';
-import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts';
-import {IconChevron} from '@/app/[lang]/_icons/IconChevron';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {BlogPost} from '@/app/[lang]/_components/BlogPost'
+import {useFetchPosts} from '@/app/[lang]/_hooks/useFetchPosts'
+import {IconChevron} from '@/app/[lang]/_icons/IconChevron'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import {DEFAULT_PAGINATION} from '../_utils/constants';
+import {DEFAULT_PAGINATION} from '../_utils/constants'
 
-import type {TBlogPost} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TBlogPost} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TPostListProps = {
 	pageSize?: number;
@@ -55,7 +55,7 @@ export function PostList({
 	tag,
 	gridClassName
 }: TPostListProps): ReactNode {
-	const [page, setPage] = useState(initialPage);
+	const [page, setPage] = useState(initialPage)
 	const {posts, pagination, isLoading} = useFetchPosts({
 		page,
 		pageSize,
@@ -64,7 +64,7 @@ export function PostList({
 		cachePosts,
 		type: category,
 		tag
-	});
+	})
 
 	// Loading skeleton
 	if (isLoading) {
@@ -80,7 +80,7 @@ export function PostList({
 					/>
 				))}
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -144,5 +144,5 @@ export function PostList({
 				<Banner />
 			</div>
 		</Fragment>
-	);
+	)
 }

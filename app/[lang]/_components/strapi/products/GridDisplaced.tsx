@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import {useMemo} from 'react';
+import Image from 'next/image'
+import {useMemo} from 'react'
 
-import {BuyCryptoCard} from './BuyCryptoCard';
-import {CarouselCard} from './CarouselCard';
-import {ChainBubblesCard} from './ChainBubblesCard';
+import {BuyCryptoCard} from './BuyCryptoCard'
+import {CarouselCard} from './CarouselCard'
+import {ChainBubblesCard} from './ChainBubblesCard'
 
-import type {TGridDisplacedSection} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TGridDisplacedSection} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 export default function GridDisplaced({data}: {data: TGridDisplacedSection}): ReactNode | null {
 	// Create an array of random delays for each bubble
@@ -16,10 +16,10 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 		() => data?.cards[0].items?.map(() => Math.random() * 2) || [],
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[JSON.stringify(data?.cards)]
-	);
+	)
 
 	if (!data) {
-		return null;
+		return null
 	}
 
 	return (
@@ -64,5 +64,5 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 				<BuyCryptoCard />
 			</div>
 		</section>
-	);
+	)
 }

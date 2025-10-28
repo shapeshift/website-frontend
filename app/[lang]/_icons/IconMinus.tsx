@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconMinus(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -16,5 +16,5 @@ export function IconMinus(props: SVGProps<SVGSVGElement>): ReactNode {
 				strokeLinecap={'round'}
 			/>
 		</svg>
-	);
+	)
 }

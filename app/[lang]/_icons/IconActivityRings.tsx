@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconActivityRings(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -50,5 +50,5 @@ export function IconActivityRings(props: SVGProps<SVGSVGElement>): ReactNode {
 				</clipPath>
 			</defs>
 		</svg>
-	);
+	)
 }

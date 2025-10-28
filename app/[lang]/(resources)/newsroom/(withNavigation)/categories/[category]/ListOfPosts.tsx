@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import {Fragment, useState} from 'react';
-import ReactPaginate from 'react-paginate';
+import {Fragment, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {NewsPost} from '@/app/[lang]/_components/NewsPost';
-import {useFetchNewsroom} from '@/app/[lang]/_hooks/useFetchNewsroom';
-import {IconChevron} from '@/app/[lang]/_icons/IconChevron';
-import {cl} from '@/app/[lang]/_utils/cl';
-import {newsroomCategoriesSlugToCategory} from '@/app/[lang]/_utils/constants';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {NewsPost} from '@/app/[lang]/_components/NewsPost'
+import {useFetchNewsroom} from '@/app/[lang]/_hooks/useFetchNewsroom'
+import {IconChevron} from '@/app/[lang]/_icons/IconChevron'
+import {cl} from '@/app/[lang]/_utils/cl'
+import {newsroomCategoriesSlugToCategory} from '@/app/[lang]/_utils/constants'
 
-import type {ReactElement} from 'react';
+import type {ReactElement} from 'react'
 
-const PAGE_SIZE = 12;
-const SORT = 'desc';
+const PAGE_SIZE = 12
+const SORT = 'desc'
 export function ListOfPosts(props: {category: string}): ReactElement {
-	const {category} = props;
-	const [page, setPage] = useState(1);
+	const {category} = props
+	const [page, setPage] = useState(1)
 	const {posts, pagination, isLoading} = useFetchNewsroom({
 		page,
 		pageSize: PAGE_SIZE,
@@ -24,7 +24,7 @@ export function ListOfPosts(props: {category: string}): ReactElement {
 		category: newsroomCategoriesSlugToCategory(category),
 		populateContent: true,
 		cachePosts: true
-	});
+	})
 
 	if (isLoading) {
 		return (
@@ -36,7 +36,7 @@ export function ListOfPosts(props: {category: string}): ReactElement {
 					/>
 				))}
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -84,5 +84,5 @@ export function ListOfPosts(props: {category: string}): ReactElement {
 
 			<Banner />
 		</Fragment>
-	);
+	)
 }

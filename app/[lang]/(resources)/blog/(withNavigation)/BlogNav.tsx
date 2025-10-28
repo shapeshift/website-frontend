@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import {useParams, usePathname} from 'next/navigation';
+import {useParams, usePathname} from 'next/navigation'
 
-import {TabItem} from '@/app/[lang]/_components/TabItem';
-import {blogTags, blogTypes} from '@/app/[lang]/_utils/constants';
+import {TabItem} from '@/app/[lang]/_components/TabItem'
+import {blogTags, blogTypes} from '@/app/[lang]/_utils/constants'
 
 export function BlogNav(): React.ReactNode {
-	const pathname = usePathname();
-	const params = useParams();
-	const category = (params.category as string) || '';
-	const tag = (params.tag as string) || '';
+	const pathname = usePathname()
+	const params = useParams()
+	const category = (params.category as string) || ''
+	const tag = (params.tag as string) || ''
 
 	if (tag || pathname.includes('/tags')) {
 		return (
@@ -23,7 +23,7 @@ export function BlogNav(): React.ReactNode {
 					/>
 				))}
 			</div>
-		);
+		)
 	}
 	return (
 		<div className={'mb-6 flex w-full flex-wrap gap-4 rounded-full p-1'}>
@@ -36,5 +36,5 @@ export function BlogNav(): React.ReactNode {
 				/>
 			))}
 		</div>
-	);
+	)
 }

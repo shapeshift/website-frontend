@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconShield(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -18,5 +18,5 @@ export function IconShield(props: SVGProps<SVGSVGElement>): ReactNode {
 				fill={'#E6E6E6'}
 			/>
 		</svg>
-	);
+	)
 }

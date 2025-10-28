@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import {cl} from '@/app/[lang]/_utils/cl';
-import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products';
+import {cl} from '@/app/[lang]/_utils/cl'
+import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function BuyCryptoCard(): ReactNode {
 	return (
@@ -34,5 +34,5 @@ export function BuyCryptoCard(): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

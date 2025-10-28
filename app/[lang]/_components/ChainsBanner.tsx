@@ -1,10 +1,10 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import {cl} from '../_utils/cl';
+import {cl} from '../_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TChainsBanner = {
 	tag: string;
@@ -44,5 +44,5 @@ export function ChainsBanner(data: TChainsBanner): ReactNode {
 				</div>
 			</div>
 		</section>
-	);
+	)
 }

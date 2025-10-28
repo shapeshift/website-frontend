@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Carousel} from '@/app/[lang]/_components/Carousel';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
+import {Carousel} from '@/app/[lang]/_components/Carousel'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
 
-import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TCarouselCardProps = {
 	title: string;
@@ -58,5 +58,5 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

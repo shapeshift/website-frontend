@@ -1,13 +1,13 @@
-import {useMemo} from 'react';
+import {useMemo} from 'react'
 
-import {IconBorrow} from '@/app/[lang]/_icons/IconBorrow';
-import {IconBuySell} from '@/app/[lang]/_icons/IconBuySell';
-import {IconEarn} from '@/app/[lang]/_icons/IconEarn';
-import {IconHold} from '@/app/[lang]/_icons/IconHold';
-import {IconSendReceive} from '@/app/[lang]/_icons/IconSendReceive';
-import {IconTrade} from '@/app/[lang]/_icons/IconTrade';
+import {IconBorrow} from '@/app/[lang]/_icons/IconBorrow'
+import {IconBuySell} from '@/app/[lang]/_icons/IconBuySell'
+import {IconEarn} from '@/app/[lang]/_icons/IconEarn'
+import {IconHold} from '@/app/[lang]/_icons/IconHold'
+import {IconSendReceive} from '@/app/[lang]/_icons/IconSendReceive'
+import {IconTrade} from '@/app/[lang]/_icons/IconTrade'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 function Feature({title, description, icon}: {title: string; description: string; icon: ReactNode}): ReactNode {
 	return (
@@ -19,12 +19,12 @@ function Feature({title, description, icon}: {title: string; description: string
 				<p className={'text-sm text-gray-500 lg:text-base'}>{description}</p>
 			</div>
 		</div>
-	);
+	)
 }
 
 export function ChainActions({features, chainName}: {features: string[]; chainName: string}): ReactNode {
 	const featuresComponents = useMemo((): ReactNode[] => {
-		const featuresToDisplay = [];
+		const featuresToDisplay = []
 		if (features.includes('Trade')) {
 			featuresToDisplay.push(
 				<Feature
@@ -33,7 +33,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 					description={`Trade 10,000+ assets on ${chainName} across 15 chains.`}
 					icon={<IconTrade />}
 				/>
-			);
+			)
 		}
 
 		if (features.includes('Hodl')) {
@@ -44,7 +44,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 					description={`Stack crypto on ${chainName} and never let it go.`}
 					icon={<IconHold />}
 				/>
-			);
+			)
 		}
 
 		if (features.includes('Earn')) {
@@ -55,7 +55,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 					description={`Put your assets to work with one-click ${chainName} DeFi yield.`}
 					icon={<IconEarn />}
 				/>
-			);
+			)
 		}
 
 		if (features.includes('Borrow')) {
@@ -66,7 +66,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 					description={`Explore new tokens and rising DeFi projects on ${chainName}.`}
 					icon={<IconBorrow />}
 				/>
-			);
+			)
 		}
 
 		if (features.includes('Buy & Sell')) {
@@ -77,7 +77,7 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 					description={`Buy and sell assets on ${chainName} instantly.`}
 					icon={<IconBuySell />}
 				/>
-			);
+			)
 		}
 
 		if (features.includes('Send & Receive')) {
@@ -88,11 +88,11 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 					description={`Send and receive crypto on ${chainName} with ease.`}
 					icon={<IconSendReceive />}
 				/>
-			);
+			)
 		}
 
-		return featuresToDisplay;
-	}, [features, chainName]);
+		return featuresToDisplay
+	}, [features, chainName])
 
 	return (
 		<section className={'container flex flex-col gap-6 lg:gap-16'}>
@@ -101,5 +101,5 @@ export function ChainActions({features, chainName}: {features: string[]; chainNa
 			</h1>
 			<div className={'grid grid-cols-1 gap-6 md:grid-cols-3'}>{featuresComponents}</div>
 		</section>
-	);
+	)
 }

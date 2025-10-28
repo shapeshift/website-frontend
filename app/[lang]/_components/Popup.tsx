@@ -1,13 +1,13 @@
-import {motion} from 'motion/react';
-import Link from 'next/link';
+import {motion} from 'motion/react'
+import Link from 'next/link'
 
-import {IconArrow} from '../_icons/IconArrow';
-import {IconClose} from '../_icons/IconClose';
-import {cl} from '../_utils/cl';
-import {popupAnimation} from '../_utils/constants';
+import {IconArrow} from '../_icons/IconArrow'
+import {IconClose} from '../_icons/IconClose'
+import {cl} from '../_utils/cl'
+import {popupAnimation} from '../_utils/constants'
 
-import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types';
-import type {ReactElement} from 'react';
+import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types'
+import type {ReactElement} from 'react'
 
 /************************************************************************************************
  * Notification Popup Component
@@ -106,5 +106,5 @@ export function Popup({
 				</div>
 			)}
 		</>
-	);
+	)
 }

@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import {useState} from 'react';
+import {useState} from 'react'
 
-import {SearchBar} from '@/app/[lang]/_components/SearchBar';
-import {StrapiDiscover} from '@/app/[lang]/_components/StrapiDiscover';
+import {SearchBar} from '@/app/[lang]/_components/SearchBar'
+import {StrapiDiscover} from '@/app/[lang]/_components/StrapiDiscover'
 
-import type {TDiscoverData} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TDiscoverData} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TDiscoverSearchWrapperProps = {
 	discover: TDiscoverData[] | null;
@@ -22,7 +22,7 @@ type TDiscoverSearchWrapperProps = {
  ** @returns {ReactNode} Rendered component with search and discover list
  *************************************************************************************************/
 export function DiscoverSearchWrapper({discover}: TDiscoverSearchWrapperProps): ReactNode {
-	const [searchQuery, setSearchQuery] = useState('');
+	const [searchQuery, setSearchQuery] = useState('')
 
 	/**********************************************************************************************
 	 ** Filter discover items by search query
@@ -32,7 +32,7 @@ export function DiscoverSearchWrapper({discover}: TDiscoverSearchWrapperProps): 
 		item =>
 			item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
 			item.tag.toLowerCase().includes(searchQuery.toLowerCase())
-	);
+	)
 
 	/**********************************************************************************************
 	 ** Group discover items by type for organized display
@@ -42,15 +42,15 @@ export function DiscoverSearchWrapper({discover}: TDiscoverSearchWrapperProps): 
 	 *********************************************************************************************/
 	const groupedDiscover = filteredDiscover?.reduce(
 		(acc, item) => {
-			const type = item.type;
+			const type = item.type
 			if (!acc[type]) {
-				acc[type] = [];
+				acc[type] = []
 			}
-			acc[type].push(item);
-			return acc;
+			acc[type].push(item)
+			return acc
 		},
 		{} as Record<string, TDiscoverData[]>
-	);
+	)
 
 	return (
 		<div className={'flex w-full flex-col gap-8'}>
@@ -69,5 +69,5 @@ export function DiscoverSearchWrapper({discover}: TDiscoverSearchWrapperProps): 
 					</section>
 				))}
 		</div>
-	);
+	)
 }

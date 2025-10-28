@@ -16,15 +16,15 @@
  ** - Implements descriptive section headings for better accessibility
  ************************************************************************************************/
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {WalletRequestCard} from '@/app/[lang]/_components/WalletRequestCard';
-import {requestUrl} from '@/app/[lang]/_utils/constants';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {WalletRequestCard} from '@/app/[lang]/_components/WalletRequestCard'
+import {requestUrl} from '@/app/[lang]/_utils/constants'
 
-import {ResourceHeader} from '../_components/ResourceHeader';
-import {fetchAllWallets} from '../_utils/fetchUtils';
-import {WalletSearchWrapper} from './_components/WalletSearchWrapper';
+import {ResourceHeader} from '../_components/ResourceHeader'
+import {fetchAllWallets} from '../_utils/fetchUtils'
+import {WalletSearchWrapper} from './_components/WalletSearchWrapper'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 // Static content for the page
 const pageContent = {
@@ -36,11 +36,11 @@ const pageContent = {
 		text: 'Get Started',
 		url: 'https://app.shapeshift.com/'
 	}
-};
+}
 
 export default async function WalletPage(): Promise<ReactNode> {
 	// Fetch wallets data
-	const wallets = await fetchAllWallets();
+	const wallets = await fetchAllWallets()
 
 	// Handle loading and error states
 	if (!wallets) {
@@ -48,7 +48,7 @@ export default async function WalletPage(): Promise<ReactNode> {
 			<div className={'mt-[120px] flex w-full justify-center text-center lg:mt-60'}>
 				<p className={'text-red-400'}>{'Unable to load wallet data. Please try again later.'}</p>
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -90,5 +90,5 @@ export default async function WalletPage(): Promise<ReactNode> {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

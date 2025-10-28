@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import {useMemo} from 'react';
+import Image from 'next/image'
+import {useMemo} from 'react'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {Button} from '@/app/[lang]/_components/Button'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 function WalletFeature({chainName}: {chainName: string}): ReactNode {
 	return (
@@ -54,7 +54,7 @@ function WalletFeature({chainName}: {chainName: string}): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
@@ -113,7 +113,7 @@ function HardwareWalletFeature({chainName}: {chainName: string}): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }
 
 function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
@@ -164,7 +164,7 @@ function BuyInSecondsFeature({chainName}: {chainName: string}): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStrapiImage}): ReactNode {
@@ -208,7 +208,7 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function SolanaJupiterExchangeFeature(): ReactNode {
@@ -236,7 +236,7 @@ function SolanaJupiterExchangeFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function ShapeshiftMultichainSnapFeature(): ReactNode {
@@ -305,7 +305,7 @@ function ShapeshiftMultichainSnapFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function YourKeyFeature(): ReactNode {
@@ -331,7 +331,7 @@ function YourKeyFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
@@ -380,7 +380,7 @@ function StreamingSwapsFeature({chainName}: {chainName: string}): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function ThorChainTradeFeature(): ReactNode {
@@ -443,7 +443,7 @@ function ThorChainTradeFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function RFoxFeature(): ReactNode {
@@ -483,7 +483,7 @@ function RFoxFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function ThorChainLendingFeature(): ReactNode {
@@ -543,7 +543,7 @@ function ThorChainLendingFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function LiquidityPoolFeature(): ReactNode {
@@ -596,7 +596,7 @@ function LiquidityPoolFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function ThorChainRunePoolFeature(): ReactNode {
@@ -673,7 +673,7 @@ function ThorChainRunePoolFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function SaverVaultFeature(): ReactNode {
@@ -723,7 +723,7 @@ function SaverVaultFeature(): ReactNode {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; features: string[]}): ReactNode {
@@ -731,17 +731,17 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 		chainName,
 		foxImg,
 		features = ['ShapeShift wallet', 'Hardware wallet support', 'Easily buy in seconds', 'Self-custodial Redefined']
-	} = props;
+	} = props
 
 	const featuresComponents = useMemo(() => {
-		const allFeatures = [];
+		const allFeatures = []
 		if (features.includes('ShapeShift wallet')) {
 			allFeatures.push(
 				<WalletFeature
 					key={'WalletFeature'}
 					chainName={chainName}
 				/>
-			);
+			)
 		}
 		if (features.includes('Hardware wallet support')) {
 			allFeatures.push(
@@ -749,7 +749,7 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 					key={'HardwareWalletFeature'}
 					chainName={chainName}
 				/>
-			);
+			)
 		}
 		if (features.includes('Easily buy in seconds')) {
 			allFeatures.push(
@@ -757,7 +757,7 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 					key={'BuyInSecondsFeature'}
 					chainName={chainName}
 				/>
-			);
+			)
 		}
 		if (features.includes('Self-custodial Redefined')) {
 			allFeatures.push(
@@ -766,16 +766,16 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 					chainName={chainName}
 					foxImg={foxImg}
 				/>
-			);
+			)
 		}
 		if (features.includes('Jupiter Exchange')) {
-			allFeatures.push(<SolanaJupiterExchangeFeature key={'SolanaJupiterExchangeFeature'} />);
+			allFeatures.push(<SolanaJupiterExchangeFeature key={'SolanaJupiterExchangeFeature'} />)
 		}
 		if (features.includes('Multichain Snap')) {
-			allFeatures.push(<ShapeshiftMultichainSnapFeature key={'ShapeshiftMultichainSnapFeature'} />);
+			allFeatures.push(<ShapeshiftMultichainSnapFeature key={'ShapeshiftMultichainSnapFeature'} />)
 		}
 		if (features.includes('Your keys')) {
-			allFeatures.push(<YourKeyFeature key={'YourKeyFeature'} />);
+			allFeatures.push(<YourKeyFeature key={'YourKeyFeature'} />)
 		}
 		if (features.includes('Thor Streaming swaps')) {
 			allFeatures.push(
@@ -783,28 +783,28 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 					key={'StreamingSwapsFeature'}
 					chainName={chainName}
 				/>
-			);
+			)
 		}
 		if (features.includes('Thor Trade')) {
-			allFeatures.push(<ThorChainTradeFeature key={'ThorChainTradeFeature'} />);
+			allFeatures.push(<ThorChainTradeFeature key={'ThorChainTradeFeature'} />)
 		}
 		if (features.includes('Thor rFox')) {
-			allFeatures.push(<RFoxFeature key={'RFoxFeature'} />);
+			allFeatures.push(<RFoxFeature key={'RFoxFeature'} />)
 		}
 		if (features.includes('Thor Lending')) {
-			allFeatures.push(<ThorChainLendingFeature key={'ThorChainLendingFeature'} />);
+			allFeatures.push(<ThorChainLendingFeature key={'ThorChainLendingFeature'} />)
 		}
 		if (features.includes('Thor Liquidity Pool')) {
-			allFeatures.push(<LiquidityPoolFeature key={'LiquidityPoolFeature'} />);
+			allFeatures.push(<LiquidityPoolFeature key={'LiquidityPoolFeature'} />)
 		}
 		if (features.includes('Thor RUNE Pool')) {
-			allFeatures.push(<ThorChainRunePoolFeature key={'ThorChainRunePoolFeature'} />);
+			allFeatures.push(<ThorChainRunePoolFeature key={'ThorChainRunePoolFeature'} />)
 		}
 		if (features.includes('Saver vaults')) {
-			allFeatures.push(<SaverVaultFeature key={'SaverVaultFeature'} />);
+			allFeatures.push(<SaverVaultFeature key={'SaverVaultFeature'} />)
 		}
-		return allFeatures;
-	}, [features, chainName, foxImg]);
+		return allFeatures
+	}, [features, chainName, foxImg])
 
 	return (
 		<section className={'container flex flex-col'}>
@@ -816,5 +816,5 @@ export function ChainFeatures(props: {chainName: string; foxImg: TStrapiImage; f
 				<div className={'container grid grid-cols-1 gap-2 lg:grid-cols-6'}>{featuresComponents}</div>
 			</div>
 		</section>
-	);
+	)
 }

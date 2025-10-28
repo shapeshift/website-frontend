@@ -1,9 +1,9 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
-import {dAppUrl} from '@/app/[lang]/_utils/constants';
+import {Button} from '@/app/[lang]/_components/Button'
+import {dAppUrl} from '@/app/[lang]/_utils/constants'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export default function Page(): ReactNode {
 	return (
@@ -40,5 +40,5 @@ export default function Page(): ReactNode {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

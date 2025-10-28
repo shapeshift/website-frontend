@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 /************************************************************************************************
  ** WalletList Component:
@@ -16,10 +16,10 @@
  ** - Pass wallets data and optional loading state
  ************************************************************************************************/
 
-import {ResourceCard} from './ResourceCard';
-import {ResourceGrid} from './ResourceGrid';
+import {ResourceCard} from './ResourceCard'
+import {ResourceGrid} from './ResourceGrid'
 
-import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types';
+import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types'
 
 type TWalletListProps = {
 	wallets: TSupportedWalletData[] | null;
@@ -52,5 +52,5 @@ export function WalletList({wallets, isLoading, className, isSearchQuery}: TWall
 				/>
 			)}
 		/>
-	);
+	)
 }

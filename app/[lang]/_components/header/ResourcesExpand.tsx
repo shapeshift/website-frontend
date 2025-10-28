@@ -1,12 +1,12 @@
-import {motion} from 'framer-motion';
+import {motion} from 'framer-motion'
 
-import HeaderItem from '@/app/[lang]/_components/HeaderItem';
-import {appResources} from '@/app/[lang]/_utils/constants';
-import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources';
+import HeaderItem from '@/app/[lang]/_components/HeaderItem'
+import {appResources} from '@/app/[lang]/_utils/constants'
+import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources'
 
-import {expandAnimation} from './animations';
+import {expandAnimation} from './animations'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) => void}): ReactNode {
 	return (
@@ -37,5 +37,5 @@ export function ResourcesExpand({setCurrentTab}: {setCurrentTab: (tab: string) =
 				</div>
 			</div>
 		</motion.div>
-	);
+	)
 }

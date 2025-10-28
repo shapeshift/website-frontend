@@ -98,11 +98,14 @@ export default tseslint.config(
 				{ additionalHooks: '(^useAsyncTrigger$|^useDeepCompareMemo$)' },
 			],
 
-			// General rules
-			'no-async-promise-executor': 0,
-			quotes: [2, 'single', { avoidEscape: true }],
-			'object-curly-spacing': [2, 'never'],
-			'array-bracket-spacing': [2, 'never'],
+		// General rules
+		'no-async-promise-executor': 0,
+		semi: [2, 'never'],
+		quotes: [2, 'single', { avoidEscape: true }],
+		'object-curly-spacing': [2, 'never'],
+		'array-bracket-spacing': [2, 'never'],
+		'comma-dangle': ['error', 'never'],
+		'arrow-parens': ['error', 'as-needed'],
 			'no-else-return': ['error', { allowElseIf: false }],
 			'eol-last': ['error', 'always'],
 			'array-bracket-newline': ['error', { multiline: true }],
@@ -201,10 +204,9 @@ export default tseslint.config(
 			'@typescript-eslint/prefer-function-type': 'error',
 			'@typescript-eslint/prefer-includes': 'error',
 			'@typescript-eslint/promise-function-async': 'error',
-			'@typescript-eslint/require-array-sort-compare': 'error',
-			'brace-style': 'off',
-			'comma-dangle': 'off',
-			'@typescript-eslint/prefer-optional-chain': 'error',
+		'@typescript-eslint/require-array-sort-compare': 'error',
+		'brace-style': 'off',
+		'@typescript-eslint/prefer-optional-chain': 'error',
 			indent: 'off',
 			'@typescript-eslint/indent': 0,
 

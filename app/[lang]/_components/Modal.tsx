@@ -1,14 +1,14 @@
-import {Dialog, DialogPanel, Transition, TransitionChild} from '@headlessui/react';
-import Image from 'next/image';
-import {Fragment} from 'react';
+import {Dialog, DialogPanel, Transition, TransitionChild} from '@headlessui/react'
+import Image from 'next/image'
+import {Fragment} from 'react'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import {RoundButton} from './RoundButton';
-import {cl} from '../_utils/cl';
+import {RoundButton} from './RoundButton'
+import {cl} from '../_utils/cl'
 
-import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types';
-import type {ReactElement} from 'react';
+import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types'
+import type {ReactElement} from 'react'
 
 type TModalProps = {
 	isOpen: boolean;
@@ -100,5 +100,5 @@ export function Modal({isOpen, onClose, notification, className}: TModalProps): 
 				</div>
 			</Dialog>
 		</Transition>
-	);
+	)
 }

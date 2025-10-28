@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 /************************************************************************************************
  ** ProtocolList Component:
@@ -16,11 +16,11 @@
  ** - Pass protocols data and optional loading state
  ************************************************************************************************/
 
-import {ResourceCard} from '@/app/[lang]/(resources)/_components/ResourceCard';
-import {ResourceGrid} from '@/app/[lang]/(resources)/_components/ResourceGrid';
+import {ResourceCard} from '@/app/[lang]/(resources)/_components/ResourceCard'
+import {ResourceGrid} from '@/app/[lang]/(resources)/_components/ResourceGrid'
 
-import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TProtocolListProps = {
 	protocols: TSupportedProtocolData[] | null;
@@ -53,5 +53,5 @@ export function ProtocolList({protocols, isLoading, className, isSearchQuery}: T
 				/>
 			)}
 		/>
-	);
+	)
 }

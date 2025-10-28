@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {IconBack} from '@/app/[lang]/_icons/IconBack';
-import {IconCheck} from '@/app/[lang]/_icons/IconCheck';
-import {cl} from '@/app/[lang]/_utils/cl';
+import {IconBack} from '@/app/[lang]/_icons/IconBack'
+import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export type TChain = {
 	id: string;
@@ -66,8 +66,8 @@ export function ChainSelect({
 						<button
 							key={chain.id}
 							onClick={() => {
-								onSelectAction(chain);
-								setIsOpenAction(false);
+								onSelectAction(chain)
+								setIsOpenAction(false)
 							}}
 							className={cl(
 								'flex w-full items-center gap-3 justify-start rounded-lg px-4 py-3 hover:bg-white/5',
@@ -90,5 +90,5 @@ export function ChainSelect({
 				</div>
 			)}
 		</div>
-	);
+	)
 }

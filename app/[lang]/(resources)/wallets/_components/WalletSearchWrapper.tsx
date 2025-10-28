@@ -1,30 +1,30 @@
-'use client';
+'use client'
 
-import {useState} from 'react';
+import {useState} from 'react'
 
-import {SearchBar} from '@/app/[lang]/_components/SearchBar';
+import {SearchBar} from '@/app/[lang]/_components/SearchBar'
 
-import {WalletList} from '../../_components/WalletList';
+import {WalletList} from '../../_components/WalletList'
 
-import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TWalletSearchWrapperProps = {
 	wallets: TSupportedWalletData[];
 };
 
 export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): ReactNode {
-	const [filteredWallets, setFilteredWallets] = useState(wallets);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [filteredWallets, setFilteredWallets] = useState(wallets)
+	const [searchQuery, setSearchQuery] = useState('')
 
 	const handleSearch = (query: string): void => {
-		setSearchQuery(query);
-		const filtered = wallets.filter(wallet => wallet.name.toLowerCase().includes(query.toLowerCase()));
-		setFilteredWallets(filtered);
-	};
+		setSearchQuery(query)
+		const filtered = wallets.filter(wallet => wallet.name.toLowerCase().includes(query.toLowerCase()))
+		setFilteredWallets(filtered)
+	}
 
-	const featuredWallets = filteredWallets?.filter(wallet => wallet.isFeatured);
-	const nonFeaturedWallets = filteredWallets?.filter(wallet => !wallet.isFeatured);
+	const featuredWallets = filteredWallets?.filter(wallet => wallet.isFeatured)
+	const nonFeaturedWallets = filteredWallets?.filter(wallet => !wallet.isFeatured)
 
 	return (
 		<>
@@ -55,5 +55,5 @@ export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): React
 				/>
 			</section>
 		</>
-	);
+	)
 }

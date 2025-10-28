@@ -17,12 +17,12 @@
  ** - Handles image display with proper responsiveness
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Button} from '@/app/[lang]/_components/Button';
+import {Button} from '@/app/[lang]/_components/Button'
 
-import type {TButton, TStrapiImage} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TButton, TStrapiImage} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 type TProductHeroProps = {
 	title: string;
@@ -73,5 +73,5 @@ export function ProductHero({
 				</div>
 			</div>
 		</section>
-	);
+	)
 }

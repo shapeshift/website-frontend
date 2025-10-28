@@ -1,9 +1,9 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {Banner} from '@/app/[lang]/_components/Banner';
-import {LatestBlogPosts} from '@/app/[lang]/_components/BlogList';
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink';
-import {RoundButton} from '@/app/[lang]/_components/RoundButton';
+import {Banner} from '@/app/[lang]/_components/Banner'
+import {LatestBlogPosts} from '@/app/[lang]/_components/BlogList'
+import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {RoundButton} from '@/app/[lang]/_components/RoundButton'
 import {
 	FOX_CONTRACTS,
 	benefitsTitle,
@@ -20,9 +20,9 @@ import {
 	section2Article1,
 	section2Article2,
 	section2Title
-} from '@/app/[lang]/_utils/constants';
+} from '@/app/[lang]/_utils/constants'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export default function FoxTokenPage(): ReactNode {
 	return (
@@ -165,5 +165,5 @@ export default function FoxTokenPage(): ReactNode {
 				<Banner />
 			</div>
 		</div>
-	);
+	)
 }

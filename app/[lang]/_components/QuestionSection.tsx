@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import {AnimatePresence, motion} from 'framer-motion';
-import {useState} from 'react';
+import {AnimatePresence, motion} from 'framer-motion'
+import {useState} from 'react'
 
-import type {TFaqSectionItem} from '@/app/[lang]/_components/strapi/types';
-import type {ReactNode} from 'react';
+import type {TFaqSectionItem} from '@/app/[lang]/_components/strapi/types'
+import type {ReactNode} from 'react'
 
 /**
  * AnimatedPlusMinusIcon renders a plus icon that animates into a minus icon
@@ -37,8 +37,8 @@ export const AnimatedPlusMinusIcon = ({isOpen}: {isOpen: boolean}): ReactNode =>
 				style={{transformOrigin: '12px 12px'}}
 			/>
 		</motion.svg>
-	);
-};
+	)
+}
 
 /**
  * QuestionSection component displays a single FAQ item.
@@ -46,7 +46,7 @@ export const AnimatedPlusMinusIcon = ({isOpen}: {isOpen: boolean}): ReactNode =>
  * @param {TFaqSectionItem} faqSectionItem - The FAQ section item data.
  */
 export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionItem}): ReactNode | null => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
 
 	return (
 		<div className={'group rounded-2xl bg-secondBg hover:bg-secondHoverBg'}>
@@ -77,5 +77,5 @@ export const QuestionSection = ({faqSectionItem}: {faqSectionItem: TFaqSectionIt
 				)}
 			</AnimatePresence>
 		</div>
-	);
-};
+	)
+}

@@ -4,14 +4,14 @@
  * Defines default metadata, OpenGraph, and Twitter card settings
  * Used across the entire application with the ability to override per-page
  ************************************************************************************************/
-import type {MetadataRoute} from 'next';
+import type {MetadataRoute} from 'next'
 
 const siteConfig = {
 	name: 'ShapeShift',
 	description: 'Your multichain crypto home base.',
 	url: process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.builtby.dad',
 	ogImage: '/og.png'
-};
+}
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
@@ -29,5 +29,5 @@ export default function manifest(): MetadataRoute.Manifest {
 			{src: '/favicon-180x180.png', sizes: '180x180', type: 'image/png'},
 			{src: '/favicon-512x512.png', sizes: '512x512', type: 'image/png'}
 		]
-	};
+	}
 }

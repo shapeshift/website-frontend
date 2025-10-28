@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import {usePathname} from 'next/navigation';
-import {forwardRef} from 'react';
+import Link from 'next/link'
+import {usePathname} from 'next/navigation'
+import {forwardRef} from 'react'
 
-import {DEFAULT_LANGUAGE, getLanguageFromPath} from '@/app/[lang]/_utils/i18nconfig';
+import {DEFAULT_LANGUAGE, getLanguageFromPath} from '@/app/[lang]/_utils/i18nconfig'
 
-import type {LinkProps} from 'next/link';
-import type {AnchorHTMLAttributes, ReactNode} from 'react';
-import type {UrlObject} from 'url';
+import type {LinkProps} from 'next/link'
+import type {AnchorHTMLAttributes, ReactNode} from 'react'
+import type {UrlObject} from 'url'
 
 type TLocalizedLinkProps = LinkProps &
 	AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -20,8 +20,8 @@ type TLocalizedLinkProps = LinkProps &
  * to internal links when needed.
  */
 export const LocalizedLink = forwardRef<HTMLAnchorElement, TLocalizedLinkProps>(({href, children, ...props}, ref) => {
-	const pathname = usePathname();
-	const currentLanguage = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE;
+	const pathname = usePathname()
+	const currentLanguage = getLanguageFromPath(pathname) || DEFAULT_LANGUAGE
 
 	// Convert href to string for processing
 	const hrefString =
@@ -32,7 +32,7 @@ export const LocalizedLink = forwardRef<HTMLAnchorElement, TLocalizedLinkProps>(
 				  'pathname' in href &&
 				  typeof (href as UrlObject).pathname === 'string'
 				? (href as UrlObject).pathname
-				: '';
+				: ''
 
 	// Don't modify external links, anchors, or already localized paths
 	if (
@@ -49,16 +49,16 @@ export const LocalizedLink = forwardRef<HTMLAnchorElement, TLocalizedLinkProps>(
 				{...props}>
 				{children}
 			</Link>
-		);
+		)
 	}
 
 	// Check if the href already has a language prefix
-	const hasLanguagePrefix = hrefString.match(/^\/[a-z]{2}(\/|$)/);
+	const hasLanguagePrefix = hrefString.match(/^\/[a-z]{2}(\/|$)/)
 
 	// Build the localized href
-	let localizedHref = hrefString;
+	let localizedHref = hrefString
 	if (!hasLanguagePrefix && currentLanguage !== DEFAULT_LANGUAGE) {
-		localizedHref = `/${currentLanguage}${hrefString}`;
+		localizedHref = `/${currentLanguage}${hrefString}`
 	}
 
 	return (
@@ -68,7 +68,7 @@ export const LocalizedLink = forwardRef<HTMLAnchorElement, TLocalizedLinkProps>(
 			{...props}>
 			{children}
 		</Link>
-	);
-});
+	)
+})
 
-LocalizedLink.displayName = 'LocalizedLink';
+LocalizedLink.displayName = 'LocalizedLink'

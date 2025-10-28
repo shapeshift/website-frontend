@@ -16,11 +16,11 @@
  ** - Position logo with alignment options
  ************************************************************************************************/
 
-import Image from 'next/image';
+import Image from 'next/image'
 
-import {cl} from '@/app/[lang]/_utils/cl';
+import {cl} from '@/app/[lang]/_utils/cl'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 type TResourceHeroProps = {
 	imageSrc: string;
@@ -50,7 +50,7 @@ export function ResourceHero({
 		left: 'justify-start pl-16',
 		center: 'justify-center',
 		right: 'justify-end pr-16'
-	};
+	}
 
 	return (
 		<section className={cl('relative mt-12 flex w-full overflow-hidden rounded-2xl', className)}>
@@ -78,5 +78,5 @@ export function ResourceHero({
 				</div>
 			)}
 		</section>
-	);
+	)
 }

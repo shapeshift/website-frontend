@@ -1,4 +1,4 @@
-import type {ReactNode, SVGProps} from 'react';
+import type {ReactNode, SVGProps} from 'react'
 
 export function IconWallet(props: SVGProps<SVGSVGElement>): ReactNode {
 	return (
@@ -30,5 +30,5 @@ export function IconWallet(props: SVGProps<SVGSVGElement>): ReactNode {
 				</clipPath>
 			</defs>
 		</svg>
-	);
+	)
 }
