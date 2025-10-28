@@ -6,29 +6,27 @@
  ** Includes custom rendering for various HTML elements with tailwind styling
  ** Handles responsive images, accessible tables, and properly formatted code blocks
  **************************************************************************************************/
-'use client';
+'use client'
 
-import 'highlight.js/styles/github-dark.css';
-import Image from 'next/image';
-import {memo} from 'react';
-import ReactMarkdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeKatex from 'rehype-katex';
-import remarkEmoji from 'remark-emoji';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
+import 'highlight.js/styles/github-dark.css'
+import Image from 'next/image'
+import {memo} from 'react'
+import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+import remarkEmoji from 'remark-emoji'
+import remarkGfm from 'remark-gfm'
 
-import type {ComponentProps, ReactNode} from 'react';
+import type {ComponentProps, ReactNode} from 'react'
 
 type TTermsMarkdownProps = {
-	content: string;
-};
+	content: string
+}
 
 /**************************************************************************************************
  * Helper function to check if content is HTML
  **************************************************************************************************/
 function isHtmlContent(content: string): boolean {
-	return /<\/?(?:div|span|p|a|img|h[1-6]|ul|ol|li|table|tr|td|th|br|hr|em|strong)[^>]*>/i.test(content);
+	return /<\/?(?:div|span|p|a|img|h[1-6]|ul|ol|li|table|tr|td|th|br|hr|em|strong)[^>]*>/i.test(content)
 }
 
 /**************************************************************************************************
@@ -37,13 +35,13 @@ function isHtmlContent(content: string): boolean {
 function TermsMarkdown({content}: TTermsMarkdownProps): ReactNode {
 	if (isHtmlContent(content)) {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
-		return <div dangerouslySetInnerHTML={{__html: content}} />;
+		return <div dangerouslySetInnerHTML={{__html: content}} />
 	}
 
 	return (
 		<ReactMarkdown
-			remarkPlugins={[remarkGfm, remarkEmoji, remarkMath]}
-			rehypePlugins={[rehypeHighlight, rehypeKatex]}
+			remarkPlugins={[remarkGfm, remarkEmoji]}
+			rehypePlugins={[rehypeHighlight]}
 			components={{
 				// Headers
 				h1: ({...props}) => (
@@ -94,7 +92,7 @@ function TermsMarkdown({content}: TTermsMarkdownProps): ReactNode {
 				img: ({src, alt}) => {
 					// If src is missing, render nothing
 					if (!src) {
-						return null;
+						return null
 					}
 
 					return (
@@ -106,7 +104,7 @@ function TermsMarkdown({content}: TTermsMarkdownProps): ReactNode {
 							className={'my-8 h-auto max-w-full rounded-lg shadow-lg'}
 							loading={'lazy'}
 						/>
-					);
+					)
 				},
 
 				// Blockquotes
@@ -156,14 +154,14 @@ function TermsMarkdown({content}: TTermsMarkdownProps): ReactNode {
 			}}>
 			{content}
 		</ReactMarkdown>
-	);
+	)
 }
 
 /**************************************************************************************************
  * CodeBlock component for rendering code with syntax highlighting
  **************************************************************************************************/
 function CodeBlock({className, children, ...props}: ComponentProps<'code'>): ReactNode {
-	const match = /language-(\w+)/.exec(className || '');
+	const match = /language-(\w+)/.exec(className || '')
 
 	if (match) {
 		return (
@@ -181,7 +179,7 @@ function CodeBlock({className, children, ...props}: ComponentProps<'code'>): Rea
 					</code>
 				</pre>
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -190,7 +188,7 @@ function CodeBlock({className, children, ...props}: ComponentProps<'code'>): Rea
 			{...props}>
 			{children}
 		</code>
-	);
+	)
 }
 
-export default memo(TermsMarkdown);
+export default memo(TermsMarkdown)

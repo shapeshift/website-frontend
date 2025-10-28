@@ -5,10 +5,8 @@ import Image from 'next/image'
 import {notFound, useParams, useRouter} from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
-import rehypeKatex from 'rehype-katex' // For math rendering
 import remarkEmoji from 'remark-emoji' // For emoji support
 import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math' // For math equations
 
 import {Banner} from '@/app/[lang]/_components/Banner'
 import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
@@ -62,8 +60,8 @@ function BlogContent({content}: {content: string}): ReactNode {
 				<div dangerouslySetInnerHTML={{__html: content}} />
 			) : (
 				<ReactMarkdown
-					remarkPlugins={[remarkGfm, remarkEmoji, remarkMath]}
-					rehypePlugins={[rehypeHighlight, rehypeKatex]}
+					remarkPlugins={[remarkGfm, remarkEmoji]}
+					rehypePlugins={[rehypeHighlight]}
 					components={{
 						// Headers
 						h1: ({...props}) => (

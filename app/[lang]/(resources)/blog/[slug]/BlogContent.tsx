@@ -1,15 +1,13 @@
-import 'highlight.js/styles/github-dark.css';
-import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeKatex from 'rehype-katex'; // For math rendering
-import remarkEmoji from 'remark-emoji'; // For emoji support
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math'; // For math equations
+import 'highlight.js/styles/github-dark.css'
+import Image from 'next/image'
+import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+import remarkEmoji from 'remark-emoji' // For emoji support
+import remarkGfm from 'remark-gfm'
 
-import {isHtml} from '@/app/[lang]/_utils/isHtml';
+import {isHtml} from '@/app/[lang]/_utils/isHtml'
 
-import type {ReactNode} from 'react';
+import type {ReactNode} from 'react'
 
 export function BlogContent({content}: {content: string}): ReactNode {
 	return (
@@ -22,8 +20,8 @@ export function BlogContent({content}: {content: string}): ReactNode {
 				/>
 			) : (
 				<ReactMarkdown
-					remarkPlugins={[remarkGfm, remarkEmoji, remarkMath]}
-					rehypePlugins={[rehypeHighlight, rehypeKatex]}
+					remarkPlugins={[remarkGfm, remarkEmoji]}
+					rehypePlugins={[rehypeHighlight]}
 					components={{
 						// Headers
 						h1: ({...props}) => (
@@ -47,7 +45,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 
 						// Code blocks
 						code: ({className, children, ...props}) => {
-							const match = /language-(\w+)/.exec(className || '');
+							const match = /language-(\w+)/.exec(className || '')
 							return match ? (
 								<div className={'relative'}>
 									<div className={'absolute right-2 top-2 text-xs text-gray-400'}>{match[1]}</div>
@@ -65,7 +63,7 @@ export function BlogContent({content}: {content: string}): ReactNode {
 									{...props}>
 									{children}
 								</code>
-							);
+							)
 						},
 
 						// Tables
@@ -217,5 +215,5 @@ export function BlogContent({content}: {content: string}): ReactNode {
 				`}
 			</style>
 		</div>
-	);
+	)
 }
