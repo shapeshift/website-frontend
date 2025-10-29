@@ -305,7 +305,7 @@ export const appProducts: TAppLink[] = [
 	},
 	{
 		name: 'Buy/Sell Crypto',
-		href: 'https://app.shapeshift.com/?utm_source=menu&utm_medium=cta&utm_campaign=buy#/buy-crypto',
+		href: 'https://app.shapeshift.com/#/buy-crypto?utm_source=menu&utm_medium=cta&utm_campaign=buy',
 		description: 'Exchange Fiat for cryptocurrency.',
 		icon: <IconDollar />,
 		target: '_blank'
@@ -419,7 +419,7 @@ export const landingCards: TCardsRowSection = {
 			title: 'Buy and Sell',
 			description: "Buy crypto with fiat. Sell it back when you're ready. All in one place.",
 			isTextFirst: false,
-			href: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=cta&utm_campaign=buy#/buy-crypto',
+			href: 'https://app.shapeshift.com/#/buy-crypto?utm_source=mainpage&utm_medium=cta&utm_campaign=buy',
 			target: '_blank',
 			image: {
 				url: '/landing/cardBuyAndSell.png',
