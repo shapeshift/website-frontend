@@ -33,17 +33,15 @@ import {
 	statCardsTitle
 } from '@/app/[lang]/_utils/constants'
 
+import {useIsMobile} from './_hooks/useIsMobile'
+
 import type {TCard} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 export default function HomePage(): ReactNode {
 	const [tab, setTab] = useState(homepageFeatureTabs[0])
-	const isMobileDevice = () => {
-		if (typeof navigator === 'undefined') {
-			return false
-		}
-		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini|Mobile/i.test(navigator.userAgent)
-	}
+	const isMobile = useIsMobile()
+	const createWalletHref = isMobile ? '/mobile-app' : 'https://app.shapeshift.com/#/wallet'
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
@@ -77,7 +75,8 @@ export default function HomePage(): ReactNode {
 								<div className={'flex gap-4 mt-4 mb-4 text-center justify-center lg:justify-start'}>
 									{/* On mobile we direct users to the mobile app if they need a wallet, otherwise web app */}
 									<LocalizedLink
-										href={isMobileDevice() ? '/mobile-app' : 'https://app.shapeshift.com/#/wallet'}>
+										href={createWalletHref}
+										target={isMobile ? undefined : '_blank'}>
 										<Button title={'Create a Wallet'} />
 									</LocalizedLink>
 									<Button
