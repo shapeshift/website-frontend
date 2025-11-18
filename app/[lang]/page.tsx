@@ -41,7 +41,9 @@ import type {ReactNode} from 'react'
 export default function HomePage(): ReactNode {
 	const [tab, setTab] = useState(homepageFeatureTabs[0])
 	const isMobile = useIsMobile()
-	const createWalletHref = isMobile ? '/mobile-app' : 'https://app.shapeshift.com/#/wallet'
+	const createWalletHref = isMobile
+		? '/mobile-app'
+		: 'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=hero&utm_campaign=create#/wallet'
 	return (
 		<div className={'flex min-h-screen flex-col items-center pt-4'}>
 			<div className={'relative flex h-[814px] w-full justify-center rounded-2xl p-6'}>
@@ -81,7 +83,9 @@ export default function HomePage(): ReactNode {
 									</LocalizedLink>
 									<Button
 										title={'Trade Now'}
-										href={'https://app.shapeshift.com/#/trade'}
+										href={
+											'https://app.shapeshift.com/?utm_source=mainpage&utm_medium=hero&utm_campaign=trade#/trade'
+										}
 									/>
 								</div>
 							</div>
