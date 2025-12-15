@@ -53,35 +53,24 @@ export default async function RootLayout({children}: {children: ReactNode}): Pro
 	return (
 		<html lang={'en'}>
 			<head>
-				<link
-					rel={'preconnect'}
-					href={'https://tag.adrsbl.io'}
-					crossOrigin={'anonymous'}
-				/>
-
 				<Script
-					id={'adrsbl'}
+					id={'hypelab'}
 					strategy={'beforeInteractive'}
-					nonce={nonce}
-					data-tid={'de008d61a08d42559c3c09a539728156'}>
-					{`!function(w,d){
-    w.__adrsbl=w.__adrsbl||{queue:[],run:function(){this.queue.push(arguments)}};
-    var s=d.createElement('script');
-    s.async=true;
-
-    var cs=d.currentScript;
-    var tid=(cs && cs.getAttribute && cs.getAttribute('data-tid'))||'';
-    try { if (cs && 'nonce' in cs) { s.nonce = cs.nonce || ''; } } catch(e) {}
-
-    s.src='https://tag.adrsbl.io/p.js?tid='+tid;
-
-    var first=d.getElementsByTagName('script')[0];
-    if(first && first.parentNode){
-      first.parentNode.insertBefore(s, first);
-    } else {
-      (d.head||d.body||d.documentElement).appendChild(s);
-    }
-  }(window,document);`}
+					nonce={nonce}>
+					{`!(function(h,y,p,e,l,a,b){
+    ((window.__hype_analytics=[]),(window.__hype_wids=[])),
+    (window.HypeLabAnalytics={
+      logEvent:function(){window.__hype_analytics.push(Array.prototype.slice.call(arguments))},
+      setWalletAddresses:function(w){window.__hype_wids=w}
+    }),
+    ((a=document.createElement(h)).async=!0),
+    (a.src=y),
+    (a.onload=function(){
+      (l.environment=p),(l.propertySlug=e),
+      HypeLabAnalytics.setClient(new HypeLabAnalytics.Client(l))
+    }),
+    (b=document.getElementsByTagName(h)[0]).parentNode.insertBefore(a,b)
+  })('script','https://api.hypelab.com/v1/scripts/ha-sdk.js?v=0','production','4793fe16ca',{privacy:{trackAllSessions:true}});`}
 				</Script>
 				<Script
 					strategy={'beforeInteractive'}
