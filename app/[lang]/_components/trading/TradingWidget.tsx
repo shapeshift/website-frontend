@@ -17,6 +17,22 @@ import type {TChain} from './ChainSelect'
 import type {TToken} from './TokenSelect'
 import type {ReactNode} from 'react'
 
+const getChainflipAssetId = (token: TToken, chain: TChain): string => {
+	if (token.symbol === 'SOL') {
+		return 'Sol.Sol'
+	}
+	if (token.symbol === 'BTC') {
+		return 'Btc.Btc'
+	}
+	if (token.symbol === 'ETH') {
+		return 'Eth.Eth'
+	}
+	if (token.symbol === 'USDT') {
+		return 'Usdt.Eth'
+	}
+	return `${token.symbol}.${chain.requestKey}`
+}
+
 export function TradingWidget(): ReactNode {
 	const [fromToken, setFromToken] = useState<TToken>(SUPPORTED_TOKENS[0])
 	const [toToken, setToToken] = useState<TToken>(SUPPORTED_TOKENS[1])
@@ -76,8 +92,10 @@ export function TradingWidget(): ReactNode {
 		setIsLoading(true)
 		try {
 			const numericAmount = Number(debouncedAmount)
+			const sourceAsset = getChainflipAssetId(fromToken, fromChain)
+			const destinationAsset = getChainflipAssetId(toToken, toChain)
 			fetch(
-				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${fromToken.symbol}.${fromChain.requestKey}&destinationAsset=${toToken.symbol}.${toChain.requestKey}&amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
+				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${sourceAsset}&destinationAsset=${destinationAsset}&amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
 			)
 				.then(async res => res.json())
 				.then(data => {
@@ -98,11 +116,10 @@ export function TradingWidget(): ReactNode {
 		}
 	}, [
 		debouncedAmount,
-		fromToken.symbol,
-		fromToken.decimals,
-		fromChain.requestKey,
-		toToken.symbol,
-		toChain.requestKey
+		fromChain,
+		fromToken,
+		toChain,
+		toToken
 	])
 
 	useEffect(() => {
@@ -112,13 +129,6 @@ export function TradingWidget(): ReactNode {
 
 		if (toToken.symbol === fromToken.symbol && toChain.id === fromChain.id) {
 			return setError('Please select different tokens')
-		}
-		if (
-			(fromChain.id === 'solana' && toChain.id === 'bitcoin') ||
-			(fromToken.symbol === 'SOL' && toToken.symbol === 'ETH') ||
-			(fromToken.symbol === 'ETH' && toToken.symbol === 'SOL')
-		) {
-			return setError('No rate available')
 		}
 
 		if (fromChain.id === 'solana' || toChain.id === 'solana') {
