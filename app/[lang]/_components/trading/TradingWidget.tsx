@@ -45,7 +45,7 @@ export function TradingWidget(): ReactNode {
 			setIsLoading(true)
 			const numericAmount = Number(debouncedAmount)
 			fetch(
-				`https://daemon.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
+				`https://api.thorchain.shapeshift.com/lcd/thorchain/quote/swap?amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&from_asset=${fromChain.requestKey}.${fromToken.requestKey}&to_asset=${toChain.requestKey}.${toToken.requestKey}&affiliate_bps=64&affiliate=ss&streaming_interval=1`
 			)
 				.then(async res => res.json())
 				.then(data => {
