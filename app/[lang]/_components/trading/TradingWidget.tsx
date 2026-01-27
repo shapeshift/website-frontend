@@ -109,8 +109,10 @@ export function TradingWidget(): ReactNode {
 			const numericAmount = Number(debouncedAmount)
 			const sourceAsset = getChainflipAssetId(fromToken, fromChain)
 			const destinationAsset = getChainflipAssetId(toToken, toChain)
+			const decimals = getChainflipDecimals(fromToken)
+			const amountInBaseUnits = BigInt(Math.round(numericAmount * 10 ** decimals)).toString()
 			fetch(
-				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${sourceAsset}&destinationAsset=${destinationAsset}&amount=${numericAmount * 10 ** getChainflipDecimals(fromToken)}&commissionBps=63`
+				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${sourceAsset}&destinationAsset=${destinationAsset}&amount=${amountInBaseUnits}&commissionBps=63`
 			)
 				.then(async res => res.json())
 				.then(data => {
