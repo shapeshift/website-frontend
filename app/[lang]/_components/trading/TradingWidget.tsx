@@ -33,6 +33,21 @@ const getChainflipAssetId = (token: TToken, chain: TChain): string => {
 	return `${token.symbol}.${chain.requestKey}`
 }
 
+const getChainflipDecimals = (token: TToken): number => {
+	switch (token.symbol) {
+		case 'SOL':
+			return 9
+		case 'BTC':
+			return 8
+		case 'ETH':
+			return 18
+		case 'USDT':
+			return 6
+		default:
+			return 18
+	}
+}
+
 export function TradingWidget(): ReactNode {
 	const [fromToken, setFromToken] = useState<TToken>(SUPPORTED_TOKENS[0])
 	const [toToken, setToToken] = useState<TToken>(SUPPORTED_TOKENS[1])
@@ -95,7 +110,7 @@ export function TradingWidget(): ReactNode {
 			const sourceAsset = getChainflipAssetId(fromToken, fromChain)
 			const destinationAsset = getChainflipAssetId(toToken, toChain)
 			fetch(
-				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${sourceAsset}&destinationAsset=${destinationAsset}&amount=${numericAmount * 10 ** (fromToken.decimals[toToken.symbol?.toLowerCase() || 'eth'] || 6)}&commissionBps=63`
+				`https://chainflip-broker.io/quotes-native?apiKey=09bc0796ff40435482c0a54fa6ae2784&sourceAsset=${sourceAsset}&destinationAsset=${destinationAsset}&amount=${numericAmount * 10 ** getChainflipDecimals(fromToken)}&commissionBps=63`
 			)
 				.then(async res => res.json())
 				.then(data => {
