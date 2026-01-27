@@ -348,7 +348,9 @@ export function TradingWidget(): ReactNode {
 							{formatNumber(
 								outputAmount.amount,
 								outputAmount.isNative,
-								toToken.decimals[fromToken.symbol?.toLowerCase() || 'eth'] || 6
+								fromChain.id === 'solana' || toChain.id === 'solana'
+									? getChainflipDecimals(toToken)
+									: toToken.decimals[fromToken.symbol?.toLowerCase() || 'eth'] || 6
 							)}
 						</div>
 					)}
