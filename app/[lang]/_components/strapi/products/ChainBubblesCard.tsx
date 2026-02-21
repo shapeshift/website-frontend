@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import {PRODUCTS_DICT} from '@/app/[lang]/_utils/dictionary/products'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
@@ -12,11 +13,11 @@ import type {ReactNode} from 'react'
 const MotionLink = motion(Link)
 
 type TChainBubblesCardProps = {
-	title: string;
-	description: string;
-	items?: {url?: string; image?: TStrapiImage}[];
-	randomDelays: number[];
-};
+	title: string
+	description: string
+	items?: {url?: string; image?: TStrapiImage}[]
+	randomDelays: number[]
+}
 
 export function ChainBubblesCard({title, description, items, randomDelays}: TChainBubblesCardProps): ReactNode {
 	const hasChainItemsFromStrapi = items && items.length > 0
@@ -57,7 +58,11 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 										'absolute left-1/2 top-1/2 size-[62px] -translate-x-1/2 -translate-y-1/2'
 									}>
 									<Image
-										src={`${hasChainItemsFromStrapi ? process.env.NEXT_PUBLIC_STRAPI_URL : ''}${item.image?.url ?? ''}`}
+										src={
+											hasChainItemsFromStrapi
+												? getStrapiImageUrl(item.image?.url ?? '')
+												: (item.image?.url ?? '')
+										}
 										alt={item.image?.url || ''}
 										width={62}
 										height={62}
@@ -96,7 +101,11 @@ export function ChainBubblesCard({title, description, items, randomDelays}: TCha
 										'absolute left-1/2 top-1/2 size-[32px] -translate-x-1/2 -translate-y-1/2'
 									}>
 									<Image
-										src={`${hasChainItemsFromStrapi ? process.env.NEXT_PUBLIC_STRAPI_URL : ''}${item.image?.url ?? ''}`}
+										src={
+											hasChainItemsFromStrapi
+												? getStrapiImageUrl(item.image?.url ?? '')
+												: (item.image?.url ?? '')
+										}
 										alt={item.image?.url || ''}
 										width={62}
 										height={62}

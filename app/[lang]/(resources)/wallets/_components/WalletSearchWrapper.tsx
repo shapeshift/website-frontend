@@ -10,8 +10,8 @@ import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TWalletSearchWrapperProps = {
-	wallets: TSupportedWalletData[];
-};
+	wallets: TSupportedWalletData[]
+}
 
 export function WalletSearchWrapper({wallets}: TWalletSearchWrapperProps): ReactNode {
 	const [filteredWallets, setFilteredWallets] = useState(wallets)

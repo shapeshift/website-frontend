@@ -20,6 +20,7 @@ import Script from 'next/script'
 
 import {Card} from '@/app/[lang]/_components/strapi/cards-row/Card'
 import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 import {generateProductSchema} from '@/app/[lang]/_utils/schema'
 
 import {BackgroundImage} from '../_components/BackgroundImage'
@@ -48,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			type: 'website',
 			images: [
 				{
-					url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`,
+					url: getStrapiImageUrl(page.featuredImg.url),
 					width: 1200,
 					height: 630,
 					alt: page.title
@@ -59,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			card: 'summary_large_image',
 			title: page.title,
 			description: page.description,
-			images: [`${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`]
+			images: [getStrapiImageUrl(page.featuredImg.url)]
 		}
 	}
 }
@@ -88,7 +89,7 @@ export default async function DeFiWalletPage(): Promise<ReactNode> {
 	const productSchema = generateProductSchema({
 		title: page.title,
 		description: page.description,
-		featuredImage: `${process.env.NEXT_PUBLIC_STRAPI_URL}${page.featuredImg.url}`,
+		featuredImage: getStrapiImageUrl(page.featuredImg.url),
 		pageURL,
 		features
 	})

@@ -24,12 +24,12 @@ import type {ReactNode} from 'react'
 
 type TFAQNavigationProps = {
 	sections: {
-		id: number;
-		sectionTitle: string;
-	}[];
-	activeSection: string;
-	onSectionClick: (sectionTitle: string) => void;
-};
+		id: number
+		sectionTitle: string
+	}[]
+	activeSection: string
+	onSectionClick: (sectionTitle: string) => void
+}
 
 export function FAQNavigation({sections, activeSection, onSectionClick}: TFAQNavigationProps): ReactNode {
 	if (!sections || sections.length === 0) {

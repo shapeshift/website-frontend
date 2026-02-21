@@ -5,7 +5,7 @@ This directory contains pages that showcase and document the blockchain networks
 ## Directory Structure
 
 - **[slug]/**: Dynamic routes for individual chain pages
-  - **page.tsx**: Page component for individual chain details
+    - **page.tsx**: Page component for individual chain details
 - **layout.tsx**: Layout component for all supported chains pages
 - **loading.tsx**: Loading state component for supported chains pages
 - **page.tsx**: Main supported chains landing page

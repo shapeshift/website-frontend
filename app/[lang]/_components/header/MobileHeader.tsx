@@ -56,8 +56,8 @@ export function MobileHeader({
 	switchLanguage,
 	currentLanguage
 }: {
-	switchLanguage: (symbol: string) => void;
-	currentLanguage: string;
+	switchLanguage: (symbol: string) => void
+	currentLanguage: string
 }): ReactNode {
 	const pathname = usePathname()
 

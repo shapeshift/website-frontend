@@ -5,12 +5,14 @@ This directory contains shared components used across the resources section of t
 ## Component Files
 
 ### Resource Structure Components
+
 - **ResourceCard.tsx**: Card component for displaying resource items
 - **ResourceGrid.tsx**: Grid layout for arranging resource cards
 - **ResourceHeader.tsx**: Header component for resource pages
 - **ResourceHero.tsx**: Hero component for resource section landing pages
 
 ### Blog & Newsroom Components
+
 - **BlogBreadcrumb.tsx**: Breadcrumb navigation for blog pages
 - **NewsroomBreadcrumb.tsx**: Breadcrumb navigation for newsroom pages
 - **NewsroomNav.tsx**: Navigation component for newsroom
@@ -18,6 +20,7 @@ This directory contains shared components used across the resources section of t
 - **PostList.tsx**: Component for listing blog or news posts
 
 ### Chain & Protocol Components
+
 - **ChainList.tsx**: Component for displaying supported blockchain networks
 - **ProtocolAbout.tsx**: About section for protocol pages
 - **ProtocolEasier.tsx**: Component highlighting protocol ease of use
@@ -26,22 +29,26 @@ This directory contains shared components used across the resources section of t
 - **ProtocolList.tsx**: List component for displaying protocols
 
 ### Wallet Components
+
 - **SupportedWalletAccelerate.tsx**: Component for wallet acceleration features
 - **SupportedWalletHeader.tsx**: Header component for wallet pages
 - **SupportedWalletHero.tsx**: Hero component for wallet section
 - **WalletList.tsx**: Component for displaying supported wallets
 
 ### Feature & Discovery Components
+
 - **DiscoverFeature.tsx**: Component for highlighting discover features
 - **SupportedChainTable.tsx**: Table component for displaying chain support details
 
 ### FAQ Components
+
 - **FAQContent.tsx**: Component for rendering FAQ content
 - **FAQNavigation.tsx**: Navigation component for FAQ sections
 
 ## Purpose
 
 These components provide:
+
 - Consistent UI across all resource pages
 - Reusable layouts and design patterns
 - Standardized presentation of various content types
@@ -50,6 +57,7 @@ These components provide:
 ## Usage Guidelines
 
 When using or adding to this directory:
+
 - Group related components by resource type
 - Maintain consistent naming conventions
 - Ensure proper props typing and documentation

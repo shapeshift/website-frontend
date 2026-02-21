@@ -10,9 +10,9 @@ export function NotificationBar({
 	onClose,
 	isOpen
 }: {
-	notification: TStrapiNotification | null;
-	onClose: () => void;
-	isOpen: boolean;
+	notification: TStrapiNotification | null
+	onClose: () => void
+	isOpen: boolean
 }): ReactElement | null {
 	if (!notification) {
 		return null

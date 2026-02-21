@@ -31,8 +31,8 @@ import type {TFaqData, TFaqSection} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TFAQContentProps = {
-	faqData: TFaqData;
-};
+	faqData: TFaqData
+}
 
 export function FAQContent({faqData}: TFAQContentProps): ReactNode {
 	const [activeSection, setActiveSection] = useState<string>('')

@@ -23,16 +23,16 @@ import {cl} from '@/app/[lang]/_utils/cl'
 import type {ReactNode} from 'react'
 
 type TResourceHeroProps = {
-	imageSrc: string;
-	imageAlt: string;
-	className?: string;
-	logoSrc?: string;
-	logoAlt?: string;
-	logoWidth?: number;
-	logoHeight?: number;
-	logoPosition?: 'left' | 'center' | 'right';
-	priority?: boolean;
-};
+	imageSrc: string
+	imageAlt: string
+	className?: string
+	logoSrc?: string
+	logoAlt?: string
+	logoWidth?: number
+	logoHeight?: number
+	logoPosition?: 'left' | 'center' | 'right'
+	priority?: boolean
+}
 
 export function ResourceHero({
 	imageSrc,

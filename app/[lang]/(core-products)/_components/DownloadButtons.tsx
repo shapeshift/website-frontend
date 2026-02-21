@@ -23,8 +23,8 @@ import type {TDownloadButton} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TDownloadButtonsProps = {
-	buttons: TDownloadButton[];
-};
+	buttons: TDownloadButton[]
+}
 
 export function DownloadButtons({buttons}: TDownloadButtonsProps): ReactNode {
 	if (!buttons || buttons.length === 0) {

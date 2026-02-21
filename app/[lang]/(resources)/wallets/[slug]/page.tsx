@@ -5,7 +5,7 @@ import {SupportedWalletHeader} from '@/app/[lang]/(resources)/_components/Suppor
 import {SupportedWalletHero} from '@/app/[lang]/(resources)/_components/SupportedWalletHero'
 import {Banner} from '@/app/[lang]/_components/Banner'
 import {StrapiFAQ} from '@/app/[lang]/_components/StrapiFAQ'
-import {getSupportedWallet} from '@/app/[lang]/_utils/query'
+import {getStrapiImageUrl, getSupportedWallet} from '@/app/[lang]/_utils/query'
 
 import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types'
 import type {Metadata} from 'next'
@@ -51,12 +51,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 	}
@@ -77,7 +77,7 @@ export default async function WalletPage({params}: {params: Promise<{slug: strin
 			<div className={'container mt-[60px] flex flex-col justify-center'}>
 				<div className={'mb-12'}>
 					<SupportedWalletHero
-						url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${wallet?.featuredImg?.url}`}
+						url={getStrapiImageUrl(wallet?.featuredImg?.url)}
 						name={wallet?.name}
 						width={wallet?.featuredImg?.width}
 						height={wallet?.featuredImg?.height}

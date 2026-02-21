@@ -8,8 +8,8 @@ import {MobileHeader} from './MobileHeader'
 import type {ReactNode} from 'react'
 
 type THeaderProps = {
-	className?: string;
-};
+	className?: string
+}
 
 /**
  * Responsive header component

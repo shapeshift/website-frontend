@@ -65,7 +65,7 @@ const inquireProceedWithCommits = async (commits: string[], action: 'create' | '
 			default: 'y',
 			name: 'shouldProceed',
 			message,
-			choices: ['y', 'n'],
+			choices: ['y', 'n']
 		}
 	]
 	const {shouldProceed} = await inquirer.prompt(questions)
@@ -75,8 +75,8 @@ const inquireProceedWithCommits = async (commits: string[], action: 'create' | '
 }
 
 const releaseType = ['Regular', 'Hotfix'] as const
-type TReleaseType = (typeof releaseType)[number];
-type TWebReleaseType = Extract<semver.ReleaseType, 'minor' | 'patch'>;
+type TReleaseType = (typeof releaseType)[number]
+type TWebReleaseType = Extract<semver.ReleaseType, 'minor' | 'patch'>
 
 const getNextReleaseVersion = async (versionBump: TWebReleaseType): Promise<string> => {
 	const latestTag = await getLatestSemverTag()
@@ -94,7 +94,7 @@ const inquireCleanBranchOffMain = async (): Promise<boolean> => {
 			type: 'confirm',
 			name: 'isCleanlyBranched',
 			message: 'Is your branch cleanly branched off origin/main?',
-			default: false, // Defaulting to false to encourage verification
+			default: false // Defaulting to false to encourage verification
 		}
 	]
 	const {isCleanlyBranched} = await inquirer.prompt(questions)
@@ -107,7 +107,7 @@ const inquireTReleaseType = async (): Promise<TReleaseType> => {
 			type: 'list',
 			name: 'releaseType',
 			message: 'What type of release is this?',
-			choices: releaseType,
+			choices: releaseType
 		}
 	]
 	return (await inquirer.prompt(questions)).releaseType
@@ -151,8 +151,8 @@ const createRelease = async (): Promise<void> => {
 		if (currentBranch === 'main') {
 			console.log(
 				chalk.red(
-					'Cannot open hotfix PRs directly off local main branch for security reasons. Please branch out to another branch first.',
-				),
+					'Cannot open hotfix PRs directly off local main branch for security reasons. Please branch out to another branch first.'
+				)
 			)
 			exit()
 		}
@@ -161,11 +161,7 @@ const createRelease = async (): Promise<void> => {
 		// target it in the hotfix PR
 		const isCleanOffMain = await inquireCleanBranchOffMain()
 		if (!isCleanOffMain) {
-			exit(
-				chalk.yellow(
-					'Please ensure your branch is cleanly branched off origin/main before proceeding.',
-				),
-			)
+			exit(chalk.yellow('Please ensure your branch is cleanly branched off origin/main before proceeding.'))
 		}
 
 		// Dev has confirmed they're clean off main, here goes nothing

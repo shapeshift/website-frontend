@@ -35,18 +35,18 @@ export function useFetchSupportArticles({
 	cacheArticles = false,
 	skip = false
 }: {
-	page: number;
-	pageSize: number;
-	sort: 'asc' | 'desc';
-	slug?: string;
-	populateContent?: boolean;
-	cacheArticles?: boolean;
-	skip?: boolean;
+	page: number
+	pageSize: number
+	sort: 'asc' | 'desc'
+	slug?: string
+	populateContent?: boolean
+	cacheArticles?: boolean
+	skip?: boolean
 }): {
-	articles: TSupportArticle[];
-	pagination: TPagination | undefined;
-	isLoading: boolean;
-	error: Error | null;
+	articles: TSupportArticle[]
+	pagination: TPagination | undefined
+	isLoading: boolean
+	error: Error | null
 } {
 	const [articles, setArticles] = useState<TSupportArticle[]>([])
 	const [pagination, setPagination] = useState<TPagination | undefined>(undefined)

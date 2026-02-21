@@ -8,23 +8,23 @@ import type {ReactElement} from 'react'
 
 type SecureMessageEvent = {
 	data: {
-		type?: string;
-		eventName?: string;
-		config?: Record<string, string | number | boolean>;
-		payload?: Record<string, string | number | boolean>;
-	};
-} & MessageEvent;
+		type?: string
+		eventName?: string
+		config?: Record<string, string | number | boolean>
+		payload?: Record<string, string | number | boolean>
+	}
+} & MessageEvent
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 	interface Window {
 		chatwootSDK?: {
-			run: (config: {websiteToken: string; baseUrl: string}) => void;
-			isLoaded?: boolean;
-		};
+			run: (config: {websiteToken: string; baseUrl: string}) => void
+			isLoaded?: boolean
+		}
 		$chatwoot?: {
-			reset?: () => void;
-		};
+			reset?: () => void
+		}
 	}
 }
 

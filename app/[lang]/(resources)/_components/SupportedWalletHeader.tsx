@@ -4,10 +4,10 @@ import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
 import type {ReactNode} from 'react'
 
 type THeaderData = {
-	title: string;
-	description: string;
-	items: string[];
-};
+	title: string
+	description: string
+	items: string[]
+}
 export function SupportedWalletHeader(data: THeaderData): ReactNode {
 	return (
 		<section className={'flex flex-col items-center'}>

@@ -36,14 +36,14 @@ import type {TSupportArticle} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TSupportArticleListProps = {
-	pageSize?: number;
-	sort?: 'asc' | 'desc';
-	initialPage?: number;
-	populateContent?: boolean;
-	cacheArticles?: boolean;
-	emptyMessage?: string;
-	gridClassName?: string;
-};
+	pageSize?: number
+	sort?: 'asc' | 'desc'
+	initialPage?: number
+	populateContent?: boolean
+	cacheArticles?: boolean
+	emptyMessage?: string
+	gridClassName?: string
+}
 
 export function SupportArticleList({
 	pageSize = DEFAULT_PAGINATION.PAGE_SIZE,

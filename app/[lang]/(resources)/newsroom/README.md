@@ -5,15 +5,15 @@ This directory contains the newsroom section of the ShapeShift website, featurin
 ## Directory Structure
 
 - **(withNavigation)/**: Newsroom pages that include navigation elements
-  - **categories/**: Category-based news filtering
-    - **[category]/**: Dynamic routes for news categories
-  - **tags/**: Tag-based news filtering
-    - **[tag]/**: Dynamic routes for news tags
-  - **layout.tsx**: Layout for newsroom pages with navigation
-  - **page.tsx**: Main newsroom landing page
+    - **categories/**: Category-based news filtering
+        - **[category]/**: Dynamic routes for news categories
+    - **tags/**: Tag-based news filtering
+        - **[tag]/**: Dynamic routes for news tags
+    - **layout.tsx**: Layout for newsroom pages with navigation
+    - **page.tsx**: Main newsroom landing page
 - **[slug]/**: Individual news post pages
-  - **layout.tsx**: Layout for individual news posts
-  - **page.tsx**: Page component for individual news posts
+    - **layout.tsx**: Layout for individual news posts
+    - **page.tsx**: Page component for individual news posts
 
 ## Features
 
@@ -28,10 +28,10 @@ This directory contains the newsroom section of the ShapeShift website, featurin
 - Uses Next.js dynamic routing for categories, tags, and post slugs
 - Implements dedicated layout for consistent newsroom section UI
 - Shares structure similar to the blog section but with news-specific content
-- Utilizes components from the _components directory:
-  - **NewsroomBreadcrumb.tsx**: Breadcrumb navigation for newsroom
-  - **NewsroomNav.tsx**: Main navigation for newsroom section
-  - **NewsroomTitle.tsx**: Title component for newsroom content
+- Utilizes components from the \_components directory:
+    - **NewsroomBreadcrumb.tsx**: Breadcrumb navigation for newsroom
+    - **NewsroomNav.tsx**: Main navigation for newsroom section
+    - **NewsroomTitle.tsx**: Title component for newsroom content
 
 ## Content Types
 

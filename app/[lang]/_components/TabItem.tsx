@@ -4,11 +4,11 @@ import {cl} from '../_utils/cl'
 import type {ReactNode} from 'react'
 
 export function TabItem(props: {
-	title?: string;
-	className?: string;
-	selected?: boolean;
-	onClick?: () => void;
-	href?: string;
+	title?: string
+	className?: string
+	selected?: boolean
+	onClick?: () => void
+	href?: string
 }): ReactNode {
 	const {title, className, selected: isSelected, onClick, href} = props
 	if (href) {

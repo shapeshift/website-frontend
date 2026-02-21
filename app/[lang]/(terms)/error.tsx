@@ -14,9 +14,9 @@ import {Button} from '@/app/[lang]/_components/Button'
 import type {ReactNode} from 'react'
 
 type TErrorProps = {
-	error: Error & {digest?: string};
-	reset: () => void;
-};
+	error: Error & {digest?: string}
+	reset: () => void
+}
 
 export default function TermsError({error, reset}: TErrorProps): ReactNode {
 	useEffect(() => {

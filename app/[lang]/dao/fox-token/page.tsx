@@ -112,8 +112,12 @@ export default function FoxTokenPage(): ReactNode {
 							<p className={'mt-4'}>{'You can find FOX token contracts at:'}</p>
 							<ul className={'list-disc pl-6 break-all'}>
 								{FOX_CONTRACTS.map(({chain, address}) => (
-									<li key={chain} className={'font-mono'}>
-										{chain}{': '}{address}
+									<li
+										key={chain}
+										className={'font-mono'}>
+										{chain}
+										{': '}
+										{address}
 									</li>
 								))}
 							</ul>
@@ -159,7 +163,10 @@ export default function FoxTokenPage(): ReactNode {
 
 				<h1 className={'mb-14 text-[40px] leading-10 lg:text-7xl'}>{resourcesTitle}</h1>
 
-				<LatestBlogPosts limit={3} isWithTitle={false} />
+				<LatestBlogPosts
+					limit={3}
+					isWithTitle={false}
+				/>
 				<h1 className={'mb-14 mt-[120px] text-[40px] leading-10 lg:text-7xl'}>{communityTitle}</h1>
 
 				<Banner />

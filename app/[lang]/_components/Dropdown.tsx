@@ -10,12 +10,12 @@ import {IconChevron} from '../_icons/IconChevron'
 import type {ReactNode} from 'react'
 
 type TDropdownProps = {
-	options: string[];
-	value: string;
-	onChangeAction: (value: string) => void;
-	className?: string;
-	allItemsLabel?: string;
-};
+	options: string[]
+	value: string
+	onChangeAction: (value: string) => void
+	className?: string
+	allItemsLabel?: string
+}
 
 /**************************************************************************************************
  ** Dropdown Component

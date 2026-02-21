@@ -1,5 +1,7 @@
 import {notFound} from 'next/navigation'
 
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
+
 import type {Metadata} from 'next'
 
 /************************************************************************************************
@@ -47,12 +49,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 	}

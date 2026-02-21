@@ -5,7 +5,7 @@ This directory contains pages that showcase ShapeShift's features, products, and
 ## Directory Structure
 
 - **[slug]/**: Dynamic routes for individual discover feature pages
-  - **page.tsx**: Page component for individual feature details
+    - **page.tsx**: Page component for individual feature details
 - **layout.tsx**: Layout component shared across all discover pages
 - **loading.tsx**: Loading state component for discover pages
 - **page.tsx**: Main discover landing/index page

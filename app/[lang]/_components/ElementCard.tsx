@@ -5,23 +5,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import {cl} from '@/app/[lang]/_utils/cl'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {ReactNode} from 'react'
 
 const MotionLink = motion(Link)
 
 type TElementCardProps = {
-	slug: string;
-	title: string;
-	description: string;
+	slug: string
+	title: string
+	description: string
 	featuredImg: {
-		url: string;
-		width: number;
-		height: number;
-	};
-	baseURL: string;
-	position: 'center' | 'bottom';
-};
+		url: string
+		width: number
+		height: number
+	}
+	baseURL: string
+	position: 'center' | 'bottom'
+}
 
 export function ElementCard(props: TElementCardProps): ReactNode {
 	const {slug, title, description, featuredImg, baseURL, position} = props
@@ -54,7 +55,7 @@ export function ElementCard(props: TElementCardProps): ReactNode {
 						transition={{duration: 0.5}}
 						className={'relative z-10 size-full object-contain'}>
 						<Image
-							src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${featuredImg?.url}`}
+							src={getStrapiImageUrl(featuredImg?.url)}
 							alt={slug}
 							width={featuredImg?.width ?? 0}
 							height={featuredImg?.height ?? 0}

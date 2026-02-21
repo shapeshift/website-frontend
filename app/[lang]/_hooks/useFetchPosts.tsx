@@ -39,20 +39,20 @@ export function useFetchPosts({
 	cachePosts = false,
 	skip = false
 }: {
-	page: number;
-	pageSize: number;
-	sort: 'asc' | 'desc';
-	slug?: string;
-	type?: string;
-	tag?: string;
-	populateContent?: boolean;
-	cachePosts?: boolean;
-	skip?: boolean;
+	page: number
+	pageSize: number
+	sort: 'asc' | 'desc'
+	slug?: string
+	type?: string
+	tag?: string
+	populateContent?: boolean
+	cachePosts?: boolean
+	skip?: boolean
 }): {
-	posts: TBlogPost[];
-	pagination: TPagination | undefined;
-	isLoading: boolean;
-	error: Error | null;
+	posts: TBlogPost[]
+	pagination: TPagination | undefined
+	isLoading: boolean
+	error: Error | null
 } {
 	const [posts, setPosts] = useState<TBlogPost[]>([])
 	const [pagination, setPagination] = useState<TPagination | undefined>(undefined)

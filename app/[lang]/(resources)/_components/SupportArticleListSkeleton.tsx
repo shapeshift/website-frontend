@@ -6,8 +6,8 @@ import {RESOURCES_DICT} from '@/app/[lang]/_utils/dictionary/resources'
 import type {ReactNode} from 'react'
 
 type TSupportArticleListSkeletonProps = {
-	pageSize?: number;
-};
+	pageSize?: number
+}
 
 export function SupportArticleListSkeleton({pageSize = 6}: TSupportArticleListSkeletonProps): ReactNode {
 	return (

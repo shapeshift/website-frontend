@@ -4,6 +4,7 @@ import {useMemo} from 'react'
 import {Button} from '@/app/[lang]/_components/Button'
 import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
 import {cl} from '@/app/[lang]/_utils/cl'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
@@ -200,7 +201,7 @@ function CustodialFeature({chainName, foxImg}: {chainName: string; foxImg: TStra
 			</div>
 			<div className={'mx-auto mt-auto flex aspect-video w-2/3 items-end justify-end'}>
 				<Image
-					src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${foxImg.url}`}
+					src={getStrapiImageUrl(foxImg.url)}
 					alt={''}
 					className={'h-auto w-full object-contain object-bottom'}
 					width={foxImg.width}

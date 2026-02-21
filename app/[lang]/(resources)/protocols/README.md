@@ -5,7 +5,7 @@ This directory contains pages that showcase and document the DeFi protocols inte
 ## Directory Structure
 
 - **[slug]/**: Dynamic routes for individual protocol pages
-  - **page.tsx**: Page component for individual protocol details
+    - **page.tsx**: Page component for individual protocol details
 - **layout.tsx**: Layout component for all supported protocols pages
 - **loading.tsx**: Loading state component for supported protocols pages
 - **page.tsx**: Main supported protocols landing page

@@ -1,4 +1,4 @@
-# _utils Directory
+# \_utils Directory
 
 This directory contains shared utility functions, types, and helpers used across the ShapeShift web application.
 
@@ -38,7 +38,7 @@ When using or adding to this directory:
 ## When to Use vs. Other Locations
 
 - Use this directory for truly app-wide utilities
-- For section-specific utilities, create a _utils directory within that section
+- For section-specific utilities, create a \_utils directory within that section
 - Component-specific utilities should be placed near the component itself
 
 ## Schema Utilities

@@ -4,11 +4,11 @@
  ************************************************************************************************/
 
 export type TLanguage = {
-	code: string;
-	name: string;
-	nativeName: string;
-	weglotCode: string;
-};
+	code: string
+	name: string
+	nativeName: string
+	weglotCode: string
+}
 
 export const SUPPORTED_LANGUAGES: TLanguage[] = [
 	{

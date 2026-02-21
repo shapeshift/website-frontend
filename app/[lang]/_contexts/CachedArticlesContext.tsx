@@ -19,22 +19,22 @@ import type {ReactNode} from 'react'
  * Type definition for cached query parameters
  ********************************************************************************************/
 type TCachedParams = {
-	page: number | undefined;
-	pageSize: number | undefined;
-	sort: 'asc' | 'desc' | undefined;
-	slug: string | undefined;
-	populateContent: boolean | undefined;
-};
+	page: number | undefined
+	pageSize: number | undefined
+	sort: 'asc' | 'desc' | undefined
+	slug: string | undefined
+	populateContent: boolean | undefined
+}
 
 /********************************************************************************************
  * Context for storing cached support articles data and parameters
  * Provides default values for initial state
  ********************************************************************************************/
 const ArticlesContext = createContext<{
-	cachedResponse: TArticleListResponse;
-	setCachedResponse: (responses: TArticleListResponse) => void;
-	cachedParams: TCachedParams;
-	setCachedParams: (params: TCachedParams) => void;
+	cachedResponse: TArticleListResponse
+	setCachedResponse: (responses: TArticleListResponse) => void
+	cachedParams: TCachedParams
+	setCachedParams: (params: TCachedParams) => void
 }>({
 	cachedResponse: {
 		data: [],
@@ -102,10 +102,10 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
  * @throws Error if used outside of CachedArticlesProvider
  */
 export function useCachedArticles(): {
-	cachedResponse: TArticleListResponse;
-	setCachedResponse: (responses: TArticleListResponse) => void;
-	cachedParams: TCachedParams;
-	setCachedParams: (params: TCachedParams) => void;
+	cachedResponse: TArticleListResponse
+	setCachedResponse: (responses: TArticleListResponse) => void
+	cachedParams: TCachedParams
+	setCachedParams: (params: TCachedParams) => void
 } {
 	return useContext(ArticlesContext)
 }

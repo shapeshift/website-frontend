@@ -21,11 +21,11 @@ import type {TSupportedChainData} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TChainListProps = {
-	chains: TSupportedChainData[] | null;
-	isLoading?: boolean;
-	className?: string;
-	isSearchQuery?: boolean;
-};
+	chains: TSupportedChainData[] | null
+	isLoading?: boolean
+	className?: string
+	isSearchQuery?: boolean
+}
 
 export function ChainList({chains, isLoading, className, isSearchQuery}: TChainListProps): ReactNode {
 	return (

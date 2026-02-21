@@ -19,12 +19,12 @@
 import type {ReactElement, ReactNode} from 'react'
 
 type TResourceGridProps<T> = {
-	items: T[] | null | undefined;
-	renderItem: (item: T, index: number) => ReactNode;
-	isLoading?: boolean;
-	emptyMessage?: string;
-	className?: string;
-};
+	items: T[] | null | undefined
+	renderItem: (item: T, index: number) => ReactNode
+	isLoading?: boolean
+	emptyMessage?: string
+	className?: string
+}
 
 export function ResourceGrid<T>({
 	items,

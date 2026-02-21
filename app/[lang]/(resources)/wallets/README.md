@@ -5,7 +5,7 @@ This directory contains pages that showcase and document the cryptocurrency wall
 ## Directory Structure
 
 - **[slug]/**: Dynamic routes for individual wallet pages
-  - **page.tsx**: Page component for individual wallet details
+    - **page.tsx**: Page component for individual wallet details
 - **layout.tsx**: Layout component for all supported wallets pages
 - **loading.tsx**: Loading state component for supported wallets pages
 - **page.tsx**: Main supported wallets landing page

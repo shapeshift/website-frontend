@@ -20,8 +20,8 @@ import type {TStat} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TProductStatsProps = {
-	stats: TStat[];
-};
+	stats: TStat[]
+}
 
 export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
 	// Handle case where stats is null, undefined, or empty

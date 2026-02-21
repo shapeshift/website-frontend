@@ -23,23 +23,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import {cl} from '@/app/[lang]/_utils/cl'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {ReactNode} from 'react'
 
 const MotionLink = motion(Link)
 
 type TResourceCardProps = {
-	slug: string;
-	title: string;
-	description: string;
-	imageUrl: string;
-	imageWidth?: number;
-	imageHeight?: number;
-	baseURL: string;
-	imagePosition?: 'center' | 'bottom';
-	altText?: string;
-	className?: string;
-};
+	slug: string
+	title: string
+	description: string
+	imageUrl: string
+	imageWidth?: number
+	imageHeight?: number
+	baseURL: string
+	imagePosition?: 'center' | 'bottom'
+	altText?: string
+	className?: string
+}
 
 export function ResourceCard({
 	slug,
@@ -85,7 +86,7 @@ export function ResourceCard({
 						transition={{duration: 0.5}}
 						className={'relative z-10 size-full object-contain'}>
 						<Image
-							src={imageUrl.startsWith('http') ? imageUrl : `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`}
+							src={getStrapiImageUrl(imageUrl)}
 							alt={altText || title}
 							width={imageWidth || 100}
 							height={imageHeight || 100}

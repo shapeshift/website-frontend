@@ -9,15 +9,15 @@ import {cl} from '@/app/[lang]/_utils/cl'
 import type {ReactNode} from 'react'
 
 export type TToken = {
-	symbol: string;
-	name: string;
-	icon: string;
-	sublogo?: string;
-	slug: string;
-	decimals: Record<string, number>;
-	requestKey?: string;
-	tokenAddress?: string;
-};
+	symbol: string
+	name: string
+	icon: string
+	sublogo?: string
+	slug: string
+	decimals: Record<string, number>
+	requestKey?: string
+	tokenAddress?: string
+}
 
 export function TokenSelect({
 	tokens,
@@ -26,11 +26,11 @@ export function TokenSelect({
 	isOpen,
 	setIsOpenAction
 }: {
-	tokens: TToken[];
-	selectedToken: TToken;
-	onSelectAction: (token: TToken) => void;
-	isOpen: boolean;
-	setIsOpenAction: (isOpen: boolean) => void;
+	tokens: TToken[]
+	selectedToken: TToken
+	onSelectAction: (token: TToken) => void
+	isOpen: boolean
+	setIsOpenAction: (isOpen: boolean) => void
 }): ReactNode {
 	return (
 		<div className={'relative'}>

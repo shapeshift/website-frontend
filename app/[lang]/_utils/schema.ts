@@ -65,11 +65,11 @@ export function generateProductSchema({
 	pageURL,
 	features = []
 }: {
-	title: string;
-	description: string;
-	featuredImage?: string;
-	pageURL: string;
-	features?: {title: string; description: string}[];
+	title: string
+	description: string
+	featuredImage?: string
+	pageURL: string
+	features?: {title: string; description: string}[]
 }): Record<string, unknown> {
 	// Ensure we have required fields
 	if (!title || !pageURL) {
@@ -77,8 +77,7 @@ export function generateProductSchema({
 	}
 
 	const productID = pageURL.split('/').pop() || 'shapeshift-product'
-	const image =
-		featuredImage || `${process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'}/opengraph-image.png`
+	const image = featuredImage || `${process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'}/opengraph-image.png`
 
 	return {
 		'@context': 'https://schema.org',

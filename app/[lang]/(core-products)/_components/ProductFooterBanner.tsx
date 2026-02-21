@@ -1,4 +1,3 @@
-
 /************************************************************************************************
  ** ProductFooterBanner Component:
  **
@@ -25,8 +24,8 @@ import {PRODUCT_FOOTER_CONFIGS} from './constants'
 import type {ReactNode} from 'react'
 
 type TProductFooterBannerProps = {
-	productName: keyof typeof PRODUCT_FOOTER_CONFIGS;
-};
+	productName: keyof typeof PRODUCT_FOOTER_CONFIGS
+}
 
 export function ProductFooterBanner({productName}: TProductFooterBannerProps): ReactNode {
 	// Get configuration for the specified product

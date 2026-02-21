@@ -29,9 +29,9 @@ The FAQ section likely organizes content into categories such as:
 
 ## Technical Implementation
 
-- Utilizes specialized components from the _components directory:
-  - **FAQContent.tsx**: For rendering the actual FAQ content
-  - **FAQNavigation.tsx**: For category navigation
+- Utilizes specialized components from the \_components directory:
+    - **FAQContent.tsx**: For rendering the actual FAQ content
+    - **FAQNavigation.tsx**: For category navigation
 - Likely implements collapsible/expandable question sections
 - May integrate with a CMS for content management
 - Implements responsive design for all device sizes

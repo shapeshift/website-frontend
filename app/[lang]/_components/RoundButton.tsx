@@ -14,9 +14,9 @@ const icons = {
 }
 
 export function RoundButton(props: {
-	className?: string;
-	iconName: 'arrow' | 'plus' | 'minus' | 'cross';
-	onClick?: () => void;
+	className?: string
+	iconName: 'arrow' | 'plus' | 'minus' | 'cross'
+	onClick?: () => void
 }): ReactNode {
 	const {className, iconName, onClick} = props
 

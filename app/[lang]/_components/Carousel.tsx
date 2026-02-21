@@ -33,14 +33,14 @@ import type {ReactNode} from 'react'
 
 type TCarouselProps = React.HTMLAttributes<HTMLDivElement> & {
 	/** The content to be displayed in the carousel */
-	children: React.ReactNode;
+	children: React.ReactNode
 	/** Whether to pause the animation when hovering over the carousel */
-	pauseOnHover?: boolean;
+	pauseOnHover?: boolean
 	/** The direction in which the carousel should scroll */
-	direction?: 'left' | 'right';
+	direction?: 'left' | 'right'
 	/** The speed of the carousel animation in seconds (lower = faster) */
-	speed?: number;
-};
+	speed?: number
+}
 
 export function Carousel({
 	children,

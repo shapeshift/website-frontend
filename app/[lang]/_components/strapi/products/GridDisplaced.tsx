@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import {useMemo} from 'react'
 
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
+
 import {BuyCryptoCard} from './BuyCryptoCard'
 import {CarouselCard} from './CarouselCard'
 import {ChainBubblesCard} from './ChainBubblesCard'
@@ -51,7 +53,7 @@ export default function GridDisplaced({data}: {data: TGridDisplacedSection}): Re
 							</div>
 							<div className={'mt-auto overflow-hidden'}>
 								<Image
-									src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${data?.cards[2]?.image?.url}`}
+									src={getStrapiImageUrl(data?.cards[2]?.image?.url)}
 									alt={data?.cards[2]?.title}
 									width={696}
 									height={168}

@@ -25,21 +25,21 @@ import {cl} from '@/app/[lang]/_utils/cl'
 import type {ReactNode} from 'react'
 
 type TResourceHeaderProps = {
-	title: string;
-	description: string;
-	items: string[];
+	title: string
+	description: string
+	items: string[]
 	ctaButton?: {
-		text: string;
-		url: string;
-	};
-	className?: string;
-	titlePrefix?: string;
-	hasLogo?: boolean;
-	logoUrl?: string;
-	logoWidth?: number;
-	logoHeight?: number;
-	logoAlt?: string;
-};
+		text: string
+		url: string
+	}
+	className?: string
+	titlePrefix?: string
+	hasLogo?: boolean
+	logoUrl?: string
+	logoWidth?: number
+	logoHeight?: number
+	logoAlt?: string
+}
 
 export function ResourceHeader({
 	title,

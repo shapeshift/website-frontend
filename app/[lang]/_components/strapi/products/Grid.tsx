@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import {Button} from '@/app/[lang]/_components/Button'
 import {cl} from '@/app/[lang]/_utils/cl'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {TCard, TGridSection} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
@@ -62,7 +63,7 @@ function Card({data, className}: {data: TCard; className: string}): ReactNode {
 				<div className={'text-gray-500'}>{data?.description}</div>
 			</div>
 			<Image
-				src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${data?.image.url}`}
+				src={getStrapiImageUrl(data?.image.url)}
 				alt={data?.title}
 				width={data?.image.width}
 				height={data?.image.height}

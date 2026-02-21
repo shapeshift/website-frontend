@@ -23,11 +23,11 @@ import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types
 import type {ReactNode} from 'react'
 
 type TProtocolListProps = {
-	protocols: TSupportedProtocolData[] | null;
-	isLoading?: boolean;
-	className?: string;
-	isSearchQuery?: boolean;
-};
+	protocols: TSupportedProtocolData[] | null
+	isLoading?: boolean
+	className?: string
+	isSearchQuery?: boolean
+}
 
 export function ProtocolList({protocols, isLoading, className, isSearchQuery}: TProtocolListProps): ReactNode {
 	return (

@@ -23,11 +23,11 @@ import type {TButton} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TTradeHeroProps = {
-	title: string;
-	description: string;
-	buttonCta: TButton;
-	imageUrl: string;
-};
+	title: string
+	description: string
+	buttonCta: TButton
+	imageUrl: string
+}
 
 export function TradeHero({title, description, buttonCta, imageUrl}: TTradeHeroProps): ReactNode {
 	// Handle button click to open URL in new tab with security precautions

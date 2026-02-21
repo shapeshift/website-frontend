@@ -22,10 +22,10 @@ import {ResourcesExpand} from './ResourcesExpand'
 import type {ReactNode} from 'react'
 
 type TDesktopHeaderProps = {
-	className?: string;
-	switchLanguageAction: (symbol: string) => void;
-	currentLanguage: string;
-};
+	className?: string
+	switchLanguageAction: (symbol: string) => void
+	currentLanguage: string
+}
 
 /**
  * Desktop header component with hover menu expansions

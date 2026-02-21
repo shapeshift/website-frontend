@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const strapiHostname = process.env.NEXT_PUBLIC_STRAPI_URL ? new URL(process.env.NEXT_PUBLIC_STRAPI_URL).hostname : null
+
 const nextConfig = {
 	crossOrigin: 'anonymous',
 	/* config options here */
@@ -6,7 +9,8 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{protocol: 'https', hostname: 'strapi.shapeshift.com'},
-			{protocol: 'https', hostname: 'strapi.shapeshift.com'},
+			{protocol: 'https', hostname: 'website-backend-assets.shapeshift.com'},
+			...(strapiHostname ? [{protocol: 'https', hostname: strapiHostname}] : []),
 			{protocol: 'http', hostname: '172.233.242.224'}
 		]
 	},

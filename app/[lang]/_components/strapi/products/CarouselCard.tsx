@@ -4,16 +4,17 @@ import Image from 'next/image'
 
 import {Carousel} from '@/app/[lang]/_components/Carousel'
 import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {TStrapiImage} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TCarouselCardProps = {
-	title: string;
-	description: string;
-	items?: {image?: TStrapiImage; url?: string}[];
-	image?: TStrapiImage;
-};
+	title: string
+	description: string
+	items?: {image?: TStrapiImage; url?: string}[]
+	image?: TStrapiImage
+}
 
 export function CarouselCard({title, description, items, image}: TCarouselCardProps): ReactNode {
 	return (
@@ -34,7 +35,7 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 									className={'mx-6'}>
 									<div className={'relative flex max-h-10 w-max items-center justify-start'}>
 										<Image
-											src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image?.url ?? ''}`}
+											src={getStrapiImageUrl(image?.url ?? '')}
 											alt={image?.url || ''}
 											width={696}
 											height={168}
@@ -47,7 +48,7 @@ export function CarouselCard({title, description, items, image}: TCarouselCardPr
 					) : (
 						<div className={'mt-auto overflow-hidden'}>
 							<Image
-								src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image?.url ?? ''}`}
+								src={getStrapiImageUrl(image?.url ?? '')}
 								alt={title}
 								width={696}
 								height={168}

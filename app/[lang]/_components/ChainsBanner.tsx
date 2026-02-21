@@ -7,11 +7,11 @@ import {cl} from '../_utils/cl'
 import type {ReactNode} from 'react'
 
 type TChainsBanner = {
-	tag: string;
-	title: string;
-	href: string;
-	buttonText: string;
-};
+	tag: string
+	title: string
+	href: string
+	buttonText: string
+}
 
 export function ChainsBanner(data: TChainsBanner): ReactNode {
 	return (

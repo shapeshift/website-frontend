@@ -12,8 +12,8 @@ import type {TSupportedChainData, TSupportedChainTypes} from '@/app/[lang]/_comp
 import type {ReactNode} from 'react'
 
 type TChainSearchWrapperProps = {
-	chains: TSupportedChainData[];
-};
+	chains: TSupportedChainData[]
+}
 
 /**************************************************************************************************
  ** ChainSearchWrapper Component

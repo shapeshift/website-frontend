@@ -6,7 +6,7 @@ import {ProtocolEasier} from '@/app/[lang]/(resources)/_components/ProtocolEasie
 import {ProtocolFeatures} from '@/app/[lang]/(resources)/_components/ProtocolFeatures'
 import {ProtocolHeader} from '@/app/[lang]/(resources)/_components/ProtocolHeader'
 import {Banner} from '@/app/[lang]/_components/Banner'
-import {getSupportedProtocol} from '@/app/[lang]/_utils/query'
+import {getStrapiImageUrl, getSupportedProtocol} from '@/app/[lang]/_utils/query'
 
 import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types'
 import type {Metadata} from 'next'
@@ -53,12 +53,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 	}
@@ -90,7 +90,7 @@ export default async function ProtocolPage({params}: {params: Promise<{slug: str
 					name={protocol?.name}
 					description={protocol?.description}
 					items={['Self-custodial', 'Private', 'Multichain trading']}
-					url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${protocol?.featuredImg?.url}`}
+					url={getStrapiImageUrl(protocol?.featuredImg?.url)}
 					width={protocol?.featuredImg?.width}
 					height={protocol?.featuredImg?.height}
 				/>

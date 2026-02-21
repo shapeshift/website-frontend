@@ -20,18 +20,19 @@
 import Image from 'next/image'
 
 import {Button} from '@/app/[lang]/_components/Button'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {TButton, TStrapiImage} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TProductHeroProps = {
-	title: string;
-	description: string;
-	buttonCta?: TButton; // Optional because mobile-app doesn't use it
-	featuredImg: TStrapiImage;
-	children?: ReactNode; // Additional content like stats or download buttons
-	buttonClassName?: string;
-};
+	title: string
+	description: string
+	buttonCta?: TButton // Optional because mobile-app doesn't use it
+	featuredImg: TStrapiImage
+	children?: ReactNode // Additional content like stats or download buttons
+	buttonClassName?: string
+}
 
 export function ProductHero({
 	title,
@@ -63,7 +64,7 @@ export function ProductHero({
 
 				<div className={'mt-20 aspect-[1400/400] overflow-hidden rounded-2xl'}>
 					<Image
-						src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${featuredImg.url}`}
+						src={getStrapiImageUrl(featuredImg.url)}
 						className={'aspect-[1400/400] w-full'}
 						alt={title || 'Product feature image'}
 						quality={100}

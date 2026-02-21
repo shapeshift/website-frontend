@@ -12,8 +12,8 @@ export function LanguageExpand({
 	switchLanguageAction,
 	currentLanguage
 }: {
-	switchLanguageAction: (symbol: string) => void;
-	currentLanguage: string;
+	switchLanguageAction: (symbol: string) => void
+	currentLanguage: string
 }): ReactNode {
 	return (
 		<div

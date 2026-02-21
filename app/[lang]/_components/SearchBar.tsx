@@ -1,9 +1,9 @@
 'use client'
 
 type TSearchProps = {
-	searchQuery: string;
-	setSearchQueryAction: (query: string) => void;
-};
+	searchQuery: string
+	setSearchQueryAction: (query: string) => void
+}
 
 export function SearchBar({searchQuery, setSearchQueryAction}: TSearchProps): JSX.Element {
 	return (

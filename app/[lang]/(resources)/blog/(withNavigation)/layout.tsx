@@ -3,8 +3,8 @@ import {BlogNav} from '@/app/[lang]/(resources)/blog/(withNavigation)/BlogNav'
 import {BlogTitle} from '@/app/[lang]/(resources)/blog/(withNavigation)/BlogTitle'
 
 export default async function BlogPageLayout(props: {
-	children: React.ReactNode;
-	params: Promise<{category: string}>;
+	children: React.ReactNode
+	params: Promise<{category: string}>
 }): Promise<React.ReactNode> {
 	await props.params
 

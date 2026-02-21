@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type {Config} from 'tailwindcss';
+import type {Config} from 'tailwindcss'
 
 export default {
 	content: ['./components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -51,4 +51,4 @@ export default {
 		}
 	},
 	plugins: []
-} satisfies Config;
+} satisfies Config

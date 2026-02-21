@@ -3,6 +3,7 @@ import React from 'react'
 
 import {Button} from '@/app/[lang]/_components/Button'
 import {cl} from '@/app/[lang]/_utils/cl'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {TGridLadderSection, TGridLadderStep} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
@@ -33,7 +34,7 @@ export default function GridLadder({data}: {data: TGridLadderSection}): ReactNod
 							<LadderItem data={step} />
 							<div className={'h-[400px] w-[640px] overflow-hidden rounded-2xl bg-secondHoverBg'}>
 								<Image
-									src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${step.image?.url}`}
+									src={getStrapiImageUrl(step.image?.url)}
 									alt={step.id.toString()}
 									width={step.image?.width}
 									height={step.image?.height}

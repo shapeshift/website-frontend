@@ -21,6 +21,7 @@ import Image from 'next/image'
 
 import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
 import {cl} from '@/app/[lang]/_utils/cl'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {ReactNode} from 'react'
 
@@ -92,11 +93,7 @@ export function DiscoverFeature({
 						{feature.image?.url && (
 							<div className={'mb-6'}>
 								<Image
-									src={
-										feature.image.url.startsWith('http')
-											? feature.image.url
-											: `${process.env.NEXT_PUBLIC_STRAPI_URL}${feature.image.url}`
-									}
+									src={getStrapiImageUrl(feature.image.url)}
 									alt={feature.image.alt || feature.title}
 									width={feature.image.width || 64}
 									height={feature.image.height || 64}

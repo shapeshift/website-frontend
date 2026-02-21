@@ -1,6 +1,8 @@
 import {motion} from 'motion/react'
 import Link from 'next/link'
 
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
+
 import {IconArrow} from '../_icons/IconArrow'
 import {IconClose} from '../_icons/IconClose'
 import {cl} from '../_utils/cl'
@@ -24,9 +26,9 @@ export function Popup({
 	onClose,
 	isOpen
 }: {
-	notification: TStrapiNotification | null;
-	onClose: () => void;
-	isOpen: boolean;
+	notification: TStrapiNotification | null
+	onClose: () => void
+	isOpen: boolean
 }): ReactElement {
 	return (
 		<>
@@ -54,7 +56,7 @@ export function Popup({
 						style={{
 							...(notification?.bgImage?.url
 								? {
-										background: `url(${`${process.env.NEXT_PUBLIC_STRAPI_URL}${notification.bgImage.url}`}) no-repeat center center`,
+										background: `url(${getStrapiImageUrl(notification.bgImage.url)}) no-repeat center center`,
 										backgroundSize: 'cover'
 									}
 								: null)

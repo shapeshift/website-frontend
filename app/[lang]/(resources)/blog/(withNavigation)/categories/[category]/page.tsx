@@ -3,7 +3,7 @@ import {notFound} from 'next/navigation'
 import {ListOfPosts} from '@/app/[lang]/(resources)/blog/(withNavigation)/categories/[category]/ListOfPosts'
 
 export default async function BlogCategoriesPage(props: {
-	params: Promise<{category: string}>;
+	params: Promise<{category: string}>
 }): Promise<React.ReactNode> {
 	const {category} = await props.params
 	const data = await fetch(

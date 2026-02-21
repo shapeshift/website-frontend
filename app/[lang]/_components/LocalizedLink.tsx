@@ -12,8 +12,8 @@ import type {UrlObject} from 'url'
 
 type TLocalizedLinkProps = LinkProps &
 	AnchorHTMLAttributes<HTMLAnchorElement> & {
-		children: ReactNode;
-	};
+		children: ReactNode
+	}
 
 /**
  * A localized version of Next.js Link that automatically prepends the current language

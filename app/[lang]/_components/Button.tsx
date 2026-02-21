@@ -4,16 +4,16 @@ import {cl} from '../_utils/cl'
 
 import type {ReactNode} from 'react'
 
-type TButtonVariant = 'blue' | 'white';
+type TButtonVariant = 'blue' | 'white'
 
 type TButtonProps = {
-	title?: string;
-	variant?: TButtonVariant;
-	className?: string;
-	onClick?: () => void;
-	href?: string;
-	hasArrow?: boolean;
-};
+	title?: string
+	variant?: TButtonVariant
+	className?: string
+	onClick?: () => void
+	href?: string
+	hasArrow?: boolean
+}
 
 export function Button(props: TButtonProps): ReactNode {
 	const {variant = 'blue', hasArrow = false, ...rest} = props

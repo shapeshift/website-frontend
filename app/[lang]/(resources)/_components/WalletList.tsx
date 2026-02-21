@@ -22,11 +22,11 @@ import {ResourceGrid} from './ResourceGrid'
 import type {TSupportedWalletData} from '@/app/[lang]/_components/strapi/types'
 
 type TWalletListProps = {
-	wallets: TSupportedWalletData[] | null;
-	isLoading?: boolean;
-	className?: string;
-	isSearchQuery?: boolean;
-};
+	wallets: TSupportedWalletData[] | null
+	isLoading?: boolean
+	className?: string
+	isSearchQuery?: boolean
+}
 
 export function WalletList({wallets, isLoading, className, isSearchQuery}: TWalletListProps): JSX.Element {
 	return (

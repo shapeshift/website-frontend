@@ -27,8 +27,8 @@ import type {ReactNode} from 'react'
  ** @property {TSupportedProtocolData[]} protocols - Array of protocol data to be displayed and filtered
  *************************************************************************************************/
 type TProtocolSearchWrapperProps = {
-	protocols: TSupportedProtocolData[];
-};
+	protocols: TSupportedProtocolData[]
+}
 
 /**************************************************************************************************
  ** ProtocolSearchWrapper Component

@@ -1,9 +1,9 @@
 import type {ReactNode} from 'react'
 
 type THeaderData = {
-	name: string;
-	description: string;
-};
+	name: string
+	description: string
+}
 export function ProtocolAbout(data: THeaderData): ReactNode {
 	return (
 		<div className={'mt-4'}>

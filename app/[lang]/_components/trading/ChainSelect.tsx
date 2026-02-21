@@ -9,12 +9,12 @@ import {cl} from '@/app/[lang]/_utils/cl'
 import type {ReactNode} from 'react'
 
 export type TChain = {
-	id: string;
-	name: string;
-	icon: string;
-	requestKey: string;
-	chainId?: string;
-};
+	id: string
+	name: string
+	icon: string
+	requestKey: string
+	chainId?: string
+}
 
 export function ChainSelect({
 	chains,
@@ -24,12 +24,12 @@ export function ChainSelect({
 	isOpen,
 	setIsOpenAction
 }: {
-	chains: TChain[];
-	selectedChain: TChain;
-	onSelectAction: (chain: TChain) => void;
-	disabled?: boolean;
-	isOpen: boolean;
-	setIsOpenAction: (isOpen: boolean) => void;
+	chains: TChain[]
+	selectedChain: TChain
+	onSelectAction: (chain: TChain) => void
+	disabled?: boolean
+	isOpen: boolean
+	setIsOpenAction: (isOpen: boolean) => void
 }): ReactNode {
 	return (
 		<div className={'group relative'}>

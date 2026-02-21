@@ -7,8 +7,8 @@ import type {TCard, TCardsRowSection} from '@/app/[lang]/_components/strapi/type
 import type {ReactNode} from 'react'
 
 export default function CardsRow(props: {
-	data: TCardsRowSection;
-	children: (card: TCard) => ReactNode;
+	data: TCardsRowSection
+	children: (card: TCard) => ReactNode
 }): ReactNode | null {
 	const {data, children} = props
 	if (!data) {

@@ -11,11 +11,11 @@ import type {TStrapiNotification} from '@/app/[lang]/_components/strapi/types'
 import type {ReactElement} from 'react'
 
 type TModalProps = {
-	isOpen: boolean;
-	onClose: VoidFunction;
-	notification: TStrapiNotification | null;
-	className?: string;
-};
+	isOpen: boolean
+	onClose: VoidFunction
+	notification: TStrapiNotification | null
+	className?: string
+}
 
 export function Modal({isOpen, onClose, notification, className}: TModalProps): ReactElement {
 	return (

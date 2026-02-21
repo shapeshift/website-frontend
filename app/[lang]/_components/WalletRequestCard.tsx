@@ -3,12 +3,12 @@ import Image from 'next/image'
 import {Button} from '@/app/[lang]/_components/Button'
 
 type TRequestCardProps = {
-	title: string;
-	buttonTitle: string;
-	buttonHref: string;
-	bgImage: string;
-	buttonVariant?: 'white' | 'blue';
-};
+	title: string
+	buttonTitle: string
+	buttonHref: string
+	bgImage: string
+	buttonVariant?: 'white' | 'blue'
+}
 
 export function WalletRequestCard({
 	title,

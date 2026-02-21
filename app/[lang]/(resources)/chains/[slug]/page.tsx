@@ -7,7 +7,7 @@ import {ChainDescription} from '@/app/[lang]/_components/strapi/templates/ChainD
 import {ChainFeatures} from '@/app/[lang]/_components/strapi/templates/ChainFeatures'
 import {ChainHeader} from '@/app/[lang]/_components/strapi/templates/ChainHeader'
 import {ChainHero} from '@/app/[lang]/_components/strapi/templates/ChainHero'
-import {getSupportedChain} from '@/app/[lang]/_utils/query'
+import {getStrapiImageUrl, getSupportedChain} from '@/app/[lang]/_utils/query'
 
 import type {TSupportedChainData} from '@/app/[lang]/_components/strapi/types'
 import type {Metadata} from 'next'
@@ -53,12 +53,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 	}
@@ -90,7 +90,7 @@ export default async function ChainPage({params}: {params: Promise<{slug: string
 
 				<div className={'mb-20 mt-16 lg:mb-60'}>
 					<ChainHero
-						url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${chain?.featuredImg?.url}`}
+						url={getStrapiImageUrl(chain?.featuredImg?.url)}
 						name={chain?.name}
 						width={chain?.featuredImg?.width}
 						height={chain?.featuredImg?.height}

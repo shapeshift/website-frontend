@@ -33,16 +33,16 @@ import type {TBlogPost} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TPostListProps = {
-	pageSize?: number;
-	sort?: 'asc' | 'desc';
-	initialPage?: number;
-	populateContent?: boolean;
-	cachePosts?: boolean;
-	emptyMessage?: string;
-	category?: string;
-	tag?: string;
-	gridClassName?: string;
-};
+	pageSize?: number
+	sort?: 'asc' | 'desc'
+	initialPage?: number
+	populateContent?: boolean
+	cachePosts?: boolean
+	emptyMessage?: string
+	category?: string
+	tag?: string
+	gridClassName?: string
+}
 
 export function PostList({
 	pageSize = DEFAULT_PAGINATION.PAGE_SIZE,

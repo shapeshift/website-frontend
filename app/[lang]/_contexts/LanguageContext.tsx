@@ -15,25 +15,25 @@ import {
 import type {TLanguage} from '@/app/[lang]/_utils/i18nconfig'
 
 type WeglotInstance = {
-	initialized: boolean;
-	switchTo(languageCode: string): void;
-	on(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void;
-	on(event: 'initialized', handler: () => void): void;
-	off(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void;
-	off(event: 'initialized', handler: () => void): void;
-};
+	initialized: boolean
+	switchTo(languageCode: string): void
+	on(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void
+	on(event: 'initialized', handler: () => void): void
+	off(event: 'languageChanged', handler: (newLang: string, prevLang: string) => void): void
+	off(event: 'initialized', handler: () => void): void
+}
 
 declare global {
 	interface Window {
-		Weglot?: WeglotInstance;
+		Weglot?: WeglotInstance
 	}
 }
 
 type TLanguageContext = {
-	currentLanguage: string;
-	supportedLanguages: TLanguage[];
-	switchLanguage: (languageCode: string) => void;
-};
+	currentLanguage: string
+	supportedLanguages: TLanguage[]
+	switchLanguage: (languageCode: string) => void
+}
 
 const LanguageContext = createContext<TLanguageContext | undefined>(undefined)
 

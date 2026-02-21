@@ -5,20 +5,20 @@ This directory contains the blog section of the ShapeShift website, featuring bl
 ## Directory Structure
 
 - **(withNavigation)/**: Blog pages that include navigation elements
-  - **BlogBreadcrumb.tsx**: Breadcrumb navigation for blog
-  - **BlogNav.tsx**: Main navigation for blog section
-  - **BlogTitle.tsx**: Title component for blog section
-  - **categories/**: Category-based blog post filtering
-    - **[category]/**: Dynamic routes for individual categories
-  - **tags/**: Tag-based blog post filtering
-    - **[tag]/**: Dynamic routes for individual tags
-  - **layout.tsx**: Layout for blog pages with navigation
-  - **page.tsx**: Main blog landing page
+    - **BlogBreadcrumb.tsx**: Breadcrumb navigation for blog
+    - **BlogNav.tsx**: Main navigation for blog section
+    - **BlogTitle.tsx**: Title component for blog section
+    - **categories/**: Category-based blog post filtering
+        - **[category]/**: Dynamic routes for individual categories
+    - **tags/**: Tag-based blog post filtering
+        - **[tag]/**: Dynamic routes for individual tags
+    - **layout.tsx**: Layout for blog pages with navigation
+    - **page.tsx**: Main blog landing page
 - **[slug]/**: Individual blog post pages
-  - **BlogContent.tsx**: Component for rendering blog post content
-  - **BlogSkeleton.tsx**: Loading skeleton for blog posts
-  - **layout.tsx**: Layout for individual blog posts
-  - **page.tsx**: Page component for individual blog posts
+    - **BlogContent.tsx**: Component for rendering blog post content
+    - **BlogSkeleton.tsx**: Loading skeleton for blog posts
+    - **layout.tsx**: Layout for individual blog posts
+    - **page.tsx**: Page component for individual blog posts
 
 ## Features
 

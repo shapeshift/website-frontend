@@ -6,9 +6,9 @@ import {cl} from '@/app/[lang]/_utils/cl'
 import type React from 'react'
 
 type TAnimateChangeInHeightProps = {
-	children: React.ReactNode;
-	className?: string;
-};
+	children: React.ReactNode
+	className?: string
+}
 
 /********************************************************************************************
  * Animated Height Component

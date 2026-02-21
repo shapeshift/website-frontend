@@ -24,6 +24,7 @@ import {ResourceHero} from '@/app/[lang]/(resources)/_components/ResourceHero'
 import {DEFAULT_FEATURES} from '@/app/[lang]/(resources)/_utils/constants'
 import {fetchDiscoverBySlug} from '@/app/[lang]/(resources)/_utils/fetchUtils'
 import {Banner} from '@/app/[lang]/_components/Banner'
+import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
 
 import type {Metadata} from 'next'
 import type {ReactNode} from 'react'
@@ -67,12 +68,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 	if (imageUrl) {
 		metadata.openGraph!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 		metadata.twitter!.images = [
 			{
-				url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${imageUrl}`
+				url: getStrapiImageUrl(imageUrl)
 			}
 		]
 	}
@@ -100,7 +101,7 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 		description: feature.description,
 		image: feature.image
 			? {
-					url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${feature.image.url}`,
+					url: getStrapiImageUrl(feature.image.url),
 					width: feature.image.width,
 					height: feature.image.height,
 					alt: feature.title
@@ -132,7 +133,7 @@ export default async function DiscoverDetailPage({params}: {params: Promise<{slu
 				<ResourceHero
 					imageSrc={'/wallets/hero.jpg'}
 					imageAlt={`${discover.title} banner image`}
-					logoSrc={`${process.env.NEXT_PUBLIC_STRAPI_URL}${discover.featuredImg.url}`}
+					logoSrc={getStrapiImageUrl(discover.featuredImg.url)}
 					logoAlt={discover.title}
 					logoWidth={discover.featuredImg.width}
 					logoHeight={discover.featuredImg.height}

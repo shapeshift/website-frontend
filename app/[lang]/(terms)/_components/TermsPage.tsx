@@ -18,9 +18,9 @@ import type {Metadata} from 'next'
 import type {ReactNode} from 'react'
 
 type TTermsPageProps = {
-	title: string;
-	items: TTermsItemData[];
-};
+	title: string
+	items: TTermsItemData[]
+}
 
 /**************************************************************************************************
  * Helper function to create dynamic metadata based on title

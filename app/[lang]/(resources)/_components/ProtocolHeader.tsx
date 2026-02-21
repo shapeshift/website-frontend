@@ -7,13 +7,13 @@ import {IconCheck} from '@/app/[lang]/_icons/IconCheck'
 import type {ReactNode} from 'react'
 
 type THeaderData = {
-	description: string;
-	items: string[];
-	url: string;
-	width: number;
-	height: number;
-	name: string;
-};
+	description: string
+	items: string[]
+	url: string
+	width: number
+	height: number
+	name: string
+}
 export function ProtocolHeader(data: THeaderData): ReactNode {
 	return (
 		<Fragment>
@@ -33,9 +33,7 @@ export function ProtocolHeader(data: THeaderData): ReactNode {
 						{`Shift into ${data.name}`}
 					</h1>
 					<p className={'mx-auto max-w-screen-md text-center text-base text-gray-500 lg:text-xl'}>
-						{
-							'Say goodbye to multiple interfaces and hello to ShapeShift.'
-						}
+						{'Say goodbye to multiple interfaces and hello to ShapeShift.'}
 					</p>
 				</div>
 				<Button

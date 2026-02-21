@@ -53,52 +53,52 @@ import type {
  * Base type containing properties common to all product pages
  ************************************************************************************************/
 type TBaseProductPage = {
-	title: string;
-	description: string;
-	featuredImg: TStrapiImage;
-	footer: TFooterSection;
-};
+	title: string
+	description: string
+	featuredImg: TStrapiImage
+	footer: TFooterSection
+}
 
 /************************************************************************************************
  * DeFi Wallet page data structure
  * Features card row layout highlighting wallet capabilities
  ************************************************************************************************/
 type TDeFiWalletPage = TBaseProductPage & {
-	buttonCta: TButton;
-	buttonDownload: TButton[];
-	cardsRow: TCardsRowSection;
-};
+	buttonCta: TButton
+	buttonDownload: TButton[]
+	cardsRow: TCardsRowSection
+}
 
 /************************************************************************************************
  * Earn page data structure
  * Features grid layout showcasing earning opportunities
  ************************************************************************************************/
 type TEarnPage = TBaseProductPage & {
-	buttonCta: TButton;
-	buttonDownload: TButton[];
-	grid: TGridSection;
-};
+	buttonCta: TButton
+	buttonDownload: TButton[]
+	grid: TGridSection
+}
 
 /************************************************************************************************
  * Mobile App page data structure
  * Features step-by-step ladder grid and download buttons
  ************************************************************************************************/
 type TMobileAppPage = TBaseProductPage & {
-	buttonCta: TButton;
-	buttonDownload: TDownloadButton[];
-	gridLadder: TGridLadderSection;
-};
+	buttonCta: TButton
+	buttonDownload: TDownloadButton[]
+	gridLadder: TGridLadderSection
+}
 
 /************************************************************************************************
  * Trade page data structure
  * Features statistics, card row, and displaced grid layout
  ************************************************************************************************/
 type TTradePage = TBaseProductPage & {
-	buttonCta: TButton;
-	stats: TStat[];
-	cardsRow: TCardsRowSection;
-	gridDisplaced: TGridDisplacedSection;
-};
+	buttonCta: TButton
+	stats: TStat[]
+	cardsRow: TCardsRowSection
+	gridDisplaced: TGridDisplacedSection
+}
 
 /************************************************************************************************
  * Fetches DeFi Wallet page data from Strapi API

@@ -131,13 +131,7 @@ export function TradingWidget(): ReactNode {
 			setError('No rate available')
 			setIsLoading(false)
 		}
-	}, [
-		debouncedAmount,
-		fromChain,
-		fromToken,
-		toChain,
-		toToken
-	])
+	}, [debouncedAmount, fromChain, fromToken, toChain, toToken])
 
 	useEffect(() => {
 		if (debouncedAmount === '0' || debouncedAmount === '') {

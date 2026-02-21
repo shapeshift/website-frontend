@@ -1,9 +1,9 @@
 import type {ReactNode} from 'react'
 
 type TLandingInfoCard = {
-	title: string;
-	stat: string;
-};
+	title: string
+	stat: string
+}
 
 export function LandingInfoCard({title, stat}: TLandingInfoCard): ReactNode {
 	return (

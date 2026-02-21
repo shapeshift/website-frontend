@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 }
 
 type TTermsLayoutProps = {
-	children: ReactNode;
-};
+	children: ReactNode
+}
 
 export default function TermsLayout({children}: TTermsLayoutProps): ReactNode {
 	return (

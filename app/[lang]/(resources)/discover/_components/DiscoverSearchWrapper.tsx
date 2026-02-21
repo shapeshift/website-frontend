@@ -9,8 +9,8 @@ import type {TDiscoverData} from '@/app/[lang]/_components/strapi/types'
 import type {ReactNode} from 'react'
 
 type TDiscoverSearchWrapperProps = {
-	discover: TDiscoverData[] | null;
-};
+	discover: TDiscoverData[] | null
+}
 
 /**************************************************************************************************
  ** DiscoverSearchWrapper Component

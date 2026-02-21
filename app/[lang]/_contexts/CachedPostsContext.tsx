@@ -19,24 +19,24 @@ import type {ReactNode} from 'react'
  * Type definition for cached query parameters
  ********************************************************************************************/
 type TCachedParams = {
-	page: number | undefined;
-	pageSize: number | undefined;
-	sort: 'asc' | 'desc' | undefined;
-	slug: string | undefined;
-	populateContent: boolean | undefined;
-	type: string | undefined;
-	tag: string | undefined;
-};
+	page: number | undefined
+	pageSize: number | undefined
+	sort: 'asc' | 'desc' | undefined
+	slug: string | undefined
+	populateContent: boolean | undefined
+	type: string | undefined
+	tag: string | undefined
+}
 
 /********************************************************************************************
  * Context for storing cached blog posts data and parameters
  * Provides default values for initial state
  ********************************************************************************************/
 const PostsContext = createContext<{
-	cachedResponse: TBlogListResponse;
-	setCachedResponse: (responses: TBlogListResponse) => void;
-	cachedParams: TCachedParams;
-	setCachedParams: (params: TCachedParams) => void;
+	cachedResponse: TBlogListResponse
+	setCachedResponse: (responses: TBlogListResponse) => void
+	cachedParams: TCachedParams
+	setCachedParams: (params: TCachedParams) => void
 }>({
 	cachedResponse: {
 		data: [],
@@ -108,10 +108,10 @@ export function CachedPostsProvider({children}: {children: ReactNode}): ReactNod
  * @throws Error if used outside of CachedPostsProvider
  */
 export function useCachedPosts(): {
-	cachedResponse: TBlogListResponse;
-	setCachedResponse: (responses: TBlogListResponse) => void;
-	cachedParams: TCachedParams;
-	setCachedParams: (params: TCachedParams) => void;
+	cachedResponse: TBlogListResponse
+	setCachedResponse: (responses: TBlogListResponse) => void
+	cachedParams: TCachedParams
+	setCachedParams: (params: TCachedParams) => void
 } {
 	return useContext(PostsContext)
 }

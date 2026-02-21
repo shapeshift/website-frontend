@@ -3,8 +3,8 @@ import {NewsroomNav} from '@/app/[lang]/(resources)/_components/NewsroomNav'
 import {NewsroomTitle} from '@/app/[lang]/(resources)/_components/NewsroomTitle'
 
 export default async function BlogPageLayout(props: {
-	children: React.ReactNode;
-	params: Promise<{category: string}>;
+	children: React.ReactNode
+	params: Promise<{category: string}>
 }): Promise<React.ReactNode> {
 	await props.params
 
