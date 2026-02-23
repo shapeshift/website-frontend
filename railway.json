@@ -1,0 +1,23 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "buildCommand": "bun install --frozen-lockfile && bun run build",
+    "watchPatterns": [
+      "app/**",
+      "public/**",
+      "package.json",
+      "bun.lockb",
+      "next.config.ts",
+      "tailwind.config.ts",
+      "postcss.config.mjs",
+      "tsconfig.json",
+      "middleware.ts",
+      "railway.json"
+    ]
+  },
+  "deploy": {
+    "startCommand": "bun run start",
+    "healthcheckPath": "/",
+    "restartPolicyType": "ALWAYS"
+  }
+}

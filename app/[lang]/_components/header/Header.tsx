@@ -1,34 +1,27 @@
 'use client'
 
-import {useLanguage} from '@/app/[lang]/_contexts/LanguageContext'
+import { useLanguage } from '@/app/[lang]/_contexts/LanguageContext'
 
-import {DesktopHeader} from './DesktopHeader'
-import {MobileHeader} from './MobileHeader'
+import { DesktopHeader } from './DesktopHeader'
+import { MobileHeader } from './MobileHeader'
 
-import type {ReactNode} from 'react'
+import type { ReactNode } from 'react'
 
 type THeaderProps = {
-	className?: string
+  className?: string
 }
 
 /**
  * Responsive header component
  * Switches between mobile and desktop versions based on screen size
  */
-export function Header({className}: THeaderProps): ReactNode {
-	const {currentLanguage, switchLanguage} = useLanguage()
+export function Header({ className }: THeaderProps): ReactNode {
+  const { currentLanguage, switchLanguage } = useLanguage()
 
-	return (
-		<>
-			<MobileHeader
-				switchLanguage={switchLanguage}
-				currentLanguage={currentLanguage}
-			/>
-			<DesktopHeader
-				className={className}
-				switchLanguageAction={switchLanguage}
-				currentLanguage={currentLanguage}
-			/>
-		</>
-	)
+  return (
+    <>
+      <MobileHeader switchLanguage={switchLanguage} currentLanguage={currentLanguage} />
+      <DesktopHeader className={className} switchLanguageAction={switchLanguage} currentLanguage={currentLanguage} />
+    </>
+  )
 }

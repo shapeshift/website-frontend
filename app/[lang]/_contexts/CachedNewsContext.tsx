@@ -10,22 +10,22 @@
 
 'use client'
 
-import {createContext, useContext, useState} from 'react'
+import { createContext, useContext, useState } from 'react'
 
-import type {TNewsroomListResponse} from '@/app/[lang]/_components/strapi/types'
-import type {ReactNode} from 'react'
+import type { TNewsroomListResponse } from '@/app/[lang]/_components/strapi/types'
+import type { ReactNode } from 'react'
 
 /********************************************************************************************
  * Type definition for cached query parameters
  ********************************************************************************************/
 type TCachedParams = {
-	page: number | undefined
-	pageSize: number | undefined
-	sort: 'asc' | 'desc' | undefined
-	slug: string | undefined
-	populateContent: boolean | undefined
-	category: string | undefined
-	tag: string | undefined
+  page: number | undefined
+  pageSize: number | undefined
+  sort: 'asc' | 'desc' | undefined
+  slug: string | undefined
+  populateContent: boolean | undefined
+  category: string | undefined
+  tag: string | undefined
 }
 
 /********************************************************************************************
@@ -33,33 +33,33 @@ type TCachedParams = {
  * Provides default values for initial state
  */
 const NewsContext = createContext<{
-	cachedResponse: TNewsroomListResponse
-	setCachedResponse: (responses: TNewsroomListResponse) => void
-	cachedParams: TCachedParams
-	setCachedParams: (params: TCachedParams) => void
+  cachedResponse: TNewsroomListResponse
+  setCachedResponse: (responses: TNewsroomListResponse) => void
+  cachedParams: TCachedParams
+  setCachedParams: (params: TCachedParams) => void
 }>({
-	cachedResponse: {
-		data: [],
-		meta: {
-			pagination: {
-				page: 1,
-				pageSize: 12,
-				pageCount: 1,
-				total: 0
-			}
-		}
-	},
-	setCachedResponse: () => {},
-	cachedParams: {
-		page: undefined,
-		pageSize: undefined,
-		sort: undefined,
-		slug: undefined,
-		populateContent: undefined,
-		category: undefined,
-		tag: undefined
-	},
-	setCachedParams: () => {}
+  cachedResponse: {
+    data: [],
+    meta: {
+      pagination: {
+        page: 1,
+        pageSize: 12,
+        pageCount: 1,
+        total: 0,
+      },
+    },
+  },
+  setCachedResponse: () => {},
+  cachedParams: {
+    page: undefined,
+    pageSize: undefined,
+    sort: undefined,
+    slug: undefined,
+    populateContent: undefined,
+    category: undefined,
+    tag: undefined,
+  },
+  setCachedParams: () => {},
 })
 
 /**
@@ -67,39 +67,40 @@ const NewsContext = createContext<{
  * @param children - Child components that will have access to the news cache
  * @returns Provider component with cached news state
  */
-export function CachedNewsProvider({children}: {children: ReactNode}): ReactNode {
-	const [cachedResponse, setCachedResponse] = useState<TNewsroomListResponse>({
-		data: [],
-		meta: {
-			pagination: {
-				page: 1,
-				pageSize: 12,
-				pageCount: 1,
-				total: 0
-			}
-		}
-	})
-	const [cachedParams, setCachedParams] = useState<TCachedParams>({
-		page: undefined,
-		pageSize: undefined,
-		sort: undefined,
-		slug: undefined,
-		populateContent: undefined,
-		category: undefined,
-		tag: undefined
-	})
+export function CachedNewsProvider({ children }: { children: ReactNode }): ReactNode {
+  const [cachedResponse, setCachedResponse] = useState<TNewsroomListResponse>({
+    data: [],
+    meta: {
+      pagination: {
+        page: 1,
+        pageSize: 12,
+        pageCount: 1,
+        total: 0,
+      },
+    },
+  })
+  const [cachedParams, setCachedParams] = useState<TCachedParams>({
+    page: undefined,
+    pageSize: undefined,
+    sort: undefined,
+    slug: undefined,
+    populateContent: undefined,
+    category: undefined,
+    tag: undefined,
+  })
 
-	return (
-		<NewsContext.Provider
-			value={{
-				cachedResponse,
-				setCachedResponse,
-				cachedParams,
-				setCachedParams
-			}}>
-			{children}
-		</NewsContext.Provider>
-	)
+  return (
+    <NewsContext.Provider
+      value={{
+        cachedResponse,
+        setCachedResponse,
+        cachedParams,
+        setCachedParams,
+      }}
+    >
+      {children}
+    </NewsContext.Provider>
+  )
 }
 
 /**
@@ -108,10 +109,10 @@ export function CachedNewsProvider({children}: {children: ReactNode}): ReactNode
  * @throws Error if used outside of CachedNewsProvider
  */
 export function useCachedNews(): {
-	cachedResponse: TNewsroomListResponse
-	setCachedResponse: (responses: TNewsroomListResponse) => void
-	cachedParams: TCachedParams
-	setCachedParams: (params: TCachedParams) => void
+  cachedResponse: TNewsroomListResponse
+  setCachedResponse: (responses: TNewsroomListResponse) => void
+  cachedParams: TCachedParams
+  setCachedParams: (params: TCachedParams) => void
 } {
-	return useContext(NewsContext)
+  return useContext(NewsContext)
 }

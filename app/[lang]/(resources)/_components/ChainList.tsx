@@ -14,44 +14,42 @@
  ** - Pass chains data and optional loading state
  ************************************************************************************************/
 
-import {ResourceCard} from '@/app/[lang]/(resources)/_components/ResourceCard'
-import {ResourceGrid} from '@/app/[lang]/(resources)/_components/ResourceGrid'
+import { ResourceCard } from '@/app/[lang]/(resources)/_components/ResourceCard'
+import { ResourceGrid } from '@/app/[lang]/(resources)/_components/ResourceGrid'
 
-import type {TSupportedChainData} from '@/app/[lang]/_components/strapi/types'
-import type {ReactNode} from 'react'
+import type { TSupportedChainData } from '@/app/[lang]/_components/strapi/types'
+import type { ReactNode } from 'react'
 
 type TChainListProps = {
-	chains: TSupportedChainData[] | null
-	isLoading?: boolean
-	className?: string
-	isSearchQuery?: boolean
+  chains: TSupportedChainData[] | null
+  isLoading?: boolean
+  className?: string
+  isSearchQuery?: boolean
 }
 
-export function ChainList({chains, isLoading, className, isSearchQuery}: TChainListProps): ReactNode {
-	return (
-		<ResourceGrid
-			items={chains}
-			isLoading={isLoading}
-			emptyMessage={
-				isSearchQuery
-					? "We couldn't find anything matching your search."
-					: 'No blockchain networks available yet.'
-			}
-			className={className}
-			renderItem={chain => (
-				<ResourceCard
-					key={chain.slug}
-					slug={chain.slug}
-					title={chain.name}
-					description={chain.description}
-					imageUrl={chain.featuredImg?.url}
-					imageWidth={chain.featuredImg?.width}
-					imageHeight={chain.featuredImg?.height}
-					baseURL={'/chains'}
-					imagePosition={'bottom'}
-					altText={`${chain.name} logo`}
-				/>
-			)}
-		/>
-	)
+export function ChainList({ chains, isLoading, className, isSearchQuery }: TChainListProps): ReactNode {
+  return (
+    <ResourceGrid
+      items={chains}
+      isLoading={isLoading}
+      emptyMessage={
+        isSearchQuery ? "We couldn't find anything matching your search." : 'No blockchain networks available yet.'
+      }
+      className={className}
+      renderItem={(chain) => (
+        <ResourceCard
+          key={chain.slug}
+          slug={chain.slug}
+          title={chain.name}
+          description={chain.description}
+          imageUrl={chain.featuredImg?.url}
+          imageWidth={chain.featuredImg?.width}
+          imageHeight={chain.featuredImg?.height}
+          baseURL={'/chains'}
+          imagePosition={'bottom'}
+          altText={`${chain.name} logo`}
+        />
+      )}
+    />
+  )
 }

@@ -15,114 +15,111 @@
  ** - Includes text content, button configurations, and images
  ************************************************************************************************/
 
-import {notFound} from 'next/navigation'
+import { notFound } from 'next/navigation'
 import Script from 'next/script'
 
-import {Card} from '@/app/[lang]/_components/strapi/cards-row/Card'
+import { Card } from '@/app/[lang]/_components/strapi/cards-row/Card'
 import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow'
-import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
-import {generateProductSchema} from '@/app/[lang]/_utils/schema'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { generateProductSchema } from '@/app/[lang]/_utils/schema'
 
-import {BackgroundImage} from '../_components/BackgroundImage'
-import {fetchDeFiWalletPage} from '../_components/ProductFetcher'
-import {ProductFooterBanner} from '../_components/ProductFooterBanner'
-import {ProductHero} from '../_components/ProductHero'
+import { BackgroundImage } from '../_components/BackgroundImage'
+import { fetchDeFiWalletPage } from '../_components/ProductFetcher'
+import { ProductFooterBanner } from '../_components/ProductFooterBanner'
+import { ProductHero } from '../_components/ProductHero'
 
-import type {TCard} from '@/app/[lang]/_components/strapi/types'
-import type {Metadata} from 'next'
-import type {ReactNode} from 'react'
+import type { TCard } from '@/app/[lang]/_components/strapi/types'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {
-	const page = await fetchDeFiWalletPage()
+  const page = await fetchDeFiWalletPage()
 
-	if (!page) {
-		return {}
-	}
+  if (!page) {
+    return {}
+  }
 
-	return {
-		title: page.title,
-		description: page.description,
-		openGraph: {
-			title: page.title,
-			description: page.description,
-			type: 'website',
-			images: [
-				{
-					url: getStrapiImageUrl(page.featuredImg.url),
-					width: 1200,
-					height: 630,
-					alt: page.title
-				}
-			]
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: page.title,
-			description: page.description,
-			images: [getStrapiImageUrl(page.featuredImg.url)]
-		}
-	}
+  return {
+    title: page.title,
+    description: page.description,
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      type: 'website',
+      images: [
+        {
+          url: getStrapiImageUrl(page.featuredImg.url),
+          width: 1200,
+          height: 630,
+          alt: page.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.title,
+      description: page.description,
+      images: [getStrapiImageUrl(page.featuredImg.url)],
+    },
+  }
 }
 
 export default async function DeFiWalletPage(): Promise<ReactNode> {
-	// Fetch page data from Strapi CMS
-	const page = await fetchDeFiWalletPage()
+  // Fetch page data from Strapi CMS
+  const page = await fetchDeFiWalletPage()
 
-	// Handle case where page data is not found
-	if (!page) {
-		console.error('DeFi Wallet page data not found')
-		return notFound()
-	}
+  // Handle case where page data is not found
+  if (!page) {
+    console.error('DeFi Wallet page data not found')
+    return notFound()
+  }
 
-	// Generate structured data for product
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
-	const pageURL = `${baseUrl}/defi-wallet`
+  // Generate structured data for product
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+  const pageURL = `${baseUrl}/defi-wallet`
 
-	// Map card data to features format for schema
-	const features = page.cardsRow.cards.map(card => ({
-		title: card.title,
-		description: card.description
-	}))
+  // Map card data to features format for schema
+  const features = page.cardsRow.cards.map((card) => ({
+    title: card.title,
+    description: card.description,
+  }))
 
-	// Generate product schema
-	const productSchema = generateProductSchema({
-		title: page.title,
-		description: page.description,
-		featuredImage: getStrapiImageUrl(page.featuredImg.url),
-		pageURL,
-		features
-	})
+  // Generate product schema
+  const productSchema = generateProductSchema({
+    title: page.title,
+    description: page.description,
+    featuredImage: getStrapiImageUrl(page.featuredImg.url),
+    pageURL,
+    features,
+  })
 
-	return (
-		<main className={'flex w-full flex-col items-center justify-center'}>
-			{/* Add structured data */}
-			<Script
-				id={'product-schema'}
-				type={'application/ld+json'}
-				// eslint-disable-next-line @typescript-eslint/naming-convention
-				dangerouslySetInnerHTML={{__html: JSON.stringify(productSchema)}}
-			/>
+  return (
+    <main className={'flex w-full flex-col items-center justify-center'}>
+      {/* Add structured data */}
+      <Script
+        id={'product-schema'}
+        type={'application/ld+json'}
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
 
-			{/* Background image (desktop only) */}
-			<BackgroundImage />
+      {/* Background image (desktop only) */}
+      <BackgroundImage />
 
-			{/* Hero section with title, description and CTA */}
-			<ProductHero
-				title={page.title}
-				description={page.description}
-				buttonCta={page.buttonCta}
-				featuredImg={page.featuredImg}
-			/>
+      {/* Hero section with title, description and CTA */}
+      <ProductHero
+        title={page.title}
+        description={page.description}
+        buttonCta={page.buttonCta}
+        featuredImg={page.featuredImg}
+      />
 
-			{/* Feature cards section */}
-			<CardsRow
-				data={page.cardsRow}
-				children={(card: TCard) => <Card data={card} />}
-			/>
+      {/* Feature cards section */}
+      <CardsRow data={page.cardsRow} children={(card: TCard) => <Card data={card} />} />
 
-			{/* Footer banner with CTA */}
-			<ProductFooterBanner productName={'defi-wallet'} />
-		</main>
-	)
+      {/* Footer banner with CTA */}
+      <ProductFooterBanner productName={'defi-wallet'} />
+    </main>
+  )
 }

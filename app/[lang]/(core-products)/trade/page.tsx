@@ -17,122 +17,119 @@
  ** - Includes text content, button configurations, statistics, and images
  ************************************************************************************************/
 
-import {notFound} from 'next/navigation'
+import { notFound } from 'next/navigation'
 import Script from 'next/script'
 
-import {Card} from '@/app/[lang]/_components/strapi/cards-row/Card'
+import { Card } from '@/app/[lang]/_components/strapi/cards-row/Card'
 import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow'
 import GridDisplaced from '@/app/[lang]/_components/strapi/products/GridDisplaced'
-import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
-import {generateProductSchema} from '@/app/[lang]/_utils/schema'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { generateProductSchema } from '@/app/[lang]/_utils/schema'
 
-import {BackgroundImage} from '../_components/BackgroundImage'
-import {fetchTradePage} from '../_components/ProductFetcher'
-import {ProductFooterBanner} from '../_components/ProductFooterBanner'
-import {ProductStats} from '../_components/ProductStats'
-import {TradeHero} from '../_components/TradeHero'
+import { BackgroundImage } from '../_components/BackgroundImage'
+import { fetchTradePage } from '../_components/ProductFetcher'
+import { ProductFooterBanner } from '../_components/ProductFooterBanner'
+import { ProductStats } from '../_components/ProductStats'
+import { TradeHero } from '../_components/TradeHero'
 
-import type {TCard} from '@/app/[lang]/_components/strapi/types'
-import type {Metadata} from 'next'
-import type {ReactNode} from 'react'
+import type { TCard } from '@/app/[lang]/_components/strapi/types'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {
-	const page = await fetchTradePage()
+  const page = await fetchTradePage()
 
-	if (!page) {
-		return {}
-	}
+  if (!page) {
+    return {}
+  }
 
-	return {
-		title: page.title,
-		description: page.description,
-		openGraph: {
-			title: page.title,
-			description: page.description,
-			type: 'website',
-			images: [
-				{
-					url: getStrapiImageUrl(page.featuredImg.url),
-					width: 1200,
-					height: 630,
-					alt: page.title
-				}
-			]
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: page.title,
-			description: page.description,
-			images: [getStrapiImageUrl(page.featuredImg.url)]
-		}
-	}
+  return {
+    title: page.title,
+    description: page.description,
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      type: 'website',
+      images: [
+        {
+          url: getStrapiImageUrl(page.featuredImg.url),
+          width: 1200,
+          height: 630,
+          alt: page.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.title,
+      description: page.description,
+      images: [getStrapiImageUrl(page.featuredImg.url)],
+    },
+  }
 }
 
 export default async function TradePage(): Promise<ReactNode> {
-	// Fetch page data from Strapi CMS
-	const page = await fetchTradePage()
+  // Fetch page data from Strapi CMS
+  const page = await fetchTradePage()
 
-	// Handle case where page data is not found
-	if (!page) {
-		console.error('Trade page data not found')
-		return notFound()
-	}
+  // Handle case where page data is not found
+  if (!page) {
+    console.error('Trade page data not found')
+    return notFound()
+  }
 
-	// Generate structured data for product
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
-	const pageURL = `${baseUrl}/trade`
+  // Generate structured data for product
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shapeshift.com'
+  const pageURL = `${baseUrl}/trade`
 
-	// Map card data to features format for schema
-	const features = page.cardsRow.cards.map(card => ({
-		title: card.title,
-		description: card.description
-	}))
+  // Map card data to features format for schema
+  const features = page.cardsRow.cards.map((card) => ({
+    title: card.title,
+    description: card.description,
+  }))
 
-	// Generate product schema
-	const productSchema = generateProductSchema({
-		title: page.title,
-		description: page.description,
-		featuredImage: getStrapiImageUrl(page.featuredImg.url),
-		pageURL,
-		features
-	})
+  // Generate product schema
+  const productSchema = generateProductSchema({
+    title: page.title,
+    description: page.description,
+    featuredImage: getStrapiImageUrl(page.featuredImg.url),
+    pageURL,
+    features,
+  })
 
-	return (
-		<main className={'flex w-full flex-col items-center justify-center'}>
-			{/* Add structured data */}
-			<Script
-				id={'product-schema'}
-				type={'application/ld+json'}
-				// eslint-disable-next-line @typescript-eslint/naming-convention
-				dangerouslySetInnerHTML={{__html: JSON.stringify(productSchema)}}
-			/>
+  return (
+    <main className={'flex w-full flex-col items-center justify-center'}>
+      {/* Add structured data */}
+      <Script
+        id={'product-schema'}
+        type={'application/ld+json'}
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
 
-			{/* Background image (desktop only) */}
-			<BackgroundImage />
+      {/* Background image (desktop only) */}
+      <BackgroundImage />
 
-			{/* Hero section with client-side interactivity for button */}
-			<TradeHero
-				title={page.title}
-				description={page.description}
-				buttonCta={page.buttonCta}
-				imageUrl={getStrapiImageUrl(page.featuredImg.url)}
-			/>
+      {/* Hero section with client-side interactivity for button */}
+      <TradeHero
+        title={page.title}
+        description={page.description}
+        buttonCta={page.buttonCta}
+        imageUrl={getStrapiImageUrl(page.featuredImg.url)}
+      />
 
-			{/* Feature cards section */}
-			<CardsRow
-				data={page.cardsRow}
-				children={(card: TCard) => <Card data={card} />}
-			/>
+      {/* Feature cards section */}
+      <CardsRow data={page.cardsRow} children={(card: TCard) => <Card data={card} />} />
 
-			{/* Displaced grid layout highlighting additional features */}
-			<GridDisplaced data={page.gridDisplaced} />
+      {/* Displaced grid layout highlighting additional features */}
+      <GridDisplaced data={page.gridDisplaced} />
 
-			{/* Stats section */}
-			<ProductStats stats={page.stats} />
+      {/* Stats section */}
+      <ProductStats stats={page.stats} />
 
-			{/* Footer banner with CTA */}
-			<ProductFooterBanner productName={'trade'} />
-		</main>
-	)
+      {/* Footer banner with CTA */}
+      <ProductFooterBanner productName={'trade'} />
+    </main>
+  )
 }

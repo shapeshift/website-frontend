@@ -18,10 +18,10 @@
 
 'use client'
 
-import {PostList} from '@/app/[lang]/(resources)/_components/PostList'
+import { PostList } from '@/app/[lang]/(resources)/_components/PostList'
 
-import type {ReactNode} from 'react'
+import type { ReactNode } from 'react'
 
 export default function BlogListPage(): ReactNode {
-	return <PostList emptyMessage={"We couldn't find any blog posts matching your criteria."} />
+  return <PostList emptyMessage={"We couldn't find any blog posts matching your criteria."} />
 }

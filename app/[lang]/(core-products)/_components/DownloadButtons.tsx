@@ -17,36 +17,32 @@
 
 import Image from 'next/image'
 
-import {LocalizedLink} from '@/app/[lang]/_components/LocalizedLink'
+import { LocalizedLink } from '@/app/[lang]/_components/LocalizedLink'
 
-import type {TDownloadButton} from '@/app/[lang]/_components/strapi/types'
-import type {ReactNode} from 'react'
+import type { TDownloadButton } from '@/app/[lang]/_components/strapi/types'
+import type { ReactNode } from 'react'
 
 type TDownloadButtonsProps = {
-	buttons: TDownloadButton[]
+  buttons: TDownloadButton[]
 }
 
-export function DownloadButtons({buttons}: TDownloadButtonsProps): ReactNode {
-	if (!buttons || buttons.length === 0) {
-		return null
-	}
+export function DownloadButtons({ buttons }: TDownloadButtonsProps): ReactNode {
+  if (!buttons || buttons.length === 0) {
+    return null
+  }
 
-	return (
-		<div className={'flex gap-4'}>
-			{buttons.map(button => (
-				<LocalizedLink
-					href={button.url ?? ''}
-					target={'_blank'}
-					className={'h-[40px] w-[130px]'}
-					key={button.id}>
-					<Image
-						src={`/${button.variant}.png`}
-						alt={button.variant === 'appstore' ? 'Download on App Store' : 'Get it on Google Play'}
-						width={390}
-						height={120}
-					/>
-				</LocalizedLink>
-			))}
-		</div>
-	)
+  return (
+    <div className={'flex gap-4'}>
+      {buttons.map((button) => (
+        <LocalizedLink href={button.url ?? ''} target={'_blank'} className={'h-[40px] w-[130px]'} key={button.id}>
+          <Image
+            src={`/${button.variant}.png`}
+            alt={button.variant === 'appstore' ? 'Download on App Store' : 'Get it on Google Play'}
+            width={390}
+            height={120}
+          />
+        </LocalizedLink>
+      ))}
+    </div>
+  )
 }

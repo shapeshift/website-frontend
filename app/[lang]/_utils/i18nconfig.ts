@@ -4,49 +4,49 @@
  ************************************************************************************************/
 
 export type TLanguage = {
-	code: string
-	name: string
-	nativeName: string
-	weglotCode: string
+  code: string
+  name: string
+  nativeName: string
+  weglotCode: string
 }
 
 export const SUPPORTED_LANGUAGES: TLanguage[] = [
-	{
-		code: 'en',
-		name: 'English',
-		nativeName: 'English',
-		weglotCode: 'en'
-	},
-	{
-		code: 'ru',
-		name: 'Russian',
-		nativeName: 'Русский',
-		weglotCode: 'ru'
-	},
-	{
-		code: 'de',
-		name: 'German',
-		nativeName: 'Deutsch',
-		weglotCode: 'de'
-	},
-	{
-		code: 'fr',
-		name: 'French',
-		nativeName: 'Français',
-		weglotCode: 'fr'
-	},
-	{
-		code: 'zh',
-		name: 'Chinese',
-		nativeName: '中文',
-		weglotCode: 'zh'
-	},
-	{
-		code: 'es',
-		name: 'Spanish',
-		nativeName: 'Español',
-		weglotCode: 'es'
-	}
+  {
+    code: 'en',
+    name: 'English',
+    nativeName: 'English',
+    weglotCode: 'en',
+  },
+  {
+    code: 'ru',
+    name: 'Russian',
+    nativeName: 'Русский',
+    weglotCode: 'ru',
+  },
+  {
+    code: 'de',
+    name: 'German',
+    nativeName: 'Deutsch',
+    weglotCode: 'de',
+  },
+  {
+    code: 'fr',
+    name: 'French',
+    nativeName: 'Français',
+    weglotCode: 'fr',
+  },
+  {
+    code: 'zh',
+    name: 'Chinese',
+    nativeName: '中文',
+    weglotCode: 'zh',
+  },
+  {
+    code: 'es',
+    name: 'Spanish',
+    nativeName: 'Español',
+    weglotCode: 'es',
+  },
 ]
 
 export const DEFAULT_LANGUAGE = 'en'
@@ -57,19 +57,19 @@ export const DEFAULT_LANGUAGE = 'en'
 export const DEPRECATED_LANGUAGES = ['br']
 
 export function getLanguageFromPath(pathname: string): string {
-	const segments = pathname.split('/').filter(Boolean)
-	const firstSegment = segments[0]
+  const segments = pathname.split('/').filter(Boolean)
+  const firstSegment = segments[0]
 
-	return SUPPORTED_LANGUAGES.some(lang => lang.code === firstSegment) ? firstSegment : ''
+  return SUPPORTED_LANGUAGES.some((lang) => lang.code === firstSegment) ? firstSegment : ''
 }
 
 export function getPathWithoutLanguage(pathname: string): string {
-	const segments = pathname.split('/').filter(Boolean)
-	const firstSegment = segments[0]
+  const segments = pathname.split('/').filter(Boolean)
+  const firstSegment = segments[0]
 
-	if (SUPPORTED_LANGUAGES.some(lang => lang.code === firstSegment)) {
-		return `/${segments.slice(1).join('/')}`
-	}
+  if (SUPPORTED_LANGUAGES.some((lang) => lang.code === firstSegment)) {
+    return `/${segments.slice(1).join('/')}`
+  }
 
-	return pathname || '/'
+  return pathname || '/'
 }

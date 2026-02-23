@@ -10,20 +10,20 @@
 
 'use client'
 
-import {createContext, useContext, useState} from 'react'
+import { createContext, useContext, useState } from 'react'
 
-import type {TArticleListResponse} from '@/app/[lang]/_components/strapi/types'
-import type {ReactNode} from 'react'
+import type { TArticleListResponse } from '@/app/[lang]/_components/strapi/types'
+import type { ReactNode } from 'react'
 
 /********************************************************************************************
  * Type definition for cached query parameters
  ********************************************************************************************/
 type TCachedParams = {
-	page: number | undefined
-	pageSize: number | undefined
-	sort: 'asc' | 'desc' | undefined
-	slug: string | undefined
-	populateContent: boolean | undefined
+  page: number | undefined
+  pageSize: number | undefined
+  sort: 'asc' | 'desc' | undefined
+  slug: string | undefined
+  populateContent: boolean | undefined
 }
 
 /********************************************************************************************
@@ -31,31 +31,31 @@ type TCachedParams = {
  * Provides default values for initial state
  ********************************************************************************************/
 const ArticlesContext = createContext<{
-	cachedResponse: TArticleListResponse
-	setCachedResponse: (responses: TArticleListResponse) => void
-	cachedParams: TCachedParams
-	setCachedParams: (params: TCachedParams) => void
+  cachedResponse: TArticleListResponse
+  setCachedResponse: (responses: TArticleListResponse) => void
+  cachedParams: TCachedParams
+  setCachedParams: (params: TCachedParams) => void
 }>({
-	cachedResponse: {
-		data: [],
-		meta: {
-			pagination: {
-				page: 1,
-				pageSize: 12,
-				pageCount: 1,
-				total: 0
-			}
-		}
-	},
-	setCachedResponse: () => {},
-	cachedParams: {
-		page: undefined,
-		pageSize: undefined,
-		sort: undefined,
-		slug: undefined,
-		populateContent: undefined
-	},
-	setCachedParams: () => {}
+  cachedResponse: {
+    data: [],
+    meta: {
+      pagination: {
+        page: 1,
+        pageSize: 12,
+        pageCount: 1,
+        total: 0,
+      },
+    },
+  },
+  setCachedResponse: () => {},
+  cachedParams: {
+    page: undefined,
+    pageSize: undefined,
+    sort: undefined,
+    slug: undefined,
+    populateContent: undefined,
+  },
+  setCachedParams: () => {},
 })
 
 /**
@@ -63,37 +63,38 @@ const ArticlesContext = createContext<{
  * @param children - Child components that will have access to the articles cache
  * @returns Provider component with cached articles state
  */
-export function CachedArticlesProvider({children}: {children: ReactNode}): ReactNode {
-	const [cachedResponse, setCachedResponse] = useState<TArticleListResponse>({
-		data: [],
-		meta: {
-			pagination: {
-				page: 1,
-				pageSize: 12,
-				pageCount: 1,
-				total: 0
-			}
-		}
-	})
-	const [cachedParams, setCachedParams] = useState<TCachedParams>({
-		page: undefined,
-		pageSize: undefined,
-		sort: undefined,
-		slug: undefined,
-		populateContent: undefined
-	})
+export function CachedArticlesProvider({ children }: { children: ReactNode }): ReactNode {
+  const [cachedResponse, setCachedResponse] = useState<TArticleListResponse>({
+    data: [],
+    meta: {
+      pagination: {
+        page: 1,
+        pageSize: 12,
+        pageCount: 1,
+        total: 0,
+      },
+    },
+  })
+  const [cachedParams, setCachedParams] = useState<TCachedParams>({
+    page: undefined,
+    pageSize: undefined,
+    sort: undefined,
+    slug: undefined,
+    populateContent: undefined,
+  })
 
-	return (
-		<ArticlesContext.Provider
-			value={{
-				cachedResponse,
-				setCachedResponse,
-				cachedParams,
-				setCachedParams
-			}}>
-			{children}
-		</ArticlesContext.Provider>
-	)
+  return (
+    <ArticlesContext.Provider
+      value={{
+        cachedResponse,
+        setCachedResponse,
+        cachedParams,
+        setCachedParams,
+      }}
+    >
+      {children}
+    </ArticlesContext.Provider>
+  )
 }
 
 /**
@@ -102,10 +103,10 @@ export function CachedArticlesProvider({children}: {children: ReactNode}): React
  * @throws Error if used outside of CachedArticlesProvider
  */
 export function useCachedArticles(): {
-	cachedResponse: TArticleListResponse
-	setCachedResponse: (responses: TArticleListResponse) => void
-	cachedParams: TCachedParams
-	setCachedParams: (params: TCachedParams) => void
+  cachedResponse: TArticleListResponse
+  setCachedResponse: (responses: TArticleListResponse) => void
+  cachedParams: TCachedParams
+  setCachedParams: (params: TCachedParams) => void
 } {
-	return useContext(ArticlesContext)
+  return useContext(ArticlesContext)
 }

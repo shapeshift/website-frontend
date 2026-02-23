@@ -20,9 +20,9 @@
  * Default pagination settings used across resource list pages
  ************************************************************************************************/
 export const DEFAULT_PAGINATION = {
-	PAGE_SIZE: 12,
-	SORT: 'desc' as const,
-	INITIAL_PAGE: 1
+  PAGE_SIZE: 12,
+  SORT: 'desc' as const,
+  INITIAL_PAGE: 1,
 }
 
 /************************************************************************************************

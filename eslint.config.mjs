@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 
 import importPlugin from 'eslint-plugin-import'
+import prettierPlugin from 'eslint-plugin-prettier/recommended'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import tailwindcssPlugin from 'eslint-plugin-tailwindcss'
@@ -79,7 +80,6 @@ export default tseslint.config(
 			// React rules
 			'react/prop-types': 0,
 			'react/jsx-curly-brace-presence': ['error', {props: 'always', children: 'always'}],
-			'react/jsx-first-prop-new-line': ['error', 'multiline'],
 			'react/jsx-closing-tag-location': 2,
 			'react/jsx-max-props-per-line': 'off',
 
@@ -88,29 +88,9 @@ export default tseslint.config(
 
 			// General rules
 			'no-async-promise-executor': 0,
-			semi: [2, 'never'],
-			quotes: [2, 'single', {avoidEscape: true}],
-			'object-curly-spacing': [2, 'never'],
-			'array-bracket-spacing': [2, 'never'],
-			'comma-dangle': ['error', 'never'],
-			'arrow-parens': ['error', 'as-needed'],
 			'no-else-return': ['error', {allowElseIf: false}],
-			'eol-last': ['error', 'always'],
-			'array-bracket-newline': ['error', {multiline: true}],
 			'no-unused-vars': 'off', // Turned off in favor of @typescript-eslint version
 			curly: ['error', 'all'],
-			'object-curly-newline': [
-				'error',
-				{
-					ObjectExpression: {multiline: true, consistent: true},
-					ObjectPattern: {multiline: true, consistent: true},
-					ImportDeclaration: {multiline: true, consistent: true},
-					ExportDeclaration: {multiline: true, minProperties: 3}
-				}
-			],
-			'object-property-newline': ['error', {allowAllPropertiesOnSameLine: true}],
-			'no-multi-spaces': ['error', {ignoreEOLComments: false}],
-			'no-mixed-spaces-and-tabs': ['warn', 'smart-tabs'],
 			'sort-imports': [
 				'error',
 				{
@@ -121,7 +101,6 @@ export default tseslint.config(
 					allowSeparatedGroups: true
 				}
 			],
-
 			'object-shorthand': 'error',
 			eqeqeq: 'error',
 			'default-case': 'error',
@@ -190,10 +169,7 @@ export default tseslint.config(
 			'@typescript-eslint/prefer-includes': 'error',
 			'@typescript-eslint/promise-function-async': 'error',
 			'@typescript-eslint/require-array-sort-compare': 'error',
-			'brace-style': 'off',
 			'@typescript-eslint/prefer-optional-chain': 'error',
-			indent: 'off',
-			'@typescript-eslint/indent': 0,
 
 			// Unused imports rules
 			'unused-imports/no-unused-imports': 'error',
@@ -211,6 +187,22 @@ export default tseslint.config(
 			'tailwindcss/no-custom-classname': 0
 
 			// Next.js rules - using Next.js built-in ESLint config instead
+		}
+	},
+
+	// Prettier last — disables all ESLint formatting rules that conflict, then enforces Prettier as a single rule
+	prettierPlugin,
+	{
+		rules: {
+			'prettier/prettier': [
+				'error',
+				{
+					singleQuote: true,
+					semi: false,
+					trailingComma: 'es5',
+					printWidth: 120
+				}
+			]
 		}
 	}
 )

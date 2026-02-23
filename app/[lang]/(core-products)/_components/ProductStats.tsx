@@ -16,35 +16,37 @@
  ** - Stats will be arranged in a row (desktop) or column (mobile)
  ************************************************************************************************/
 
-import type {TStat} from '@/app/[lang]/_components/strapi/types'
-import type {ReactNode} from 'react'
+import type { TStat } from '@/app/[lang]/_components/strapi/types'
+import type { ReactNode } from 'react'
 
 type TProductStatsProps = {
-	stats: TStat[]
+  stats: TStat[]
 }
 
-export function ProductStats({stats = []}: TProductStatsProps): ReactNode {
-	// Handle case where stats is null, undefined, or empty
-	if (!stats || stats.length === 0) {
-		return <div className={'mb-10 mt-16 text-center text-gray-400'}>{'No statistics available'}</div>
-	}
+export function ProductStats({ stats = [] }: TProductStatsProps): ReactNode {
+  // Handle case where stats is null, undefined, or empty
+  if (!stats || stats.length === 0) {
+    return <div className={'mb-10 mt-16 text-center text-gray-400'}>{'No statistics available'}</div>
+  }
 
-	return (
-		<div
-			className={
-				'container mb-[120px] mt-2 grid w-full grid-cols-1 gap-6 rounded-2xl bg-secondBg p-6 lg:mb-60 lg:grid-cols-3'
-			}>
-			{stats.map(stat => (
-				<div
-					key={stat.id}
-					className={'flex min-w-[400px] flex-col items-center lg:min-w-[245px] lg:px-[50px]'}
-					aria-label={`${stat.title}: ${stat.value}`}>
-					<div className={'text-2xl font-normal leading-tight md:text-3xl lg:text-[40px] lg:leading-[48px]'}>
-						{stat.value}
-					</div>
-					<div className={'text-lg text-gray-500 lg:text-xl'}>{stat.title}</div>
-				</div>
-			))}
-		</div>
-	)
+  return (
+    <div
+      className={
+        'container mb-[120px] mt-2 grid w-full grid-cols-1 gap-6 rounded-2xl bg-secondBg p-6 lg:mb-60 lg:grid-cols-3'
+      }
+    >
+      {stats.map((stat) => (
+        <div
+          key={stat.id}
+          className={'flex min-w-[400px] flex-col items-center lg:min-w-[245px] lg:px-[50px]'}
+          aria-label={`${stat.title}: ${stat.value}`}
+        >
+          <div className={'text-2xl font-normal leading-tight md:text-3xl lg:text-[40px] lg:leading-[48px]'}>
+            {stat.value}
+          </div>
+          <div className={'text-lg text-gray-500 lg:text-xl'}>{stat.title}</div>
+        </div>
+      ))}
+    </div>
+  )
 }

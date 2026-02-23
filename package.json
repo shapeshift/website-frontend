@@ -6,7 +6,8 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "eslint . --cache",
+		"lint:fix": "eslint . --cache --fix",
 		"deadcode": "ts-prune | grep -v 'page\\.tsx\\|loading\\.tsx\\|layout\\.tsx'",
 		"release": "bun scripts/release.ts"
 	},
@@ -46,6 +47,7 @@
 		"eslint-import-resolver-typescript": "^3.7.0",
 		"eslint-plugin-brackets": "^0.1.3",
 		"eslint-plugin-import": "^2.29.1",
+		"eslint-plugin-prettier": "^5.5.5",
 		"eslint-plugin-react": "^7.34.1",
 		"eslint-plugin-react-hooks": "^5.1.0",
 		"eslint-plugin-tailwindcss": "^3.17.5",

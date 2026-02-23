@@ -1,10 +1,10 @@
 'use client'
 
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
-import {useCachedArticles} from '@/app/[lang]/_contexts/CachedArticlesContext'
+import { useCachedArticles } from '@/app/[lang]/_contexts/CachedArticlesContext'
 
-import type {TArticleListResponse, TPagination, TSupportArticle} from '@/app/[lang]/_components/strapi/types'
+import type { TArticleListResponse, TPagination, TSupportArticle } from '@/app/[lang]/_components/strapi/types'
 
 /********************************************************************************************
  * Custom hook for fetching support articles from Strapi
@@ -27,106 +27,106 @@ import type {TArticleListResponse, TPagination, TSupportArticle} from '@/app/[la
  * @returns {Error | null} error - Error object if fetch fails
  ********************************************************************************************/
 export function useFetchSupportArticles({
-	page = 1,
-	pageSize = 12,
-	sort = 'asc',
-	slug,
-	populateContent = false,
-	cacheArticles = false,
-	skip = false
+  page = 1,
+  pageSize = 12,
+  sort = 'asc',
+  slug,
+  populateContent = false,
+  cacheArticles = false,
+  skip = false,
 }: {
-	page: number
-	pageSize: number
-	sort: 'asc' | 'desc'
-	slug?: string
-	populateContent?: boolean
-	cacheArticles?: boolean
-	skip?: boolean
+  page: number
+  pageSize: number
+  sort: 'asc' | 'desc'
+  slug?: string
+  populateContent?: boolean
+  cacheArticles?: boolean
+  skip?: boolean
 }): {
-	articles: TSupportArticle[]
-	pagination: TPagination | undefined
-	isLoading: boolean
-	error: Error | null
+  articles: TSupportArticle[]
+  pagination: TPagination | undefined
+  isLoading: boolean
+  error: Error | null
 } {
-	const [articles, setArticles] = useState<TSupportArticle[]>([])
-	const [pagination, setPagination] = useState<TPagination | undefined>(undefined)
-	const [isLoading, setIsLoading] = useState<boolean>(true)
-	const [error, setError] = useState<Error | null>(null)
-	const {setCachedResponse, setCachedParams, cachedResponse, cachedParams} = useCachedArticles()
+  const [articles, setArticles] = useState<TSupportArticle[]>([])
+  const [pagination, setPagination] = useState<TPagination | undefined>(undefined)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [error, setError] = useState<Error | null>(null)
+  const { setCachedResponse, setCachedParams, cachedResponse, cachedParams } = useCachedArticles()
 
-	useEffect(() => {
-		if (skip) {
-			setIsLoading(false)
-			return
-		}
+  useEffect(() => {
+    if (skip) {
+      setIsLoading(false)
+      return
+    }
 
-		if (
-			cachedResponse.data.length > 0 &&
-			cachedParams.page === page &&
-			cachedParams.pageSize === pageSize &&
-			cachedParams.sort === sort &&
-			cachedParams.slug === slug &&
-			cachedParams.populateContent === populateContent
-		) {
-			setArticles(cachedResponse.data)
-			setPagination(cachedResponse.meta.pagination)
-			setIsLoading(false)
-			return
-		}
+    if (
+      cachedResponse.data.length > 0 &&
+      cachedParams.page === page &&
+      cachedParams.pageSize === pageSize &&
+      cachedParams.sort === sort &&
+      cachedParams.slug === slug &&
+      cachedParams.populateContent === populateContent
+    ) {
+      setArticles(cachedResponse.data)
+      setPagination(cachedResponse.meta.pagination)
+      setIsLoading(false)
+      return
+    }
 
-		async function fetchArticles(): Promise<void> {
-			try {
-				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&sort[0]=publishedAt:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[4]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}`,
-					{
-						headers: {
-							Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
-						}
-					}
-				)
+    async function fetchArticles(): Promise<void> {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&sort[0]=publishedAt:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[4]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+            },
+          }
+        )
 
-				if (!res.ok) {
-					throw new Error(`Failed to fetch support articles: ${res.status}`)
-				}
+        if (!res.ok) {
+          throw new Error(`Failed to fetch support articles: ${res.status}`)
+        }
 
-				const data: TArticleListResponse = await res.json()
-				setArticles(data.data)
-				setPagination(data.meta.pagination)
-				if (cacheArticles) {
-					setCachedResponse(data)
-					setCachedParams({page, pageSize, sort, slug, populateContent})
-				}
-			} catch (err) {
-				setError(err as Error)
-				console.error('Error fetching support articles:', err)
-			} finally {
-				setIsLoading(false)
-			}
-		}
+        const data: TArticleListResponse = await res.json()
+        setArticles(data.data)
+        setPagination(data.meta.pagination)
+        if (cacheArticles) {
+          setCachedResponse(data)
+          setCachedParams({ page, pageSize, sort, slug, populateContent })
+        }
+      } catch (err) {
+        setError(err as Error)
+        console.error('Error fetching support articles:', err)
+      } finally {
+        setIsLoading(false)
+      }
+    }
 
-		fetchArticles()
-	}, [
-		cacheArticles,
-		cachedParams.page,
-		cachedParams.pageSize,
-		cachedParams.populateContent,
-		cachedParams.slug,
-		cachedParams.sort,
-		cachedResponse.data,
-		cachedResponse.meta.pagination,
-		cachedResponse.meta.pagination.page,
-		cachedResponse.meta.pagination.pageCount,
-		cachedResponse.meta.pagination.pageSize,
-		cachedResponse.meta.pagination.total,
-		page,
-		pageSize,
-		populateContent,
-		setCachedParams,
-		setCachedResponse,
-		skip,
-		slug,
-		sort
-	])
+    fetchArticles()
+  }, [
+    cacheArticles,
+    cachedParams.page,
+    cachedParams.pageSize,
+    cachedParams.populateContent,
+    cachedParams.slug,
+    cachedParams.sort,
+    cachedResponse.data,
+    cachedResponse.meta.pagination,
+    cachedResponse.meta.pagination.page,
+    cachedResponse.meta.pagination.pageCount,
+    cachedResponse.meta.pagination.pageSize,
+    cachedResponse.meta.pagination.total,
+    page,
+    pageSize,
+    populateContent,
+    setCachedParams,
+    setCachedResponse,
+    skip,
+    slug,
+    sort,
+  ])
 
-	return {articles, isLoading, pagination, error}
+  return { articles, isLoading, pagination, error }
 }

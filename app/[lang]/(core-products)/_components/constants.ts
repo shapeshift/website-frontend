@@ -19,28 +19,28 @@
  * Contains display text, button text, and target URLs
  */
 export const PRODUCT_FOOTER_CONFIGS = {
-	'defi-wallet': {
-		tag: 'ShapeShift DeFi wallet',
-		title: 'Everything you need in one place.',
-		buttonText: 'Get started',
-		href: 'https://app.shapeshift.com'
-	},
-	earn: {
-		tag: 'Earn with ShapeShift',
-		title: 'Everything you need in one place.',
-		buttonText: 'Start Earning',
-		href: 'https://app.shapeshift.com/#/earn'
-	},
-	trade: {
-		tag: 'Trade with ShapeShift',
-		title: 'Everything you need in one place.',
-		buttonText: 'Start Trading',
-		href: 'https://app.shapeshift.com/'
-	},
-	'mobile-app': {
-		tag: 'ShapeShift mobile app',
-		title: 'Everything you need in one place.',
-		buttonText: 'Start Earning',
-		href: 'https://app.shapeshift.com/#/earn'
-	}
+  'defi-wallet': {
+    tag: 'ShapeShift DeFi wallet',
+    title: 'Everything you need in one place.',
+    buttonText: 'Get started',
+    href: 'https://app.shapeshift.com',
+  },
+  earn: {
+    tag: 'Earn with ShapeShift',
+    title: 'Everything you need in one place.',
+    buttonText: 'Start Earning',
+    href: 'https://app.shapeshift.com/#/earn',
+  },
+  trade: {
+    tag: 'Trade with ShapeShift',
+    title: 'Everything you need in one place.',
+    buttonText: 'Start Trading',
+    href: 'https://app.shapeshift.com/',
+  },
+  'mobile-app': {
+    tag: 'ShapeShift mobile app',
+    title: 'Everything you need in one place.',
+    buttonText: 'Start Earning',
+    href: 'https://app.shapeshift.com/#/earn',
+  },
 }

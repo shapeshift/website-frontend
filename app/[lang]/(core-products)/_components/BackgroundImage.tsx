@@ -18,19 +18,12 @@
 
 import Image from 'next/image'
 
-import type {ReactNode} from 'react'
+import type { ReactNode } from 'react'
 
 export function BackgroundImage(): ReactNode {
-	return (
-		<div className={'absolute inset-0 hidden lg:block'}>
-			<Image
-				src={'/heroBg.png'}
-				alt={''}
-				aria-hidden={'true'}
-				height={2256}
-				width={3840}
-				priority
-			/>
-		</div>
-	)
+  return (
+    <div className={'absolute inset-0 hidden lg:block'}>
+      <Image src={'/heroBg.png'} alt={''} aria-hidden={'true'} height={2256} width={3840} priority />
+    </div>
+  )
 }

@@ -16,143 +16,145 @@
  ** - Generates metadata for SEO and social sharing
  ************************************************************************************************/
 
-import {notFound} from 'next/navigation'
+import { notFound } from 'next/navigation'
 
-import {DiscoverFeature} from '@/app/[lang]/(resources)/_components/DiscoverFeature'
-import {ResourceHeader} from '@/app/[lang]/(resources)/_components/ResourceHeader'
-import {ResourceHero} from '@/app/[lang]/(resources)/_components/ResourceHero'
-import {DEFAULT_FEATURES} from '@/app/[lang]/(resources)/_utils/constants'
-import {fetchDiscoverBySlug} from '@/app/[lang]/(resources)/_utils/fetchUtils'
-import {Banner} from '@/app/[lang]/_components/Banner'
-import {getStrapiImageUrl} from '@/app/[lang]/_utils/query'
+import { DiscoverFeature } from '@/app/[lang]/(resources)/_components/DiscoverFeature'
+import { ResourceHeader } from '@/app/[lang]/(resources)/_components/ResourceHeader'
+import { ResourceHero } from '@/app/[lang]/(resources)/_components/ResourceHero'
+import { DEFAULT_FEATURES } from '@/app/[lang]/(resources)/_utils/constants'
+import { fetchDiscoverBySlug } from '@/app/[lang]/(resources)/_utils/fetchUtils'
+import { Banner } from '@/app/[lang]/_components/Banner'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
 
-import type {Metadata} from 'next'
-import type {ReactNode} from 'react'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 
 /************************************************************************************************
  * Generates metadata for the discover page
  * Provides SEO-optimized title, description, and social sharing tags
  ************************************************************************************************/
-export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
-	const {slug} = await params
-	if (!slug) {
-		return notFound()
-	}
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  if (!slug) {
+    return notFound()
+  }
 
-	// Fetch discover data
-	const discover = await fetchDiscoverBySlug(slug)
-	if (!discover) {
-		return notFound()
-	}
+  // Fetch discover data
+  const discover = await fetchDiscoverBySlug(slug)
+  if (!discover) {
+    return notFound()
+  }
 
-	// Get image URL for metadata
-	const imageUrl = discover.featuredImg?.formats?.thumbnail?.url || discover.featuredImg?.url
+  // Get image URL for metadata
+  const imageUrl = discover.featuredImg?.formats?.thumbnail?.url || discover.featuredImg?.url
 
-	// Metadata with SEO optimization
-	const metadata: Metadata = {
-		title: `${discover.title} | Discover with ShapeShift`,
-		description: `Discover ${discover.title} with ShapeShift!`,
-		keywords: `${discover.title}, ShapeShift, discover, cryptocurrency`,
-		openGraph: {
-			title: discover.title,
-			description: `Discover ${discover.title} with ShapeShift!`,
-			type: 'website'
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: discover.title,
-			description: `Discover ${discover.title} with ShapeShift!`
-		}
-	}
+  // Metadata with SEO optimization
+  const metadata: Metadata = {
+    title: `${discover.title} | Discover with ShapeShift`,
+    description: `Discover ${discover.title} with ShapeShift!`,
+    keywords: `${discover.title}, ShapeShift, discover, cryptocurrency`,
+    openGraph: {
+      title: discover.title,
+      description: `Discover ${discover.title} with ShapeShift!`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: discover.title,
+      description: `Discover ${discover.title} with ShapeShift!`,
+    },
+  }
 
-	if (imageUrl) {
-		metadata.openGraph!.images = [
-			{
-				url: getStrapiImageUrl(imageUrl)
-			}
-		]
-		metadata.twitter!.images = [
-			{
-				url: getStrapiImageUrl(imageUrl)
-			}
-		]
-	}
+  if (imageUrl) {
+    metadata.openGraph!.images = [
+      {
+        url: getStrapiImageUrl(imageUrl),
+      },
+    ]
+    metadata.twitter!.images = [
+      {
+        url: getStrapiImageUrl(imageUrl),
+      },
+    ]
+  }
 
-	return metadata
+  return metadata
 }
 
-export default async function DiscoverDetailPage({params}: {params: Promise<{slug: string}>}): Promise<ReactNode> {
-	// Extract slug from params
-	const {slug} = await params
+export default async function DiscoverDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<ReactNode> {
+  // Extract slug from params
+  const { slug } = await params
 
-	// Fetch discover data using utility function
-	const discover = await fetchDiscoverBySlug(slug)
+  // Fetch discover data using utility function
+  const discover = await fetchDiscoverBySlug(slug)
 
-	// Handle case when discover data is not found
-	if (!discover) {
-		console.error(`Discover page not found for slug: ${slug}`)
-		return notFound()
-	}
+  // Handle case when discover data is not found
+  if (!discover) {
+    console.error(`Discover page not found for slug: ${slug}`)
+    return notFound()
+  }
 
-	// Map discover features to feature section format
-	const features = discover.features.map(feature => ({
-		id: feature.id,
-		title: feature.title,
-		description: feature.description,
-		image: feature.image
-			? {
-					url: getStrapiImageUrl(feature.image.url),
-					width: feature.image.width,
-					height: feature.image.height,
-					alt: feature.title
-				}
-			: undefined,
-		buttonCta:
-			feature.buttonCta &&
-			typeof feature.buttonCta.url === 'string' &&
-			/^(\/|https?:\/\/)/i.test(feature.buttonCta.url)
-				? {title: feature.buttonCta.title, url: feature.buttonCta.url}
-				: undefined
-	}))
+  // Map discover features to feature section format
+  const features = discover.features.map((feature) => ({
+    id: feature.id,
+    title: feature.title,
+    description: feature.description,
+    image: feature.image
+      ? {
+          url: getStrapiImageUrl(feature.image.url),
+          width: feature.image.width,
+          height: feature.image.height,
+          alt: feature.title,
+        }
+      : undefined,
+    buttonCta:
+      feature.buttonCta && typeof feature.buttonCta.url === 'string' && /^(\/|https?:\/\/)/i.test(feature.buttonCta.url)
+        ? { title: feature.buttonCta.title, url: feature.buttonCta.url }
+        : undefined,
+  }))
 
-	return (
-		<div className={'flex w-full justify-center'}>
-			<div className={'container mt-[60px] flex flex-col justify-center'}>
-				{/* Header section with feature badges */}
-				<ResourceHeader
-					title={discover.title}
-					description={discover.description}
-					items={DEFAULT_FEATURES}
-					ctaButton={{
-						text: 'Get Started',
-						url: 'https://app.shapeshift.com/'
-					}}
-				/>
+  return (
+    <div className={'flex w-full justify-center'}>
+      <div className={'container mt-[60px] flex flex-col justify-center'}>
+        {/* Header section with feature badges */}
+        <ResourceHeader
+          title={discover.title}
+          description={discover.description}
+          items={DEFAULT_FEATURES}
+          ctaButton={{
+            text: 'Get Started',
+            url: 'https://app.shapeshift.com/',
+          }}
+        />
 
-				{/* Hero banner with discover image */}
-				<ResourceHero
-					imageSrc={'/wallets/hero.jpg'}
-					imageAlt={`${discover.title} banner image`}
-					logoSrc={getStrapiImageUrl(discover.featuredImg.url)}
-					logoAlt={discover.title}
-					logoWidth={discover.featuredImg.width}
-					logoHeight={discover.featuredImg.height}
-					priority
-				/>
+        {/* Hero banner with discover image */}
+        <ResourceHero
+          imageSrc={'/wallets/hero.jpg'}
+          imageAlt={`${discover.title} banner image`}
+          logoSrc={getStrapiImageUrl(discover.featuredImg.url)}
+          logoAlt={discover.title}
+          logoWidth={discover.featuredImg.width}
+          logoHeight={discover.featuredImg.height}
+          priority
+        />
 
-				{/* Features section */}
-				<DiscoverFeature
-					features={features}
-					title={`Discover ${discover.title}`}
-					description={'Smarter swaps. Deeper liquidity. Total control.'}
-					columns={3}
-				/>
+        {/* Features section */}
+        <DiscoverFeature
+          features={features}
+          title={`Discover ${discover.title}`}
+          description={'Smarter swaps. Deeper liquidity. Total control.'}
+          columns={3}
+        />
 
-				{/* Footer banner */}
-				<div className={'mb-16'}>
-					<Banner />
-				</div>
-			</div>
-		</div>
-	)
+        {/* Footer banner */}
+        <div className={'mb-16'}>
+          <Banner />
+        </div>
+      </div>
+    </div>
+  )
 }

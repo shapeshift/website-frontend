@@ -16,42 +16,40 @@
  ** - Pass protocols data and optional loading state
  ************************************************************************************************/
 
-import {ResourceCard} from '@/app/[lang]/(resources)/_components/ResourceCard'
-import {ResourceGrid} from '@/app/[lang]/(resources)/_components/ResourceGrid'
+import { ResourceCard } from '@/app/[lang]/(resources)/_components/ResourceCard'
+import { ResourceGrid } from '@/app/[lang]/(resources)/_components/ResourceGrid'
 
-import type {TSupportedProtocolData} from '@/app/[lang]/_components/strapi/types'
-import type {ReactNode} from 'react'
+import type { TSupportedProtocolData } from '@/app/[lang]/_components/strapi/types'
+import type { ReactNode } from 'react'
 
 type TProtocolListProps = {
-	protocols: TSupportedProtocolData[] | null
-	isLoading?: boolean
-	className?: string
-	isSearchQuery?: boolean
+  protocols: TSupportedProtocolData[] | null
+  isLoading?: boolean
+  className?: string
+  isSearchQuery?: boolean
 }
 
-export function ProtocolList({protocols, isLoading, className, isSearchQuery}: TProtocolListProps): ReactNode {
-	return (
-		<ResourceGrid
-			items={protocols}
-			isLoading={isLoading}
-			emptyMessage={
-				isSearchQuery ? "We couldn't find anything matching your search." : 'No protocols available yet.'
-			}
-			className={className}
-			renderItem={protocol => (
-				<ResourceCard
-					key={protocol.slug}
-					slug={protocol.slug}
-					title={protocol.name}
-					description={protocol.description}
-					imageUrl={protocol.featuredImg?.url}
-					imageWidth={protocol.featuredImg?.width}
-					imageHeight={protocol.featuredImg?.height}
-					baseURL={'/protocols'}
-					imagePosition={'center'}
-					altText={`${protocol.name} logo`}
-				/>
-			)}
-		/>
-	)
+export function ProtocolList({ protocols, isLoading, className, isSearchQuery }: TProtocolListProps): ReactNode {
+  return (
+    <ResourceGrid
+      items={protocols}
+      isLoading={isLoading}
+      emptyMessage={isSearchQuery ? "We couldn't find anything matching your search." : 'No protocols available yet.'}
+      className={className}
+      renderItem={(protocol) => (
+        <ResourceCard
+          key={protocol.slug}
+          slug={protocol.slug}
+          title={protocol.name}
+          description={protocol.description}
+          imageUrl={protocol.featuredImg?.url}
+          imageWidth={protocol.featuredImg?.width}
+          imageHeight={protocol.featuredImg?.height}
+          baseURL={'/protocols'}
+          imagePosition={'center'}
+          altText={`${protocol.name} logo`}
+        />
+      )}
+    />
+  )
 }
