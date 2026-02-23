@@ -8,9 +8,8 @@ const nextConfig = {
 	reactStrictMode: true,
 	images: {
 		remotePatterns: [
-			{protocol: 'https', hostname: 'strapi.shapeshift.com'},
-			{protocol: 'https', hostname: 'website-backend-assets.shapeshift.com'},
 			...(strapiHostname ? [{protocol: 'https', hostname: strapiHostname}] : []),
+			{protocol: 'https', hostname: 'website-backend-assets.shapeshift.com'},
 			{protocol: 'http', hostname: '172.233.242.224'}
 		]
 	},
