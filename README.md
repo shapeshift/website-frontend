@@ -18,7 +18,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Deploy on Vercel
-
-The website will redeploy on Vercel on merges to `main`.
