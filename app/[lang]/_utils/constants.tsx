@@ -500,7 +500,7 @@ export const blogTypes = [
     slug: 'bitcoin',
   },
   {
-    title: 'Crypto pro',
+    title: 'Crypto Pro',
     slug: 'crypto-pro',
   },
   {

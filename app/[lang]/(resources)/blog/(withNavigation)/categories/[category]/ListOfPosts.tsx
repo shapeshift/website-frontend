@@ -27,13 +27,7 @@ export function ListOfPosts({ category }: { category: string }): ReactElement {
   // Convert URL slug to proper category type for the API
   const categoryType = blogTypesSlugToCategory(category)
 
-  // Format category name for display (capitalize first letter)
-  const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1)
-
   return (
-    <PostList
-      category={categoryType}
-      emptyMessage={`We couldn't find any posts in the ${formattedCategory} category.`}
-    />
+    <PostList category={categoryType} emptyMessage={`We couldn't find any posts in the ${categoryType} category.`} />
   )
 }
