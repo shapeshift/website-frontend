@@ -21,16 +21,6 @@ const nextConfig = {
 				headers: [{key: 'cross-origin-resource-policy', value: 'cross-origin'}]
 			},
 			{
-				// Specific headers for Chatwoot proxy to ensure iframe compatibility
-				source: '/chatwoot/(.*)',
-				headers: [
-					{key: 'cross-origin-embedder-policy', value: 'credentialless'},
-					{key: 'cross-origin-resource-policy', value: 'cross-origin'},
-					{key: 'cross-origin-opener-policy', value: 'same-origin'},
-					{key: 'x-frame-options', value: 'SAMEORIGIN'}
-				]
-			},
-			{
 				// Allow Onramper iframe on /trade
 				source: '/trade',
 				headers: [
@@ -52,12 +42,6 @@ const nextConfig = {
 					}
 				]
 			}
-		]
-	},
-	async rewrites() {
-		return [
-			{source: '/chatwoot/:path*', destination: '/api/chatwoot/:path*'},
-			{source: '/api/v1/:path*', destination: '/api/chatwoot/api/v1/:path*'}
 		]
 	},
 	async redirects() {
