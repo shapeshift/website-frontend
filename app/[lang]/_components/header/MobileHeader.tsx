@@ -11,7 +11,7 @@ import { IconClose } from '@/app/[lang]/_icons/IconClose'
 import { IconMenu } from '@/app/[lang]/_icons/IconMenu'
 import { IconPlanet } from '@/app/[lang]/_icons/IconPlanet'
 import { ShapeshiftLogo } from '@/app/[lang]/_icons/ShapeshiftLogo'
-import { appDao, appProducts, appResources, headerTabs } from '@/app/[lang]/_utils/constants'
+import { appDao, appDevelopers, appProducts, appResources, headerTabs } from '@/app/[lang]/_utils/constants'
 import { SUPPORTED_LANGUAGES } from '@/app/[lang]/_utils/i18nconfig'
 
 import type { TAppLink } from '@/app/[lang]/_utils/constants'
@@ -22,6 +22,11 @@ const mobileTabs: { name: string; value: string; items: TAppLink[] }[] = [
     name: 'Products',
     value: 'products',
     items: appProducts.slice(0, 6),
+  },
+  {
+    name: 'Developers',
+    value: 'developers',
+    items: appDevelopers.slice(0, 6),
   },
   {
     name: 'Resources',
