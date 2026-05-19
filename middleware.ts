@@ -158,11 +158,6 @@ export function middleware(request: NextRequest): NextResponse {
     setLocaleCookie(response, locale)
   }
 
-  // Set security headers including COEP
-  response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless')
-  response.headers.set('Cross-Origin-Resource-Policy', 'cross-origin')
-  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin')
-
   // Set the CSP header with the nonce
   const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
   response.headers.set('Content-Security-Policy', cspHeader)
