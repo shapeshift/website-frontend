@@ -8,7 +8,7 @@ export default async function BlogTagsPage(props: { params: Promise<{ tag: strin
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/posts?filters[tags][$contains]=${tag}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=featuredImg&sort[0]=publishedAt:desc`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
     }
   )

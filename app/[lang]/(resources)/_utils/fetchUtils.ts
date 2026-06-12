@@ -26,7 +26,7 @@ import type {
 // Common headers and cache configuration
 const apiConfig = {
   headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+    Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
   },
   next: {
     revalidate: 3600, // Cache for 1 hour

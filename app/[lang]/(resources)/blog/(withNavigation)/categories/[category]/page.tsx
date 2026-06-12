@@ -11,7 +11,7 @@ export default async function BlogCategoriesPage(props: {
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/posts?filters[type][$contains]=${category}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=featuredImg&sort[0]=publishedAt:desc&pagination[pageSize]=1`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
     }
   )

@@ -52,10 +52,7 @@ export function Notification(): ReactNode {
     const fetchData = async (): Promise<void> => {
       try {
         setIsLoading(true)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/notification?populate=*`, {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-          },
+        const res = await fetch('/api/strapi/notification?populate=*', {
           signal: abortController.signal,
         })
 

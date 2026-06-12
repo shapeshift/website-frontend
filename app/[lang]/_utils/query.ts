@@ -35,7 +35,7 @@ export function getStrapiImageUrl(url: string | null | undefined): string {
  */
 const apiHeaders = {
   headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+    Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
   },
 }
 
