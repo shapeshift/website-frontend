@@ -31,8 +31,10 @@ export async function GET(
   })
 
   const body = await upstream.text()
+  const responseHeaders = new Headers()
+  responseHeaders.set('content-type', upstream.headers.get('content-type') ?? 'application/json')
   return new NextResponse(body, {
     status: upstream.status,
-    headers: { 'content-type': upstream.headers.get('content-type') ?? 'application/json' },
+    headers: responseHeaders,
   })
 }
