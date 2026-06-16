@@ -19,7 +19,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return notFound()
   }
 
-  const response = await strapiServerFetch(`supported-wallets?filters[slug][$eq]=${slug}&populate=*`)
+  const response = await strapiServerFetch(
+    `supported-wallets?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
+  )
   const data = await response.json()
   const wallet = data.data[0] as TSupportedWalletData
   if (!wallet) {

@@ -111,7 +111,7 @@ export async function fetchAllWallets(): Promise<TSupportedWalletData[] | null> 
 export async function fetchDiscoverBySlug(slug: string): Promise<TDiscoverData | null> {
   try {
     const response = await strapiServerFetch(
-      `discovers?filters[slug][$eq]=${slug}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag&populate[6]=features.buttonCta&pagination[page]=1&pagination[pageSize]=500`,
+      `discovers?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[0]=features&fields[1]=title&fields[2]=description&populate[3]=featuredImg&populate[4]=features.image&fields[5]=tag&populate[6]=features.buttonCta&pagination[page]=1&pagination[pageSize]=500`,
       { revalidate: 3600 }
     )
 
@@ -163,13 +163,18 @@ export async function fetchFaqData(): Promise<TFaqData | null> {
  * @returns Promise resolving to protocol data or null if not found
  ************************************************************************************************/
 export async function fetchSupportedProtocol(slug: string): Promise<TSupportedProtocolData | null> {
-  const res = await strapiServerFetch(`supported-protocols?filters[slug][$eq]=${slug}&populate=*`)
+  try {
+    const res = await strapiServerFetch(`supported-protocols?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`)
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return null
+    }
+    const data = await res.json()
+    return data.data[0] ?? null
+  } catch (error) {
+    console.error('Error fetching protocol data:', error instanceof Error ? error.message : String(error))
     return null
   }
-  const data = await res.json()
-  return data.data[0]
 }
 
 /************************************************************************************************
@@ -179,13 +184,18 @@ export async function fetchSupportedProtocol(slug: string): Promise<TSupportedPr
  * @returns Promise resolving to chain data or null if not found
  ************************************************************************************************/
 export async function fetchSupportedChain(slug: string): Promise<TSupportedChainData | null> {
-  const res = await strapiServerFetch(`supported-chains?filters[slug][$eq]=${slug}&populate=*`)
+  try {
+    const res = await strapiServerFetch(`supported-chains?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`)
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return null
+    }
+    const data = await res.json()
+    return data.data[0] ?? null
+  } catch (error) {
+    console.error('Error fetching chain data:', error instanceof Error ? error.message : String(error))
     return null
   }
-  const data = await res.json()
-  return data.data[0]
 }
 
 /************************************************************************************************
@@ -195,13 +205,18 @@ export async function fetchSupportedChain(slug: string): Promise<TSupportedChain
  * @returns Promise resolving to wallet data or null if not found
  ************************************************************************************************/
 export async function fetchSupportedWallet(slug: string): Promise<TSupportedWalletData | null> {
-  const res = await strapiServerFetch(`supported-wallets?filters[slug][$eq]=${slug}&populate=*`)
+  try {
+    const res = await strapiServerFetch(`supported-wallets?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`)
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return null
+    }
+    const data = await res.json()
+    return data.data[0] ?? null
+  } catch (error) {
+    console.error('Error fetching wallet data:', error instanceof Error ? error.message : String(error))
     return null
   }
-  const data = await res.json()
-  return data.data[0]
 }
 
 /************************************************************************************************
@@ -210,11 +225,16 @@ export async function fetchSupportedWallet(slug: string): Promise<TSupportedWall
  * @returns Promise resolving to array of discover data or null if error
  ************************************************************************************************/
 export async function fetchDiscovers(): Promise<TDiscoverData[] | null> {
-  const res = await strapiServerFetch(`discovers?populate=*`)
+  try {
+    const res = await strapiServerFetch(`discovers?populate=*`)
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return null
+    }
+    const data = await res.json()
+    return data.data
+  } catch (error) {
+    console.error('Error fetching discover data:', error instanceof Error ? error.message : String(error))
     return null
   }
-  const data = await res.json()
-  return data.data
 }

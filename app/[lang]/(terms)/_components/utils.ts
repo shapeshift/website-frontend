@@ -17,44 +17,54 @@ import type { TPrivacyPolicyData, TTermsOfServiceData } from '@/app/[lang]/_comp
  * Transforms privacy policy data from API format to component format
  **************************************************************************************************/
 export async function getPrivacyPolicyItems(): Promise<TTermsItemData[]> {
-  const res = await strapiServerFetch(`privacy-policy?populate=*`)
+  try {
+    const res = await strapiServerFetch(`privacy-policy?populate=*`)
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return []
+    }
+    const { data } = (await res.json()) as { data: TPrivacyPolicyData | null }
+
+    if (!data) {
+      return []
+    }
+
+    return data.policy.map((policy) => ({
+      id: policy.id,
+      title: policy.title,
+      date: policy.date,
+      content: policy.policy,
+    }))
+  } catch (error) {
+    console.error('Error fetching privacy policy data:', error instanceof Error ? error.message : String(error))
     return []
   }
-  const { data } = (await res.json()) as { data: TPrivacyPolicyData | null }
-
-  if (!data) {
-    return []
-  }
-
-  return data.policy.map((policy) => ({
-    id: policy.id,
-    title: policy.title,
-    date: policy.date,
-    content: policy.policy,
-  }))
 }
 
 /**************************************************************************************************
  * Transforms terms of service data from API format to component format
  **************************************************************************************************/
 export async function getTermsOfServiceItems(): Promise<TTermsItemData[]> {
-  const res = await strapiServerFetch(`terms-of-service?populate=*`)
+  try {
+    const res = await strapiServerFetch(`terms-of-service?populate=*`)
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return []
+    }
+    const { data } = (await res.json()) as { data: TTermsOfServiceData | null }
+
+    if (!data) {
+      return []
+    }
+
+    return data.terms.map((term) => ({
+      id: term.id,
+      title: term.title,
+      date: term.date,
+      content: term.policy,
+    }))
+  } catch (error) {
+    console.error('Error fetching terms of service data:', error instanceof Error ? error.message : String(error))
     return []
   }
-  const { data } = (await res.json()) as { data: TTermsOfServiceData | null }
-
-  if (!data) {
-    return []
-  }
-
-  return data.terms.map((term) => ({
-    id: term.id,
-    title: term.title,
-    date: term.date,
-    content: term.policy,
-  }))
 }

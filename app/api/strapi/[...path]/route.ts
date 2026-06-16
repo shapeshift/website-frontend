@@ -50,16 +50,22 @@ export async function GET(
   const target = new URL(`/api/${path.join('/')}`, strapiUrl)
   target.search = request.nextUrl.search
 
-  const upstream = await fetch(target, {
-    headers: { Authorization: `Bearer ${strapiToken}` },
-    next: { revalidate: 60 },
-  })
+  try {
+    const upstream = await fetch(target, {
+      headers: { Authorization: `Bearer ${strapiToken}` },
+      next: { revalidate: 60 },
+    })
 
-  const body = await upstream.text()
-  const responseHeaders = new Headers()
-  responseHeaders.set('content-type', upstream.headers.get('content-type') ?? 'application/json')
-  return new NextResponse(body, {
-    status: upstream.status,
-    headers: responseHeaders,
-  })
+    const body = await upstream.text()
+    const responseHeaders = new Headers()
+    responseHeaders.set('content-type', upstream.headers.get('content-type') ?? 'application/json')
+    return new NextResponse(body, {
+      status: upstream.status,
+      headers: responseHeaders,
+    })
+  } catch {
+    // Transport-level failure (Strapi unreachable, DNS, timeout) — surface a controlled 502
+    // instead of letting the thrown fetch error bubble up as an opaque 500.
+    return NextResponse.json({ error: 'Upstream request failed' }, { status: 502 })
+  }
 }

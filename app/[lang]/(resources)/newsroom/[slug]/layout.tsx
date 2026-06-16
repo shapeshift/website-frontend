@@ -13,7 +13,7 @@ import type { Metadata } from 'next'
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const data = await strapiServerFetch(
-    `newsrooms?filters[slug][$eq]=${slug}&fields[0]=postSummary&fields[1]=tags&fields[2]=title&fields[3]=publishedAt&populate[0]=featuredImg`
+    `newsrooms?filters[slug][$eq]=${encodeURIComponent(slug)}&fields[0]=postSummary&fields[1]=tags&fields[2]=title&fields[3]=publishedAt&populate[0]=featuredImg`
   ).then(async (res) => res.json())
 
   const post = data.data[0]

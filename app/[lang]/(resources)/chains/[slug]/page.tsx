@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return notFound()
   }
 
-  const response = await strapiServerFetch(`supported-chains?filters[slug][$eq]=${slug}&populate=*`)
+  const response = await strapiServerFetch(`supported-chains?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`)
   const data = await response.json()
   const chain = data.data[0] as TSupportedChainData
   if (!chain) {

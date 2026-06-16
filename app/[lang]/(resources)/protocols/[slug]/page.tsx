@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return notFound()
   }
 
-  const response = await strapiServerFetch(`supported-protocols?filters[slug][$eq]=${slug}&populate=*`)
+  const response = await strapiServerFetch(
+    `supported-protocols?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
+  )
   const data = await response.json()
   const protocol = data.data[0] as TSupportedProtocolData
   if (!protocol) {

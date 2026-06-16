@@ -8,7 +8,7 @@ export default async function BlogCategoriesPage(props: {
 }): Promise<React.ReactNode> {
   const { category } = await props.params
   const data = await strapiServerFetch(
-    `newsrooms?filters[category][$contains]=${category}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=featuredImg&sort[0]=publishedAt:desc&pagination[pageSize]=1`
+    `newsrooms?filters[category][$contains]=${encodeURIComponent(category)}&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=featuredImg&sort[0]=publishedAt:desc&pagination[pageSize]=1`
   )
   const { data: posts } = await data.json()
 
