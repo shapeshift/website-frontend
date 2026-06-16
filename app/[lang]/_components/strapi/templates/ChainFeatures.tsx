@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { Button } from '@/app/[lang]/_components/Button'
 import { LocalizedLink } from '@/app/[lang]/_components/LocalizedLink'
 import { cl } from '@/app/[lang]/_utils/cl'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { TStrapiImage } from '@/app/[lang]/_components/strapi/types'
 import type { ReactNode } from 'react'

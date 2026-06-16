@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useMemo } from 'react'
 
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import { BuyCryptoCard } from './BuyCryptoCard'
 import { CarouselCard } from './CarouselCard'

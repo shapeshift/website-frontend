@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import Link from 'next/link'
 
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import { IconArrow } from '../_icons/IconArrow'
 import { IconClose } from '../_icons/IconClose'

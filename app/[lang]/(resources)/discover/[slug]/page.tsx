@@ -24,7 +24,7 @@ import { ResourceHero } from '@/app/[lang]/(resources)/_components/ResourceHero'
 import { DEFAULT_FEATURES } from '@/app/[lang]/(resources)/_utils/constants'
 import { fetchDiscoverBySlug } from '@/app/[lang]/(resources)/_utils/fetchUtils'
 import { Banner } from '@/app/[lang]/_components/Banner'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'

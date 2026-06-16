@@ -19,7 +19,7 @@ import { notFound } from 'next/navigation'
 import Script from 'next/script'
 
 import GridLadder from '@/app/[lang]/_components/strapi/products/GridLadder'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 import { generateProductSchema } from '@/app/[lang]/_utils/schema'
 
 import { BackgroundImage } from '../_components/BackgroundImage'

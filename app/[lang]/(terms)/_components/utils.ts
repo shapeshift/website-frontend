@@ -6,15 +6,23 @@
  ** Enforces consistent data structure between different terms pages
  **************************************************************************************************/
 
-import { getPrivacyPolicy, getTermsOfService } from '@/app/[lang]/_utils/query'
+import 'server-only'
+
+import { strapiServerFetch } from '@/app/[lang]/_utils/strapiServer'
 
 import type { TTermsItemData } from '@/app/[lang]/(terms)/_components/TermsAccordion'
+import type { TPrivacyPolicyData, TTermsOfServiceData } from '@/app/[lang]/_components/strapi/types'
 
 /**************************************************************************************************
  * Transforms privacy policy data from API format to component format
  **************************************************************************************************/
 export async function getPrivacyPolicyItems(): Promise<TTermsItemData[]> {
-  const data = await getPrivacyPolicy()
+  const res = await strapiServerFetch(`privacy-policy?populate=*`)
+
+  if (!res.ok) {
+    return []
+  }
+  const { data } = (await res.json()) as { data: TPrivacyPolicyData | null }
 
   if (!data) {
     return []
@@ -32,7 +40,12 @@ export async function getPrivacyPolicyItems(): Promise<TTermsItemData[]> {
  * Transforms terms of service data from API format to component format
  **************************************************************************************************/
 export async function getTermsOfServiceItems(): Promise<TTermsItemData[]> {
-  const data = await getTermsOfService()
+  const res = await strapiServerFetch(`terms-of-service?populate=*`)
+
+  if (!res.ok) {
+    return []
+  }
+  const { data } = (await res.json()) as { data: TTermsOfServiceData | null }
 
   if (!data) {
     return []

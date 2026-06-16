@@ -1,14 +1,14 @@
+import { fetchDiscovers } from '@/app/[lang]/(resources)/_utils/fetchUtils'
 import { Banner } from '@/app/[lang]/_components/Banner'
 import { Button } from '@/app/[lang]/_components/Button'
 import { RESOURCES_DICT } from '@/app/[lang]/_utils/dictionary/resources'
-import { getDiscovers } from '@/app/[lang]/_utils/query'
 
 import { DiscoverSearchWrapper } from './_components/DiscoverSearchWrapper'
 
 import type { ReactNode } from 'react'
 
 export default async function DiscoverPage(): Promise<ReactNode> {
-  const discover = await getDiscovers()
+  const discover = await fetchDiscovers()
 
   return (
     <div className={'flex w-full justify-center'}>

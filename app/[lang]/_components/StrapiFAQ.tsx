@@ -9,19 +9,21 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { QuestionSection } from '@/app/[lang]/_components/QuestionSection'
-import { getFaq } from '@/app/[lang]/_utils/query'
 
-import type { TFaqSectionItem } from '@/app/[lang]/_components/strapi/types'
+import type { TFaqData, TFaqSectionItem } from '@/app/[lang]/_components/strapi/types'
 import type { ReactNode } from 'react'
 
 export function StrapiFAQ(): ReactNode {
   const [faqItems, setFaqItems] = useState<TFaqSectionItem[]>([])
 
-  /* Callback: Fetches FAQ items from Strapi CMS
-   * No dependencies as it's a static fetch
-   */
   const handleFAQItems = useCallback(async () => {
-    const data = await getFaq()
+    const res = await fetch(
+      `/api/strapi/faq?populate[0]=faqSection&populate[1]=faqSection.faqSectionItem&pagination[pageSize]=10&pagination[page]=1&status=published&locale=en`
+    )
+    if (!res.ok) {
+      return
+    }
+    const { data } = (await res.json()) as { data: TFaqData | null }
     const allQuestions = data?.faqSection.flatMap((section) => section.faqSectionItem) ?? []
     setFaqItems(allQuestions)
   }, [])

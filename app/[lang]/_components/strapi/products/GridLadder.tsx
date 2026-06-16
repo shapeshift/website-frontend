@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Button } from '@/app/[lang]/_components/Button'
 import { cl } from '@/app/[lang]/_utils/cl'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { TGridLadderSection, TGridLadderStep } from '@/app/[lang]/_components/strapi/types'
 import type { ReactNode } from 'react'

@@ -1,13 +1,15 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
+import { fetchSupportedChain } from '@/app/[lang]/(resources)/_utils/fetchUtils'
 import { Banner } from '@/app/[lang]/_components/Banner'
 import { ChainActions } from '@/app/[lang]/_components/strapi/templates/ChainActions'
 import { ChainDescription } from '@/app/[lang]/_components/strapi/templates/ChainDescription'
 import { ChainFeatures } from '@/app/[lang]/_components/strapi/templates/ChainFeatures'
 import { ChainHeader } from '@/app/[lang]/_components/strapi/templates/ChainHeader'
 import { ChainHero } from '@/app/[lang]/_components/strapi/templates/ChainHero'
-import { getStrapiImageUrl, getSupportedChain } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
+import { strapiServerFetch } from '@/app/[lang]/_utils/strapiServer'
 
 import type { TSupportedChainData } from '@/app/[lang]/_components/strapi/types'
 import type { Metadata } from 'next'
@@ -19,14 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return notFound()
   }
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-chains?filters[slug][$eq]=${slug}&populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-    }
-  )
+  const response = await strapiServerFetch(`supported-chains?filters[slug][$eq]=${slug}&populate=*`)
   const data = await response.json()
   const chain = data.data[0] as TSupportedChainData
   if (!chain) {
@@ -68,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ChainPage({ params }: { params: Promise<{ slug: string }> }): Promise<ReactNode> {
   const { slug } = await params
-  const chain = await getSupportedChain(slug)
+  const chain = await fetchSupportedChain(slug)
 
   if (!chain) {
     return notFound()

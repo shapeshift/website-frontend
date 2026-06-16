@@ -3,9 +3,11 @@ import { notFound } from 'next/navigation'
 import { SupportedWalletAccelerate } from '@/app/[lang]/(resources)/_components/SupportedWalletAccelerate'
 import { SupportedWalletHeader } from '@/app/[lang]/(resources)/_components/SupportedWalletHeader'
 import { SupportedWalletHero } from '@/app/[lang]/(resources)/_components/SupportedWalletHero'
+import { fetchSupportedWallet } from '@/app/[lang]/(resources)/_utils/fetchUtils'
 import { Banner } from '@/app/[lang]/_components/Banner'
 import { StrapiFAQ } from '@/app/[lang]/_components/StrapiFAQ'
-import { getStrapiImageUrl, getSupportedWallet } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
+import { strapiServerFetch } from '@/app/[lang]/_utils/strapiServer'
 
 import type { TSupportedWalletData } from '@/app/[lang]/_components/strapi/types'
 import type { Metadata } from 'next'
@@ -17,14 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return notFound()
   }
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-wallets?filters[slug][$eq]=${slug}&populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-    }
-  )
+  const response = await strapiServerFetch(`supported-wallets?filters[slug][$eq]=${slug}&populate=*`)
   const data = await response.json()
   const wallet = data.data[0] as TSupportedWalletData
   if (!wallet) {
@@ -66,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function WalletPage({ params }: { params: Promise<{ slug: string }> }): Promise<ReactNode> {
   const { slug } = await params
-  const wallet = await getSupportedWallet(slug)
+  const wallet = await fetchSupportedWallet(slug)
 
   if (!wallet) {
     return notFound()

@@ -21,7 +21,7 @@ import Image from 'next/image'
 
 import { LocalizedLink } from '@/app/[lang]/_components/LocalizedLink'
 import { cl } from '@/app/[lang]/_utils/cl'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { ReactNode } from 'react'
 

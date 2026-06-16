@@ -5,8 +5,10 @@ import { ProtocolAbout } from '@/app/[lang]/(resources)/_components/ProtocolAbou
 import { ProtocolEasier } from '@/app/[lang]/(resources)/_components/ProtocolEasier'
 import { ProtocolFeatures } from '@/app/[lang]/(resources)/_components/ProtocolFeatures'
 import { ProtocolHeader } from '@/app/[lang]/(resources)/_components/ProtocolHeader'
+import { fetchSupportedProtocol } from '@/app/[lang]/(resources)/_utils/fetchUtils'
 import { Banner } from '@/app/[lang]/_components/Banner'
-import { getStrapiImageUrl, getSupportedProtocol } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
+import { strapiServerFetch } from '@/app/[lang]/_utils/strapiServer'
 
 import type { TSupportedProtocolData } from '@/app/[lang]/_components/strapi/types'
 import type { Metadata } from 'next'
@@ -18,14 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return notFound()
   }
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/supported-protocols?filters[slug][$eq]=${slug}&populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-    }
-  )
+  const response = await strapiServerFetch(`supported-protocols?filters[slug][$eq]=${slug}&populate=*`)
   const data = await response.json()
   const protocol = data.data[0] as TSupportedProtocolData
   if (!protocol) {
@@ -68,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProtocolPage({ params }: { params: Promise<{ slug: string }> }): Promise<ReactNode> {
   const { slug } = await params
-  const protocol = await getSupportedProtocol(slug)
+  const protocol = await fetchSupportedProtocol(slug)
 
   if (!protocol) {
     return notFound()

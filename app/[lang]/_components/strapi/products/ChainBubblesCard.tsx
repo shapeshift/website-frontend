@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { PRODUCTS_DICT } from '@/app/[lang]/_utils/dictionary/products'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { TStrapiImage } from '@/app/[lang]/_components/strapi/types'
 import type { ReactNode } from 'react'

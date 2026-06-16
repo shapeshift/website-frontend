@@ -20,7 +20,7 @@ import Script from 'next/script'
 
 import { Card } from '@/app/[lang]/_components/strapi/cards-row/Card'
 import CardsRow from '@/app/[lang]/_components/strapi/cards-row/CardsRow'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 import { generateProductSchema } from '@/app/[lang]/_utils/schema'
 
 import { BackgroundImage } from '../_components/BackgroundImage'

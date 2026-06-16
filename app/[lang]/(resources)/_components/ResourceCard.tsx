@@ -23,7 +23,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { cl } from '@/app/[lang]/_utils/cl'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { ReactNode } from 'react'
 

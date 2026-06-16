@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
+import { strapiServerFetch } from '@/app/[lang]/_utils/strapiServer'
 
 import type { Metadata } from 'next'
 
@@ -11,13 +12,8 @@ import type { Metadata } from 'next'
  ************************************************************************************************/
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/posts?filters[slug][$eq]=${slug}&fields[0]=summary&fields[2]=tags&fields[3]=title&fields[4]=publishedAt&populate[0]=featuredImg`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-    }
+  const data = await strapiServerFetch(
+    `posts?filters[slug][$eq]=${slug}&fields[0]=summary&fields[2]=tags&fields[3]=title&fields[4]=publishedAt&populate[0]=featuredImg`
   ).then(async (res) => res.json())
 
   const post = data.data[0]

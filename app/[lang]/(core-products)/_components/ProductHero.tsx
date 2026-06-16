@@ -20,7 +20,7 @@
 import Image from 'next/image'
 
 import { Button } from '@/app/[lang]/_components/Button'
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import type { TButton, TStrapiImage } from '@/app/[lang]/_components/strapi/types'
 import type { ReactNode } from 'react'

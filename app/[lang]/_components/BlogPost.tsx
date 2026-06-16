@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useMemo } from 'react'
 
-import { getStrapiImageUrl } from '@/app/[lang]/_utils/query'
+import { getStrapiImageUrl } from '@/app/[lang]/_utils/getStrapiImageUrl'
 
 import { LocalizedLink } from './LocalizedLink'
 import { cl } from '../_utils/cl'
