@@ -77,7 +77,7 @@ export function useFetchSupportArticles({
     async function fetchArticles(): Promise<void> {
       try {
         const res = await fetch(
-          `/api/strapi/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&sort[0]=publishedAt:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[4]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}`
+          `/api/strapi/support-articles?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=publishedAt&sort[0]=publishedAt:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[4]=content' : ''}${slug ? `&filters[slug][$eq]=${encodeURIComponent(slug)}` : ''}`
         )
 
         if (!res.ok) {

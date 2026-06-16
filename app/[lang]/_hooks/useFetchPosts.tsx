@@ -96,7 +96,7 @@ export function useFetchPosts({
       try {
         // Fetch posts with featured image population
         const res = await fetch(
-          `/api/strapi/posts?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=type&fields[4]=tags&fields[5]=publishedAt&fields[6]=isFeatured&sort[0]=isFeatured:desc&sort[1]=id:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[7]=content' : ''}${slug ? `&filters[slug][$eq]=${slug}` : ''}${type ? `&filters[type][$contains]=${type.replace(/ /g, '_')}` : ''}${tag ? `&filters[tags][$contains]=${tag.replace(/ /g, '_')}` : ''}`
+          `/api/strapi/posts?populate[0]=featuredImg&fields[0]=slug&fields[1]=summary&fields[2]=title&fields[3]=type&fields[4]=tags&fields[5]=publishedAt&fields[6]=isFeatured&sort[0]=isFeatured:desc&sort[1]=id:${sort}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true${populateContent ? '&fields[7]=content' : ''}${slug ? `&filters[slug][$eq]=${encodeURIComponent(slug)}` : ''}${type ? `&filters[type][$contains]=${encodeURIComponent(type.replace(/ /g, '_'))}` : ''}${tag ? `&filters[tags][$contains]=${encodeURIComponent(tag.replace(/ /g, '_'))}` : ''}`
         )
 
         if (!res.ok) {
