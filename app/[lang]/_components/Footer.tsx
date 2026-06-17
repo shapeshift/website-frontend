@@ -29,8 +29,8 @@ export function Footer(): ReactNode {
         </div>
 
         {/* Middle row: Menu items */}
-        <div className={'mx-auto mt-12 w-full max-w-[720px]'}>
-          <div className={'grid grid-cols-2 gap-8 lg:grid-cols-4'}>
+        <div className={'mx-auto mt-12 w-full max-w-[960px]'}>
+          <div className={'grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5'}>
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category} className={'flex flex-col gap-4'}>
                 <h3 className={'cursor-default text-sm font-medium text-gray-500'}>{category}</h3>

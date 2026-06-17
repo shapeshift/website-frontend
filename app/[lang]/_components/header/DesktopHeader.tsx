@@ -15,6 +15,7 @@ import { dAppUrl, headerTabs } from '@/app/[lang]/_utils/constants'
 
 import { containerAnimation } from './animations'
 import { DAOExpand } from './DaoExpand'
+import { DevelopersExpand } from './DevelopersExpand'
 import { LanguageExpand } from './LanguageExpand'
 import { ProductsExpand } from './ProductsExpand'
 import { ResourcesExpand } from './ResourcesExpand'
@@ -41,6 +42,7 @@ export function DesktopHeader({ className, switchLanguageAction, currentLanguage
   const tabContent: Record<string, ReactNode> = useMemo(
     () => ({
       products: <ProductsExpand setCurrentTab={setCurrentTab} />,
+      developers: <DevelopersExpand setCurrentTab={setCurrentTab} />,
       resources: <ResourcesExpand setCurrentTab={setCurrentTab} />,
       dao: <DAOExpand setCurrentTab={setCurrentTab} />,
       language: <LanguageExpand switchLanguageAction={switchLanguageAction} currentLanguage={currentLanguage} />,
