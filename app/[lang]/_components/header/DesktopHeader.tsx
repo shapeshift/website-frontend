@@ -93,7 +93,7 @@ export function DesktopHeader({ className, switchLanguageAction, currentLanguage
                   )}
                 >
                   {tab.value === 'developers' ? (
-                    <a href={tab.href} className={'block h-full w-full cursor-pointer p-4'}>
+                    <a href={`/${currentLanguage}${tab.href}`} className={'block h-full w-full cursor-pointer p-4'}>
                       {tab.name}
                     </a>
                   ) : (

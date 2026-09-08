@@ -28,13 +28,8 @@ function SwapWidgetEmbed(): ReactNode {
       */}
       <style>{'@media (max-width: 600px) { .ssw-modal { height: min(600px, 90vh) !important; } }'}</style>
       <SwapWidget
-        // TODO(shapeshift-business): placeholder Reown Cloud project ID pending a real one from
-        // the business side (free signup at https://dashboard.reown.com). Enough for the widget to
-        // initialize AppKit and render; real wallet connection needs the real value.
-        walletConnectProjectId={'00000000000000000000000000000000'}
-        // TODO(shapeshift-business): omitted until a real partner code is registered through
-        // ShapeShift's own affiliate program — optional per the SDK docs, just means swaps through
-        // this embed aren't attributed to an affiliate account until it's set.
+        walletConnectProjectId={process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}
+        partnerCode={process.env.NEXT_PUBLIC_SHAPESHIFT_PARTNER_CODE}
         onSwapSuccess={(txHash) => console.log('Success:', txHash)}
         onSwapError={(error) => console.error('Error:', error)}
         theme={'dark'}

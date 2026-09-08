@@ -118,7 +118,11 @@ export function MobileHeader({
                     <div key={tab.name} className={'overflow-hidden rounded-2xl bg-secondBg'}>
                       {tab.value === 'developers' ? (
                         <div className={'flex w-full items-center text-2xl'}>
-                          <a href={tab.href} onClick={() => setIsMenuOpen(false)} className={'flex-1 p-6'}>
+                          <a
+                            href={`/${currentLanguage}${tab.href}`}
+                            onClick={() => setIsMenuOpen(false)}
+                            className={'flex-1 p-6'}
+                          >
                             {tab.name}
                           </a>
                           <button

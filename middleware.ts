@@ -184,17 +184,14 @@ export function middleware(request: NextRequest): NextResponse {
   const scriptPolicy = isDevelopment
     ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com"
     : `script-src 'self' 'nonce-${nonce}' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com`
-  // The /developers page embeds the real @shapeshiftoss/swap-widget SDK. These four origins are
-  // what asset/chain selection and real quotes actually need: api.shapeshift.com (rates),
-  // app.shapeshift.com (the token/chain list), and api.coingecko.com / api.proxy.shapeshift.com
-  // (market data for the prices shown next to each asset). That's the whole feature set that's
-  // live and tested today. Real wallet connection isn't functional yet (placeholder
-  // walletConnectProjectId, see DevelopersHero.tsx), so the CSP entries that would only matter once
-  // it is -- WalletConnect's relay, per-chain execution RPCs, etc. -- aren't added speculatively;
-  // add them alongside the real project ID once that's live and testable.
+  // The developers embed needs market data plus AppKit's API, RPC, telemetry and relay.
+  // These exact origins come from the installed SDKs; keep them scoped to this page.
   const developersFontSrc = isDevelopersPath(pathname) ? ' https://fonts.reown.com' : ''
   const developersConnectSrc = isDevelopersPath(pathname)
-    ? ' https://api.shapeshift.com https://app.shapeshift.com https://api.coingecko.com https://api.proxy.shapeshift.com'
+    ? ' https://api.shapeshift.com https://app.shapeshift.com https://api.coingecko.com https://api.proxy.shapeshift.com https://api.web3modal.org https://rpc.walletconnect.org https://pulse.walletconnect.org wss://relay.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
+    : ''
+  const developersFrameSrc = isDevelopersPath(pathname)
+    ? ' https://secure.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
     : ''
   // Coinbase Wallet SDK / Base Account SDK (pulled in transitively by the swap widget's wagmi
   // connectors) inject their own inline bootstrap <script> tags, which our own nonce doesn't cover.
@@ -204,7 +201,7 @@ export function middleware(request: NextRequest): NextResponse {
   // 'strict-dynamic' with no nonce/hash present disables ALL host-based allowlisting and
   // 'unsafe-inline', blocking every script on the page, not just the ones it's meant to loosen.
   const developersScriptSrc = isDevelopersPath(pathname) && !isDevelopment ? " 'strict-dynamic'" : ''
-  const cspHeader = `default-src 'self'; ${scriptPolicy}${developersScriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com${developersFontSrc}; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com${developersConnectSrc}; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
+  const cspHeader = `default-src 'self'; ${scriptPolicy}${developersScriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com${developersFontSrc}; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com${developersConnectSrc}; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com${developersFrameSrc}; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
   response.headers.set('Content-Security-Policy', cspHeader)
 
   // Handle locale routing

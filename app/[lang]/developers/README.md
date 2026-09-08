@@ -24,8 +24,8 @@ This directory contains the `/developers` landing page: the entry point for dApp
 ## Technical Implementation
 
 - Most copy lives in `app/[lang]/_utils/dictionary/developers.ts` under `DEVELOPERS_DICT.page`, **except** WhyShapeShift, WidgetSection's feature ring, ApiSection's code panels, EconomicsSection's milestones, and LaunchPath's Q&A, which hardcode their copy directly in JSX (illustration- or interaction-heavy sections where copy, visuals, and behavior are tightly coupled).
-- `DevelopersHero.tsx` embeds the real `@shapeshiftoss/swap-widget` React SDK (dynamically imported, `ssr: false`) with a placeholder `walletConnectProjectId` — see the `TODO(shapeshift-business)` comments in that file for what's needed to go from preview to a fully working wallet connection.
-- Client components (interactive state, refs, or the widget's own client-only requirements): `DevelopersHero`, `DevelopersWidgetSection`, `DevelopersApiSection`, `DevelopersFaq`, `DevelopersPartnerLogos`, `DevelopersResourceHints`. Everything else is a server component.
+- `DevelopersHero.tsx` embeds the real `@shapeshiftoss/swap-widget` React SDK (dynamically imported, `ssr: false`) with `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`. Set this public Reown project ID before building (Next.js embeds it in the client bundle); the existing swap-widget service uses the value documented in `.env.local.sample`. Configure it in each Railway environment before promoting this page. Verify the website origin is allowed in Reown and test wallet connection before release. Set `NEXT_PUBLIC_SHAPESHIFT_PARTNER_CODE` to ShapeShift's registered affiliate code before release so website swaps are attributed to its payout account; verify the code via `/v1/partner/{code}`.
+- Client components (interactive state, refs, or the widget's own client-only requirements): `DevelopersHero`, `DevelopersWidgetSection`, `DevelopersApiSection`, `DevelopersFaq`, `DevelopersPartnerLogos`. Everything else is a server component.
 - Reuses existing shared components (`Button`, `LocalizedLink`) and Tailwind color tokens from `tailwind.config.ts`.
 
 ## Development Guidelines

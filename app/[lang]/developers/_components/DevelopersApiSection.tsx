@@ -16,8 +16,9 @@ const codePanels = [
       'curl "https://api.shapeshift.com/v1/chains"',
       '',
       '# assets, filtered by chain',
-      'curl "https://api.shapeshift.com/v1/assets\\',
-      '  ?chainId=eip155:1&limit=100"',
+      'curl --get "https://api.shapeshift.com/v1/assets" \\',
+      '  --data-urlencode "chainId=eip155:1" \\',
+      '  --data-urlencode "limit=100"',
       '',
       '# response · 200',
       '{',
@@ -36,10 +37,10 @@ const codePanels = [
   {
     label: 'GET /v1/swap/rates',
     lines: [
-      '$ curl "https://api.shapeshift.com/v1/swap/rates\\',
-      '  ?sellAssetId=eip155:1/slip44:60\\',
-      '  &buyAssetId=bip122:00000000...93/slip44:0\\',
-      '  &sellAmountCryptoBaseUnit=1000000000000000000" \\',
+      '$ curl --get "https://api.shapeshift.com/v1/swap/rates" \\',
+      '  --data-urlencode "sellAssetId=eip155:1/slip44:60" \\',
+      '  --data-urlencode "buyAssetId=bip122:000000000019d6689c085ae165831e93/slip44:0" \\',
+      '  --data-urlencode "sellAmountCryptoBaseUnit=1000000000000000000" \\',
       '  -H "X-Partner-Code: your-partner-code"',
       '',
       '# response · 200',
@@ -135,7 +136,12 @@ function TypedCodePanel({ activeTab }: { activeTab: number }): ReactNode {
           type={'button'}
           onClick={() => {
             navigator.clipboard
-              .writeText(source)
+              .writeText(
+                source
+                  .split('# response · 200')[0]
+                  .replace(/^\$\s?/gm, '')
+                  .trim()
+              )
               .then(() => {
                 setHasCopied(true)
                 window.setTimeout(() => setHasCopied(false), 1800)
