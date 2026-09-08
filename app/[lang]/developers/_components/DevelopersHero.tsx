@@ -13,7 +13,7 @@ import type { ReactNode } from 'react'
 // which reads browser-only state and has no meaningful server-rendered output.
 const SwapWidget = dynamic(async () => (await import('@shapeshiftoss/swap-widget')).SwapWidget, {
   ssr: false,
-  loading: () => <div className={'h-[571px] w-[420px] max-w-full rounded-[20px] bg-[#0A0A14]'} />,
+  loading: () => <div className={'h-[660px] w-[420px] max-w-full rounded-[20px] bg-[#0A0A14]'} />,
 })
 
 function SwapWidgetEmbed(): ReactNode {
@@ -150,10 +150,14 @@ export function DevelopersHero(): ReactNode {
               borderRadius: '42% 58% 61% 39% / 46% 38% 62% 54%',
             }}
           />
-          {/* The widget is a fixed 420px wide (its own CSS, not ours) with no smaller breakpoint of
-              its own; overflow-x-auto keeps it usable by scrolling instead of clipping or forcing
-              the whole page wider on narrower viewports. */}
-          <div className={'relative z-10 max-w-full overflow-x-auto rounded-[20px]'}>
+          {/* Reserve room for the quote selector and network fee before an amount is entered.
+              A minimum height keeps the widget top-aligned without clipping or scrolling taller
+              states. Allow the SDK's fixed-width card to shrink on narrow screens. */}
+          <div
+            className={
+              'relative z-10 min-h-[660px] w-[420px] max-w-full rounded-[20px] [&_.ssw-widget]:min-h-[660px] [&_.ssw-widget]:min-w-0'
+            }
+          >
             <SwapWidgetEmbed />
           </div>
         </motion.div>
