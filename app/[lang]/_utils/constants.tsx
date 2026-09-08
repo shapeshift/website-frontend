@@ -39,6 +39,10 @@ export const dAppUrl =
 
 const docsUrl = 'https://github.com/shapeshift/web'
 
+export const developerDocsUrl = 'https://api.shapeshift.com/docs'
+
+export const developerDocsSectionUrl = (section: string): string => `${developerDocsUrl}${section}`
+
 const githubUrl = 'https://github.com/shapeshift'
 
 export const footerButtonTitle = 'Donate'
@@ -226,6 +230,51 @@ export const appResources: TAppLink[] = [
   },
 ]
 
+export const appDevelopers: TAppLink[] = [
+  {
+    name: 'Swap Widget SDK',
+    href: developerDocsSectionUrl('#tag/swap-widget-sdk'),
+    description: 'Integrate the drop-in swap widget with built-in UI.',
+    icon: <IconResource />,
+    target: '_blank',
+  },
+  {
+    name: 'Widget sandbox',
+    href: 'https://widget.shapeshift.com/',
+    description: 'Configure and preview the drop-in swap widget.',
+    icon: <IconDocs />,
+    target: '_blank',
+  },
+  {
+    name: 'Swap API Doc',
+    href: developerDocsSectionUrl('#tag/swaps'),
+    description: 'Get rates, executable quotes, and swap status.',
+    icon: <IconTriLink />,
+    target: '_blank',
+  },
+  {
+    name: 'Supported Assets',
+    href: developerDocsSectionUrl('#tag/supported-assets'),
+    description: 'List assets and fetch asset details by CAIP-19 ID.',
+    icon: <IconWallet />,
+    target: '_blank',
+  },
+  {
+    name: 'Supported Chains',
+    href: developerDocsSectionUrl('#tag/supported-chains'),
+    description: 'Review the chains available through the public API.',
+    icon: <IconChains />,
+    target: '_blank',
+  },
+  {
+    name: 'Partners portal',
+    href: 'https://dashboard.affiliate.shapeshift.com/',
+    description: 'Get your affiliate code and configure the widget.',
+    icon: <IconActivityRings />,
+    target: '_blank',
+  },
+]
+
 export const appDao: TAppLink[] = [
   {
     name: 'FOX Token',
@@ -314,12 +363,14 @@ export const appProducts: TAppLink[] = [
 
 export const headerTabs = [
   { name: 'Products', href: '/products', value: 'products' },
+  { name: 'Developers', href: '/developers', value: 'developers' },
   { name: 'Resources', href: '/resources', value: 'resources' },
   { name: 'DAO', href: '/dao', value: 'dao' },
 ]
 
 export const footerLinks: Record<string, TAppLink[]> = {
   Products: appProducts,
+  Developers: appDevelopers,
   Resources: appResources,
   DAO: appDao,
   Connect: [

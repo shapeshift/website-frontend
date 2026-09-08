@@ -2,10 +2,37 @@
 
 const strapiHostname = process.env.NEXT_PUBLIC_STRAPI_URL ? new URL(process.env.NEXT_PUBLIC_STRAPI_URL).hostname : null
 
+// @shapeshiftoss/swap-widget pulls in wagmi's built-in Coinbase Smart Wallet connector, which
+// references optional @x402/* packages we don't install (and don't need — we don't use Coinbase
+// Smart Wallet's x402 payment flow). Without these aliases, `next build` (webpack) fails with
+// "Module not found: Can't resolve '@x402/svm/exact/client'" and four sibling paths.
+const stubbedOptionalModules = {
+	'@x402/core': false,
+	'@x402/evm': false,
+	'@x402/svm': false,
+	'@x402/extensions': false,
+	'@react-native-async-storage/async-storage': false,
+	'pino-pretty': false
+}
+
 const nextConfig = {
 	crossOrigin: 'anonymous',
 	/* config options here */
 	reactStrictMode: true,
+	webpack: (config: any, {webpack}: any) => {
+		config.resolve.alias = {
+			...config.resolve.alias,
+			...stubbedOptionalModules
+		}
+		// @shapeshiftoss/utils imports `node:crypto`-style specifiers, which webpack's default
+		// resolver treats as an unhandled URI scheme rather than a bare Node builtin.
+		config.plugins.push(
+			new webpack.NormalModuleReplacementPlugin(/^node:/, (resource: any) => {
+				resource.request = resource.request.replace(/^node:/, '')
+			})
+		)
+		return config
+	},
 	images: {
 		remotePatterns: [
 			...(strapiHostname ? [{protocol: 'https', hostname: strapiHostname}] : []),

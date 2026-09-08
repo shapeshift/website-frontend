@@ -19,6 +19,8 @@ export default {
 				stroke: '#12141A',
 				blue: '#386FF9',
 				blueHover: '#1A5BFF',
+				blueLight: '#8FACFF',
+				mint: '#70E1B1',
 				secondary: '#E6E6E6'
 			},
 			listStyleType: {

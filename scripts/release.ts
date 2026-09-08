@@ -35,19 +35,7 @@ const assertGhAuth = async (): Promise<void> => {
 }
 
 const getCommits = async (from: string, to: string): Promise<{ messages: string[]; total: number }> => {
-  // Get the last release tag for proper commit range calculation
-  const latestTag = from === 'origin/release' ? await getLatestSemverTag() : null
-
-  // Use tag-based range if available, otherwise fall back to branch comparison
-  let range: string
-  if (latestTag && from === 'origin/release' && latestTag !== 'v1.0.0') {
-    // Use tag-based range if we have real tags (not the default fallback)
-    range = `${latestTag}..${to}`
-  } else {
-    // Fall back to branch comparison when no tags exist or using non-release branches
-    range = `${from}..${to}`
-  }
-
+  const range = `${from}..${to}`
   const { all, total } = await git().log(['--oneline', '--first-parent', '--pretty=format:%s', range])
   const messages = all.map(({ hash }) => hash)
   return { messages, total }
@@ -118,7 +106,8 @@ const createRelease = async (): Promise<void> => {
 
   if (releaseType === 'Regular') {
     // Regular release: develop -> release -> main
-    const { messages, total } = await getCommits('origin/release', 'origin/develop')
+    // Production follows main; release branches and version tags may lag behind shipped changes.
+    const { messages, total } = await getCommits('origin/main', 'origin/develop')
 
     if (!total) {
       exit(chalk.yellow('No new commits to release from develop.'))

@@ -36,6 +36,17 @@ function hasLocaleInPath(pathname: string): boolean {
 }
 
 /**
+ * Check if pathname is the developers page (with or without a locale prefix)
+ */
+function isDevelopersPath(pathname: string): boolean {
+  const withoutLocale = SUPPORTED_LANGUAGES.reduce(
+    (path, lang) => (path.startsWith(`/${lang.code}/`) ? path.slice(lang.code.length + 1) : path),
+    pathname
+  )
+  return withoutLocale === '/developers' || withoutLocale.startsWith('/developers/')
+}
+
+/**
  * Create headers with locale information
  */
 function createLocaleHeaders(requestHeaders: Headers, pathname: string, locale: string): Headers {
@@ -99,7 +110,16 @@ function handleLocaleRouting(
   if (locale === DEFAULT_LANGUAGE) {
     request.nextUrl.pathname = `/${DEFAULT_LANGUAGE}${pathname}`
     console.log('rewriting to', request.nextUrl.pathname)
-    return NextResponse.rewrite(request.nextUrl)
+    // NextResponse.rewrite() creates a brand-new response, so headers (e.g. the CSP header) and
+    // cookies already set on `response` need to be copied forward explicitly or they're lost.
+    const rewrittenResponse = NextResponse.rewrite(request.nextUrl)
+    response.headers.forEach((value, key) => {
+      rewrittenResponse.headers.set(key, value)
+    })
+    response.cookies.getAll().forEach((cookie) => {
+      rewrittenResponse.cookies.set(cookie)
+    })
+    return rewrittenResponse
   }
 
   // Redirect to include locale in path for non-default languages
@@ -112,7 +132,9 @@ export function middleware(request: NextRequest): NextResponse {
   const pathname = request.nextUrl.pathname
   const hostname = request.headers.get('host') || ''
 
-  // Generate a nonce for CSP
+  const isDevelopment = process.env.NODE_ENV === 'development'
+  // Production uses a per-request nonce. Development needs eval/inline scripts for the Next.js
+  // runtime; omitting the nonce there also avoids a browser-normalized nonce hydration mismatch.
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
 
   // Check for language subdomain
@@ -149,7 +171,7 @@ export function middleware(request: NextRequest): NextResponse {
 
   // Create response with locale headers and nonce
   const headers = createLocaleHeaders(request.headers, pathname, locale)
-  headers.set('x-nonce', nonce)
+  if (!isDevelopment) headers.set('x-nonce', nonce)
   const response = NextResponse.next({ headers })
 
   // Only set locale cookie if user explicitly changed language (cookie already exists)
@@ -159,7 +181,27 @@ export function middleware(request: NextRequest): NextResponse {
   }
 
   // Set the CSP header with the nonce
-  const cspHeader = `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
+  const scriptPolicy = isDevelopment
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com"
+    : `script-src 'self' 'nonce-${nonce}' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com`
+  // The developers embed needs market data plus AppKit's API, RPC, telemetry and relay.
+  // These exact origins come from the installed SDKs; keep them scoped to this page.
+  const developersFontSrc = isDevelopersPath(pathname) ? ' https://fonts.reown.com' : ''
+  const developersConnectSrc = isDevelopersPath(pathname)
+    ? ' https://api.shapeshift.com https://app.shapeshift.com https://api.coingecko.com https://api.proxy.shapeshift.com https://api.web3modal.org https://rpc.walletconnect.org https://pulse.walletconnect.org wss://relay.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
+    : ''
+  const developersFrameSrc = isDevelopersPath(pathname)
+    ? ' https://secure.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
+    : ''
+  // Coinbase Wallet SDK / Base Account SDK (pulled in transitively by the swap widget's wagmi
+  // connectors) inject their own inline bootstrap <script> tags, which our own nonce doesn't cover.
+  // 'strict-dynamic' lets scripts loaded by an already-nonce-trusted script (the widget bundle
+  // itself) delegate that trust onward, without weakening script-src for any other route. Only
+  // meaningful paired with a nonce (dev mode's script-src has none) -- per the CSP spec,
+  // 'strict-dynamic' with no nonce/hash present disables ALL host-based allowlisting and
+  // 'unsafe-inline', blocking every script on the page, not just the ones it's meant to loosen.
+  const developersScriptSrc = isDevelopersPath(pathname) && !isDevelopment ? " 'strict-dynamic'" : ''
+  const cspHeader = `default-src 'self'; ${scriptPolicy}${developersScriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com${developersFontSrc}; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com${developersConnectSrc}; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com${developersFrameSrc}; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
   response.headers.set('Content-Security-Policy', cspHeader)
 
   // Handle locale routing
