@@ -11,7 +11,7 @@ import { IconClose } from '@/app/[lang]/_icons/IconClose'
 import { IconMenu } from '@/app/[lang]/_icons/IconMenu'
 import { IconPlanet } from '@/app/[lang]/_icons/IconPlanet'
 import { ShapeshiftLogo } from '@/app/[lang]/_icons/ShapeshiftLogo'
-import { appDao, appProducts, appResources, headerTabs } from '@/app/[lang]/_utils/constants'
+import { appDao, appDevelopers, appProducts, appResources, headerTabs } from '@/app/[lang]/_utils/constants'
 import { SUPPORTED_LANGUAGES } from '@/app/[lang]/_utils/i18nconfig'
 
 import type { TAppLink } from '@/app/[lang]/_utils/constants'
@@ -22,6 +22,11 @@ const mobileTabs: { name: string; value: string; items: TAppLink[] }[] = [
     name: 'Products',
     value: 'products',
     items: appProducts.slice(0, 6),
+  },
+  {
+    name: 'Developers',
+    value: 'developers',
+    items: appDevelopers.slice(0, 6),
   },
   {
     name: 'Resources',
@@ -111,17 +116,42 @@ export function MobileHeader({
                 <div className={'space-y-2'}>
                   {headerTabs.map((tab) => (
                     <div key={tab.name} className={'overflow-hidden rounded-2xl bg-secondBg'}>
-                      <button
-                        onClick={() => {
-                          setExpandedSection(expandedSection === tab.value ? '' : tab.value)
-                        }}
-                        className={'flex w-full items-center justify-between p-6 text-2xl'}
-                      >
-                        {tab.name}
-                        <div className={'flex items-center gap-2 rounded-[100%] bg-white/5 p-2'}>
-                          <AnimatedPlusMinusIcon isOpen={expandedSection === tab.value} />
+                      {tab.value === 'developers' ? (
+                        <div className={'flex w-full items-center text-2xl'}>
+                          <a
+                            href={`/${currentLanguage}${tab.href}`}
+                            onClick={() => setIsMenuOpen(false)}
+                            className={'flex-1 p-6'}
+                          >
+                            {tab.name}
+                          </a>
+                          <button
+                            type={'button'}
+                            aria-label={'Toggle Developers links'}
+                            aria-expanded={expandedSection === tab.value}
+                            onClick={() => {
+                              setExpandedSection(expandedSection === tab.value ? '' : tab.value)
+                            }}
+                            className={
+                              'mr-4 flex min-h-12 min-w-12 items-center justify-center rounded-full bg-white/5'
+                            }
+                          >
+                            <AnimatedPlusMinusIcon isOpen={expandedSection === tab.value} />
+                          </button>
                         </div>
-                      </button>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            setExpandedSection(expandedSection === tab.value ? '' : tab.value)
+                          }}
+                          className={'flex w-full items-center justify-between p-6 text-2xl'}
+                        >
+                          {tab.name}
+                          <div className={'flex items-center gap-2 rounded-[100%] bg-white/5 p-2'}>
+                            <AnimatedPlusMinusIcon isOpen={expandedSection === tab.value} />
+                          </div>
+                        </button>
+                      )}
                       <AnimatePresence>
                         {expandedSection === tab.value && (
                           <motion.div className={'space-y-4 p-6 pt-0'} {...expandAnimation}>

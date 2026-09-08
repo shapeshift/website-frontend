@@ -15,6 +15,7 @@ import { dAppUrl, headerTabs } from '@/app/[lang]/_utils/constants'
 
 import { containerAnimation } from './animations'
 import { DAOExpand } from './DaoExpand'
+import { DevelopersExpand } from './DevelopersExpand'
 import { LanguageExpand } from './LanguageExpand'
 import { ProductsExpand } from './ProductsExpand'
 import { ResourcesExpand } from './ResourcesExpand'
@@ -41,6 +42,7 @@ export function DesktopHeader({ className, switchLanguageAction, currentLanguage
   const tabContent: Record<string, ReactNode> = useMemo(
     () => ({
       products: <ProductsExpand setCurrentTab={setCurrentTab} />,
+      developers: <DevelopersExpand setCurrentTab={setCurrentTab} />,
       resources: <ResourcesExpand setCurrentTab={setCurrentTab} />,
       dao: <DAOExpand setCurrentTab={setCurrentTab} />,
       language: <LanguageExpand switchLanguageAction={switchLanguageAction} currentLanguage={currentLanguage} />,
@@ -85,11 +87,18 @@ export function DesktopHeader({ className, switchLanguageAction, currentLanguage
                   key={tab.name}
                   onMouseEnter={() => setCurrentTab(tab.value)}
                   className={cl(
-                    'cursor-pointer p-4 text-sm font-medium transition-colors',
+                    'text-sm font-medium transition-colors',
+                    tab.value === 'developers' ? '' : 'cursor-pointer p-4',
                     currentTab && currentTab !== tab.value ? 'text-gray-500' : 'text-white'
                   )}
                 >
-                  {tab.name}
+                  {tab.value === 'developers' ? (
+                    <a href={`/${currentLanguage}${tab.href}`} className={'block h-full w-full cursor-pointer p-4'}>
+                      {tab.name}
+                    </a>
+                  ) : (
+                    tab.name
+                  )}
                 </div>
               ))}
             </nav>
