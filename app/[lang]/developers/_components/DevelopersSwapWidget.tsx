@@ -1,18 +1,22 @@
 'use client'
 
+import { SwapWidget } from '@shapeshiftoss/swap-widget'
 import '@shapeshiftoss/swap-widget/style.css'
-import dynamic from 'next/dynamic'
+import { useState } from 'react'
+
+import { initDevelopersAppKit } from '@/app/[lang]/developers/_utils/initDevelopersAppKit'
 
 import type { ReactNode } from 'react'
 
-// Loaded client-side only, per the SDK's own docs: the widget initializes Reown AppKit at load,
-// which reads browser-only state and has no meaningful server-rendered output.
-const SwapWidget = dynamic(async () => (await import('@shapeshiftoss/swap-widget')).SwapWidget, {
-  ssr: false,
-  loading: () => <div className={'h-[660px] w-[420px] max-w-full rounded-[20px] bg-[#0A0A14]'} />,
-})
-
+// This module is only ever loaded through DevelopersHero's `dynamic(..., { ssr: false })`, so it
+// is client-only, per the SDK's own docs: AppKit reads browser-only state and the widget has no
+// meaningful server-rendered output.
 export function DevelopersSwapWidget(): ReactNode {
+  // The host owns the AppKit instance so it can hand AppKit chain icons and RPC endpoints the
+  // widget's self-init doesn't. It has to exist before <SwapWidget> mounts, hence a lazy state
+  // initialiser rather than an effect. The widget detects the singleton and reuses it.
+  useState(() => initDevelopersAppKit(process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID))
+
   return (
     <>
       {/*
@@ -24,7 +28,6 @@ export function DevelopersSwapWidget(): ReactNode {
       */}
       <style>{'@media (max-width: 600px) { .ssw-modal { height: min(600px, 90vh) !important; } }'}</style>
       <SwapWidget
-        walletConnectProjectId={process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}
         partnerCode={process.env.NEXT_PUBLIC_SHAPESHIFT_PARTNER_CODE}
         onSwapSuccess={(txHash) => console.log('Success:', txHash)}
         onSwapError={(error) => console.error('Error:', error)}
