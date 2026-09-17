@@ -186,9 +186,18 @@ export function middleware(request: NextRequest): NextResponse {
     : `script-src 'self' 'nonce-${nonce}' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com`
   // The developers embed needs market data plus AppKit's API, RPC, telemetry and relay.
   // These exact origins come from the installed SDKs; keep them scoped to this page.
+  //
+  // - *.shapeshift.com: the swap API, app redirects, and the per-chain RPC proxies
+  //   (api.<chain>.shapeshift.com) the widget's viem clients use to poll EVM tx status and read
+  //   balances. New chains land as new subdomains, so allow the wildcard rather than chasing each.
+  // - rpc.monad.xyz / mainnet.megaeth.com / rpc.hyperliquid.xyz / rpc.plasma.to /
+  //   rpc.katana.network: viem's default RPCs for the EVM chains ShapeShift has no proxy for.
+  // - mempool.space: Bitcoin balance + tx status.
+  // - api.mainnet-beta.solana.com: the widget's Solana fallback when AppKit has no connection.
+  // Without these, status polling silently retries forever and BTC/SOL balances render as empty.
   const developersFontSrc = isDevelopersPath(pathname) ? ' https://fonts.reown.com' : ''
   const developersConnectSrc = isDevelopersPath(pathname)
-    ? ' https://api.shapeshift.com https://app.shapeshift.com https://api.coingecko.com https://api.proxy.shapeshift.com https://api.web3modal.org https://rpc.walletconnect.org https://pulse.walletconnect.org wss://relay.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
+    ? ' https://*.shapeshift.com https://api.coingecko.com https://rpc.monad.xyz https://mainnet.megaeth.com https://rpc.hyperliquid.xyz https://rpc.plasma.to https://rpc.katana.network https://mempool.space https://api.mainnet-beta.solana.com https://api.web3modal.org https://rpc.walletconnect.org https://pulse.walletconnect.org wss://relay.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
     : ''
   const developersFrameSrc = isDevelopersPath(pathname)
     ? ' https://secure.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
