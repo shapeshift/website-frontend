@@ -1,52 +1,29 @@
 'use client'
 
-import '@shapeshiftoss/swap-widget/style.css'
 import { animate, motion, useMotionTemplate, useMotionValue, useReducedMotion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef } from 'react'
 
 import { Button } from '@/app/[lang]/_components/Button'
+import { isDevelopersSwapWidgetEnabled } from '@/app/[lang]/developers/_utils/isDevelopersSwapWidgetEnabled'
 
 import type { ReactNode } from 'react'
 
-// Loaded client-side only, per the SDK's own docs: the widget initializes Reown AppKit at load,
-// which reads browser-only state and has no meaningful server-rendered output.
-const SwapWidget = dynamic(async () => (await import('@shapeshiftoss/swap-widget')).SwapWidget, {
+const DevelopersSwapWidget = dynamic(async () => (await import('./DevelopersSwapWidget')).DevelopersSwapWidget, {
   ssr: false,
   loading: () => <div className={'h-[660px] w-[420px] max-w-full rounded-[20px] bg-[#0A0A14]'} />,
 })
 
-function SwapWidgetEmbed(): ReactNode {
-  return (
-    <>
-      {/*
-        Upstream bug in @shapeshiftoss/swap-widget's own ≤600px CSS: .ssw-modal only sets a
-        max-height there, so its flex children (chain sidebar + token list) have no definite space
-        to distribute — the virtualized token list resolves to 0px tall and renders zero rows.
-        Giving the modal a real height (still capped well under the viewport) fixes the flex
-        cascade without changing anything about its layout/content.
-      */}
-      <style>{'@media (max-width: 600px) { .ssw-modal { height: min(600px, 90vh) !important; } }'}</style>
-      <SwapWidget
-        walletConnectProjectId={process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}
-        partnerCode={process.env.NEXT_PUBLIC_SHAPESHIFT_PARTNER_CODE}
-        onSwapSuccess={(txHash) => console.log('Success:', txHash)}
-        onSwapError={(error) => console.error('Error:', error)}
-        theme={'dark'}
-      />
-    </>
-  )
-}
-
 const PALETTE = ['#386FF9aa', '#9D63ECaa', '#70E1B1aa', '#06B6D4aa']
 
 export function DevelopersHero(): ReactNode {
+  const shouldShowSwapWidget = isDevelopersSwapWidgetEnabled()
   const shouldReduceMotion = useReducedMotion()
   const glowRef = useRef<HTMLDivElement>(null)
   const glowAccent = useMotionValue(PALETTE[0])
 
   useEffect(() => {
-    if (shouldReduceMotion) return undefined
+    if (!shouldShowSwapWidget || shouldReduceMotion) return undefined
     const controls = animate(glowAccent, [...PALETTE, PALETTE[0]], {
       duration: PALETTE.length * 3.2,
       repeat: Infinity,
@@ -66,14 +43,18 @@ export function DevelopersHero(): ReactNode {
       controls.stop()
       observer?.disconnect()
     }
-  }, [shouldReduceMotion, glowAccent])
+  }, [shouldShowSwapWidget, shouldReduceMotion, glowAccent])
 
   const glowBackground = useMotionTemplate`linear-gradient(135deg, ${glowAccent}, #9D63EC77 48%, #70E1B166)`
 
   return (
     <section className={'relative overflow-hidden pb-16 pt-5 lg:pb-20 lg:pt-4'}>
       <div
-        className={'container relative mx-auto grid min-w-0 items-center gap-8 lg:grid-cols-[.92fr_1.08fr] lg:gap-12'}
+        className={
+          shouldShowSwapWidget
+            ? 'container relative mx-auto grid min-w-0 items-center gap-8 lg:grid-cols-[.92fr_1.08fr] lg:gap-12'
+            : 'container relative mx-auto grid min-w-0 items-center gap-8'
+        }
       >
         <motion.div initial={false} className={'min-w-0 lg:pt-4'}>
           <h1
@@ -114,48 +95,50 @@ export function DevelopersHero(): ReactNode {
           </a>
         </motion.div>
 
-        <motion.div
-          initial={false}
-          className={
-            'relative mx-auto flex min-h-[560px] min-w-0 w-full max-w-[660px] items-center justify-center px-2 py-10 lg:min-h-[600px] lg:px-10 lg:py-0'
-          }
-        >
+        {shouldShowSwapWidget ? (
           <motion.div
-            ref={glowRef}
-            aria-hidden={'true'}
             initial={false}
-            animate={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    borderRadius: [
-                      '42% 58% 61% 39% / 46% 38% 62% 54%',
-                      '58% 42% 38% 62% / 39% 61% 42% 58%',
-                      '42% 58% 61% 39% / 46% 38% 62% 54%',
-                    ],
-                    x: ['-3%', '4%', '-3%'],
-                    y: ['2%', '-3%', '2%'],
-                    scale: [0.96, 1.06, 0.96],
-                  }
-            }
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-            className={'pointer-events-none absolute inset-[7%] opacity-40 blur-[64px]'}
-            style={{
-              background: glowBackground,
-              borderRadius: '42% 58% 61% 39% / 46% 38% 62% 54%',
-            }}
-          />
-          {/* Reserve room for the quote selector and network fee before an amount is entered.
-              A minimum height keeps the widget top-aligned without clipping or scrolling taller
-              states. Allow the SDK's fixed-width card to shrink on narrow screens. */}
-          <div
             className={
-              'relative z-10 min-h-[660px] w-[420px] max-w-full rounded-[20px] [&_.ssw-widget]:min-h-[660px] [&_.ssw-widget]:min-w-0'
+              'relative mx-auto flex min-h-[560px] min-w-0 w-full max-w-[660px] items-center justify-center px-2 py-10 lg:min-h-[600px] lg:px-10 lg:py-0'
             }
           >
-            <SwapWidgetEmbed />
-          </div>
-        </motion.div>
+            <motion.div
+              ref={glowRef}
+              aria-hidden={'true'}
+              initial={false}
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      borderRadius: [
+                        '42% 58% 61% 39% / 46% 38% 62% 54%',
+                        '58% 42% 38% 62% / 39% 61% 42% 58%',
+                        '42% 58% 61% 39% / 46% 38% 62% 54%',
+                      ],
+                      x: ['-3%', '4%', '-3%'],
+                      y: ['2%', '-3%', '2%'],
+                      scale: [0.96, 1.06, 0.96],
+                    }
+              }
+              transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+              className={'pointer-events-none absolute inset-[7%] opacity-40 blur-[64px]'}
+              style={{
+                background: glowBackground,
+                borderRadius: '42% 58% 61% 39% / 46% 38% 62% 54%',
+              }}
+            />
+            {/* Reserve room for the quote selector and network fee before an amount is entered.
+                A minimum height keeps the widget top-aligned without clipping or scrolling taller
+                states. Allow the SDK's fixed-width card to shrink on narrow screens. */}
+            <div
+              className={
+                'relative z-10 min-h-[660px] w-[420px] max-w-full rounded-[20px] [&_.ssw-widget]:min-h-[660px] [&_.ssw-widget]:min-w-0'
+              }
+            >
+              <DevelopersSwapWidget />
+            </div>
+          </motion.div>
+        ) : null}
       </div>
     </section>
   )
