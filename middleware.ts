@@ -199,7 +199,7 @@ export function middleware(request: NextRequest): NextResponse {
     ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com"
     : `script-src 'self' 'nonce-${nonce}' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com https://cdn.weglot.com`
   // The developers embed needs market data plus AppKit's API, RPC, telemetry and relay.
-  // These exact origins come from the installed SDKs; keep them scoped to this page.
+  // Keep these scoped to this page. WalletConnect/Reown use wildcards (see below).
   //
   // - *.shapeshift.com: the swap API, app redirects, and the per-chain RPC proxies
   //   (api.<chain>.shapeshift.com) the widget's viem clients use to poll EVM tx status and read
@@ -210,11 +210,15 @@ export function middleware(request: NextRequest): NextResponse {
   // - api.mainnet-beta.solana.com: the widget's Solana fallback when AppKit has no connection.
   // Without these, status polling silently retries forever and BTC/SOL balances render as empty.
   const developersFontSrc = isDevelopersPath(pathname) ? ' https://fonts.reown.com' : ''
+  // WalletConnect / Reown hosts are wildcards on purpose. widget.shapeshift.com ships with no CSP;
+  // pinning exact hosts here dropped echo.walletconnect.com and secure-mobile.walletconnect.* —
+  // the paths AppKit uses to deliver session requests (including eth_chainId / eth_sendTransaction)
+  // to a mobile wallet. New WC subdomains should not require a CSP chase.
   const developersConnectSrc = isDevelopersPath(pathname)
-    ? ' https://*.shapeshift.com https://api.coingecko.com https://rpc.monad.xyz https://mainnet.megaeth.com https://rpc.hyperliquid.xyz https://rpc.plasma.to https://rpc.katana.network https://mempool.space https://api.mainnet-beta.solana.com https://api.web3modal.org https://rpc.walletconnect.org https://pulse.walletconnect.org wss://relay.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
+    ? ' https://*.shapeshift.com https://api.coingecko.com https://rpc.monad.xyz https://mainnet.megaeth.com https://rpc.hyperliquid.xyz https://rpc.plasma.to https://rpc.katana.network https://mempool.space https://api.mainnet-beta.solana.com https://api.web3modal.org https://*.walletconnect.org https://*.walletconnect.com wss://*.walletconnect.org wss://*.walletconnect.com https://*.reown.com'
     : ''
   const developersFrameSrc = isDevelopersPath(pathname)
-    ? ' https://secure.walletconnect.org https://verify.walletconnect.org https://verify.walletconnect.com'
+    ? ' https://*.walletconnect.org https://*.walletconnect.com https://verify.walletconnect.org https://verify.walletconnect.com'
     : ''
   // The Buy Crypto card on /trade embeds Onramper. This header replaces (not merges with) the
   // route-level CSP from next.config.ts, so the iframe origins have to be allowed here.
