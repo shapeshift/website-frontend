@@ -47,27 +47,16 @@ const nextConfig = {
 				source: '/(.*)',
 				headers: [{key: 'cross-origin-resource-policy', value: 'cross-origin'}]
 			},
+			// The Onramper iframe on /trade needs popups for its checkout flow. Its frame-src
+			// allowance lives in middleware.ts, which owns the Content-Security-Policy header.
 			{
-				// Allow Onramper iframe on /trade
 				source: '/trade',
-				headers: [
-					{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'},
-					{
-						key: 'Content-Security-Policy',
-						value: "frame-src 'self' https://buy.onramper.com https://widget.onramper.com; child-src 'self' https://buy.onramper.com https://widget.onramper.com;"
-					}
-				]
+				headers: [{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'}]
 			},
 			{
-				// Also allow Onramper on localized routes like /en/trade
+				// Localized routes like /en/trade
 				source: '/:lang/trade',
-				headers: [
-					{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'},
-					{
-						key: 'Content-Security-Policy',
-						value: "frame-src 'self' https://buy.onramper.com https://widget.onramper.com; child-src 'self' https://buy.onramper.com https://widget.onramper.com;"
-					}
-				]
+				headers: [{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'}]
 			}
 		]
 	},
