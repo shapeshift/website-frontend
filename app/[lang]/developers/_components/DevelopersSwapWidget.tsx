@@ -1,17 +1,12 @@
 'use client'
 
+import { SwapWidget } from '@shapeshiftoss/swap-widget'
 import '@shapeshiftoss/swap-widget/style.css'
-import dynamic from 'next/dynamic'
 
 import type { ReactNode } from 'react'
 
-// Loaded client-side only, per the SDK's own docs: the widget initializes Reown AppKit at load,
-// which reads browser-only state and has no meaningful server-rendered output.
-const SwapWidget = dynamic(async () => (await import('@shapeshiftoss/swap-widget')).SwapWidget, {
-  ssr: false,
-  loading: () => <div className={'h-[660px] w-[420px] max-w-full rounded-[20px] bg-[#0A0A14]'} />,
-})
-
+// Loaded only via DevelopersHero's `dynamic(..., { ssr: false })`. AppKit is browser-only and
+// the widget has no meaningful server-rendered output.
 export function DevelopersSwapWidget(): ReactNode {
   return (
     <>
