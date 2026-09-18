@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 
 import { exec } from 'child_process'
+import { promisify } from 'util'
 
 import chalk from 'chalk'
 import inquirer from 'inquirer'
@@ -8,7 +9,7 @@ import pify from 'pify'
 import semver from 'semver'
 import { simpleGit as git } from 'simple-git'
 
-import { exit, getLatestSemverTag } from './utils'
+import { exit, formatReleasePrTitle, getLatestSemverTag, parseReleasePrTitle } from './utils'
 
 const assertIsCleanRepo = async (): Promise<void> => {
   const gitStatus = await git().status()
@@ -41,12 +42,16 @@ const getCommits = async (from: string, to: string): Promise<{ messages: string[
   return { messages, total }
 }
 
-const inquireProceedWithCommits = async (commits: string[], action: 'create' | 'merge'): Promise<void> => {
+const inquireProceedWithCommits = async (
+  commits: string[],
+  action: 'create' | 'merge',
+  version?: string
+): Promise<void> => {
   console.log(chalk.blue(['', commits, ''].join('\n')))
   const message =
     action === 'create'
       ? 'Do you want to create a release with these commits?'
-      : 'Do you want to merge and push these commits into main?'
+      : `Do you want to merge these commits into main and tag ${version}?`
   const questions: inquirer.QuestionCollection<{ shouldProceed: boolean }> = [
     {
       type: 'confirm',
@@ -89,6 +94,37 @@ const inquireCleanBranchOffMain = async (): Promise<boolean> => {
   return isCleanlyBranched
 }
 
+const execAsync = promisify(exec)
+
+const getStdout = async (command: string): Promise<string> => {
+  const { stdout } = await execAsync(command)
+  return stdout
+}
+
+const getPendingReleaseVersion = async (): Promise<string> => {
+  const stdout = await getStdout('gh pr list --base main --state open --json title,headRefName')
+  const prs = JSON.parse(stdout) as { title: string; headRefName: string }[]
+  const releasePr = prs.find(({ headRefName }) => headRefName === 'release')
+  const parsed = releasePr && parseReleasePrTitle(releasePr.title)
+
+  if (!parsed) {
+    exit(
+      chalk.red(
+        'Could not read a version from an open release → main PR. Expected "chore: release vX.Y.Z" or "chore: hotfix release vX.Y.Z".'
+      )
+    )
+  }
+
+  return parsed!.version
+}
+
+const assertTagAvailable = async (version: string): Promise<void> => {
+  const existing = await git().tag(['-l', version])
+  if (existing.trim()) {
+    exit(chalk.red(`Tag ${version} already exists. Refusing to overwrite it.`))
+  }
+}
+
 const inquireTReleaseType = async (): Promise<TReleaseType> => {
   const questions: inquirer.QuestionCollection<{ releaseType: TReleaseType }> = [
     {
@@ -126,7 +162,8 @@ const createRelease = async (): Promise<void> => {
 
     // Create PR with version
     const nextVersion = await getNextReleaseVersion('minor')
-    const title = `chore: release ${nextVersion}`
+    await assertTagAvailable(nextVersion)
+    const title = formatReleasePrTitle('regular', nextVersion)
     const body = messages.map((m) => m.replace(/"/g, '\\"')).join('\\n')
     const command = `gh pr create --draft --base "main" --title "${title}" --body "${body}"`
     console.log(chalk.green('Creating draft PR...'))
@@ -179,7 +216,8 @@ const createRelease = async (): Promise<void> => {
 
     // Create hotfix PR with version
     const nextVersion = await getNextReleaseVersion('patch')
-    const title = `chore: hotfix release ${nextVersion}`
+    await assertTagAvailable(nextVersion)
+    const title = formatReleasePrTitle('hotfix', nextVersion)
     const body = messages.map((m) => m.replace(/"/g, '\\"')).join('\\n')
     const command = `gh pr create --draft --base "main" --title "${title}" --body "${body}"`
     console.log(chalk.green('Creating draft hotfix PR...'))
@@ -196,7 +234,11 @@ const mergeRelease = async (): Promise<void> => {
     exit(chalk.yellow('No commits to merge.'))
   }
 
-  await inquireProceedWithCommits(messages, 'merge')
+  // Use the PR title as the source of truth. Re-deriving regular vs hotfix from
+  // develop..release misfires when the same change exists on both branches as different SHAs.
+  const nextVersion = await getPendingReleaseVersion()
+  await assertTagAvailable(nextVersion)
+  await inquireProceedWithCommits(messages, 'merge', nextVersion)
 
   console.log(chalk.green('Checking out release...'))
   await git().checkout(['release'])
@@ -209,13 +251,6 @@ const mergeRelease = async (): Promise<void> => {
   console.log(chalk.green('Merging release into main...'))
   await git().merge(['release'])
 
-  // Determine version bump type (patch for hotfix, minor for regular)
-  // We can detect this by checking if release branch differs from develop
-  const { total: developDiff } = await getCommits('origin/develop', 'origin/release')
-  const versionBump: TWebReleaseType = developDiff > 0 ? 'patch' : 'minor'
-
-  // Tag the release
-  const nextVersion = await getNextReleaseVersion(versionBump)
   console.log(chalk.green(`Tagging main with version ${nextVersion}`))
   await git().tag(['-a', nextVersion, '-m', nextVersion])
 
