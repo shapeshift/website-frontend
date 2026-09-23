@@ -47,8 +47,10 @@ const nextConfig = {
 				source: '/(.*)',
 				headers: [{key: 'cross-origin-resource-policy', value: 'cross-origin'}]
 			},
-			// The Onramper iframe on /trade needs popups for its checkout flow. Its frame-src
-			// allowance lives in middleware.ts, which owns the Content-Security-Policy header.
+			// The Onramper iframe on /trade needs popups for its checkout flow. frame-src for
+			// buy.onramper.com is set in middleware.ts, on every response: CSP sticks to the
+			// first document, so a client navigation to /trade would otherwise keep a policy
+			// that blocks the iframe.
 			{
 				source: '/trade',
 				headers: [{key: 'cross-origin-opener-policy', value: 'same-origin-allow-popups'}]
