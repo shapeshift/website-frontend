@@ -54,13 +54,6 @@ function isDevelopersPath(pathname: string): boolean {
 }
 
 /**
- * Check if pathname is the trade page (with or without a locale prefix)
- */
-function isTradePath(pathname: string): boolean {
-  return stripLocale(pathname) === '/trade'
-}
-
-/**
  * Create headers with locale information
  */
 function createLocaleHeaders(requestHeaders: Headers, pathname: string, locale: string): Headers {
@@ -220,9 +213,10 @@ export function middleware(request: NextRequest): NextResponse {
   const developersFrameSrc = isDevelopersPath(pathname)
     ? ' https://*.walletconnect.org https://*.walletconnect.com https://verify.walletconnect.org https://verify.walletconnect.com'
     : ''
-  // The Buy Crypto card on /trade embeds Onramper. This header replaces (not merges with) the
-  // route-level CSP from next.config.ts, so the iframe origins have to be allowed here.
-  const tradeFrameSrc = isTradePath(pathname) ? ' https://buy.onramper.com https://widget.onramper.com' : ''
+  // The Buy Crypto card on /trade embeds Onramper. CSP is fixed to the first document response:
+  // a client-side navigation to /trade keeps the homepage policy, so these origins have to be
+  // allowed on every page. This header replaces (not merges with) any route-level CSP.
+  const onramperFrameSrc = ' https://buy.onramper.com https://widget.onramper.com'
   // Coinbase Wallet SDK / Base Account SDK (pulled in transitively by the swap widget's wagmi
   // connectors) inject their own inline bootstrap <script> tags, which our own nonce doesn't cover.
   // 'strict-dynamic' lets scripts loaded by an already-nonce-trusted script (the widget bundle
@@ -231,7 +225,7 @@ export function middleware(request: NextRequest): NextResponse {
   // 'strict-dynamic' with no nonce/hash present disables ALL host-based allowlisting and
   // 'unsafe-inline', blocking every script on the page, not just the ones it's meant to loosen.
   const developersScriptSrc = isDevelopersPath(pathname) && !isDevelopment ? " 'strict-dynamic'" : ''
-  const cspHeader = `default-src 'self'; ${scriptPolicy}${developersScriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com${developersFontSrc}; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com${developersConnectSrc}; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com${developersFrameSrc}${tradeFrameSrc}; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
+  const cspHeader = `default-src 'self'; ${scriptPolicy}${developersScriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.weglot.com; font-src 'self' https://fonts.gstatic.com${developersFontSrc}; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https://api.hypelab.com https://app.chatwoot.com https://widget.chatwoot.com ${strapiHostname} https://cdn.weglot.com https://api.weglot.com https://cdn-api-weglot.com wss://app.chatwoot.com  https://api.thorchain.shapeshift.com${developersConnectSrc}; frame-src 'self' https://widget.chatwoot.com https://app.chatwoot.com${developersFrameSrc}${onramperFrameSrc}; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://app.chatwoot.com; frame-ancestors 'self'; upgrade-insecure-requests;`
   response.headers.set('Content-Security-Policy', cspHeader)
 
   // Handle locale routing
