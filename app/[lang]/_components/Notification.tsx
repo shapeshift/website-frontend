@@ -52,7 +52,7 @@ export function Notification(): ReactNode {
     const fetchData = async (): Promise<void> => {
       try {
         setIsLoading(true)
-        const res = await fetch('/api/strapi/notification?populate=*', {
+        const res = await fetch('/api/strapi/notification?populate[0]=bgImage', {
           signal: abortController.signal,
         })
 
