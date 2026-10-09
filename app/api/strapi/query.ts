@@ -1,9 +1,18 @@
-type TContentPolicy = { fields: string[]; populate: string[]; filters: string[]; sort: string[] }
+type TContentPolicy = {
+  fields: string[]
+  populate: string[]
+  populateFields?: Record<string, string[]>
+  filters: string[]
+  sort: string[]
+}
+
+const imageFields = ['url', 'width', 'height', 'formats']
 
 const policies: Record<string, TContentPolicy> = {
   posts: {
     fields: ['slug', 'summary', 'title', 'type', 'tags', 'publishedAt', 'isFeatured', 'content'],
     populate: ['featuredImg'],
+    populateFields: { featuredImg: imageFields },
     filters: ['filters[slug][$eq]', 'filters[type][$contains]', 'filters[tags][$contains]'],
     sort: ['isFeatured:desc', 'id:asc', 'id:desc'],
   },
@@ -21,18 +30,21 @@ const policies: Record<string, TContentPolicy> = {
       'content',
     ],
     populate: ['featuredImg'],
+    populateFields: { featuredImg: imageFields },
     filters: ['filters[slug][$eq]', 'filters[category][$contains]', 'filters[tags][$contains]'],
     sort: ['publishedOn:asc', 'publishedOn:desc'],
   },
   ['support-articles']: {
     fields: ['slug', 'summary', 'title', 'publishedAt', 'content'],
     populate: ['featuredImg'],
+    populateFields: { featuredImg: imageFields },
     filters: ['filters[slug][$eq]'],
     sort: ['publishedAt:asc', 'publishedAt:desc'],
   },
   notification: {
     fields: ['title', 'description', 'enabled', 'type', 'tag', 'href'],
     populate: ['bgImage'],
+    populateFields: { bgImage: ['url'] },
     filters: [],
     sort: [],
   },
@@ -51,7 +63,13 @@ export function publicContentQuery(collection: string, input: URLSearchParams): 
     if (indexed) {
       const kind = indexed[1] as 'fields' | 'populate' | 'sort'
       if (!policy[kind].includes(value)) throw new Error('Unsupported selection')
-      output.append(key, value)
+      const relationFields = kind === 'populate' ? policy.populateFields?.[value] : undefined
+      if (relationFields) {
+        // Replace unrestricted media population with server-owned field selections.
+        relationFields.forEach((field, index) => output.set(`populate[${value}][fields][${index}]`, field))
+      } else {
+        output.append(key, value)
+      }
     } else if (policy.filters.includes(key) && value.length > 0) {
       output.set(key, value)
     } else if (key === 'status' && value === 'published') {
