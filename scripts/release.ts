@@ -10,6 +10,7 @@ import semver from 'semver'
 import { simpleGit as git } from 'simple-git'
 
 import { getRegularReleaseCommits } from './release-commits'
+import { createDraftReleasePr } from './release-pr'
 import { exit, formatReleasePrTitle, getLatestSemverTag, parseReleasePrTitle } from './utils'
 
 const assertIsCleanRepo = async (): Promise<void> => {
@@ -165,10 +166,8 @@ const createRelease = async (): Promise<void> => {
     const nextVersion = await getNextReleaseVersion('minor')
     await assertTagAvailable(nextVersion)
     const title = formatReleasePrTitle('regular', nextVersion)
-    const body = messages.map((m) => m.replace(/"/g, '\\"')).join('\\n')
-    const command = `gh pr create --draft --base "main" --title "${title}" --body "${body}"`
     console.log(chalk.green('Creating draft PR...'))
-    await pify(exec)(command)
+    await createDraftReleasePr(title, messages)
 
     exit(chalk.green(`Release ${nextVersion} created successfully. PR has been opened.`))
   } else {
@@ -219,10 +218,8 @@ const createRelease = async (): Promise<void> => {
     const nextVersion = await getNextReleaseVersion('patch')
     await assertTagAvailable(nextVersion)
     const title = formatReleasePrTitle('hotfix', nextVersion)
-    const body = messages.map((m) => m.replace(/"/g, '\\"')).join('\\n')
-    const command = `gh pr create --draft --base "main" --title "${title}" --body "${body}"`
     console.log(chalk.green('Creating draft hotfix PR...'))
-    await pify(exec)(command)
+    await createDraftReleasePr(title, messages)
 
     exit(chalk.green(`Hotfix release ${nextVersion} created successfully. PR has been opened.`))
   }
