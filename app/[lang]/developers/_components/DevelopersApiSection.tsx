@@ -12,11 +12,11 @@ const codePanels = [
   {
     label: 'GET /v1/assets',
     lines: [
-      '$ # chains',
-      'curl "https://api.shapeshift.com/v1/chains"',
+      '# chains',
+      '$ curl "https://api.shapeshift.com/v1/chains"',
       '',
       '# assets, filtered by chain',
-      'curl --get "https://api.shapeshift.com/v1/assets" \\',
+      '$ curl --get "https://api.shapeshift.com/v1/assets" \\',
       '  --data-urlencode "chainId=eip155:1" \\',
       '  --data-urlencode "limit=100"',
       '',
@@ -131,7 +131,7 @@ function TypedCodePanel({ activeTab }: { activeTab: number }): ReactNode {
           <span className={'size-2.5 rounded-full bg-stroke'} />
           <span className={'size-2.5 rounded-full bg-stroke'} />
         </div>
-        <span className={'font-mono text-xs text-gray-500'}>{codePanels[activeTab].label}</span>
+        <span className={'no-translate font-mono text-xs text-gray-500'}>{codePanels[activeTab].label}</span>
         <button
           type={'button'}
           onClick={() => {
@@ -155,7 +155,7 @@ function TypedCodePanel({ activeTab }: { activeTab: number }): ReactNode {
       </div>
       <pre
         className={
-          'min-h-[390px] overflow-x-auto whitespace-pre p-6 font-mono text-[12.5px] leading-[1.7] text-[#c9d1d9] sm:p-7'
+          'no-translate min-h-[390px] overflow-x-auto whitespace-pre p-6 font-mono text-[12.5px] leading-[1.7] text-[#c9d1d9] sm:p-7'
         }
       >
         {source.slice(0, visibleCharacters)}
@@ -210,7 +210,7 @@ export function DevelopersApiSection(): ReactNode {
                   </span>
                   <span
                     className={
-                      'whitespace-nowrap rounded-md bg-blue/10 px-2.5 py-1 font-mono text-[11.5px] text-blueLight'
+                      'no-translate whitespace-nowrap rounded-md bg-blue/10 px-2.5 py-1 font-mono text-[11.5px] text-blueLight'
                     }
                   >
                     {endpoint.method}
