@@ -9,6 +9,8 @@ import pify from 'pify'
 import semver from 'semver'
 import { simpleGit as git } from 'simple-git'
 
+import { getRegularReleaseCommits } from './release-commits'
+import { createDraftReleasePr } from './release-pr'
 import { exit, formatReleasePrTitle, getLatestSemverTag, parseReleasePrTitle } from './utils'
 
 const assertIsCleanRepo = async (): Promise<void> => {
@@ -47,7 +49,7 @@ const inquireProceedWithCommits = async (
   action: 'create' | 'merge',
   version?: string
 ): Promise<void> => {
-  console.log(chalk.blue(['', commits, ''].join('\n')))
+  console.log(chalk.blue(['', ...commits, ''].join('\n')))
   const message =
     action === 'create'
       ? 'Do you want to create a release with these commits?'
@@ -143,7 +145,7 @@ const createRelease = async (): Promise<void> => {
   if (releaseType === 'Regular') {
     // Regular release: develop -> release -> main
     // Production follows main; release branches and version tags may lag behind shipped changes.
-    const { messages, total } = await getCommits('origin/main', 'origin/develop')
+    const { messages, total } = await getRegularReleaseCommits()
 
     if (!total) {
       exit(chalk.yellow('No new commits to release from develop.'))
@@ -164,10 +166,8 @@ const createRelease = async (): Promise<void> => {
     const nextVersion = await getNextReleaseVersion('minor')
     await assertTagAvailable(nextVersion)
     const title = formatReleasePrTitle('regular', nextVersion)
-    const body = messages.map((m) => m.replace(/"/g, '\\"')).join('\\n')
-    const command = `gh pr create --draft --base "main" --title "${title}" --body "${body}"`
     console.log(chalk.green('Creating draft PR...'))
-    await pify(exec)(command)
+    await createDraftReleasePr(title, messages)
 
     exit(chalk.green(`Release ${nextVersion} created successfully. PR has been opened.`))
   } else {
@@ -218,10 +218,8 @@ const createRelease = async (): Promise<void> => {
     const nextVersion = await getNextReleaseVersion('patch')
     await assertTagAvailable(nextVersion)
     const title = formatReleasePrTitle('hotfix', nextVersion)
-    const body = messages.map((m) => m.replace(/"/g, '\\"')).join('\\n')
-    const command = `gh pr create --draft --base "main" --title "${title}" --body "${body}"`
     console.log(chalk.green('Creating draft hotfix PR...'))
-    await pify(exec)(command)
+    await createDraftReleasePr(title, messages)
 
     exit(chalk.green(`Hotfix release ${nextVersion} created successfully. PR has been opened.`))
   }
@@ -290,4 +288,7 @@ const main = async (): Promise<void> => {
   }
 }
 
-main()
+main().catch((error: Error) => {
+  console.error(chalk.red(error.message))
+  process.exit(1)
+})
