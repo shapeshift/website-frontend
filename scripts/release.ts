@@ -9,6 +9,7 @@ import pify from 'pify'
 import semver from 'semver'
 import { simpleGit as git } from 'simple-git'
 
+import { getRegularReleaseCommits } from './release-commits'
 import { exit, formatReleasePrTitle, getLatestSemverTag, parseReleasePrTitle } from './utils'
 
 const assertIsCleanRepo = async (): Promise<void> => {
@@ -143,7 +144,7 @@ const createRelease = async (): Promise<void> => {
   if (releaseType === 'Regular') {
     // Regular release: develop -> release -> main
     // Production follows main; release branches and version tags may lag behind shipped changes.
-    const { messages, total } = await getCommits('origin/main', 'origin/develop')
+    const { messages, total } = await getRegularReleaseCommits()
 
     if (!total) {
       exit(chalk.yellow('No new commits to release from develop.'))
@@ -290,4 +291,7 @@ const main = async (): Promise<void> => {
   }
 }
 
-main()
+main().catch((error: Error) => {
+  console.error(chalk.red(error.message))
+  process.exit(1)
+})
