@@ -48,7 +48,7 @@ const inquireProceedWithCommits = async (
   action: 'create' | 'merge',
   version?: string
 ): Promise<void> => {
-  console.log(chalk.blue(['', commits, ''].join('\n')))
+  console.log(chalk.blue(['', ...commits, ''].join('\n')))
   const message =
     action === 'create'
       ? 'Do you want to create a release with these commits?'
