@@ -1,16 +1,13 @@
 #!/usr/bin/env bun
 
-import { exec } from 'child_process'
-import { promisify } from 'util'
-
 import chalk from 'chalk'
 import inquirer from 'inquirer'
-import pify from 'pify'
 import semver from 'semver'
 import { simpleGit as git } from 'simple-git'
 
 import { getRegularReleaseCommits } from './release-commits'
-import { createDraftReleasePr } from './release-pr'
+import { runGh } from './release-gh'
+import { createDraftReleasePr, listOpenMainPrs } from './release-pr'
 import { exit, formatReleasePrTitle, getLatestSemverTag, parseReleasePrTitle } from './utils'
 
 const assertIsCleanRepo = async (): Promise<void> => {
@@ -23,15 +20,18 @@ const assertIsCleanRepo = async (): Promise<void> => {
 
 const assertGhInstalled = async (): Promise<void> => {
   try {
-    await pify(exec)('hash gh')
-  } catch {
-    exit(chalk.red('Please install GitHub CLI https://github.com/cli/cli#installation'))
+    await runGh(['--version'])
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      exit(chalk.red('Please install GitHub CLI https://github.com/cli/cli#installation'))
+    }
+    throw error
   }
 }
 
 const assertGhAuth = async (): Promise<void> => {
   try {
-    await pify(exec)('gh auth status')
+    await runGh(['auth', 'status'])
   } catch (e) {
     exit(chalk.red((e as Error).message))
   }
@@ -96,16 +96,8 @@ const inquireCleanBranchOffMain = async (): Promise<boolean> => {
   return isCleanlyBranched
 }
 
-const execAsync = promisify(exec)
-
-const getStdout = async (command: string): Promise<string> => {
-  const { stdout } = await execAsync(command)
-  return stdout
-}
-
 const getPendingReleaseVersion = async (): Promise<string> => {
-  const stdout = await getStdout('gh pr list --base main --state open --json title,headRefName')
-  const prs = JSON.parse(stdout) as { title: string; headRefName: string }[]
+  const prs = await listOpenMainPrs()
   const releasePr = prs.find(({ headRefName }) => headRefName === 'release')
   const parsed = releasePr && parseReleasePrTitle(releasePr.title)
 
