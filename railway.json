@@ -12,7 +12,8 @@
       "postcss.config.mjs",
       "tsconfig.json",
       "middleware.ts",
-      "railway.json"
+      "railway.json",
+      ".nvmrc"
     ]
   },
   "deploy": {
